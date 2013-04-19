@@ -1,5 +1,7 @@
 // models the page
 var pageModel = {
+
+    apiEndPoint: 'http://urloftheapp.com/',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),
@@ -47,7 +49,7 @@ var pageModel = {
                 
  
                 $.ajax({
-                	url: 'http://two.respondcms.com/api/page/published/' + display,
+                	url: pageModel.apiEndPoint+'api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
         			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: 0},
@@ -146,17 +148,6 @@ var pageModel = {
 		var forms = $('.form-respond');
 		
 		for(var x=0; x<forms.length; x++){
-            
-            /*
-            function processForm(form){
-                
-                $(form).find('button').on('click', function(){
-                    $(form).respondProcessForm();
-                });
-                
-            }
-            
-            processForm(forms[x]);*/
             
             $(forms[x]).respondForm();
     
