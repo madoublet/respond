@@ -1,12 +1,5 @@
 [
   {
-    "type":"cart",
-    "name":"Cart",
-    "desc":"A more complex plugin featuring data access and an advanced configuration.",
-    "render":"publish",
-    "config":"true"
-  },
-  {
     "type":"samplepub",
     "name":"Sample Published",
     "desc":"A simple sample that demonstates plugins rendered at publish time.",
@@ -18,13 +11,6 @@
     "name":"Sample Runtime",
     "desc":"A simple sample that demonstates plugins rendered at run time.",
     "render":"runtime",
-    "config":"true"
-  },
-  {
-    "type":"poll",
-    "name":"Poll",
-    "desc":"Provide a question and possible options and let your users vote on them.",
-    "render":"publish",
     "config":"true"
   }
 ]
