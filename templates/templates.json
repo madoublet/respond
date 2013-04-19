@@ -1,0 +1,12 @@
+{
+  "simple":{
+    "id":"simple",
+    "name":"Simple",
+    "desc":"A great starting point for any Responsive site"
+  },
+  "respond":{
+    "id":"respond",
+    "name":"Respond",
+    "desc":"The template used to create RespondCMS.com"
+  }
+}

@@ -1,0 +1,524 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font: 12px Arial, Helvetica, sans-serif;
+  background: #f0f0f0 url('../images/body-bg.png') repeat-y top center;
+  color: #404040;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { body { margin-left: 1px; overflow-x: hidden;} }
+
+
+div, p, span, h1, h2, h3, h4{
+  margin: 0;
+  padding: 0;
+}
+
+html, body, div, span{
+ outline: 0;
+}
+
+:focus{
+  outline: 0;
+}
+
+a, a:visited{
+    text-decoration: none;
+  color: #0e629b;
+}
+
+a.readonly{
+  color: #404040;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+img{
+  border: 0;
+}
+
+h1{
+  margin: 0;
+  padding: 0;
+}
+
+h2{
+    color: #404040;
+    margin: 0 0 20px 0;
+    padding: 0;
+    font: bold 20px arial;
+}
+
+h2 em{
+  color: #888;
+  font: italic 12px arial;
+  margin-left: 5px;
+}
+
+h3{
+  color: #404040;
+  margin: 0 0 5px 0;
+  padding: 0;
+  font: bold 16px arial;  
+}
+
+input[type=text], input[type=password], textarea{
+  border: 1px solid #ccc;
+  padding: 3px;
+  font: 12px arial;
+}
+
+input[type=text]{
+  width: 200px;
+}
+
+input.datetime{
+  width: 70px !important;
+}
+
+input.medium{
+  width: 75px !important;
+}
+
+select{
+  font: 12px arial;
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus{
+  border: 1px solid #808080;
+}
+
+textarea{
+  width: 500px;
+  height: 100px;
+}
+
+/* begin buttons */
+input.positive{
+  width: auto !important;
+  border: 1px solid #bbb;
+  font-weight: bold;
+  padding: 4px 10px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #fff url('../images/app-sprite.png') no-repeat 0 -23px;
+  color: #0e629b;
+}
+
+input.positive:hover{
+  border: 1px solid #7ec57e;
+}
+
+/* begin header */
+div#header{
+  position: relative;
+  width: 1000px;
+  text-align: left;
+  margin: 0 auto 0 auto;
+  padding: 0;
+  display: none;
+}
+
+div#header a#logo{
+  display: none;
+  margin: 15px 0 15px 0;
+}
+
+div#header a#returnToSite{
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: #fff;
+  font-size: 12px;
+}
+
+/* begin field */
+span.field input[type=text], span.field input[type=password]{
+  width: 250px;
+}
+
+span.field span.readOnly{
+  display: inline-block;
+  padding-top: 5px;
+}
+
+span.field span.readOnly a{
+  margin: 0;
+  padding: 0;
+}
+
+span.field{
+  display: block;
+  max-width: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+span.field a{
+  margin-left: 10px;
+}
+
+span.field input.small{
+  width: 50px;
+}
+
+span.field input.dimensions{
+  width: 30px;
+  text-align: right;
+}
+
+span.field label{
+  display: inline-block;
+  width: 175px;
+  text-align: right;
+  margin-right: 10px;
+  vertical-align: top;
+  height: 25px;
+  line-height: 25px;
+}
+
+span.field label small{
+  display: block;
+  font-style: italic;
+  color: #888;
+}
+
+span.field label.secondary{
+  font-style: italic;
+  color: #808080;
+  margin-top: 2px;
+}
+
+span.field span.label{
+  display: inline-block;
+  padding-top: 6px;
+  font-style: italic;
+}
+
+span.field span#storage{
+  font-weight: bold;
+}
+
+span.field span.caveat{
+  color: #808080;
+  font-style: italic;
+  margin-left: 5px;
+}
+
+span.field input.number{
+  text-align: right !important;
+}
+
+span.field input.price{
+  width: 50px;
+}
+
+span.field input.quantity{
+  width: 50px;
+}
+
+span.field input.sku{
+  width: 75px;
+}
+
+span.field input.name{
+  width: 150px;
+}
+
+span.field.sku{
+  margin-bottom: 10px;
+}
+
+span.field.sku input{
+  margin-right: 10px;
+}
+
+span.field select{
+  width: 150px;
+}
+
+span.field input[type=number]{
+  width: 145px;
+}
+
+span.field span.list{
+  display: inline-block;
+  width: 500px;
+}
+
+span.field label.radio, span.field label.checkbox{
+  display: block;
+  width: auto !important;
+  text-align: left;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+span.field label.radio.inline{
+  display: inline-block;
+}
+
+span.field em{
+  display: block;
+  padding: 4px 0 0 4px;
+  color: #808080;
+  font-size: 12px;
+  margin: 0 0 0 185px;
+}
+
+span.field em.optional{
+  display: inline;
+  margin-left: 0 !important;
+}
+
+span.field span.addtl{
+  color: #888;
+  display: inline-block;
+  padding-top: 5px;
+}
+
+span.field.stacked{
+  display: inline-block;
+  padding: 0;
+  margin: 0 15px 15px 0;
+  max-width: 450px;
+  vertical-align: middle;
+}
+
+span.field.stacked em{
+  margin-left: 0;
+}
+
+span.field.stacked label{
+  display: block;
+  text-align: left;
+  max-width: 450px;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 0 4px 4px 0;
+}
+
+span.actions{
+  display: block;
+  padding: 5px 10px 10px 126px;
+}
+
+span.tag{
+  display: inline-block;
+  color: #606060;
+  font-size: 12px;
+  font-style: italic;
+}
+
+span.checklist{
+  display: inline-block !important;
+  width: 300px;
+}
+
+span.checklist label{
+  text-align: left;
+  width: auto;
+}
+
+/* begin pager */
+div.pager{
+  margin: 0;
+  padding: 15px;
+  color: #a0a0a0; 
+  font-size: 11px;
+}
+
+/* begin actions */
+div#actions{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  z-index: 100;
+}
+
+div#actions div{
+  position: relative;
+  width: 1000px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 5px 0;
+  height: 26px;
+  line-height: 26px;
+  text-align: left;
+}
+
+div#actions div input.positive{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+div#actions div a.back{
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+}
+
+/* begin footer */
+div#footer{
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+div#footer div{
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+div#footer p{
+  padding: 10px 0 30px 15px;
+  color: #a0a0a0;
+  font-size: 10px;
+  text-align: left;
+}
+
+div#footer p.poweredBy{
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+div#isNotConfigured{
+  display: block;
+  color: #606060;
+  width: 700px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+span.editable{
+  padding: 2px 4px;
+  border: 1px solid #f0f0f0;
+}
+
+span.editable:hover{
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+input.inlineEdit, select.inlineEdit, span.inlineEdit{
+  display: none;
+}
+
+/* begin select list */
+div.select{
+  overflow:auto;
+  overflow-y:scroll;
+  height: 350px;
+  margin: 0 15px 15px 15px;
+  border: 1px solid #ccc !important;
+}
+
+div.select.small{
+  height: 200px;
+}
+
+div.select.mini{
+  height: 150px;
+}
+
+div.select ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+div.select ul li.parent{
+  color: #fff;
+  background: #888;
+  font-weight: bold;
+  cursor: default;
+}
+
+div.select ul li{
+  display: block;
+  margin: 0;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+}
+div.select ul li em{
+  color: #808080;
+  margin-left: 10px;
+}
+
+div.select ul li:hover{
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+div.select ul li.selected{
+  background: #fbec5d;
+  font-weight: bold;
+}
+
+div.select ul li.selected em{
+  font-weight: normal;
+}
+
+/* icons for filetypes */
+span.filetype{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: url('../images/file-sprite.png') no-repeat 0 0;
+}
+
+span.filetype.word{
+  background: url('../images/file-sprite.png') no-repeat -96px 0;
+}
+
+span.filetype.pdf{
+  background: url('../images/file-sprite.png') no-repeat -64px 0;
+}
+
+span.filetype.image{
+  background: url('../images/file-sprite.png') no-repeat -32px 0;
+}
+
+/* begin autocomplete */
+ul.ui-autocomplete{
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+ul.ui-autocomplete li{
+  margin: 0;
+  padding: 0 5px;
+}
+
+/* begin timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; !important}
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
+ #upgradeBrowser { display: none; color: #000; background: #fbec5d; position: fixed; top: 0; width: 100%; padding: 10px; margin: 0; text-align: center;}

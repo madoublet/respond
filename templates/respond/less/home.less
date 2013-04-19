@@ -1,0 +1,177 @@
+.rounded-corners (@radius: 5px) {
+  border-radius: @radius;
+}
+
+.rounded-corners-top (@radius: 5px){
+  border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+}
+
+.rounded-corners-bottom (@radius: 5px){
+  border-bottom-left-radius: @radius;
+  border-bottom-right-radius: @radius;
+}
+
+/* import global styles */
+@import url("global.css");
+
+.container-fluid {
+  padding-right: 0 !important; 
+  padding-left: 0 !important;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1{
+  font-size: 2.4em !important;
+  line-height: 1.2em !important;
+  margin-bottom: 25px !important;
+  font-weight: normal !important;
+  letter-spacing: 1.25px;
+}
+
+h2{
+  font-size: 2.0em !important;
+  font-weight: normal !important;
+  letter-spacing: 1.2px;
+  color: #627085 !important;
+}
+
+h3{
+  font-size: 2.0em !important;
+  line-height: 1.2em !important;
+  font-weight: normal !important;
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+p{
+  font-size: 1.2em !important;
+  line-height: 1.7em !important;
+  color: #888;
+}
+
+b{
+  color: #3690ae !important;
+}
+
+div.o-image{
+  text-align: center;
+}
+
+input[type=image]{
+  width: auto;
+  height: auto;
+}
+
+/* callout */
+div#callout{
+  box-sizing: border-box;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+div#callout div.col:first-child{
+  padding-top: 5px;
+}
+
+div#callout h1{
+  padding: 0 0 15px 0 !important;
+  margin: 0 !important;
+  font-size: 4.5rem !important;
+  color: #424d5d !important;
+  font-weight: normal !important;
+}
+
+div#callout h2{
+  font-size: 1.5rem !important;
+  color: #999 !important;
+  margin: 0 0 25px 0;
+}
+
+div#callout h2 i{
+  font-size: 1.5rem !important;
+  color: #424d5d;
+  font-style: normal !important;
+  font-weight: bold !important;
+  color: #555 !important;
+}
+
+div#callout p a.btn{
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+div#callout p.call-to-action{
+  color: #888;
+  background-color: rgba(255, 255, 255, .3);
+  padding: 20px 0;
+  margin: 0 0 25px !important;
+  margin-bottom: 0;
+  .rounded-corners;
+  background-color: #f0f0f0;
+}
+
+/* features */
+div#features{
+  padding: 10px 20px 0 20px;
+  box-sizing: border-box;
+}
+
+div#features div.span9 p, div#features div.span3 p{
+  margin-bottom: 20px;
+}
+
+div#features div.span9{
+  box-sizing: border-box;
+  border-right: 1px solid #ddd;
+  padding-right: 25px;
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {  }
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {  
+  
+  div#callout h1{
+    font-size: 2.2rem !important;
+  }
+
+  div#callout h2{
+    font-size: 1.5rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  div#callout h2 i{
+    font-size: 1.2rem !important;
+  }
+
+  div#callout p a.btn{
+    display: block;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+
+  div#callout, div#callout div, div#callout p{
+    border-radius: 0 !important;
+  }
+
+  div#callout h1{
+    padding: 0 10px 20px 10px;
+  }
+
+  div#features div.span9{
+    box-sizing: border-box;
+    border-right: none;
+    padding-right: 10px;
+  }
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {  }
+ 
+/* Large desktop */
+@media (min-width: 1200px) {  }

@@ -1,0 +1,9 @@
+{
+  "cart":{
+    "type":"cart",
+    "name":"Cart",
+    "desc":"A basic cart with Paypal support",
+    "render":"publish",
+    "config":"true"
+  }
+}

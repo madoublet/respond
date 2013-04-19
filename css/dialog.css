@@ -1,0 +1,113 @@
+/* begin immersive dialog */
+.immersive{
+    box-sizing: border-box;
+	position: absolute; 
+	z-index: 50000;
+	display: none;
+	border: none;
+	margin: 0;
+	padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.immersive-header{
+    position: relative;
+}
+
+   
+    .immersive-header h3{
+        color: #fff;
+        padding: 10px 10px;
+    }
+    
+    .immersive-header button.close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #fff;
+        opacity: 1;
+        text-shadow: none;
+    }
+    
+    .immersive-body{
+        margin-right: 200px;
+        height: 100%;
+        overflow: scroll;
+    }
+    
+    .immersive-body h2{
+        font-size: 1.2em;
+        color: #ccc;
+        padding: 10px 10px;
+    }
+
+    
+    
+.imagesDialog .existing{
+    display: inline-block;
+}
+
+/* images dialog */
+.image-list{
+    border-right: 1px solid #555;
+}
+
+.image-list .image{
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border: 5px solid #333;
+}
+
+    .image-list .image:hover{
+        border: 5px solid #fff;
+    }
+    
+    .image-list .image.existing:hover{
+        border: 5px solid #ff9900;
+    }
+
+    .image-list .image img{
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+    }
+    
+    .image-list .image small{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        font-size: 0.85em;
+        background-color: #fff;
+        color: #888;
+        height: 40px;
+        display: none;
+    }
+    
+        .image-list .image:hover small{
+            display: block;
+        }
+
+/* begin overlay */
+div#overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #404040;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity:.95; 
+  display: none;
+  z-index: 4999;
+}
+
+

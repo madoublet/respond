@@ -1,0 +1,915 @@
+div.editor div.editor-highlight{
+    border: 1px solid #fbec5d !important;
+    background: #fbec5d !important;
+    min-height: 25px;
+} 
+
+div.editor{
+    position: relative;
+    padding-bottom: 250px !important;
+    margin: 10px 0 25px 0;
+    min-height: 1000px;
+}
+
+div.editor.container-fluid{
+    padding: 0 10px !important;
+}
+
+section.main nav.editor-menu{
+    background: #E9E9E9;
+    margin: 0 0 0 -10px;
+    position: fixed !important;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    -webkit-transition: .2s all ease;
+    -moz-transition: .2s all ease;
+    -o-transition: .2s all ease;    
+	-ms-transition: .2s all ease;
+	transition: .2s all ease;
+}
+
+    body.show-nav section.main nav.editor-menu{
+        width: 80%;
+    }
+
+.editor-actions{
+    margin: 0 110px 0 55px;
+    height: 50px;
+    overflow: hidden;
+}
+
+    .editor-actions div{
+        width: 1353px;  /* 33 * 41 = 1353 */
+    }
+
+a.primary-action{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+}
+
+a.next, a.previous{
+    position: absolute;
+    color: #888;
+    background-color: #fff;
+    opacity: 0.75;
+    height: 50px;
+    line-height: 50px;
+    z-index: 100;
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+    a.next:hover, a.previous:hover{
+        opacity: 1;
+    }
+    
+    a.next{
+        top: 0;
+        right: 110px;
+    }
+    
+    a.previous{
+        top: 0;
+        left: 50px;
+        display: none;
+    }
+    
+.editor-actions a{
+      display: block;
+      position: relative;
+      float: left;
+      width: 40px; 
+      height: 40px;
+      margin: 5px 1px 5px 0;
+      padding: 0;
+      text-align: center;
+      line-height: 40px;
+      background-color: #ddd !important; 
+      color: #555;
+      font-size: 1.1em !important;
+}
+
+    .editor-actions a:hover{
+        background-color: #fff !important;
+        text-decoration: none;
+    }
+    
+    .editor-actions small{
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        bottom: -13px;
+        right: 0;
+        color: #888;
+        font-size: 0.55em;
+    }
+
+div.block{
+  position: relative;
+  min-height: 50px;
+  padding-bottom: 15px;
+}
+
+div.block{
+  padding-top: 45px !important;
+}
+
+div.block:last-child{
+  border-bottom: none;
+}
+
+div.block div.col{
+  position: relative;
+  padding: 0;
+  margin-bottom: 0;
+  vertical-align: top;
+  min-height: 40px;
+}
+
+div.block div.col:empty{
+  background: #888 !important;
+  opacity: 0.9;
+}
+
+div.block div.col div{
+  position: relative;
+  margin: 0 !important;
+  padding: 15px 30px;
+  border: 0;
+  font-size: 13px;
+  line-height: 18px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+    div.block div.col div div{
+        border-bottom: none;    
+    }
+
+div.block div.col div div{
+  margin: 0; padding: 0;
+}
+
+div.block div.col div + div{
+  margin-top: 10px;
+}
+
+div.block div.col div div[contentEditable=true]{
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 5px;
+}
+
+div.block div.col div div[contentEditable=true]:hover{
+  
+}
+
+div.block div.h1 div{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+div.block div.h2 div{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+div.block div.h3 div{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+div.block div.ul div{
+  padding-left: 20px;
+  background: url('../images/menu-sprite.png') no-repeat -5px -152px; /* update */
+}
+
+/* textareas and textboxes */
+div.block div.twitter, div.block div.map{
+  padding-right: 45px !important;
+}
+
+div.block div.html, div.block div.youtube, div.block div.vimeo{
+  padding-right: 40px !important;
+}
+
+div.block div.html textarea, div.block div.youtube textarea, div.block div.vimeo textarea{
+  height: 100px;  
+  border: 1px solid #f0f0f0;
+  width: 100%;
+}
+
+/* handle pull quote (pq) */
+div.block div.pq div.content{
+  display: inline-block;
+}
+
+div.block div.pq div.quote{
+  margin: 0;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* handle image */
+div.block div.i div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.block div.i div.img{
+  cursor: pointer;
+  width: 20%;
+}
+
+div.block div.i div.img img{
+ box-sizing: border-box;
+  max-width: 100%;
+  max-height: 200px;
+  border: 5px solid #f0f0f0;
+}
+
+div.block div.i.left div.img, div.block div.i.right div.img{
+  box-sizing: border-box;
+  max-width: 50%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+div.block div.i div.content{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px !important;
+  width: 80%;
+}
+
+div.block div a.remove, div.block div a.remove-field{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  width: 25px !important;
+  height: 25px !important;
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -375px -40px;
+}
+
+div.block div a.config, div.block div a.config-list, div.block div a.config-plugin{
+  position: absolute;
+  top: 25px;
+  right: 0;
+  display: inline-block;
+  width: 25px !important;
+  height: 25px !important;
+  border: none !important;
+  background: url('../images/menu-sprite.png') no-repeat -604px -40px;
+}
+
+div.block div a.config:hover, div.block div a.config-list:hover, div.block div a.config-plugin:hover{
+  background-color: #ccc;
+}
+
+div.block div a.remove:hover, div.block div a.remove-field:hover{
+  background-color: #B11623;
+}
+
+/* begin block actions */
+span.blockActions{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  display: inline-block;
+  margin: 0 10px 0 0;
+  text-align: right;
+  color: #fff;
+  background-color: #888;
+}
+
+span.blockActions span{
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+/* begin block actions */
+span.blockActions a{
+  margin-right: 2px;
+  margin-top: 2px;
+}
+
+div.block a.config-block{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('../images/menu-sprite.png') no-repeat -604px -40px;
+}
+
+div.block a.config-block:hover{
+ background-color: #888;
+}
+
+div.block a.removeBlock{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('../images/menu-sprite.png') no-repeat -375px -40px;
+}
+
+div.block a.removeBlock:hover{
+  background-color: #B11623;
+}
+
+div.block a.up, div.block a.down{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+div.block a.up{
+  background: url('../images/menu-sprite.png') no-repeat -425px -40px;
+}
+
+div.block a.up.disabled, div.block a.up.disabled:hover{
+  display: none !important;
+}
+
+div.block a.down{
+  background: url('../images/menu-sprite.png') no-repeat -450px -40px;
+}
+
+div.block a.down.disabled, div.block a.down.disabled:hover{
+  display: none !important;
+}
+
+div.block a.up:hover, div.block a.down:hover{
+ background-color: #888;
+}
+
+pre.non-pretty{
+  display: none;
+}
+
+/* begin markers */
+div.block div span.marker, div.block div span.marker-field{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  color: #888;
+  font-size: 10px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  cursor: move;
+  background: #f0f0f0;
+  color: #888;
+}
+
+div.block div span.marker:hover, div.block div span.marker-field:hover{
+  text-indent: -3000px;
+  background: #d1dcea url('../images/app-sprite.png') no-repeat -226px 0 !important;
+}
+
+div.block div.q span.marker{
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat 0 -40px;
+}
+
+div.block div.ul span.marker{
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -25px -40px;
+}
+
+div.block div.hr span.marker{
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -50px -40px;
+}
+
+div.block div.i span.marker{
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -75px -40px;
+}
+
+div.block div.slideshow span.marker{
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -100px -40px;
+}
+
+div.block div.youtube span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -125px -40px;
+}
+
+div.block div.vimeo span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -125px -40px;
+}
+
+div.block div.map span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -200px -40px;
+}
+
+div.block div.form span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -175px -40px;
+}
+
+div.block div.file span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -150px -40px;
+}
+
+div.block div.date span.marker, div.block div.event span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -225px -40px;
+}
+
+div.block div.twitter span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -250px -40px;
+}
+
+div.block div.like span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -275px -40px;
+}
+
+div.block div.html span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -300px -40px;
+}
+
+div.block div.list span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -325px -40px;
+}
+
+div.block div.cart span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -350px -40px;
+}
+
+div.block div.comments span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -475px -40px;
+}
+
+div.block div.blog span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -500px -40px;
+}
+
+div.block div.byline span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -525px -40px;
+}
+
+div.block div.byline div.placeholder{
+  padding-left: 5px;
+}
+
+div.block div.gallery span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -552px -40px;
+}
+
+div.block div.table span.marker{
+  text-indent: -5000px;
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -577px -40px;
+}
+
+div.block div.plugin span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -629px -40px;
+}
+
+div.block div.syntax span.marker{
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -654px -40px;
+}
+
+div.date div{
+  vertical-align: middle;
+}
+
+div.form span.marker{
+  border: none !important;
+  background: url('../images/skedit/form.png') no-repeat 0 0;
+}
+
+div.block div span.marker-field{
+  border: none !important;
+  background: #f0f0f0;
+}
+
+div.block div span.marker:hover, div.block div span.marker-field:hover{
+    background-color: #ccc;
+}
+
+/* sk specific styles */
+div.block div.slideshow div, div.block div.gallery div{
+  min-height: 115px;
+}
+
+div.block div.slideshow div, div.block div.gallery div{
+  vertical-align: top;
+}
+
+div.block div.slideshow em.size{
+  position: absolute;
+  display: block;
+  background: #fff;
+  width: 87px;
+  border: 1px solid #fff;
+  top: 103px;
+  left: 30px;
+  color: #888;
+  font-size: 11px;
+  text-align: center;
+  padding: 3px 0;
+}
+
+div.block div.slideshow button, div.block div.gallery button{
+  vertical-align: top;
+  width: 87px;
+  height: 89px;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat 0 -65px;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 0;
+}
+
+div.block div.slideshow button:hover, div.block div.gallery button:hover{
+  border: 1px solid #ccc;
+  background-color: #ccc;
+}
+
+div.block div.slideshow span.image, div.block div.gallery span.image{
+  display: inline-block;
+  margin: 0 5px 5px 5px;
+  padding: 5px 5px 30px 5px;
+  margin: 0 5px 0 0;
+  border: 1px solid #f0f0f0;
+  background: #f0f0f0;
+  position: relative;
+  vertical-align: top;
+  cursor: move;
+}
+
+div.block div.slideshow span.image.edit, div.block div.gallery span.image.edit{
+  z-index: 50;
+}
+
+div.block div.slideshow span.image img, div.block div.gallery span.image img{
+  width: 75px;
+  height: 75px;
+}
+
+div.block div.slideshow span.image span.caption, div.block div.gallery span.image span.caption{
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+div.block div.slideshow span.image.edit span.caption, div.block div.gallery span.image.edit span.caption{
+  left: -65px;
+  background: #fff;
+  padding: 5px;
+  border: 1px solid #f0f0f0;
+}
+
+div.block div.slideshow span.image span.caption input, div.block div.gallery span.image span.caption input{
+  width: 68px;
+  font-size: 10px;
+  margin: 0;
+  border-radius: 0;
+}
+
+div.block div.slideshow span.image span.caption input:focus, div.block div.gallery span.image span.caption input:focus{
+  width: 200px;
+  font-size: 10px;
+}
+
+div.block div.slideshow span.editor-highlight, div.block div.gallery span.editor-highlight{
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  margin: 0 5px;
+  padding: 5px 5px 20px 5px;
+  margin: 0 5px 0 0;
+  border: 1px solid #fbec5d !important;
+  background: #fbec5d !important;
+  vertical-align: top;
+} 
+
+
+div.block div.slideshow a.caption, div.block div.gallery a.caption{
+  position: absolute;
+  color: #aaa;
+  font-size: 11px;
+  bottom: 2px; left: 24px;
+}
+
+div.block div.slideshow span.image:hover a.caption, div.block div.gallery span.image:hover a.caption{
+  color: #808080;
+  text-decoration: none;
+}
+
+div.block div.slideshow span.image a.remove, div.block div.gallery span.image a.remove{
+  position: absolute;
+  top: 5px;
+  right: 5px;  
+  width: 25px !important;
+  height: 25px !important;
+  border: none !important;
+  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -375px -40px;
+}
+
+div.block div.slideshow span.image a.remove:hover{
+  background-color: #5a2025;
+}
+
+div.block div.slideshow>div, div.block div.gallery>div{
+  color: #808080;
+  border: none;
+}
+
+/* handle hr */
+div.block div.hr div{
+  padding: 0;
+  border: 0;
+  margin: 0 30px 0 30px;
+  margin-top: 10px;
+  height: 1px !important;
+  border-top: 2px solid #ccc;
+}
+
+/* handle map */
+div.block div.map div{
+  color: #808080;
+  border: none;
+  padding-right: 8px;
+}
+
+/* handle list */
+div.block div.list div{
+  color: #808080;
+  border: none;
+  min-height: 20px;
+  padding-left: 5px !important;
+}
+
+div.block div div input[type=text]{
+  border: 1px solid #f0f0f0;
+}
+
+div.block div div input:focus, div.block div div input[type=text]:hover{
+  border: 1px solid #ccc;
+}
+
+div.block div.map div input{
+  width: 100%;
+}
+
+div.block div.twitter div{
+  font-style: italic;
+  color: #808080;
+  border: none;
+}
+
+div.block div.twitter div input{
+  width: 100%;
+}
+
+
+div.block div.file div{
+  font-style: italic;
+  color: #808080;
+  border: none;
+}
+
+div.block div.file div em{
+  margin-right: 10px;
+}
+
+div.block div.file div input{
+  width: 400px; 
+}
+
+div.block div.form{
+    padding: 0;
+}
+
+div.block div.form div{
+  color: #808080;
+  border: none;
+  padding: 0;
+  min-height: 0;
+  background: none;
+}
+
+/* fields */
+div.block div.form span.editor-highlight{
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  margin: 0 5px;
+  padding: 0;
+  margin: 0 0 5px 0;
+  border: 1px solid #f0f0f0;
+  border: 1px solid #fbec5d !important;
+  background: #fbec5d !important;
+  vertical-align: top;
+} 
+
+div.block div.form>div{
+  margin: 0;
+  padding: 0 !important;
+}
+
+div.editor div.form input.positive{
+  margin-left: 40px;
+  margin-top: 0;
+}
+
+div.editor div.form{
+  padding-right: 13px;
+}
+
+div.editor span.field-container{
+  position: relative;
+  display: block;
+  background: #fff;
+  margin: 0;
+  padding: 5px 0 5px 35px;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+    div.editor span.field-container:first-child{
+        border-top: 1px solid #eee;
+    }
+    
+    div.editor span.field-container:last-child{
+        margin-bottom: 15px;
+    }
+
+div.editor span.field-container span.marker-field{
+  font-style: normal; 
+}
+
+div.editor span.field{
+  margin: 0;
+  padding: 0;
+}
+
+div.editor span.field-container input, div.editor span.field-container textarea{
+  width: 95%;
+}
+
+div.editor span.list{
+  display: block;
+  width: auto;
+}
+
+div.editor span.list label{
+  display: block;
+  text-align: left;
+  margin: 1px 0 4px 0;
+  padding: 0;
+  width: auto;
+}
+
+div.editor span.list label label{
+  display: inline;
+}
+
+div.editor span.list label input[type=radio], div.editor span.list label input[type=checkbox]{
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+div.editor a.configure{
+  margin-left: 5px;
+}
+
+/* handle id editor */
+span.meta{  
+  display: none;
+  padding: 10px;
+  margin: 0;
+  font: 12px "Courier";
+  color: #888;
+  background:#fff;
+}
+
+div.col span.meta{
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+span.meta span{
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: -4px;
+  width: 16px;
+  height: 16px;
+}
+
+span.meta input{
+  font: 11px "Courier";
+  width: 100px;
+  border: 1px solid #ddd;
+  margin: 0 2px;
+}
+
+/* begin editableTable */
+div.table{
+  width: auto !important;
+}
+
+div.table table{
+  min-width: 50%;
+}
+
+div.table table.col-2 td{
+  width: 50%;
+}
+
+div.table table.col-3 td{
+  width: 33%;
+}
+
+div.table table.col-4 td{
+  width: 25%;
+}
+
+div.table table.col-5 td{
+  width: 20%;
+}
+
+div.table table.col-6 td{
+  width: 16%;
+}
+
+div.table table.col-7 td{
+  width: 14%;
+}
+
+div.table table.col-8 td{
+  width: 12.5%;
+}
+
+div.table table.col-9 td{
+  width: 11%;
+}
+
+div.table table.col-10 td{
+  width: 10%;
+}
+
+div.table table td{
+  margin: 0;
+  padding: 5px 8px;
+}
+
+div.table table td div{
+  margin: 0;
+}
+
+span.addRow a, span.addColumn a{
+  margin: 10px 10px 0 0;
+}
+
+@media (min-width: 768px){
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+  div.container-fluid{
+    margin: 0 20px;
+  }
+
+  div.block{
+    padding-bottom: 5px;
+  }
+
+  div.block div.col{
+    margin-bottom: 10px !important;
+  }
+}

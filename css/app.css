@@ -1,0 +1,540 @@
+/* palette: http://www.colourlovers.com/palette/148712/Gamebookers */
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body{
+	color: #555;
+    margin: 0;
+    padding: 0;
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+}
+
+a{
+	cursor: pointer;
+}
+
+div.container-fluid{
+    margin: 0;
+	padding: 0;
+}
+
+.form-horizontal{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.primary-button, .secondary-button, .tertiary-button{
+    display: inline-block;
+    background-color: #3299bb;
+    border: 2px solid #3299bb;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 0.95em;
+    margin: 0;
+    padding: 5px 20px;
+    cursor: pointer;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+    .primary-button:hover{
+        background-color: #1d7b9a;
+        border-color: #1d7b9a;
+    }
+    
+.secondary-button{
+    background-color: #fff;
+    color: #3299bb;
+}
+    .secondary-button: hover{
+        background-color: #f0f0f0;
+        border-color: #1d7b9a;
+    }
+    
+.tertiary-button{
+    background-color: #fff;
+    color: #3299bb;
+    border-color: #888;
+    color: #888;
+}
+    .tertiary-button: hover{
+        background-color: #f0f0f0;
+    }
+    
+.offset-left{
+    margin-left: 20px;
+}
+    
+.modal .modal-footer .primary-button{
+    margin-left: 10px;
+}
+
+
+header{
+    float: left;
+  	height: 100%;
+  	min-height: 100%;
+	position: relative;
+	margin-left: -20%;
+	width: 20%;
+	background-color: #3a3a3a;
+	min-width: 35px;
+	box-shadow: inset -5px 0 20px #1a1a1a;
+	z-index: 2;
+    -webkit-transition: .2s all ease;
+	-moz-transition: .2s all ease;
+	-o-transition: .2s all ease;    
+	-ms-transition: .2s all ease;
+	transition: .2s all ease;
+}
+
+    header h2{
+        padding: 10px 15px 15px 15px;
+        color: #ccc;
+        font-size: 1.3em;
+    }
+    
+    header .signout, header .files, header .republish{
+        display: block;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border: 1px solid #555;
+        color: #ccc;
+    }
+    
+         header .signout:hover, header .files:hover, header .republish:hover{
+             text-decoration: none;
+             background-color: #3299bb;
+             color: #fff;
+         }
+    
+    header .signout{
+        position: absolute;
+        top: 13px;
+        right: 15px;
+    }
+    
+    header .files{
+        position: absolute;
+        top: 13px;
+        right: 50px;
+    }
+    
+    header .republish{
+        position: absolute;
+        top: 13px;
+        right: 85px;
+    }
+
+    body.show-nav header{
+        margin-left: 0;
+    }
+    
+    header ul, header li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header ul{
+        border-top: 1px solid #777;
+    }
+    
+    header li a{
+        display: block;
+        padding: 15px 15px;
+        color: #ccc;
+        border-bottom: 1px solid #777;
+    }
+    
+        header li a i{
+            display: inline-block;
+            color: #ccc;
+            margin-right: 10px;
+        }
+    
+        header li.active a{
+            background-color: #111;
+            color: #fff;
+        }
+    
+        header li a:hover{
+            list-style: none;
+            color: #fff;
+            text-decoration: none;
+            background-color: #3299bb;
+        }
+        
+            header li a:hover i{
+                color: #fff;
+            }
+
+section.main{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 1;
+    box-sizing: border-box;
+    -webkit-transition: .2s all ease;
+    -moz-transition: .2s all ease;
+	-o-transition: .2s all ease;    
+	-ms-transition: .2s all ease;
+	transition: .2s all ease;
+}
+
+    body.show-nav section{
+        width: 80%;
+    }
+
+
+/* nav */
+section.main nav{
+    background-color: #424242;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}   
+    
+    section.main nav .show-menu{
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        background: #3299BB;
+    }
+    
+        section.main nav .show-menu:hover{
+            background: #1d7b9a;
+            text-decoration: none;
+        }
+
+        section.main nav .show-menu i{
+            color: #fff;
+        }
+
+
+    section.main nav ul{
+        list-style: none;
+        margin-left: 50px;
+        vertical-align: top;
+    }
+
+    section.main nav li{
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+    }
+    
+        section.main nav li.root a{
+            width: 45px;
+        }
+    
+        section.main nav li i{
+            display: none;
+        }
+        
+        section.main nav li a{
+            display: inline-block;
+            font-size: 1em;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 30px 0 19px;
+            color: #fff;
+            text-align: center;
+        }
+        
+            section.main nav li.static a{
+                padding: 0 30px;   
+            }
+        
+        section.main nav li.root a{
+            padding: 0 15px;
+        }
+        
+        section.main nav li.add i{
+            display: inline-block;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+            section.main nav li.add i:hover{
+                color: #FF9900;
+            }
+    
+    section.main nav li.active{
+        background: #E9E9E9;
+        border-bottom: 3px solid #FF9900;
+        height: 47px;
+        line-height: 47px;
+    }
+    
+        section.main nav li.active a{
+            color: #373f4a;
+        }
+        
+        section.main nav li.active i{
+            position: absolute;
+            top: 16px;
+            right: 3px;
+            display: inline-block;
+            color: #aaa;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+        
+            section.main nav li.active i:hover{
+                color: #A4110A;
+            }
+    
+    section.main nav a.primary-action{
+        position: absolute;
+        display: block;
+        right: 0;
+        top: 0;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1em;
+        background: #FF9900;
+        padding: 0 20px;
+        color: #fff;
+        font-size: 1em;
+    }
+    
+        section.main nav a.primary-action:hover{
+            text-decoration: none;
+            background: #ffb648;
+        }
+        
+        section.main nav a.primary-action i{
+            margin-right: 3px;
+        }
+        
+    section.main .form-horizontal{
+        margin-top: 20px;
+    }
+    
+    section.main .actions{
+        position: absolute;
+        box-sizing: border-box;
+        left: 0;
+        bottom: 0;
+        padding: 10px 50px;
+        width: 100%;
+        background-color: #E9E9E9;
+    }
+
+
+div.content-row{
+	box-sizing: border-box;
+	padding: 0 20px;
+}
+
+fieldset{
+	border-bottom: 1px solid #f0f0f0;
+	margin-bottom: 20px;
+}
+
+span.readOnly{
+	display: block;
+	padding-top: 6px;
+}
+
+span.help-block{
+	color: #888;
+	font-size: 0.9em;
+}
+
+h1 .btn-primary{
+	position: absolute;
+	top: 11px;
+	right: 20px;
+}
+
+div.content h1{
+	color: #888;
+	font-size: 24px;
+	padding-bottom: 10px;
+}
+
+p.inline-status, p.inline-status i{
+	color: #888;
+}
+
+p.inline-status{
+	padding: 0 0 0 20px;
+}
+
+div#actions{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	background: #f0f0f0;
+	padding: 10px 0;
+	margin: 0;
+	border-top: 1px solid #d0d0d0;
+    z-index: 100;
+}
+
+div#actions button:first-child, div#actions input:first-child, div#actions a:first-child{
+	margin-left: 20px;
+}
+
+div#actions button, div#actions input, div#actions a{
+	margin-right: 5px;
+}
+
+div.dialog, div.immersive, div.immersive-actions{
+	display: none;
+}
+
+/* select list */
+div.select{
+  overflow:auto;
+  overflow-y:scroll;
+  height: 350px;
+  margin: 0 15px 15px 0;
+  border: 1px solid #ccc !important;
+}
+
+div.select.small{
+  height: 200px;
+}
+
+div.select.mini{
+  height: 150px;
+}
+
+div.select ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+div.select ul li.parent{
+  color: #fff;
+  background: #888;
+  font-weight: bold;
+  cursor: default;
+}
+
+div.select ul li{
+  display: block;
+  margin: 0;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+div.select ul li i{
+    color: #aaa;
+    margin-right: 5px;
+}
+
+div.select ul li small{
+    color: #888;
+    font-size: 0.85em;
+    float: right;
+}
+
+div.select ul li:hover{
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+div.select ul li.selected{
+  background: #fbec5d;
+  font-weight: bold;
+}
+
+    div.select ul li.selected i{
+        color: #888;
+    }
+
+
+div.select em{
+	display: block;
+	font-style: normal;
+	color: #888;
+	font-size: 0.9em;
+	margin: 0;
+	padding: 0;
+}
+
+table.table tr.active td{
+	background-color: #fbec5d !important;
+}
+
+table.table tr.active a.switch{
+ 	display: none;
+}
+
+div.container{
+    margin: 10px 0 0 0;
+    box-sizing: border-box;
+    padding: 0 50px;
+    width: 100%;
+}
+
+    div.container textarea{
+        width: 100%;
+        height: 500px;
+    }
+    
+/* codemirror */
+.CodeMirror{
+    border: 1px solid #ccc;
+    height: 550px;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+
+    header{
+    	margin-left: -30%;
+    	width: 30%;
+    }
+    
+    body.show-nav section{
+        width: 70%;
+    }
+    
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+    header{
+        margin-left: -100%;
+    	width: 100%;
+    }
+    
+    body.show-nav section{
+        width: 0%;
+    }
+
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {  }

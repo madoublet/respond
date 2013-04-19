@@ -1,0 +1,186 @@
+.dropzone{
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-dropzone{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+    width: 200px;
+    height: 100%;
+}
+    
+
+.custom-dropzone .message{
+  cursor: pointer;
+  display: block;
+  margin-top: 70px;
+  color: #888;
+}
+
+.custom-dropzone .messsage, .custom-dropzone .message i{
+    color: #fff;
+}
+
+.custom-dropzone .message-text{
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 0.85em;
+}
+
+    .custom-dropzone.dark .message, .custom-dropzone.dark .message i, .custom-dropzone .message-text{
+        color: #888;
+    }
+    
+    .custom-dropzone:hover .message, .custom-dropzone:hover .message i, .custom-dropzone:hover .message-text{
+        color: #ff9900;   
+    }
+
+.dropzone.clickable * {
+  cursor: pointer;
+}
+
+.dropzone.drag-hover {
+  background-color: #f0f0f0;
+}
+
+.dropzone.started .message {
+  display: none;
+}
+
+.dropzone .preview,
+.dropzone-previews .preview {
+  background-color: #ccc;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.dropzone .preview .details,
+.dropzone-previews .preview .details {
+  width: 190px;
+  height: 190px;
+  margin: 5px;
+  position: relative;
+}
+
+.dropzone .preview .details .filename,
+.dropzone-previews .preview .details .filename {
+  overflow: hidden;
+  height: 100%;
+}
+
+.dropzone .preview .details img,
+.dropzone-previews .preview .details img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 190px;
+  height: 190px;
+}
+
+.dropzone .preview .details .size,
+.dropzone-previews .preview .details .size {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 15px;
+  line-height: 15px;
+  width: 100%;
+  color: #888;
+}
+
+.dropzone .preview.error .error-mark,
+.dropzone-previews .preview.error .error-mark {
+  display: block;
+}
+
+.dropzone .preview.success .success-mark,
+.dropzone-previews .preview.success .success-mark {
+  display: block;
+}
+
+.dropzone .preview:hover .details img,
+.dropzone-previews .preview:hover .details img {
+  display: none;
+}
+
+.dropzone .preview:hover .success-mark,
+.dropzone-previews .preview:hover .success-mark,
+.dropzone .preview:hover .error-mark,
+.dropzone-previews .preview:hover .error-mark {
+  display: none;
+}
+
+.dropzone .preview .success-mark,
+.dropzone-previews .preview .success-mark,
+.dropzone .preview .error-mark,
+.dropzone-previews .preview .error-mark {
+  display: none;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  text-align: center;
+  right: -10px;
+  top: -10px;
+}
+
+.dropzone .preview .success-mark,
+.dropzone-previews .preview .success-mark {
+  color: #fff;
+}
+
+.dropzone .preview .error-mark,
+.dropzone-previews .preview .error-mark {
+  color: #fff;
+}
+
+.dropzone .preview .progress,
+.dropzone-previews .preview .progress {
+  position: absolute;
+  bottom: -5px;
+  left: 5;
+  right: 5;
+  height: 5px;
+  background: #d7d7d7;
+  display: none;
+}
+
+.dropzone .preview .progress .upload,
+.dropzone-previews .preview .progress .upload {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background-color: #8cc657;
+}
+
+.dropzone .preview.processing .progress,
+.dropzone-previews .preview.processing .progress {
+  display: block;
+}
+
+.dropzone .preview .error-message,
+.dropzone-previews .preview .error-message {
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: -20px;
+  background: rgba(245,245,245,0.8);
+  padding: 8px 10px;
+  color: #fff;
+  min-width: 140px;
+  max-width: 500px;
+  z-index: 500;
+}
+
+.dropzone .preview:hover.error .error-message,
+.dropzone-previews .preview:hover.error .error-message {
+  display: block;
+}

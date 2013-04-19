@@ -1,0 +1,9 @@
+{
+  "sample-pub":{
+    "type":"samplepub",
+    "name":"Sample Published",
+    "desc":"A simple sample that demonstates plugins rendered at publish time.",
+    "render":"publish",
+    "config":"true"
+  }
+}

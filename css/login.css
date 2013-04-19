@@ -1,0 +1,92 @@
+html{
+    overflow: scroll;
+}
+
+body{
+	background-color: #aaa;
+}
+
+img{
+	max-width: 100%;
+}
+
+div.content{
+	text-align: center;
+	color: #fff;
+	padding-top: 100px;
+}
+
+#create-confirmation{
+	display: none;
+}
+
+div.content h1{
+	font-size: 30px;
+	padding-bottom: 50px;
+}
+
+fieldset{
+	text-align: center;
+	border-bottom: none;
+}
+
+div.control-group{
+	margin: 25px 0 !important;
+}
+
+span.actions{
+	display: block;
+	text-align: right;
+}
+
+label{
+	display: none;
+}
+
+input[type=text], input[type=password]{
+	width: 80%;
+	height: 25px;
+	line-height: 24px;
+	font-size: 15px;
+	padding: 5px;
+    width: 400px;
+}
+
+span.actions{
+    display: inline-block;
+    width: 410px;
+}
+
+p{
+	text-align: center;
+}
+
+p.demo{
+	color: #ccc;
+	margin-bottom: 50px;
+	padding: 5px 8px;
+	border-radius: 4px;
+ 	background-color: rgba(255, 255, 255, .1);
+}
+
+small{
+    padding-top: 25px;
+    color: #888;
+    display: block;
+    text-align: center;
+}
+
+small a{
+    color: #888;
+    text-decoration: underline;
+}
+
+p.demo b{
+	display: inline-block;
+	color: #fff;
+}
+
+p.footer{
+	margin: 100px auto;
+	text-align: center;
+}

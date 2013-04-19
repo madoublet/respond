@@ -1,0 +1,13 @@
+/* app menu */
+div.menu{
+	background: #1c2a3f;
+}
+
+ul.menu li.selected a{
+  color: #fff;
+  background: #90252e;
+}
+
+div.menu div div#loggedIn{
+	background: rgba(107, 122, 147, 0.5);
+}

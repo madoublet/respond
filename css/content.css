@@ -1,0 +1,544 @@
+body{
+	background: #aaa;
+}
+
+div.container-fluid{
+    margin: 0;
+	padding: 0;
+}
+
+.inline-status{
+	display: inline-block;
+}
+
+#contentLoading{
+	display: inline-block;
+	background: #9399a0;
+	color: #fff;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 4px;
+	width: auto;
+}
+
+	#contentLoading i{
+		color: #fff;
+	}
+
+/* begin settings */
+span.config{
+	display: block;
+}
+
+span.config textarea{
+	width: 510px !important;
+	height: 200px;
+}
+
+/* begin checklist */
+span.checklist{
+	display: block;
+	padding-bottom: 10px;
+}
+
+span.checklist label{
+	display: block;
+}
+
+span.checklist label.checkbox{
+	display: inline-block;
+	width: 200px;
+}
+
+span.list label.checkbox.inline{
+	display: inline-block;
+	width: auto !important;
+}
+
+p.message{
+	color: #808080;
+}
+
+p.noResults{
+	padding: 15px;
+	color: #606060;
+	font-style: italic;
+}
+
+fieldset{
+	margin: 0;
+	padding: 15px 0 0 0;
+	border: none;
+	border-bottom: 1px solid #f0f0f0;	
+}
+
+fieldset:last-child, fieldset.last{
+	border-bottom: none !important;
+}
+
+div.formGroup fieldset:first-child {
+	padding-top: 0;
+}
+
+div.formGroup fieldset:last-child{
+	border-bottom: none;	
+}
+
+/* handle files */
+p.fileUrls{
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+p#UploadedSizes.fileUrls{
+	padding-left: 30px;
+}
+
+p.fileUrls a.switch{
+ 	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #ccc;
+	color: #ccc;
+	text-align: center;
+	line-height: 16px;
+	margin: 0 5px 0 0;
+	font-size: 10px;
+}
+
+p.fileUrls a.switch.selected{
+	border: 1px solid #aaa;
+	color: #fff;
+	background: #aaa;
+}
+
+
+span.filter{
+	position: absolute;
+	top: 45px;
+	right: 15px;
+}
+
+div#editorContainer div.formGroup{
+	margin-top: 0;
+	padding-top: 0;
+}
+
+div#advancedContainer{
+	display: none;
+}
+
+div#previewMessage{
+    position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fbec5d;
+    background-color: rgba(251, 236, 93, 0.65);
+    width: 100%;
+    height: 50px;
+    line-height: 45px;
+    z-index: 51;
+    text-align: center;
+    display: none;
+}
+
+div#previewMessage button{
+	margin-left: 10px;
+}
+
+div#previewMessage span.or{
+	margin-left: 5px;
+}
+
+div#previewContainer{
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0;	
+	width: 100%;
+	height: 100%;
+    overflow: scroll;
+	background: #fff;
+	z-index: 50;
+	display: none;
+}
+
+iframe#preview{
+    width: 100%;
+	height: 1000px;
+	z-index: 50;
+}
+
+div#previewContainer.mobile iframe#preview{
+	position: absolute;
+	top: 97px;
+	left: 30px;
+	margin: 0;
+	width: 400px;
+	height: 648px;
+}
+
+div#UploadedImage img{
+	height: 75px;
+}
+
+div#showContentOptions label{
+	vertical-align: middle;
+}
+
+span#changeImage{
+	padding: 10px;
+	display: block;
+	margin-top: 20px;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+span#changeImage label{
+	display: block;
+	color: #fff;
+}
+
+span#changeImage a{
+	color: #fff;
+	font-style: italic;
+}
+
+div#ImageOptions span.field{
+	vertical-align: top;
+}
+
+input#ImageWidth, input#ImageHeight{
+	width: 50px;
+	margin-right: 2px;
+	text-align: right;
+}
+
+span.featured{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url('../images/app-sprite.png') no-repeat -150px -4px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+span.featured.yes{
+  background: url('../images/app-sprite.png') no-repeat -129px -4px;
+}
+
+
+/* begin addImage dialog */
+
+/* begin tabs */
+ul.tabs{
+	margin: -15px 0 15px 0;
+	padding: 0;
+  background: #f8f8f8;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+ul.tabs li{
+  border-bottom: none;
+  margin: 0;
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+ul.tabs li a{
+  display: block;
+  margin: 0 0;
+  padding: 0 5px 0 0;
+  text-decoration: none;
+  font-size: 12px !important;
+}
+
+ul.tabs li:hover a{
+  text-decoration: underline;
+}
+
+ul.tabs li.selected a{
+  font-weight: bold;
+  color: #707070;
+  padding-right: 15px;
+  background: url('../images/submenu-arrow.png') no-repeat right 5px;
+}
+
+/* begin image list */
+#linkImageList{
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+span.imageList, span#addFileList{
+	display: block;
+	border: 1px solid #ccc;
+	width: 100%;
+	height: 200px;
+	overflow: auto;
+}
+
+span.imageList li span.icon{
+	display: block;
+	padding-left: 42px;
+	padding-top: 22px;
+}
+
+span.imageList li.file span.icon{
+	padding-left: 0;
+	padding-top: 0;
+}
+
+span.imageList ul, span#addFileList ul{
+	margin: 0;
+	padding: 0;
+}
+
+span.imageList li, span#addFileList li{
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px;
+	border-bottom: 1px dashed #ccc;
+	cursor: pointer;
+	min-height: 75px;
+}
+
+span.imageList li.file{
+	min-height: 40px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+span.imageList li:last-child, span#addFileList li:last-child{
+	border-bottom: none;
+}
+
+span.imageList li:hover, span#addFileList li:hover{
+	background: #f8f8f8;
+}
+
+span.imageList li.selected, span#addFileList li.selected{
+	background: #fbec5d;
+}
+
+span.imageList li span.filename{
+	position: absolute;
+	left: 90px;
+	top: 20px;
+}
+
+span.imageList li span.size{
+	position: absolute;
+	left: 90px;
+	top: 40px;
+	font-size: 12px;
+	color: #888;
+}
+
+span.imageList li.file span.filename{
+	position: absolute;
+	left: 50px;
+	top: 18px;
+}
+
+span.imageList p.fileUrls, span#addFileList p.fileUrls{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 90px;
+	top: 54px;
+}
+
+label#ResizeImageLabel{
+	display: block;
+	margin: 0 0 15px 30px;
+	padding: 0;
+	color: #606060;
+	font-style: italic;
+}
+
+div#UploadedImage{
+	display: block;
+	margin: 0 0 5px 30px;
+	padding: 0;
+	width: 75px !important;
+	height: 75px;
+}
+	
+/* begin slideshow */
+div#slideshow{
+	background: #f8f8f8;
+	display:none;
+	padding:20px;
+	position:absolute;
+	width:400px;
+	height: 390px;
+	z-index:50;
+	top: 170px;
+	left: 470px;
+}
+div#slideshow h2{
+	color:#FFFFFF;
+	font-size:12px;
+	font-weight:bold;
+	margin:0;
+	padding:10px;
+	text-align:left;
+	width:auto;
+}
+div#slideshow a.close{
+	cursor:pointer;
+	position:absolute;
+	right:15px;
+	top:5px;
+}
+a#left{
+	position: absolute;
+	bottom: 25px;
+	left: 23px;
+}
+
+a#right{
+	position: absolute;
+	bottom: 25px;
+	right: 25px;
+}
+
+div#slideshow.single a#left, div#slideshow.single a#right{
+	display: none;
+}
+
+/* begin slider */
+div#slider{
+  position: relative;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #F8F8F8;
+}
+
+div#slider ul{
+  list-style: none;
+  margin:  0;
+  padding: 0;	
+}
+
+div#slider li{
+  position: relative;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+/* slider */
+div#slider-container{
+	position: absolute;
+	right: 0;
+	top: 50px;
+	width: 250px;
+	background: rgba(0, 0, 0, 0.3);
+	padding: 10px;
+}
+
+div#slider{
+	width: 200px;
+	overflow: visible;
+	display: inline-block;
+}
+
+div#slider a.ui-slider-handle{
+	background: #ccc;
+	border: 1px solid #aaa;
+	cursor: e-resize;
+}
+
+div#slider a.ui-slider-handle.ui-state-hover{
+	background: #f0f0f0;
+	border: 1px solid #aaa;
+}
+
+div#slider-display{
+	display: inline-block;
+	width: 40px;
+	margin-left: 5px;
+	color: #fff;
+	text-align: right;
+}
+
+div#slideshow div#slider ul li p{
+	display: block;
+	margin: 0;
+	padding: 15px 45px 15px 45px;
+	width: 400px;
+	text-align: left;
+}
+
+div#slideshow.single div#slider ul li p{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+/* end slideshow */
+
+/* begin image options */
+div#simpleOptions{
+	display: block;
+}
+
+div#viewImageLink, div#viewImageConstraints{
+	display: none;
+}
+
+/* begin imgposition */
+div#ImageOptions{
+	margin-top: 15px;	
+}
+
+ul.imgposition{
+	display: block;
+	list-style: none;
+	margin: 3px 0 0 0;
+	padding: 0;
+}
+
+ul.imgposition li{
+	display: inline-block;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+
+ul.imgposition li#left{
+	width: 50px;
+	height: 28px;
+  background: url('../images/app-sprite.png') no-repeat 0 -46px;
+}
+
+ul.imgposition li#none{
+	width: 28px;
+	height: 28px;
+  background: url('../images/app-sprite.png') no-repeat 2px -72px;
+}
+
+ul.imgposition li#right{
+	width: 50px;
+	height: 28px;
+  	background: url('../images/app-sprite.png') no-repeat 0 -97px;
+}
+
+ul.imgposition li:hover{
+	border: 1px solid #aaa;	
+}
+
+ul.imgposition li.selected{
+	background-color: #fbec5d !important;
+}
+
+/* begin load layout dialog */
+div#selectLayout li em{
+	display: block;
+	margin: 0;
+	padding: 0;
+}

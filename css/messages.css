@@ -1,0 +1,46 @@
+p#message{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  margin-top: -38px;
+  padding: 0;
+  height: 50px;
+  z-index: 5000022;
+  border: none;
+  font-size: 12px;
+  text-align: center;
+  border: none;
+  text-align: center;
+}
+
+p#message span{
+  display: inline-block;
+  margin: 0;
+  padding: 10px 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+p#message.message-progress span{
+  background: #fbec5d;   
+}
+
+p#message.message-progress a.close{
+  display: none;
+}
+
+p#message.message-error span{
+  background-color: #A4110A;
+  color: #fff;   	
+}
+
+p#message.message-success span{
+  background-color: #7ec57e;
+  color: #fff;   	
+}
+
+p#message.message-success a.close{
+  display: none;
+}
