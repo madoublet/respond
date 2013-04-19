@@ -26,19 +26,5 @@
     "desc":"Provide a question and possible options and let your users vote on them.",
     "render":"publish",
     "config":"true"
-  },
-  {
-    "type":"mbclasses",
-    "name":"Mind Body Classes",
-    "desc":"Provides access to a list of mind body classes.",
-    "render":"runtime",
-    "config":"true"
-  },
-  {
-    "type":"mbnextclass",
-    "name":"Mind Body Next Class",
-    "desc":"Displays the next Mind Body class",
-    "render":"runtime",
-    "config":"true"
   }
 ]
