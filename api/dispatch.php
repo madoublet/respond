@@ -17,6 +17,9 @@
     require_once 'site.php';
     require_once 'file.php';
     require_once 'form.php';
+    require_once 'stylesheet.php';
+    require_once 'script.php';
+    require_once 'layout.php';
     
 	// handle request
 	$app = new Tonic\Application();

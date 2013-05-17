@@ -26,12 +26,11 @@ class PageTypeAddResource extends Tonic\Resource {
             $lastModifiedBy = $authUser->UserId;
 
             $pageType = PageType::Add($friendlyId, $typeS, $typeP, $siteId, $createdBy, $lastModifiedBy);
-            $arr = $pageType->ToAssocArray();
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($pageType);
 
             return $response;
         
@@ -90,16 +89,10 @@ class PageTypeListAllResource extends Tonic\Resource {
             // get pagetype
             $list = PageType::GetPageTypes($siteId);
 
-            $arr = array();
-
-            while ($row = mysql_fetch_assoc($list)) {
-                array_push($arr, $row);
-            }
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($list);
 
             return $response;
 

@@ -14,13 +14,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- include css -->
-<link type="text/css" href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link type="text/css" href="js/helper/codemirror/codemirror.css" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
 <link type="text/css" href="css/messages.css" rel="stylesheet">
 <link type="text/css" href="css/list.css" rel="stylesheet">
-<link type="text/css" href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
@@ -40,7 +39,7 @@
     
         <ul>
         <!-- ko foreach: files -->
-            <li data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="icon-minus-sign icon-large"></i></li>
+            <li data-bind="attr:{'data-file': file}"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="icon-minus-sign icon-large"></i></li>
         <!-- /ko -->    
             <li class="add"><i class="icon-plus-sign icon-large" data-bind="click: showAddDialog"></i></li>
         </ul>
@@ -122,7 +121,7 @@
 <!-- include js -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/helper/knockout-2.2.0.js"></script>
 <script type="text/javascript" src="js/helper/moment.min.js"></script>
 <script type="text/javascript" src="js/helper/codemirror/codemirror.js"></script>

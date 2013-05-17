@@ -15,8 +15,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- css -->
-<link type="text/css" href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" href="libs/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
 <link type="text/css" href="css/content.css" rel="stylesheet">
 <link type="text/css" href="css/editor.css" rel="stylesheet">
@@ -26,7 +25,7 @@
 <link type="text/css" href="css/prettify.css" rel="stylesheet">
 <link type="text/css" href="css/dropzone.css" rel="stylesheet">
 <link type="text/css" href="css/cupertino/jquery-ui-1.8.1.custom.css" rel="stylesheet">
-<link type="text/css" href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
 
 <!-- head -->
 <script src="js/helper/head.min.js"></script>
@@ -168,8 +167,8 @@
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-    <button id="addSlideShow" class="primary-button">Update</button>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <input id="addSlideShow" type="button" class="btn btn-primary" value="Add Slideshow">
   </div>  
   <!-- /.modal-footer -->
 
@@ -317,9 +316,9 @@
     </div>
 
     <div id="options" class="control-group">
-      <label for="fieldOptions" class="control-label">Options:</label>
+      <label for="fieldRequired" class="control-label">Options:</label>
       <div class="controls">
-        <textarea id="fieldOptions"></textarea>
+        <textarea id="fieldRequired"></textarea>
         <span class="help-block">Separate each option with a comma</span>
       </div>
     </div>
@@ -339,8 +338,8 @@
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-    <button id="addField" class="primary-button">Update</button>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <input id="addField" type="button" class="btn btn-primary" value="Add Field">
   </div>  
   <!-- /.modal-footer -->
 
@@ -707,10 +706,10 @@
 <!-- helper -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/helper/knockout-2.2.0.js"></script>
 <script type="text/javascript" src="js/helper/moment.min.js"></script>
 <script type="text/javascript" src="js/helper/flipsnap.min.js"></script>
-<script type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/helper/prettify.js"></script>
 <script type="text/javascript" src="js/helper/dropzone.js"></script>
 <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>

@@ -1,3 +1,26 @@
+CREATE TABLE IF NOT EXISTS Files (
+  `FileId` int(11) NOT NULL AUTO_INCREMENT,
+  `FileUniqId` varchar(50) NOT NULL,
+  `UniqueName` varchar(50) NOT NULL,
+  `FileName` varchar(255) NOT NULL,
+  `Size` int(11) DEFAULT NULL,
+  `Width` int(11) DEFAULT NULL,
+  `Height` int(11) DEFAULT NULL,
+  `IsPublic` int(11) DEFAULT NULL,
+  `Thumbnail` varchar(255) NOT NULL,
+  `ContentType` varchar(255) NOT NULL,
+  `StorageType` varchar(255) NOT NULL,
+  `IsImage` int(11) DEFAULT NULL,
+  `IsResized` int(11) DEFAULT NULL,
+  `UserId` int(11) NOT NULL,
+  `SiteId` int(11) NOT NULL,
+  `Created` datetime NOT NULL,
+  PRIMARY KEY (`FileId`),
+  KEY `UserId` (`UserId`),
+  KEY `OrgId` (`SiteId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=513 ;
+
+
 CREATE TABLE IF NOT EXISTS MenuItems (
   `MenuItemId` int(11) NOT NULL AUTO_INCREMENT,
   `MenuItemUniqId` varchar(50) NOT NULL,
@@ -105,6 +128,10 @@ CREATE TABLE IF NOT EXISTS Users (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
 
 -- Constraints
+
+ALTER TABLE Files
+  ADD CONSTRAINT `Files_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Files_ibfk_2` FOREIGN KEY (`SiteId`) REFERENCES `Sites` (`SiteId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE MenuItems
   ADD CONSTRAINT `MenuItems_ibfk_1` FOREIGN KEY (`SiteId`) REFERENCES `Sites` (`SiteId`) ON DELETE CASCADE ON UPDATE CASCADE;

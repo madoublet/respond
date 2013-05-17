@@ -1,14 +1,15 @@
 <header>
     <h2>Respond</h2>
     
+    <?php if($authUser->IsSuperAdmin==true){ ?>
+        <a class="switch" href="switch" title="Switch Site"><i class="icon-exchange icon-large"></i></a>
+	<?php } ?>	
+
     <a class="files" href="files" title="Files"><i class="icon-folder-open icon-large"></i></a>
     <a class="signout" href="logout" title="Sign Out"><i class="icon-signout icon-large"></i></a>
-    <a class="republish publish-site" title="Re-publish Site"><i class="icon-exchange icon-large"></i></a>
+    <a class="republish publish-site" title="Re-publish Site"><i class="icon-refresh icon-large"></i></a>
 
 	<ul class="menu">
-	<?php if($authUser->IsSuperAdmin==true){ ?>
-		<li class="menu-sites"><a href="sites">Sites</a></li>
-	<?php } ?>	
 		<li class="menu-pages"><a href="pages"><i class="icon-file icon-large"></i> Pages</a></li>
     	<li class="menu-menu"><a href="menus"><i class="icon-reorder icon-large"></i> Menus</a></li>
 		<li class="menu-template"><a href="template"><i class="icon-desktop icon-large"></i> Template</a></li>

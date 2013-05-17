@@ -2,651 +2,521 @@
 
 // Page model
 class Page{
-	
-	public $PageId;
-	public $PageUniqId;
-	public $FriendlyId;
-	public $Name;
-	public $Description;
-	public $Keywords;
-	public $Callout;
-	public $Rss;
-	public $Layout;
-	public $Stylesheet;
-	public $PageTypeId;
-	public $SiteId;
-	public $CreatedBy;
-	public $LastModifiedBy;
-	public $LastModifiedDate;
-	public $IsActive;
-	public $Image;
-	public $Created;
-
-	function __construct($pageId, $pageUniqId, $friendlyId, $name, $description, $keywords, $callout, $rss,
-		$layout, $stylesheet, $pageTypeId,
-		$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate,
-		$isActive, $image, $created){
-
-		$this->PageId = $pageId;
-		$this->PageUniqId = $pageUniqId;
-		$this->FriendlyId = $friendlyId;
-		$this->Name = $name;
-		$this->Description = $description;
-		$this->Keywords = $keywords;
-		$this->Callout = $callout;
-		$this->Rss = $rss;
-		$this->Layout = $layout;
-		$this->Stylesheet = $stylesheet;
-		$this->PageTypeId = $pageTypeId;
-		$this->SiteId = $siteId;
-		$this->CreatedBy = $createdBy;
-		$this->LastModifiedBy = $lastModifiedBy;
-		$this->LastModifiedDate = $lastModifiedDate;
-		$this->IsActive = $isActive;
-		$this->Image= $image;
-		$this->Created = $created;
-	}
-
-	// creates an associative array from the public params
-	public function ToAssocArray(){
-		$arr = array();
-
-		foreach($this as $var=>$value){
-			$arr[$var] = $value;
-		}
-
-		return $arr;
-	}
-	
+    
 	// adds a page
 	public static function Add($friendlyId, $name, $description, $pageTypeId, $siteId, $createdBy){
 		
-		Connect::init();
-		
-		// clean data
-		$pageUniqId = uniqid();
-		$friendlyId = mysql_real_escape_string($friendlyId);
-		$name = mysql_real_escape_string($name);
-		$description = mysql_real_escape_string($description);
-		settype($pageTypeId, 'integer');
-		settype($siteId, 'integer'); // clean
-		settype($createdBy, 'integer');
+        try{
+            
+            $db = DB::get();
+    		
+    		$pageUniqId = uniqid();
+            
+            // cleanup friendlyid (escape, trim, remove spaces, tolower)
+        	$friendlyId = trim($friendlyId);
+    		$friendlyId = str_replace(' ', '', $friendlyId);
+    		$friendlyId = strtolower($friendlyId);
+    
+    		// set defaults
+    		$isActive = 0;
+    		$image = '';
+    		$lastModifiedBy = $createdBy;
+    		$layout = 'content';
+    		$stylesheet = 'content';
+    		$keywords = '';
+    		$callout = '';
+    		$rss = '';
+    		$timestamp = gmdate("Y-m-d H:i:s", time());
+    	
+    		$q = "INSERT INTO Pages (PageUniqId, FriendlyId, Name, Description, Keywords, Callout, Rss, Layout, Stylesheet, PageTypeId, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, IsActive, Image, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		// set defaults
-		$isActive = 0;
-		$image = '';
-		$lastModifiedBy = $createdBy;
-		$layout = 'content';
-		$stylesheet = 'content';
-		$keywords = '';
-		$callout = '';
-		$rss = '';
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-	
-		// a bit hacky, but need to ensure that begindate and enddate are null
-		$q = "INSERT INTO Pages (PageUniqId, FriendlyId, Name, Description, Keywords, Callout, Rss,
-				Layout, Stylesheet, PageTypeId, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate,
-				IsActive, Image, Created) 
-			VALUES ('$pageUniqId', '$friendlyId', '$name', '$description', '$keywords', '$callout', '$rss',
-				'$layout', '$stylesheet', $pageTypeId, $siteId, $createdBy, $lastModifiedBy, '$timestamp', 
-				 $isActive, '$image', '$timestamp')";
-	
-	
-		$result = mysql_query($q);
-	
-		if(!$result) {
-		  die("Could not successfully run query Page->Add, error=".mysql_error());
-		  exit;
-		}
-		
-		return new Page(mysql_insert_id(), $pageUniqId, $pageUniqId, $name, $description, $keywords, $callout, $rss, 
-			$layout, $stylesheet, $pageTypeId, $siteId, $createdBy, $lastModifiedBy, $timestamp,
-			$isActive, $image, $timestamp); 
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageUniqId);
+            $s->bindParam(2, $friendlyId);
+            $s->bindParam(3, $name);
+            $s->bindParam(4, $description);
+            $s->bindParam(5, $keywords);
+            $s->bindParam(6, $callout);
+            $s->bindParam(7, $rss);
+            $s->bindParam(8, $layout);
+            $s->bindParam(9, $stylesheet);
+            $s->bindParam(10, $pageTypeId);
+            $s->bindParam(11, $siteId);
+            $s->bindParam(12, $createdBy);
+            $s->bindParam(13, $lastModifiedBy);
+            $s->bindParam(14, $timestamp);
+            $s->bindParam(15, $isActive);
+            $s->bindParam(16, $image);
+            $s->bindParam(17, $timestamp);
+            
+            $s->execute();
+            
+            return array(
+                'PageId' => $db->lastInsertId(),
+                'PageUniqId' => $pageUniqId,
+                'Name' => $name,
+                'Description' => $description,
+                'Keywords' => $keywords,
+                'Callout' => $callout,
+                'Rss' => $rss,
+                'Layout' => $layout,
+                'Stylesheet' => $stylesheet,
+                'PageTypeId' => $pageTypeId,
+                'SiteId' => $siteId,
+                'CreatedBy' => $createdBy,
+                'LastModifiedBy' => $lastModifiedBy,
+                'Created' => $timestamp,
+                'IsActive' => $isActive,
+                'Image' => $image,
+                'LastModifiedDate' => $timestamp,
+                );
+                
+        } catch(PDOException $e){
+            die('[Page::Add] PDO Error: '.$e->getMessage());
+        }
 	}
 	
 	// determines whether a friendlyId is unique
 	public static function IsFriendlyIdUnique($friendlyId, $siteId){
+        
+        try{
 
-		Connect::init();
-		
-		$friendlyId = mysql_real_escape_string($friendlyId); // clean data
-		settype($siteId, 'integer');
-		
-		$count=0;
-	
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT Count(*) as Count
-			FROM Pages where FriendlyId='$friendlyId' AND SiteId=$siteId");
-			
-		if(mysql_num_rows($result) == 0){
-		    return false;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$count = $row["Count"];
-		}
-	
-		if($count==0){
-			return true;
-		}
-		else{
-			return false;
-		}
+            $db = DB::get();
+            
+            // cleanup friendlyid (escape, trim, remove spaces, tolower)
+        	$friendlyId = trim($friendlyId);
+    		$friendlyId = str_replace(' ', '', $friendlyId);
+    		$friendlyId = strtolower($friendlyId);
+    
+        	$count = 0;
+    	
+    		$q ="SELECT Count(*) as Count FROM Pages where FriendlyId = ? AND SiteId=?";
+    
+        	$s = $db->prepare($q);
+            $s->bindParam(1, $friendlyId);
+            $s->bindParam(1, $siteId);
+            
+    		$s->execute();
+    
+    		$count = $s->fetchColumn();
+    
+    		if($count==0){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+            
+        } catch(PDOException $e){
+            die('[Page::IsFriendlyIdUnique] PDO Error: '.$e->getMessage());
+        } 
 	}
 	
-	// Edits a friendly id
-	public function EditFriendlyId($friendlyId){
+
+	// edits a page
+	public static function EditImage($pageUniqId, $image, $lastModifiedBy){
 		
-		Connect::init();
-		
-		// cleanup friendlyid (escape, trim, remove spaces, tolower)
-		$friendlyId = mysql_real_escape_string($friendlyId);
-		$friendlyId = trim($friendlyId);
-		$friendlyId = str_replace(' ', '', $friendlyId);
-		$friendlyId = strtolower($friendlyId);
-		
-		$query = "UPDATE Pages 
-					SET FriendlyId = '$friendlyId'
-					WHERE PageId = $this->PageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->EditFriendlyId, error=".mysql_error());
-		  exit;
-		}
-		
-		$this->FriendlyId = $friendlyId;
-		
-		return;	
-	}
-	
-	// Edits a page
-	public function EditImage($image, $lastModifiedBy){
-		
-		Connect::init();
-		
-		settype($lastModifiedBy, 'integer');  
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		
-		$query = "UPDATE Pages SET
-					Image = '$image',
-					LastModifiedBy = $lastModifiedBy,
-					LastModifiedDate = '$timestamp'
-					WHERE PageId = $this->PageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->Edit, error=".mysql_error());
-		  exit;
-		}
-		
-		$this->LastModifiedBy = $lastModifiedBy;
-		$this->LastModifiedDate = $timestamp;
-		
-		return;	
+        try{
+            
+            $db = DB::get();
+            
+    	    $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE Pages SET
+    				Image = ?,
+					LastModifiedBy = ?,
+					LastModifiedDate = ?
+					WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $image);
+            $s->bindParam(2, $lastModifiedBy);
+            $s->bindParam(3, $timestamp);
+            $s->bindParam(4, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::EditImage] PDO Error: '.$e->getMessage());
+        }
 	}
 
-	// Edits the settings for a page
-	public function EditSettings($name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $lastModifiedBy){
+	// edits the settings for a page
+	public static function EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $lastModifiedBy){
 		
-		Connect::init();
-		
-		$name = mysql_real_escape_string($name); // clean data
-		$friendlyId = mysql_real_escape_string($friendlyId);
-		$description = mysql_real_escape_string($description);
-		$keywords = mysql_real_escape_string($keywords);
-		$callout = mysql_real_escape_string($callout);
-		$rss = mysql_real_escape_string($rss);
-		$layout = mysql_real_escape_string($layout);
-		$stylesheet = mysql_real_escape_string($stylesheet);
-		settype($lastModifiedBy, 'integer');  
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		
-		$query = "UPDATE Pages 
-					SET Name = '$name', 
-					FriendlyId = '$friendlyId',
-					Description = '$description',
-					Keywords = '$keywords',
-					Callout = '$callout',
-					Rss = '$rss',
-					Layout = '$layout',
-					Stylesheet = '$stylesheet',
-					LastModifiedBy = $lastModifiedBy,
-					LastModifiedDate = '$timestamp'
-					WHERE PageId = $this->PageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->EditSettings, error=".mysql_error());
-		  exit;
-		}
-		
-		$this->Name = $name;
-		$this->Description = $description;
-		$this->Keywords = $keywords;
-		$this->Callout = $callout;
-		$this->Rss = $rss;
-		$this->Layout = $layout;
-		$this->Stylesheet = $stylesheet;
-		$this->LastModifiedBy = $lastModifiedBy;
-		$this->LastModifiedDate = $timestamp;
-		
-		return;	
+        try{
+            
+            $db = DB::get();
+            
+            $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE Pages 
+    				SET Name = ?, 
+					FriendlyId = ?, 
+					Description = ?, 
+					Keywords = ?, 
+					Callout = ?, 
+					Rss = ?, 
+					Layout = ?, 
+					Stylesheet = ?, 
+					LastModifiedBy = ?, 
+					LastModifiedDate = ?, 
+					WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $name);
+            $s->bindParam(2, $friendlyId);
+            $s->bindParam(3, $description);
+            $s->bindParam(4, $keywords);
+            $s->bindParam(5, $callout);
+            $s->bindParam(6, $rss);
+            $s->bindParam(7, $layout);
+            $s->bindParam(8, $stylesheet);
+            $s->bindParam(9, $lastModifiedBy);
+            $s->bindParam(10, $timestamp);
+            $s->bindParam(11, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::EditSettings] PDO Error: '.$e->getMessage());
+        }
 	}
 	
-	// Edits a page's name
-	public static function EditName($pageId, $name){
-		
-		Connect::init();
-		
-		$name = mysql_real_escape_string($name); // clean data
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		
-		$query = "UPDATE Pages 
-					SET Name = '$name'
-					WHERE PageId = $pageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->EditName, error=".mysql_error());
-		  exit;
-		}
-		
-		return;
-	}
-
-	// Edits IsActive
-	public function SetIsActive($isActive){
-		
-		Connect::init();
-		
-		settype($isActive, 'integer'); 
-		
-		$query = "UPDATE Pages 
-					SET IsActive = $isActive
-					WHERE PageId = $this->PageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->EditIsActive, error=".mysql_error());
-		  exit;
-		}
-		
-		return;	
+	// edits IsActive
+	public static function SetIsActive($pageUniqId, $isActive){
+	
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Pages 
+            		SET IsActive = ? 
+					WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $isActive);
+            $s->bindParam(2, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::SetIsActive] PDO Error: '.$e->getMessage());
+        }
 	}
 	
-	// Activates a page
-	public function Activate(){
+	// removes a page
+	public static function Remove($pageUniqId){
 		
-		Connect::init();
-		
-		$query = "UPDATE Pages 
-					SET IsActive = '1'
-					WHERE PageId = $this->PageId";
-		
-		$result = mysql_query($query);
-		
-		if(!$result) {
-		  die("Could not successfully run query Page->Activate, error=".mysql_error());
-		  exit;
-		}
-		
-		return;	
+        try{
+            
+            $db = DB::get();
+            
+            $q = "DELETE FROM Pages WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::Remove] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Deletes a page
-	public function Remove(){
-		
-		Connect::init();
-	
-		$delete = mysql_query("DELETE FROM Pages WHERE PageUniqId='$this->PageUniqId'");
-	
-		return;
-	}
-	
-	// Gets all pages
+	// gets all pages
 	public static function GetPages($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $activeOnly = false){
 		
-		Connect::init();
+        try{
 
-		$activeClause = '';
+            $db = DB::get();
+            
+            $activeClause = '';
 
-		if($activeOnly==true){
-			$activeClause = ' AND IsActive=1';
-		}
-		
-		$next = $pageSize * $pageNo;
-		
-		$q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
-			Pages.Description, Pages.Keywords, Pages.Callout,
-			Pages.Layout, Pages.Stylesheet, Pages.RSS,
-			Pages.SiteId, Pages.CreatedBy, 
-			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
-			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-			Users.FirstName, Users.LastName
-			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
-			WHERE Pages.SiteId = $siteId AND Pages.PageTypeId = $pageTypeId".$activeClause;
-		
-		$q = $q." ORDER BY $orderBy LIMIT $next, $pageSize";
-
-		// Pulls in the Name of the User too
-		$result = mysql_query($q);
-
-		if(!$result) {
-		  die("Could not successfully run query Pages->GetPages. " . mysql_error() . "<br>");
-		  exit;
-		}
-		
-		return $result;
+        	if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+  
+    		$next = $pageSize * $pageNo;
+    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
+            		Pages.Description, Pages.Keywords, Pages.Callout,
+        			Pages.Layout, Pages.Stylesheet, Pages.RSS,
+        			Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." ORDER BY ? LIMIT ?, ?";
+ 
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            $s->bindParam(3, $orderBy);
+            $s->bindParam(4, intval($next), PDO::PARAM_INT);
+            $s->bindParam(5, intval($pageSize), PDO::PARAM_INT);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPages]'.'[next='.$next.'pageSize='.$pageSize.']---PDO Error: '.$e->getMessage().'trace='.$e->getTraceAsString());
+        } 
+        
 	}
 
-	// Get the total number of pages
+	// get the total number of pages
 	public static function GetPagesCount($siteId, $pageTypeId, $activeOnly = false){
 		
-		Connect::init();
+        try{
 
-		$activeClause = '';
+            $db = DB::get();
+            
+            $activeClause = '';
 
-		if($activeOnly==true){
-			$activeClause = ' AND IsActive=1';
-		}
-		
-		$count=0;
-		
-		$q = "SELECT Count(*) as Count
-			FROM Pages
-			WHERE SiteId = $siteId AND PageTypeId = $pageTypeId".$activeClause;
-		
-		$result = mysql_query($q);
-
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$count = $row["Count"];
-		}
-		
-		return $count;
+        	if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+    
+        	$count = 0;
+    	
+    		$q = "SELECT Count(*) as Count
+    		        FROM Pages
+			        WHERE SiteId = ? AND PageTypeId = ?".$activeClause;
+    
+        	$s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            
+    		$s->execute();
+    
+    		$count = $s->fetchColumn();
+    
+    		return $count;
+            
+        } catch(PDOException $e){
+            die('[Page::GetPagesCount] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 
-	// Gets the home page for the site
-	public static function GetHome($siteId){
-		
-		Connect::init();
-		
-		$count = 0;
-		
-		$result = mysql_query("SELECT PageId
-			FROM Pages
-			WHERE Pages.SiteId = $siteId AND Pages.PageTypeId = -1");
-
-		if(mysql_num_rows($result) == 0){
-		    return -1;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$pageId = $row["PageId"];
-		}
-		
-		return $pageId;
-	}
-	
 	// Gets all 
 	public static function GetPagesForSite($siteId, $activeOnly = false){
 		
-		Connect::init();
+        try{
 
-		$activeClause = '';
+            $db = DB::get();
+            
+            $activeClause = '';
 
-		if($activeOnly==true){
-			$activeClause = ' AND IsActive=1 ';
-		}
-
-		$q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
-			Pages.Description, Pages.Keywords, Pages.Callout,
-			Pages.Layout, Pages.Stylesheet, Pages.RSS,
-			Pages.SiteId, Pages.CreatedBy, 
-			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
-			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-			Users.FirstName, Users.LastName 
-			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
-			WHERE Pages.SiteId = $siteId".$activeClause.
-			" ORDER BY Pages.Name ASC";
-		
-		// Pulls in the Name of the User too
-		$result = mysql_query($q);
-
-		if(!$result) {
-		  die("Could not successfully run query Pages->GetPagesForSite" . mysql_error() . "<br>" . $q);
-		  exit;
-		}
-		
-		return $result;
+            if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+    		
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
+            		Pages.Description, Pages.Keywords, Pages.Callout,
+        			Pages.Layout, Pages.Stylesheet, Pages.RSS,
+        			Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName 
+        			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
+        			WHERE Pages.SiteId = ?".$activeClause.
+        			" ORDER BY Pages.Name ASC";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPagesForSite] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-
-	// Gets all page for a given $site, pageTypeId
-	public static function GetPagesForFragments(){
-		
-		Connect::init();
-		
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT Pages.PageUniqId, Pages.Content, Pages.Draft, Sites.FriendlyId
-			FROM Sites, Pages
-			WHERE Pages.SiteId = Sites.SiteId");
-
-		if(!$result) {
-		  die("Could not successfully run query Pages->GetAllPages" . mysql_error() . "<br>");
-		  exit;
-		}
-		
-		return $result;
-	}
-	
-	// Gets all page for a given $site, pageTypeId
+	// gets all page for a given $site, pageTypeId
 	public static function GetPagesForPageType($siteId, $pageTypeId){
-		
-		Connect::init();
-		
-		$sql = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Callout,
-			Pages.SiteId, Pages.CreatedBy, 
-			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
-			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-			Users.FirstName, Users.LastName
-			FROM Users, Pages
-			WHERE Pages.LastModifiedBy = Users.UserId AND Pages.SiteId = $siteId AND Pages.PageTypeId = $pageTypeId
-			ORDER BY Pages.Name ASC";
-		
-		// Pulls in the Name of the User too
-		$result = mysql_query($sql);
 
-		if(!$result) {
-		  die("Could not successfully run query Pages->GetPagesForPageType".mysql_error()." - ".$sql);
-		  exit;
-		}
-		
-		return $result;
+        try{
+
+            $db = DB::get();
+		    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Callout,
+            		Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Users, Pages
+        			WHERE Pages.LastModifiedBy = Users.UserId AND Pages.SiteId = ? AND Pages.PageTypeId = ?
+        			ORDER BY Pages.Name ASC";
+                  
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPagesForPageType] PDO Error: '.$e->getMessage());
+        } 
+        
 	}
 	
-	// Gets all page for a given $site, pageTypeId
+	// gets all pages for a given $site, pageTypeId
 	public static function GetRSS($siteId, $pageTypeId){
 		
-		Connect::init();
-		
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description,
-			Pages.SiteId, Pages.CreatedBy, 
-			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
-			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-			Users.FirstName, Users.LastName
-			FROM Users, Pages
-			WHERE Pages.CreatedBy = Users.UserId AND Pages.SiteId = $siteId AND Pages.PageTypeId = $pageTypeId
-			ORDER BY Pages.Created DESC");
+        try{
 
-		if(!$result) {
-		  die("Could not successfully run query Pages->GetRSS" . mysql_error() . "<br>");
-		  exit;
-		}
-		
-		return $result;
+            $db = DB::get();
+    	    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description,
+            		Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Users, Pages
+        			WHERE Pages.CreatedBy = Users.UserId AND Pages.SiteId = ? AND Pages.PageTypeId = ?
+        			ORDER BY Pages.Created DESC";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetRSS] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	
-	// Gets a page for a specific $pageUniqId
+	// gets a page for a specific $pageUniqId
 	public static function GetByPageUniqId($pageUniqId){
-		
-		Connect::init();
-		
-		$result = mysql_query("SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-			Pages.Callout, Pages.Rss,
-			Pages.Layout, Pages.Stylesheet,
-			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
-			Pages.IsActive, Pages.Image, Pages.Created
-		 	FROM Pages WHERE PageUniqId='$pageUniqId'");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
 
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageId = $row["PageId"];
-			$pageUniqId = $row["PageUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$name = $row["Name"];
-			$description = $row["Description"];
-			$keywords = $row["Keywords"];
-			$callout = $row["Callout"];
-			$rss = $row["Rss"];
-			$layout = $row["Layout"];
-			$stylesheet = $row["Stylesheet"];
-			$pageTypeId = $row["PageTypeId"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$isActive = $row["IsActive"];
-			$image = $row["Image"];
-			$created = $row["Created"];
-				
-			return new Page($pageId, $pageUniqId, $friendlyId, $name, $description, $keywords, $callout, $rss,
-				$layout, $stylesheet, $pageTypeId, $siteId, $createdBy, $lastModifiedBy, $lastModifiedDate,
-				$isActive, $image, $created);  
-		}
+        try{
+        
+        	$db = DB::get();
+            
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
+            		Pages.Callout, Pages.Rss,
+        			Pages.Layout, Pages.Stylesheet,
+        			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
+        			Pages.IsActive, Pages.Image, Pages.Created
+        		 	FROM Pages WHERE PageUniqId=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageUniqId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[Page::GetByPageUniqId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Gets a page for a specific $friendlyId and $siteId
+	// gets a page for a specific $friendlyId and $siteId
 	public static function GetByFriendlyId($friendlyId, $siteId){
 		
-		Connect::init();
-		
-		$result = mysql_query("SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-			Pages.Callout, Pages.Rss,
-			Pages.Layout, Pages.Stylesheet,
-			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
-			Pages.IsActive, Pages.Image, Pages.Created
-		 	FROM Pages WHERE FriendlyId='$friendlyId' AND SiteId=$siteId");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageId = $row["PageId"];
-			$pageUniqId = $row["PageUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$name = $row["Name"];
-			$description = $row["Description"];
-			$keywords = $row["Keywords"];
-			$callout = $row["Callout"];
-			$rss = $row["Rss"];
-			$layout = $row["Layout"];
-			$stylesheet = $row["Stylesheet"];
-			$pageTypeId = $row["PageTypeId"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$isActive = $row["IsActive"];
-			$image = $row["Image"];
-			$created = $row["Created"];
-				
-			return new Page($pageId, $pageUniqId, $friendlyId, $name, $description, $keywords, $callout, $rss,
-				$layout, $stylesheet, $pageTypeId, $siteId, $createdBy, $lastModifiedBy, $lastModifiedDate,
-				$isActive, $image, $created);  
-		}
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
+            		Pages.Callout, Pages.Rss,
+        			Pages.Layout, Pages.Stylesheet,
+        			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
+        			Pages.IsActive, Pages.Image, Pages.Created
+        		 	FROM Pages WHERE FriendlyId=? AND SiteId=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $friendlyId);
+            $s->bindParam(1, $siteId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[Page::GetByFriendlyId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Gets a page for a specific $pageId
+	// gets a page for a specific $pageId
 	public static function GetByPageId($pageId){
-		
-		Connect::init();
-		
-		$result = mysql_query("SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-			Pages.Callout, Pages.Rss,
-			Pages.Layout, Pages.Stylesheet,
-			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
-			Pages.IsActive, Pages.Image, Pages.Created
-		 	FROM Pages WHERE PageId=$pageId");
-			
-		if(!$result) 
-		{
-		  return null;
-		}
-		
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-		
-			$pageId = $row["PageId"];
-			$pageUniqId = $row["PageUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$name = $row["Name"];
-			$description = $row["Description"];
-			$keywords = $row["Keywords"];
-			$callout = $row["Callout"];
-			$rss = $row["Rss"];
-			$layout = $row["Layout"];
-			$stylesheet = $row["Stylesheet"];
-			$pageTypeId = $row["PageTypeId"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$isActive = $row["IsActive"];
-			$image = $row["Image"];
-			$created = $row["Created"];
-				
-			return new Page($pageId, $pageUniqId, $friendlyId, $name, $description, $keywords, $callout, $rss,
-				$layout, $stylesheet, $pageTypeId, $siteId, $createdBy, $lastModifiedBy, $lastModifiedDate,
-				$isActive, $image, $created); 
-		}
+	
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
+            		Pages.Callout, Pages.Rss,
+        			Pages.Layout, Pages.Stylesheet,
+        			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
+        			Pages.IsActive, Pages.Image, Pages.Created
+        		 	FROM Pages WHERE PageId=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[Page::GetByPageId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 }

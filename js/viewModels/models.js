@@ -105,6 +105,7 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 
 // creates a page based on data returned from the API
 Page.create = function(data){
+    
 	return new Page(data['PageId'], data['PageUniqId'], data['PageTypeId'], data['FriendlyId'], data['Name'], data['Description'], 
 					data['Keywords'], data['Callout'], data['Rss'], data['Layout'], data['Stylesheet'], 
 					data['Url'], data['Image'], data['Thumb'], data['LastModifiedDate'], data['LastModifiedFullName'], 

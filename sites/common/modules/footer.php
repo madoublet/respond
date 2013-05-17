@@ -3,7 +3,7 @@
   <div>
   
   <p>
-    &copy; <?php print $site->Name; ?>
+    &copy; <?php print $site['Name']; ?>
   </p>
   
   <p class="poweredBy">

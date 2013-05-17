@@ -140,6 +140,7 @@ var contentModel = {
 			success: function(data){
 
 				for(x in data){
+                    console.log(data[x]);
 					var page = Page.create(data[x]);
 					contentModel.pages.push(page); 
 				}

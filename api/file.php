@@ -19,7 +19,7 @@ class ImageListAllResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site->FriendlyId.'/files/';
+            $directory = '../sites/'.$site['FriendlyId'].'/files/';
             
             //get all image files with a .html ext
             $files = glob($directory . "*.*");
@@ -58,8 +58,8 @@ class ImageListAllResource extends Tonic\Resource {
                     
                     $file = array(
                         'filename' => $filename,
-                        'fullUrl' => 'sites/'.$site->FriendlyId.'/files/'.$filename,
-                        'thumbUrl' => 'sites/'.$site->FriendlyId.'/files/t-'.$filename,
+                        'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
+                        'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
                         'mimetype' => $mime_type,
                         'isImage' => $is_image,
@@ -119,7 +119,7 @@ class FilePostResource extends Tonic\Resource {
     		$ext = strtolower($ext); // convert to lowercase
             
             $thumbnail = 't-'.$filename;
-            $directory = '../sites/'.$site->FriendlyId.'/files/';
+            $directory = '../sites/'.$site['FriendlyId'].'/files/';
             
             // save image
             if($ext=='png' || $ext=='jpg' || $ext=='gif'){ // upload image
@@ -130,8 +130,8 @@ class FilePostResource extends Tonic\Resource {
                 
                 $arr = array(
                         'filename' => $filename,
-                        'fullUrl' => 'sites/'.$site->FriendlyId.'/files/'.$filename,
-                        'thumbUrl' => 'sites/'.$site->FriendlyId.'/files/t-'.$filename,
+                        'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
+                        'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
                         'mimetype' => $contentType,
                         'isImage' => true,
@@ -147,8 +147,8 @@ class FilePostResource extends Tonic\Resource {
                 
                 $arr = array(
                     'filename' => $filename,
-                    'fullUrl' => 'sites/'.$site->FriendlyId.'/files/'.$filename,
-                    'thumbUrl' => 'sites/'.$site->FriendlyId.'/files/t-'.$filename,
+                    'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
+                    'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                     'extension' => $ext,
                     'mimetype' => $mime_type,
                     'isImage' => false,
@@ -194,7 +194,7 @@ class FileListAllResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site->FriendlyId.'/files/';
+            $directory = '../sites/'.$site['FriendlyId'].'/files/';
             
             //get all image files with a .html ext
             $files = glob($directory . "*.*");
@@ -233,8 +233,8 @@ class FileListAllResource extends Tonic\Resource {
                     
                     $file = array(
                         'filename' => $filename,
-                        'fullUrl' => 'sites/'.$site->FriendlyId.'/files/'.$filename,
-                        'thumbUrl' => 'sites/'.$site->FriendlyId.'/files/t-'.$filename,
+                        'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
+                        'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
                         'mimetype' => $mime_type,
                         'isImage' => $is_image,
@@ -247,7 +247,7 @@ class FileListAllResource extends Tonic\Resource {
                 else if($is_thumb==false){
                     $file = array(
                         'filename' => $filename,
-                        'fullUrl' => 'sites/'.$site->FriendlyId.'/files/'.$filename,
+                        'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                         'thumbUrl' => 'n/a',
                         'extension' => $ext,
                         'mimetype' => $mime_type,

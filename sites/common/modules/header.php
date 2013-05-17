@@ -2,12 +2,12 @@
   <div>
 <?php 
 
-	if($site->LogoUrl!=''){
-		print '<a id="logo" href="'.$rootloc.'" alt="'.$site->Name.'">'.
-			'<img src="'.$rootloc.'files/'.$site->LogoUrl.'"></a>';
+	if($site['LogoUrl']!=''){
+		print '<a id="logo" href="'.$rootloc.'" alt="'.$site['Name'].'">'.
+			'<img src="'.$rootloc.'files/'.$site['LogoUrl'].'"></a>';
 	} 
 
-print '<h1>'.$site->Name.'</h1>';
+print '<h1>'.$site['Name'].'</h1>';
 ?>
 
 <?php print "<?php include '".$commonloc."modules/menu.php'; ?>"; ?>

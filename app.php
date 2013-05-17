@@ -19,7 +19,7 @@
         )));
     
     // include data-access objects and helper functions
-	include 'dao/Connect.php';
+	include 'dao/DB.php';
 	include 'dao/User.php';
 	include 'dao/Site.php';
 	include 'dao/PageType.php';

@@ -22,12 +22,11 @@ class MenuTypeAddResource extends Tonic\Resource {
             $friendlyId = $request['friendlyId'];
         
             $menuType = MenuType::Add($friendlyId, $name, $authUser->SiteId, $authUser->UserId, $authUser->UserId);
-            $arr = $menuType->ToAssocArray();
-
+      
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($menuType);
 
             return $response;
         
@@ -82,16 +81,10 @@ class MenuTypeListAllResource extends Tonic\Resource {
 
             $list = MenuType::GetMenuTypes($authUser->SiteId);
             
-            $arr = array();
-
-            while ($row = mysql_fetch_assoc($list)) {
-                array_push($arr, $row);
-            }
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($list);
 
             return $response;
         }

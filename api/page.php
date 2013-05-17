@@ -26,7 +26,7 @@ class PageAddResource extends Tonic\Resource {
                 $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
             
                 if($pageType != null){
-                    $pageTypeId = $pageType->PageTypeId;
+                    $pageTypeId = $pageType['PageTypeId'];
                 }
             }
 
@@ -35,12 +35,11 @@ class PageAddResource extends Tonic\Resource {
             $description = $request['description'];
 
             $page = Page::Add($friendlyId, $name, $description, $pageTypeId, $authUser->SiteId, $authUser->UserId);
-            $arr = $page->ToAssocArray();
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($page);
 
             return $response;
         
@@ -69,12 +68,10 @@ class PageResource extends Tonic\Resource {
 
             $page = Page::GetByPageUniqId($pageUniqId);
 
-            $arr = $page->ToAssocArray();
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($page);
 
             return $response;
         }
@@ -104,9 +101,7 @@ class PageResource extends Tonic\Resource {
             $layout = $request['layout'];
             $stylesheet = $request['stylesheet'];
 
-            $page = Page::GetByPageUniqId($pageUniqId);
-
-            $page->EditSettings($name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $authUser->UserId);
+            Page::EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $authUser->UserId);
 
             return new Tonic\Response(Tonic\Response::OK);
         
@@ -127,8 +122,7 @@ class PageResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
 
-            $page = Page::GetByPageUniqId($pageUniqId);
-            $page->Remove();
+            Page::Remove($pageUniqId);
 
             return new Tonic\Response(Tonic\Response::OK);
         }
@@ -158,7 +152,7 @@ class PageContentResource extends Tonic\Resource {
 
             $site = Site::GetBySiteId($authUser->SiteId);
         
-            $fragment = '../sites/'.$site->FriendlyId.'/fragments/publish/'.$pageUniqId.'.html';
+            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$pageUniqId.'.html';
 
             $content = '';
 
@@ -167,7 +161,7 @@ class PageContentResource extends Tonic\Resource {
             }
             else{ // create default content for the page
                 $page = Page::GetByPageUniqId($pageUniqId); 
-                $content = '<div id="block-1" class="block row-fluid"><div class="col span12"><h1>'.strip_tags(html_entity_decode($page->Name)).'</h1><p>'.strip_tags(html_entity_decode($page->Description)).'</p></div></div>';
+                $content = '<div id="block-1" class="block row-fluid"><div class="col span12"><h1>'.strip_tags(html_entity_decode($page['Name'])).'</h1><p>'.strip_tags(html_entity_decode($page['Description'])).'</p></div></div>';
             }
 
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -201,17 +195,17 @@ class PageContentResource extends Tonic\Resource {
             $page = Page::GetByPageUniqId($pageUniqId);
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            Publish::PublishFragment($site->FriendlyId, $page->PageUniqId, $status, $content);
+            Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
             
             $url = '';
 
             if($status=='publish'){
-                if($page->IsActive == 1){
-                    $url = Publish::PublishPage($page->PageUniqId);
+                if($page['IsActive'] == 1){
+                    $url = Publish::PublishPage($page['PageUniqId']);
                 }
 
                 if($image!=''){
-                    $page->EditImage($image, $authUser->UserId);
+                    Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);
                 }
             }
 
@@ -247,7 +241,7 @@ class PagePreviewRemoveResource extends Tonic\Resource {
             $site = Site::GetBySiteId($authUser->SiteId);
            
             if($site){
-                $dir = '../sites/'.$site->FriendlyId.'/preview/*';
+                $dir = '../sites/'.$site['FriendlyId'].'/preview/*';
                 
                 $files = glob($dir); // get all file names
                 
@@ -290,9 +284,9 @@ class PagePreviewSaveResource extends Tonic\Resource {
             $page = Page::GetByPageUniqId($pageUniqId);
             $site = Site::GetBySiteId($authUser->SiteId);
             
-            Publish::PublishFragment($site->FriendlyId, $page->PageUniqId, $status, $content);
+            Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
             
-            $url = Publish::PublishPage($page->PageUniqId, true); // publish a preview page
+            $url = Publish::PublishPage($page['PageUniqId'], true); // publish a preview page
 
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'text/html';
@@ -355,9 +349,7 @@ class PagePublishResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
 
-            $page = Page::GetByPageUniqId($pageUniqId);
-
-            $page->SetIsActive(1);
+            Page::SetIsActive($pageUniqId, 1);
 
             // publish the page
             Publish::PublishPage($pageUniqId);
@@ -392,19 +384,19 @@ class PageUnPublishResource extends Tonic\Resource {
 
             $page = Page::GetByPageUniqId($pageUniqId);
 
-            $page->SetIsActive(0);
+            Page::SetIsActive($pageUniqId, 1);
 
             // delete page
-            $site = Site::GetBySiteId($page->SiteId);
-            $filename = '../sites/'.$site->FriendlyId.'/';
+            $site = Site::GetBySiteId($page['SiteId']);
+            $filename = '../sites/'.$site['FriendlyId'].'/';
 
 
-            if($page->PageTypeId!=-1){
-                $pageType = PageType::GetByPageTypeId($page->PageTypeId);
-                $filename .= strtolower($pageType->FriendlyId).'/';
+            if($page['PageTypeId']!=-1){
+                $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+                $filename .= strtolower($pageType['FriendlyId']).'/';
             }
 
-            $filename = $filename.$page->FriendlyId.'.php';
+            $filename = $filename.$page['FriendlyId'].'.php';
             
             if(file_exists($filename)){
                 unlink($filename);
@@ -442,33 +434,31 @@ class PageListAll extends Tonic\Resource {
             
             $pages = array();
             
-            while($row = mysql_fetch_array($list)){
+            foreach ($list as $row){
 
                 $page = Page::GetByPageId($row['PageId']);
 
-                $arr = $page->ToAssocArray();
-
                 $fullName = $row['FirstName'].' '.$row['LastName'];
-                $arr['LastModifiedFullName'] = $fullName;
+                $row['LastModifiedFullName'] = $fullName;
 
                 $imageUrl = '';
                 $thumbUrl = '';
 
 
-                $arr['Image'] = $imageUrl;
-                $arr['Thumb'] = $thumbUrl;
+                $row['Image'] = $imageUrl;
+                $row['Thumb'] = $thumbUrl;
 
-                $url = $page->FriendlyId;
+                $url = $page['FriendlyId'];
                 
-                if($page->PageTypeId!=-1){
-                    $pageType = PageType::GetByPageTypeId($page->PageTypeId);
+                if($page['PageTypeId']!=-1){
+                    $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType->TypeS).'/'.$page->FriendlyId;
+                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
                 }
 
-                $arr['Url'] = $url;
+                $row['Url'] = $url;
                     
-                $pages[$row['PageUniqId']] = $arr;
+                $pages[$row['PageUniqId']] = $row;
             }
 
             // return a json response
@@ -513,10 +503,10 @@ class PageListFriendlyResource extends Tonic\Resource {
             $pageTypeId = -1;
             $dir = '/';
 
-            if($friendlyId!='root'){// get pagetype
+            if($friendlyId!='root'){ // get pagetype
                 $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
-                $pageTypeId = $pageType->PageTypeId;
-                $dir = strtolower($pageType->TypeS).'/';
+                $pageTypeId = $pageType['PageTypeId'];
+                $dir = strtolower($pageType['TypeS']).'/';
             }
 
             // get pages
@@ -524,32 +514,30 @@ class PageListFriendlyResource extends Tonic\Resource {
             
             $pages = array();
             
-            while($row = mysql_fetch_array($list)){
+            foreach ($list as $row){
 
                 $page = Page::GetByPageId($row['PageId']);
 
-                $arr = $page->ToAssocArray();
-
                 $fullName = $row['FirstName'].' '.$row['LastName'];
-                $arr['LastModifiedFullName'] = $fullName;
+                $page['LastModifiedFullName'] = $fullName;
 
                 $imageUrl = '';
                 $thumbUrl = '';
 
-                $arr['Image'] = $imageUrl;
-                $arr['Thumb'] = $thumbUrl;
+                $page['Image'] = $imageUrl;
+                $page['Thumb'] = $thumbUrl;
 
-                $url = $page->FriendlyId;
+                $url = $page['FriendlyId'];
 
-                if($page->PageTypeId!=-1){
-                    $pageType = PageType::GetByPageTypeId($page->PageTypeId);
+                if($page['PageTypeId']!=-1){
+                    $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType->TypeS).'/'.$page->FriendlyId;
+                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
                 }
 
-                $arr['Url'] = $url;
+                $page['Url'] = $url;
                     
-                $pages[$row['PageUniqId']] = $arr;
+                $pages[$row['PageUniqId']] = $page;
             }
 
             // return a json response
@@ -603,14 +591,14 @@ class PageListResource extends Tonic\Resource {
         $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
 
 
-        $dest = 'sites/'.$site->FriendlyId;
+        $dest = 'sites/'.$site['FriendlyId'];
         
         // Get all pages
-        $list = Page::GetPages($site->SiteId, $pageType->PageTypeId, $pageSize, $page, $orderBy, true);
+        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
         
         $pages = array();
         
-        while($row = mysql_fetch_array($list)){
+        foreach ($list as $row){
 
             $page = Page::GetByPageId($row['PageId']);
 
@@ -621,35 +609,35 @@ class PageListResource extends Tonic\Resource {
             $imageUrl = '';
             $hasImage = false;
             
-            if($page->Image!=''){
+            if($page['Image']!=''){
                 $hasImage = true;
-                $thumbUrl = 'files/'.$page->Image;
-                $imageUrl = 'files/'.substr($page->Image, 2);
+                $thumbUrl = 'files/'.$page['Image'];
+                $imageUrl = 'files/'.substr($page['Image'], 2);
             }
             
             $hasCallout = false;
             
-            if($page->Callout!=''){
+            if($page['Callout']!=''){
                 $hasCallout = true;
             }
 
-            $url = strtolower($pageType->TypeS).'/'.$page->FriendlyId;
+            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
             
             $item = array(
-                    'PageUniqId'  => $page->PageUniqId,
-                    'Name' => $page->Name,
-                    'Description' => $page->Description,
-                    'Callout' => $page->Callout,
+                    'PageUniqId'  => $page['PageUniqId'],
+                    'Name' => $page['Name'],
+                    'Description' => $page['Description'],
+                    'Callout' => $page['Callout'],
                     'HasCallout' => $hasCallout,
                     'Url' => $url,
                     'Image' => $imageUrl,
                     'Thumb' => $thumbUrl,
                     'HasImage' => $hasImage,
-                    'LastModified' => $page->LastModifiedDate,
+                    'LastModified' => $page['LastModifiedDate'],
                     'Author' => $name
                 );
                 
-            $pages[$page->PageUniqId] = $item;
+            $pages[$page['PageUniqId']] = $item;
         }
 
         // return a json response
@@ -697,14 +685,14 @@ class PageBlogResource extends Tonic\Resource {
         $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
 
 
-        $dest = 'sites/'.$site->FriendlyId;
+        $dest = 'sites/'.$site['FriendlyId'];
         
         // Get all pages
-        $list = Page::GetPages($site->SiteId, $pageType->PageTypeId, $pageSize, $page, $orderBy, true);
+        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
         
         $pages = array();
         
-        while($row = mysql_fetch_array($list)){
+        foreach ($list as $row){
 
             $page = Page::GetByPageId($row['PageId']);
 
@@ -715,21 +703,21 @@ class PageBlogResource extends Tonic\Resource {
             $imageUrl = '';
             $mImageUrl = '';
             
-            $url = strtolower($pageType->TypeS).'/'.$page->FriendlyId;
+            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
             
             $item = array(
-                    'PageUniqId'  => $page->PageUniqId,
-                    'Name' => $page->Name,
-                    'Description' => $page->Description,
-                    'Callout' => $page->Callout,
+                    'PageUniqId'  => $page['PageUniqId'],
+                    'Name' => $page['Name'],
+                    'Description' => $page['Description'],
+                    'Callout' => $page['Callout'],
                     'Url' => $url,
                     'Image' => $imageUrl,
                     'Thumb' => $thumbUrl,
-                    'LastModified' => $page->LastModifiedDate,
+                    'LastModified' => $page['LastModifiedDate'],
                     'Author' => $name
                 );
                 
-            $fragment = '../sites/'.$site->FriendlyId.'/fragments/publish/'.$page->PageUniqId.'.html';
+            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$page['PageUniqId'].'.html';
 
             if(file_exists($fragment)){
                 $content = file_get_contents($fragment);
@@ -741,8 +729,6 @@ class PageBlogResource extends Tonic\Resource {
             $item['Content'] = $content;
             
             array_push($pages, $item);
-            
-            //$pages[$page->PageUniqId] = $item;
         }
 
         // return a json response
@@ -774,7 +760,7 @@ class PageTotalResource extends Tonic\Resource {
         $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
 
         // Get all pages
-        $total = Page::GetPagesCount($site->SiteId, $pageType->PageTypeId, true);
+        $total = Page::GetPagesCount($site['SiteId'], $pageType['PageTypeId'], true);
         
         $json = '{"total":"'.$total.'"}';
 

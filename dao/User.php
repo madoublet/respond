@@ -2,429 +2,390 @@
 
 // User model
 class User{
-	public $UserId;
-	public $UserUniqId;
-	public $Email;
-	public $Password;
-	public $FirstName;
-	public $LastName;
-	public $Role;
-	public $SiteId;
-	public $Created;
-	public $Token;
-	
-	function __construct($userId, $userUniqId, $email, $password, $firstName, $lastName, 
-			$role, $siteId, 
-			$created, $token){
-		$this->UserId = $userId;
-		$this->UserUniqId = $userUniqId;
-		$this->Email = $email;
-		$this->Password = $password;
-		$this->FirstName = $firstName;
-		$this->LastName = $lastName;
-		$this->Role = $role;
-		$this->SiteId = $siteId;
-		$this->Created = $created;
-		$this->Token = $token;
-	}
-    
-    // creates an associative array from the public params
-    public function ToAssocArray(){
-		$arr = array();
 
-		foreach($this as $var=>$value){
-			$arr[$var] = $value;
-		}
-
-		return $arr;
-	}
-	
 	// adds a user
 	public static function Add($email, $password, $firstName, $lastName, $role, $siteId){
 		
-		Connect::init();
-		
-		$userUniqId = uniqid();
-		$email = mysql_real_escape_string($email); // clean data
-		$password = mysql_real_escape_string($password);
-		$firstName = mysql_real_escape_string($firstName);
-		$lastName = mysql_real_escape_string($lastName);
-		$role = mysql_real_escape_string($role);
-		settype($siteId, 'integer');
-		
-		$token = null;
-	
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		// $s_password = md5($password); /* create secure password */
-		
-		// create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
-		$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
-		$hash_portable = FALSE; // Not portable
-		
-		$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
-		$s_password = $hasher->HashPassword($password);
-		unset($hasher);
-		
-		$result = mysql_query(
-			"INSERT INTO Users (UserUniqId, Email, Password, FirstName, LastName, 
-				Role, SiteId, Created) 
-			 VALUES ('$userUniqId', '$email', '$s_password', '$firstName', '$lastName', 
-			 	'$role', $siteId, '$timestamp')");
-		
-		if(!$result) {
-		  print "Could not successfully run query User->Add: " . mysql_error() . "<br>";
-		  exit;
-		}
-		
-		return new User(mysql_insert_id(), $userUniqId, $email, $s_password, $firstName, $lastName, 
-			$role, $siteId, $timestamp, $token); 
+        try{
+            
+    		$db = DB::get();
+    
+        	$userUniqId = uniqid();
+    		
+    		$token = null;
+    	
+    		$timestamp = gmdate("Y-m-d H:i:s", time());
+    		
+    		// create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
+    		$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
+    		$hash_portable = FALSE; // Not portable
+    		
+    		$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
+    		$s_password = $hasher->HashPassword($password);
+    		unset($hasher);
+        
+            $q = "INSERT INTO Users (UserUniqId, Email, Password, FirstName, LastName, Role, SiteId, Created) 
+        		 	VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $userUniqId);
+            $s->bindParam(2, $email);
+            $s->bindParam(3, $s_password);
+            $s->bindParam(4, $firstName);
+            $s->bindParam(5, $lastName);
+            $s->bindParam(6, $role);
+            $s->bindParam(7, $siteId);
+            $s->bindParam(8, $timestamp);
+            
+            $s->execute();
+            
+            return array(
+                'UserId' => $db->lastInsertId(),
+                'UserUniqId' => $userUniqId,
+                'Email' => $email,
+                'FirstName' => $firstName,
+                'LastName' => $lastName,
+                'Role' => $role,
+                'Token' => $token
+                );
+                
+        } catch(PDOException $e){
+            die('[User::Add] PDO Error: '.$e->getMessage());
+        }
 	}
 	
 	// determines whether a login is unique
 	public static function IsLoginUnique($login){
 
-		Connect::init();
-		
-		$login = mysql_real_escape_string($login); // clean data
-		
-		$count=0;
-	
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT Count(*) as Count
-			FROM Users where Email='$login'");
-			
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$count = $row["Count"];
-		}
-	
-		if($count==0){
-			return true;
-		}
-		else{
-			return false;
-		}
+		try{
+
+        	$db = DB::get();
+    
+    		$count = 0;
+    	
+    		$q ="SELECT Count(*) as Count FROM Users where Email = ?";
+    
+        	$s = $db->prepare($q);
+            $s->bindParam(1, $email);
+            
+    		$s->execute();
+    
+    		$count = $s->fetchColumn();
+    
+    		if($count==0){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+            
+        } catch(PDOException $e){
+            die('[User::IsLoginUnique] PDO Error: '.$e->getMessage());
+        } 
+        
 	}
 	
 	// edit user
 	public static function Edit($userUniqId, $email, $password, $firstName, $lastName, $role){
 		
-		Connect::init();
-		
-        $email = mysql_real_escape_string($email);
-    	$password = mysql_real_escape_string($password);
-		$firstName = mysql_real_escape_string($firstName);
-		$lastName = mysql_real_escape_string($lastName);
-		$role = mysql_real_escape_string($role);
-		
-        // edit basic information
-		$query = "UPDATE Users SET 
-            Email = '$email',
-            FirstName = '$firstName',
-			LastName = '$lastName',
-			Role = '$role'
-			WHERE UserUniqId = '$userUniqId'";
-		
-		mysql_query($query);
-        
-        // edit password
-		User::EditPassword($userUniqId, $password);
-        
-		return;
+    	try{
+
+            $db = DB::get();
+    		
+            // edit basic information
+    		$q = "UPDATE Users SET 
+                Email = ?,
+                FirstName = ?,
+    			LastName = ?,
+    			Role = ?
+    			WHERE UserUniqId = ?";
+    		
+    		$s = $db->prepare($q);
+            $s->bindParam(1, $email);
+            $s->bindParam(2, $firstName);
+            $s->bindParam(3, $lastName);
+            $s->bindParam(4, $role);
+            $s->bindParam(5, $userUniqId);
+            
+            $s->execute();
+            
+            // edit password
+    		User::EditPassword($userUniqId, $password);
+            
+    	} catch(PDOException $e){
+            die('[User::Edit] PDO Error: '.$e->getMessage());
+        } 
 	}
 	
 	// edit password
 	public static function EditPassword($userUniqId, $password){
 		
-		Connect::init();
-		
-		$password = mysql_real_escape_string($password);
-		
-		if($password != "temppassword"){
-			//$s_password = md5($password); /* create secure password */
-			
-			// create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
-			$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
-			$hash_portable = FALSE; // Not portable
-			
-			$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
-			$s_password = $hasher->HashPassword($password);
-			unset($hasher);
+		try{
+
+            $db = DB::get();
+
+    		if($password != "temppassword"){
+    			
+                // create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
+    			$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
+    			$hash_portable = FALSE; // Not portable
+    			
+    			$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
+    			$s_password = $hasher->HashPassword($password);
+    			unset($hasher);
+                
+    			$q = "UPDATE Users SET Token = '', 
+                        Password = ?
+                        WHERE UserUniqId = ?";
+                
+                $s = $db->prepare($q);
+                $s->bindParam(1, $s_password);
+                $s->bindParam(2, $userUniqId);
+                
+                $s->execute();
+        	
+    		}
             
-			$q = "UPDATE Users SET Token = '', ";
-			$q = $q."Password = '$s_password'";
-            $q = $q." WHERE UserUniqId = '$userUniqId'";
-    	
-		    mysql_query($q);
-		}
-		
-		return;
+		} catch(PDOException $e){
+            die('[User::EditPassword] PDO Error: '.$e->getMessage());
+        } 
 	}
 	
 	// generate token
-	public function SetToken(){
+	public static function SetToken($userUniqId){
 		
-		Connect::init();
+		try{
+
+            $db = DB::get();
 		
-		// create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
-		$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
-		$hash_portable = FALSE; // Not portable
-		
-		$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
-		$s_token = $hasher->HashPassword($this->UserUniqId);
-		unset($hasher);
-		
-		$query = "UPDATE Users SET Token = '$s_token' WHERE UserId=$this->UserId";
-		
-		mysql_query($query);
-		
-		return $s_token;
+    		// create a more secure password (http://www.openwall.com/articles/PHP-Users-Passwords)
+    		$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
+    		$hash_portable = FALSE; // Not portable
+    		
+    		$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
+    		$s_token = $hasher->HashPassword($this->UserUniqId);
+    		unset($hasher);
+    		
+    		$q = "UPDATE Users SET Token = ? WHERE UserUniqId=?";
+    		
+    		$s = $db->prepare($q);
+            $s->bindParam(1, $s_token);
+            $s->bindParam(2, $userUniqId);
+            
+            $s->execute();
+    		
+    		return $s_token;
+        
+		} catch(PDOException $e){
+            die('[User::SetToken] PDO Error: '.$e->getMessage());
+        } 
 	}
 	
 	// removes a user
 	public static function Remove($userUniqId){
 		
-		Connect::init();
+		try{
+
+            $db = DB::get();
 		
-		$userUniqId = mysql_real_escape_string($userUniqId);
+            $q = "DELETE FROM Users WHERE UserUniqId=?";
 		
-		$delete = mysql_query("DELETE FROM Users WHERE UserUniqId='$userUniqId'");
+		    $s = $db->prepare($q);
+            $s->bindParam(1, $userUniqId);
+            
+            $s->execute();
 	
-		return;
+		} catch(PDOException $e){
+            die('[User::Remove] PDO Error: '.$e->getMessage());
+        } 
 	}
 	
 	// Gets users in an site
 	public static function GetUsersForSite($siteId){
 		
-		Connect::init();
-		
-		settype($siteId, 'integer'); // clean
-		
-		$result = mysql_query("SELECT Users.UserId, Users.UserUniqId, Users.Email, Users.FirstName, Users.LastName, 
-			Users.Role, Users.SiteId, Users.Created
-			FROM Users
-			WHERE Users.SiteId=$siteId ORDER BY Users.LastName");
-		
-		return $result;
+		try{
+
+            $db = DB::get();
+            
+            $q = "SELECT Users.UserId, Users.UserUniqId, Users.Email, Users.FirstName, Users.LastName, 
+        		    Users.Role, Users.SiteId, Users.Created
+    			    FROM Users
+    			    WHERE Users.SiteId=? ORDER BY Users.LastName";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+        	while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[User::GetUsersForSite] PDO Error: '.$e->getMessage());
+        } 
 		
 	}
 
 	// Gets a user for a specific email and password
 	public static function GetByEmailPassword($email, $password){
 		
-		Connect::init();
-		
-		$email = mysql_real_escape_string($email); // clean data
-		$password = mysql_real_escape_string($password);
-		
-		$result = mysql_query("SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-			Role, SiteId, Created, Token 
-			FROM Users WHERE Email='$email'");
-		
-		if(!$result) {
-		  die("Could not successfully run query User->Get".mysql_error());
-		  exit;
-		}
-
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$userId = $row["UserId"];
-			$userUniqId = $row["UserUniqId"];
-			$email = $row["Email"];
-			$hash = $row["Password"];
-			$firstName = $row["FirstName"];
-			$lastName = $row["LastName"];
-			$role = $row["Role"];
-			$siteId = $row["SiteId"];
-			$created = $row["Created"];
-			$token = $row["Token"];
-			
-			// need to check the password
-			$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
-			$hash_portable = FALSE; // Not portable
-		
-			$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
-			
-			if($hasher->CheckPassword($password, $hash)){ // success
-				unset($hasher);
-				return new User($userId, $userUniqId, $email, $hash, $firstName, $lastName, 
-					$role, $siteId, 
-					$created, $token);
-			}
-			else{ // failure
-				unset($hasher);
-				return null;
-			}
-			
-		}
+        try{
+         
+            $db = DB::get();
+            
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            		Role, SiteId, Created, Token 
+        			FROM Users WHERE Email=?";
+            
+            $s = $db->prepare($q);
+            $s->bindParam(1, $email);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);
+        
+            if($row){
+                
+                $hash = $row["Password"];
+        	
+    			// need to check the password
+    			$hash_cost_log2 = 8; // Base-2 logarithm of the iteration count used for password stretching
+    			$hash_portable = FALSE; // Not portable
+    		
+    			$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
+    			
+    			if($hasher->CheckPassword($password, $hash)){ // success
+    				unset($hasher);
+    				return $row;
+    			}
+    			else{ // failure
+    				unset($hasher);
+    				return null;
+    			}
+    			
+    		}
+            
+	    } catch(PDOException $e){
+            die('[User::GetByEmailPassword] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	// Gets a user for a specific email
 	public static function GetByEmail($email){
-		
-		Connect::init();
-		
-		settype($userId, 'integer'); // clean
-		
-		$result = mysql_query("SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-			Role, SiteId, Created, Token 
-			FROM Users WHERE Email='$email'");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$userId = $row["UserId"];
-			$userUniqId = $row["UserUniqId"];
-			$email = $row["Email"];
-			$password = $row["Password"];
-			$firstName = $row["FirstName"];
-			$lastName = $row["LastName"];
-			$role = $row["Role"];
-			$siteId = $row["SiteId"];
-			$created = $row["Created"];
-			$token = $row["Token"];
-			
-			return new User($userId, $userUniqId, $email, $password, $firstName, $lastName, 
-				$role, $siteId, 
-				$created, $token);
-		}
+        
+        try{
+    	
+    		$db = DB::get();
+            
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            		Role, SiteId, Created, Token 
+        			FROM Users WHERE Email=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $email);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[User::GetByEmail] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	// Gets a user for a specific token
 	public static function GetByToken($token){
-		
-		Connect::init();
-		
-		settype($userId, 'integer'); // clean
-		
-		$result = mysql_query("SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-			Role, SiteId, Created 
-			FROM Users WHERE Token='$token'");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
 
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$userId = $row["UserId"];
-			$userUniqId = $row["UserUniqId"];
-			$email = $row["Email"];
-			$password = $row["Password"];
-			$firstName = $row["FirstName"];
-			$lastName = $row["LastName"];
-			$role = $row["Role"];
-			$siteId = $row["SiteId"];
-			$created = $row["Created"];
-			$token = $row["Token"];
-			
-			return new User($userId, $userUniqId, $email, $password, $firstName, $lastName, 
-				$role, $siteId, 
-				$created, $token);
-		}
+        try{
+        
+    		$db = DB::get();
+            
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            		Role, SiteId, Created 
+        			FROM Users WHERE Token=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $token);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[User::GetByToken] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	// Gets a user for a specific userid
 	public static function GetByUserUniqId($userUniqId){
-		
-		Connect::init();
-		
-		settype($userId, 'integer'); // clean
-		
-		$result = mysql_query("SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-			Role, SiteId, Created, Token 
-			FROM Users WHERE UserUniqId='$userUniqId'");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$userId = $row["UserId"];
-			$userUniqId = $row["UserUniqId"];
-			$email = $row["Email"];
-			$password = $row["Password"];
-			$firstName = $row["FirstName"];
-			$lastName = $row["LastName"];
-			$role = $row["Role"];
-			$siteId = $row["SiteId"];
-			$created = $row["Created"];
-			$token = $row["Token"];
-			
-			return new User($userId, $userUniqId, $email, $password, $firstName, $lastName, 
-				$role, $siteId, 
-				$created, $token);
-		}
+        
+        try{
+        
+        	$db = DB::get();
+            
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            		Role, SiteId, Created, Token 
+        			FROM Users WHERE UserUniqId=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $userUniqId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[User::GetByUserUniqId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	// Gets a user for a specific userid
 	public static function GetByUserId($userId){
 		
-		Connect::init();
-		
-		settype($userId, 'integer'); // clean
-		
-		$result = mysql_query("SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-			Role, SiteId, Created, Token 
-			FROM Users WHERE UserId='$userId'");
-		
-		if(!$result) 
-		{
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0) 
-		{
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$userId = $row["UserId"];
-			$userUniqId = $row["UserUniqId"];
-			$email = $row["Email"];
-			$password = $row["Password"];
-			$firstName = $row["FirstName"];
-			$lastName = $row["LastName"];
-			$role = $row["Role"];
-			$siteId = $row["SiteId"];
-			$created = $row["Created"];
-			$token = $row["Token"];
-			
-			return new User($userId, $userUniqId, $email, $password, $firstName, $lastName, 
-				$role, $siteId, 
-				$created, $token);
-		}
+		try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            		Role, SiteId, Created, Token 
+        			FROM Users WHERE UserId=?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $userId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[User::GetByUserId] PDO Error: '.$e->getMessage());
+        }
+    
 	}
 	
 }

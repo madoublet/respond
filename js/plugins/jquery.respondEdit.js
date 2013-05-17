@@ -37,6 +37,7 @@ jQuery.fn.swap = function(b){
 				'<a class="comments icon-comments" title="Add Facebook&reg; comments"></a>' +
 				'<a class="youtube icon-facetime-video" title="Add a video"></span>' +
 				'<a class="list icon-list-alt" title="Add a list of pages"></span>' +
+                '<a class="ul icon-star" title="Add Featured Content"></a>' +
 				'<a class="file icon-file-alt" title="Add a File"></a>' +
 				'<a class="form icon-check" title="Add a Form"></a>' +
 				'<a class="html icon-coffee" title="Add HTML"></a>' + 
@@ -52,7 +53,7 @@ jQuery.fn.swap = function(b){
         	   '<a class="load icon-circle-arrow-up" title="Load New Layout"></a></div></div>';
     menu += '<a class="next fs-next"><i class="icon-chevron-right"></i></a>';
     menu += '<a class="previous fs-prev"><i class="icon-chevron-left"></i></a>';
-    menu += '<a class="primary-action preview"><i class="icon-eye-open icon-large"></i> Preview</a>';
+    menu += '<a class="primary-action preview"><i class="icon-eye-open"></i> Preview</a>';
    
    	menu += '</nav>';
 	   

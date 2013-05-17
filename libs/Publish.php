@@ -46,7 +46,7 @@ class Publish
         $site = Site::GetBySiteUniqId($siteUniqId);
         
 		$src = $root.'sites/common/.htaccess';
-		$dest = $root.'sites/'.$site->FriendlyId.'/.htaccess';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/.htaccess';
 		
 		copy($src, $dest); // copy the controller
 	}
@@ -57,7 +57,7 @@ class Publish
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
 		// create plugin directory
-		$dest = $root.'sites/'.$site->FriendlyId.'/plugins';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/plugins';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -74,7 +74,7 @@ class Publish
 
 			if(file_exists($p_src)){
 
-				$p_dest = $root.'sites/'.$site->FriendlyId.'/plugins/'.$type;
+				$p_dest = $root.'sites/'.$site['FriendlyId'].'/plugins/'.$type;
 
 				if(!file_exists($p_dest)){
 					mkdir($p_dest, 0777, true);	
@@ -90,9 +90,9 @@ class Publish
 	// publishes a template
 	public static function PublishTemplate($site, $template, $root='../'){
 
-		$template_dir = $root.'sites/'.$site->FriendlyId.'/templates/';
+		$template_dir = $root.'sites/'.$site['FriendlyId'].'/templates/';
 		$src = $root.'templates/'.$template.'/';
-		$dest = $root.'sites/'.$site->FriendlyId.'/templates/'.$template.'/';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/templates/'.$template.'/';
 
 		if(!file_exists($template_dir)){
 			mkdir($template_dir, 0777, true);	
@@ -108,7 +108,7 @@ class Publish
 		
 		// publish files
 		$src = $root.'templates/common/files';
-		$dest = $root.'sites/'.$site->FriendlyId.'/files';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/files';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -126,7 +126,7 @@ class Publish
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
 		$src = $root.'sites/common/js';
-		$dest = $root.'sites/'.$site->FriendlyId.'/js';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/js';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -143,7 +143,7 @@ class Publish
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
 		$src = $root.'sites/common/css';
-		$dest = $root.'sites/'.$site->FriendlyId.'/css';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/css';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -160,7 +160,7 @@ class Publish
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
 		$src = $root.'sites/common/images';
-		$dest = $root.'sites/'.$site->FriendlyId.'/images';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -177,8 +177,8 @@ class Publish
 		
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
-		$src = $root.'templates/'.$site->Template.'/images';
-		$dest = $root.'sites/'.$site->FriendlyId.'/images';
+		$src = $root.'templates/'.$site['Template'].'/images';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -196,9 +196,9 @@ class Publish
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
 		// Get all pages
-		$list = Page::GetPagesForSite($site->SiteId);
+		$list = Page::GetPagesForSite($site['SiteId']);
 		
-		while($row = mysql_fetch_array($list)){
+		foreach ($list as $row){
 			Publish::PublishPage($row['PageUniqId'], false, $root);
 		}
 	}
@@ -208,19 +208,19 @@ class Publish
 		
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
-		$list = MenuItem::GetMenuItems($site->SiteId);
+		$list = MenuItem::GetMenuItems($site['SiteId']);
 		
 		$menu = array();
 		$count = 0;
 		
-		while($row = mysql_fetch_array($list)){
+		foreach ($list as $row){
 
 			if($row['PageId']!=-1){
 			
 				$page = Page::GetByPageId($row['PageId']);
 
 				if($page != null){
-					$pageUniqId = $page->PageUniqId;
+					$pageUniqId = $page['PageUniqId'];
 				}
 				else{
 					$pageUniqId = -1;
@@ -245,7 +245,7 @@ class Publish
 		// encode to json
 		$encoded = json_encode($menu);
 
-		$dest = $root.'sites/'.$site->FriendlyId.'/data/';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/data/';
 		
 		Utilities::SaveContent($dest, 'menu.json', $encoded);
 	}
@@ -255,9 +255,9 @@ class Publish
 		
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
-		$list = PageType::GetPageTypes($site->SiteId);
+		$list = PageType::GetPageTypes($site['SiteId']);
 		
-		while($row = mysql_fetch_array($list)){
+		foreach ($list as $row){
 			Publish::PublishRssForPageType($siteUniqId, $row['PageTypeId'], $root);
 		}
 	}
@@ -267,14 +267,14 @@ class Publish
 		
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
-		$dest = $root.'sites/'.$site->FriendlyId;
+		$dest = $root.'sites/'.$site['FriendlyId'];
 		
 		$pageType = PageType::GetByPageTypeId($pageTypeId);
 		
 		// generate rss
 		$rss = Generator::GenerateRSS($site, $pageType);
 		
-		Utilities::SaveContent($dest.'/data/', strtolower($pageType->TypeP).'.xml', $rss);
+		Utilities::SaveContent($dest.'/data/', strtolower($pageType['TypeP']).'.xml', $rss);
 	}
 	
 	// publish sitemap
@@ -282,7 +282,7 @@ class Publish
 		
 		$site = Site::GetBySiteUniqId($siteUniqId);
 		
-		$dest = $root.'sites/'.$site->FriendlyId;
+		$dest = $root.'sites/'.$site['FriendlyId'];
 		
 		// generate default site map
 		$content = Generator::GenerateSiteMap($site);
@@ -294,8 +294,8 @@ class Publish
 	public static function PublishCSS($site, $name, $root = '../'){
 	
 		// get references to file
-	    $lessDir = $root.'sites/'.$site->FriendlyId.'/templates/'.$site->Template.'/less/';
-	    $cssDir = $root.'sites/'.$site->FriendlyId.'/css/';
+	    $lessDir = $root.'sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/less/';
+	    $cssDir = $root.'sites/'.$site['FriendlyId'].'/css/';
 
 	    $lessFile = $lessDir.$name.'.less';
 	    $cssFile = $cssDir.$name.'.css';
@@ -331,7 +331,7 @@ class Publish
 
 		$site = Site::GetBySiteUniqId($siteUniqId); // test for now
 
-		$lessDir = $root.'sites/'.$site->FriendlyId.'/templates/'.$site->Template.'/less/';
+		$lessDir = $root.'sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/less/';
 		
 		//get all image files with a .less ext
 		$files = glob($lessDir . "*.less");
@@ -372,12 +372,12 @@ class Publish
         
 		if($page!=null){
 			
-			$site = Site::GetBySiteId($page->SiteId); // test for now
-			$dest = $root.'sites/'.$site->FriendlyId.'/';
+			$site = Site::GetBySiteId($page['SiteId']); // test for now
+			$dest = $root.'sites/'.$site['FriendlyId'].'/';
 			$imageurl = $dest.'files/';
-			$siteurl = 'http://'.$site->Domain.'/';
+			$siteurl = 'http://'.$site['Domain'].'/';
 			
-			$friendlyId = $page->FriendlyId;
+			$friendlyId = $page['FriendlyId'];
 			
 			$url = '';
 			$file = '';
@@ -385,24 +385,24 @@ class Publish
             if($preview==true){
                 $previewId = uniqid();
                 
-                $file = $page->FriendlyId.'-'.$previewId.'-preview.php';
+                $file = $page['FriendlyId'].'-'.$previewId.'-preview.php';
             }   
             else{
-	 	  	    $file = $page->FriendlyId.'.php';
+	 	  	    $file = $page['FriendlyId'].'.php';
             }
 			
 			// create a nice path to store the file
-			if($page->PageTypeId==-1){
-				$url = $page->FriendlyId.'.php';
+			if($page['PageTypeId']==-1){
+				$url = $page['FriendlyId'].'.php';
 				$path = '';
 			}
 			else{
-				$pageType = PageType::GetByPageTypeId($page->PageTypeId);
+				$pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 				
 				$path = 'uncategorized/';
 				
 				if($pageType!=null){
-					$path = strtolower($pageType->FriendlyId).'/';
+					$path = strtolower($pageType['FriendlyId']).'/';
 				}
 	
 			}

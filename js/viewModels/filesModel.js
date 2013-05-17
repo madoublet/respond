@@ -81,11 +81,12 @@ var filesModel = {
     
     removeFile:function(o, e){
         
-        /*
+        console.log(filesModel.toBeRemoved.filename);
+        
         $.ajax({
     		url: './api/file/remove',
 			type: 'POST',
-            data: {filename: o.filename()},
+            data: {filename: filesModel.toBeRemoved.filename},
             dataType: 'JSON',
 			data: {},
 			success: function(data){
@@ -97,9 +98,10 @@ var filesModel = {
 				message.showMessage('success', 'The file was removed successfully');
 
 			}
+        });
         
         
-        $('#deleteDialog').modal('hide');*/
+        $('#deleteDialog').modal('hide');
         
     }
 }

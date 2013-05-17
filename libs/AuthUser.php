@@ -54,50 +54,50 @@ class AuthUser{
 	}
 	
 	private function Redirect(){
-		header("location:index.php"); /* redirects to the login page */
+	    header("location:index.php"); /* redirects to the login page */
 	}
     
     public static function Create($user){
 
     	session_start();
 
-		$site = Site::GetBySiteId($user->SiteId);
-    		
+		$site = Site::GetBySiteId($user['SiteId']);
+        
 		$isSuperAdmin = 0;
 		
-		if($user->Email=='admin@respondcms.com'){ // set is superman
+		if($user['Email']==SITE_ADMIN){ // set is superman
 			$isSuperAdmin = 1;
 		}
 		
 		$isFirstLogin = 0;
 		
-		if($site->LastLogin==null){
+		if($site['LastLogin']==null || $site['LastLogin']==''){
 			$isFirstLogin = 1;
 		}
+        
+        Site::SetLastLogin($site['SiteUniqId']);
+
+		$directory = 'sites/'.$site['FriendlyId'].'/';
 		
-		$site->SetLastLogin(); // set the last login
-		
-		$directory = 'sites/'.$site->FriendlyId.'/';
-		
-		$_SESSION['UserId'] = $user->UserId;
-		$_SESSION['UserUniqId'] = $user->UserUniqId; 
-		$_SESSION['Role'] = $user->Role;  
+		$_SESSION['UserId'] = $user['UserId'];
+		$_SESSION['UserUniqId'] = $user['UserUniqId']; 
+		$_SESSION['Role'] = $user['Role'];  
 		$_SESSION['IsSuperAdmin'] = $isSuperAdmin;  
 		$_SESSION['IsFirstLogin'] = $isFirstLogin; 
-		$_SESSION['Email'] = $user->Email;
-		$_SESSION['Name'] = $user->FirstName.' '.$user->LastName;
-		$_SESSION['FirstName'] = $user->FirstName;
-		$_SESSION['LastName'] = $user->LastName;
-		$_SESSION['SiteId'] = $user->SiteId;
-		$_SESSION['SiteUniqId'] = $site->SiteUniqId;
-		$_SESSION['SiteFriendlyId'] = $site->FriendlyId;
+		$_SESSION['Email'] = $user['Email'];
+		$_SESSION['Name'] = $user['FirstName'].' '.$user['LastName'];
+		$_SESSION['FirstName'] = $user['FirstName'];
+		$_SESSION['LastName'] = $user['LastName'];
+		$_SESSION['SiteId'] = $user['SiteId'];
+		$_SESSION['SiteUniqId'] = $site['SiteUniqId'];
+		$_SESSION['SiteFriendlyId'] = $site['FriendlyId'];
 		$_SESSION['Directory'] = $directory;
-		$_SESSION['LogoUrl'] = $site->LogoUrl;
+		$_SESSION['LogoUrl'] = $site['LogoUrl'];
 		$_SESSION['sid'] = session_id(); 
 		$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-		$_SESSION['SiteName'] = $site->Name;
-		$_SESSION['FileUrl'] = 'sites/'.$site->FriendlyId.'/files/';
-		$_SESSION['TimeZone'] = $site->TimeZone;
+		$_SESSION['SiteName'] = $site['Name'];
+		$_SESSION['FileUrl'] = 'sites/'.$site['FriendlyId'].'/files/';
+		$_SESSION['TimeZone'] = $site['TimeZone'];
 
 	}
 	

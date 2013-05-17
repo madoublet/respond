@@ -19,7 +19,7 @@
 	}
 ?>">
 	<span class="type"></span>
-	<a class="file-name" href="<?php print $dataloc.'files/'; ?><?php print $file; ?>"><?php print $file; ?></a>
+	<a class="file-name" href="<?php print $rootloc.'files/'; ?><?php print $file; ?>"><?php print $file; ?></a>
 	<span class="file-desc">
 		<?php print $description; ?>
 	</span>

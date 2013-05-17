@@ -3,379 +3,297 @@
 // PageType model
 class PageType{
 	
-	public $PageTypeId;
-	public $PageTypeUniqId;
-	public $FriendlyId;
-	public $TypeS;
-	public $TypeP;
-	public $SiteId;
-	public $CreatedBy;
-	public $LastModifiedBy;
-	public $LastModifiedDate;
-	public $Created;
-	
-	function __construct($pageTypeId, $pageTypeUniqId, $friendlyId, $typeS, $typeP, 
-		$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate, $created){
-		$this->PageTypeId = $pageTypeId;
-		$this->PageTypeUniqId = $pageTypeUniqId;
-		$this->FriendlyId = $friendlyId;
-		$this->TypeS = $typeS;
-		$this->TypeP = $typeP;
-		$this->SiteId = $siteId;
-		$this->CreatedBy = $createdBy;
-		$this->Created = $created;
-		$this->LastModifiedBy = $lastModifiedBy;
-		$this->lastModifiedDate = $lastModifiedDate;
+	// adds a pageType
+    public static function Add($friendlyId, $typeS, $typeP, $siteId, $createdBy, $lastModifiedBy){
+		   
+        try{
+            
+            $db = DB::get();
+        	
+    		$pageTypeUniqId = uniqid();
+            
+            // cleanup friendlyid (escape, trim, remove spaces, tolower)
+        	$friendlyId = trim($friendlyId);
+    		$friendlyId = str_replace(' ', '', $friendlyId);
+    		$friendlyId = strtolower($friendlyId);
+    
+    		$timestamp = gmdate("Y-m-d H:i:s", time());
+    	
+    		// a bit hacky, but need to ensure that begindate and enddate are null
+    		$q = "INSERT INTO PageTypes (PageTypeUniqId, FriendlyId, TypeS, TypeP,
+                    SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    	
+    	
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageTypeUniqId);
+            $s->bindParam(2, $friendlyId);
+            $s->bindParam(3, $typeS);
+            $s->bindParam(4, $typeP);
+            $s->bindParam(5, $siteId);
+            $s->bindParam(6, $createdBy);
+            $s->bindParam(7, $lastModifiedBy);
+            $s->bindParam(8, $timestamp);
+            $s->bindParam(9, $timestamp);
+            
+            $s->execute();
+            
+            return array(
+                'PageTypeId' => $db->lastInsertId(),
+                'PageTypeUniqId' => $pageTypeUniqId,
+                'FriendlyId' => $friendlyId,
+                'TypeS' => $typeS,
+                'TypeP' => $typeP,
+                'SiteId' => $siteId,
+                'CreatedBy' => $createdBy,
+                'LastModifiedBy' => $lastModifiedBy,
+                'Created' => $timestamp,
+                'LastModifiedDate' => $timestamp
+                );
+                
+        } catch(PDOException $e){
+            die('[PageType::Add] PDO Error: '.$e->getMessage());
+        }
 	}
     
-    // creates an associative array from the public params
-    public function ToAssocArray(){
-		$arr = array();
-
-		foreach($this as $var=>$value){
-			$arr[$var] = $value;
-		}
-
-		return $arr;
-	}
-	
-	// Determines whether a FriendlyId is unique
+    
+	// determines whether a FriendlyId is unique
 	public static function IsFriendlyIdUnique($friendlyId, $siteId){
+        
+        try{
 
-		Connect::init();
-		
-		$friendlyId = mysql_real_escape_string($friendlyId); // clean data
-		settype($siteId, 'integer');
-		
-		$count=0;
-	
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT Count(*) as Count
-			FROM PageTypes where FriendlyId='$friendlyId' AND SiteId=$siteId");
-			
-		if(mysql_num_rows($result) == 0){
-		    return false;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$count = $row["Count"];
-		}
-	
-		if($count==0){
-			return true;
-		}
-		else{
-			return false;
-		}
+            $db = DB::get();
+            
+            // cleanup friendlyid (escape, trim, remove spaces, tolower)
+        	$friendlyId = trim($friendlyId);
+    		$friendlyId = str_replace(' ', '', $friendlyId);
+    		$friendlyId = strtolower($friendlyId);
+    
+            $count = 0;
+    	
+    		$q ="SELECT Count(*) as Count FROM PageTypes where FriendlyId = ? AND SiteId=?";
+    
+        	$s = $db->prepare($q);
+            $s->bindParam(1, $friendlyId);
+            $s->bindParam(1, $siteId);
+            
+    		$s->execute();
+    
+    		$count = $s->fetchColumn();
+    
+    		if($count==0){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+            
+        } catch(PDOException $e){
+            die('[PageType::IsFriendlyIdUnique] PDO Error: '.$e->getMessage());
+        } 
+        
 	}
 	
-	// Gets the Page Type Id
-	public static function GetPageTypeIdForPage($siteId){
-
-		Connect::init();
-	
-		// Pulls in the Name of the User too
-		$result = mysql_query("SELECT PageTypeId
-			FROM PageTypes where FriendlyId='page' AND SiteId=$siteId");
-			
-		if(mysql_num_rows($result) == 0){
-		    return -1;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			$pageTypeId = $row["PageTypeId"];
-		}
-	
-		return $pageTypeId;
+	// edits a pageType
+	public static function Edit($pageTypeUniqId, $friendlyId, $typeS, $typeP, $lastModifiedBy){
+        
+        try{
+            
+            $db = DB::get();
+            
+            // cleanup friendlyid (escape, trim, remove spaces, tolower)
+        	$friendlyId = trim($friendlyId);
+    		$friendlyId = str_replace(' ', '', $friendlyId);
+    		$friendlyId = strtolower($friendlyId);
+            
+            $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE PageTypes SET FriendlyId = ?, TypeS = ?, TypeP = ?,
+    			    LastModifiedBy = ?, LastModifiedDate= ? WHERE PageTypeUnqiId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $friendlyId);
+            $s->bindParam(2, $typeS);
+            $s->bindParam(3, $typeP);
+            $s->bindParam(4, $lastModifiedBy);
+            $s->bindParam(5, $timestamp);
+            $s->bindParam(6, $pageTypeUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[PageType::Edit] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Adds a pageType
-	public static function Add($friendlyId, $typeS, $typeP, $siteId, $createdBy, $lastModifiedBy){
-		
-		Connect::init();
-		
-		$pageTypeUniqId = uniqid();
-		
-		// cleanup friendlyid (escape, trim, remove spaces, tolower)
-		$friendlyId = mysql_real_escape_string($friendlyId);
-		$friendlyId = trim($friendlyId);
-		$friendlyId = str_replace(' ', '', $friendlyId);
-		$friendlyId = strtolower($friendlyId);
-		
-		$typeS = mysql_real_escape_string($typeS);
-		$typeP = mysql_real_escape_string($typeP);
-		settype($siteId, 'integer');
-		settype($createdBy, 'integer');
-		settype($lastModifiedBy, 'integer');
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		
-		$result = mysql_query(
-			"INSERT INTO PageTypes (PageTypeUniqId, FriendlyId, TypeS, TypeP,
-				SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created) 
-			 VALUES ('$pageTypeUniqId', '$friendlyId', '$typeS', '$typeP',
-				$siteId, $createdBy, $lastModifiedBy, '$timestamp', '$timestamp')");
-	
-		if(!$result) {
-		  print "Could not successfully run query PageType->Add" . mysql_error() . "<br>";
-		  exit;
-		}
-		
-		return new PageType(mysql_insert_id(), $pageTypeUniqId, $friendlyId, $typeS, $typeP,
-				$siteId, $createdBy, $lastModifiedBy, $timestamp, $timestamp);
-	}
-	
-	// Edits a pageType
-	public function Edit($friendlyId, $typeS, $typeP, $lastModifiedBy){
-		
-		Connect::init();
-		
-		$typeP = mysql_real_escape_string($typeP);
-		$typeS = mysql_real_escape_string($typeS);
-		$metaName = mysql_real_escape_string($metaName);
-		
-		// cleanup friendlyid (escape, trim, remove spaces, tolower)
-		$friendlyId = mysql_real_escape_string($friendlyId);
-		$friendlyId = trim($friendlyId);
-		$friendlyId = str_replace(' ', '', $friendlyId);
-		$friendlyId = strtolower($friendlyId);
-		
-		$timestamp = gmdate("Y-m-d H:i:s", time());
-		
-		$query = "UPDATE PageTypes SET FriendlyId = '$friendlyId', TypeS = '$typeS', TypeP = '$typeP',
-				LastModifiedBy = $lastModifiedBy, LastModifiedDate='$timestamp' WHERE PageTypeId = $this->PageTypeId";
-		
-		mysql_query($query);
-		
-		return;	
-	}
-	
-	// Deletes a pageType
+	// deletes a pageType
 	public static function Delete($pageTypeUniqId){
 		
-		Connect::init();
-	
-		$delete = mysql_query("DELETE FROM PageTypes WHERE PageTypeUniqId='$pageTypeUniqId'");
-	
-		return;
+        try{
+            
+            $db = DB::get();
+            
+            $q = "DELETE FROM PageTypes WHERE PageTypeUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageTypeUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[PageType::Delete] PDO Error: '.$e->getMessage());
+        }
+        
 	}
-	
-	// Gets all PageTypes for a given site
-	public static function GetArrayOfFriendlyIds($siteId){
-		
-		Connect::init();
 
-		$result = mysql_query("SELECT FriendlyId
-			FROM PageTypes
-			WHERE PageTypes.SiteId = $siteId");
-
-		if(!$result){
-		  return null;
-		}
-		else{
-			$len = mysql_num_rows($result);
-			
-			$arr = array();
-			$x = 0;
-			
-			while($row = mysql_fetch_array($result)){ 
-				$arr[$x] = $row['FriendlyId'];
-				$x++;
-			}
-			
-			return $arr;
-		}
-	}
-	
-	// Gets an array of TypeP
-	public static function GetArrayOfTypeP($siteId){
-		
-		Connect::init();
-
-		$result = mysql_query("SELECT TypeP
-			FROM PageTypes
-			WHERE PageTypes.SiteId = $siteId");
-
-		if(!$result){
-		  return null;
-		}
-		else{
-			$len = mysql_num_rows($result);
-			
-			$arr = array();
-			$x = 0;
-			
-			while($row = mysql_fetch_array($result)){ 
-				$arr[$x] = strtolower($row['TypeP']);
-				$x++;
-			}
-			
-			return $arr;
-		}
-	}
-	
-	// Gets all PageTypes for a given site
+	// gets all PageTypes for a given site
 	public static function GetPageTypes($siteId){
-		
-		Connect::init();
 
-		$result = mysql_query("SELECT  PageTypeId, PageTypeUniqId, FriendlyId,
-			TypeS, TypeP,
-			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-			FROM PageTypes
-			WHERE PageTypes.SiteId = $siteId
-			ORDER BY PageTypes.Created ASC");
+        try{
 
-		if(!$result) {
-		  die("Could not successfully run query Page->GetPages" . mysql_error() . "<br>");
-		  exit;
-		}
-		
-		return $result;
+            $db = DB::get();
+            
+            $q = "SELECT  PageTypeId, PageTypeUniqId, FriendlyId, TypeS, TypeP,
+        			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+        			FROM PageTypes
+        			WHERE PageTypes.SiteId = ?
+        			ORDER BY PageTypes.Created ASC";
+ 
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+    
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[PageType::GetPageTypes] PDO Error: '.$e->getMessage().'trace='.$e->getTraceAsString());
+        } 
+        
 	}
 	
-	// Gets the default pagetype (for site)
+	// gets the default pagetype (for site)
 	public static function GetDefaultPageType($siteId){
 		
-		Connect::init();
-		
-		$result = mysql_query("SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-			TypeS, TypeP,
-			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-		 	FROM PageTypes WHERE PageTypes.SiteId = $siteId ORDER BY Created limit 1");
-			
-		if(!$result){
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageTypeId = $row["PageTypeId"];
-			$pageTypeUniqId = $row["PageTypeUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$typeS = $row["TypeS"];
-			$typeP = $row["TypeP"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$created = $row["Created"];
-			
-			return new PageType($pageTypeId, $pageTypeUniqId, $friendlyId, $typeS, $typeP,
-				$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate, $created);
-		}
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
+            		TypeS, TypeP,
+        			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+        		 	FROM PageTypes WHERE PageTypes.SiteId = ? ORDER BY Created limit 1";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[PageType::GetDefaultPage] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Gets a pageType for a specific friendlyId
+	// gets a pageType for a specific friendlyId
 	public static function GetByFriendlyId($friendlyId, $siteId){
-		
-		Connect::init();
-		
-		$result = mysql_query("SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-			TypeS, TypeP,
-			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-		 	FROM PageTypes WHERE FriendlyId='$friendlyId' && SiteId=$siteId");
-			
-		if(!$result){
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageTypeId = $row["PageTypeId"];
-			$pageTypeUniqId = $row["PageTypeUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$typeS = $row["TypeS"];
-			$typeP = $row["TypeP"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$created = $row["Created"];
-			
-			return new PageType($pageTypeId, $pageTypeUniqId, $friendlyId, $typeS, $typeP,
-				$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate, $created);
-		}
+	
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
+            		TypeS, TypeP,
+        			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+        		 	FROM PageTypes WHERE FriendlyId = ? && SiteId = ?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $friendlyId);
+            $s->bindParam(2, $siteId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[PageType::GetByFriendlyId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 	// Gets a pageType for a specific PageTypeUniqId
 	public static function GetByPageTypeUniqId($pageTypeUniqId){
 		
-		Connect::init();
-		
-		$result = mysql_query("SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-			TypeS, TypeP,
-			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-		 	FROM PageTypes WHERE PageTypeUniqId='$pageTypeUniqId'");
-			
-		if(!$result){
-		  return null;
-		}
-
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageTypeId = $row["PageTypeId"];
-			$pageTypeUniqId = $row["PageTypeUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$typeS = $row["TypeS"];
-			$typeP = $row["TypeP"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$created = $row["Created"];
-			
-			return new PageType($pageTypeId, $pageTypeUniqId, $friendlyId, $typeS, $typeP,
-				$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate, $created);
-		}
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
+            		TypeS, TypeP,
+        			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+        		 	FROM PageTypes WHERE PageTypeUniqId = ?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageTypeUniqId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[PageType::GetByPageTypeUniqId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
-	// Gets a pageType for a specific PageTypeId
+	// gets a pageType for a specific PageTypeId
 	public static function GetByPageTypeId($pageTypeId){
-		
-		Connect::init();
-		
-		$result = mysql_query("SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-			TypeS, TypeP, 
-			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-		 	FROM PageTypes WHERE PageTypeId=$pageTypeId");
-			
-		if(!$result){
-		  return null;
-		}
 
-		if(mysql_num_rows($result) == 0){
-		    return null;
-		}
-		else{
-			$row = mysql_fetch_assoc($result);
-			
-			$pageTypeId = $row["PageTypeId"];
-			$pageTypeUniqId = $row["PageTypeUniqId"];
-			$friendlyId = $row["FriendlyId"];
-			$typeS = $row["TypeS"];
-			$typeP = $row["TypeP"];
-			$siteId = $row["SiteId"];
-			$createdBy= $row["CreatedBy"];
-			$lastModifiedBy= $row["LastModifiedBy"];
-			$lastModifiedDate= $row["LastModifiedDate"];
-			$created = $row["Created"];
-			
-			return new PageType($pageTypeId, $pageTypeUniqId, $friendlyId, $typeS, $typeP,
-				$siteId, $createdBy, $lastModifiedBy, $lastModifiedDate, $created);
-		}
+        try{
+        
+            $db = DB::get();
+            
+            $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
+            		TypeS, TypeP, 
+        			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+        		 	FROM PageTypes WHERE PageTypeId = ?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageTypeId);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[PageType::GetByPageTypeId] PDO Error: '.$e->getMessage());
+        }
+        
 	}
 	
 }

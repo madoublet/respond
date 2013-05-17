@@ -12,7 +12,7 @@ div.editor{
 }
 
 div.editor.container-fluid{
-    padding: 0 10px !important;
+    padding: 55px 10px 0 10px !important;
 }
 
 section.main nav.editor-menu{
@@ -88,7 +88,7 @@ a.next, a.previous{
       text-align: center;
       line-height: 40px;
       background-color: #ddd !important; 
-      color: #555;
+      color: #777;
       font-size: 1.1em !important;
 }
 
@@ -902,7 +902,7 @@ span.addRow a, span.addColumn a{
 @media (max-width: 767px) { 
 
   div.container-fluid{
-    margin: 0 20px;
+    margin: 10px 0 0 0 !important;
   }
 
   div.block{

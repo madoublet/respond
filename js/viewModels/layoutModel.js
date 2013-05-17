@@ -19,7 +19,7 @@ var layoutModel = {
         layoutModel.files.removeAll();
 
 		$.ajax({
-    		url: './api/template/layouts/',
+    		url: './api/layout/list',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -60,9 +60,9 @@ var layoutModel = {
 		$('nav ul li.'+o.name).addClass('active');
 
         $.ajax({
-        	url: './api/template/layout/' + o.name,
-			type: 'GET',
-			data: {},
+        	url: './api/layout/get',
+			type: 'POST',
+			data: {name: o.name},
 			success: function(data){
                 layoutModel.content(data);
                 
@@ -87,9 +87,9 @@ var layoutModel = {
         var content = layoutModel.cm.getValue();
         
         $.ajax({
-            url: './api/template/layout/' + layoutModel.current.name,
+            url: './api/layout/update',
 			type: 'POST',
-			data: {content: content},
+			data: {name: layoutModel.current.name, content: content},
 			success: function(data){
     			message.showMessage('success', 'Layout saved');
 			},
@@ -118,7 +118,7 @@ var layoutModel = {
 		}
         
         $.ajax({
-            url: './api/template/layout/add',
+            url: './api/layout/add',
         	type: 'POST',
 			data: {name: name},
 			success: function(data){
@@ -129,7 +129,7 @@ var layoutModel = {
                 
     			message.showMessage('success', 'Layout successfully added');
                 
-                $('#addDialog').modal('show');
+                $('#addDialog').modal('hide');
 			},
 			error: function(data){
 				message.showMessage('error', 'There was a problem adding the layout, please try again');
@@ -151,13 +151,14 @@ var layoutModel = {
     removeLayout: function(o, e){
         
         $.ajax({
-            url: './api/template/layout/' + layoutModel.toBeRemoved.name,
+            url: './api/layout/delete',
     		type: 'DELETE',
-			data: {},
+			data: {name: layoutModel.toBeRemoved.name},
 			success: function(data){
                 layoutModel.files.remove(layoutModel.toBeRemoved); // remove the page from the model
                 
     			message.showMessage('success', 'Layout successfully removed');
+    	        $('#removeDialog').modal('hide');
 			},
 			error: function(data){
 				message.showMessage('error', 'There was a problem deleting the layout, please try again');

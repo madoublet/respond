@@ -19,7 +19,7 @@ var scriptsModel = {
         scriptsModel.files.removeAll();
 
 		$.ajax({
-    		url: './api/template/scripts/',
+    		url: './api/script/list',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -30,8 +30,7 @@ var scriptsModel = {
                 for(x in data){
                     
                     var file = {
-            		    'name': data[x],
-                        'file': data[x]+'.js'
+                        'file': data[x]
     				};
                     
                     if(i==0){
@@ -57,13 +56,13 @@ var scriptsModel = {
         scriptsModel.current = o;
    
     	$('nav ul li').removeClass('active');
-		$('nav ul li.'+o.name).addClass('active');
+		$('nav ul li[data-file="'+o.file+'"]').addClass('active');
         
 
         $.ajax({
-        	url: './api/template/script/' + o.file,
-			type: 'GET',
-			data: {},
+        	url: './api/script/get',
+			type: 'POST',
+			data: {file: o.file},
 			success: function(data){
                 scriptsModel.content(data);
                 
@@ -89,9 +88,9 @@ var scriptsModel = {
         var content = scriptsModel.cm.getValue();
         
         $.ajax({
-            url: './api/template/script/' + scriptsModel.current.name,
+            url: './api/script/update',
 			type: 'POST',
-			data: {content: content},
+			data: {file: scriptsModel.current.file, content: content},
 			success: function(data){
     			message.showMessage('success', 'Script saved');
 			},
@@ -120,7 +119,7 @@ var scriptsModel = {
 		}
         
         $.ajax({
-            url: './api/template/script/add',
+            url: './api/script/add',
         	type: 'POST',
 			data: {name: name},
 			success: function(data){
@@ -153,13 +152,15 @@ var scriptsModel = {
     removeScript: function(o, e){
         
         $.ajax({
-            url: './api/template/script/' + scriptsModel.toBeRemoved.name,
+            url: './api/script/delete',
     		type: 'DELETE',
-			data: {},
+			data: {file: scriptsModel.toBeRemoved.file},
 			success: function(data){
                 scriptsModel.files.remove(scriptsModel.toBeRemoved); // remove the page from the model
                 
     			message.showMessage('success', 'Script successfully removed');
+                
+                $('#removeDialog').modal('hide');
 			},
 			error: function(data){
 				message.showMessage('error', 'There was a problem deleting the script, please try again');

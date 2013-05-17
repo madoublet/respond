@@ -26,17 +26,17 @@ class FormResource extends Tonic\Resource {
 
         if($site != null && $page != null){
             
-            $subject = 'RespondCMS: Form Submission ['.$site->Name.': '.$page->Name.']';
+            $subject = 'RespondCMS: Form Submission ['.$site['Name'].': '.$page['Name'].']';
             
             $content =  '<h3>Site Information</h3>'.
                         '<table>'.
                         '<tr>'.
                         '<td style="padding: 5px 25px 5px 0;">Site:</td>'.
-                        '<td style="padding: 5px 0">'.$site->Name.'</td>'.
+                        '<td style="padding: 5px 0">'.$site['Name'].'</td>'.
                         '</tr>'.
                          '<tr>'.
                         '<td style="padding: 5px 25px 5px 0;">Page:</td>'.
-                        '<td style="padding: 5px 0">'.$page->Name.'</td>'.
+                        '<td style="padding: 5px 0">'.$page['Name'].'</td>'.
                         '</tr>'.
                         '</table>'.
                         '<h3>Form Details</h3>'.
@@ -46,10 +46,10 @@ class FormResource extends Tonic\Resource {
             // send an email
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $headers .= 'From: ' . $site->PrimaryEmail . "\r\n" .
-                		'Reply-To: ' . $site->PrimaryEmail . "\r\n";
+            $headers .= 'From: ' . $site['PrimaryEmail'] . "\r\n" .
+                		'Reply-To: ' . $site['PrimaryEmail'] . "\r\n";
             
-            mail($site->PrimaryEmail, $subject, html_entity_decode($content), $headers); // send email
+            mail($site['PrimaryEmail'], $subject, html_entity_decode($content), $headers); // send email
             
             // return a successful response (200)
             return new Tonic\Response(Tonic\Response::OK);

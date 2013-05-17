@@ -4,7 +4,7 @@
   <?php print html_entity_decode($form); ?>
 
   <p>
-    <button type="button">Submit</button>
+    <button type="button" class="btn btn-primary">Submit</button>
   </p>
 </form>
 

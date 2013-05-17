@@ -9,7 +9,7 @@ html{
 }
 
 body{
-	color: #555;
+    color: #555;
     margin: 0;
     padding: 0;
 	height: 100%;
@@ -98,12 +98,13 @@ header{
 }
 
     header h2{
+        margin: 0;
         padding: 10px 15px 15px 15px;
         color: #ccc;
         font-size: 1.3em;
     }
     
-    header .signout, header .files, header .republish{
+    header .signout, header .files, header .republish, header .switch{
         display: block;
         width: 25px;
         height: 25px;
@@ -135,6 +136,12 @@ header{
         position: absolute;
         top: 13px;
         right: 85px;
+    }
+    
+     header .switch{
+        position: absolute;
+        top: 13px;
+        right: 120px;
     }
 
     body.show-nav header{
@@ -341,6 +348,7 @@ section.main nav{
         padding: 10px 50px;
         width: 100%;
         background-color: #E9E9E9;
+        z-index: 1000;
     }
 
 

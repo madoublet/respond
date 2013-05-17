@@ -56,7 +56,7 @@ class UserForgotResource extends Tonic\Resource {
 
         if($user!=null){
             
-            $token = urlencode($user->SetToken());
+            $token = urlencode(User::SetToken($user['UserUniqId']));
             
             // send an email to reset the password
         	$to = $email;
@@ -114,7 +114,7 @@ class UserResetResource extends Tonic\Resource {
 
         if($user!=null){
             
-            User::EditPassword($user->UserUniqId, $password);
+            User::EditPassword($user['UserUniqId'], $password);
             
             // return a successful response (200)
             return new Tonic\Response(Tonic\Response::OK);
@@ -151,12 +151,11 @@ class UserAddResource extends Tonic\Resource {
             $role = $request['role'];
 
             $user = User::Add($email, $password, $firstName, $lastName, $role, $authUser->SiteId);
-            $arr = $user->ToAssocArray();
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($user);
 
             return $response;
         
@@ -185,12 +184,10 @@ class UserResource extends Tonic\Resource {
 
             $user = User::GetByUserUniqId($userUniqId);
 
-            $arr = $user->ToAssocArray();
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($user);
 
             return $response;
         }
@@ -225,8 +222,7 @@ class UserResource extends Tonic\Resource {
 
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
         }
-
-        return new Tonic\Response(Tonic\Response::NOTIMPLEMENTED);
+        
     }
 
     /**
@@ -268,17 +264,11 @@ class UserListAll extends Tonic\Resource {
 
             // get pages
             $list = User::GetUsersForSite($authUser->SiteId, true);
-            
-            $arr = array();
-
-            while ($row = mysql_fetch_assoc($list)) {
-                array_push($arr, $row);
-            }
-
+      
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($list);
 
             return $response;
 

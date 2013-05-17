@@ -29,12 +29,11 @@ class MenuItemAddResource extends Tonic\Resource {
             $lastModifiedBy = $authUser->UserId;
             
             $menuItem = MenuItem::Add($name, $cssClass, $type, $url, $pageId, $priority, $siteId, $createdBy, $lastModifiedBy);
-            $arr = $menuItem->ToAssocArray();
-
+         
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($menuItem);
 
             return $response;
         
@@ -64,16 +63,10 @@ class MenuItemListResource extends Tonic\Resource {
 
             $list = MenuItem::GetMenuItemsForType($authUser->SiteId, $type);
             
-            $arr = array();
-
-            while ($row = mysql_fetch_assoc($list)) {
-                array_push($arr, $row);
-            }
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
-            $response->body = json_encode($arr);
+            $response->body = json_encode($list);
 
             return $response;
         }
@@ -107,7 +100,7 @@ class MenuItemOrderResource extends Tonic\Resource {
             
             // update the order of the menu item
             foreach ($arr as $key => $value){
-                MenuItem::UpdateOrder($key, $value);
+                MenuItem::EditPriority($key, $value);
             }
             
             // return a json response
@@ -146,7 +139,7 @@ class MenuItemResource extends Tonic\Resource {
             $cssClass = $request['cssClass'];
             $url = $request['url'];
             
-            MenuItem::Update($menuItemUniqId, $name, $cssClass, $url);
+            MenuItem::Edit($menuItemUniqId, $name, $cssClass, $url);
        
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);

@@ -26,7 +26,7 @@ var brandingModel = {
                             });
                                 
                 if (!match) {
-                    contentModel.images.push(image); 
+                    brandingModel.images.push(image); 
                     brandingModel.newimages.push(image); 
                 }
             }
