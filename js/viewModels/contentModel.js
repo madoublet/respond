@@ -1,25 +1,25 @@
 // models the content page
 var contentModel = {
 
-	pageUniqId: ko.observable(''),
-	page: ko.observable(null),
-	toPagePrefix: ko.observable(''),
-
-	content: ko.observable(''),
-	contentLoading: ko.observable(false),
-	pageTypes: ko.observableArray([]),
-
-	pages: ko.observableArray([]),
-	pagesLoading: ko.observable(false),
-
-	plugins: ko.observableArray([]),
-	pluginsLoading: ko.observable(false),
-
-	stylesheets: ko.observableArray([]),
-	stylesheetsLoading: ko.observable(false),
-
-	layouts: ko.observableArray([]),
-	layoutsLoading: ko.observable(false),
+    pageUniqId: ko.observable(''),
+    page: ko.observable(null),
+    toPagePrefix: ko.observable(''),
+    
+    content: ko.observable(''),
+    contentLoading: ko.observable(false),
+    pageTypes: ko.observableArray([]),
+    
+    pages: ko.observableArray([]),
+    pagesLoading: ko.observable(false),
+    
+    plugins: ko.observableArray([]),
+    pluginsLoading: ko.observable(false),
+    
+    stylesheets: ko.observableArray([]),
+    stylesheetsLoading: ko.observable(false),
+    
+    layouts: ko.observableArray([]),
+    layoutsLoading: ko.observable(false),
     
     images: ko.observableArray([]),
     imagesLoading: ko.observable(false),
@@ -172,7 +172,7 @@ var contentModel = {
 		contentModel.stylesheetsLoading(true);
 
 		$.ajax({
-			url: './api/template/stylesheets/',
+			url: './api/stylesheet/list',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -187,7 +187,7 @@ var contentModel = {
 		contentModel.layoutsLoading(true);
 
 		$.ajax({
-			url: './api/template/layouts/',
+			url: './api/layout/list',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -240,6 +240,7 @@ var contentModel = {
 		message.showMessage('progress', 'Saving content...');
 
 		var content = $('#desc').respondHtml();
+  
 		var image = $('#desc').respondGetPrimaryImage();
         
         if(contentModel.previewUrl != ''){
