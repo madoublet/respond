@@ -352,7 +352,7 @@ class Publish
 	public static function PublishFragment($siteFriendlyId, $pageUniqId, $status, $content, $root = '../'){
 
 		// clean content
-		$content = str_replace( "&nbsp;", '', $content);
+		$content = str_replace( "&nbsp;", ' ', $content);
 
 		$dir = $root.'sites/'.$siteFriendlyId.'/fragments/'.$status.'/';
 
