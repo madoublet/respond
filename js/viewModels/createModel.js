@@ -40,6 +40,15 @@ var createModel = {
           data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode},
           success: function(data){
             message.showMessage('success', 'Site created successfully');
+            
+            $('#create-form').hide();
+			$('#create-confirmation').show();
+		
+			// update site link
+			href = $('#siteLink').html();
+			href = href.replace('{friendlyId}', friendlyId);
+			$('#siteLink').html(href);
+			$('#siteLink').attr('href', href);
           },
           statusCode: {
             401: function() {  // UNAUTHORIZED

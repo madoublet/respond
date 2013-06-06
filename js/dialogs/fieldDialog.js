@@ -68,7 +68,7 @@ var fieldDialog = {
 				var arr = options.split(',');
 
 				for(x=0; x<arr.length; x++){
-		  			html += '<label><input type="checkbox" value="' + jQuery.trim(arr[x]) + '">' + jQuery.trim(arr[x]) + '</label>';
+		  			html += '<label class="checkbox"><input type="checkbox" value="' + jQuery.trim(arr[x]) + '">' + jQuery.trim(arr[x]) + '</label>';
 				}
 
 				html += '</span>';
@@ -80,7 +80,7 @@ var fieldDialog = {
 				var arr = options.split(',');
 
 				for(x=0; x<arr.length; x++){
-		  			html += '<label><input type="radio" value="' + jQuery.trim(arr[x]) + '" name="' + id + '">' + jQuery.trim(arr[x]) + '</label>';
+		  			html += '<label class="radio"><input type="radio" value="' + jQuery.trim(arr[x]) + '" name="' + id + '">' + jQuery.trim(arr[x]) + '</label>';
 				}
 
 				html += '</span>';

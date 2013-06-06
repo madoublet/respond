@@ -1,7 +1,7 @@
 // models the page
 var pageModel = {
     
-    apiEndpoint: 'http://two.respondcms.com/',
+    apiEndpoint: 'http://dev.respondcms.com/',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),

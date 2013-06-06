@@ -88,14 +88,14 @@
 			Login here to update your site:
 		</p>
 		<p>
-			<a id="loginLink" href="<?php print $loginurl; ?>"><?php print $loginurl; ?></a>
+			<a id="loginLink" href="<?php print APP_URL; ?>"><?php print APP_URL; ?></a>
 		</p>
 		
 		<p>
 			You can already view your site here: 
 		</p>
 		<p>	
-			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print $siteurl; ?>/{friendlyId}</a>
+			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>/sites/{friendlyId}</a>
 		</p>
 		
 		<p>
