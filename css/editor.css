@@ -40,14 +40,15 @@ section.main nav.editor-menu{
 }
 
     .editor-actions div{
-        width: 1353px;  /* 33 * 41 = 1353 */
+        width: 1640px;  /* 40 * 41 = 1353 */
     }
 
-a.primary-action{
+body a.primary-action{
     position: absolute;
     top: 0;
     right: 0;
     width: 70px;
+    font-size: 0.9em !important;
 }
 
 a.next, a.previous{
@@ -112,6 +113,18 @@ div.block{
   min-height: 50px;
   padding-bottom: 15px;
 }
+
+	div.block div.p.align-center div, div.block div.h1.align-center div, div.block div.h2.align-center div, div.block div.h3.align-center div{
+		text-align: center;	
+	}
+	
+	div.block div.p.align-left div, div.block div.h1.align-left div, div.block div.h2.align-left div, div.block div.h3.align-left div{
+		text-align: left;	
+	}
+	
+	div.block div.p.align-right div, div.block div.h1.align-right div, div.block div.h2.align-right div, div.block div.h3.align-right div{
+		text-align: right;	
+	}
 
 div.block{
   padding-top: 45px !important;
@@ -374,133 +387,8 @@ div.block div span.marker, div.block div span.marker-field{
   color: #888;
 }
 
-div.block div span.marker:hover, div.block div span.marker-field:hover{
-  text-indent: -3000px;
-  background: #d1dcea url('../images/app-sprite.png') no-repeat -226px 0 !important;
-}
-
-div.block div.q span.marker{
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat 0 -40px;
-}
-
-div.block div.ul span.marker{
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -25px -40px;
-}
-
-div.block div.hr span.marker{
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -50px -40px;
-}
-
-div.block div.i span.marker{
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -75px -40px;
-}
-
-div.block div.slideshow span.marker{
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -100px -40px;
-}
-
-div.block div.youtube span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -125px -40px;
-}
-
-div.block div.vimeo span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -125px -40px;
-}
-
-div.block div.map span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -200px -40px;
-}
-
-div.block div.form span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -175px -40px;
-}
-
-div.block div.file span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -150px -40px;
-}
-
-div.block div.date span.marker, div.block div.event span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -225px -40px;
-}
-
-div.block div.twitter span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -250px -40px;
-}
-
-div.block div.like span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -275px -40px;
-}
-
-div.block div.html span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -300px -40px;
-}
-
-div.block div.list span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -325px -40px;
-}
-
-div.block div.cart span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -350px -40px;
-}
-
-div.block div.comments span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -475px -40px;
-}
-
-div.block div.blog span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -500px -40px;
-}
-
-div.block div.byline span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -525px -40px;
-}
-
-div.block div.byline div.placeholder{
-  padding-left: 5px;
-}
-
-div.block div.gallery span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -552px -40px;
-}
-
-div.block div.table span.marker{
-  text-indent: -5000px;
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -577px -40px;
-}
-
-div.block div.plugin span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -629px -40px;
-}
-
-div.block div.syntax span.marker{
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -654px -40px;
-}
-
 div.date div{
   vertical-align: middle;
-}
-
-div.form span.marker{
-  border: none !important;
-  background: url('../images/skedit/form.png') no-repeat 0 0;
 }
 
 div.block div span.marker-field{

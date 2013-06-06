@@ -1,3 +1,7 @@
+body .modal h3{
+	font-size: 1.3em;
+}
+
 /* begin immersive dialog */
 .immersive{
     box-sizing: border-box;
@@ -15,7 +19,6 @@
     position: relative;
 }
 
-   
     .immersive-header h3{
         color: #fff;
         padding: 10px 10px;

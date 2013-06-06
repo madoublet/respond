@@ -19,8 +19,15 @@ jQuery.fn.swap = function(b){
                 '<div class="editor-actions"><div>' +
 				'<a class="bold icon-bold" title="Bold Text (select text first)"></a>' +
 				'<a class="italic icon-italic" title="Italicize Text (select text first)"></a>' +
+				'<a class="strike icon-strikethrough" title="Strike Text (select text first)"></a>' +
+				'<a class="subscript icon-subscript" title="Subscript Text (select text first)"></a>' +
+				'<a class="superscript icon-superscript" title="Superscript Text (select text first)"></a>' +
+				'<a class="underline icon-underline" title="Underline Text (select text first)"></a>' +
+				'<a class="align-left icon-align-left" title="Align text to the left" data-align="left"></a>' +
+				'<a class="align-center icon-align-center" title="Align text to the center" data-align="center"></a>' +
+				'<a class="align-right icon-align-right" title="Align text to the right" data-align="right"></a>' +
 				'<a class="link icon-link" title="Add Link (select text first)"></a>' +
-				'<a class="code" title="Add code">&lt;/&gt;</a>' +
+				'<a class="code icon-code" title="Add code"></a>' +
 				'<a class="h1" title="Add Headline">H1</a>' +
 				'<a class="h2" title="Add Headline">H2</a>' +
 				'<a class="h3" title="Add Headline">H3</a>' +
@@ -37,7 +44,7 @@ jQuery.fn.swap = function(b){
 				'<a class="comments icon-comments" title="Add Facebook&reg; comments"></a>' +
 				'<a class="youtube icon-facetime-video" title="Add a video"></span>' +
 				'<a class="list icon-list-alt" title="Add a list of pages"></span>' +
-                '<a class="ul icon-star" title="Add Featured Content"></a>' +
+                '<a class="featured icon-star" title="Add Featured Content"></a>' +
 				'<a class="file icon-file-alt" title="Add a File"></a>' +
 				'<a class="form icon-check" title="Add a Form"></a>' +
 				'<a class="html icon-coffee" title="Add HTML"></a>' + 
@@ -83,8 +90,20 @@ jQuery.fn.swap = function(b){
 				if(id==undefined || id=='')id='p-'+parseInt(new Date().getTime() / 1000);
 				var cssclass = $(node).attr('class');
 				if(cssclass==undefined || cssclass=='')cssclass='';
+				
+				var alignclass = '';
+				
+				if(cssclass.indexOf('align-left')!=-1){
+					alignclass = ' align-left';
+				}
+				else if(cssclass.indexOf('align-center')!=-1){
+					alignclass = ' align-center';
+				}
+				else if(cssclass.indexOf('align-right')!=-1){
+					alignclass = ' align-right';
+				}
 			
-				response+= '<div id="'+id+'" class="p" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+				response+= '<div id="'+id+'" class="p'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 					'<div class="content" contentEditable="true">' + $(node).html() + '</div>' +
 					'<span class="marker">P</span>' +
 					'<a class="remove" href="#"></a><a class="config" href="#"></a>' +
@@ -176,8 +195,20 @@ jQuery.fn.swap = function(b){
 				if(id==undefined || id=='')id='h1-'+parseInt(new Date().getTime() / 1000);
 				var cssclass = $(node).attr('class');
 				if(cssclass==undefined || cssclass=='')cssclass='';
+				
+				var alignclass = '';
+				
+				if(cssclass.indexOf('align-left')!=-1){
+					alignclass = ' align-left';
+				}
+				else if(cssclass.indexOf('align-center')!=-1){
+					alignclass = ' align-center';
+				}
+				else if(cssclass.indexOf('align-right')!=-1){
+					alignclass = ' align-right';
+				}
 			
-				response+= '<div id="'+id+'" class="h1" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
+				response+= '<div id="'+id+'" class="h1'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
 					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H1</span><a class="remove" href="#"></a><a class="config" href="#"></a><a class="config" href="#"></a>'+
 					'</div>';
 		  	}
@@ -200,7 +231,19 @@ jQuery.fn.swap = function(b){
 				var cssclass = $(node).attr('class');
 				if(cssclass==undefined || cssclass=='')cssclass='';
 				
-				response+= '<div id="'+id+'" class="h2" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
+				var alignclass = '';
+				
+				if(cssclass.indexOf('align-left')!=-1){
+					alignclass = ' align-left';
+				}
+				else if(cssclass.indexOf('align-center')!=-1){
+					alignclass = ' align-center';
+				}
+				else if(cssclass.indexOf('align-right')!=-1){
+					alignclass = ' align-right';
+				}
+				
+				response+= '<div id="'+id+'" class="h2'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
 					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H2</span><a class="remove" href="#"></a><a class="config" href="#"></a>'+
 					'</div>';
 		  	}
@@ -210,8 +253,20 @@ jQuery.fn.swap = function(b){
 		  		if(id==undefined || id=='')id='h3-'+parseInt(new Date().getTime() / 1000);
 				var cssclass = $(node).attr('class');
 				if(cssclass==undefined || cssclass=='')cssclass='';
+				
+				var alignclass = '';
+				
+				if(cssclass.indexOf('align-left')!=-1){
+					alignclass = ' align-left';
+				}
+				else if(cssclass.indexOf('align-center')!=-1){
+					alignclass = ' align-center';
+				}
+				else if(cssclass.indexOf('align-right')!=-1){
+					alignclass = ' align-right';
+				}
 		  
-		  		response+= '<div id="'+id+'" class="h3" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
+		  		response+= '<div id="'+id+'" class="h3'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
 					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H3</span><a class="remove" href="#"></a><a class="config" href="#"></a>'+
 					'</div>';
 		  	}
@@ -444,6 +499,22 @@ jQuery.fn.swap = function(b){
 			  
 			}
 			
+			if(name=='featured'){
+			  	var id = $(node).attr('id');
+                      
+			  	if(id==undefined || id==''){
+    		  	  id = 'list'+($(node).find('.featured').length + 1);  
+			  	}
+
+			  	var pageName = $(node).attr('pagename');
+			  	var pageUniqId = $(node).attr('pageUniqId');
+				
+			  	chtml = '<div id="'+id+'" data-pageuniqid="'+pageUniqId+'" data-pagename="'+pageName+'" class="featured">' +
+					' <div>'+pageName+' </div><span class="marker icon-star" title="Module"></span><a class="remove" href="#"></a></div>';
+
+			  	response += chtml;  
+			}
+			
 			if(name=='file'){
 		  		var file = $(node).attr('file');
 			  	var desc = $(node).attr('description');
@@ -463,11 +534,11 @@ jQuery.fn.swap = function(b){
 			  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
 				  	response += '<span class="field-container">';
 				  	response += fhtml;
-				  	response += '<a class="remove-field" href="#"></a><span class="marker-field icon-check" title="Field"></span>';
+				  	response += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"></span>';
 				  	response += '</span>';
 				}
 				
-				response+= '</div><span class="marker icon-check" title="Module"></span><a class="remove" href="#"></a>';
+				response+= '</div><span class="marker" title="Module"></span><a class="remove" href="#"></a>';
 				response+= '<input type="button" value="Add Field" class="secondary-button addField"></div>';
 			 }
 		  }
@@ -570,6 +641,55 @@ jQuery.fn.swap = function(b){
 	// handle italic menu item
 	$(this).find('.editor-menu a.italic').click(function(){
 	  document.execCommand("Italic", false, null);
+	  return false;
+	});
+	
+	// handle strike menu item
+	$(this).find('.editor-menu a.strike').click(function(){
+	  document.execCommand("strikeThrough", false, null);
+	  return false;
+	});
+	
+	// handle underline item
+	$(this).find('.editor-menu a.underline').click(function(){
+	  document.execCommand("underline", false, null);
+	  return false;
+	});
+	
+	// handle subscript item
+	$(this).find('.editor-menu a.subscript').click(function(){
+	  document.execCommand("subscript", false, null);
+	  return false;
+	});
+	
+	// handle superscript item
+	$(this).find('.editor-menu a.superscript').click(function(){
+	  document.execCommand("superscript", false, null);
+	  return false;
+	});
+	
+	// handle alignment
+	$(this).find('.editor-menu a.align-center, .editor-menu a.align-left, .editor-menu a.align-right').click(function(){
+	
+	  var alignclass = 'align-'+$(this).attr('data-align');
+	  
+	  if($('*:focus').length>0){
+		  var el = $('*:focus').parents('div.p, div.h1, div.h2, div.h3');
+		  
+		  var cssclass = el.attr('data-cssclass');
+		  cssclass = global.replaceAll(cssclass, 'align-left', ''); // replace other alignments
+		  cssclass = global.replaceAll(cssclass, 'align-right', '');
+		  cssclass = cssclass = global.replaceAll(cssclass, 'align-center', '');
+		  cssclass += ' '+alignclass;
+		  cssclass = $.trim(cssclass);
+		  
+		  el.attr('data-cssclass', cssclass);
+		  el.removeClass('align-left');
+		  el.removeClass('align-right');
+		  el.removeClass('align-center');
+		  el.addClass(alignclass);
+	  }
+	  
 	  return false;
 	});
 
@@ -881,7 +1001,7 @@ jQuery.fn.swap = function(b){
 	  
 	  appendHere(
 		'<div id="'+uniqId+'" class="form"><div>' +
-		'</div><span class="marker icon-check" title="Module"></span><a class="remove" href="#"></a>' + 
+		'</div><span class="marker" title="Module"></span><a class="remove" href="#"></a>' + 
 		'<input type="button" value="Add Field" class="secondary-button addField">' +
 		'</div>'
 	  );
@@ -1098,9 +1218,15 @@ jQuery.fn.swap = function(b){
 	  return false;
 	});
 	
-	// handle featured menu item
+	// handle list menu item
 	$(this).find('.editor-menu a.list').click(function(){
 	  listDialog.show('add', -1);
+	  return false;
+	});
+	
+	// handle featured menu item
+	$(this).find('.editor-menu a.featured').click(function(){
+	  featuredDialog.show();
 	  return false;
 	});
 	
@@ -1411,6 +1537,16 @@ jQuery.fn.swap = function(b){
 					' length="'+length+'"' +
 					' orderby="'+orderby+'" groupby="'+groupby+'" pageresults="'+pageresults+'"' +
 					'></module>';
+			}
+			
+			// featured
+			if($(divs[x]).hasClass('featured')){
+				var id = $(divs[x]).attr('id');
+				  
+				var pageUniqId = $(divs[x]).attr('data-pageuniqid');
+				var pageName = $(divs[x]).attr('data-pagename');
+				
+				newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
 			}
 		
 			// twitter
