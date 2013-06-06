@@ -161,6 +161,11 @@ class Publish
 		
 		$src = $root.'sites/common/images';
 		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
+        
+        // exit if src does not exist
+        if(!file_exists($src)){
+        	return;	
+		}
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
@@ -179,6 +184,11 @@ class Publish
 		
 		$src = $root.'templates/'.$site['Template'].'/images';
 		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
+        
+        // exit if src does not exist
+        if(!file_exists($src)){
+    		return;	
+		}
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
