@@ -316,9 +316,9 @@
     </div>
 
     <div id="options" class="control-group">
-      <label for="fieldRequired" class="control-label">Options:</label>
+      <label for="fieldOptions" class="control-label">Options:</label>
       <div class="controls">
-        <textarea id="fieldRequired"></textarea>
+        <textarea id="fieldOptions"></textarea>
         <span class="help-block">Separate each option with a comma</span>
       </div>
     </div>
@@ -338,8 +338,8 @@
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <input id="addField" type="button" class="btn btn-primary" value="Add Field">
+    <button type="button" class="secondary-button" data-dismiss="modal">Close</button>
+    <button id="addField" type="button" class="primary-button">Add Field</button>
   </div>  
   <!-- /.modal-footer -->
 
@@ -488,6 +488,34 @@
   <div class="modal-footer">
     <button class="secondary-button" data-dismiss="modal">Close</button>
     <button id="loadLayout" class="primary-button" type="button">Load Layout</button>
+  </div>
+  <!-- /.modal-footer -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal hide" id="featuredDialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Feature Content</h3>
+  </div>
+  <!-- /.modal-header -->
+
+  <div class="modal-body">
+
+  <div id="selectFeaturedPage" class="select">
+    <ul data-bind="foreach: pages">
+      <li data-bind="attr:{'data-pageuniqid': pageUniqId, 'data-name': name}, text:name"></li>
+    </ul>
+    <p data-bind="visible: pagesLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading pages...</p>
+  </div>    
+
+  </div>
+  <!-- /.modal-body -->
+
+  <div class="modal-footer">
+    <button class="secondary-button" data-dismiss="modal">Close</button>
+    <button id="addFeatured" class="primary-button" type="button">Add Featured Content</button>
   </div>
   <!-- /.modal-footer -->
 
@@ -733,6 +761,7 @@
 <script type="text/javascript" src="js/dialogs/imagesDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/filesDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/listDialog.js"></script>
+<script type="text/javascript" src="js/dialogs/featuredDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/linkDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/fieldDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/slideshowDialog.js"></script>

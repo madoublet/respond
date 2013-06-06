@@ -179,9 +179,7 @@ class Generator
           
         $content = str_replace('{synopsis}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         
-        $css = $rootloc.'css/'.$page['Stylesheet'].'.css';
-        
-        $html = Generator::ParseHTML($site, $page, $css, $content, $rootloc, $commonloc, $root);
+        $html = Generator::ParseHTML($site, $page, $content, $root);
         
         $pageTypeUniqId = '-1';
     
@@ -211,12 +209,26 @@ class Generator
         
     }
       
-    private static function ParseHTML($site, $page, $css, $content, $rootloc, $commonloc, $root='../'){
+    public static function ParseHTML($site, $page, $content, $root='../'){
     
         $html = str_get_html($content, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
     
         $mapcount = 0;
         $pageId = $page['PageId'];
+        
+        $rootloc = '';
+        $commonloc = '../common/';
+        
+        if($page['PageTypeId']!=-1){
+            $rootloc = '../';
+            $commonloc = '../../common/';
+        }
+        
+        $css = $rootloc.'css/'.$page['Stylesheet'].'.css';
+    
+		if($html == null){
+			return '';
+		}
     
         foreach($html->find('module') as $el){
           
@@ -298,6 +310,17 @@ class Generator
                     }
                     
                     $el->outertext = $list;
+              
+                }
+                else if($name=='featured'){
+					
+                    $id = $el->id;
+                    $pageName = $el->pagename;
+                    $pageUniqId = $el->pageuniqid;
+                  
+                    $featured = '<div id="'.$id.'" data-pageuniqid="'.$pageUniqId.'" data-pagename="'.$pageName.'" class="featured-content"></div>';  
+                    
+                    $el->outertext = $featured	;
               
                 }
                 else if($name=='menu'){

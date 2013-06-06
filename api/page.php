@@ -717,7 +717,7 @@ class PageBlogResource extends Tonic\Resource {
                     'Author' => $name
                 );
                 
-            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$page['PageUniqId'].'.html';
+            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';
 
             if(file_exists($fragment)){
                 $content = file_get_contents($fragment);

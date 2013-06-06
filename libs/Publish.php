@@ -359,9 +359,35 @@ class Publish
 		if(!file_exists($dir)){
 			mkdir($dir, 0777, true);	
 		}
-
+		
 		// create fragment
 		$fragment = $root.'sites/'.$siteFriendlyId.'/fragments/'.$status.'/'.$pageUniqId.'.html';
+		file_put_contents($fragment, $content); // save to file
+	}
+	
+	// publishes a rendered version of the content
+	public static function PublishRender($site, $page, $root = '../'){
+	
+		// create dir if need be
+		$dir = $root.'sites/'.$site['FriendlyId'].'/fragments/render/';
+
+		if(!file_exists($dir)){
+			mkdir($dir, 0777, true);	
+		}
+		
+		// get content from published fragment
+		$content = '';
+		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/publish/'.$page['PageUniqId'].'.html';
+    
+        if(file_exists($fragment)){
+          $content = file_get_contents($fragment);
+        }
+		
+		// run the content through the parser
+		$content = Generator::ParseHTML($site, $page, $content, $root);
+		
+		// create fragment
+		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';
 		file_put_contents($fragment, $content); // save to file
 	}
 
@@ -417,7 +443,11 @@ class Publish
 			    $s_dest = $dest.$path;
             }
         
+			// save the content to the published file
 			Utilities::SaveContent($s_dest, $file, $html);
+            
+            // publish a rendered fragment
+            Publish::PublishRender($site, $page, $root);
             
             return $s_dest.$file;
 		}
