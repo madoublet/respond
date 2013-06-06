@@ -163,24 +163,6 @@ class SiteCreateResource extends Tonic\Resource {
     		Publish::PublishCommonForEnrollment($site['SiteUniqId']);
     		Publish::PublishSite($site['SiteUniqId']);
             
-            // send email
-            $subject = 'RespondCMS: New site created';
-    
-    		$message = '<html><head><title>'.$subject.'</title></head>';
-    		$message = $message.'<body><table><col width="200">';
-    		$message = $message.'<tr><td>Email:</td><td>'.$email.'</td></tr>';
-    		$message = $message.'<tr><td>Company Name:</td><td>'.$name.'</td></tr>';
-    		$message = $message.'<tr><td>Site Url:</td><td>'.$domain.'</td></tr>';
-    		
-    		$message = $message.'</table></body></html>';
-    
-    		$headers  = 'MIME-Version: 1.0' . "\r\n";
-    		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    		$headers .= 'From: no-reply@respondcms.com' . "\r\n" .
-        				'Reply-To: no-reply@respondcms.com' . "\r\n";
-    
-    		mail('admin@respondcms.com', $subject, $message, $headers);
-    		
             return new Tonic\Response(Tonic\Response::OK);
         }
         else{
