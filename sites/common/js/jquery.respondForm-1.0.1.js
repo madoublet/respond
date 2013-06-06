@@ -65,7 +65,7 @@
             
             // post to API
             $.ajax({
-                    url: 'http://two.respondcms.com/api/form',
+                    url: pageModel.apiEndpoint+'api/form',
         			type: 'POST',
         			data: {siteUniqId: siteUniqId, pageUniqId: pageUniqId, body: body},
         			success: function(data){
