@@ -8,6 +8,9 @@
 	// email and password of the demo user that appears on the login page (you still need to create a demo user)
     define('DEMO_EMAIL', 'demo@respondcms.com');
     define('DEMO_PASSWORD', 'demo');
+    
+    // google maps API key
+    define('GOOGLE_MAPS_API_KEY', 'YOURKEY');
 
 	// url of the app
     define('APP_URL', 'http://urloftheapp.com');
