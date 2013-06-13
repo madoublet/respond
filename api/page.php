@@ -636,8 +636,8 @@ class PageListResource extends Tonic\Resource {
                     'LastModified' => $page['LastModifiedDate'],
                     'Author' => $name
                 );
-                
-            $pages[$page['PageUniqId']] = $item;
+            
+            array_push($pages, $item);
         }
 
         // return a json response

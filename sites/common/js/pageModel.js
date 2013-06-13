@@ -1,7 +1,7 @@
 // models the page
 var pageModel = {
     
-    apiEndpoint: 'http://urloftheapp.com',
+    apiEndpoint: 'http://dev.respondcms.com/',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),
@@ -56,10 +56,10 @@ var pageModel = {
         			success: function(data){
 
                         for(x=0; x<data.length; x++){
-                        
+                            
                             if(display=='blog'){
                                 
-                                console.log(data);
+                                console.log(data[x]);
                         
                                 // replace image url
                                 var content = data[x].Content;
@@ -80,6 +80,9 @@ var pageModel = {
                                     });
                             }
                             else{
+                                
+                                console.log(data[x]);
+                                
                                 pageModel[id].push({
                                     'pageUniqId': data[x].PageUniqId,
                                     'name': data[x].Name, 
@@ -91,10 +94,10 @@ var pageModel = {
                                     'hasCallout': data[x].HasCallout,
                                     'callout': data[x].Callout
                                     });
+                                    
                             }
+                            
                         }
-                        
-                        
         			}
         		});
             }
