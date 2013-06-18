@@ -163,7 +163,7 @@ class User{
     		$hash_portable = FALSE; // Not portable
     		
     		$hasher = new PasswordHash($hash_cost_log2, $hash_portable);
-    		$s_token = $hasher->HashPassword($this->UserUniqId);
+    		$s_token = $hasher->HashPassword($userUniqId);
     		unset($hasher);
     		
     		$q = "UPDATE Users SET Token = ? WHERE UserUniqId=?";

@@ -12,20 +12,20 @@
 
 <head>
 	
-<title>Settings&mdash;<?php print $authUser->SiteName; ?></title>
+<title>Branding&mdash;<?php print $authUser->SiteName; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- include css -->
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
+<link href="<?php print JQUERYUI_CSS; ?>" rel="stylesheet">
+<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
 <link type="text/css" href="css/dialog.css" rel="stylesheet">
 <link type="text/css" href="css/messages.css" rel="stylesheet">
 <link type="text/css" href="css/menu.css" rel="stylesheet">
 <link type="text/css" href="css/list.css" rel="stylesheet">
 <link type="text/css" href="css/dropzone.css" rel="stylesheet">
-<link type="text/css" href="css/cupertino/jquery-ui-1.8.1.custom.css" rel="stylesheet">
-<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 
@@ -142,10 +142,10 @@
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/helper/knockout-2.2.0.js"></script>
+<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
+<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
+<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
+<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
 <script type="text/javascript" src="js/helper/moment.min.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="js/dialog.js"></script>

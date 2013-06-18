@@ -237,7 +237,8 @@ class Generator
             
                 if($name=='styles'){
                     $el->outertext = '<link href="'.$css.'" type="text/css" rel="stylesheet" media="screen">'.
-                       '<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">'.
+                       '<link href="'.BOOTSTRAP_CSS.'" rel="stylesheet">'.
+                       '<link href="'.FONTAWESOME_CSS.'" rel="stylesheet">'.
                        '<link href="'.$rootloc.'css/prettify.css" type="text/css" rel="stylesheet" media="screen">';
                 }
                 else if($name=='header'){
