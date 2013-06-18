@@ -1,1 +1,0 @@
-<p>Test Cart Plugin Render</p>
