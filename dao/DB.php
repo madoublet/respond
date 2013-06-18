@@ -10,7 +10,7 @@ class DB{
         if(self::$pdo == null){
 
     		$host = 'localhost';
-        	$dbname = 'respond2dev';
+        	$dbname = 'respond';
     		$dbuser = 'dbuser';
     		$dbpass = 'dbpassword';
             
