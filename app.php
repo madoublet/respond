@@ -10,10 +10,6 @@
 	// passcode to create a site (leave blank to not require a passcode)
 	define('PASSCODE', 'iloverespond');
 
-<<<<<<< HEAD
-    // google maps API key
-    define('GOOGLE_MAPS_API_KEY', 'YOUR GOOGLE MAPS API KEY');
-    
     // define lib locations 
     define('BOOTSTRAP_CSS', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css');
     define('BOOTSTRAP_JS', '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
@@ -22,14 +18,13 @@
     define('JQUERYUI_JS', 'http://code.jquery.com/ui/1.10.3/jquery-ui.js');
     define('JQUERYUI_CSS', 'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
     define('KNOCKOUT_JS', 'http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js');
-=======
+
 	// email and password of the demo user that appears on the login page (you still need to create a demo user)
     define('DEMO_EMAIL', 'demo@respondcms.com');
     define('DEMO_PASSWORD', 'demo');
     
     // google maps API key
-    define('GOOGLE_MAPS_API_KEY', 'YOURKEY');
->>>>>>> 427846e4656d252f2b481e987cbbab65487cc838
+    define('GOOGLE_MAPS_API_KEY', 'YOUR GOOGLE MAPS API KEY');
 
 	// url of the app
     define('APP_URL', 'http://urloftheapp.com');
