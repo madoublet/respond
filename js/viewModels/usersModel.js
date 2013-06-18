@@ -19,9 +19,10 @@ var usersModel = {
 		usersModel.usersLoading(true);
 
 		$.ajax({
-			url: './api/user/list/all',
+			url: 'api/user/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -35,7 +36,7 @@ var usersModel = {
 				}
 
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -103,9 +104,10 @@ var usersModel = {
             message.showMessage('progress', 'Adding user..');
 
             $.ajax({
-              url: './api/user/add',
+              url: 'api/user/add',
               type: 'POST',
               data: {firstName: firstName, lastName: lastName, role: role, email:email, password:password},
+			  dataType: 'json',
               success: function(data){
     
                 var user = User.create(data);
@@ -116,7 +118,7 @@ var usersModel = {
                 
                 $('#addEditDialog').modal('hide');
               }
-            }, 'json');
+            });
             
         }
         else{ // edit
@@ -125,7 +127,7 @@ var usersModel = {
             message.showMessage('progress', 'Updating user..');
 
             $.ajax({
-              url: './api/user/' + userUniqId,
+              url: 'api/user/' + userUniqId,
               type: 'POST',
               data: {firstName: firstName, lastName: lastName, role: role, email:email, password:password},
               success: function(data){
@@ -167,7 +169,7 @@ var usersModel = {
         var userUniqId = usersModel.toBeRemoved.userUniqId();
         
         $.ajax({
-          url: './api/user/'+userUniqId,
+          url: 'api/user/'+userUniqId,
           type: 'DELETE',
           data: {},
           success: function(data){

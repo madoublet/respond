@@ -19,9 +19,10 @@ var scriptsModel = {
         scriptsModel.files.removeAll();
 
 		$.ajax({
-    		url: './api/script/list',
+    		url: 'api/script/list',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
                 
                 var i=0;
@@ -47,7 +48,7 @@ var scriptsModel = {
                 }
                 
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -60,7 +61,7 @@ var scriptsModel = {
         
 
         $.ajax({
-        	url: './api/script/get',
+        	url: 'api/script/get',
 			type: 'POST',
 			data: {file: o.file},
 			success: function(data){
@@ -88,7 +89,7 @@ var scriptsModel = {
         var content = scriptsModel.cm.getValue();
         
         $.ajax({
-            url: './api/script/update',
+            url: 'api/script/update',
 			type: 'POST',
 			data: {file: scriptsModel.current.file, content: content},
 			success: function(data){
@@ -119,8 +120,9 @@ var scriptsModel = {
 		}
         
         $.ajax({
-            url: './api/script/add',
+            url: 'api/script/add',
         	type: 'POST',
+			dataType: 'json',
 			data: {name: name},
 			success: function(data){
                 scriptsModel.files.push({
@@ -152,7 +154,7 @@ var scriptsModel = {
     removeScript: function(o, e){
         
         $.ajax({
-            url: './api/script/delete',
+            url: 'api/script/delete',
     		type: 'DELETE',
 			data: {file: scriptsModel.toBeRemoved.file},
 			success: function(data){

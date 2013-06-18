@@ -66,7 +66,7 @@ var pageSettingsDialog = {
           $('#pageSettingsDialog').modal('hide');
         }
       
-      }, 'json');
+      });
 
     });
 

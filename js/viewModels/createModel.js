@@ -35,7 +35,7 @@ var createModel = {
         message.showMessage('progress', 'Creating site...');
 
         $.ajax({
-          url: './api/site/create',
+          url: 'api/site/create',
           type: 'POST',
           data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode},
           success: function(data){

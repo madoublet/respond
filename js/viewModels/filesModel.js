@@ -12,7 +12,7 @@ var filesModel = {
         filesModel.updateFiles();
 
         $("#drop").dropzone({ 
-            url: "/api/file/post",
+            url: "api/file/post",
             success: function(file, response){
                 var file = jQuery.parseJSON(response);
                 
@@ -40,7 +40,7 @@ var filesModel = {
         filesModel.filesLoading(true);
 
 		$.ajax({
-			url: './api/file/list/all',
+			url: 'api/file/list/all',
 			type: 'GET',
             dataType: 'JSON',
 			data: {},
@@ -84,7 +84,7 @@ var filesModel = {
         console.log(filesModel.toBeRemoved.filename);
         
         $.ajax({
-    		url: './api/file/remove',
+    		url: 'api/file/remove',
 			type: 'POST',
             data: {filename: filesModel.toBeRemoved.filename},
             dataType: 'JSON',

@@ -20,7 +20,7 @@ var aviaryDialog = {
 				message.showMessage('progress', 'Saving image...');
 
 		       $.ajax({
-					url: './api/page/image/swap/',
+					url: 'api/page/image/swap/',
 					type: 'POST',
 					data: {fromUrl:fromUrl, toUrl:toUrl},
 					success: function(data){

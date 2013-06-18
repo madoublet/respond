@@ -19,9 +19,10 @@ var stylesModel = {
         stylesModel.files.removeAll();
 
 		$.ajax({
-    		url: './api/stylesheet/list',
+    		url: 'api/stylesheet/list',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
                 
                 var i=0;
@@ -48,7 +49,7 @@ var stylesModel = {
                 }
                 
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -60,7 +61,7 @@ var stylesModel = {
 		$('nav ul li.'+o.name).addClass('active');
 
         $.ajax({
-        	url: './api/stylesheet/get',
+        	url: 'api/stylesheet/get',
 			type: 'POST',
 			data: {name: o.name},
 			success: function(data){
@@ -88,7 +89,7 @@ var stylesModel = {
         var content = stylesModel.cm.getValue();
         
         $.ajax({
-            url: './api/stylesheet/update',
+            url: 'api/stylesheet/update',
 			type: 'POST',
 			data: {name: stylesModel.current.name, content: content},
 			success: function(data){
@@ -119,7 +120,7 @@ var stylesModel = {
 		}
         
         $.ajax({
-            url: './api/stylesheet/add',
+            url: 'api/stylesheet/add',
         	type: 'POST',
 			data: {name: name},
 			success: function(data){
@@ -152,9 +153,10 @@ var stylesModel = {
     removeStylesheet: function(o, e){
         
         $.ajax({
-            url: './api/stylesheet/delete',
+            url: 'api/stylesheet/delete',
     		type: 'DELETE',
 			data: {name: stylesModel.toBeRemoved.name},
+			dataType: 'json',
 			success: function(data){
                 stylesModel.files.remove(stylesModel.toBeRemoved); // remove the page from the model
                 

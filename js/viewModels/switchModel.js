@@ -17,7 +17,7 @@ var switchModel = {
 		switchModel.sitesLoading(true);
 
 		$.ajax({
-			url: './api/site/list/all',
+			url: 'api/site/list/all',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -40,7 +40,7 @@ var switchModel = {
         message.showMessage('progress', 'Switching site...');
         
         $.ajax({
-    		url: './api/site/switch',
+    		url: 'api/site/switch',
 			type: 'POST',
 			data: {siteUniqId:o.siteUniqId()},
 			success: function(data){

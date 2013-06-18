@@ -13,9 +13,10 @@ var settingsModel = {
     updateSite:function(o){
         
         $.ajax({
-    		url: './api/site/current',
+    		url: 'api/site/current',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
                 
                 var site = Site.create(data);
@@ -24,7 +25,7 @@ var settingsModel = {
                 
                 settingsModel.site(site);
 			}
-		}, 'json');
+		});
         
     },
     
@@ -40,7 +41,7 @@ var settingsModel = {
         var facebookAppId = $('#facebookAppId').val();
         
         $.ajax({
-            url: './api/site/' + o.siteUniqId(),
+            url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
 			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
@@ -74,9 +75,10 @@ var settingsModel = {
         message.showMessage('progress', 'Generating file...')
    
         $.ajax({
-            url: './api/site/verification/generate',
+            url: 'api/site/verification/generate',
     		type: 'POST',
 			data: {name: name, content: content},
+			dataType: 'json',
 			success: function(data){
     			message.showMessage('success', 'Verification file generated');
                 $('#verificationDialog').modal('hide');

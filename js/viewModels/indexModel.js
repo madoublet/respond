@@ -12,7 +12,7 @@ var indexModel = {
         message.showMessage('progress', 'Login...');
 
         $.ajax({
-          url: './api/user/login',
+          url: 'api/user/login',
           type: 'POST',
           data: {email: email, password: password},
           success: function(data){

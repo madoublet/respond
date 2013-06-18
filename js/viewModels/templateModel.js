@@ -17,13 +17,14 @@ var templateModel = {
     updateSite:function(){  // updates the page types arr
 
 		$.ajax({
-			url: './api/site/current',
+			url: 'api/site/current',
 			type: 'GET',
 			data: {},
+            dataType: 'json',
 			success: function(data){
                 templateModel.template(data['Template']);
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -33,9 +34,10 @@ var templateModel = {
 		templateModel.templatesLoading(true);
 
 		$.ajax({
-			url: './api/template/',
+			url: 'api/template/',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -47,7 +49,7 @@ var templateModel = {
 				}
 
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -72,7 +74,7 @@ var templateModel = {
         var template = templateModel.toBeReset.id();
         
         $.ajax({
-    		url: './api/template/reset/' + template,
+    		url: 'api/template/reset/' + template,
 			type: 'POST',
 			data: {},
 			success: function(data){
@@ -87,7 +89,7 @@ var templateModel = {
         var template = templateModel.toBeApplied.id();
         
         $.ajax({
-        	url: './api/template/apply/' + template,
+        	url: 'api/template/apply/' + template,
 			type: 'POST',
 			data: {},
 			success: function(data){

@@ -22,7 +22,7 @@ var loadLayoutDialog = {
 			}
 
 			$.ajax({
-				url: './api/page/content/'+loadLayoutDialog.pageUniqId,
+				url: 'api/page/content/'+loadLayoutDialog.pageUniqId,
 				type: 'GET',
 				data: {},
 				success: function(data){

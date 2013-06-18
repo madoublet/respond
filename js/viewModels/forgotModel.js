@@ -22,7 +22,7 @@ var forgotModel = {
         message.showMessage('progress', 'Sending email...');
 
         $.ajax({
-            url: './api/user/forgot',
+            url: 'api/user/forgot',
             type: 'POST',
             data: {email: email},
             success: function(data){
@@ -49,7 +49,7 @@ var forgotModel = {
         message.showMessage('progress', 'Resetting password...');
 
         $.ajax({
-          url: './api/user/reset',
+          url: 'api/user/reset',
           type: 'POST',
           data: {token: token, password: password},
           success: function(data){

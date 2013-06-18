@@ -19,9 +19,10 @@ var layoutModel = {
         layoutModel.files.removeAll();
 
 		$.ajax({
-    		url: './api/layout/list',
+    		url: 'api/layout/list',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
                 
                 var i=0;
@@ -48,7 +49,7 @@ var layoutModel = {
                 }
                 
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -60,7 +61,7 @@ var layoutModel = {
 		$('nav ul li.'+o.name).addClass('active');
 
         $.ajax({
-        	url: './api/layout/get',
+        	url: 'api/layout/get',
 			type: 'POST',
 			data: {name: o.name},
 			success: function(data){
@@ -87,7 +88,7 @@ var layoutModel = {
         var content = layoutModel.cm.getValue();
         
         $.ajax({
-            url: './api/layout/update',
+            url: 'api/layout/update',
 			type: 'POST',
 			data: {name: layoutModel.current.name, content: content},
 			success: function(data){
@@ -118,7 +119,7 @@ var layoutModel = {
 		}
         
         $.ajax({
-            url: './api/layout/add',
+            url: 'api/layout/add',
         	type: 'POST',
 			data: {name: name},
 			success: function(data){
@@ -151,7 +152,7 @@ var layoutModel = {
     removeLayout: function(o, e){
         
         $.ajax({
-            url: './api/layout/delete',
+            url: 'api/layout/delete',
     		type: 'DELETE',
 			data: {name: layoutModel.toBeRemoved.name},
 			success: function(data){

@@ -18,7 +18,7 @@ var global = {
            message.showMessage('progress', 'Re-publishing the site');
            
             $.ajax({
-                url: './api/site/publish',
+                url: 'api/site/publish',
                 type: 'GET',
                 data: {},
                 success: function(data){

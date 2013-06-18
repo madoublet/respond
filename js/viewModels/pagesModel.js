@@ -32,9 +32,10 @@ var pagesModel = {
 		pagesModel.pagesLoading(true);
 
 		$.ajax({
-			url: './api/pagetype/list/all',
+			url: 'api/pagetype/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -48,7 +49,7 @@ var pagesModel = {
 				pagesModel.updatePages();
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -58,9 +59,10 @@ var pagesModel = {
 		pagesModel.pagesLoading(true);
         
 		$.ajax({
-			url: './api/page/list/'+pagesModel.friendlyId(),
+			url: 'api/page/list/'+pagesModel.friendlyId(),
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -74,7 +76,7 @@ var pagesModel = {
 				pagesModel.pagesLoading(false);
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -153,7 +155,7 @@ var pagesModel = {
         message.showMessage('progress', 'Adding page...');
         
         $.ajax({
-          url: './api/page/add',
+          url: 'api/page/add',
           type: 'POST',
           data: {pageTypeUniqId: pageTypeUniqId, name: name, friendlyId: friendlyId, description: description},
           success: function(data){
@@ -166,7 +168,7 @@ var pagesModel = {
             
             message.showMessage('success', 'The page was added successfully');
           }
-        }, 'json');
+        });
 
 	},
 	
@@ -175,9 +177,10 @@ var pagesModel = {
 		message.showMessage('progress', 'Removing page...');
 
 		$.ajax({
-			url: './api/page/'+pagesModel.toBeRemoved.pageUniqId(),
+			url: 'api/page/'+pagesModel.toBeRemoved.pageUniqId(),
 			type: 'DELETE',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				pagesModel.pages.remove(pagesModel.toBeRemoved); // remove the page from the model
 
@@ -188,7 +191,7 @@ var pagesModel = {
 			error: function(data){
 				message.showMessage('error', 'There was a problem removing the page');
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -206,8 +209,9 @@ var pagesModel = {
         message.showMessage('progress', 'Adding page...');
 
         $.ajax({
-          url: './api/pagetype/add',
+          url: 'api/pagetype/add',
           type: 'POST',
+		  dataType: 'json',
           data: {friendlyId: typeFriendlyId, typeS: typeS, typeP: typeP},
           success: function(data){
 
@@ -219,7 +223,7 @@ var pagesModel = {
             
             message.showMessage('success', 'The page type was added successfully');
           }
-        }, 'json');
+        });
 
 	},
     
@@ -242,9 +246,10 @@ var pagesModel = {
 		message.showMessage('progress', 'Removing page type...');
 
 		$.ajax({
-			url: './api/pagetype/'+pagesModel.toBeRemoved.pageTypeUniqId(),
+			url: 'api/pagetype/'+pagesModel.toBeRemoved.pageTypeUniqId(),
 			type: 'DELETE',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				pagesModel.pageTypes.remove(pagesModel.toBeRemoved); // remove the page from the model
 
@@ -255,7 +260,7 @@ var pagesModel = {
 			error: function(data){
 				message.showMessage('error', 'There was a problem removing the page type');
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -263,16 +268,17 @@ var pagesModel = {
 	toggleActive:function(page){
 		var isActive = page.isActive();
 
-		var url = './api/page/publish/'+page.pageUniqId();
+		var url = 'api/page/publish/'+page.pageUniqId();
 
 		if(isActive==1){
-			url = './api/page/unpublish/'+page.pageUniqId();
+			url = 'api/page/unpublish/'+page.pageUniqId();
 		}
 
 		$.ajax({
 			url: url,
 			type: 'POST',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				if(isActive==1){
 					page.isActive(0);
@@ -291,7 +297,7 @@ var pagesModel = {
 					message.showMessage('error', 'There was a problem publishing the page');
 				}
 			}
-		}, 'json');
+		});
 	}
 }
 

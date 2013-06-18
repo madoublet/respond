@@ -48,7 +48,7 @@ var contentModel = {
 		contentModel.contentLoading(true);
 
 		$.ajax({
-			url: './api/page/content/'+contentModel.pageUniqId(),
+			url: 'api/page/content/'+contentModel.pageUniqId(),
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -110,9 +110,10 @@ var contentModel = {
 		contentModel.pageTypes.removeAll();
 
 		$.ajax({
-			url: './api/pagetype/list/all',
+			url: 'api/pagetype/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -124,7 +125,7 @@ var contentModel = {
 				}
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -134,9 +135,10 @@ var contentModel = {
 		contentModel.pagesLoading(true);
 
 		$.ajax({
-			url: './api/page/list/all',
+			url: 'api/page/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -148,7 +150,7 @@ var contentModel = {
 				contentModel.pagesLoading(false);
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -157,14 +159,15 @@ var contentModel = {
 		contentModel.pluginsLoading(true);
 
 		$.ajax({
-			url: './api/plugin/',
+			url: 'api/plugin/',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				contentModel.plugins(data);
 				contentModel.pluginsLoading(false);
 			}
-		}, 'json');
+		});
 	},
 
 	updateStylesheets:function(){ // gets the stylesheets for the current template
@@ -172,14 +175,15 @@ var contentModel = {
 		contentModel.stylesheetsLoading(true);
 
 		$.ajax({
-			url: './api/stylesheet/list',
+			url: 'api/stylesheet/list',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				contentModel.stylesheets(data);
 				contentModel.stylesheetsLoading(false);
 			}
-		}, 'json');
+		});
 	},
 
 	updateLayouts:function(){ // gets the layouts for the current template
@@ -187,14 +191,15 @@ var contentModel = {
 		contentModel.layoutsLoading(true);
 
 		$.ajax({
-			url: './api/layout/list',
+			url: 'api/layout/list',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 				contentModel.layouts(data);
 				contentModel.layoutsLoading(false);
 			}
-		}, 'json');
+		});
 	},
 
 	saveSettings:function(i,e){ // saves the settings for the page
@@ -219,7 +224,7 @@ var contentModel = {
 		if(rss.length>0)rss=rss.substring(0,rss.length-1);
 
 		$.ajax({
-			url: './api/page/'+contentModel.pageUniqId(),
+			url: 'api/page/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {name:name, friendlyId:friendlyId, description:description, keywords:keywords, 
 				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet},
@@ -248,7 +253,7 @@ var contentModel = {
         }
 
 		$.ajax({
-			url: './api/page/content/'+contentModel.pageUniqId(),
+			url: 'api/page/content/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {content:content, status:'publish', image:image},
 			success: function(data){
@@ -274,7 +279,7 @@ var contentModel = {
         }
 
 		$.ajax({
-			url: './api/page/content/'+contentModel.pageUniqId(),
+			url: 'api/page/content/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {content:content, status:'draft', image:image},
 			success: function(data){
@@ -291,9 +296,10 @@ var contentModel = {
 	updatePage:function(){ // grabs the content 
 
 		$.ajax({
-			url: './api/page/'+contentModel.pageUniqId(),
+			url: 'api/page/'+contentModel.pageUniqId(),
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				var page = Page.create(data);
@@ -309,7 +315,7 @@ var contentModel = {
 				contentModel.toPagePrefix(prefix);
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -319,7 +325,7 @@ var contentModel = {
 		var content = $('#desc').respondHtml();
 
 		$.ajax({
-			url: './api/page/content/preview/'+contentModel.pageUniqId(),
+			url: 'api/page/content/preview/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {content:content},
 			success: function(data){
@@ -351,7 +357,7 @@ var contentModel = {
         
         // clean-up preview directory
         $.ajax({
-    		url: './api/page/content/preview/remove',
+    		url: 'api/page/content/preview/remove',
 			type: 'DELETE',
 			data: {},
 			success: function(data){}
@@ -364,9 +370,10 @@ var contentModel = {
         contentModel.imagesLoading(true);
 
 		$.ajax({
-			url: './api/image/list/all',
+			url: 'api/image/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
      
                 for(x in data){
@@ -390,7 +397,7 @@ var contentModel = {
                 contentModel.imagesLoading(false);
 
 			}
-		}, 'json');
+		});
     },
     
     addImage:function(o, e){
@@ -403,9 +410,10 @@ var contentModel = {
         contentModel.filesLoading(true);
 
     	$.ajax({
-			url: './api/file/list/all',
+			url: 'api/file/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
      
                 for(x in data){
@@ -429,7 +437,7 @@ var contentModel = {
                 contentModel.filesLoading(false);
 
 			}
-		}, 'json');
+		});
     },
     
     addFile:function(o, e){

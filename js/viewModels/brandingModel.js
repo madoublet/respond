@@ -15,7 +15,7 @@ var brandingModel = {
         brandingModel.updateSite();
 
         $("#drop").dropzone({ 
-            url: "/api/file/post",
+            url: "api/file/post",
             success: function(file, response){
                 var image = jQuery.parseJSON(response);
                 
@@ -41,8 +41,9 @@ var brandingModel = {
     updateSite:function(){  // updates the site to get the logoUrls
 
 		$.ajax({
-			url: './api/site/current',
+			url: 'api/site/current',
 			type: 'GET',
+			dataType: 'json',
 			data: {},
 			success: function(data){
                 brandingModel.siteUniqId(data['SiteUniqId']);
@@ -50,7 +51,7 @@ var brandingModel = {
                 brandingModel.fullUrl('sites/'+data['FriendlyId']+'/files/'+data['LogoUrl']);
                 brandingModel.filePrefix('sites/'+data['FriendlyId']+'/files/');
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -59,7 +60,7 @@ var brandingModel = {
         var template = templateModel.toBeApplied.id();
         
         $.ajax({
-        	url: './api/site/branding/',
+        	url: 'api/site/branding/',
 			type: 'POST',
 			data: {},
 			success: function(data){
@@ -75,9 +76,10 @@ var brandingModel = {
         message.showMessage('progress', 'Updating logo...');
         
 		$.ajax({
-			url: './api/site/logo/'+brandingModel.siteUniqId(),
+			url: 'api/site/logo/'+brandingModel.siteUniqId(),
 			type: 'POST',
 			data: {logoUrl:logoUrl},
+			dataType: 'json',
 			success: function(data){
      
                 brandingModel.fullUrl(o.fullUrl);
@@ -88,7 +90,7 @@ var brandingModel = {
                 $('#imagesDialog').modal('hide');
 
 			}
-		}, 'json');
+		});
         
     },
     
@@ -100,9 +102,10 @@ var brandingModel = {
     	brandingModel.imagesLoading(true);
 
 		$.ajax({
-			url: './api/image/list/all',
+			url: 'api/image/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
      
                 for(x in data){
@@ -123,7 +126,7 @@ var brandingModel = {
 				}
 
 			}
-		}, 'json');
+		});
         
     }
 }

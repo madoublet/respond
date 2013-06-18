@@ -45,9 +45,10 @@ var menusModel = {
 		menusModel.menuLoading(true);
 
 		$.ajax({
-			url: './api/menutype/list/all',
+			url: 'api/menutype/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -61,7 +62,7 @@ var menusModel = {
 				menusModel.updateMenuItems();
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -70,9 +71,10 @@ var menusModel = {
         menusModel.menuItems.removeAll();
         
 		$.ajax({
-			url: './api/menuitem/list/'+menusModel.type(),
+			url: 'api/menuitem/list/'+menusModel.type(),
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -89,7 +91,7 @@ var menusModel = {
                     $('#save').fadeIn();
                 }});
 			}
-		}, 'json');
+		});
 
 	},
     
@@ -99,9 +101,10 @@ var menusModel = {
 		menusModel.pagesLoading(true);
 
 		$.ajax({
-			url: './api/page/list/all',
+			url: 'api/page/list/all',
 			type: 'GET',
 			data: {},
+			dataType: 'json',
 			success: function(data){
 
 				for(x in data){
@@ -112,7 +115,7 @@ var menusModel = {
 				menusModel.pagesLoading(false);
 
 			}
-		}, 'json');
+		});
 
 	},
 
@@ -191,8 +194,9 @@ var menusModel = {
             message.showMessage('progress', 'Adding menu item...');
 
             $.ajax({
-              url: './api/menuitem/add',
+              url: 'api/menuitem/add',
               type: 'POST',
+			  dataType: 'json',
               data: {name: name, cssClass: cssClass, type: type, url: url, pageId: pageId, priority: priority},
               success: function(data){
     
@@ -204,7 +208,7 @@ var menusModel = {
                 
                 $('#addEditDialog').modal('hide');
               }
-            }, 'json');
+            });
             
         }
         else{ // edit
@@ -217,7 +221,7 @@ var menusModel = {
             message.showMessage('progress', 'Updating menu item...');
 
             $.ajax({
-              url: './api/menuitem/' + menuItemUniqId,
+              url: 'api/menuitem/' + menuItemUniqId,
               type: 'POST',
               data: {name: name, cssClass: cssClass, url: url},
               success: function(data){
@@ -267,7 +271,7 @@ var menusModel = {
         var json = JSON.stringify(order);
         
         $.ajax({
-          url: './api/menuitem/order',
+          url: 'api/menuitem/order',
           type: 'POST',
           data: {json: json},
           success: function(data){
@@ -297,7 +301,7 @@ var menusModel = {
         var menuItemUniqId = menusModel.toBeRemoved.menuItemUniqId();
         
         $.ajax({
-          url: './api/menuitem/'+menuItemUniqId,
+          url: 'api/menuitem/'+menuItemUniqId,
           type: 'DELETE',
           data: {},
           success: function(data){
@@ -325,9 +329,10 @@ var menusModel = {
         var friendlyId = $('#menuTypeFriendlyId').val();
         
         $.ajax({
-          url: './api/menutype/add',
+          url: 'api/menutype/add',
           type: 'POST',
           data: {name: name, friendlyId: friendlyId},
+		  dataType: 'json',
           success: function(data){
 
             var menuType = MenuType.create(data);
@@ -338,7 +343,7 @@ var menusModel = {
             
             $('#addMenuTypeDialog').modal('hide');
           }
-        }, 'json');
+        });
         
     },
     
@@ -354,9 +359,10 @@ var menusModel = {
         var menuTypeUniqId = menusModel.toBeRemoved.menuTypeUniqId();
         
         $.ajax({
-          url: './api/menutype/'+menuTypeUniqId,
+          url: 'api/menutype/'+menuTypeUniqId,
           type: 'DELETE',
           data: {},
+		  dataType: 'json',
           success: function(data){
             
             menusModel.menuTypes.remove(menusModel.toBeRemoved);
