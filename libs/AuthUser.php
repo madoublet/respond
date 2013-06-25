@@ -23,6 +23,7 @@ class AuthUser{
 	public $FileUrl;
 	public $HomeUrl;
 	public $TimeZone;
+	public $Domain;
 	
 	function __construct(){
 		
@@ -49,6 +50,7 @@ class AuthUser{
 			$this->SiteName = $_SESSION['SiteName'];
 			$this->FileUrl = $_SESSION['FileUrl'];
 			$this->TimeZone = $_SESSION['TimeZone']; 
+			$this->Domain = $_SESSION['Domain']; 
 		}
 		else $this->Redirect();
 	}
@@ -91,6 +93,7 @@ class AuthUser{
 		$_SESSION['SiteId'] = $user['SiteId'];
 		$_SESSION['SiteUniqId'] = $site['SiteUniqId'];
 		$_SESSION['SiteFriendlyId'] = $site['FriendlyId'];
+		$_SESSION['Domain'] = $site['Domain'];
 		$_SESSION['Directory'] = $directory;
 		$_SESSION['LogoUrl'] = $site['LogoUrl'];
 		$_SESSION['sid'] = session_id(); 

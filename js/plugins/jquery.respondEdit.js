@@ -28,6 +28,7 @@ jQuery.fn.swap = function(b){
 				'<a class="align-right icon-align-right" title="Align text to the right" data-align="right"></a>' +
 				'<a class="link icon-link" title="Add Link (select text first)"></a>' +
 				'<a class="code icon-code" title="Add code"></a>' +
+        		// '<a class="icon icon-flag" title="Add Font Awesome icon"></a>' + // WIP, coming soon
 				'<a class="h1" title="Add Headline">H1</a>' +
 				'<a class="h2" title="Add Headline">H2</a>' +
 				'<a class="h3" title="Add Headline">H3</a>' +
@@ -698,6 +699,16 @@ jQuery.fn.swap = function(b){
 
 	  var text = global.getSelectedText();
 	  var html = '<code>'+text+'</code>';
+
+	  document.execCommand("insertHTML", false, html);
+	  return false;
+	});
+    
+    // handle font awesome
+    $(this).find('.editor-menu a.icon').click(function(){
+
+	  var text = global.getSelectedText();
+	  var html = '<i class="icon-flag"></i>';
 
 	  document.execCommand("insertHTML", false, html);
 	  return false;

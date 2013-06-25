@@ -4,6 +4,8 @@ var contentModel = {
     pageUniqId: ko.observable(''),
     page: ko.observable(null),
     toPagePrefix: ko.observable(''),
+    domain: ko.observable(''),
+    appUrl: ko.observable(''),
     
     content: ko.observable(''),
     contentLoading: ko.observable(false),
@@ -33,7 +35,11 @@ var contentModel = {
 
 	init:function(){ // initializes the model
 		var p = global.getQueryStringByName('p');
-
+		var d = $('body').attr('data-domain');
+		var a = $('body').attr('data-appurl');
+		
+		contentModel.domain(d);
+		contentModel.appUrl(a);
 		contentModel.pageUniqId(p);
 
 		contentModel.updateContent();

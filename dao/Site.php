@@ -120,7 +120,7 @@ class Site{
             
             $q = "UPDATE Sites SET 
                     LogoUrl= ?
-        			TimeZone = ? WHERE SiteUniqId = ?";
+                    WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $logoUrl);

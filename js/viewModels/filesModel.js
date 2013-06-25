@@ -1,4 +1,4 @@
-// models the branding page
+// models the files page
 var filesModel = {
     
     siteUniqId: ko.observable(),
@@ -18,7 +18,7 @@ var filesModel = {
                 
                 var filename = file.filename;
     
-                var match = ko.utils.arrayFirst(brandingModel.images(), function (item) {
+                var match = ko.utils.arrayFirst(filesModel.images(), function (item) {
                                 return item.filename === filename; 
                             });
                         

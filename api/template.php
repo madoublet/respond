@@ -99,9 +99,7 @@ class TemplateResetResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
-            $response->body = $json;
-
+            
             return $response;
         }
         else{

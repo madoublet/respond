@@ -40,13 +40,13 @@ var aviaryDialog = {
 
 	show: function(imageId, imageSrc){  // shows the dialog
 
-        // #debug alert('imageId='+imageId+' imageSrc='+imageSrc);
+		var url = contentModel.appUrl() + '/' + imageSrc;
 
 		aviaryDialog.src = imageSrc;
 
 		aviaryDialog.editor.launch({
            image: imageId,
-           url: 'http://two.respondcms.com/'+imageSrc
+           url: url
        });
 
 	}

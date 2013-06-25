@@ -32,19 +32,13 @@
 
 </head>
 
-<body data-currpage="content">
+<body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>">
 
 <!-- begin global messages -->
 <p id="message">
   <span>Holds the message text.</span>
   <a class="close" href="#"></a>
 </p>
-
-<input type="hidden" id="PageUniqId" value="<?php print $p->PageUniqId; ?>">
-<input type="hidden" id="PageTypeUniqId" value="<?php print $p->PageTypeUniqId; ?>">
-<input type="hidden" id="FileUrl" value="<?php print $authUser->FileUrl; ?>">
-<input type="hidden" id="TypeS" value="<?php print $p->TypeS; ?>">
-<input type="hidden" id="Domain" value="<?php print $p->SiteUrl; ?>">
 
 <?php include 'modules/menu.php'; ?>
 
