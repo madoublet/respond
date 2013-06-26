@@ -31,6 +31,9 @@ var contentModel = {
     files: ko.observableArray([]),
     filesLoading: ko.observable(false),
     
+    icons: ko.observableArray([]),
+    iconsLoading: ko.observable(false),
+    
     previewUrl: '',
 
 	init:function(){ // initializes the model
@@ -446,8 +449,42 @@ var contentModel = {
 		});
     },
     
+    updateIcons:function(){
+        
+        contentModel.icons.removeAll();
+        contentModel.iconsLoading(true);
+
+    	$.ajax({
+			url: 'data/icons.json',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+	
+                for(x in data.icons){
+    
+    				var icon = {
+        			    'icon': 'icon-'+data.icons[x]['id'],
+                        'name': data.icons[x]['name']
+    				}
+                
+            
+					contentModel.icons.push(icon); 
+				}
+                
+                
+                contentModel.iconsLoading(false);
+
+			}
+		});
+    },
+    
     addFile:function(o, e){
         filesDialog.addFile();
+    },
+    
+    addIcon: function(o, e){
+	    fontAwesomeDialog.addIcon();
     }
 
 }

@@ -719,6 +719,33 @@
 </div>
 <!-- /.modal -->
 
+<div class="modal hide" id="fontAwesomeDialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Font Awesome Icon</h3>
+  </div>
+  <div class="modal-body">
+
+    <div id="selectIcon" class="select">
+
+        <ul data-bind="foreach: icons">
+          <li>
+            <i data-bind="css: icon"></i> <span data-bind="text: name"></span>
+          </li>
+        </ul>
+    
+        <p data-bind="visible: iconsLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading icons...</p>
+    
+      </div>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="secondary-button" data-dismiss="modal">Close</button>
+    <button class="primary-button" data-bind="click: addIcon">Add Icon</a>
+  </div>  
+</div>
+<!-- /.modal -->
+
 <div id='aviary-modal'></div>
 
 <div id="overlay"></div>
@@ -747,6 +774,7 @@
 
 <!-- dialogs -->
 <script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/loadLayoutDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/pluginsDialog.js"></script>
 <script type="text/javascript" src="js/dialogs/configPluginsDialog.js"></script>
