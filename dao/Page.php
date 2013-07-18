@@ -255,8 +255,8 @@ class Page{
             $s->bindParam(1, $siteId);
             $s->bindParam(2, $pageTypeId);
             $s->bindParam(3, $orderBy);
-            $s->bindParam(4, intval($next), PDO::PARAM_INT);
-            $s->bindParam(5, intval($pageSize), PDO::PARAM_INT);
+            $s->bindValue(4, intval($next), PDO::PARAM_INT);
+            $s->bindValue(5, intval($pageSize), PDO::PARAM_INT);
             
             $s->execute();
             
