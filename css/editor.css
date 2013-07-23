@@ -632,31 +632,39 @@ div.editor div.form input.positive{
 }
 
 div.editor div.form{
-  padding-right: 13px;
+  padding: 15px 0 0 0 !important;
 }
 
 div.editor span.field-container{
   position: relative;
   display: block;
   background: #fff;
-  margin: 0;
+  margin: 0 !important;
   padding: 5px 0 5px 35px;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  background-color: #f8f8f8;
 }
 
-    div.editor span.field-container:first-child{
-        border-top: 1px solid #eee;
+    div.editor span.field-container .radio{
+        margin-left: 20px;
     }
     
     div.editor span.field-container:last-child{
         margin-bottom: 15px;
     }
+    
+    div.editor .addField{
+        margin: 0 0 15px 35px;
+    }
 
 div.editor span.field-container span.marker-field{
   font-style: normal; 
+  background-color: #fff;
 }
+
+    div.editor span.field-container span.marker-field i{
+      color: #ccc;
+    }
 
 div.editor span.field{
   margin: 0;

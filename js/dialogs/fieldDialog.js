@@ -92,7 +92,7 @@ var fieldDialog = {
 
 			html += '</div></div>';
 
-			html += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"></span>';
+			html += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
 			html += '</span>';
 
 			var formId = fieldDialog.formId;

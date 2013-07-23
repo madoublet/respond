@@ -527,7 +527,7 @@ jQuery.fn.swap = function(b){
 			
 			if(name=='form'){
 				var id = $(node).attr('id');
-				response+= '<div id="'+id+'" class="form"><div>';
+				response+= '<div id="'+id+'" class="form"><input type="button" value="Add Field" class="secondary-button addField"><div>';
 				
 				var fields = $(node).find('.control-group');
 				
@@ -535,12 +535,12 @@ jQuery.fn.swap = function(b){
 			  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
 				  	response += '<span class="field-container">';
 				  	response += fhtml;
-				  	response += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"></span>';
+				  	response += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
 				  	response += '</span>';
 				}
 				
-				response+= '</div><span class="marker" title="Module"></span><a class="remove" href="#"></a>';
-				response+= '<input type="button" value="Add Field" class="secondary-button addField"></div>';
+				response+= '</div><span class="marker" title="Module"><i class="icon-check"></i></span><a class="remove" href="#"></a>';
+				response+= '</div>';
 			 }
 		  }
 		}
@@ -1009,9 +1009,8 @@ jQuery.fn.swap = function(b){
 	  var uniqId = 'form-'+ length;
 	  
 	  appendHere(
-		'<div id="'+uniqId+'" class="form"><div>' +
-		'</div><span class="marker" title="Module"></span><a class="remove" href="#"></a>' + 
-		'<input type="button" value="Add Field" class="secondary-button addField">' +
+		'<div id="'+uniqId+'" class="form"><input type="button" value="Add Field" class="secondary-button addField"><div>' +
+		'</div><span class="marker" title="Module"><i class="icon-check"></i></span><a class="remove" href="#"></a>' + 
 		'</div>'
 	  );
 	  
@@ -1624,7 +1623,7 @@ jQuery.fn.swap = function(b){
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
 					field = field.replace('<a class="remove-field" href="#"></a>', '');
-					field = field.replace('<span class="marker-field" title="Field"></span>', '');
+					field = field.replace('<span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>', '');
 					field = global.replaceAll(field, ' ui-sortable', '');
 					newhtml += field;
 		  		}
