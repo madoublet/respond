@@ -179,7 +179,7 @@ class Generator
           
         $content = str_replace('{synopsis}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         
-        $html = Generator::ParseHTML($site, $page, $content, $root);
+        $html = Generator::ParseHTML($site, $page, $content, $preview, $root);
         
         $pageTypeUniqId = '-1';
     
@@ -209,7 +209,7 @@ class Generator
         
     }
       
-    public static function ParseHTML($site, $page, $content, $root='../'){
+    public static function ParseHTML($site, $page, $content, $preview, $root='../'){
     
         $html = str_get_html($content, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
     
@@ -219,7 +219,7 @@ class Generator
         $rootloc = '';
         $commonloc = '../common/';
         
-        if($page['PageTypeId']!=-1){
+        if($page['PageTypeId']!=-1 || $preview==true){
             $rootloc = '../';
             $commonloc = '../../common/';
         }

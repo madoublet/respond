@@ -392,9 +392,11 @@ class Publish
         if(file_exists($fragment)){
           $content = file_get_contents($fragment);
         }
+        
+        $preview = false;
 		
 		// run the content through the parser
-		$content = Generator::ParseHTML($site, $page, $content, $root);
+		$content = Generator::ParseHTML($site, $page, $content, $preview, $root);
 		
 		// create fragment
 		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';

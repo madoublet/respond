@@ -1820,13 +1820,10 @@ jQuery.fn.swap = function(b){
 	});
 
 
-	$('div.form div').sortable('destroy');
 	$('div.form div').sortable({handle: 'span.marker-field', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
 
-	$('div.slideshow div').sortable('destroy');
 	$('div.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 	
-	$('div.gallery div').sortable('destroy');
 	$('div.gallery div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 	
 	$(context).find('span.caption input').focus(function(){
