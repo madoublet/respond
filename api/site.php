@@ -2,6 +2,25 @@
 
 /**
  * This class defines an example resource that is wired into the URI /example
+ * @uri /site/test
+ */
+class SiteTesthResource extends Tonic\Resource {
+
+    /**
+     * @method GET
+     */
+    function get() {
+
+        $response = new Tonic\Response(Tonic\Response::OK);
+        $response->contentType = 'text/HTML';
+        $response->body = 'API works!';
+
+        return $response;
+    }
+}
+
+/**
+ * This class defines an example resource that is wired into the URI /example
  * @uri /site/switch
  */
 class SiteSwitchResource extends Tonic\Resource {

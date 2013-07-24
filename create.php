@@ -107,7 +107,7 @@
 	
 	</div>
 
-	<small>Version 2.0.  Made by <a href="http://matthewsmith.com">Matthew Smith</a> in Manchester, MO</small>
+	 <small><?php print COPY; ?></small>
 
 
 </div>

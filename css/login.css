@@ -1,5 +1,5 @@
 html{
-    overflow: scroll;
+    overflow: auto;
 }
 
 body{
@@ -23,6 +23,7 @@ div.content{
 div.content h1{
 	font-size: 30px;
 	padding-bottom: 50px;
+    color: #777;
 }
 
 fieldset{
@@ -89,3 +90,39 @@ p.footer{
 	margin: 100px auto;
 	text-align: center;
 }
+
+/* test styles */
+table.test{
+    width: 500px;
+    margin: 25px auto 50px auto;
+    text-align: left;
+}
+
+    table.test tr{
+        border-bottom: 1px solid #ddd;
+    }
+    
+    table.test tr:last-child{
+        border-bottom: none;
+    }
+    
+    table.test td{
+        padding: 15px;
+    }
+
+    table.test td.test{
+        width: 80%;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+
+    table.test td.result{
+        width: 20%;
+        text-align: right;
+    }
+
+    table.test i{
+        font-size: 30px;
+    }
+
+
