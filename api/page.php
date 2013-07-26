@@ -508,6 +508,11 @@ class PageListFriendlyResource extends Tonic\Resource {
                 $pageTypeId = $pageType['PageTypeId'];
                 $dir = strtolower($pageType['TypeS']).'/';
             }
+            
+            // get site url
+            $site = Site::GetBySiteId($authUser->SiteId);
+
+            $dir = 'sites/'.$site['FriendlyId'].'/files/';
 
             // get pages
             $list = Page::GetPages($siteId, $pageTypeId, $pageSize, $page, $orderBy);
@@ -521,10 +526,12 @@ class PageListFriendlyResource extends Tonic\Resource {
                 $fullName = $row['FirstName'].' '.$row['LastName'];
                 $page['LastModifiedFullName'] = $fullName;
 
-                $imageUrl = '';
                 $thumbUrl = '';
 
-                $page['Image'] = $imageUrl;
+                if($page['Image']!=''){
+                    $thumbUrl = $dir.'t-'.$page['Image'];
+                }
+
                 $page['Thumb'] = $thumbUrl;
 
                 $url = $page['FriendlyId'];

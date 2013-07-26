@@ -50,7 +50,10 @@
 
     <div class="list" data-bind="foreach: pages">
     
-    	<div class="listItem" data-bind="attr: { 'data-id': pageUniqId, 'data-name': name, 'data-isactive': isActive}">
+    	<div class="listItem" data-bind="attr: { 'data-id': pageUniqId, 'data-name': name, 'data-isactive': isActive}, css: {'has-thumb': thumb()!=''}">
+        
+            <span class="image" data-bind="if: thumb()!=''"><img height="75" width="75" data-bind="attr:{'src':thumb}"></span>
+        
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
                 <i class="not-published icon-minus-sign icon-large"></i>
             </a>

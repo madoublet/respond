@@ -68,7 +68,7 @@ var pagesModel = {
 				for(x in data){
 
 					var page = Page.create(data[x]);
-
+                    
 					pagesModel.pages.push(page); // push an event to the model
 
 				}
