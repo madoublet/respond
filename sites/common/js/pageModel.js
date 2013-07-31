@@ -1,7 +1,7 @@
 // models the page
 var pageModel = {
     
-    apiEndpoint: 'http://dev.respondcms.com/',
+    apiEndpoint: '//urloftheapp.com',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),
@@ -12,17 +12,17 @@ var pageModel = {
     menu: ko.observableArray([]),
     
     init:function(){
-		
+        
         pageModel.setupProperties();
 		pageModel.setupControls();
 		pageModel.updateLists();
+		pageModel.updateFeatured();
         
         // apply bindings
         ko.applyBindings(pageModel);
 
 	},
 
-    
     // updates data for lists on the page
     updateLists: function(){
         
@@ -47,7 +47,6 @@ var pageModel = {
             // use an anonymous function to pass the id, ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
             function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId){
                 
- 
                 $.ajax({
                 	url: pageModel.apiEndpoint + 'api/page/published/' + display,
         			type: 'POST',
@@ -56,18 +55,15 @@ var pageModel = {
         			success: function(data){
 
                         for(x=0; x<data.length; x++){
-                            
+                        
                             if(display=='blog'){
                                 
-                                console.log(data[x]);
+                                console.log(data);
                         
                                 // replace image url
                                 var content = data[x].Content;
                                 var stringToFind = 'sites/' + pageModel.siteFriendlyId() + '/';
                                 var stringToReplace = pageModel.prefix();
-                                
-                                console.log('find: '+stringToFind);
-                                console.log('replace: '+stringToReplace);
                                 
                                 content = pageModel.replaceAll(content, stringToFind, stringToReplace);
                                 
@@ -80,9 +76,6 @@ var pageModel = {
                                     });
                             }
                             else{
-                                
-                                console.log(data[x]);
-                                
                                 pageModel[id].push({
                                     'pageUniqId': data[x].PageUniqId,
                                     'name': data[x].Name, 
@@ -94,16 +87,49 @@ var pageModel = {
                                     'hasCallout': data[x].HasCallout,
                                     'callout': data[x].Callout
                                     });
-                                    
                             }
-                            
                         }
+                        
+                        
         			}
         		});
             }
             
             updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId);
 		}
+    },
+    
+    // updated featured content for the widget
+    updateFeatured: function(){
+	  
+	  var featured = $('.featured-content');
+	  
+	  for(x=0; x<featured.length; x++){
+		  
+		var pageUniqId = $(featured[x]).attr('data-pageuniqid');
+		
+		function setFeatured(el, pageUniqId){
+			$.ajax({
+				url: pageModel.prefix() + 'fragments/render/' + pageUniqId + '.html',
+				type: 'GET',
+				data: {},
+				success: function(data){
+					
+					// replace image url
+                    var content = data;
+                    var stringToFind = 'sites/' + pageModel.siteFriendlyId() + '/';
+                    var stringToReplace = pageModel.prefix();
+                    
+                    content = pageModel.replaceAll(content, stringToFind, stringToReplace);
+					
+					$(el).html(content);
+				}
+			});
+		}
+		
+		setFeatured(featured[x], pageUniqId);
+	  }
+	    
     },
     
     // replaces all occurances for a string
