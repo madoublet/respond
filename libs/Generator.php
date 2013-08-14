@@ -199,8 +199,10 @@ class Generator
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '?>';
+            
+		$api = APP_URL;
         
-        $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].'" data-pagetypeuniqid="'.$pageTypeUniqId.'"';
+        $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.'"';
         
         $html = str_replace('<body', $inject, $html);
         $html = str_replace('{root}', $rootloc, $html);

@@ -1,7 +1,7 @@
 // models the page
 var pageModel = {
     
-    apiEndpoint: '//urloftheapp.com',
+    apiEndpoint: '',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),
@@ -12,7 +12,9 @@ var pageModel = {
     menu: ko.observableArray([]),
     
     init:function(){
-        
+    
+    	pageModel.apiEndpoint = $('body').attr('data-api');
+    	
         pageModel.setupProperties();
 		pageModel.setupControls();
 		pageModel.updateLists();
