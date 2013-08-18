@@ -191,7 +191,7 @@
     
     /* Check for 200*/
     $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-    if($httpCode == 200) {
+    if($httpCode == 200 && $response=='API works!') {
         print '<i title="API working" class="icon-ok-sign"></i>';
     }
     else{
