@@ -65,6 +65,11 @@ var imagesDialog = {
     
     // gets the image HTML
     getImageHtml:function(position, imageId, src, href, content){
+    
+    	if(content == '&nbsp;'){
+	    	content = 'Add your content here or click the settings icon to change the image layout...';
+    	}
+    
 		if(position=='left'){
 			if(href==''){
 				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>';

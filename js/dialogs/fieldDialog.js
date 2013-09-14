@@ -33,21 +33,21 @@ var fieldDialog = {
 			var helperText = $('#fieldHelperText').val().trim();
 
 			var html = '<span class="field-container">';
-			html += '<div class="control-group" data-type="'+ fieldType + '"';
+			html += '<div class="form-group" data-type="'+ fieldType + '"';
 
 			if(required=='yes'){
 				html += ' data-required="true"';
 			}
 
 			html += '><label for="' + id + '"';
-			html += ' class="control-label">' + fieldName + '</label><div class="controls">';
+			html += '>' + fieldName + '</label>';
 
 			if(fieldType=='text'){
-				html += '<input id="' + id + '" type="text">';
+				html += '<input id="' + id + '" type="text" class="form-control">';
 			}
 
 			if(fieldType=='textarea'){
-				html += '<textarea id="' + id + '"></textarea>\n';
+				html += '<textarea id="' + id + '" class="form-control"></textarea>\n';
 			}
 
 			if(fieldType=='select'){
@@ -90,7 +90,7 @@ var fieldDialog = {
 				html += '<span class="help-block">' + helperText + '</span>';
 			}
 
-			html += '</div></div>';
+			html += '</div>';
 
 			html += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
 			html += '</span>';

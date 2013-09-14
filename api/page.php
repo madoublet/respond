@@ -161,7 +161,7 @@ class PageContentResource extends Tonic\Resource {
             }
             else{ // create default content for the page
                 $page = Page::GetByPageUniqId($pageUniqId); 
-                $content = '<div id="block-1" class="block row-fluid"><div class="col span12"><h1>'.strip_tags(html_entity_decode($page['Name'])).'</h1><p>'.strip_tags(html_entity_decode($page['Description'])).'</p></div></div>';
+                $content = '<div id="block-1" class="block row"><div class="col col-md-12"><h1>'.strip_tags(html_entity_decode($page['Name'])).'</h1><p>'.strip_tags(html_entity_decode($page['Description'])).'</p></div></div>';
             }
 
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -529,7 +529,14 @@ class PageListFriendlyResource extends Tonic\Resource {
                 $thumbUrl = '';
 
                 if($page['Image']!=''){
-                    $thumbUrl = $dir.'t-'.$page['Image'];
+                
+                	if (strpos($page['Image'],'t-') !== false) {
+					    $thumbUrl = $dir.$page['Image'];
+					}
+					else{
+                   		$thumbUrl = $dir.'t-'.$page['Image'];
+                    }
+                    
                 }
 
                 $page['Thumb'] = $thumbUrl;

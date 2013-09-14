@@ -1,8 +1,5 @@
 <?php 
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
 	include '../app.php';
 
 	require_once 'lib/Tonic/Autoloader.php';
@@ -21,11 +18,18 @@
     require_once 'script.php';
     require_once 'layout.php';
     
+    // set REQUEST_URI as the default $uri
+    $uri = $_SERVER['REQUEST_URI'];
+    
+    // grab everything after API (should fix subdirectory issue)
+    $parts = explode('/api', $uri);
+	$uri = $parts[1];
+    
 	// handle request
 	$app = new Tonic\Application();
 	$request = new Tonic\Request(
 			array(
-			'baseUri' => '/api'
+				'uri' => $uri
 			));
 
 	$resource = $app->getResource($request);

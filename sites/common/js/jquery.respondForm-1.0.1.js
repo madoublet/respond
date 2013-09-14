@@ -7,7 +7,7 @@
     	var pageUniqId = $('body').attr('data-pageuniqid');
 		
 		// build body
-		var fields = $(context).find('div.control-group');
+		var fields = $(context).find('div.form-group');
 		
 		var body = '<table>';
 		var hasError = false;
@@ -60,30 +60,37 @@
 		body += '</table>'
 		
 		if(hasError == false){
-            
-            message.showMessage('progress', 'Submitting form...');
+		
+            $(context).find('.icon-spinner').show();
             
             // post to API
             $.ajax({
-                    url: pageModel.apiEndpoint+'api/form',
+                    url: pageModel.apiEndpoint+'/api/form',
         			type: 'POST',
         			data: {siteUniqId: siteUniqId, pageUniqId: pageUniqId, body: body},
         			success: function(data){
                         
-                        $('span.field.error').removeClass('error');
-            			message.showMessage('success', 'You have successfully submitted the form.');
-        				
+                        $(context).find('.error').removeClass('error');
+            			
         				$('div.formgroup input').val('');
         				$('div.formgroup textarea').val('');
         				$('div.formgroup select').val('');
         				$('div.formgroup input[type=radio]').attr('checked', false);
         				$('div.formgroup input[type=checkbox]').attr('checked', false);
+        				
+        				
+        				$(context).find('input').val('');
+        				$(context).find('select').val('');
+        				$(context).find('textarea').val('');
+        				$(context).find('.alert-danger').hide();
+        				$(context).find('.alert-success').show();
+        				$(context).find('.icon-spinner').hide();
         			}
             });
 
 		}
 		else{
-			message.showMessage('error', 'You are missing one or more required fields.');
+			$(context).find('.alert-danger').show();
 		}
 		
 	}	
@@ -99,7 +106,7 @@
         var pageUniqId = $('body').attr('data-pageuniqid');
 		
 		// build body
-		var fields = $(context).find('div.control-group');
+		var fields = $(context).find('div.form-group');
 
 		var hasError = false;
 	
@@ -183,7 +190,7 @@
 		}
 		
 		if(hasError == true){
-			message.showMessage('error', 'You are missing one or more required fields.');
+			$(context).find('.alert-danger').show();
 		}
 
 		return hasError;
@@ -195,7 +202,7 @@
 (function($){  
 	$.fn.respondSetRequired = function(){
 		
-        var fields = $(this).find('div.control-group');
+        var fields = $(this).find('div.form-group');
 		
 		for(var x=0; x<fields.length; x++){
 			var req = $(fields[x]).attr('data-required');	
@@ -218,7 +225,7 @@
         $(this).respondSetRequired(); // set required
 
         function submitForm(form){
-            
+        
             $(form).find('button').click(function(){ 
     
     	        var hasError = $(form).respondValidateForm();

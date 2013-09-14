@@ -6,18 +6,19 @@ div.editor div.editor-highlight{
 
 div.editor{
     position: relative;
-    padding-bottom: 250px !important;
-    margin: 10px 0 25px 0;
-    min-height: 1000px;
 }
 
-div.editor.container-fluid{
-    padding: 55px 10px 0 10px !important;
+div#editor-container{
+	padding-bottom: 100px;
+}
+
+div.editor.container{
+    padding-top: 65px;
 }
 
 section.main nav.editor-menu{
     background: #E9E9E9;
-    margin: 0 0 0 -10px;
+    margin: 0;
     position: fixed !important;
     top: 0;
     z-index: 100;
@@ -47,7 +48,7 @@ body a.primary-action{
     position: absolute;
     top: 0;
     right: 0;
-    width: 70px;
+    width: 110px;
     font-size: 0.9em !important;
 }
 
@@ -101,11 +102,14 @@ a.next, a.previous{
     .editor-actions small{
         position: absolute;
         width: 100%;
+        height: 12px;
+        line-height: 12px;
         text-align: center;
-        bottom: -13px;
+        bottom: 0;
         right: 0;
         color: #888;
-        font-size: 0.55em;
+        font-size: 0.65em;
+        margin: 0;
     }
 
 div.block{
@@ -140,6 +144,8 @@ div.block div.col{
   margin-bottom: 0;
   vertical-align: top;
   min-height: 40px;
+  border-right: 5px solid #aaa;
+  border-left: 5px solid #aaa;
 }
 
 div.block div.col:empty{
@@ -256,7 +262,7 @@ div.block div.i.left div.img, div.block div.i.right div.img{
 div.block div.i div.content{
   box-sizing: border-box;
   margin: 0;
-  padding: 10px !important;
+  padding: 5px 5px !important;
   width: 80%;
 }
 
@@ -293,13 +299,15 @@ div.block div a.remove:hover, div.block div a.remove-field:hover{
 /* begin block actions */
 span.blockActions{
   position: absolute;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   height: 30px;
   line-height: 30px;
   width: 100%;
+  width: calc(100% - 10px);
   display: inline-block;
-  margin: 0 10px 0 0;
+  margin: 0 0 0 5px;
   text-align: right;
   color: #fff;
   background-color: #888;
@@ -588,7 +596,14 @@ div.block div.file div{
 }
 
 div.block div.file div em{
-  margin-right: 10px;
+  margin: 0 0 5px 0;
+  display: block;
+  font-style: normal;
+}
+
+div.block div.file div .form-control{
+	display: block;
+	width: 100%;
 }
 
 div.block div.file div input{
@@ -605,6 +620,12 @@ div.block div.form div{
   padding: 0;
   min-height: 0;
   background: none;
+}
+
+/* cart */
+div.block div.cart input{
+	margin-left: 5px;
+	margin-top: 0;
 }
 
 /* fields */

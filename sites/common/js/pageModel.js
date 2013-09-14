@@ -28,7 +28,7 @@ var pageModel = {
     // updates data for lists on the page
     updateLists: function(){
         
-    	var lists = $('div.list');
+    	var lists = $('.respond-list');
 		
         // create and populate bindings for the list
 		for(var x=0; x<lists.length; x++){
@@ -50,7 +50,7 @@ var pageModel = {
             function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId){
                 
                 $.ajax({
-                	url: pageModel.apiEndpoint + 'api/page/published/' + display,
+                	url: pageModel.apiEndpoint + '/api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
         			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: 0},
@@ -176,20 +176,9 @@ var pageModel = {
 		
 		$('.carousel').carousel();
 		
-		var forms = $('.form-respond');
+		var forms = $('.respond-form');
 		
 		for(var x=0; x<forms.length; x++){
-            
-            /*
-            function processForm(form){
-                
-                $(form).find('button').on('click', function(){
-                    $(form).respondProcessForm();
-                });
-                
-            }
-            
-            processForm(forms[x]);*/
             
             $(forms[x]).respondForm();
     

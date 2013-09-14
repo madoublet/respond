@@ -1,13 +1,7 @@
-<form class="form-horizontal form-respond">
-  <input class="siteUniqId" type="hidden" value="<?php print $siteUniqId; ?>">
-  <input class="pageUniqId" type="hidden" value="<?php print $pageUniqId; ?>">
-  <?php print html_entity_decode($form); ?>
-
-  <div class="control-group">
-  	<label>&nbsp;</label>
-  	<div class="controls">
-   		<button type="button" class="btn btn-primary">Submit</button>
-   	</div>
-  </div>
+<form role="form" class="respond-form">
+	<div class="alert alert-success">Form submitted successfully!</div>
+	<div class="alert alert-danger">You are missing required fields.</div>
+	<?php print html_entity_decode($form); ?>
+	<button type="button" class="btn btn-default btn-lg">Submit <i class="icon-spinner icon-spin"></i></button>
 </form>
 

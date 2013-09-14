@@ -22,8 +22,8 @@
 	</div>
 	<!-- /.carousel-inner -->
 
-	<a class="carousel-control left" href="#<?php print $id; ?>" data-slide="prev">&lsaquo;</a>
-  	<a class="carousel-control right" href="#<?php print $id; ?>" data-slide="next">&rsaquo;</a>
+	<a class="carousel-control left" href="#<?php print $id; ?>" data-slide="prev"><span class="icon-prev"></span></a>
+  	<a class="carousel-control right" href="#<?php print $id; ?>" data-slide="next"><span class="icon-next"></span></a>
 
 </div>
 <!-- /.carousel -->

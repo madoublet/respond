@@ -74,147 +74,168 @@
 <!-- /.main -->
 
 <!-- begin add/edit dialog -->
-<div class="modal hide" id="addEditDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3></h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="addEditDialog">
 
-  <div class="modal-body">
-
-  	<form class="form-horizontal">
-
-		<div class="control-group">
-			<label for="name" class="control-label">Label:</label>
-			<div class="controls">
-				<input id="name" type="text" value="" maxlength="140">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="cssClass" class="control-label">CSS Class:</label>
-			<div class="controls">
-				<input id="cssClass" type="text" value="" maxlength="140">
-			</div>
-		</div>
+	<div class="modal-dialog">
 	
-		<div class="edit">
-        
-    		<div class="control-group">
-    			<label for="editUrl" class="control-label">Url:</label>
-    			<div class="controls">
-    				<input id="editUrl" value="" maxlength="140">
-    			</div>
-    		</div>
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3></h3>
+			</div>
+			<!-- /.modal-header -->
 			
-		</div>
-		<!-- /#editUrl -->
+			<div class="modal-body">
+			
+	
+				<div class="form-group">
+					<label for="name" class="control-label">Label:</label>
+					<input id="name" type="text" value="" maxlength="140" class="form-control">
+				</div>
+			
+				<div class="form-group">
+					<label for="cssClass" class="control-label">CSS Class:</label>
+					<input id="cssClass" type="text" value="" maxlength="140" class="form-control">
+				</div>
+			
+				<div class="edit">
+			    
+					<div class="form-group">
+						<label for="editUrl" class="control-label">Url:</label>
+						<input id="editUrl" value="" maxlength="140" class="form-control">
+					</div>
+					
+				</div>
+				<!-- /#editUrl -->
+				
+				<div class="add">
+			    
+					<div class="form-group">
+						<label class="radio"><input id="existing" type="radio" name="content" checked> Existing Page</label>
+					</div>	
+					
+					<div class="form-group">
+						<div id="selectPage" class="select">
+		                	<ul data-bind="foreach: pages">
+			                  <li data-bind="attr:{'data-pageid': pageId, 'data-url': url}">
+			                    <span data-bind="text:name"></span>
+			                    <small data-bind="text:url"></small>
+			                  </li>
+			                </ul>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="radio"><input id="customUrl" type="radio" name="content"> Custom URL</label>
+					</div>
+					
+					<div class="form-group">
+						<input id="url" type="text" class="form-control">
+					</div>
+			
+				</div>
+				<!-- /#addUrl -->
 		
-		<div class="add">
-        
-    		<div class="control-group radio-header">
-    			<label class="radio"><input id="existing" type="radio" name="content" checked> Existing Page</label>
-    		</div>	
-    		
-    		<div class="control-group">
-    			<div class="controls">
-    				<div id="selectPage" class="select">
-                    <ul data-bind="foreach: pages">
-                      <li data-bind="attr:{'data-pageid': pageId, 'data-url': url}">
-                        <span data-bind="text:name"></span>
-                        <small data-bind="text:url"></small>
-                      </li>
-                    </ul>
-    				</div>
-    			</div>
-    		</div>
-    		
-    		<div class="control-group radio-header">
-    			<label class="radio"><input id="customUrl" type="radio" name="content"> Custom URL</label>
-    		</div>
-    		
-    		<div class="control-group">
-    			<div class="controls">
-    				<input id="url" type="text">
-    			</div>
-    		</div>
+			</div>
+			<!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: addEditMenuItem">Add Menu Item</button>
+			</div>
+			<!-- /.modal-footer -->
 
 		</div>
-		<!-- /#addUrl -->
-
-	</form>
-	<!-- /.form-horizontal -->
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
   </div>
   <!-- /.modal-body -->
 
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-	<button class="primary-button" data-bind="click: addEditMenuItem">Add Menu Item</button>
-  </div>
-  <!-- /.modal-footer -->
-
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="deleteDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Remove Menu Item</h3>
-  </div>
-  <div class="modal-body">
-    
-	<p>
-		Are you sure that you want to delete <strong id="removeName">this page</strong>?
-	</p>
+<div class="modal fade" id="deleteDialog">
+
+	<div class="modal-dialog">
 	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Remove Menu Item</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<p>
+					Are you sure that you want to delete <strong id="removeName">this page</strong>?
+					</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: removeMenuItem">Remove Menu Item</button>
+			</div>
+			<!-- /.modal-footer -->
+
+		</div>
+		<!-- /.modal-content -->
+		
 	</div>
-	<div class="modal-footer">
-        <button class="secondary-button" data-dismiss="modal">Close</button>
-		<button class="primary-button" data-bind="click: removeMenuItem">Remove Menu Item</button>
-	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="addMenuTypeDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Add Menu Type</h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="addMenuTypeDialog">
 
-  <div class="modal-body">
-
-      <form class="form-horizontal">
-
-		<div class="control-group">
-			<label for="menuTypeName" class="control-label">Name:</label>
-			<div class="controls">
-				<input id="menuTypeName" value="" maxlength="50">
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>Add Menu Type</h3>
 			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="menuTypeFriendlyId" class="control-label">Friendly Id:</label>
-			<div class="controls">
-				<input id="menuTypeFriendlyId" value="" maxlength="50">
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="menuTypeName" class="control-label">Name:</label>
+				<input id="menuTypeName" value="" maxlength="50" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="menuTypeFriendlyId" class="control-label">Friendly Id:</label>
+				<input id="menuTypeFriendlyId" value="" maxlength="50" class="form-control">
 				<span class="help-block">Lowercase, no spaces, must be unique</span>
 			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: addMenuType" class="form-control">Add Menu Type</button>
+			</div>
+			<!-- /.modal-footer -->
+		
 		</div>
-
-	</form>
-	<!-- /.form-horizontal -->
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
   </div>
   <!-- /.modal-body -->
-
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-	<button class="primary-button" data-bind="click: addMenuType">Add Menu Type</button>
-  </div>
-  <!-- /.modal-footer -->
 
 </div>
 <!-- /.modal -->

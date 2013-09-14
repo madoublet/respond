@@ -9,10 +9,10 @@ class DB{
 
         if(self::$pdo == null){
 
-    		$host = 'localhost';
-        	$dbname = 'respond';
-    		$dbuser = 'dbuser';
-    		$dbpass = 'dbpassword';
+    		$host = DB_HOST;
+        	$dbname = DB_NAME;
+    		$dbuser = DB_USER;
+    		$dbpass = DB_PASSWORD;
             
             self::$pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpass);
             self::$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  

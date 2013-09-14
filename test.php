@@ -202,6 +202,23 @@
             </tr>
             <!-- /.api -->
             
+             <tr class="magic-quotes">
+                <td class="test">Magic Quotes not automatically Escaping</td>
+                <td class="result">
+<?php 
+
+	// #ref: http://stackoverflow.com/questions/5801951/does-php-auto-escapes-quotes-in-string-which-is-passed-by-get-or-post
+    if (get_magic_quotes_gpc() === 1) {
+        print '<i title="Magic Quotes Enabled" class="icon-remove-sign"></i>';
+    }
+    else{
+        print '<i title="Magic Quotes Enabled" class="icon-ok-sign"></i>';
+    }
+?>
+                </td>
+            </tr>
+            <!-- /.magic-quotes -->
+            
         </table>
     
 	</div>

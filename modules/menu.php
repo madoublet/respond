@@ -1,6 +1,5 @@
 <header>
-    <h2>&nbsp;</h2>
-    
+
     <?php if($authUser->IsSuperAdmin==true){ ?>
         <a class="switch" href="switch" title="Switch Site"><i class="icon-exchange icon-large"></i></a>
 	<?php } ?>	

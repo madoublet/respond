@@ -2,11 +2,6 @@ body{
 	background: #aaa;
 }
 
-div.container-fluid{
-    margin: 0;
-	padding: 0;
-}
-
 .inline-status{
 	display: inline-block;
 }
@@ -38,17 +33,11 @@ span.config textarea{
 /* begin checklist */
 span.checklist{
 	display: block;
-	padding-bottom: 10px;
 }
 
-span.checklist label{
-	display: block;
-}
-
-span.checklist label.checkbox{
-	display: inline-block;
-	width: 200px;
-}
+	span.checklist label.checkbox{
+		display: block;
+	}
 
 span.list label.checkbox.inline{
 	display: inline-block;
@@ -134,17 +123,22 @@ div#previewMessage{
 	top: 0;
 	left: 0;
 	background-color: #fbec5d;
-    background-color: rgba(251, 236, 93, 0.65);
+    background-color: rgba(251, 236, 93, 0.9);
     width: 100%;
     height: 50px;
-    line-height: 45px;
     z-index: 51;
     text-align: center;
     display: none;
 }
 
+	div#previewMessage span{
+		display: block;
+		margin-top: 5px;
+	}
+
 div#previewMessage button{
 	margin-left: 10px;
+	margin-right: 10px;
 }
 
 div#previewMessage span.or{

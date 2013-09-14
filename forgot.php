@@ -38,7 +38,7 @@
 
 		<div class="control-group">
 			<label for="email">Email:</label>
-			<input id="email" type="text" value="" placeholder="you@yourlogin.com">	
+			<input id="email" type="text" value="" placeholder="you@yourlogin.com" class="form-control">	
 		</div>
 		
 		<span class="actions">
@@ -56,12 +56,12 @@
 
 		<div class="control-group">
 			<label for="password">Password:</label>
-			<input id="password" type="password" placeholder="New Password">
+			<input id="password" type="password" placeholder="New Password" class="form-control">
 		</div>
 		
 		<div class="control-group">
 			<label for="retype">Retype Password:</label>
-			<input id="retype" type="password" placeholder="Retype New Password">
+			<input id="retype" type="password" placeholder="Retype New Password" class="form-control">
 		</div>
 		
 		<span class="actions">

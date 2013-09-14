@@ -37,12 +37,12 @@
 
 		<div class="control-group">
 			<label for="email" class="control-label">Email:</label>
-			<input id="email" type="text" autocomplete="off" placeholder="Enter email">
+			<input id="email" type="text"  autocomplete="off" placeholder="Enter email" class="form-control">
 		</div>
 		
 		<div class="control-group">
 			<label for="password" class="control-label">Password:</label>
-			<input id="password" type="Password" autocomplete="off" placeholder="Enter password">
+			<input id="password" type="Password" autocomplete="off" placeholder="Enter password" class="form-control">
 		</div>
 		
 		<span class="actions">

@@ -27,8 +27,10 @@ div.content h1{
 }
 
 fieldset{
+	max-width: 400px;
 	text-align: center;
 	border-bottom: none;
+	margin: 0 auto;
 }
 
 div.control-group{
@@ -42,15 +44,6 @@ span.actions{
 
 label{
 	display: none;
-}
-
-input[type=text], input[type=password]{
-	width: 80%;
-	height: 25px;
-	line-height: 24px;
-	font-size: 15px;
-	padding: 5px;
-    width: 400px;
 }
 
 span.actions{

@@ -4,23 +4,22 @@
 	$ext = strtolower($ext); // convert to lowercase	
 ?>
 
-<p class="file <?php
+<?php
+	$file_icon = 'icon-file';
+
 	if($ext=='pdf'){
-		print 'pdf';
+		$file_icon = 'icon-file';
 	}
 	else if($ext=='doc' || $ext=='docx'){
-		print 'word';
+		$file_icon = 'icon-file-text';
 	}
 	else if($ext=='png' || $ext=='jpg' || $ext=='jpeg' || $ext='gif'){
-		print 'image';
+		$file_icon = 'icon-picture';
 	}
-	else{
-		print 'misc';
-	}
-?>">
-	<span class="type"></span>
-	<a class="file-name" href="<?php print $rootloc.'files/'; ?><?php print $file; ?>"><?php print $file; ?></a>
-	<span class="file-desc">
-		<?php print $description; ?>
-	</span>
+?>
+
+<p class="file">
+	<i class="<?php print $file_icon; ?>"></i>
+	<a href="<?php print $rootloc.'files/'; ?><?php print $file; ?>"><?php print $file; ?></a>
+	<span><?php print $description; ?></span>
 </p>

@@ -9,4 +9,4 @@
 
 <h3>Comments</h3>
 
-<div class="fb-comments" data-href="<?php print $abs_url; ?>" data-num-posts="2" data-width="470"></div>
+<div class="fb-comments" data-href="<?php print $pageurl; ?>" data-num-posts="2" data-width="470"></div>

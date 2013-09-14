@@ -161,7 +161,7 @@ class Page{
 					Layout = ?, 
 					Stylesheet = ?, 
 					LastModifiedBy = ?, 
-					LastModifiedDate = ?, 
+					LastModifiedDate = ? 
 					WHERE PageUniqId = ?";
      
             $s = $db->prepare($q);

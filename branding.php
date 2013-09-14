@@ -58,12 +58,12 @@
 	
 		<form class="form-horizontal">
 
-		<div class="control-group">
-			<label class="control-label">Default Logo:</label>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Default Logo:</label>
 
-			<div class="controls">
+			<div class="col-lg-10">
                 <span id="logo">
-                    <img data-bind="attr:{'src': fullUrl, 'logo-url': logoUrl}">
+                    <img data-bind="attr:{'src': fullUrl, 'logo-url': logoUrl}" style="max-width: 500px">
                 </span>
 			</div>
 		</div>

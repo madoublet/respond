@@ -65,98 +65,111 @@
 </section>
 <!-- /.main -->
 
-<div class="modal hide" id="addEditDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3 id="addEditTitle">Add User</h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="addEditDialog">
 
-  <div class="modal-body">
-
-  	<form class="form-horizontal">
-
-		<div class="control-group">
-			<label for="firstName" class="control-label">First Name:</label>
-			<div class="controls">
-				<input id="firstName" type="text">
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<label for="lastName" class="control-label">Last Name:</label>
-			<div class="controls">
-				<input id="lastName" type="text">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="role" class="control-label">Role:</label>
-			<div class="controls">
-				<select id="role">
-					<option value="Admin">Administrator</option>
-					<option value="Demo">Demo</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="email" class="control-label">Email:</label>
-			<div class="controls">
-				<input id="email" type="text">
-				<span class="help-block">Also used as the login</span>
-			</div>
-		</div>
+	<div class="modal-dialog">
 	
-		<div class="control-group">
-			<label for="password" class="control-label">Password:</label>
-			<div class="controls">
-				<input id="password" type="password">
-				<span class="help-block">More than 5 characters, 1 letter and 1 special character</span>
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<label for="retype" class="control-label">Retype Password:</label>
-			<div class="controls">
-				<input id="retype" type="password">
-			</div>
-		</div>
-		
-	</form>
-	<!-- /.form-horizontal -->
+		<div class="modal-content">
 
-	</div>
-	<!-- /.modal-body -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3 id="addEditTitle">Add User</h3>
+			</div>
+			<!-- /.modal-header -->
 
-	<div class="modal-footer">
-		<button class="secondary-button" data-dismiss="modal">Close</button>
-		<button class="primary-button" type="button" data-bind="click: addEditUser">Add User</button>
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label for="firstName">First Name:</label>
+					<input id="firstName" type="text" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="lastName">Last Name:</label>
+					<input id="lastName" type="text" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="role">Role:</label>
+					<select id="role" class="form-control">
+						<option value="Admin">Administrator</option>
+						<option value="Demo">Demo</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input id="email" type="text" class="form-control">
+					<span class="help-block">Also used as the login</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input id="password" type="password" class="form-control">
+					<span class="help-block">More than 5 characters, 1 letter and 1 special character</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="retype">Retype Password:</label>
+					<input id="retype" type="password" class="form-control">
+				</div>
+			
+			</div>
+			<!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" type="button" data-bind="click: addEditUser">Add User</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
 	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="deleteDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Remove User</h3>
+<div class="modal fade" id="deleteDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>Remove User</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p>
+				Are you sure that you want to delete <strong id="removeName">this user</strong>?
+				</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: removeUser">Remove User</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
   </div>
-  <!-- /.modal-header -->
-
-    <div class="modal-body">
-	
-	<p>
-		Are you sure that you want to delete <strong id="removeName">this user</strong>?
-	</p>
-	
-	</div>
-	<!-- /.modal-body -->
-
-	<div class="modal-footer">
-    	<button class="secondary-button" data-dismiss="modal">Close</button>
-		<button class="primary-button" data-bind="click: removeUser">Remove User</button>
-	</div>
+  <!-- /.modal-body -->
 
 </div>
 <!-- /.modal -->

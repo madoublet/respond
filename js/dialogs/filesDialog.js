@@ -25,7 +25,7 @@ var filesDialog = {
         var filename = $(file).attr('data-filename');
         
         $('#desc').respondAppend(
-          '<div class="file"><div><em>'+filename+'</em><input type="text" value="" spellcheck="false" maxlength="256" placeholder="Description for the file"></div><span class="marker icon-file-alt" title="Module"></span><a class="remove" href="#"></a></div>'
+          '<div class="file"><div><em>'+filename+'</em><input type="text" value="" spellcheck="false" maxlength="256" placeholder="Description for the file" class="form-control"></div><span class="marker icon-file-alt" title="Module"></span><a class="remove" href="#"></a></div>'
         );
 
         $('#filesDialog').modal('hide'); // show modal

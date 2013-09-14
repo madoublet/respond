@@ -47,6 +47,7 @@ jQuery.fn.swap = function(b){
 				'<a class="list icon-list-alt" title="Add a list of pages"></span>' +
                 '<a class="featured icon-star" title="Add Featured Content"></a>' +
 				'<a class="file icon-file-alt" title="Add a File"></a>' +
+				//'<a class="cart icon-shopping-cart" title="Add SKUs"></a>' +
 				'<a class="form icon-check" title="Add a Form"></a>' +
 				'<a class="html icon-coffee" title="Add HTML"></a>' + 
 				'<a class="syntax icon-beer" title="Add Code Block"></a>';
@@ -54,10 +55,10 @@ jQuery.fn.swap = function(b){
    	menu += '<a class="plugins icon-cogs" title="Plugins"></a>';
    	menu += '<a class="settings icon-wrench" title="Page Settings"></a>';
     menu +=  '<a class="cols icon-columns" title="Add a 50/50 Column Layout"><small>50/50</small></a>' +
+        	   '<a class="single icon-columns" title="Add a Full Column Layout"><small>100</small></a>' +
         	   '<a class="cols73 icon-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
         	   '<a class="cols37 icon-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
         	   '<a class="cols333 icon-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
-        	   '<a class="single icon-columns" title="Add a Full Column Layout"><small>100</small></a>' +
         	   '<a class="load icon-circle-arrow-up" title="Load New Layout"></a></div></div>';
     menu += '<a class="next fs-next"><i class="icon-chevron-right"></i></a>';
     menu += '<a class="previous fs-prev"><i class="icon-chevron-left"></i></a>';
@@ -65,9 +66,9 @@ jQuery.fn.swap = function(b){
    
    	menu += '</nav>';
 	   
-   	var editor = '<div class="block row-fluid sortable">' +
+   	var editor = '<div class="block row sortable">' +
 		'<a class="removeBlock" href="#"></a><a class="up" href="#"></a><a class="down" href="#"></a>' +
-		'<div class="col span12"><div class="p">' +
+		'<div class="col col-md-12"><div class="p">' +
 		'<div class="content" contentEditable="true"></div>' +
 		'<span class="marker">P</span>' +
 		'<a class="remove" href="#"></a>' +
@@ -76,7 +77,7 @@ jQuery.fn.swap = function(b){
 	
 	var context = this;
 			
-	// parse HTML
+	// parse HTML, #parse
 	function parseHTML(top){
 
   		function parseModules(node){
@@ -407,7 +408,7 @@ jQuery.fn.swap = function(b){
 			  	for(var y=0; y<imgs.length; y++){
 					var caption = $(imgs[y]).attr('title');
 					imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-					response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140"></span><a class="remove" href="#"></a></span>';
+					response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" class="form-control"></span><a class="remove" href="#"></a></span>';
 			  	}
 			
 			  	response += '</div><span class="marker icon-film" title="Module"></span><a class="remove" href="#"></a>' +
@@ -424,7 +425,7 @@ jQuery.fn.swap = function(b){
 			  
 			  	var username = $(node).attr('username');
 			  	if(username==undefined)username='';
-			  	response+= '<div id="'+id+'" class="twitter"><div><input type="text" value="' + username + '" spellcheck="false" maxlength="15" placeholder="twittername"></div><span class="marker icon-twitter" title="Module"></span><a class="remove" href="#"></a></div>';
+			  	response+= '<div id="'+id+'" class="twitter"><div><input type="text" value="' + username + '" spellcheck="false" maxlength="15" placeholder="twittername" class="form-control"></div><span class="marker icon-twitter" title="Module"></span><a class="remove" href="#"></a></div>';
 			}
 			
 			if(name=='like'){
@@ -463,7 +464,7 @@ jQuery.fn.swap = function(b){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='m-'+parseInt(new Date().getTime() / 1000);
 		  
-			  	response+= '<div id="'+id+'" class="map"><div><input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove" href="#"></a></div>';
+			  	response+= '<div id="'+id+'" class="map"><div><input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210" class="form-control"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove" href="#"></a></div>';
 			}
 			
 			if(name=='list'){
@@ -522,14 +523,14 @@ jQuery.fn.swap = function(b){
 			  	var id = $(node).attr('id');
 			  	if(id==undefined || id=='')id='f-'+parseInt(new Date().getTime() / 1000);
 			  
-			  	response+= '<div id="'+id+'" class="file"><div><em>'+file+'</em><input type="text" value="'+desc+'" spellcheck="false" maxlength="256" placeholder="Description for the file"></div><span class="marker icon-file-alt" title="Module"></span><a class="remove" href="#"></a></div>';
+			  	response+= '<div id="'+id+'" class="file"><div><em>'+file+'</em><input type="text" value="'+desc+'" spellcheck="false" maxlength="256" placeholder="Description for the file" class="form-control"></div><span class="marker icon-file-alt" title="Module"></span><a class="remove" href="#"></a></div>';
 			}
 			
 			if(name=='form'){
 				var id = $(node).attr('id');
 				response+= '<div id="'+id+'" class="form"><input type="button" value="Add Field" class="secondary-button addField"><div>';
 				
-				var fields = $(node).find('.control-group');
+				var fields = $(node).find('.form-group');
 				
 				for(y=0; y<fields.length; y++){
 			  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
@@ -543,6 +544,16 @@ jQuery.fn.swap = function(b){
 				response+= '</div>';
 			 }
 		  }
+		  
+		  if(name=='cart'){
+				var id = $(node).attr('id');
+				var skus = $(node).attr('skus');
+				
+				response+= '<div id="'+id+'" class="cart" data-skus="'+skus+'"><input type="button" value="Add SKU" class="secondary-button addSKU"><div>';
+				response+= '</div><span class="marker" title="Module"><i class="icon-shopping-cart"></i></span><a class="remove" href="#"></a>';
+				response+= '</div>';
+		  }
+		  
 		}
 		
 		return response;
@@ -555,7 +566,7 @@ jQuery.fn.swap = function(b){
   	if(blocks.length==0){
 		html += '<div id="block-000" class="block sortable">';
 		html += parseModules(top);
-		html += '<span class="blockActions"><span>#block-000 .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'; 
+		html += '<span class="blockActions"><span>#block-000 .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'; 
 	}
 	else{
 		// walk through blocks
@@ -565,11 +576,11 @@ jQuery.fn.swap = function(b){
 		  	var cssclass_readable = '.' + global.replaceAll(cssclass, ' ', '.');
 		  	
 		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'block', ''));
-		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'row-fluid', ''));
+		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'row', ''));
 
 			if(id==undefined || id=='')id='undefined';
 
-		  	html += '<div id="'+id+'" class="block row-fluid" data-cssclass="' + cssclass + '">';        
+		  	html += '<div id="'+id+'" class="block row" data-cssclass="' + cssclass + '">';        
 		  
 		  	// determine if there are columns
 		  	var cols = $(blocks[y]).find('.col');
@@ -590,12 +601,14 @@ jQuery.fn.swap = function(b){
 	}
 	
 	var response = parseHTML(this);
+	
+	$('#editor-menu').html(menu);
    
-  	$(this).html(menu+response); 
+  	$(this).html(response); 
   
 	$(this).addClass('editor');
 	 
-	$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	
 	$(this).respondHandleEvents();
 	
@@ -634,43 +647,43 @@ jQuery.fn.swap = function(b){
 	}
 	
 	// handle bold menu item
-	$(this).find('.editor-menu a.bold').click(function(){
+	$('.editor-menu a.bold').click(function(){
 	  document.execCommand("Bold", false, null);
 	  return false;
 	});
 	
 	// handle italic menu item
-	$(this).find('.editor-menu a.italic').click(function(){
+	$('.editor-menu a.italic').click(function(){
 	  document.execCommand("Italic", false, null);
 	  return false;
 	});
 	
 	// handle strike menu item
-	$(this).find('.editor-menu a.strike').click(function(){
+	$('.editor-menu a.strike').click(function(){
 	  document.execCommand("strikeThrough", false, null);
 	  return false;
 	});
 	
 	// handle underline item
-	$(this).find('.editor-menu a.underline').click(function(){
+	$('.editor-menu a.underline').click(function(){
 	  document.execCommand("underline", false, null);
 	  return false;
 	});
 	
 	// handle subscript item
-	$(this).find('.editor-menu a.subscript').click(function(){
+	$('.editor-menu a.subscript').click(function(){
 	  document.execCommand("subscript", false, null);
 	  return false;
 	});
 	
 	// handle superscript item
-	$(this).find('.editor-menu a.superscript').click(function(){
+	$('.editor-menu a.superscript').click(function(){
 	  document.execCommand("superscript", false, null);
 	  return false;
 	});
 	
 	// handle alignment
-	$(this).find('.editor-menu a.align-center, .editor-menu a.align-left, .editor-menu a.align-right').click(function(){
+	$('.editor-menu a.align-center, .editor-menu a.align-left, .editor-menu a.align-right').click(function(){
 	
 	  var alignclass = 'align-'+$(this).attr('data-align');
 	  
@@ -695,7 +708,7 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle code menu item
-	$(this).find('.editor-menu a.code').click(function(){
+	$('.editor-menu a.code').click(function(){
 
 	  var text = global.getSelectedText();
 	  var html = '<code>'+text+'</code>';
@@ -705,7 +718,7 @@ jQuery.fn.swap = function(b){
 	});
     
     // handle font awesome
-    $(this).find('.editor-menu a.icon').click(function(){
+    $('.editor-menu a.icon').click(function(){
     
     	fontAwesomeDialog.show();
 	  
@@ -713,7 +726,7 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle syntax menu item
-	$(this).find('.editor-menu a.syntax').click(function(){
+	$('.editor-menu a.syntax').click(function(){
 
 	  codeBlockDialog.show();
 
@@ -721,7 +734,7 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle link menu item
-	$(this).find('.editor-menu a.link').click(function(){
+	$('.editor-menu a.link').click(function(){
 	  
 	  linkDialog.show();
 
@@ -729,7 +742,7 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle load new layout
-	$(this).find('.editor-menu a.load').click(function(){
+	$('.editor-menu a.load').click(function(){
 	  
 	  loadLayoutDialog.show(); 
 
@@ -737,7 +750,7 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle plugins dialog
-	$(this).find('.editor-menu a.plugins').click(function(){
+	$('.editor-menu a.plugins').click(function(){
 	  
 	  pluginsDialog.show(); 
 
@@ -745,7 +758,7 @@ jQuery.fn.swap = function(b){
 	});
  
 	// handle page settings
-	$(this).find('.editor-menu a.settings').click(function(){
+	$('.editor-menu a.settings').click(function(){
 	  
 	  pageSettingsDialog.show(); 
 
@@ -753,8 +766,8 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle p menu item
-	$(this).find('.editor-menu a.p').click(function(){
-	  var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.p').click(function(){
+	  var editor = $('#desc').get(0);
 	  var length = $(editor).find('.p').length + 1;
 	  var uniqId = 'paragraph-'+ length;
   
@@ -770,8 +783,8 @@ jQuery.fn.swap = function(b){
 	});
 
 	 // handle table menu item
-	$(this).find('.editor-menu a.table').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.table').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('table').length + 1;
 	  var uniqId = 'table-'+ length;
@@ -799,8 +812,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle blockquote menu item
-	$(this).find('.editor-menu a.q').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.q').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.q').length + 1;
 	  var uniqId = 'quote-'+ length;
@@ -817,8 +830,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle html menu item
-	$(this).find('.editor-menu a.html').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.html').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.html').length + 1;
 	  var uniqId = 'html-'+ length;
@@ -831,8 +844,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle youtube menu item
-	$(this).find('.editor-menu a.youtube').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.youtube').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.youtube').length + 1;
 	  var uniqId = 'youtube-'+ length;
@@ -845,8 +858,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle source menu item
-	$(this).find('.editor-menu a.layout').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.layout').click(function(){
+      var editor = $('#desc').get(0);
 
 	  if($(this).hasClass('visible')){
 		$(editor).find('span.blockActions').css('display', 'none');
@@ -863,8 +876,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle ul menu item
-	$(this).find('.editor-menu a.ul').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.ul').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.ul').length + 1;
 	  var uniqId = 'ul-'+ length;
@@ -879,8 +892,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle hr menu item
-	$(this).find('.editor-menu a.hr').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.hr').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.hr').length + 1;
 	  var uniqId = 'hr-'+ length;
@@ -895,7 +908,7 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle img menu item
-	$(this).find('.editor-menu a.img').click(function(){
+	$('.editor-menu a.img').click(function(){
 	  
 	  imagesDialog.show('image', -1);
 	 
@@ -903,8 +916,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle slideshow
-	$(this).find('.editor-menu a.slideshow').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.slideshow').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.slideshow').length + 1;
 	  var uniqId = 'slideshow-'+ length;
@@ -916,14 +929,14 @@ jQuery.fn.swap = function(b){
 
 	
 	// handle map
-	$(this).find('.editor-menu a.map').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.map').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.map').length + 1;
 	  var uniqId = 'map-'+ length;
 	  
 	  appendHere(
-		'<div id="'+uniqId+'" class="map"><div><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove" href="#"></a></div>'
+		'<div id="'+uniqId+'" class="map"><div><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210" class="form-control"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove" href="#"></a></div>'
 	  );
 	  
 	  $(editor).respondHandleEvents();
@@ -932,14 +945,14 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle twitter
-	$(this).find('.editor-menu a.twitter').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.twitter').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.twitter').length + 1;
 	  var uniqId = 'twitter-'+ length;
 	
 	  appendHere(
-		'<div id="'+uniqId+'" class="twitter"><div><input type="text" value="" spellcheck="false" maxlength="15" placeholder="twittername"></div><span class="marker icon-twitter" title="Module"></span><a class="remove" href="#"></a></div>'
+		'<div id="'+uniqId+'" class="twitter"><div><input type="text" value="" spellcheck="false" maxlength="15" placeholder="twittername" class="form-control"></div><span class="marker icon-twitter" title="Module"></span><a class="remove" href="#"></a></div>'
 	  );
 	  
 	  $(editor).respondHandleEvents();
@@ -948,12 +961,12 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle like
-	$(this).find('.editor-menu a.like').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.like').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.like').length + 1;
 	  var uniqId = 'like-'+ length;
-	
+	  
 	  appendHere(
 		'<div id="'+uniqId+'" class="like"><div><em>Facebook Like Button</em></div><span class="marker icon-facebook" title="Module"></span><a class="remove" href="#"></a></div>'
 	  );
@@ -964,8 +977,8 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle comments
-	$(this).find('.editor-menu a.comments').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.comments').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.comments').length + 1;
 	  var uniqId = 'comments-'+ length;
@@ -978,32 +991,16 @@ jQuery.fn.swap = function(b){
 	  
 	  return false;
 	});
-
-	// handle byline
-	$(this).find('.editor-menu a.byline').click(function(){
-      var editor = $(this).parents('#desc').get(0);
-
-	  var length = $(editor).find('.byline').length + 1;
-	  var uniqId = 'byline-'+ length;
-	
-	  appendHere(
-		'<div id="'+uniqId+'" class="byline"><div class="placeholder">By Author on Day, Mon DD at HH:MM AM</div><span class="marker icon-user" title="Module"></span><a class="remove" href="#"></a></div>'
-	  );
-	  
-	  $(editor).respondHandleEvents();
-	  
-	  return false;
-	});
 	
 	// handle files
-	$(this).find('.editor-menu a.file').click(function(){
+	$('.editor-menu a.file').click(function(){
 	  filesDialog.show();
 	  return false;
 	});
 	
 	// handle form
-	$(this).find('.editor-menu a.form').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.form').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.form').length + 1;
 	  var uniqId = 'form-'+ length;
@@ -1019,9 +1016,27 @@ jQuery.fn.swap = function(b){
 	  return false;
 	});
 	
+	// handle shopping cart
+	$('.editor-menu a.cart').click(function(){
+      var editor = $('#desc').get(0);
+
+	  var length = $(editor).find('.form').length + 1;
+	  var uniqId = 'cart-'+ length;
+	  
+	  appendHere(
+		'<div id="'+uniqId+'" class="cart" data-skus=""><input type="button" value="Add SKU" class="secondary-button addSKU"><div>' +
+		'</div><span class="marker" title="Module"><i class="icon-shopping-cart"></i></span><a class="remove" href="#"></a>' + 
+		'</div>'
+	  );
+	  
+	  $(editor).respondHandleEvents();
+	  
+	  return false;
+	});
+	
 	// handle h1 menu item
-	$(this).find('.editor-menu a.h1').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.h1').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.h1').length + 1;
 	  var uniqId = 'h1-'+ length;
@@ -1038,8 +1053,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle h2 menu item
-	$(this).find('.editor-menu a.h2').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.h2').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.h2').length + 1;
 	  var uniqId = 'h2-'+ length;
@@ -1056,8 +1071,8 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle h3 menu item
-	$(this).find('.editor-menu a.h3').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.h3').click(function(){
+      var editor = $('#desc').get(0);
 
 	  var length = $(editor).find('.h3').length + 1;
 	  var uniqId = 'h3-'+ length;
@@ -1074,18 +1089,18 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle cols menu item
-	$(this).find('.editor-menu a.cols').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.cols').click(function(){
+      var editor = $('#desc').get(0);
 	  var length = $(editor).find('.block').length + 1;
 	  var uniqId = 'block-'+ length;
 	
 	  $(editor).append(
-		'<div id="'+uniqId+'" class="block row-fluid">' +
-		  '<div class="col span6 sortable">' +
+		'<div id="'+uniqId+'" class="block row">' +
+		  '<div class="col col-md-6 sortable">' +
 		  '</div>' +
-		  '<div class="col span6 sortable">' +
+		  '<div class="col col-md-6 sortable">' +
 		  '</div>' +
-		'<span class="blockActions"><span>#'+ uniqId + ' .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'
+		'<span class="blockActions"><span>#'+ uniqId + ' .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'
 	  );
 
 	  $('.blockActions').show();
@@ -1094,7 +1109,7 @@ jQuery.fn.swap = function(b){
    
 	  var sortable = $('div.sortable');
 	  
-	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	  
 	  $(editor).respondHandleEvents();
 	  
@@ -1103,8 +1118,8 @@ jQuery.fn.swap = function(b){
 
 	
 	// handle preview
-	$(this).find('.editor-menu a.preview').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.preview').click(function(){
+      var editor = $('#desc').get(0);
 	  
 	  contentModel.preview();
 
@@ -1113,17 +1128,17 @@ jQuery.fn.swap = function(b){
 
 
 	// handle cols73 menu item
-	$(this).find('.editor-menu a.cols73').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.cols73').click(function(){
+      var editor = $('#desc').get(0);
 	  var length = $(editor).find('.block').length + 1;
 	  var uniqId = 'block-'+ length;
 	
-	  var html = '<div id="'+uniqId+'" class="block row-fluid">' +
-			  '<div class="col span9 sortable">' +
+	  var html = '<div id="'+uniqId+'" class="block row">' +
+			  '<div class="col col-md-9 sortable">' +
 			'</div>' +
-			'<div class="col span3 sortable">' +
+			'<div class="col col-md-3 sortable">' +
 			'</div>' +
-		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
+		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1135,7 +1150,7 @@ jQuery.fn.swap = function(b){
    
 	  var sortable = $('div.sortable');
 	  
-	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	  
 	  $(editor).respondHandleEvents();
 	  
@@ -1143,17 +1158,17 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle cols37 menu item
-	$(this).find('.editor-menu a.cols37').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.cols37').click(function(){
+      var editor = $('#desc').get(0);
 	  var length = $(editor).find('.block').length + 1;
 	  var uniqId = 'block-'+ length;
 	
-	  var html = '<div id="'+uniqId+'" class="block row-fluid">' +
-			  '<div class="col span3 sortable">' +
+	  var html = '<div id="'+uniqId+'" class="block row">' +
+			  '<div class="col col-md-3 sortable">' +
 			'</div>' +
-			'<div class="col span9 sortable">' +
+			'<div class="col col-md-9 sortable">' +
 			'</div>' +
-		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
+		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1165,7 +1180,7 @@ jQuery.fn.swap = function(b){
    
 	  var sortable = $('div.sortable');
 	  
-	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	  
 	  $(editor).respondHandleEvents();
 	  
@@ -1173,19 +1188,19 @@ jQuery.fn.swap = function(b){
 	});
 
 	// handle cols333 menu item
-	$(this).find('.editor-menu a.cols333').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.cols333').click(function(){
+      var editor = $('#desc').get(0);
 	  var length = $(editor).find('.block').length + 1;
 	  var uniqId = 'block-'+ length;
 	
-	  var html = '<div id="'+uniqId+'" class="block row-fluid">' +
-			  '<div class="col span4 sortable">' +
+	  var html = '<div id="'+uniqId+'" class="block row">' +
+			  '<div class="col col-md-4 sortable">' +
 			'</div>' +
-			'<div class="col span4 sortable">' +
+			'<div class="col col-md-4 sortable">' +
 			'</div>' +
-			'<div class="col span4 sortable">' +
+			'<div class="col col-md-4 sortable">' +
 			'</div>' +
-		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
+		  '<span class="blockActions"><span>#'+ uniqId + ' .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1197,7 +1212,7 @@ jQuery.fn.swap = function(b){
    
 	  var sortable = $('div.sortable');
 	  
-	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	  
 	  $(editor).respondHandleEvents();
 	  
@@ -1205,21 +1220,21 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle single menu item
-	$(this).find('.editor-menu a.single').click(function(){
-      var editor = $(this).parents('#desc').get(0);
+	$('.editor-menu a.single').click(function(){
+      var editor = $('#desc').get(0);
 	  var length = $(editor).find('.block').length + 1;
 	  var uniqId = 'block-'+ length;
 	
 	  $(editor).append(
-		'<div id="'+uniqId+'" class="block row-fluid"><div class="col span12 sortable"></div>' +
-		 '<span class="blockActions"><span>#'+ uniqId + ' .block.row-fluid</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'
+		'<div id="'+uniqId+'" class="block row"><div class="col col-md-12 sortable"></div>' +
+		 '<span class="blockActions"><span>#'+ uniqId + ' .block.row</span><a class="up" href="#"></a><a class="down" href="#"></a><a class="config-block" href="#"></a><a class="removeBlock" href="#"></a></span></div>'
 	  );
 
 	  $('.blockActions').show();
 	  
 	  currnode = null;
 	  
-	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6'});
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	  
 	  $(editor).respondHandleEvents();
 	  
@@ -1227,13 +1242,13 @@ jQuery.fn.swap = function(b){
 	});
 	
 	// handle list menu item
-	$(this).find('.editor-menu a.list').click(function(){
+	$('.editor-menu a.list').click(function(){
 	  listDialog.show('add', -1);
 	  return false;
 	});
 	
 	// handle featured menu item
-	$(this).find('.editor-menu a.featured').click(function(){
+	$('.editor-menu a.featured').click(function(){
 	  featuredDialog.show();
 	  return false;
 	});
@@ -1507,23 +1522,6 @@ jQuery.fn.swap = function(b){
 
 				newhtml += '</module>';
 			}
-
-			// gallery
-			if($(divs[x]).hasClass('gallery')){
-		  		var id = $(divs[x]).attr('id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  
-		  		var imgs = $(divs[x]).find('span.image img');
-		
-		  		newhtml += '<module id="'+id+'" name="gallery">';
-		  
-		  		for(var y=0; y<imgs.length; y++){
-					var imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-					newhtml += imghtml;
-		  		}
-		  
-		  		newhtml += '</module>';
-			}
 		
 			// list
 			if($(divs[x]).hasClass('list')){
@@ -1589,14 +1587,6 @@ jQuery.fn.swap = function(b){
 			
 				newhtml += '<module id="'+id+'" name="blog"></module>';
 			}
-
-			// byline
-			if($(divs[x]).hasClass('byline')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			
-				newhtml += '<module id="'+id+'" name="byline"></module>';
-			}
 		
 			// hr
 			if($(divs[x]).hasClass('hr')){
@@ -1629,6 +1619,16 @@ jQuery.fn.swap = function(b){
 		  		}
 		  
 		  		newhtml += '</module>';
+			}
+			
+			// cart
+			if($(divs[x]).hasClass('cart')){
+		  		var id= $(divs[x]).attr('id');
+		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		  		
+		  		var skus = $(divs[x]).attr('data-skus');
+		  
+		 		newhtml += '<module id="'+id+'" name="cart" skus="'+skus+'"></module>';
 			}
 		
 			// map
@@ -1668,7 +1668,7 @@ jQuery.fn.swap = function(b){
 	  
 	  	if(id==undefined || id=='')id='undefined';
 	  
-	  	html += '<div id="'+id+'" class="block row-fluid' + cssclass + '">';
+	  	html += '<div id="'+id+'" class="block row' + cssclass + '">';
 	  
 	  	// determine if there are columns
 	  	var cols = $(blocks[y]).find('.col');
@@ -1766,6 +1766,13 @@ jQuery.fn.swap = function(b){
 	  return false;
 	});
 	
+	// add sku
+	$(context).find('input.addSKU').click(function(){
+	  var id = $(this.parentNode).attr('id');
+	  skuDialog.show(id);
+	  return false;
+	});
+	
 	// handle focus
 	$(context).find('div.table td').focus(function(){
 		$(this).addClass('current');
@@ -1823,8 +1830,6 @@ jQuery.fn.swap = function(b){
 
 	$('div.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 	
-	$('div.gallery div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
-	
 	$(context).find('span.caption input').focus(function(){
 	  $(this.parentNode.parentNode).addClass('edit');
 	});
@@ -1846,6 +1851,7 @@ jQuery.fn.swap = function(b){
 	});
 
 	$(context).find('a.remove').click(function(){
+	
 		$(this.parentNode).remove();
 		context.find('a.'+this.parentNode.className).show();
 		currnode = null;
@@ -1924,12 +1930,7 @@ jQuery.fn.swap = function(b){
 		var d = this.parentNode.parentNode;
 		var id = $(d).attr('id');
 
-		if($(this).hasClass('gallery')){
-			imagesDialog.show('gallery', id);
-		}
-		else{
-			imagesDialog.show('slideshow', id);
-		}
+		imagesDialog.show('slideshow', id);
 	});
 	   
 	$(context).find('.config-list').click(function(){

@@ -14,7 +14,7 @@ var blockConfigDialog = {
 
 			var id = jQuery.trim($('#blockId').val());
 			var cssClass = jQuery.trim($('#blockCssClass').val());
-			var cssClass_readable = '.block.row-fluid';
+			var cssClass_readable = '.block.row';
 
 			if(cssClass!=''){
 				cssClass_readable = cssClass_readable + '.' + cssClass;

@@ -39,33 +39,33 @@
 
 		<div class="control-group">
 			<label for="name">Site Name:</label>
-			<input id="name" type="text" value="" placeholder="Site Name">
-			<p class="siteName"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
+			<input id="name" type="text" value="" placeholder="Site Name" class="form-control">
+			<p class="siteName"><?php print APP_URL; ?>sites/<span id="tempUrl" class="temp">your-site</span></p>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
 
 		<p class="createLogin">Create a login</p>
 		
-		<div class="control-group">
+		<div class="form-group">
 			<label for="email">Email:</label>
-			<input id="email" type="text" value="" placeholder="Email">
+			<input id="email" type="text" value="" placeholder="Email" class="form-control">
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 			<label for="password">Password:</label>
-			<input id="password" type="password" placeholder="Password">
+			<input id="password" type="password" placeholder="Password" class="form-control">
 		</div>
 
-		<div class="control-group">
+		<div class="form-group">
 			<label for="retype">&nbsp;</label>
-			<input id="retype" type="password" placeholder="Retype to verify">
+			<input id="retype" type="password" placeholder="Retype Password to verify" class="form-control">
 		</div>
 
 		<p>Key in the passcode</p>
 
-		<div class="control-group">
+		<div class="form-group">
 			<label for="passcode">&nbsp;</label>
-			<input id="passcode" type="text" placeholder="Type the passcode">
+			<input id="passcode" type="text" placeholder="Type the passcode" class="form-control">
 		</div>
 
 		<span class="actions">
@@ -95,7 +95,7 @@
 			You can already view your site here: 
 		</p>
 		<p>	
-			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>/sites/{friendlyId}</a>
+			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>sites/{friendlyId}</a>
 		</p>
 		
 		<p>

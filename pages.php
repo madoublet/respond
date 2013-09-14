@@ -77,141 +77,165 @@
 </section>
 <!-- /.main -->
 
-<div class="modal hide" id="addDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Add <span data-bind="text:typeS"></span></h3>
-  </div>
-  <div class="modal-body">
-  	<form class="form-horizontal">
-	<fieldset>
-	
-	<div class="control-group">
-		<label for="name" class="control-label">Name:</label>
-		<div class="controls">
-			<input id="name" type="text" value="" class="span3" maxlength="255">
-		</div>
-	</div>
-	
-	</fieldset>
-	<fieldset>
-	
-	<div class="control-group">
-		<label for="URL" class="control-label">Friendly URL:</label>
-		<div class="controls">
-			<input id="friendlyId" type="text" maxlength="128" class="span2" value="" placeholder="page-name">
-			<span class="help-block">No spaces, no special characters, dashes allowed.</span>
-		<div>
-	</div>
+<div class="modal fade" id="addDialog">
 
-	</fieldset>
-
-	<fieldset>
-
-	<div class="control-group">
-		<label for="description" class="control-label">Description:</label>
-		<div class="controls">
-			<textarea id="description" class="span3"></textarea>
-		</div>
-	</div>
+	<div class="modal-dialog">
 	
-	</fieldset>
+		<div class="modal-content">
 		
-	</form>
-  </div>
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-    <button class="primary-button" data-bind="click: addPage">Add <span data-bind="text: typeS"></span></button>
-  </div>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Add <span data-bind="text:typeS"></span></h3>
+			</div>
+			<div class="modal-body">
+				
+				<div class="form-group">
+					<label for="name" class="control-label">Name:</label>
+					<input id="name" type="text" value="" maxlength="255" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="URL" class="control-label">Friendly URL:</label>
+					<input id="friendlyId" type="text" maxlength="128" value="" placeholder="page-name" class="form-control">
+					<span class="help-block">No spaces, no special characters, dashes allowed.</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="description" class="control-label">Description:</label>
+					<textarea id="description" class="form-control"></textarea>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: addPage">Add <span data-bind="text: typeS"></span></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="deleteDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Remove <span data-bind="text: typeS"></span></h3>
-  </div>
-  <div class="modal-body">
+<div class="modal fade" id="deleteDialog">
+
+	<div class="modal-dialog">
 	
-	<p>
-		Are you sure that you want to remove <strong id="removeName">this page</strong>?
-	</p>
-	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Remove <span data-bind="text: typeS"></span></h3>
+			</div>
+			<div class="modal-body">
+			
+			<p>
+				Are you sure that you want to remove <strong id="removeName">this page</strong>?
+			</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: removePage">Remove <span data-bind="text: typeS"></span></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
 	</div>
-	<div class="modal-footer">
-		<button class="secondary-button" data-dismiss="modal">Close</button>
-		<button class="primary-button" data-bind="click: removePage">Remove <span data-bind="text: typeS"></span></button>
-	</div>
+	<!-- /.modal-dialog -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="deletePageTypeDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Remove Page Type</h3>
-  </div>
-  <div class="modal-body">
-    
-    <p>
-		Are you sure that you want to remove <strong id="removePageTypeName">this page type</strong>?
-	</p>
+<div class="modal fade" id="deletePageTypeDialog">
+
+	<div class="modal-dialog">
 	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Remove Page Type</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<p>
+					Are you sure that you want to remove <strong id="removePageTypeName">this page type</strong>?
+				</p>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: removePageType">Remove Type</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
 	</div>
-	<div class="modal-footer">
-		<button class="secondary-button" data-dismiss="modal">Close</button>
-    	<button class="primary-button" data-bind="click: removePageType">Remove Type</button>
-	</div>
+	<!-- /.modal-dialog -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="addPageTypeDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3 id="AddEditTitle">Add Page Type</h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="addPageTypeDialog">
 
-  <div class="modal-body">
-
-      <form class="form-horizontal">
-
-		<div class="control-group">
-			<label for="typeS" class="control-label">Name (singular):</label>
-			<div class="controls">
-				<input id="typeS"  value="" maxlength="100">
-				<span class="help-block">e.g.: Page, Blog, Product, etc.</span>
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3 id="AddEditTitle">Add Page Type</h3>
 			</div>
+			<!-- /.modal-header -->
+
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label for="typeS" class="control-label">Name (singular):</label>
+					<input id="typeS"  value="" maxlength="100" class="form-control">
+					<span class="help-block">e.g.: Page, Blog, Product, etc.</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="typeP" class="control-label">Name (Plural):</label>
+					<input id="typeP"  value="" maxlength="100" class="form-control">
+					<span class="help-block">e.g.: Pages, Blogs, Products, etc.</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="typeFriendlyId" class="control-label">Friendly URL:</label>
+					<input id="typeFriendlyId" value="" maxlength="50" class="form-control">
+					<span class="help-block">e.g. http://respondcms.com/[friendly-url]/. Must be lowercase with no spaces.</span>
+				</div>
+			
+			</form>
+			<!-- /.form-horizontal -->
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: addPageType">Add Type</button
+			</div>
+			<!-- /.modal-footer -->
+			
 		</div>
+		<!-- /.modal-content -->
 		
-		<div class="control-group">
-			<label for="typeP" class="control-label">Name (Plural):</label>
-			<div class="controls">
-				<input id="typeP"  value="" maxlength="100">
-				<span class="help-block">e.g.: Pages, Blogs, Products, etc.</span>
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<label for="typeFriendlyId" class="control-label">Friendly URL:</label>
-			<div class="controls">
-				<input id="typeFriendlyId" value="" maxlength="50">
-				<span class="help-block">e.g. http://respondcms.com/[friendly-url]/. Must be lowercase with no spaces.</span>
-			</div>
-		</div>
-
-	</form>
-	<!-- /.form-horizontal -->
-
 	</div>
-	<!-- /.modal-body -->
-
-	<div class="modal-footer">
-		<button class="secondary-button" data-dismiss="modal">Close</button>
-		<button class="primary-button" data-bind="click: addPageType">Add Type</button
-	</div>
+	<!-- /.modal-dialog -->
 
 </div>
 <!-- /.modal -->

@@ -64,51 +64,81 @@
 </section>
 <!-- /.main -->
 
-<div class="modal hide" id="applyDialog">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Apply Template</span></h3>
-    </div>
-    <div class="modal-body">
-    
-    <p>
-    	Are you sure that you want to apply the <strong id="applyName">template</strong> Template?
-    </p>
-    
-    <p>
-        This will completely change the look &amp; feel of your site and remove any custom
-        changes you made to the Layout and Styles of the site.
-    </p>
-    
-    </div>
-    <div class="modal-footer">
-    	<button class="secondary-button" data-dismiss="modal">Close</button>
-    	<button class="primary-button" data-bind="click: applyTemplate">Apply Template</button>
-    </div>
+<div class="modal fade" id="applyDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		        <h3>Apply Template</span></h3>
+		    </div>
+		    <div class="modal-body">
+		    
+		    <p>
+		    	Are you sure that you want to apply the <strong id="applyName">template</strong> Template?
+		    </p>
+		    
+		    <p>
+		        This will completely change the look &amp; feel of your site and remove any custom
+		        changes you made to the Layout and Styles of the site.
+		    </p>
+		    
+		    </div>
+		    <div class="modal-footer">
+		    	<button class="secondary-button" data-dismiss="modal">Close</button>
+		    	<button class="primary-button" data-bind="click: applyTemplate">Apply Template</button>
+		    </div>
+		    <!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="resetDialog">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Reset Template</span></h3>
-    </div>
-    <div class="modal-body">
-    
-    <p>
-        Are you sure that you want to reset the <strong id="resetName">template</strong> Template?
-    </p>
-    
-    <p>
-        This will override any custom changes you made to the Layout or Styles for the site.
-    </p>
-    
-    </div>
-    <div class="modal-footer">
-        <button class="secondary-button" data-dismiss="modal">Close</button>
-    	<button class="primary-button" data-bind="click: resetTemplate">Reset Template</button>
-    </div>
+<div class="modal fade" id="resetDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		        <h3>Reset Template</span></h3>
+		    </div>
+		    <div class="modal-body">
+		    
+		    <p>
+		        Are you sure that you want to reset the <strong id="resetName">template</strong> Template?
+		    </p>
+		    
+		    <p>
+		        This will override any custom changes you made to the Layout or Styles for the site.
+		    </p>
+		    
+		    </div>
+		    <div class="modal-footer">
+		        <button class="secondary-button" data-dismiss="modal">Close</button>
+		    	<button class="primary-button" data-bind="click: resetTemplate">Reset Template</button>
+		    </div>
+		    <!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
 
 </div>
 <!-- /.modal -->

@@ -5,30 +5,30 @@ div.list.has-dropzone{
 }
 
 div.listItem{
-  position: relative;
-  border-bottom: 1px solid #eee;
-  padding: 20px 20px;
-  margin: 0;
+	position: relative;
+	border-bottom: 1px solid #eee;
+	padding: 20px 20px;
+	margin: 0;
 }
 
 div.listItem:last-child{
-  border-bottom: none;
+  	border-bottom: none;
 }
 
 div.listItem h2{
-  line-height: 1em;
-  margin: 0;
-  padding: 0 0 5px 0;
-  font-size: 15px;
-  font-weight: bold;
-  width: 80%;
-  color: #888;
-  background: none;
-  border: none;
+	line-height: 1em;
+	margin: 0;
+	padding: 0 0 5px 0;
+	font-size: 15px;
+	font-weight: bold;
+	width: 80%;
+	color: #888;
+	background: none;
+	border: none;
 }
 
 div.listItem.sortable h2{
-  margin-left: 20px;
+  	margin-left: 20px;
 }
 
 div.listItem h2 a{
@@ -43,55 +43,55 @@ div.listItem h2 small{
 }
 
 div.listItem p{
-  width: 80%;
-  margin: 0;
-  padding: 0 0 2px 0;
+	width: 80%;
+	margin: 0;
+	padding: 0 0 2px 0;
 }
 
 div.listItem p.lastUpdated, div.listItem em{
-  color: #aaa;
-  font-size: 0.85em;
-  font-style: normal;
+	color: #aaa;
+	font-size: 0.85em;
+	font-style: normal;
 }
 
 
 div.placeholder{
-  height: 40px;
-  border: 1px solid #fbec5d !important;
-  background: #fbec5d !important;
+	height: 40px;
+	border: 1px solid #fbec5d !important;
+	background: #fbec5d !important;
 } 
 
 div.listItem.sortable{
-  padding-left: 40px;
+	padding-left: 40px;
 }
 
 div.listItem span.hook{
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  display: block;
-  width: 25px !important;
-  height: 25px !important;
-  background: #f0f0f0 url('../images/app-sprite.png') no-repeat -75px 0;
+	position: absolute;
+	top: 15px;
+	left: 20px;
+	display: block;
+	width: 25px !important;
+	height: 25px !important;
+	background: #f0f0f0 url('../images/app-sprite.png') no-repeat -75px 0;
 }
 
 div.listItem span.hook:hover{
-  cursor: n-resize;
-  background: #f0f0f0 url('../images/app-sprite.png') no-repeat -100px 0;
+	cursor: n-resize;
+	background: #f0f0f0 url('../images/app-sprite.png') no-repeat -100px 0;
 }
 
 div.listItem.has-thumb{
-  min-height: 80px;
+	min-height: 110px;
 }
 
 div.listItem.has-thumb h2, div.listItem.has-thumb p, div.listItem.has-thumb em{
-  margin-left: 90px;
+	margin-left: 90px;
 }
 
 div.listItem span.image{
-  position: absolute;
-  top: 20px;
-  left: 20px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
 } 
 
 div.listItem span.image img{
@@ -100,53 +100,53 @@ div.listItem span.image img{
 }
 
 div.listItem span.icon{
-  position: absolute;
-  top: 15px;
-  left: 60px;
+	position: absolute;
+	top: 15px;
+	left: 60px;
 }
 
 div#pageFileList div.listItem span.icon{
-  left: 15px;
+	left: 15px;
 }
 
 div.listItem a.switchSite{
-  position: absolute;
-  top: 15px;
-  right: 15px;  
-  display: block;
-  width: 20px;
-  height: 50px;
-  border: 1px solid #ccc;
+	position: absolute;
+	top: 15px;
+	right: 15px;  
+	display: block;
+	width: 20px;
+	height: 50px;
+	border: 1px solid #ccc;
 }
 
 div.listItem a.switchSite.selected{
-  background: #fbec5d;
+  	background: #fbec5d;
 }
 
 div.listItem p.size{
-  font-size: 12px;
-  color: #888;
-  line-height: 17px;
+	font-size: 12px;
+	color: #888;
+	line-height: 17px;
 }
 
 div.listItem button{
-  position: absolute;
-  top: 15px;
-  right: 20px;
+	position: absolute;
+	top: 15px;
+	right: 20px;
 }
 
 
 /* begin images */
 div#imageList div.listItem span.field{
-  margin-left: 10px;
+ 	margin-left: 10px;
 }
 
 div#imageList div.listItem span.field input{
-  width: 300px;
+	 width: 300px;
 }
 
 div#imageList div.listItem img{
-  margin-bottom: 10px;
+  	margin-bottom: 10px;
 }
 
 .list-loading, .list-none{
@@ -155,13 +155,13 @@ div#imageList div.listItem img{
 
 /* begin actions */
 div.listItem a.remove{
-  position: absolute;
-  top: 20px;
-  right: 12px;
-  display: inline-block !important;
-  width: 25px !important;
-  height: 25px !important;
-  color: #ccc;
+	position: absolute;
+	top: 20px;
+	right: 12px;
+	display: inline-block !important;
+	width: 25px !important;
+	height: 25px !important;
+	color: #ccc;
 }
 
 div.listItem a.remove:hover{
@@ -171,27 +171,28 @@ div.listItem a.remove:hover{
 
 
 div.listItem span.status{
-  position: absolute;
-  top: 20px;
-  right: 52px;
-  color: #aaa;
-  text-align: right;
-  cursor: pointer;
-  padding: 0;
+	position: absolute;
+	top: 20px;
+	right: 52px;
+	color: #aaa;
+	text-align: right;
+	cursor: pointer;
+	padding: 0;
 }
 
-  div.listItem span.status i.published{
-    color: #7ec57e;
-  }
-
-  div.listItem span.status i.not-published{
-    color: #A4110A;
-  }
-
-  div.listItem span.status.published i.not-published{
-    display: none;
-  }
-
-  div.listItem span.status.not-published i.published{
-    display: none;
-  }
+	div.listItem span.status i.published{
+		color: #7ec57e;
+	}
+	
+	div.listItem span.status i.not-published{
+		color: #A4110A;
+	}
+	
+	div.listItem span.status.published i.not-published{
+		display: none;
+	}
+	
+	div.listItem span.status.not-published i.published{
+		display: none;
+	}
+	

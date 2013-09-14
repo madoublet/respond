@@ -47,7 +47,11 @@
     </nav>
 
     <div class="container">
-	    <textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
+    
+    	<div class="codemirror-block">
+	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
+    	</div>
+    	
 	</div>
     
     <div class="actions">
@@ -57,59 +61,82 @@
 <!-- /.main -->
 
 
-<div class="modal hide" id="addDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Add Layout</h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="addDialog">
 
-  <div class="modal-body">
-
-  <form class="form-horizontal">
-
-	<div class="control-group">
-		<label for="name" class="control-label">Name:</label>
-		<div class="controls">
-			<input id="name" type="text"><span style="font-size: 16px; color: #aaa;">.html</span>
-			<span class="help-block">Lowercase, no spaces</span>
-		</div>
-	</div>
+	<div class="modal-dialog">
 	
-	</form>
-	<!-- /.form-horizontal -->
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>Add Layout</h3>
+			</div>
+			<!-- /.modal-header -->
+
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input id="name" type="text" class="form-control">
+				<span class="help-block">Lowercase, no space, <strong>leave the .html off</strong></span>
+			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: addLayout">Add Layout</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
   </div>
   <!-- /.modal-body -->
-
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-	<button class="primary-button" data-bind="click: addLayout">Add Layout</button>
-  </div>
 
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="removeDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Remove Layout</h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="removeDialog">
 
-  <div class="modal-body">
+	<div class="modal-dialog">
 	
-	<p>
-		Are you sure that you want to delete <strong id="removeName">this layout</strong>?
-	</p>
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>Remove Layout</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+			<p>
+				Are you sure that you want to delete <strong id="removeName">this layout</strong>?
+			</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button class="primary-button" data-bind="click: removeLayout">Remove Layout</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
   </div>
   <!-- /.modal-body -->
-
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-	<button class="primary-button" data-bind="click: removeLayout">Remove Layout</button>
-  </div>
 
 </div>
 <!-- /.modal -->
