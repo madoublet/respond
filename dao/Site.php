@@ -97,7 +97,7 @@ class Site{
             
             $q = "UPDATE Sites SET 
                 	Template= ?
-        			TimeZone = ? WHERE SiteUniqId = ?";
+                	WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $template);
