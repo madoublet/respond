@@ -40,7 +40,7 @@
 		<div class="control-group">
 			<label for="name">Site Name:</label>
 			<input id="name" type="text" value="" placeholder="Site Name" class="form-control">
-			<p class="siteName"><?php print APP_URL; ?>sites/<span id="tempUrl" class="temp">your-site</span></p>
+			<p class="siteName"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
 
@@ -95,7 +95,7 @@
 			You can already view your site here: 
 		</p>
 		<p>	
-			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>sites/{friendlyId}</a>
+			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>/sites/{friendlyId}</a>
 		</p>
 		
 		<p>
