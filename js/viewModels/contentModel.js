@@ -316,8 +316,8 @@ var contentModel = {
 				contentModel.page(page);
 
 				var prefix = '';
-
-				if(page.pageTypeId!='-1'){
+				
+				if(page.pageTypeId()!='-1'){
 					prefix = '../';
 				}
 
