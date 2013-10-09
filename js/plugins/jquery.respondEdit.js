@@ -795,8 +795,7 @@ jQuery.fn.swap = function(b){
 		  '<td contentEditable="true" class="col-2"></td>'+
 		  '</tr></tbody>'+
 		  '</table>'+
-		  '<span class="addColumn"><a class="addColumn btn btn-default">Add Column</a></span>' +
-		  '<span class="addRow"><a class="addRow btn btn-default">Add Row</a></span><span class="marker icon-table"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+		  '<span class="marker icon-table"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
 		  '</div>'
 	  );
 
