@@ -322,7 +322,8 @@ div.block div.i div{
 }
 
 div.block div.i div.img{
-  cursor: pointer;
+  	cursor: pointer;
+  	padding-right: 20px;
 }
 
 div.block div.i div.img img{
