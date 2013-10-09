@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- include styles -->
+<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
@@ -29,7 +30,7 @@
 <!-- begin content -->
 <div class="content">
 
-	<h1>Respond</h1>
+	<h1><?php print BRAND; ?></h1>
 
 	<div id="create-form">
 	
@@ -37,35 +38,35 @@
 		
 		<p>Tell us your site name</p>
 
-		<div class="control-group">
+		<div class="form-group">
 			<label for="name">Site Name:</label>
-			<input id="name" type="text" value="" placeholder="Site Name" class="form-control">
-			<p class="siteName"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
+			<input id="name" type="text" value="" placeholder="Site Name" class="form-control input-lg">
+			<p class="site-name"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
 
-		<p class="createLogin">Create a login</p>
+		<p>Create a login</p>
 		
 		<div class="form-group">
 			<label for="email">Email:</label>
-			<input id="email" type="text" value="" placeholder="Email" class="form-control">
+			<input id="email" type="text" value="" placeholder="Email" class="form-control input-lg">
 		</div>
 		
 		<div class="form-group">
 			<label for="password">Password:</label>
-			<input id="password" type="password" placeholder="Password" class="form-control">
+			<input id="password" type="password" placeholder="Password" class="form-control input-lg">
 		</div>
 
 		<div class="form-group">
 			<label for="retype">&nbsp;</label>
-			<input id="retype" type="password" placeholder="Retype Password to verify" class="form-control">
+			<input id="retype" type="password" placeholder="Retype Password to verify" class="form-control input-lg">
 		</div>
 
 		<p>Key in the passcode</p>
 
 		<div class="form-group">
 			<label for="passcode">&nbsp;</label>
-			<input id="passcode" type="text" placeholder="Type the passcode" class="form-control">
+			<input id="passcode" type="text" placeholder="Type the passcode" class="form-control input-lg">
 		</div>
 
 		<span class="actions">

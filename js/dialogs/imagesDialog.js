@@ -37,7 +37,11 @@ var imagesDialog = {
       
       if(imagesDialog.type=='slideshow'){  // add image (thumb) to slideshow
       
-        var html = '<span class="image"><img id="' + filename + '" src="'+t_src+'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span><a class="remove" href="#"></a></span>';
+        var html = '<span class="image"><img id="' + filename + '" src="'+t_src+'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span><a class="remove icon-minus-sign"></a></span>';
+        
+        html += '<button type="button" class="secondary-button add-image"><i class="icon-picture"></i></button>';
+        
+        $('#desc').find('div#'+imagesDialog.moduleId+' .add-image').remove();
         
         $('#desc').find('div#'+imagesDialog.moduleId+
         ' div').append(
@@ -72,26 +76,26 @@ var imagesDialog = {
     
 		if(position=='left'){
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>';
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config icon-cog"></a>';
 			}
 			else{
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>';
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
 			}
 		}
 		else if(position=='right'){
 			if(href==''){
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>';
+				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config" href="#"></a>';
 			}
 			else{
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>';
+				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
 			}
 		}
 		else{ // for no text
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>'; 
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config icon-cog"></a>'; 
 			}
 			else{
-				html = '<div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove" href="#"></a><a class="config" href="#"></a>'; 
+				html = '<div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'; 
 			}
 		}
 		

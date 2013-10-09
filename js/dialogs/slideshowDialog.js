@@ -17,7 +17,7 @@ var slideshowDialog = {
 
 			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'"><div>' +
 				'<button type="button" class="addImage"></button>' +
-				'</div><span class="marker icon-film" title="Module"></span><a class="remove" href="#"></a>' +
+				'</div><span class="marker icon-film" title="Module"></span><a class="remove icon-remove-sign"></a>' +
 				'<em class="size">'+
 				width + 'px x ' + height + 'px' +
 				'</em>'+

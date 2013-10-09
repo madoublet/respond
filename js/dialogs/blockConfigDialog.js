@@ -23,7 +23,7 @@ var blockConfigDialog = {
 			if(id!=''){
 				$('#'+blockId).attr('id', id); 
 				$('#'+blockId).attr('data-cssclass', cssClass);
-				$('#'+id).find('.blockActions span').text('#'+id+' '+cssClass_readable);
+				$('#'+id).find('.block-actions span').text('#'+id+' '+cssClass_readable);
 			}
 
 			$('#blockConfigDialog').modal('hide');

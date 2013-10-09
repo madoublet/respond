@@ -8,12 +8,17 @@ div.editor{
     position: relative;
 }
 
-div#editor-container{
-	padding-bottom: 100px;
-}
-
 div.editor.container{
     padding-top: 65px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 100px;
+}
+
+div.editor.container .row{
+	margin-right: 0;
+	margin-left: 0;
+	margin-bottom: 20px;
 }
 
 section.main nav.editor-menu{
@@ -80,18 +85,18 @@ a.next, a.previous{
     }
     
 .editor-actions a{
-      display: block;
-      position: relative;
-      float: left;
-      width: 40px; 
-      height: 40px;
-      margin: 5px 1px 5px 0;
-      padding: 0;
-      text-align: center;
-      line-height: 40px;
-      background-color: #ddd !important; 
-      color: #777;
-      font-size: 1.1em !important;
+	display: block;
+	position: relative;
+	float: left;
+	width: 40px; 
+	height: 40px;
+	margin: 5px 1px 5px 0;
+	padding: 0;
+	text-align: center;
+	line-height: 40px;
+	background-color: #ddd !important; 
+	color: #777;
+	font-size: 1.1em !important;
 }
 
     .editor-actions a:hover{
@@ -113,9 +118,9 @@ a.next, a.previous{
     }
 
 div.block{
-  position: relative;
-  min-height: 50px;
-  padding-bottom: 15px;
+	position: relative;
+	min-height: 50px;
+	padding-bottom: 0;
 }
 
 	div.block div.p.align-center div, div.block div.h1.align-center div, div.block div.h2.align-center div, div.block div.h3.align-center div{
@@ -131,474 +136,552 @@ div.block{
 	}
 
 div.block{
-  padding-top: 45px !important;
+	padding-top: 45px !important;
 }
 
 div.block:last-child{
-  border-bottom: none;
+  	border-bottom: none;
 }
 
 div.block div.col{
-  position: relative;
-  padding: 0;
-  margin-bottom: 0;
-  vertical-align: top;
-  min-height: 40px;
-  border-right: 5px solid #aaa;
-  border-left: 5px solid #aaa;
+	position: relative;
+	padding: 10px 0;
+	margin-bottom: 0;
+	vertical-align: top;
+	min-height: 40px;
+	border-right: 5px solid #aaa;
+	border-left: 5px solid #aaa;
+	background-color: #fff;
 }
 
 div.block div.col:empty{
-  background: #888 !important;
-  opacity: 0.9;
+	background: #888 !important;
+	opacity: 0.9;
 }
 
-div.block div.col div{
-  position: relative;
-  margin: 0 !important;
-  padding: 15px 30px;
-  border: 0;
-  font-size: 13px;
-  line-height: 18px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+div.block div.col>div{
+	position: relative;
+	margin: 0 !important;
+	padding: 0 0 2px 0;
+	border: 0;
+	font-size: 13px;
+	line-height: 18px;
+	background: #fff;
 }
 
-    div.block div.col div div{
-        border-bottom: none;    
-    }
+	div.block div.col>div .marker, 
+	div.block div.col>div .marker-field, 
+	div.block div.col>div .remove, 
+	div.block div.col>div .remove-image, 
+	div.block div.col>div .remove-field, 
+	div.block div.col>div .config, 
+	div.block div.col>div .config-plugin{
+		display: none;
+	}
+    
+    	div.block div.col>div:hover .marker, 
+    	div.block div.col>div .field-container:hover .marker-field,
+    	div.block div.col>div:hover .remove, 
+		div.block div.col>div .image:hover .remove-image, 
+    	div.block div.col>div .field-container:hover .remove-field, 
+    	div.block div.col>div:hover .config, 
+    	div.block div.col>div:hover .config-plugin{
+			display: block;
+			z-index: 100;
+		}
 
 div.block div.col div div{
-  margin: 0; padding: 0;
+	margin: 0; padding: 0;
 }
 
 div.block div.col div + div{
-  margin-top: 10px;
+  	margin-top: 10px;
 }
 
-div.block div.col div div[contentEditable=true]{
-  border: 1px solid #fff;
-  margin: 0;
-  padding: 5px;
+div.block div.col>div div[contentEditable=true]{
+	border: 1px solid #fff;
+	margin: 0 10px;
+	padding: 10px;
 }
 
-div.block div.col div div[contentEditable=true]:hover{
-  
+div.block div.col>div:hover div[contentEditable=true]{
+	border: 1px dashed #ddd;
+}
+
+
+div.block div.col div div[contentEditable=true]:focus{
+ 	outline: none !important;
+	border: 1px dashed #3299BB !important;
 }
 
 div.block div.h1 div{
-  font-size: 20px;
-  font-weight: bold;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: "Roboto Condensed", sans-serif;
 }
 
 div.block div.h2 div{
-  font-size: 18px;
-  font-weight: bold;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: "Roboto Condensed", sans-serif;
 }
 
 div.block div.h3 div{
-  font-size: 16px;
-  font-weight: bold;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: "Roboto Condensed", sans-serif;
 }
 
-div.block div.ul div{
-  padding-left: 20px;
-  background: url('../images/menu-sprite.png') no-repeat -5px -152px; /* update */
+div.block div.p div, div.block div[contentEditable=true]{
+	font-size: 15px;
+	line-height: 25px;
+	font-family: "Roboto", sans-serif;
 }
+
+div.block div.ul div[contentEditable=true]{
+	border-top: none !important;
+	border-top: 1px dashed #fff !important;
+}
+
+div.block div.ul:hover div[contentEditable=true]:first-child{
+	border-top: 1px dashed #ddd !important;
+}
+
+	div.block div.ul div{
+		background: url('../images/bullet.png') no-repeat 5px 13px;
+		padding-left: 25px !important;
+	}
 
 /* textareas and textboxes */
 div.block div.twitter, div.block div.map{
-  padding-right: 45px !important;
+	padding: 5px 10px !important;
 }
 
+div.block div.twitter input, div.block div.map input{
+	border: 1px dashed #ddd !important;
+	padding: 10px;
+	outline: none;
+}
+
+	div.block div.twitter input:focus, div.block div.map input:focus{
+		border: 1px dashed #3299BB !important;
+	}
+
 div.block div.html, div.block div.youtube, div.block div.vimeo{
-  padding-right: 40px !important;
+	padding: 5px 10px !important;
 }
 
 div.block div.html textarea, div.block div.youtube textarea, div.block div.vimeo textarea{
-  height: 100px;  
-  border: 1px solid #f0f0f0;
-  width: 100%;
+	box-sizing: border-box;
+	height: 100px; 
+	border: 1px dashed #ddd !important;
+	padding: 10px;
+	width: 100%;
+	outline: none;
 }
 
-/* handle pull quote (pq) */
-div.block div.pq div.content{
-  display: inline-block;
+div.block div.html textarea:focus, div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
+	border: 1px dashed #3299BB !important;
 }
 
-div.block div.pq div.quote{
-  margin: 0;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
+/* facebook, featured, etc */
+div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin{
+	color: #888;
+	padding: 15px 20px 15px 20px !important;
+	font-size: 1.0em !important;
 }
 
+	div.block div.like i, div.block div.comments i,  div.block div.featured i{
+		margin-right: 5px;
+		font-size: 1.1em !important;
+	}
+
+	div.block div.like i, div.block div.comments i{
+		color: #3B5998;
+	}
+
+/* syntax */
+div.block div.syntax{
+	padding: 10px !important;
+}
+
+	div.block div.syntax pre{
+		border-radius: 0;
+	}
+	
 /* handle image */
+div.block div.i{
+	box-sizing: border-box;
+}
+
 div.block div.i div{
-  display: inline-block;
-  vertical-align: top;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
 }
 
 div.block div.i div.img{
   cursor: pointer;
-  width: 20%;
 }
 
 div.block div.i div.img img{
- box-sizing: border-box;
-  max-width: 100%;
-  max-height: 200px;
-  border: 5px solid #f0f0f0;
+	box-sizing: border-box;
+	max-width: 100%;
+	margin: 0 0 5px 0;
+	border-left: 20px solid #fff;
 }
 
 div.block div.i.left div.img, div.block div.i.right div.img{
-  box-sizing: border-box;
-  max-width: 50%;
-  margin: 0;
-  padding: 0;
-  border: 0;
+	width: 50%;
+	margin: 0;
+	padding: 0;
 }
 
 div.block div.i div.content{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 5px 5px !important;
-  width: 80%;
+	margin: 0;
+	width: 48%;
+	box-sizing: border-box;
 }
 
-div.block div a.remove, div.block div a.remove-field{
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: inline-block;
-  width: 25px !important;
-  height: 25px !important;
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -375px -40px;
+div.block div.col>div.i{
 }
+
+div.block div.col>div.i div[contentEditable=true]{
+	margin-right: 0 !important;
+}
+
+div.block div .remove, div.block div .remove-field{
+	position: absolute;
+	top: 0;
+	right: -25px;
+	display: inline-block;
+	width: 25px !important;
+	height: 25px !important;
+	border: none !important;
+	background: #B11623;
+	text-align: center;
+	line-height: 25px;
+	font-size: 1.0em;
+	color: #fff;
+	text-decoration: none;
+}
+
+	div.block div a.remove:hover, div.block div a.remove-field:hover{
+		text-decoration: none;
+	}
 
 div.block div a.config, div.block div a.config-list, div.block div a.config-plugin{
-  position: absolute;
-  top: 25px;
-  right: 0;
-  display: inline-block;
-  width: 25px !important;
-  height: 25px !important;
-  border: none !important;
-  background: url('../images/menu-sprite.png') no-repeat -604px -40px;
+	position: absolute;
+	top: 25px;
+	left: -25px;
+	display: inline-block;
+	width: 25px !important;
+	height: 25px !important;
+	text-align: center;
+	line-height: 25px;
+	border: none !important;
+	color: #fff;
+	background-color: #ccc;
+	font-size: 1.2em;
+	text-decoration: none;
 }
 
 div.block div a.config:hover, div.block div a.config-list:hover, div.block div a.config-plugin:hover{
-  background-color: #ccc;
-}
-
-div.block div a.remove:hover, div.block div a.remove-field:hover{
-  background-color: #B11623;
+	background-color: #aaa;
+	text-decoration: none;
 }
 
 /* begin block actions */
-span.blockActions{
-  position: absolute;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  height: 30px;
-  line-height: 30px;
-  width: 100%;
-  width: calc(100% - 10px);
-  display: inline-block;
-  margin: 0 0 0 5px;
-  text-align: right;
-  color: #fff;
-  background-color: #888;
+span.block-actions{
+	position: absolute;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	height: 30px;
+	width: 100%;
+	line-height: 30px;
+	display: inline-block;
+	margin: 0;
+	text-align: right;
+	color: #fff;
+	background-color: #888;
+	border-left: 5px solid #aaa;
+	border-right: 5px solid #aaa;
 }
 
-span.blockActions span{
-  position: absolute;
-  left: 0;
-  display: inline-block;
-  padding-left: 5px;
+span.block-actions span{
+	position: absolute;
+	left: 0;
+	display: inline-block;
+	padding-left: 5px;
 }
 
 /* begin block actions */
 span.blockActions a{
-  margin-right: 2px;
-  margin-top: 2px;
+	margin-right: 2px;
+	margin-top: 2px;
 }
 
 div.block a.config-block{
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background: url('../images/menu-sprite.png') no-repeat -604px -40px;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
 }
 
-div.block a.config-block:hover{
- background-color: #888;
+	div.block a.config-block:hover{
+		background-color: #ccc;
+	}
+
+div.block a.remove-block, div.block a.up, div.block a.down{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
 }
 
-div.block a.removeBlock{
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background: url('../images/menu-sprite.png') no-repeat -375px -40px;
-}
 
-div.block a.removeBlock:hover{
-  background-color: #B11623;
-}
-
-div.block a.up, div.block a.down{
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-}
-
-div.block a.up{
-  background: url('../images/menu-sprite.png') no-repeat -425px -40px;
-}
-
-div.block a.up.disabled, div.block a.up.disabled:hover{
-  display: none !important;
-}
-
-div.block a.down{
-  background: url('../images/menu-sprite.png') no-repeat -450px -40px;
-}
-
-div.block a.down.disabled, div.block a.down.disabled:hover{
-  display: none !important;
-}
-
-div.block a.up:hover, div.block a.down:hover{
- background-color: #888;
-}
+	div.block a.remove-block:hover{
+		background-color: #B11623;
+	}
+	
+	div.block a.up.disabled, div.block a.up.disabled:hover{
+		display: none !important;
+	}
+	
+	div.block a.down.disabled, div.block a.down.disabled:hover{
+		display: none !important;
+	}
+	
+	div.block a.up:hover, div.block a.down:hover{	
+		background-color: #ccc;
+	}
 
 pre.non-pretty{
-  display: none;
+	display: none;
 }
 
 /* begin markers */
 div.block div span.marker, div.block div span.marker-field{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0;
-  color: #888;
-  font-size: 10px;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  cursor: move;
-  background: #f0f0f0;
-  color: #888;
+	position: absolute;
+	top: 0;
+	left: -25px;
+	padding: 0;
+	color: #888;
+	font-size: 10px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: move;
+	background: #3299BB;
+	color: #fff;
 }
 
 div.date div{
-  vertical-align: middle;
-}
-
-div.block div span.marker-field{
-  border: none !important;
-  background: #f0f0f0;
+	vertical-align: middle;
 }
 
 div.block div span.marker:hover, div.block div span.marker-field:hover{
     background-color: #ccc;
 }
 
-/* sk specific styles */
-div.block div.slideshow div, div.block div.gallery div{
-  min-height: 115px;
+
+/* slideshow */
+div.block div.slideshow{
+	padding: 5px 20px !important;	
 }
 
-div.block div.slideshow div, div.block div.gallery div{
-  vertical-align: top;
+div.block div.slideshow div{
+	min-height: 115px;
+	margin: 0 10px;
+}
+
+div.block div.slideshow div{
+	vertical-align: top;
 }
 
 div.block div.slideshow em.size{
-  position: absolute;
-  display: block;
-  background: #fff;
-  width: 87px;
-  border: 1px solid #fff;
-  top: 103px;
-  left: 30px;
-  color: #888;
-  font-size: 11px;
-  text-align: center;
-  padding: 3px 0;
+	display: none;
 }
 
-div.block div.slideshow button, div.block div.gallery button{
-  vertical-align: top;
-  width: 87px;
-  height: 89px;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat 0 -65px;
-  border: 1px solid #f0f0f0;
-  cursor: pointer;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  border-radius: 0;
+div.block div.slideshow button{
+	vertical-align: top;
+	width: 87px;
+	height: 110px;
+	background: #fff;
+	border: 1px dashed #ccc;
+	cursor: pointer;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	border-radius: 0;
+	box-shadow: none;
 }
 
-div.block div.slideshow button:hover, div.block div.gallery button:hover{
-  border: 1px solid #ccc;
-  background-color: #ccc;
+	div.block div.slideshow button i{
+		color: #aaa;
+	}
+
+div.block div.slideshow button:hover{
+	border: 1px dashed #3299BB;
 }
 
-div.block div.slideshow span.image, div.block div.gallery span.image{
-  display: inline-block;
-  margin: 0 5px 5px 5px;
-  padding: 5px 5px 30px 5px;
-  margin: 0 5px 0 0;
-  border: 1px solid #f0f0f0;
-  background: #f0f0f0;
-  position: relative;
-  vertical-align: top;
-  cursor: move;
+	div.block div.slideshow button:hover i{
+		color: #3299BB;
+	}
+
+div.block div.slideshow span.image{
+	display: inline-block;
+	margin: 0 5px 5px 5px;
+	padding: 5px 5px 30px 5px;
+	margin: 0 5px 0 0;
+	border: 1px solid #f0f0f0;
+	background: #f8f8f8;
+	position: relative;
+	vertical-align: top;
+	cursor: move;
 }
 
-div.block div.slideshow span.image.edit, div.block div.gallery span.image.edit{
-  z-index: 50;
+div.block div.slideshow span.image.edit{
+	z-index: 50;
 }
 
-div.block div.slideshow span.image img, div.block div.gallery span.image img{
-  width: 75px;
-  height: 75px;
+div.block div.slideshow span.image img{
+	width: 75px;
+	height: 75px;
 }
 
-div.block div.slideshow span.image span.caption, div.block div.gallery span.image span.caption{
-  display: block;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
+div.block div.slideshow span.image span.caption{
+	display: block;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
 }
 
-div.block div.slideshow span.image.edit span.caption, div.block div.gallery span.image.edit span.caption{
-  left: -65px;
-  background: #fff;
-  padding: 5px;
-  border: 1px solid #f0f0f0;
+div.block div.slideshow span.image.edit span.caption{
+	left: -65px;
+	background: #fff;
+	padding: 5px;
+	border: 1px solid #f0f0f0;
 }
 
-div.block div.slideshow span.image span.caption input, div.block div.gallery span.image span.caption input{
-  width: 68px;
-  font-size: 10px;
-  margin: 0;
-  border-radius: 0;
+div.block div.slideshow span.image span.caption input{
+	width: 75px;
+	height: 30px;
+	font-size: 11px;
+	margin: 0;
+	border-radius: 0;
+	padding: 2px;
 }
 
-div.block div.slideshow span.image span.caption input:focus, div.block div.gallery span.image span.caption input:focus{
-  width: 200px;
-  font-size: 10px;
+div.block div.slideshow span.image span.caption input:focus{
+	width: 220px;
+	font-size: 10px;
 }
 
-div.block div.slideshow span.editor-highlight, div.block div.gallery span.editor-highlight{
-  display: inline-block;
-  width: 75px;
-  height: 75px;
-  margin: 0 5px;
-  padding: 5px 5px 20px 5px;
-  margin: 0 5px 0 0;
-  border: 1px solid #fbec5d !important;
-  background: #fbec5d !important;
-  vertical-align: top;
+div.block div.slideshow span.editor-highlight{
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+	margin: 0 5px;
+	padding: 5px 5px 20px 5px;
+	margin: 0 5px 0 0;
+	border: 1px solid #fbec5d !important;
+	background: #fbec5d !important;
+	vertical-align: top;
 } 
 
-
-div.block div.slideshow a.caption, div.block div.gallery a.caption{
-  position: absolute;
-  color: #aaa;
-  font-size: 11px;
-  bottom: 2px; left: 24px;
+div.block div.slideshow span.image .remove-image{
+	position: absolute;
+	top: 5px;
+	right: 5px;  
+	width: 25px !important;
+	height: 25px !important;
+	border: none !important;
+	background: #B11623;
+	text-align: center;
+	line-height: 25px;
+	font-size: 1.0em;
+	color: #fff;
+	text-decoration: none;
+	border: none !important;
 }
 
-div.block div.slideshow span.image:hover a.caption, div.block div.gallery span.image:hover a.caption{
-  color: #808080;
-  text-decoration: none;
+div.block div.slideshow span.image .remove-image:hover{
+	background-color: #B11623;
 }
 
-div.block div.slideshow span.image a.remove, div.block div.gallery span.image a.remove{
-  position: absolute;
-  top: 5px;
-  right: 5px;  
-  width: 25px !important;
-  height: 25px !important;
-  border: none !important;
-  background: #f0f0f0 url('../images/menu-sprite.png') no-repeat -375px -40px;
-}
-
-div.block div.slideshow span.image a.remove:hover{
-  background-color: #5a2025;
-}
-
-div.block div.slideshow>div, div.block div.gallery>div{
-  color: #808080;
-  border: none;
+div.block div.slideshow>div{
+	color: #808080;
+	border: none;
 }
 
 /* handle hr */
 div.block div.hr div{
-  padding: 0;
-  border: 0;
-  margin: 0 30px 0 30px;
-  margin-top: 10px;
-  height: 1px !important;
-  border-top: 2px solid #ccc;
+	padding: 0;
+	border: 0;
+	margin: 0 30px 0 30px;
+	margin-top: 10px;
+	height: 1px !important;
+	border-top: 2px solid #ccc;
 }
 
 /* handle map */
 div.block div.map div{
-  color: #808080;
-  border: none;
-  padding-right: 8px;
+	color: #808080;
+	border: none;
+	padding-right: 8px;
 }
 
 /* handle list */
 div.block div.list div{
-  color: #808080;
-  border: none;
-  min-height: 20px;
-  padding-left: 5px !important;
+	color: #808080;
+	border: none;
+	min-height: 20px;
+	padding-left: 5px !important;
 }
 
 div.block div div input[type=text]{
-  border: 1px solid #f0f0f0;
+	border: 1px solid #f0f0f0;
 }
 
 div.block div div input:focus, div.block div div input[type=text]:hover{
-  border: 1px solid #ccc;
+	border: 1px solid #ccc;
 }
 
 div.block div.map div input{
-  width: 100%;
+	width: 100%;
 }
 
 div.block div.twitter div{
-  font-style: italic;
-  color: #808080;
-  border: none;
+	font-style: italic;
+	color: #808080;
+	border: none;
 }
 
 div.block div.twitter div input{
-  width: 100%;
+	width: 100%;
 }
 
-
 div.block div.file div{
-  font-style: italic;
-  color: #808080;
-  border: none;
+	font-style: italic;
+	color: #808080;
+	border: none;
 }
 
 div.block div.file div em{
-  margin: 0 0 5px 0;
-  display: block;
-  font-style: normal;
+	margin: 0 0 5px 0;
+	display: block;
+	font-style: normal;
 }
 
 div.block div.file div .form-control{
@@ -607,7 +690,7 @@ div.block div.file div .form-control{
 }
 
 div.block div.file div input{
-  width: 400px; 
+	width: 400px; 
 }
 
 div.block div.form{
@@ -615,11 +698,11 @@ div.block div.form{
 }
 
 div.block div.form div{
-  color: #808080;
-  border: none;
-  padding: 0;
-  min-height: 0;
-  background: none;
+	color: #808080;
+	border: none;
+	padding: 0;
+	min-height: 0;
+	background: none;
 }
 
 /* cart */
@@ -630,40 +713,38 @@ div.block div.cart input{
 
 /* fields */
 div.block div.form span.editor-highlight{
-  display: inline-block;
-  width: 100%;
-  height: 30px;
-  margin: 0 5px;
-  padding: 0;
-  margin: 0 0 5px 0;
-  border: 1px solid #f0f0f0;
-  border: 1px solid #fbec5d !important;
-  background: #fbec5d !important;
-  vertical-align: top;
+	display: inline-block;
+	width: 100%;
+	height: 30px;
+	margin: 0 5px;
+	padding: 0;
+	margin: 0 0 5px 0;
+	border: 1px solid #f0f0f0;
+	border: 1px solid #fbec5d !important;
+	background: #fbec5d !important;
+	vertical-align: top;
 } 
 
 div.block div.form>div{
-  margin: 0;
-  padding: 0 !important;
+	margin: 0;
+	padding: 0 !important;
 }
 
 div.editor div.form input.positive{
-  margin-left: 40px;
-  margin-top: 0;
+	margin-left: 40px;
+	margin-top: 0;
 }
 
 div.editor div.form{
-  padding: 15px 0 0 0 !important;
+	padding: 15px 0 0 0 !important;
 }
 
 div.editor span.field-container{
-  position: relative;
-  display: block;
-  background: #fff;
-  margin: 0 !important;
-  padding: 5px 0 5px 35px;
-  border-top: 1px solid #eee;
-  background-color: #f8f8f8;
+	position: relative;
+	display: block;
+	background: #fff;
+	margin: 0 !important;
+	padding: 0 20px 10px 20px;
 }
 
     div.editor span.field-container .radio{
@@ -674,142 +755,127 @@ div.editor span.field-container{
         margin-bottom: 15px;
     }
     
-    div.editor .addField{
-        margin: 0 0 15px 35px;
+    div.editor .add-field{
+    	display: block;
+        margin: 10px 20px 5px 20px;
+        padding: 10px 0;
+        background: #fff;
+        color: #888;
+        border: 1px dashed #ccc;
+        box-sizing: border-box;
+        text-align: center;
     }
+    
+    	div.editor .add-field:hover{
+	    	border: 1px dashed #3299BB;
+	    	color: #3299BB;
+	    	text-decoration: none;
+    	}
 
 div.editor span.field-container span.marker-field{
-  font-style: normal; 
-  background-color: #fff;
+	font-style: normal; 
+	background: #3299BB;
+	color: #fff;
 }
 
     div.editor span.field-container span.marker-field i{
-      color: #ccc;
+    	color: #fff;
     }
 
 div.editor span.field{
-  margin: 0;
-  padding: 0;
-}
-
-div.editor span.field-container input, div.editor span.field-container textarea{
-  width: 95%;
+	margin: 0;
+	padding: 0;
 }
 
 div.editor span.list{
-  display: block;
-  width: auto;
+	display: block;
+	width: auto;
 }
 
 div.editor span.list label{
-  display: block;
-  text-align: left;
-  margin: 1px 0 4px 0;
-  padding: 0;
-  width: auto;
+	display: block;
+	text-align: left;
+	margin: 1px 0 4px 0;
+	padding: 0;
+	width: auto;
 }
 
 div.editor span.list label label{
-  display: inline;
+	display: inline;
 }
 
 div.editor span.list label input[type=radio], div.editor span.list label input[type=checkbox]{
-  display: inline-block;
-  width: auto;
-  margin-right: 5px;
+	display: inline-block;
+	width: auto;
+	margin-right: 5px;
 }
 
 div.editor a.configure{
-  margin-left: 5px;
+	margin-left: 5px;
 }
 
-/* handle id editor */
-span.meta{  
-  display: none;
-  padding: 10px;
-  margin: 0;
-  font: 12px "Courier";
-  color: #888;
-  background:#fff;
+/* table */
+div.block div.table{
+	padding: 5px 20px 0 20px !important;
+	width: auto !important;
 }
 
-div.col span.meta{
-  margin-left: -5px;
-  margin-right: -5px;
-}
+	div.block div.table th, div.block div.table td{
+		outline: none;
+		font-size: 1.1em;
+	}
 
-span.meta span{
-  display: inline-block;
-  margin-right: 5px;
-  margin-bottom: -4px;
-  width: 16px;
-  height: 16px;
-}
-
-span.meta input{
-  font: 11px "Courier";
-  width: 100px;
-  border: 1px solid #ddd;
-  margin: 0 2px;
-}
-
-/* begin editableTable */
-div.table{
-  width: auto !important;
-}
 
 div.table table{
-  min-width: 50%;
+	min-width: 50%;
+	margin-bottom: 2px !important;
 }
 
 div.table table.col-2 td{
-  width: 50%;
+	width: 50%;
 }
 
 div.table table.col-3 td{
-  width: 33%;
+	width: 33%;
 }
 
 div.table table.col-4 td{
-  width: 25%;
+	width: 25%;
 }
 
 div.table table.col-5 td{
-  width: 20%;
+	width: 20%;
 }
 
 div.table table.col-6 td{
-  width: 16%;
+	width: 16%;
 }
 
 div.table table.col-7 td{
-  width: 14%;
+	width: 14%;
 }
 
 div.table table.col-8 td{
-  width: 12.5%;
+	width: 12.5%;
 }
 
 div.table table.col-9 td{
-  width: 11%;
+	width: 11%;
 }
 
 div.table table.col-10 td{
-  width: 10%;
+	width: 10%;
 }
 
 div.table table td{
-  margin: 0;
-  padding: 5px 8px;
+	margin: 0;
+	padding: 5px 8px;
 }
 
 div.table table td div{
-  margin: 0;
+	margin: 0;
 }
 
-span.addRow a, span.addColumn a{
-  margin: 10px 10px 0 0;
-}
 
 @media (min-width: 768px){
 
@@ -818,15 +884,16 @@ span.addRow a, span.addColumn a{
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
 
-  div.container-fluid{
-    margin: 10px 0 0 0 !important;
-  }
-
-  div.block{
-    padding-bottom: 5px;
-  }
-
-  div.block div.col{
-    margin-bottom: 10px !important;
-  }
+	div.container-fluid{
+		margin: 10px 0 0 0 !important;
+	}
+	
+	div.block{
+		padding-bottom: 5px;
+	}
+	
+	div.block div.col{
+		margin-bottom: 10px !important;
+	}
+  
 }

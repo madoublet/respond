@@ -51,7 +51,7 @@ var fieldDialog = {
 			}
 
 			if(fieldType=='select'){
-				html += '  <select id="' + id + '">\n';
+				html += '  <select id="' + id + '" class="form-control">\n';
 
 				var arr = options.split(',');
 
@@ -92,7 +92,7 @@ var fieldDialog = {
 
 			html += '</div>';
 
-			html += '<a class="remove-field" href="#"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
+			html += '<a class="remove-field icon-minus-sign"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
 			html += '</span>';
 
 			var formId = fieldDialog.formId;

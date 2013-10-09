@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- include styles -->
+<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
@@ -36,9 +37,9 @@
 			Type your email address and we will send you a link to reset your password.
 		</p>
 
-		<div class="control-group">
+		<div class="form-group">
 			<label for="email">Email:</label>
-			<input id="email" type="text" value="" placeholder="you@yourlogin.com" class="form-control">	
+			<input id="email" type="text" value="" placeholder="you@yourlogin.com" class="form-control input-lg">	
 		</div>
 		
 		<span class="actions">
@@ -51,7 +52,7 @@
 	<fieldset class="reset" data-bind="visible:hasToken()==true">
 		
 		<p>
-			Welcome back <?php print $p->Email; ?>. Type a new password for your account.
+			Welcome back. Type a new password for your account.
 		</p>
 
 		<div class="control-group">
@@ -61,7 +62,7 @@
 		
 		<div class="control-group">
 			<label for="retype">Retype Password:</label>
-			<input id="retype" type="password" placeholder="Retype New Password" class="form-control">
+			<input id="retype" type="password" placeholder="Retype New Password" class="form-control input-lg">
 		</div>
 		
 		<span class="actions">

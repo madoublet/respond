@@ -15,6 +15,7 @@ body{
 	height: 100%;
 	min-height: 100%;
 	width: 100%;
+	font-family: "Roboto", sans-serif;
 }
 
 	body label{
@@ -30,8 +31,9 @@ a{
     background-color: #3299bb;
     border: 2px solid #3299bb;
     border-radius: 20px;
+    font-family: "Roboto Condensed", sans-serif;
     color: #fff;
-    font-size: 0.95em;
+    font-size: 1.15em;
     margin: 0;
     padding: 8px 20px;
     cursor: pointer;
@@ -167,6 +169,8 @@ header{
     }
     
     header li a{
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 16px;
         display: block;
         padding: 15px 15px;
         color: #ccc;
@@ -174,9 +178,10 @@ header{
     }
     
         header li a i{
-            display: inline-block;
+            display: inline-block !important;
             color: #ccc;
             margin-right: 10px;
+            width: 25px !important;
         }
     
         header li.active a{

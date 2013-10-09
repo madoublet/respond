@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- include styles -->
+<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
@@ -22,7 +23,7 @@
 <body>
 	
 <p id="message">
-  <span><?php print $p->Errors; ?></span>
+  <span></span>
   <a class="close" href="#"></a>
 </p>
 		
@@ -35,14 +36,14 @@
 	<fieldset class="login">
 		<p>Enter your email and password to login</p>
 
-		<div class="control-group">
+		<div class="form-group">
 			<label for="email" class="control-label">Email:</label>
-			<input id="email" type="text"  autocomplete="off" placeholder="Enter email" class="form-control">
+			<input id="email" type="text"  autocomplete="off" placeholder="Enter email" class="form-control input-lg">
 		</div>
 		
-		<div class="control-group">
+		<div class="form-group">
 			<label for="password" class="control-label">Password:</label>
-			<input id="password" type="Password" autocomplete="off" placeholder="Enter password" class="form-control">
+			<input id="password" type="Password" autocomplete="off" placeholder="Enter password" class="form-control input-lg">
 		</div>
 		
 		<span class="actions">

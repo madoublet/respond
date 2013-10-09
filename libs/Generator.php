@@ -161,6 +161,7 @@ class Generator
         $content = str_replace('{{type}}', $type, $content);
         $content = str_replace('{{name}}', $page['Name'], $content);
         $content = str_replace('{{description}}', $page['Description'], $content);
+        $content = str_replace('{{synopsis}}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         $content = str_replace('{{keywords}}', $page['Keywords'], $content);
         
         // menus
@@ -346,8 +347,6 @@ class Generator
         //content and synopsis
         $content = str_replace('{{content}}', $p_content, $content);
           
-        $content = str_replace('{{synopsis}}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
-        
         $html = Generator::ParseHTML($site, $page, $content, $preview, $root);
         
         $pageTypeUniqId = '-1';

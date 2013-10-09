@@ -27,10 +27,10 @@ var pluginsDialog = {
                     '<div>'+name+'</div><span class="marker icon-cogs" title="Module"></span>';
 
       if(config=='true'){
-        html +=  '<a class="remove" href="#"></a><a class="config-plugin" href="#"></a></div>';
+        html +=  '<a class="remove icon-minus-sign"></a><a class="config-plugin icon-cog"></a></div>';
       }
       else{
-        html += '<a class="remove" href="#"></a></div>';
+        html += '<a class="remove icon-minus-sign"></a></div>';
       }
 
       $(editor).respondAppend(

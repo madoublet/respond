@@ -3,12 +3,21 @@ html{
 }
 
 body{
-	background-color: #aaa;
+	background-color: #bbb;
 }
 
 img{
 	max-width: 100%;
 }
+
+a{
+	color: #fff;
+	text-decoration: underline;
+}
+
+	a:hover{
+		color: #fff;
+	}
 
 div.content{
 	text-align: center;
@@ -21,9 +30,18 @@ div.content{
 }
 
 div.content h1{
-	font-size: 30px;
-	padding-bottom: 50px;
+	font-family: "Roboto Condensed", sans-serif;
+	font-size: 3.5rem;
+	padding-bottom: 25px;
     color: #777;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+div.content p{
+	font-family: "Roboto", sans-serif;
+	font-size: 1.8rem;
+	text-align: center;
 }
 
 fieldset{
@@ -33,7 +51,7 @@ fieldset{
 	margin: 0 auto;
 }
 
-div.control-group{
+div.form-group{
 	margin: 25px 0 !important;
 }
 
@@ -51,27 +69,18 @@ span.actions{
     width: 410px;
 }
 
-p{
-	text-align: center;
-}
-
-p.demo{
-	color: #ccc;
-	margin-bottom: 50px;
-	padding: 5px 8px;
-	border-radius: 4px;
- 	background-color: rgba(255, 255, 255, .1);
-}
 
 small{
-    color: #888;
+	text-transform: uppercase;
+	margin-top: 50px;
+	padding-bottom: 50px;
+    color: #777;
     display: block;
     text-align: center;
 }
 
 small a{
-    color: #888;
-    text-decoration: underline;
+    color: #777;
 }
 
 p.demo b{
@@ -83,6 +92,21 @@ p.footer{
 	margin: 100px auto;
 	text-align: center;
 }
+
+body p.site-name{
+	margin-top: 10px;
+	font-size: 1em;
+	color: #777;
+	text-transform: uppercase;
+}
+
+	body p.site-name span{
+		font-weight: bold;
+		display: inline-block;
+		padding: 4px 8px;
+		margin: -4px 0 0 2px;
+		background-color: #ddd;
+	}
 
 /* test styles */
 table.test{

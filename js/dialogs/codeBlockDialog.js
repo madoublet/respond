@@ -14,7 +14,7 @@ var codeBlockDialog = {
       var html = '<div id="'+uniqId+'" class="syntax">' +
         '<pre class="prettyprint linenums pre-scrollable">' + code + '</pre>' +
         '<pre class="non-pretty">' + code + '</pre>' +
-        '<span class="marker" title="Code block"></span><a class="remove" href="#"></a></div>';
+        '<span class="marker icon-beer" title="Code block"></span><a class="remove icon-minus-sign"></a></div>';
 
       $(editor).respondAppend(
         html

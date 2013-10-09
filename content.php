@@ -15,6 +15,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- css -->
+<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
 <link type="text/css" href="css/content.css" rel="stylesheet">
@@ -196,32 +197,47 @@
 
 			<div class="modal-body">
 			
-			<div class="form-group">
-				<label for="elementId" class="control-label">Element Id:</label>
-				<input id="elementId" type="text" maxlength="128" value="" class="form-control">
-			</div>
-			
-			<div id="cssClass" class="form-group">
-				<label for="elementCssClass" class="control-label">CSS Class:</label>
-				<input id="elementCssClass" type="text" maxlength="128" value="" class="form-control">
-			</div>
-			
-			<div id="imageOrientation" class="form-group image-config">
-				<label for="elementCssClass">Image Orientation:</label>
-				<select id="imagePosition" class="form-control">
-					<option value="left">Left of the text</option>
-					<option value="right">Right of the text</option>
-					<option value="none">No text</option>
-				</select>
-			</div>
-			
-			<div id="imageLink" class="form-group image-config">
-			  <label for="elementCssClass" class="control-label">Image Link:</label>
-			  <input id="imageLink" type="text" maxlength="512" value="" placeholder="http://" class="form-control">
-			</div>
+				<div class="form-group">
+					<label for="elementId" class="control-label">Element Id:</label>
+					<input id="elementId" type="text" maxlength="128" value="" class="form-control">
+				</div>
+				
+				<div id="cssClass" class="form-group">
+					<label for="elementCssClass" class="control-label">CSS Class:</label>
+					<input id="elementCssClass" type="text" maxlength="128" value="" class="form-control">
+				</div>
+				
+				<!-- image options -->
+				<div id="imageOrientation" class="form-group image-config">
+					<label for="elementCssClass">Image Orientation:</label>
+					<select id="imagePosition" class="form-control">
+						<option value="left">Left of the text</option>
+						<option value="right">Right of the text</option>
+						<option value="none">No text</option>
+					</select>
+				</div>
+				
+				<div id="imageLink" class="form-group image-config">
+				  <label for="elementCssClass" class="control-label">Image Link:</label>
+				  <input id="imageLink" type="text" maxlength="512" value="" placeholder="http://" class="form-control">
+				</div>
+				
+				<!-- table options -->
+				<div class="form-group table-config">
+				  <label for="tableRows" class="control-label">Table Rows:</label>
+				  <input id="tableRows" type="number" class="form-control">
+				</div>
+				
+				<div class="form-group table-config">
+				  <label for="tableColumns" class="control-label">Table Columns:</label>
+				  <input id="tableColumns" type="number" class="form-control">
+				</div>
+				
 			
 			</div>
 			<!-- /.modal-body -->
+			
+			
 			
 			<div class="modal-footer">
 			<button class="secondary-button" data-dismiss="modal">Close</button>
