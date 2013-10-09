@@ -198,7 +198,9 @@ class PageContentResource extends Tonic\Resource {
             Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
             
             $url = '';
-
+            
+			Page::EditTimestamp($page['PageUniqId'], $authUser->UserId);
+			
             if($status=='publish'){
                 if($page['IsActive'] == 1){
                     $url = Publish::PublishPage($page['PageUniqId']);

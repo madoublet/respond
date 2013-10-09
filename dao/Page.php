@@ -113,7 +113,6 @@ class Page{
         } 
 	}
 	
-
 	// edits a page
 	public static function EditImage($pageUniqId, $image, $lastModifiedBy){
 		
@@ -139,6 +138,32 @@ class Page{
             
 		} catch(PDOException $e){
             die('[Page::EditImage] PDO Error: '.$e->getMessage());
+        }
+	}
+	
+	// edits the timestamp for a page
+	public static function EditTimestamp($pageUniqId, $lastModifiedBy){
+		
+        try{
+            
+            $db = DB::get();
+            
+    	    $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE Pages SET
+					LastModifiedBy = ?,
+					LastModifiedDate = ?
+					WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $lastModifiedBy);
+            $s->bindParam(2, $timestamp);
+            $s->bindParam(3, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::EditTimestamp] PDO Error: '.$e->getMessage());
         }
 	}
 

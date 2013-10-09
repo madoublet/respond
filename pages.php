@@ -15,6 +15,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- include css -->
+<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css" rel="stylesheet">
@@ -23,7 +24,7 @@
 
 </head>
 
-<body data-currpage="pages">
+<body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>">
 	
 <p id="message">
   <span>Holds the message text.</span>

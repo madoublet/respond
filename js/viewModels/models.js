@@ -84,7 +84,7 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 	self.isActive = ko.observable(isActive);
 
 	self.friendlyDate = ko.computed(function(){
-		var st = moment(self.lastModifiedDate(), 'YYYY-MM-DD HH:mm:ss');
+		var st = moment.utc(self.lastModifiedDate(), 'YYYY-MM-DD HH:mm:ss');
 		return st.fromNow(); 
 	});
 
