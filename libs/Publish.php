@@ -282,7 +282,7 @@ class Publish
 		$pageType = PageType::GetByPageTypeId($pageTypeId);
 		
 		// generate rss
-		$rss = Generator::GenerateRSS($site, $pageType);
+		$rss = Utilities::GenerateRSS($site, $pageType);
 		
 		Utilities::SaveContent($dest.'/data/', strtolower($pageType['TypeP']).'.xml', $rss);
 	}
@@ -295,7 +295,7 @@ class Publish
 		$dest = $root.'sites/'.$site['FriendlyId'];
 		
 		// generate default site map
-		$content = Generator::GenerateSiteMap($site);
+		$content = Utilities::GenerateSiteMap($site);
 		
 		Utilities::SaveContent($dest.'/', 'sitemap.xml', $content);
 	}
@@ -396,7 +396,7 @@ class Publish
         $preview = false;
 		
 		// run the content through the parser
-		$content = Generator::ParseHTML($site, $page, $content, $preview, $root);
+		$content = Utilities::ParseHTML($site, $page, $content, $preview, $root);
 		
 		// create fragment
 		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';
@@ -446,7 +446,7 @@ class Publish
 			}
 		
 			// generate default
-			$html = Generator::GeneratePage($site, $page, $siteurl, $imageurl, $preview, $root);
+			$html = Utilities::GeneratePage($site, $page, $siteurl, $imageurl, $preview, $root);
             
             if($preview == true){
                  $s_dest = $dest.'preview/';

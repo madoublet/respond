@@ -27,7 +27,6 @@
 	include 'libs/AuthUser.php';
 	include 'libs/simple_html_dom.php';
 	require "libs/lessc.inc.php";
-	include 'libs/Generator.php';
 	include 'libs/Publish.php';
 	include 'libs/PasswordHash.php';
 	
