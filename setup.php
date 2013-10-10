@@ -5,29 +5,30 @@
 	define('DB_NAME', 'respond');
 	define('DB_USER', 'dbuser');
 	define('DB_PASSWORD', 'dbpass');
-	
+
 	// app URL
 	define('APP_URL', 'http://path.torespond.com');
-	
+
 	// site admin
 	define('SITE_ADMIN', '');
-	
+
 	// passcode
 	define('PASSCODE', 'iloverespond');
-	
+
 	// CORS
 	define ('CORS', serialize (array (
 	    'http://path.torespond.com'
 	    )));
-	    
+
 	// Google Maps API Key
 	define('GOOGLE_MAPS_API_KEY', 'YOUR_API_KEY');
 	
 	// the brand of your app
-    define('BRAND', 'Respond');
+    define('BRAND', 'Respond CMS');
     define('COPY', 'Version 2.0.  Made by <a href="http://matthewsmith.com">Matthew Smith</a> in Manchester, MO');
 	
 	# libraries
+	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700');
 	define('BOOTSTRAP_CSS', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
 	define('BOOTSTRAP_AMELIA_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/amelia/bootstrap.min.css');
 	define('BOOTSTRAP_CERULEAN_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/cerulean/bootstrap.min.css');
