@@ -4,6 +4,7 @@ var scriptsModel = {
     files: ko.observableArray([]),
     content: ko.observable(''),
     cm: null,
+    hasFile: ko.observable(false),
     
     current: null,
     toBeRemoved: null,
@@ -44,6 +45,7 @@ var scriptsModel = {
 				}
                 
                 if(current!=null){
+                	scriptsModel.hasFile(true);
                     scriptsModel.updateContent(current);
                 }
                 
@@ -77,6 +79,8 @@ var scriptsModel = {
     		        scriptsModel.cm.setValue(data);   
 			    }
             
+                scriptsModel.hasFile(true);
+				
             }
 		});
         
@@ -113,6 +117,8 @@ var scriptsModel = {
     addScript:function(o, e){
         
         var name = jQuery.trim($('#name').val());
+        
+        name = global.replaceAll(name, '.js', '');
     		
 		if(name==''){
 			message.showMessage('error', 'A name is required to add a script');

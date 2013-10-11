@@ -112,12 +112,14 @@ var layoutModel = {
     addLayout:function(o, e){
         
         var name = jQuery.trim($('#name').val());
+        
+        name = global.replaceAll(name, '.html', '');
     		
 		if(name==''){
 			message.showMessage('error', 'A name is required to add a layout');
 			return false;
 		}
-        
+		
         $.ajax({
             url: 'api/layout/add',
         	type: 'POST',

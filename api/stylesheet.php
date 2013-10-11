@@ -21,7 +21,7 @@ class StylesheetAddResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site->FriendlyId.'/templates/'.$site->Template.'/less/';
+            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/less/';
             
             $file = $directory.$name.'.less';
 

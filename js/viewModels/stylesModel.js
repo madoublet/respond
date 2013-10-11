@@ -113,6 +113,8 @@ var stylesModel = {
     addStylesheet:function(o, e){
         
         var name = jQuery.trim($('#name').val());
+        
+        name = global.replaceAll(name, '.less', '');
     		
 		if(name==''){
 			message.showMessage('error', 'A name is required to add a stylesheet');

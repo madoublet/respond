@@ -48,7 +48,7 @@
     </nav>
 
     <div class="container">
-    	<div class="codemirror-block">
+    	<div class="codemirror-block" data-bind="visible: hasFile">
 	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
     	</div>
 	</div>

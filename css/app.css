@@ -18,9 +18,17 @@ body{
 	font-family: "Roboto", sans-serif;
 }
 
+	body p, body label, body li, body input, body select{
+		font-family: "Roboto", sans-serif;
+	}
+
 	body label{
 		font-weight: normal;
 	}
+	
+	body h1, body h2, body h3{
+    	font-family: "Roboto Condensed", sans-serif;
+    }
 
 a{
 	cursor: pointer;
@@ -79,7 +87,7 @@ body .modal-header{
 	body .modal-header h3{
 		padding-top: 0;
 		margin-top: 10px;
-		font-size: 1.2em;
+		font-size: 1.4em;
 	}
 	
 	body .modal-header .close{
@@ -264,6 +272,7 @@ section.main nav{
         display: inline-block;
         text-align: center;
         height: 50px;
+        line-height: 50px;
     }
     
         section.main nav li.root a{
@@ -291,6 +300,10 @@ section.main nav{
         section.main nav li.root a{
             padding: 0 15px;
         }
+        
+        section.main nav li.add{
+	     	padding: 0 0 0 10px;   
+        } 
         
         section.main nav li.add i{
             display: inline-block;
