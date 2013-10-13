@@ -228,7 +228,7 @@
 			
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addPageType">Add Type</button
+				<button class="primary-button" data-bind="click: addPageType">Add Type</button>
 			</div>
 			<!-- /.modal-footer -->
 			
