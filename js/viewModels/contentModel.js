@@ -396,9 +396,8 @@ var contentModel = {
                         'isImage': data[x].isImage,
                         'width': data[x].width,
                         'height': data[x].height
-    				}
+    				};
                 
-            
 					contentModel.images.push(image); 
 				}
                 
@@ -436,8 +435,7 @@ var contentModel = {
                         'isImage': data[x].isImage,
                         'width': data[x].width,
                         'height': data[x].height
-    				}
-                
+    				};
             
 					contentModel.files.push(file); 
 				}
@@ -466,9 +464,8 @@ var contentModel = {
     				var icon = {
         			    'icon': 'icon-'+data.icons[x]['id'],
                         'name': data.icons[x]['name']
-    				}
+    				};
                 
-            
 					contentModel.icons.push(icon); 
 				}
                 

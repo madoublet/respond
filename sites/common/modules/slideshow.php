@@ -7,7 +7,10 @@
 
 <div id="<?php print $id; ?>" class="carousel slide" data-width="<?php print $width; ?>" data-height="<?php print $height; ?>"  style="max-width: <?php print $width; ?>px">
 	<div class="carousel-inner">
-		<?php foreach($imgHtml->find('img') as $img){ ?>
+		<?php 
+			if($imgHtml)
+			
+				foreach($imgHtml->find('img') as $img){ ?>
 			<div class="item<?php if($img_count==0){print ' active';}?>">	
 				<img class="sliderImage" src="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>">
 				<?php if(empty($img->title)==false){?>
@@ -17,8 +20,10 @@
 				<?php } ?>
 			</div>
 		<?php 
-			$img_count = $img_count+1;
-		} ?>
+					$img_count = $img_count+1;
+				} 
+			
+			}?>
 	</div>
 	<!-- /.carousel-inner -->
 

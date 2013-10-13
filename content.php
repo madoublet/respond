@@ -156,7 +156,7 @@
 			</div>
 			
 			<div class="form-group">
-			  <label for="slideShowHeight" class="control-label">Target Width:</label>
+			  <label for="slideShowHeight" class="control-label">Target Height:</label>
 			  <input id="slideShowHeight" type="number" value="768" class="form-control">
 			  <span class="help-block">In Pixels</span>
 			</div>

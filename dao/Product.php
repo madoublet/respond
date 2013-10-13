@@ -4,7 +4,7 @@
 class Product{
 	
 	// adds a pageType
-    public static function Add($sku, $description, $price, $currency, $quantity, $shippingType, $shippingRate, $downloadUrl $createdBy){
+    public static function Add($sku, $description, $price, $currency, $quantity, $shippingType, $shippingRate, $downloadUrl, $createdBy){
 		   
         try{
             

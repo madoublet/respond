@@ -57,9 +57,8 @@ var filesModel = {
                         'isImage': data[x].isImage,
                         'width': data[x].width,
                         'height': data[x].height
-    				}
+    				};
                 
-            
 					filesModel.files.push(file); 
 				}
                 

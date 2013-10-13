@@ -226,6 +226,10 @@ section.main{
     body.show-nav section{
         width: 80%;
     }
+    
+    section.main table{
+	    margin-top: 20px;
+    }
 
 
 /* nav */

@@ -6,8 +6,6 @@ var dialog = {
 	$('.dialog').hide();
   	
     var left = ($(window).width()-80)/2;  // set left
-    var w_width = $(window).width();
-    var w_height = $(window).height();
 
     left -= $('#'+reference).width()/2;
     
@@ -41,8 +39,6 @@ var dialog = {
 
   recenter:function(reference){
     var left = ($(window).width()-80)/2;  // set left
-    var w_width = $(window).width();
-    var w_height = $(window).height();
 
     left -= $('#'+reference).width()/2;
     

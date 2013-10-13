@@ -72,7 +72,7 @@ var settingsModel = {
             return;
         }
         
-        message.showMessage('progress', 'Generating file...')
+        message.showMessage('progress', 'Generating file...');
    
         $.ajax({
             url: 'api/site/verification/generate',

@@ -60,7 +60,7 @@ var elementConfigDialog = {
 					for(var x=0; x<trs.length; x++){
 						
 						// add columns
-						for(y=0; y<toBeAdded; y++){
+						for(var y=0; y<toBeAdded; y++){
 							if(trs[x].parentNode.nodeName=='THEAD'){
 								$(trs[x]).append('<th contentEditable="true"></th>');
 							}

@@ -54,7 +54,7 @@
 	</div>
     
     <div class="actions">
-        <button class="primary-button" data-bind="click: save">Save</button
+        <button class="primary-button" data-bind="click: save">Save</button>
     </div>
 </section>
 <!-- /.main -->

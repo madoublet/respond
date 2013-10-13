@@ -22,7 +22,7 @@ var pluginsDialog = {
       var name = plugin.attr('data-name');
       var type = plugin.attr('data-type');
       var render = plugin.attr('data-render');
-      var config = plugin.attr('data-config')
+      var config = plugin.attr('data-config');
       var html = '<div id="'+uniqId+'" data-type="'+type+'" data-name="'+name+'" data-render="'+render+'" data-config="'+config+'" class="plugin">' +
                     '<div>'+name+'</div><span class="marker icon-cogs" title="Module"></span>';
 

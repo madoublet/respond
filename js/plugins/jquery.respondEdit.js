@@ -59,6 +59,7 @@ jQuery.fn.swap = function(b){
         	   '<a class="cols73 icon-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
         	   '<a class="cols37 icon-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
         	   '<a class="cols333 icon-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
+        	   '<a class="cols425 icon-columns" title="Add a 25/25/25/25 Column Layout"><small>4*25</small></a>' +
         	   '<a class="load icon-circle-arrow-up" title="Load New Layout"></a></div></div>';
     menu += '<a class="next fs-next"><i class="icon-chevron-right"></i></a>';
     menu += '<a class="previous fs-prev"><i class="icon-chevron-left"></i></a>';
@@ -83,15 +84,17 @@ jQuery.fn.swap = function(b){
   		function parseModules(node){
 			var children = $(node).children();
 			var response = '';
+			
 
-			for(x=0; x<children.length; x++){
+			for(var x=0; x<children.length; x++){
 		  		var node = children[x];
+		  		var cssclass = '';
 		 
 		  	if(node.nodeName=='P'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='p-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 				
 				var alignclass = '';
 				
@@ -115,8 +118,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='TABLE'){
 	            var id = $(node).attr('id');
 	            if(id==undefined || id=='')id='h1-'+parseInt(new Date().getTime() / 1000);
-	            var cssclass = $(node).attr('class');
-	            if(cssclass==undefined || cssclass=='')cssclass='';
+	            cssclass = $(node).attr('class');
+	            if(cssclass==undefined) cssclass='';
 
 	            var columns = $(node).attr('data-columns');
 
@@ -167,8 +170,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='BLOCKQUOTE'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='bq-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 			
 				response+= '<div id="'+id+'" class="q" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 					'<div class="content" contentEditable="true">' + $(node).html() + '</div>' +
@@ -181,8 +184,8 @@ jQuery.fn.swap = function(b){
 				var lis = $(node).children();
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='ul-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 			
 				response+= '<div id="'+id+'" class="ul" data-id="'+id+'" data-cssclass="'+cssclass+'">';
 			
@@ -198,8 +201,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='H1'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='h1-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 				
 				var alignclass = '';
 				
@@ -221,8 +224,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='HR'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='hr-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-			  	if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+			  	if(cssclass==undefined) cssclass='';
 			  	response+= '<div id="'+id+'" class="hr icon-minus" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 					'<div></div>' +
 					'<span class="marker"></span>' +
@@ -233,8 +236,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='H2'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='h2-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 				
 				var alignclass = '';
 				
@@ -256,8 +259,8 @@ jQuery.fn.swap = function(b){
 		  	if(node.nodeName=='H3'){
 		  		var id = $(node).attr('id');
 		  		if(id==undefined || id=='')id='h3-'+parseInt(new Date().getTime() / 1000);
-				var cssclass = $(node).attr('class');
-				if(cssclass==undefined || cssclass=='')cssclass='';
+				cssclass = $(node).attr('class');
+				if(cssclass==undefined) cssclass='';
 				
 				var alignclass = '';
 				
@@ -387,7 +390,7 @@ jQuery.fn.swap = function(b){
 		}
 		  
 	  	if(node.nodeName=='MODULE'){
-			var name = $(node).attr('name');
+			var name = $(node).attr('name') || '';
 			var id = $(node).attr('id');
 			
 			if(id==undefined || id=='')id='s-'+parseInt(new Date().getTime() / 1000);
@@ -687,7 +690,7 @@ jQuery.fn.swap = function(b){
 		  var cssclass = el.attr('data-cssclass');
 		  cssclass = global.replaceAll(cssclass, 'align-left', ''); // replace other alignments
 		  cssclass = global.replaceAll(cssclass, 'align-right', '');
-		  cssclass = cssclass = global.replaceAll(cssclass, 'align-center', '');
+		  cssclass = global.replaceAll(cssclass, 'align-center', '');
 		  cssclass += ' '+alignclass;
 		  cssclass = $.trim(cssclass);
 		  
@@ -1212,6 +1215,40 @@ jQuery.fn.swap = function(b){
 	  return false;
 	});
 	
+	// handle cols425 menu item
+	$('.editor-menu a.cols425').click(function(){
+      var editor = $('#desc').get(0);
+	  var length = $(editor).find('.block').length + 1;
+	  var uniqId = 'block-'+ length;
+	
+	  var html = '<div id="'+uniqId+'" class="block row">' +
+			  '<div class="col col-md-3 sortable">' +
+			'</div>' +
+			'<div class="col col-md-3 sortable">' +
+			'</div>' +
+			'<div class="col col-md-3 sortable">' +
+			'</div>' +
+			'<div class="col col-md-3 sortable">' +
+			'</div>' +
+		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+	  
+	  $(editor).append(
+		html
+	  );
+
+	  $('.block-actions').show();
+	  
+	  currnode = null;
+   
+	  var sortable = $('div.sortable');
+	  
+	  $('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
+	  
+	  $(editor).respondHandleEvents();
+	  
+	  return false;
+	});
+	
 	// handle single menu item
 	$('.editor-menu a.single').click(function(){
       var editor = $('#desc').get(0);
@@ -1460,7 +1497,7 @@ jQuery.fn.swap = function(b){
 					dir = 'r';
 				}
 				else if($(divs[x]).hasClass('left')){
-					dir = 'l'
+					dir = 'l';
 				}
 		  
 				var constraints = '';
@@ -1796,7 +1833,7 @@ jQuery.fn.swap = function(b){
 
 		var html = '<tr>';
 
-		for(x=0; x<cols; x++){
+		for(var x=0; x<cols; x++){
 			html += '<td contentEditable="true"></td>';
 		}
 
@@ -1872,7 +1909,7 @@ jQuery.fn.swap = function(b){
 		var id = $(this.parentNode).attr('data-id');
 		var cssClass = $(this.parentNode).attr('data-cssclass');
 		
-		elementConfigDialog.show(moduleId, id, cssClass)
+		elementConfigDialog.show(moduleId, id, cssClass);
 
 		currnode = null;
 		return false;
@@ -1965,7 +2002,7 @@ jQuery.fn.swap = function(b){
 	 
 	$(context).find('[contentEditable=true]').keydown(function(event){
 	
-		var editor = $('#desc').get(0)
+		var editor = $('#desc').get(0);
 		
 		var el = $(this).parents('div')[0];
 	 
@@ -1986,7 +2023,7 @@ jQuery.fn.swap = function(b){
 		
 				var html = '<tr>';
 		
-				for(x=0; x<cols; x++){
+				for(var x=0; x<cols; x++){
 					html += '<td contentEditable="true"></td>';
 				}
 		
@@ -2064,7 +2101,7 @@ jQuery.fn.swap = function(b){
    
 	var desc = '';
 	
-	for(x=0; x<divs.length; x++){
+	for(var x=0; x<divs.length; x++){
 	  desc += jQuery.trim($(divs[x]).find('div').text());
 	}
   
@@ -2082,12 +2119,12 @@ jQuery.fn.swap = function(b){
 	var imgs = $(this).find('div.block .img img');
    
 	if(imgs.length==0){
-	  var imgs = $(this).find('div.block span.image img');
+	  imgs = $(this).find('div.block span.image img');
 	}
 	
 	var image = '';
 	
-	if(imgs.length>0){
+	if(imgs && imgs.length>0){
 	    var parts = imgs[0].src.split('/');
         
         if(parts.length>0){
