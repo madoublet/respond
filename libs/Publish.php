@@ -71,14 +71,10 @@ class Publish
 			$type = $item['type'];
 
 			$p_src = $root.'plugins/'.$type.'/deploy';
-			
-			print $p_src;
 
 			if(file_exists($p_src)){
 
 				$p_dest = $root.'sites/'.$site['FriendlyId'].'/plugins/'.$type;
-				
-				print 'dest=.'.$p_dest;
 
 				if(!file_exists($p_dest)){
 					mkdir($p_dest, 0755, true);	
