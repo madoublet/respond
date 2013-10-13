@@ -70,7 +70,7 @@ class Publish
 		foreach($data as &$item) {
 			$type = $item['type'];
 
-			$p_src = 'plugins/'.$type.'/deploy';
+			$p_src = $root.'plugins/'.$type.'/deploy';
 
 			if(file_exists($p_src)){
 
