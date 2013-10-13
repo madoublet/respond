@@ -61,7 +61,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		$json = file_get_contents('../plugins/plugins.json');
@@ -77,7 +77,7 @@ class Publish
 				$p_dest = $root.'sites/'.$site['FriendlyId'].'/plugins/'.$type;
 
 				if(!file_exists($p_dest)){
-					mkdir($p_dest, 0777, true);	
+					mkdir($p_dest, 0755, true);	
 				}
 
 				Utilities::CopyDirectory($p_src, $p_dest);
@@ -95,7 +95,7 @@ class Publish
 		$dest = $root.'sites/'.$site['FriendlyId'].'/templates/'.$template.'/';
 
 		if(!file_exists($template_dir)){
-			mkdir($template_dir, 0777, true);	
+			mkdir($template_dir, 0755, true);	
 		}
 
 		Utilities::CopyDirectory($src, $dest);
@@ -112,7 +112,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		// copies a directory
@@ -130,7 +130,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		// copies a directory
@@ -147,7 +147,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		// copies a directory
@@ -169,7 +169,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		// copies a directory
@@ -192,7 +192,7 @@ class Publish
 		
 		// create dir if it doesn't exist
 		if(!file_exists($dest)){
-			mkdir($dest, 0777, true);	
+			mkdir($dest, 0755, true);	
 		}
 		
 		// copies a directory
@@ -312,7 +312,7 @@ class Publish
 
 	    // create css directory (if needed)
 	    if(!file_exists($cssDir)){
-			mkdir($cssDir, 0777, true);	
+			mkdir($cssDir, 0755, true);	
 		}
 
 	    if(file_exists($lessFile)){
@@ -367,7 +367,7 @@ class Publish
 		$dir = $root.'sites/'.$siteFriendlyId.'/fragments/'.$status.'/';
 
 		if(!file_exists($dir)){
-			mkdir($dir, 0777, true);	
+			mkdir($dir, 0755, true);	
 		}
 		
 		// create fragment
@@ -382,7 +382,7 @@ class Publish
 		$dir = $root.'sites/'.$site['FriendlyId'].'/fragments/render/';
 
 		if(!file_exists($dir)){
-			mkdir($dir, 0777, true);	
+			mkdir($dir, 0755, true);	
 		}
 		
 		// get content from published fragment
