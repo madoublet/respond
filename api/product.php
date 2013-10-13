@@ -29,7 +29,7 @@ class ProductAddResource extends Tonic\Resource {
             $pageUniqId = $request['pageUniqId'];
             $cartId = $request['cartId'];
         
-            $product = Product::Add($sku, $description, $price, $currency, $quantity, $shippingType, $shippingRate, $downloadUrl $authUser->UserId);
+            $product = Product::Add($sku, $description, $price, $currency, $quantity, $shippingType, $shippingRate, $downloadUrl, $authUser->UserId);
             
             // #todo: add to page
             // $page = Page::GetByPageUniqId($pageUniqId);
