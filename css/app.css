@@ -119,6 +119,7 @@ header{
 	-o-transition: .2s all ease;    
 	-ms-transition: .2s all ease;
 	transition: .2s all ease;
+	overflow: auto;
 }
     
     header .signout, header .files, header .republish, header .switch{
