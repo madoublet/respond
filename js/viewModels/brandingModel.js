@@ -119,7 +119,7 @@ var brandingModel = {
                         'isImage': data[x].isImage,
                         'width': data[x].width,
                         'height': data[x].height
-    				}
+    				};
                 
             
 					brandingModel.images.push(image); 
