@@ -9,4 +9,4 @@ View our documentation at: http://respondcms.com/page/documentation
 
 Our current version is 2.2.
 
-See whats new in the Ocutober 2013 update:  http://respondcms.com/update/october-2013
+See whats new in the October 2013 update:  http://respondcms.com/update/october-2013
