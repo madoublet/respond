@@ -35,10 +35,6 @@ section.main nav.editor-menu{
 	transition: .2s all ease;
 }
 
-    body.show-nav section.main nav.editor-menu{
-        width: 80%;
-    }
-
 .editor-actions{
     margin: 0 110px 0 55px;
     height: 50px;
@@ -175,6 +171,7 @@ div.block div.col>div{
 	div.block div.col>div .remove-image, 
 	div.block div.col>div .remove-field, 
 	div.block div.col>div .config, 
+	div.block div.col>div .config-list, 
 	div.block div.col>div .config-plugin{
 		display: none;
 	}
@@ -184,6 +181,7 @@ div.block div.col>div{
     	div.block div.col>div:hover .remove, 
 		div.block div.col>div .image:hover .remove-image, 
     	div.block div.col>div .field-container:hover .remove-field, 
+    	div.block div.col>div:hover .config-list, 
     	div.block div.col>div:hover .config, 
     	div.block div.col>div:hover .config-plugin{
 			display: block;
@@ -285,7 +283,7 @@ div.block div.html textarea:focus, div.block div.youtube textarea:focus, div.blo
 }
 
 /* facebook, featured, etc */
-div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin{
+div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list{
 	color: #888;
 	padding: 15px 20px 15px 20px !important;
 	font-size: 1.0em !important;
@@ -817,7 +815,7 @@ div.editor a.configure{
 
 /* table */
 div.block div.table{
-	padding: 5px 20px 0 20px !important;
+	padding: 0 20px 10px 20px !important;
 	width: auto !important;
 }
 
