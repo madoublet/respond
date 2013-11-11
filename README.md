@@ -23,15 +23,20 @@ New in 2.4:
 How to Update from 2.3:
 - Pull latest version, does require updates to Setup.php to merge your version with the new version
 - In Sites table, change TimeZone to varchar(50), update field to your default timezone (e.g. America/Chicago).  See http://php.net/manual/en/timezones.php.
-    
+
+```    
     ALTER TABLE Sites MODIFY TimeZone varchar(50)
     UPDATE Sites SET TimeZone = 'America/Chicago'
+```
 
 - In Sites table, add column Type varchar(25) with a default of "Non-Subscription"
 
+```
     ALTER TABLE Sites ADD COLUMN Type varchar(25) NOT NULL DEFAULT 'Non-Subscription' AFTER LastLogin
+```
 
 - In Sites table, add column CustomerId varchar(256) with a default of NULL
-	
+
+```	
     ALTER TABLE Sites ADD COLUMN CustomerId varchar(256) DEFAULT NULL AFTER Type
-    
+``` 
