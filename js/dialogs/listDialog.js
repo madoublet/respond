@@ -30,7 +30,7 @@ var listDialog = {
 		  html += ' data-orderby="'+$('#listOrderBy').val()+'"';
 		  html += ' data-pageresults="'+$('#listPageResults').is(':checked')+'"';
 		  html += ' data-desclength="'+$('#listDescLength').val()+'"';
-		  html += ' data-label="'+label+'"><div>List '+label+'</div><span class="marker icon-list-alt" title="Module"></span><a class="remove" href="#"></a><a class="config-list" href="#"></a></div>';
+		  html += ' data-label="'+label+'"><div><i class="fa fa-bars"></i> List '+label+'</div><span class="marker fa fa-list-alt" title="Module"></span><a class="remove fa fa-minus-circle"></a><a class="config-list fa fa-cog"></a></div>';
 
 		  $(editor).respondAppend(
 		    html
@@ -120,5 +120,5 @@ var listDialog = {
 }
 
 $(document).ready(function(){
-  listDialog.init();
+	listDialog.init();
 });

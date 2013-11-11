@@ -16,8 +16,8 @@ var slideshowDialog = {
 			var height = $('#slideShowHeight').val();
 
 			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'"><div>' +
-				'<button type="button" class="addImage"></button>' +
-				'</div><span class="marker icon-film" title="Module"></span><a class="remove icon-remove-sign"></a>' +
+				'<button type="button" class="addImage"><i class="fa fa-picture-o"></i></button>' +
+				'</div><span class="marker fa fa-film" title="Module"></span><a class="remove fa fa-minus-circle"></a>' +
 				'<em class="size">'+
 				width + 'px x ' + height + 'px' +
 				'</em>'+
@@ -42,5 +42,5 @@ var slideshowDialog = {
 }
 
 $(document).ready(function(){
-  slideshowDialog.init();
+	slideshowDialog.init();
 });

@@ -8,6 +8,7 @@ var imagesDialog = {
         // setup dropzone
         $("#drop").dropzone({ 
             url: "/api/file/post",
+            clickable: true,
             success: function(file, response){
                 var image = jQuery.parseJSON(response);
                 
@@ -24,8 +25,6 @@ var imagesDialog = {
             }
             
         });
-        
-        $("#drop").addClass('dropzone');
       
     },
     
@@ -37,9 +36,9 @@ var imagesDialog = {
       
       if(imagesDialog.type=='slideshow'){  // add image (thumb) to slideshow
       
-        var html = '<span class="image"><img id="' + filename + '" src="'+t_src+'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span><a class="remove icon-minus-sign"></a></span>';
+        var html = '<span class="image"><img id="' + filename + '" src="'+t_src+'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span><a class="remove fa-minus-circle"></a></span>';
         
-        html += '<button type="button" class="secondary-button add-image"><i class="icon-picture"></i></button>';
+        html += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button>';
         
         $('#desc').find('div#'+imagesDialog.moduleId+' .add-image').remove();
         
@@ -56,8 +55,8 @@ var imagesDialog = {
           
           var href = '';
           
-          var html = '<div id="'+divId+'" class="i left" data-id="'+divId+'" data-cssclass="">';
-          html += imagesDialog.getImageHtml('left', uniqId, src, href, '&nbsp;');
+          var html = '<div id="'+divId+'" class="i" data-id="'+divId+'" data-cssclass="">';
+          html += imagesDialog.getImageHtml('none', uniqId, src, href, '&nbsp;');
           html += '</div>';
           
           $('#desc').respondAppend(html);
@@ -76,26 +75,26 @@ var imagesDialog = {
     
 		if(position=='left'){
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config icon-cog"></a>';
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>';
 			}
 			else{
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
 			}
 		}
 		else if(position=='right'){
 			if(href==''){
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config" href="#"></a>';
+				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>';
 			}
 			else{
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
+				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
 			}
 		}
 		else{ // for no text
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign""></a><a class="config icon-cog"></a>'; 
+				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>'; 
 			}
 			else{
-				html = '<div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'; 
+				html = '<div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'; 
 			}
 		}
 		

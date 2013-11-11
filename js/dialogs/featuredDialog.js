@@ -28,7 +28,7 @@ var featuredDialog = {
 			var editor = $('#desc');
 			var uniqId = 'featured'+ ($(editor).find('.featured').length + 1);
 			
-			var html = '<div id="'+uniqId+'" data-pageuniqid="'+featuredDialog.pageUniqId+'" data-pagename="'+featuredDialog.name+'" class="featured"><div>'+featuredDialog.name+'</div><span class="marker icon-star" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+			var html = '<div id="'+uniqId+'" data-pageuniqid="'+featuredDialog.pageUniqId+'" data-pagename="'+featuredDialog.name+'" class="featured"><div><i class="fa fa-star"></i> Featured Content: '+featuredDialog.name+'</div><span class="marker fa fa-star" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 
 		  $(editor).respondAppend(
 		    html

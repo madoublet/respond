@@ -31,6 +31,10 @@ var elementConfigDialog = {
                 var imageId = el.find('img').attr('id');
                 var src = el.find('img').attr('src');
                 var content = el.find('.content').html();
+                
+                if(content == null){
+	                content = '';
+                }
             
                 el.removeClass('left').removeClass('right');
                 

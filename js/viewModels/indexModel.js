@@ -2,6 +2,11 @@
 var indexModel = {
     
     init:function(){
+    
+    	if(window.localStorage){
+	    	window.localStorage['show-account-message'] = 'true';
+    	}
+    	
         ko.applyBindings(indexModel);  // apply bindings
     },
     
@@ -12,15 +17,16 @@ var indexModel = {
         message.showMessage('progress', 'Login...');
 
         $.ajax({
-          url: 'api/user/login',
-          type: 'POST',
-          data: {email: email, password: password},
-          success: function(data){
-            window.location = 'pages'; // redirect to pages
-          },
-          error: function(data){
-            message.showMessage('error', 'Access denied');
-          }
+			url: 'api/user/login',
+			type: 'POST',
+			data: {email: email, password: password},
+			success: function(data){
+				window.location = data['start']; // redirect to pages
+			},
+			error: function(xhr, errorText, thrownError){
+				console.log(xhr.responseText);
+				message.showMessage('error', xhr.responseText);
+			}
         });
 
         return false;

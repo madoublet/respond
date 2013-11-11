@@ -7,13 +7,13 @@ var aviaryDialog = {
 
 		aviaryDialog.editor = new Aviary.Feather({
 		   apiKey: 'u6f8ojCPJkaeGhL2InhFTw',
-		   apiVersion: 2,
+		   apiVersion: 3,
 		   tools: 'all',
 		   appendTo: '',
 		   onSave: function(imageID, newURL) {
 		       var img = document.getElementById(imageID);
-		       img.src = newURL;
-
+		       img.src = aviaryDialog.src;
+		       
 		       var fromUrl = newURL;
 		       var toUrl = '../'+aviaryDialog.src; 
 
@@ -30,6 +30,8 @@ var aviaryDialog = {
 						message.showMessage('error', 'There was a problem saving the image, please try again');
 					}
 				});
+				
+				aviaryDialog.editor.close();
 		   },
 		   onError: function(errorObj) {
 		       alert(errorObj.message);

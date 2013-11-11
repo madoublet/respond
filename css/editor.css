@@ -251,17 +251,27 @@ div.block div.ul:hover div[contentEditable=true]:first-child{
 	}
 
 /* textareas and textboxes */
-div.block div.twitter, div.block div.map{
+div.block div.file, div.block div.map{
 	padding: 5px 10px !important;
 }
 
-div.block div.twitter input, div.block div.map input{
-	border: 1px dashed #ddd !important;
+div.block div.file input, div.block div.map input{
 	padding: 10px;
-	outline: none;
+	outline: none !important;
+	color: #808080;
+	border: 1px dashed #fff !important;
 }
 
-	div.block div.twitter input:focus, div.block div.map input:focus{
+	div.block div.file input:hover, div.block div.map input:hover{
+		border: 1px dashed #ddd !important;
+	}
+
+
+	div.block div.file input, div.block div.map input{
+		padding-left: 45px;
+	}
+
+	div.block div.file input:focus, div.block div.map input:focus{
 		border: 1px dashed #3299BB !important;
 	}
 
@@ -289,13 +299,49 @@ div.block div.like, div.block div.comments, div.block div.featured, div.block di
 	font-size: 1.0em !important;
 }
 
-	div.block div.like i, div.block div.comments i,  div.block div.featured i{
+	div.block div.like i, div.block div.comments i,  div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i{
 		margin-right: 5px;
 		font-size: 1.1em !important;
+		padding: 5px;
+		background-color: #f0f0f0;
+		width: 25px;
+		height: 25px;
+		text-align: center;
 	}
 
 	div.block div.like i, div.block div.comments i{
-		color: #3B5998;
+		color: #fff;
+		background-color: #3B5998;
+		margin-right: 10px;
+	}
+	
+	div.block div.featured i{
+		color: #fff;
+		background-color: #fbec5d;
+	}
+	
+	div.block div.list i{
+		color: #fff;
+		background-color: #AA65A9;
+	}
+	
+/* file and map  */
+div.block div.file i, div.block div.map i, div.block div.q i{
+	position: absolute;
+	top: 13px;
+	left: 20px;
+	background-color: #94D237;
+	color: #fff;
+}
+
+	div.block div.q i{
+		background-color: #EBF966;
+		color: #fff;
+	}
+
+	div.block div.map i{
+		background-color: #D25F37;
+		color: #fff;
 	}
 
 /* syntax */
@@ -306,6 +352,11 @@ div.block div.syntax{
 	div.block div.syntax pre{
 		border-radius: 0;
 	}
+	
+/* quote */
+div.block div.q div{
+	padding-left: 45px !important;
+}
 	
 /* handle image */
 div.block div.i{
@@ -462,6 +513,17 @@ div.block a.remove-block, div.block a.up, div.block a.down{
 	div.block a.up:hover, div.block a.down:hover{	
 		background-color: #ccc;
 	}
+
+/* .prettyprint */
+.block pre.prettyprint{
+	border-radius: 0 !important;
+	margin: 0 10px;
+}
+	
+.block pre.prettyprint ol{
+	margin-left: 0;
+	padding-left: 35px;
+}
 
 pre.non-pretty{
 	display: none;
@@ -626,29 +688,13 @@ div.block div.slideshow>div{
 
 /* handle hr */
 div.block div.hr div{
-	padding: 0;
 	border: 0;
-	margin: 0 30px 0 30px;
-	margin-top: 10px;
-	height: 1px !important;
-	border-top: 2px solid #ccc;
-}
-
-/* handle map */
-div.block div.map div{
-	color: #808080;
-	border: none;
-	padding-right: 8px;
+	margin: 0 20px 20px 20px !important;
+	padding: 0 0 25px 0 !important;
+	border-bottom: 2px solid #ccc;
 }
 
 /* handle list */
-div.block div.list div{
-	color: #808080;
-	border: none;
-	min-height: 20px;
-	padding-left: 5px !important;
-}
-
 div.block div div input[type=text]{
 	border: 1px solid #f0f0f0;
 }
@@ -657,30 +703,12 @@ div.block div div input:focus, div.block div div input[type=text]:hover{
 	border: 1px solid #ccc;
 }
 
-div.block div.map div input{
+div.block div.map div input, div.block div.file div input{
 	width: 100%;
-}
-
-div.block div.twitter div{
-	font-style: italic;
-	color: #808080;
-	border: none;
-}
-
-div.block div.twitter div input{
-	width: 100%;
-}
-
-div.block div.file div{
-	font-style: italic;
-	color: #808080;
-	border: none;
 }
 
 div.block div.file div em{
-	margin: 0 0 5px 0;
-	display: block;
-	font-style: normal;
+	display: none;
 }
 
 div.block div.file div .form-control{
@@ -688,9 +716,6 @@ div.block div.file div .form-control{
 	width: 100%;
 }
 
-div.block div.file div input{
-	width: 400px; 
-}
 
 div.block div.form{
     padding: 0;
@@ -873,6 +898,11 @@ div.table table td{
 
 div.table table td div{
 	margin: 0;
+}
+
+/* dialogs */
+#htmlDialog textarea, #codeBlockDialog textarea{
+	height: 250px;
 }
 
 

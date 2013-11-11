@@ -49,7 +49,11 @@ class FormResource extends Tonic\Resource {
             $headers .= 'From: ' . $site['PrimaryEmail'] . "\r\n" .
                 		'Reply-To: ' . $site['PrimaryEmail'] . "\r\n";
             
-            mail($site['PrimaryEmail'], $subject, html_entity_decode($content), $headers); // send email
+            // sends the email
+            $to = $site['PrimaryEmail'];
+            $from = $site['PrimaryEmail'];
+            
+            Utilities::SendEmail($to, $from, $subject, $content);
             
             // return a successful response (200)
             return new Tonic\Response(Tonic\Response::OK);

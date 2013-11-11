@@ -7,27 +7,33 @@
 		error_reporting(E_ALL);
 		ini_set('display_errors', '1');
 	}
+	
+	// set default as UTC
+	date_default_timezone_set('UTC');
 
     // include setup
-    include 'setup.php';
+    require_once 'setup.php';
     
     // include data-access objects
-	include 'dao/DB.php';
-	include 'dao/User.php';
-	include 'dao/Site.php';
-	include 'dao/PageType.php';
-	include 'dao/MenuType.php';
-	include 'dao/Page.php';
-	include 'dao/MenuItem.php';
+	require_once 'dao/DB.php';
+	require_once 'dao/User.php';
+	require_once 'dao/Site.php';
+	require_once 'dao/PageType.php';
+	require_once 'dao/MenuType.php';
+	require_once 'dao/Page.php';
+	require_once 'dao/MenuItem.php';
+	
+	// include external libs
+    require_once 'libs/stripe/lib/Stripe.php';
+	require_once 'libs/simple_html_dom.php';
+	require_once "libs/lessc.inc.php";
+	require_once 'libs/PasswordHash.php';
 	
 	// include libs
-	include 'libs/Utilities.php';
-	include 'libs/Validator.php';
-	include 'libs/Image.php';
-	include 'libs/AuthUser.php';
-	include 'libs/simple_html_dom.php';
-	require "libs/lessc.inc.php";
-	include 'libs/Publish.php';
-	include 'libs/PasswordHash.php';
+	require_once 'libs/Utilities.php';
+	require_once 'libs/Validator.php';
+	require_once 'libs/Image.php';
+	require_once 'libs/AuthUser.php';
+	require_once 'libs/Publish.php';
 	
 ?>

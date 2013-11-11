@@ -1,7 +1,7 @@
 <?php 
     
 /**
- * A protected API call to retrieve the current site
+ * A protected API call to retrieve images from the site
  * @uri /image/list/all
  */
 class ImageListAllResource extends Tonic\Resource {
@@ -104,6 +104,12 @@ class FilePostResource extends Tonic\Resource {
             
             parse_str($this->request->data, $request); // parse request
             
+            $overwrite = NULL;
+            
+            if(isset($_REQUEST['overwrite'])){
+	            $overwrite = $_REQUEST['overwrite'];
+            }
+            
             $arr = array();
             
             $site = Site::GetBySiteId($authUser->SiteId);
@@ -113,6 +119,11 @@ class FilePostResource extends Tonic\Resource {
     		$file = $_FILES['file']['tmp_name'];
     		$contentType = $_FILES['file']['type'];
     		$size = intval($_FILES['file']['size']/1024);
+    		
+    		// overwrite if applicable
+    		if($overwrite != NULL){
+	    		$filename = $overwrite;
+    		}
     		
     		$parts = explode(".", $filename); 
     		$ext = end($parts); // get extension
@@ -275,6 +286,49 @@ class FileListAllResource extends Tonic\Resource {
     }
     
 }
+
+/**
+ * A protected API call to retrieve the current site
+ * @uri /file/remove
+ */
+class FileRemoveResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function get() {
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+            
+            parse_str($this->request->data, $request); // parse request
+            
+            $filename = $request['filename'];
+            
+            $site = Site::GetBySiteId($authUser->SiteId);
+
+            $full_path = '../sites/'.$site['FriendlyId'].'/files/'.$filename;
+            
+            $success = unlink($full_path);
+            
+            if($success==true){
+	            return new Tonic\Response(Tonic\Response::OK);
+            }
+            else{
+	            $response = new Tonic\Response(Tonic\Response::BADREQUEST);
+				$response->body = 'File could not be removed';
+				return $response;
+            }
+        }
+        else{
+            // return an unauthorized exception (401)
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+    
+}
+
 
 
 ?>

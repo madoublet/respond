@@ -1,27 +1,39 @@
 <header>
 
+	<?php
+		if(isset($path_prefix)==false){
+			$path_prefix = '';
+		}
+	?>
+	
+	<div class="sub-menu">
     <?php if($authUser->IsSuperAdmin==true){ ?>
-        <a class="switch" href="switch" title="Switch Site"><i class="icon-exchange icon-large"></i></a>
+        <a class="switch" href="switch" title="Switch Site"><i class="fa fa-briefcase"></i></a>
 	<?php } ?>	
+    	<a class="files" href="<?php print $path_prefix; ?>files" title="Files"><i class="fa fa-folder-open"></i></a>
+		<a class="republish publish-site" title="Re-publish Site"><i class="fa fa-refresh"></i></a>
+		<a class="signout" href="<?php print $path_prefix; ?>logout" title="Sign Out"><i class="fa fa-power-off"></i></a>
+		<a class="hide-menu" title="Close Menu"><i class="fa fa-times"></i></a>
+	</div>
 
-    <a class="files" href="files" title="Files"><i class="icon-folder-open icon-large"></i></a>
-    <a class="signout" href="logout" title="Sign Out"><i class="icon-signout icon-large"></i></a>
-    <a class="republish publish-site" title="Re-publish Site"><i class="icon-refresh icon-large"></i></a>
+	<h2 class="basic">Manage your Site</h2>
 
 	<ul class="menu">
-		<li class="menu-pages"><a href="pages"><i class="icon-file icon-large"></i> Pages</a></li>
-    	<li class="menu-menu"><a href="menus"><i class="icon-reorder icon-large"></i> Menus</a></li>
-		<li class="menu-template"><a href="template"><i class="icon-desktop icon-large"></i> Template</a></li>
-    	<li class="menu-branding"><a href="branding"><i class="icon-certificate icon-large"></i> Branding</a></li>
-        <li class="menu-layout"><a href="layout"><i class="icon-th-large icon-large"></i> Layout</a></li>
-        <li class="menu-styles"><a href="styles"><i class="icon-text-height icon-large"></i> Styles</a></li>
-        <li class="menu-scripts"><a href="scripts"><i class="icon-bolt icon-large"></i> Scripts</a></li>
-		<li class="menu-users"><a href="users"><i class="icon-user icon-large"></i> Users</a></li>
-		<li class="menu-settings"><a href="settings"><i class="icon-cog icon-large"></i> Settings</a></li>
+		<li class="menu-pages"><a href="<?php print $path_prefix; ?>pages"><i class="fa fa-file"></i> Pages</a></li>
+    	<li class="menu-menu"><a href="<?php print $path_prefix; ?>menus"><i class="fa fa-bars"></i> Menus</a></li>
+		<li class="menu-template"><a href="<?php print $path_prefix; ?>template"><i class="fa fa-desktop"></i> Template</a></li>
+    	<li class="menu-branding"><a href="<?php print $path_prefix; ?>branding"><i class="fa fa-certificate"></i> Branding</a></li>
+		<li class="menu-users"><a href="<?php print $path_prefix; ?>users"><i class="fa fa-user"></i> Users</a></li>
+		<li class="menu-account"><a href="<?php print $path_prefix; ?>account"><i class="fa fa-key"></i> Account</a></li>
 	</ul>
-
-<?php if($authUser->Role=='Demo'){ ?>
-	<span class="demo-mode">Demo Mode</span>
-<?php } ?>
-
+	
+	<h2 class="advanced">Advanced Configurations</h2>
+	
+	<ul class="menu">	
+        <li class="menu-layout"><a href="<?php print $path_prefix; ?>layout"><i class="fa fa-th-large"></i> Layout</a></li>
+        <li class="menu-styles"><a href="<?php print $path_prefix; ?>styles"><i class="fa fa-text-height"></i> Styles</a></li>
+        <li class="menu-scripts"><a href="<?php print $path_prefix; ?>scripts"><i class="fa fa-bolt"></i> Scripts</a></li>
+		<li class="menu-settings"><a href="<?php print $path_prefix; ?>settings"><i class="fa fa-cog"></i> Settings</a></li>
+	</ul>
+	
 </header>

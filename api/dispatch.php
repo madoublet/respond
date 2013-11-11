@@ -17,6 +17,9 @@
     require_once 'stylesheet.php';
     require_once 'script.php';
     require_once 'layout.php';
+    require_once 'plan.php';
+    require_once 'card.php';
+    require_once 'customer.php';
     
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];

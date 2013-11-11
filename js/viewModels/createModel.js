@@ -1,7 +1,12 @@
 // models the create page
 var createModel = {
     
+    timeZone: ko.observable('America/Chicago'),
+    
     init:function(){
+        
+        var tz = jstz.determine();
+        createModel.timeZone(tz.name());
         
         $('#name').keyup(function(){
     		var keyed = $(this).val().toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'').replace(/\s/g, '');
@@ -21,6 +26,7 @@ var createModel = {
         var password = $('#password').val();
         var retype = $('#retype').val();
         var passcode = $('#passcode').val();
+        var timeZone = $('#timeZone').val();
         
         if(name=='' || friendlyId=='' || email=='' || password=='' || retype==''){
 			message.showMessage('error', 'All fields are required.');
@@ -37,7 +43,7 @@ var createModel = {
         $.ajax({
           url: 'api/site/create',
           type: 'POST',
-          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode},
+          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone},
           success: function(data){
             message.showMessage('success', 'Site created successfully');
             

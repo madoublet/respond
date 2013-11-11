@@ -69,6 +69,7 @@ class Page{
                 'Created' => $timestamp,
                 'IsActive' => $isActive,
                 'Image' => $image,
+                'Thumb' => '',
                 'LastModifiedDate' => $timestamp,
                 );
                 
@@ -206,6 +207,35 @@ class Page{
             
 		} catch(PDOException $e){
             die('[Page::EditSettings] PDO Error: '.$e->getMessage());
+        }
+	}
+	
+	// edits the settings for a page
+	public static function EditLayout($pageUniqId, $layout, $lastModifiedBy){
+		
+        try{
+            
+            $db = DB::get();
+            
+            $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE Pages 
+    				SET  
+					Layout = ?, 
+					LastModifiedBy = ?, 
+					LastModifiedDate = ? 
+					WHERE PageUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $layout);
+            $s->bindParam(2, $lastModifiedBy);
+            $s->bindParam(3, $timestamp);
+            $s->bindParam(4, $pageUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::EditLayout PDO Error: '.$e->getMessage());
         }
 	}
 	

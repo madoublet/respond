@@ -17,18 +17,12 @@ var switchModel = {
 		switchModel.sitesLoading(true);
 
 		$.ajax({
-			url: 'api/site/list/all',
+			url: 'api/site/list/extended',
 			type: 'GET',
 			data: {},
 			success: function(data){
 
-				for(x in data){
-
-					var site = Site.create(data[x]);
-
-					switchModel.sites.push(site); 
-
-				}
+				switchModel.sites(data); 
 
 			}
 		});

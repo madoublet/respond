@@ -172,21 +172,10 @@ class Utilities
 	
 	// get a date in a format JavaScript can understand, YYYY-MM-DD hours:minutes:seconds
 	public static function GetDateForJavaScript($date, $timezone){
-		// get offset
-		$offset = 0;
 		
-		if($timezone=='EST'){
-			$offset = -5 * (60 * 60);
-		}
-		else if($timezone=='CST'){
-			$offset = -6 * (60 * 60);
-		}
-		else if($timezone=='MST'){
-			$offset = -7 * (60 * 60);
-		}
-		else if($timezone=='PST'){
-			$offset = -8 * (60 * 60);
-		}
+		$timeZone = new DateTimeZone($site['TimeZone']);
+        $now = new DateTime("now", $timeZone);
+        $offset = $timeZone->getOffset($now);
 		
 		if($date!=''){
 			$unixDate = (strtotime($date)+$offset);
@@ -201,55 +190,14 @@ class Utilities
 		
 	}
 	
-	// get readable time
-	public static function GetReadable($date, $timezone){
-		// get offset
-		$offset = 0;
-		
-		if($timezone=='EST'){
-			$offset = -5 * (60 * 60);
-		}
-		else if($timezone=='CST'){
-			$offset = -6 * (60 * 60);
-		}
-		else if($timezone=='MST'){
-			$offset = -7 * (60 * 60);
-		}
-		else if($timezone=='PST'){
-			$offset = -8 * (60 * 60);
-		}
-		
-		if($date!=''){
-			$unixDate = (strtotime($date)+$offset);
-			$readable = date('M d', $unixDate).' at '.date('g:i A', $unixDate);
-			
-			return $readable;
-		}
-		else{
-			return '';
-		}
-	}
-	
 	// generate rss
     public static function GenerateRSS($site, $pageType){
         
         $list = Page::GetRSS($site['SiteId'], $pageType['PageTypeId']);
         
-        $timeZone = $site['TimeZone'];
-        $offset = 0;
-        
-        if($timeZone=='EST'){
-          $offset = -5 * (60 * 60);
-        }
-        else if($timeZone=='CST'){
-          $offset = -6 * (60 * 60);
-        }
-        else if($timeZone=='MST'){
-          $offset = -7 * (60 * 60);
-        }
-        else if($timeZone=='PST'){
-          $offset = -8 * (60 * 60);
-        }
+        $timeZone = new DateTimeZone($site['TimeZone']);
+        $now = new DateTime("now", $timeZone);
+        $offset = $timeZone->getOffset($now);
         
         $rss = '<?xml version="1.0" encoding="ISO-8859-1"?>'.
             '<rss version="2.0">'.
@@ -283,21 +231,10 @@ class Utilities
         
         $list = Page::GetPagesForSite($site['SiteId']);
         
-        $timeZone = $site['TimeZone'];
-        $offset = 0;
-        
-        if($timeZone=='EST'){
-          $offset = -5 * (60 * 60);
-        }
-        else if($timeZone=='CST'){
-          $offset = -6 * (60 * 60);
-        }
-        else if($timeZone=='MST'){
-          $offset = -7 * (60 * 60);
-        }
-        else if($timeZone=='PST'){
-          $offset = -8 * (60 * 60);
-        }
+        // get offset for time zone
+        $timeZone = new DateTimeZone($site['TimeZone']);
+        $now = new DateTime("now", $timeZone);
+        $offset = $timeZone->getOffset($now);
         
         $xml = '<?xml version="1.0" encoding="UTF-8"?>'.
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
@@ -342,6 +279,16 @@ class Utilities
         $pageType = null;
         $type = 'preview';
         
+        $pageurl = 'http://'.$site['Domain'];
+        
+        if($page['PageTypeId']!=-1){
+	        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+	        $pageurl .= '/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'];
+        }
+        else{
+	        $pageurl .= '/'.$page['FriendlyId'];
+        }
+        
         if($page['PageTypeId']!=-1){
             $pageType = PageType::GetByPageTypeId($pageTypeId);
             $type = $pageType['FriendlyId'];
@@ -380,7 +327,8 @@ class Utilities
     
         // global constants
         $content = str_replace('{{site}}', $site['Name'], $content);
-        $content = str_replace('{{site-url}}', $site['Domain'], $content);
+        $content = str_replace('{{site-url}}', '//'.$site['Domain'], $content);
+        $content = str_replace('{{page-url}}', $pageurl, $content);
         $content = str_replace('{{logo}}', $rootloc.'files/'.$site['LogoUrl'], $content);
         
         // replace with constants
@@ -704,9 +652,24 @@ class Utilities
                     if($el->display == 'blog'){
                       
                         $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'">'
-                                .'<h1><a data-bind="text:name, attr:{\'href\':url}"></a></h1>'
                                 .'<div class="content" data-bind="html:content"></div>'
+                                .'<div class="blog-meta">'
+                                .'<p>'
+                                .'<a data-bind="attr:{\'href\':url}">Permanent Link</a> '
+                                .'Last modified by <span data-bind="text:author"></span>'
+                                .' on <span data-bind="text:lastModifiedReadable" class="last-modified-date"></span>'
+                                .'</p>'
+                                .'</div>'
                                 .'</div>';  
+                                
+						if(settype($pageresults, 'boolean') == true){
+							
+							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">Older Posts</button></div>';
+							
+						}
+						
+						
+                     
                     }
                     else{
                         $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'">'
@@ -719,6 +682,12 @@ class Utilities
 									.'<p data-bind="text:desc"></p>'
 								.'</li>'
                                 .'</ul>';  
+                                
+                       if(settype($pageresults, 'boolean') == true){
+							
+							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
+							
+						}
                     }
                     
                     $el->outertext = $list;
@@ -780,7 +749,15 @@ class Utilities
                     
                     $el->outertext= $content;
                 }
-                else if($name=='html' || $name=='youtube' || $name=='vimeo'){
+                else if($name=='html'){
+                	$h = $el->innertext;
+                	
+                	$h = str_replace('&lt;', '<', $h);
+                	$h = str_replace('&gt;', '>', $h);
+                
+                    $el->outertext = $h;
+                }
+                else if($name=='youtube' || $name=='vimeo'){
                     $el->outertext= $el->innertext;
                 }
                 else if($name=='file'){
@@ -808,15 +785,6 @@ class Utilities
                     $address = $el->address;
                     ob_start();
                     include $root.'sites/common/modules//map.php'; // loads the module
-                    $content = ob_get_contents(); // holds the content
-                    ob_end_clean();
-                    
-                    $el->outertext= $content;
-                }
-                else if($name=='twitter'){
-                    $username = $el->username;
-                    ob_start();
-                    include $root.'sites/common/modules/twitter.php'; // loads the module
                     $content = ob_get_contents(); // holds the content
                     ob_end_clean();
                     
@@ -888,6 +856,43 @@ class Utilities
         }
         
         return $html;
+    }
+    
+    // send welcome email
+    public static function SendEmailFromFile($to, $from, $subject, $replace, $file, $root='../'){
+    
+    
+    	$full_file = $root.$file;
+	    
+	    if(file_exists($full_file)){
+            $content = file_get_contents($full_file);
+            
+            // walk through and replace values in associative array
+            foreach ($replace as $key => &$value) {
+			    
+			    $content = str_replace($key, $value, $content);
+			    $subject = str_replace($key, $value, $subject);
+			    
+			}
+			
+			Utilities::SendEmail($to, $from, $subject, $content);
+            
+        }
+	    
+	    
+    }
+
+	// sends an email
+    public static function SendEmail($to, $from, $subject, $content){
+    
+    	// send an email
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: ' . $from . "\r\n" .
+            		'Reply-To: ' . $from . "\r\n";
+        
+        mail($to, $subject, html_entity_decode($content), $headers); // send email
+    
     }
 
 }

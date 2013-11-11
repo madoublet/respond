@@ -84,8 +84,10 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `AnalyticsId` varchar(50) DEFAULT NULL,
   `FacebookAppId` varchar(255) DEFAULT NULL,
   `PrimaryEmail` varchar(255) DEFAULT NULL,
-  `TimeZone` varchar(10) DEFAULT NULL,
+  `TimeZone` varchar(100) DEFAULT NULL,
   `LastLogin` datetime DEFAULT NULL,
+  `Type` varchar(25) NOT NULL DEFAULT 'Non-Subscription',
+  `CustomerId` varchar(256) DEFAULT NULL,
   `Created` datetime NOT NULL,
   PRIMARY KEY (`SiteId`),
   UNIQUE KEY `Domain` (`Domain`)

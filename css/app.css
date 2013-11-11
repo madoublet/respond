@@ -78,6 +78,66 @@ a{
     margin-left: 20px;
 }
 
+
+/* form */
+.main form{
+	margin: 20px;
+}
+
+	.main .form-horizontal input, .main .form-horizontal select{
+		max-width: 400px;
+	}
+	
+	.main .form-group label{
+		color: #888;
+	}
+	
+	.input-2{
+		width: 65px;
+	}
+	
+	.input-4{
+		width: 75px;
+	}
+	
+	.inline{
+		display: inline-block;
+	}
+	
+	.inline-actions button{
+		margin-right: 10px;
+	}
+
+		.inline-actions span{
+			color: #888;
+		}
+
+/* .read-only.table */
+.read-only-table small, .read-only-table span{
+	display: block;
+}
+
+	.read-only-table small{
+		color:#888;
+		margin: 10px 0;
+		text-transform: uppercase;
+	}
+	
+	.read-only-table a{
+		margin-right: 10px;
+	}
+	
+	body .read-only-table td, body .read-only-table th{
+		padding: 15px 15px !important;
+	}
+	
+	body .read-only-table th{
+		background-color: #f8f8f8;
+		color: #777;
+		font-weight: normal;
+	}
+
+/* modals */
 body .modal-header{
 	padding-top: 10px;
 	padding-bottom: 10px;	
@@ -98,22 +158,40 @@ body .modal-header{
 	    margin-top: 0;
     }
     
+    	body .modal-body form{
+	    	margin: 0;
+	    	padding: 0;
+    	}
+    	
+    	body .modal-body label{
+	    	color: #888;
+    	}
+    
+    	body .modal-footer .tertiary-button{
+	    	float: left;
+    	}
+    
 		body .modal-footer .primary-button{
 		    margin-left: 10px;
 		}
+		
+	body .modal .modal-info{
+		color: #888;
+		margin-bottom: 25px;
+	}	
 
 
 header{
-    float: left;
-  	height: 100%;
-  	min-height: 100%;
-	position: relative;
-	margin-left: -20%;
-	width: 20%;
-	background-color: #3a3a3a;
+    position: absolute;
+    top: 0;
+    left: 0;
+	margin-left: -300px;
+	width: 300px;
+	background-color: #333;
 	min-width: 35px;
-	box-shadow: inset -5px 0 20px #1a1a1a;
 	z-index: 2;
+	height: 100%;
+	border-right: 5px solid #3299bb;
     -webkit-transition: .2s all ease;
 	-moz-transition: .2s all ease;
 	-o-transition: .2s all ease;    
@@ -121,45 +199,37 @@ header{
 	transition: .2s all ease;
 }
     
-    header .signout, header .files, header .republish, header .switch{
-        display: block;
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
+    header .sub-menu a{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
         text-align: center;
         border: 1px solid #555;
         color: #ccc;
+        font-size: 1em;
+        margin-left: 2px;
     }
     
-         header .signout:hover, header .files:hover, header .republish:hover{
+         header .sub-menu a:hover{
              text-decoration: none;
              background-color: #3299bb;
+			 border-color: #3299bb;
              color: #fff;
          }
-    
-    header .signout{
-        position: absolute;
-        top: 13px;
-        right: 15px;
-    }
-    
-    header .files{
-        position: absolute;
-        top: 13px;
-        right: 50px;
-    }
-    
-    header .republish{
-        position: absolute;
-        top: 13px;
-        right: 85px;
-    }
-    
-     header .switch{
-        position: absolute;
-        top: 13px;
-        right: 120px;
-    }
+         
+	header .sub-menu{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	
+	header a.hide-menu{
+		background-color: #555;
+		color: #fff;
+		border-color: #555;
+		margin-left: 10px;
+	}
 
     body.show-nav header{
         margin-left: 0;
@@ -169,33 +239,52 @@ header{
         list-style: none;
         margin: 0;
         padding: 0;
+        border-bottom: 1px solid #444;
     }
     
+    header h2{
+	    color: #888;
+	    font-size: 1.2em;
+	    padding: 0 0 0 10px;
+	    margin: 0;
+    }
+    
+    	header h2.basic{
+	    	padding: 50px 0 10px 10px;
+    	}
+    	
+    	header h2.advanced{
+	    	padding: 20px 0 10px 10px;
+	    }
+    
     header ul{
-        border-top: 1px solid #777;
-        margin-top: 49px;
+        border-top: 1px solid #444;
     }
     
     header li a{
         font-family: 'Roboto Condensed', sans-serif;
         font-size: 16px;
         display: block;
-        padding: 15px 15px;
+        padding: 10px 15px;
         color: #ccc;
-        border-bottom: 1px solid #777;
+        font-size: 1.1em;
     }
     
         header li a i{
             display: inline-block !important;
             color: #ccc;
             margin-right: 10px;
-            width: 25px !important;
+            width: 20px !important;
         }
     
         header li.active a{
-            background-color: #111;
+            background-color: #3299BB;
             color: #fff;
         }
+        
+        	header li.active i{
+	        	color: #fff;
+        	}
     
         header li a:hover{
             list-style: none;
@@ -208,9 +297,9 @@ header{
                 color: #fff;
             }
 
+/* .main */
 section.main{
     position: relative;
-    float: left;
     width: 100%;
     height: 100%;
     overflow-y: scroll;
@@ -223,13 +312,36 @@ section.main{
 	transition: .2s all ease;
 }
 
-    body.show-nav section{
-        width: 80%;
-    }
-    
+	section.main .alert{
+		margin: 20px 20px 0 20px;
+	}
+	
+	section.main .alert a{
+		margin-left: 15px;
+		background: #fff;
+		padding: 5px 15px;
+		border-radius: 12px;
+		border: 1px solid #ccc;
+		color: #428bca; 
+		text-decoration: none;
+	}
+	
+		section.main .alert a:hover{
+			background-color: #f8f8f8;
+			border: 1px solid #aaa;
+		}
+		
+		#account-message{
+			display: none;
+		}
+
     section.main table{
 	    margin-top: 20px;
     }
+
+	section.main table .number{
+		text-align: right;
+	}
 
 
 /* nav */
@@ -262,6 +374,21 @@ section.main nav{
             color: #fff;
         }
 
+
+	section.main nav .static-title{
+        display: inline-block;
+        padding: 0 30px;
+		margin: 0 0 0 50px;
+		background: #E9E9E9;
+        border-bottom: 3px solid #FF9900;
+        height: 50px;
+        line-height: 47px;
+        font-size: 1em;
+	}
+	
+		section.main nav .static-title i{
+			margin: 0 7px;
+		}
 
     section.main nav ul{
         list-style: none;
@@ -367,10 +494,6 @@ section.main nav{
         section.main nav a.primary-action i{
             margin-right: 3px;
         }
-        
-    section.main .form-horizontal{
-        margin: 20px 20px 100px 20px;
-    }
     
     section.main .actions{
         position: fixed;
@@ -400,10 +523,38 @@ fieldset{
 		border-bottom: 0;
 	}
 
-span.readOnly{
+body .read-only{
 	display: block;
-	padding-top: 6px;
+	padding-top: 8px;
 }
+
+	body .read-only span, body .read-only small{
+		font-weight: normal;
+		display: block;
+		margin: 0 0 5px 0;
+		padding: 0;
+		height: auto;
+		line-height: auto;
+	}
+	
+	body .read-only a{
+		margin-right: 15px;
+	}
+	
+	body .read-only small{
+		color: #888;
+		text-transform: uppercase;
+	}
+	
+	body .form-group .loading{
+		display: block;
+		margin-top: 8px;
+		color: #aaa;
+	}
+	
+		body .form-group .loading i{
+			margin-right: 5px;
+		}
 
 span.help-block{
 	color: #888;
@@ -537,6 +688,7 @@ table.table tr.active td{
 table.table tr.active a.switch{
  	display: none;
 }
+
 /* codemirror */
 .CodeMirror{
     border: 1px solid #ccc;
@@ -547,6 +699,21 @@ table.table tr.active a.switch{
 	margin-top: 10px;
 }
 
+/* page-specific */
+#test-page .fa-check-circle{
+	color: #7ec57e;
+	background-color: #fff;
+	padding: 2px;
+	border-radius: 2px;
+}
+
+#test-page .fa-times-circle{
+	color: #A4110A;
+	background-color: #fff;
+	padding: 2px;
+	border-radius: 2px;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) { }
  
@@ -554,13 +721,9 @@ table.table tr.active a.switch{
 @media (min-width: 768px) and (max-width: 979px) { 
 
     header{
-    	margin-left: -30%;
-    	width: 30%;
+    	margin-left: -300px;
     }
-    
-    body.show-nav section{
-        width: 70%;
-    }
+ 
     
 }
  

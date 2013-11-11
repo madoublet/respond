@@ -4,21 +4,22 @@
 class Site{
 	
 	// adds a Site
-	public static function Add($domain, $name, $friendlyId, $logoUrl, $template, $primaryEmail){
+	public static function Add($domain, $name, $friendlyId, $logoUrl, $template, $primaryEmail, $timeZone){
         
         try{
             
         	$db = DB::get();
 		
     		$siteUniqId = uniqid();
-    		$timeZone = 'CST';
     		$analyticsId = '';
     		$facebookAppId = '';
     		
+    		$type = 'Non-Subscription';
+  
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Type, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteUniqId);
@@ -31,7 +32,8 @@ class Site{
             $s->bindParam(8, $facebookAppId);
             $s->bindParam(9, $primaryEmail);
             $s->bindParam(10, $timeZone);
-            $s->bindParam(11, $timestamp);
+            $s->bindParam(11, $type);
+            $s->bindParam(12, $timestamp);
             
             $s->execute();
             
@@ -165,8 +167,7 @@ class Site{
         
 	}
 
-	
-    // set last login
+	// set last login
 	public static function SetLastLogin($siteUniqId){
         
         try{
@@ -188,14 +189,61 @@ class Site{
         }
 	}
 	
-	// Gets all sites
+	// update customer
+	public static function EditCustomer($siteUniqId, $customerId){
+        
+        try{
+        
+            $db = DB::get();
+            
+            $q = "UPDATE Sites SET Type = 'Subscription', CustomerId = ? WHERE SiteUniqId= ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $customerId);
+            $s->bindParam(2, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::EditCustomer] PDO Error: '.$e->getMessage());
+        }
+	}
+		
+	// update type
+	public static function EditType($siteUniqId, $type){
+        
+        try{
+        
+            $db = DB::get();
+            
+            $timestamp = gmdate("Y-m-d H:i:s", time());
+            
+            $q = "UPDATE Sites SET Type = ? WHERE SiteUniqId= ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $type);
+            $s->bindParam(2, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::UpdateStatus] PDO Error: '.$e->getMessage());
+        }
+	}
+	
+	// gets all sites
 	public static function GetSites(){
 		
         try{
 
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, Created FROM Sites ORDER BY Name ASC";
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+    						AnalyticsId, FacebookAppId, PrimaryEmail,
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created 
+							FROM Sites ORDER BY Name ASC";
                     
             $s = $db->prepare($q);
             
@@ -224,11 +272,44 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, Created
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created
 							FROM Sites WHERE Domain = ?";
                     
             $s = $db->prepare($q);
             $s->bindParam(1, $domain);
+            
+            $s->execute();
+            
+            $row = $s->fetch(PDO::FETCH_ASSOC);        
+    
+    		if($row){
+    			return $row;
+    		}
+        
+        } catch(PDOException $e){
+            die('[Site::GetByDomain] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
+	// Gets a site for a specific domain name
+	public static function GetByCustomerId($customerId){
+		 
+        try{
+        
+    		$db = DB::get();
+            
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+    						AnalyticsId, FacebookAppId, PrimaryEmail,
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created
+							FROM Sites WHERE CustomerId = ?";
+                    
+            $s = $db->prepare($q);
+            $s->bindParam(1, $customerId);
             
             $s->execute();
             
@@ -253,7 +334,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, Created
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created
 							FROM Sites WHERE FriendlyId = ?";
                     
             $s = $db->prepare($q);
@@ -282,7 +365,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, Created
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created
 							FROM Sites WHERE SiteUniqId = ?";
                     
             $s = $db->prepare($q);
@@ -311,7 +396,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, Created
+							TimeZone, LastLogin, 
+							Type, CustomerId, 
+							Created
 							FROM Sites WHERE Siteid = ?";
                     
             $s = $db->prepare($q);

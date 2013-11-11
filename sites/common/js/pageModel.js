@@ -41,21 +41,24 @@ var pageModel = {
             var orderBy = $(lists[x]).attr('data-orderby');
             var siteUniqId = pageModel.siteUniqId();
         
-        
             pageModel[id] = ko.observableArray([]);
             
             console.log('create observableArray: ' + id);
             
             // use an anonymous function to pass the id, ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
-            function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId){
+            function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, page){
                 
                 $.ajax({
                 	url: pageModel.apiEndpoint + '/api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
-        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: 0},
+        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: page},
         			success: function(data){
-
+        			
+        				if(data.length == 0){ // hide pager when we hit the end
+	        				$('#pager-'+id).hide();
+        				}
+        			
                         for(x=0; x<data.length; x++){
                         
                             if(display=='blog'){
@@ -70,11 +73,14 @@ var pageModel = {
                                 content = pageModel.replaceAll(content, stringToFind, stringToReplace);
                                 
                                 // push page to model
-                                pageModel[id].push({
+	                            pageModel[id].push({
                                     'pageUniqId': data[x].PageUniqId,
                                     'name': data[x].Name, 
                                     'content': content,
-                                    'url': data[x].Url
+                                    'url': data[x].Url,
+                                    'lastModifiedReadable': data[x].LastModifiedReadable,
+                                    'lastModified': data[x].LastModified,
+                                    'author': data[x].Author
                                     });
                             }
                             else{
@@ -97,7 +103,33 @@ var pageModel = {
         		});
             }
             
-            updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId);
+            // default page to 0
+            $(lists[x]).attr('data-page', '0');
+            
+            updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, 0);
+            
+            // handles paging the list
+            $('#pager-'+id).on('click', function(){
+	            
+	            var id = $(this).attr('data-id');
+			
+				var list = $('#'+id);
+				var label = $(list).attr('data-label');
+	            var display = $(list).attr('data-display');
+	            var pageTypeUniqId = $(list).attr('data-pagetypeid');
+	            var pageSize = $(list).attr('data-length');
+	            var orderBy = $(list).attr('data-orderby');
+	            var page = parseInt($(list).attr('data-page'));
+	            var siteUniqId = pageModel.siteUniqId();
+	            
+	            page += 1; // increment the page
+	            
+	            $(list).attr('data-page', page);
+	            
+	            updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, page);
+	            
+            });
+            
 		}
     },
     

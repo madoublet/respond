@@ -7,37 +7,68 @@ var filesModel = {
     filesLoading: ko.observable(false),
     
     toBeRemoved: null,
+    toBeEdited: null,
+    
+    dz: null,
 
     init:function(){ // initializes the model
         filesModel.updateFiles();
 
-        $("#drop").dropzone({ 
+        filesModel.dz = new Dropzone("#drop", { 
             url: "api/file/post",
+            clickable: true,
+            sending: function(file, xhr, formData){
+	          
+	          if(filesModel.toBeEdited != null){
+		          formData.append('overwrite', filesModel.toBeEdited.filename);
+	          }
+	          
+	          return true;
+	            
+            },
+            accept: function(file, done) {
+            
+            	if(filesModel.toBeEdited != null){
+            	
+            		var tbe = filesModel.toBeEdited.filename.split('.').pop();
+            		var ext = file.name.split('.').pop();
+            	
+					if(tbe.toUpperCase() != ext.toUpperCase()) {
+						message.showMessage('error', 'The extensions must match when editing an existing file.');
+						done('The extensions must match when editing an existing file.');
+					}
+					else{ 
+						done();
+					}
+				}
+				else{
+					done();
+				}
+			},
             success: function(file, response){
-                var file = jQuery.parseJSON(response);
+            
+            	// update files
+                filesModel.updateFiles();
                 
-                var filename = file.filename;
-    
-                var match = ko.utils.arrayFirst(filesModel.images(), function (item) {
-                                return item.filename === filename; 
-                            });
-                        
-                if (!match) {
-                    filesModel.files.push(file); 
-                }
+                // undo edit
+                filesModel.toBeEdited = null;
+                $('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>');
+				$('.dropzone').removeClass('edit-mode');
             }
             
             });
-            
-        $("#drop").addClass('dropzone');
 
 		ko.applyBindings(filesModel);  // apply bindings
 	},
     
-    updateFiles:function(){  // updates the site to get the logoUrls
+    updateFiles:function(){  // grabs the files from the size
 
         filesModel.files.removeAll();
         filesModel.filesLoading(true);
+        
+        var m = moment();
+        
+        var ts = m.format('MDYYYYhhmmss');
 
 		$.ajax({
 			url: 'api/file/list/all',
@@ -51,7 +82,7 @@ var filesModel = {
     				var file = {
         			    'filename': data[x].filename,
                         'fullUrl': data[x].fullUrl,
-                        'thumbUrl': data[x].thumbUrl,
+                        'thumbUrl': data[x].thumbUrl + '?' + ts	,
                         'extension': data[x].extension,
                         'mimetype': data[x].mimetype,
                         'isImage': data[x].isImage,
@@ -67,6 +98,25 @@ var filesModel = {
 			}
 		});
 
+	},
+
+	edit:function(o, e){
+		filesModel.toBeEdited = o;	
+		
+		console.log(filesModel.dz);
+	
+		$('.listItem').removeClass('edit-mode');
+		$(e.target).parents('.listItem').addClass('edit-mode');
+		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here to replace selected file</span>');
+		$('.dropzone').addClass('edit-mode');
+	},
+
+	undoEdit:function(o, e){
+		filesModel.toBeEdited = null;
+		
+		$('.listItem').removeClass('edit-mode');
+		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>');
+		$('.dropzone').removeClass('edit-mode');
 	},
 
     showRemoveDialog:function(o, e){
@@ -87,7 +137,6 @@ var filesModel = {
 			type: 'POST',
             data: {filename: filesModel.toBeRemoved.filename},
             dataType: 'JSON',
-			data: {},
 			success: function(data){
      
                 filesModel.files.remove(filesModel.toBeRemoved); // remove the page from the model
@@ -96,12 +145,14 @@ var filesModel = {
 
 				message.showMessage('success', 'The file was removed successfully');
 
+			},
+			error: function(xhr, errorText, thrownError){
+				console.log(xhr.responseText);
+				message.showMessage('error', xhr.responseText);
+				$('#deleteDialog').modal('hide');   
 			}
         });
-        
-        
-        $('#deleteDialog').modal('hide');
-        
+         
     }
 }
 

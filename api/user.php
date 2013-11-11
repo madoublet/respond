@@ -22,15 +22,34 @@ class UserLoginResource extends Tonic\Resource {
 
         if($user!=null){
             
-            // create a session from the user
-            AuthUser::Create($user);
-
-            // return a successful response (200)
-            return new Tonic\Response(Tonic\Response::OK);
+            try{
+            
+	            // create a session from the user
+	            AuthUser::Create($user);
+	
+				$params = array(
+					'start' => START_PAGE
+				);
+				
+				// return a json response
+	            $response = new Tonic\Response(Tonic\Response::OK);
+	            $response->contentType = 'applicaton/json';
+	            $response->body = json_encode($params);
+			
+			}
+			catch (Exception $e) {
+				$response = new Tonic\Response(Tonic\Response::BADREQUEST);
+				$response->body = $e->getMessage();
+				return $response;
+			}
+            
+            return $response;
         }
         else{
             // return an unauthorized exception (401)
-            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            $response = new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			$response->body = 'Access denied';
+			return $response;
         }
     }
 }

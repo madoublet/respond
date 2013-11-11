@@ -22,7 +22,7 @@ a{
 div.content{
 	text-align: center;
 	color: #fff;
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 #create-confirmation{
@@ -40,8 +40,9 @@ div.content h1{
 
 div.content p{
 	font-family: "Roboto", sans-serif;
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 	text-align: center;
+	margin-bottom: 25px;
 }
 
 fieldset{
@@ -49,10 +50,15 @@ fieldset{
 	text-align: center;
 	border-bottom: none;
 	margin: 0 auto;
+	padding: 0 5px;
 }
 
-div.form-group{
-	margin: 25px 0 !important;
+div.content fieldset p{
+	text-align: left;
+}
+
+body div.form-group{
+	margin: 0 0 20px 0;
 }
 
 span.actions{
@@ -60,12 +66,15 @@ span.actions{
 	text-align: right;
 }
 
-label{
-	display: none;
+div.content fieldset label{
+	width: 100%;
+	text-align: left;
+	font-size: 1.1em;
 }
 
 span.actions{
-    display: inline-block;
+	margin-top: 25px;	
+    display: block;
     width: 410px;
 }
 
@@ -95,9 +104,10 @@ p.footer{
 
 body p.site-name{
 	margin-top: 10px;
-	font-size: 1em;
+	font-size: 1.1em;
 	color: #777;
-	text-transform: uppercase;
+	margin-bottom: 0;
+	padding-bottom: 0;
 }
 
 	body p.site-name span{

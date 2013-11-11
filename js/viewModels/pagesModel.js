@@ -13,6 +13,18 @@ var pagesModel = {
 	toBeRemoved:null,
 
 	init:function(){ // initializes the model
+	
+		if(window.localStorage){
+		
+			if(window.localStorage['show-account-message'] == 'true'){
+				window.localStorage['show-account-message'] = 'false';
+				$('#account-message').show();
+			}
+			else{
+				$('#account-message').hide();
+			}
+	    	
+    	}
         
         var hash = location.hash;
         

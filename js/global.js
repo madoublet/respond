@@ -4,7 +4,7 @@ var global = {
     init:function(){
       
         // toggle nav
-        $('.show-menu').live('click', function(){
+        $('.show-menu, .hide-menu').live('click', function(){
             $('body').toggleClass('show-nav'); 
         });
         

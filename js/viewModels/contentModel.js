@@ -462,7 +462,7 @@ var contentModel = {
                 for(x in data.icons){
     
     				var icon = {
-        			    'icon': 'icon-'+data.icons[x]['id'],
+        			    'icon': 'fa fa-'+data.icons[x]['id'],
                         'name': data.icons[x]['name']
     				};
                 

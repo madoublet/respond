@@ -17,11 +17,11 @@
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css" rel="stylesheet">
-<link type="text/css" href="css/page.css" rel="stylesheet">
-<link type="text/css" href="css/messages.css" rel="stylesheet">
-<link type="text/css" href="css/menu.css" rel="stylesheet">
-<link type="text/css" href="css/list.css" rel="stylesheet">
+<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/page.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/menu.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
@@ -41,7 +41,7 @@
 <section class="main">
 
     <nav>
-        <a class="show-menu"><i class="icon-reorder icon-large"></i></a>
+        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
     	    <li class="static active"><a href="template">Template</a></li>
@@ -144,9 +144,6 @@
 </div>
 <!-- /.modal -->
 
-
-<?php include 'modules/footer.php'; ?>
-
 </body>
 
 <!-- include js -->
@@ -154,11 +151,11 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/dialog.js"></script>
-<script type="text/javascript" src="js/messages.js"></script>
-<script type="text/javascript" src="js/viewModels/models.js"></script>
-<script type="text/javascript" src="js/viewModels/templateModel.js"></script>
+<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/templateModel.js?v=<?php print VERSION; ?>"></script>
 
 </html>

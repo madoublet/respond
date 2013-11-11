@@ -2,6 +2,7 @@
 
 class AuthUser{
 	
+	// user
 	public $UserId;
 	public $UserUniqId;
 	public $Role;
@@ -11,6 +12,8 @@ class AuthUser{
 	public $Name;
 	public $FirstName;
 	public $LastName;
+	
+	// site
 	public $SiteId;
 	public $SiteUniqId;
 	public $SiteFriendlyId;
@@ -24,6 +27,13 @@ class AuthUser{
 	public $HomeUrl;
 	public $TimeZone;
 	public $Domain;
+	
+	// subscription
+	public $Type;
+	public $CustomerId;
+	public $Plan;
+	public $Status;			// trialing, active, past_due, canceled, or unpaid
+	public $RenewalDate;
 	
 	function __construct(){
 		
@@ -51,6 +61,12 @@ class AuthUser{
 			$this->FileUrl = $_SESSION['FileUrl'];
 			$this->TimeZone = $_SESSION['TimeZone']; 
 			$this->Domain = $_SESSION['Domain']; 
+			$this->Type = $_SESSION['Type'];
+			$this->CustomerId = $_SESSION['CustomerId'];
+			$this->Plan = $_SESSION['Plan'];
+			$this->Status = $_SESSION['Status'];
+			$this->RenewalDate = $_SESSION['RenewalDate'];
+			
 		}
 		else $this->Redirect();
 	}
@@ -65,10 +81,10 @@ class AuthUser{
 
 		$site = Site::GetBySiteId($user['SiteId']);
         
-		$isSuperAdmin = 0;
+		$isSuperAdmin = false;
 		
 		if($user['Email']==SITE_ADMIN){ // set is superman
-			$isSuperAdmin = 1;
+			$isSuperAdmin = true;
 		}
 		
 		$isFirstLogin = 0;
@@ -101,9 +117,48 @@ class AuthUser{
 		$_SESSION['SiteName'] = $site['Name'];
 		$_SESSION['FileUrl'] = 'sites/'.$site['FriendlyId'].'/files/';
 		$_SESSION['TimeZone'] = $site['TimeZone'];
+		$_SESSION['Type'] = $site['Type'];
+		$_SESSION['CustomerId'] = $site['CustomerId'];
+		
+		if(strtoupper($site['Type']) == 'SUBSCRIPTION' && $site['CustomerId'] != NULL){
+			AuthUser::UpdateSubscription();
+		}
+		else{
+			$_SESSION['Status'] = 'N/A';
+			$_SESSION['Plan'] = 'N/A';
+			$_SESSION['RenewalDate'] = NULL;
+		}
+
 
 	}
 	
+	public static function UpdateSubscription(){
+	
+		try{
+			$customerId = $_SESSION['CustomerId'];
+			
+			Stripe::setApiKey(STRIPE_API_KEY);
+	
+			$customer = Stripe_Customer::retrieve($customerId);
+	
+			if($customer->subscription){
+				$_SESSION['Status'] = $customer->subscription->status;
+				$_SESSION['Plan'] = $customer->subscription->plan->id;
+				$_SESSION['RenewalDate'] = gmdate("Y-m-d H:i:s", intval($customer->subscription->current_period_end));
+			}
+			else{
+				$_SESSION['Status'] = 'unsubscribed';
+				$_SESSION['Plan'] = '';
+				$_SESSION['RenewalDate'] = NULL;
+			}
+	
+		}
+		catch (Exception $e){
+			throw new Exception('Stripe error: '.$e->getMessage().'. Contact your administrator.'); 
+		}
+		
+	}
+
 	public function Authenticate($auth){
 		
 		if($auth=='Admin'){

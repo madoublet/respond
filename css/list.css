@@ -2,6 +2,7 @@
 div.list.has-dropzone{
     margin-right: 200px;    
     border-right: 1px solid #eee;
+    min-height: 400px;
 }
 
 div.listItem{
@@ -154,7 +155,7 @@ div#imageList div.listItem img{
 }
 
 /* begin actions */
-div.listItem a.remove{
+.listItem .remove{
 	position: absolute;
 	top: 20px;
 	right: 12px;
@@ -164,12 +165,67 @@ div.listItem a.remove{
 	color: #ccc;
 }
 
-div.listItem a.remove:hover{
+.listItem .remove:hover{
     color: #B11623;
     text-decoration: none;
 }
 
+.listItem .edit{
+	position: absolute;
+	top: 20px;
+	right: 42px;
+	display: inline-block !important;
+	width: 25px !important;
+	height: 25px !important;
+	color: #ccc;
+}
 
+.listItem .edit:hover{
+    color: #ff9900;
+    text-decoration: none;
+}
+
+/* handles an editable mode for a list-item */
+.editable-selected{
+	position: absolute;
+	top: 18px;
+	right: 45px;
+	color: #fff;
+	background-color: #ff9900;
+	border-radius: 10px;
+	padding: 2px 10px;
+	display: none;
+	font-size: 0.85em;
+}
+
+.edit-mode .editable-selected{
+	display: inline-block;
+}
+
+.cancel-edit{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	color: #fff;
+	display: none;
+	font-size: 0.85em;
+	color: #ff9900;
+}
+
+	.cancel-edit:hover{
+		color: #888;
+	}
+
+.edit-mode .cancel-edit{
+	display: block;
+}
+
+.edit-mode .edit, .edit-mode .remove{
+	display: none !important;
+}
+	
+
+/* handles statuses */
 div.listItem span.status{
 	position: absolute;
 	top: 20px;

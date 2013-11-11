@@ -18,9 +18,9 @@
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css" rel="stylesheet">
-<link type="text/css" href="css/messages.css" rel="stylesheet">
-<link type="text/css" href="css/list.css" rel="stylesheet">
+<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
@@ -36,18 +36,20 @@
 <section class="main">
 
     <nav>
-        <a class="show-menu"><i class="icon-reorder icon-large"></i></a>
+        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
             <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages">/</a></li>
         	<!--ko foreach: pageTypes -->
-    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="icon-minus-sign icon-large"></i></li>
+    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i></li>
     		<!--/ko -->
-            <li class="add"><i class="icon-plus-sign icon-large" data-bind="click: showAddPageTypeDialog"></i></li>
+            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddPageTypeDialog"></i></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="icon-plus-sign icon-large"></i> Add <span data-bind="text: typeS"></span></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add <span data-bind="text: typeS"></span></a>
     </nav>
+    
+    <?php include 'modules/account.php'; ?>
 
     <div class="list" data-bind="foreach: pages">
     
@@ -56,14 +58,14 @@
             <span class="image" data-bind="if: thumb()!=''"><img height="75" width="75" data-bind="attr:{'src':thumb}"></span>
         
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
-                <i class="not-published icon-minus-sign icon-large"></i>
+                <i class="not-published fa fa-minus-circle fa-lg"></i>
             </a>
     		<h2><a data-bind="text:name, attr: { 'href': editUrl }"></a></h2>
     		<p data-bind="text:description"></p>
     		<em>Last updated <span data-bind="text:friendlyDate"></span> by <span data-bind="text:lastModifiedFullName"></span></em>
     		<span class="status" data-bind="css: { 'published': isActive() == 1, 'not-published': isActive() == 0 }, click: $parent.toggleActive">
-    			<i class="not-published icon-circle-blank icon-large"></i>
-    			<i class="published icon-ok-sign icon-large"></i>
+    			<i class="not-published fa fa-circle-o fa-large"></i>
+    			<i class="published fa fa-check-circle fa-lg"></i>
     		</span>
     	</div>
     	<!-- /.listItem -->
@@ -248,10 +250,10 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/messages.js"></script>
-<script type="text/javascript" src="js/viewModels/models.js"></script>
-<script type="text/javascript" src="js/viewModels/pagesModel.js" defer="defer"></script>
+<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/pagesModel.js?v=<?php print VERSION; ?>" defer="defer"></script>
 
 </html>

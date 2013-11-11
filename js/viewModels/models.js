@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, analyticsId, facebookAppId, primaryEmail, timeZone, lastLogin, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, analyticsId, facebookAppId, primaryEmail, timeZone, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -15,6 +15,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, a
     self.primaryEmail = ko.observable(primaryEmail);
     self.timeZone = ko.observable(timeZone);
     self.lastLogin = ko.observable(lastLogin);
+    self.type = ko.observable(type);
+    self.customerId = ko.observable(customerId);
     self.created = ko.observable(created);
 }
 
@@ -22,7 +24,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, a
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Template'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['LastLogin'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 
 // models a user
@@ -45,7 +47,7 @@ function User(userId, userUniqId, email, password, firstName, lastName, role, cr
 	});
     
     self.friendlyDate = ko.computed(function(){
-    	var st = moment(self.created(), 'YYYY-MM-DD HH:mm:ss');
+    	var st = moment.utc(self.created(), 'YYYY-MM-DD HH:mm:ss');
 		return st.fromNow(); 
 	});
 
@@ -105,7 +107,7 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 
 // creates a page based on data returned from the API
 Page.create = function(data){
-    
+
 	return new Page(data['PageId'], data['PageUniqId'], data['PageTypeId'], data['FriendlyId'], data['Name'], data['Description'], 
 					data['Keywords'], data['Callout'], data['Rss'], data['Layout'], data['Stylesheet'], 
 					data['Url'], data['Image'], data['Thumb'], data['LastModifiedDate'], data['LastModifiedFullName'], 

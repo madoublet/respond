@@ -14,9 +14,9 @@
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css" rel="stylesheet">
-<link type="text/css" href="css/messages.css" rel="stylesheet">
-<link type="text/css" href="css/login.css" rel="stylesheet">
+<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/login.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 <body id="forgot" class="external default">
@@ -30,13 +30,13 @@
 <div class="content">
 
 	<h1><?php print BRAND; ?></h1>
+	
+	<p>
+		Type your email address and we will send you a link to reset your password.
+	</p>
 
 	<fieldset class="forgot" data-bind="visible:hasToken()==false">
 		
-		<p>
-			Type your email address and we will send you a link to reset your password.
-		</p>
-
 		<div class="form-group">
 			<label for="email">Email:</label>
 			<input id="email" type="text" value="" placeholder="you@yourlogin.com" class="form-control input-lg">	
@@ -89,9 +89,9 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/messages.js"></script>
-<script type="text/javascript" src="js/viewModels/forgotModel.js"></script>
+<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/forgotModel.js?v=<?php print VERSION; ?>"></script>
 
 </html>

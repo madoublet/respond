@@ -17,13 +17,13 @@
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css" rel="stylesheet">
-<link type="text/css" href="css/page.css" rel="stylesheet">
-<link type="text/css" href="css/messages.css" rel="stylesheet">
-<link type="text/css" href="css/menu.css" rel="stylesheet">
-<link type="text/css" href="css/pages.css" rel="stylesheet">
-<link type="text/css" href="css/list.css" rel="stylesheet">
-<link type="text/css" href="css/menuItems.css" rel="stylesheet">
+<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/page.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/menu.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/pages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/menuItems.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
@@ -39,24 +39,24 @@
 <section class="main">
 
     <nav>
-        <a class="show-menu"><i class="icon-reorder icon-large"></i></a>
+        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
             <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a>Primary</a></li>
         	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a>Footer</a></li>
     	<!-- ko foreach: menuTypes -->
-    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="icon-minus-sign icon-large"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
+    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle fa-lg"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
     	<!-- /ko -->
-            <li class="add"><i class="icon-plus-sign icon-large" data-bind="click: showAddMenuTypeDialog"></i></li>
+            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddMenuTypeDialog"></i></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="icon-plus-sign icon-large"></i> Add Menu Item</a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add Menu Item</a>
     </nav>
 
 	<div id="menuItemsList" class="list" data-bind="foreach: menuItems">
     
         <div class="listItem sortable" data-bind="attr:{'data-id':menuItemUniqId}">
-            <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published icon-minus-sign icon-large"></i></a>
+            <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published fa fa-minus-circle fa-lg"></i></a>
             <span class="hook"></span>
             <h2><a data-bind="text: name, click: $parent.showEditDialog"></a> <small data-bind="text: url"></small></h2>
         </div>
@@ -65,7 +65,7 @@
 	</div>
 	<!-- /.list -->
     
-    <p data-bind="visible: menuLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> Loading...</p>
+    <p data-bind="visible: menuLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> Loading...</p>
 
     <p data-bind="visible: menuLoading()==false && menuItems().length < 1" class="list-none">No menu items here. Click Add Menu Item to get started.</p>
     
@@ -273,10 +273,10 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js"></script>
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/messages.js"></script>
-<script type="text/javascript" src="js/viewModels/models.js"></script>
-<script type="text/javascript" src="js/viewModels/menusModel.js"></script>
+<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/menusModel.js?v=<?php print VERSION; ?>"></script>
 
 </html>

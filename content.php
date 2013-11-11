@@ -17,14 +17,14 @@
 <!-- css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css" rel="stylesheet">
-<link type="text/css" href="css/content.css" rel="stylesheet">
-<link type="text/css" href="css/editor.css" rel="stylesheet">
-<link type="text/css" href="css/messages.css" rel="stylesheet">
-<link type="text/css" href="css/dialog.css" rel="stylesheet">
-<link type="text/css" href="css/list.css" rel="stylesheet">
-<link type="text/css" href="css/prettify.css" rel="stylesheet">
-<link type="text/css" href="css/dropzone.css" rel="stylesheet">
+<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/content.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/editor.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/prettify.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link href="<?php print JQUERYUI_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 
@@ -62,7 +62,7 @@
 </section>
 <!-- /.main -->
 
-<p id="contentLoading" data-bind="visible: contentLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading content and editor...</p>
+<p id="contentLoading" data-bind="visible: contentLoading()" class="inline-status"><i class="fa fa-spinner fa-spin"></i> Loading content and editor...</p>
 
 <div id="previewMessage">
   <span>You are previewing this page, click save to publish it.
@@ -118,12 +118,12 @@
 
     </div>
     
-    <div id="drop" class="custom-dropzone">
-        <span class="message">
-            <i class="icon-cloud-upload icon-4x"></i>
-            <span class="message-text">Drag file here or click to upload</span>
+    <div id="drop" class="dropzone in-dialog">
+        <span class="dz-message">
+            <i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>
         </span>
     </div>
+    <!-- /.dropzone -->
     
   </div>
   <!-- /.modal-body -->
@@ -558,7 +558,7 @@
 					<ul data-bind="foreach: pages">
 						<li data-bind="attr:{'data-pageid': pageId, 'data-url': $parent.toPagePrefix() + url()}, text:name"></li>
 					</ul>
-					<p data-bind="visible: pagesLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading pages...</p>
+					<p data-bind="visible: pagesLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading pages...</p>
 				</div>
 			</div>
 			
@@ -609,7 +609,7 @@
 				<ul data-bind="foreach: pages">
 					<li data-bind="attr:{'data-pageuniqid': pageUniqId}, text:name"></li>
 				</ul>
-				<p data-bind="visible: pagesLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading pages...</p>
+				<p data-bind="visible: pagesLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading pages...</p>
 			</div>    
 			
 			</div>
@@ -652,7 +652,7 @@
 						<ul data-bind="foreach: pages">
 							<li data-bind="attr:{'data-pageuniqid': pageUniqId, 'data-name': name}, text:name"></li>
 						</ul>
-						<p data-bind="visible: pagesLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading pages...</p>
+						<p data-bind="visible: pagesLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading pages...</p>
 					</div>    
 				</div>
 			
@@ -700,7 +700,7 @@
 					</li>
 				</ul>
 				
-				<p data-bind="visible: pluginsLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading plugins...</p>
+				<p data-bind="visible: pluginsLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading plugins...</p>
 				
 			</div>
 			
@@ -813,14 +813,14 @@
 				<div class="form-group">
 					<label for="layout">Layout:</label>
 					<select id="layout" data-bind="options: $parent.layouts, value: layout()" class="form-control"></select>
-					<p data-bind="visible: $parent.layoutsLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading...</p>
+					<p data-bind="visible: $parent.layoutsLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading...</p>
 					<span class="help-block">HTML used to render the page</span>
 				</div>
 				
 				<div class="control-group">
 					<label for="stylesheet">Styles:</label>
 					<select id="stylesheet" data-bind="options: $parent.stylesheets, value: stylesheet()" class="form-control"></select>
-					<p data-bind="visible: $parent.stylesheetsLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading...</p>
+					<p data-bind="visible: $parent.stylesheetsLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading...</p>
 					<span class="help-block">CSS used to render the page</span>
 				</div>
 				
@@ -830,6 +830,49 @@
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal">Close</button>
 				<button class="primary-button" data-bind="click:saveSettings">Update</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="htmlDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>Add HTML</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p class="twitter-instructions instructions alert alert-info">Create your widget at <a href="https://twitter.com/settings/widgets" target="_blank">//twitter.com/settings/widgets</a> and paste the HTML code below.</p>
+			
+				<div class="control-group">
+					<label for="stylesheet">HTML:</label>
+					<textarea id="Html" class="form-control"></textarea>
+					<span class="help-block">Add your HTML, JS, or HTML here.</span>
+				</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">Close</button>
+				<button id="addHtml" class="primary-button">Add HTML</buttons>
 			</div>
 			<!-- /.modal-footer -->
 		
@@ -903,13 +946,13 @@
 				
 				    <ul data-bind="foreach: files">
 				      <li>
-				        <i class="icon-file-alt" data-bind="visible: (extension == 'pdf' || extension == 'doc'|| extension == 'docx'|| extension == 'zip' || extension == 'ppt')"></i>
-				        <i class="icon-picture" data-bind="visible: (extension == 'png' || extension == 'jpg'|| extension == 'gif')"></i>
+				        <i class="fa fa-file-alt" data-bind="visible: (extension == 'pdf' || extension == 'doc'|| extension == 'docx'|| extension == 'zip' || extension == 'ppt')"></i>
+				        <i class="fa fa-picture" data-bind="visible: (extension == 'png' || extension == 'jpg'|| extension == 'gif')"></i>
 				        <a data-bind="attr:{'data-filename':filename, 'data-fullurl':fullUrl, 'data-extension':extension}, text:filename"></a>
 				      </li>
 				    </ul>
 				
-				    <p data-bind="visible: filesLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading files...</p>
+				    <p data-bind="visible: filesLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading files...</p>
 				
 				</div>
 				
@@ -954,7 +997,7 @@
 					</li>
 				</ul>
 				
-				<p data-bind="visible: iconsLoading()" class="inline-status"><i class="icon-spinner icon-spin"></i> Loading icons...</p>
+				<p data-bind="visible: iconsLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading icons...</p>
 				
 				</div>
 				
@@ -989,43 +1032,44 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js"></script>
-<script type="text/javascript" src="js/helper/flipsnap.min.js"></script>
-<script type="text/javascript" src="js/helper/prettify.js"></script>
-<script type="text/javascript" src="js/helper/dropzone.js"></script>
+<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
 
 <!-- plugins -->
-<script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.paste.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.respondEdit.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
 
 <!-- app -->
-<script type="text/javascript" src="js/global.js"></script>
-<script type="text/javascript" src="js/messages.js"></script>
+<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
-<script type="text/javascript" src="js/dialog.js"></script>
-<script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/loadLayoutDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/pluginsDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/configPluginsDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/pageSettingsDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/codeBlockDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/imagesDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/filesDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/listDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/featuredDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/linkDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/fieldDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/skuDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/slideshowDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/elementConfigDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/blockConfigDialog.js"></script>
-<script type="text/javascript" src="js/dialogs/aviaryDialog.js"></script>
+<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/loadLayoutDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/pluginsDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/configPluginsDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/pageSettingsDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/codeBlockDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/htmlDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/imagesDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/filesDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/listDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/featuredDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/linkDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/fieldDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/skuDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/slideshowDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/elementConfigDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/blockConfigDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/aviaryDialog.js?v=<?php print VERSION; ?>"></script>
 
 <!-- page -->
-<script type="text/javascript" src="js/viewModels/models.js" defer="defer"></script>
-<script type="text/javascript" src="js/viewModels/contentModel.js" defer="defer"></script>
+<script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>" defer="defer"></script>
+<script type="text/javascript" src="js/viewModels/contentModel.js?v=<?php print VERSION; ?>" defer="defer"></script>
 
 </html>

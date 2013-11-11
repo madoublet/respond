@@ -4,7 +4,7 @@
  * This class defines an example resource that is wired into the URI /example
  * @uri /site/test
  */
-class SiteTesthResource extends Tonic\Resource {
+class SiteTestResource extends Tonic\Resource {
 
     /**
      * @method GET
@@ -88,6 +88,7 @@ class SiteCreateResource extends Tonic\Resource {
         $email = $request['email'];
         $password = $request['password'];
         $s_passcode = $request['passcode'];
+        $timeZone = $request['timeZone'];
         
         // defaults
         $firstName = 'New';
@@ -106,10 +107,26 @@ class SiteCreateResource extends Tonic\Resource {
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $template, $email); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $template, $email, $timeZone); // add the site
             
             // add the admin
             $user = User::Add($email, $password, $firstName, $lastName, 'Admin', $site['SiteId']);
+            
+            // set the stripe plan, customer id, status
+            if(DEFAULT_STRIPE_PLAN != ''){
+            
+            	Stripe::setApiKey(STRIPE_API_KEY);
+	            
+	            $customer = Stripe_Customer::create(
+	            	array(
+						"plan" => DEFAULT_STRIPE_PLAN,
+						"email" => $email)
+	            );
+	            
+	            $customerId = $customer->id;
+	            
+	            Site::EditCustomer($site['SiteUniqId'], $customerId);
+            }
             
             // create the home page
         	$description = '';
@@ -121,6 +138,7 @@ class SiteCreateResource extends Tonic\Resource {
     		}
     		
             $homePage = Page::Add('index', 'Home', $description, -1, $site['SiteId'], $user['UserId']);
+            Page::EditLayout($$homePage['PageUniqId'], 'home', $user['UserId']);
             Page::SetIsActive($homePage['PageUniqId'], 1);
             
     		Publish::PublishFragment($site['FriendlyId'], $homePage['PageUniqId'], 'publish', $content);
@@ -128,7 +146,7 @@ class SiteCreateResource extends Tonic\Resource {
     		// add the general page type and create a list
     		$pageType = PageType::Add('page', 'Page', 'Pages', $site['SiteId'], $user['UserId'], $user['UserId']);
     		
-    		// create the sample page
+    		// create the about page
     		$content = '';
     		$filename = '../layouts/about.html';
     				
@@ -167,13 +185,44 @@ class SiteCreateResource extends Tonic\Resource {
             
     		Publish::PublishFragment($site['FriendlyId'], $pageNotFound['PageUniqId'], 'publish', $content);
     		
+    		// add the post page type
+    		$postPageType = PageType::Add('post', 'Post', 'Posts', $site['SiteId'], $user['UserId'], $user['UserId']);
+    		
+    		// create a sample blog post
+    		$content = '';
+    		$filename = '../layouts/post.html';
+    				
+    		if(file_exists($filename)){
+    			$content = file_get_contents($filename);
+    		}
+            
+    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $postPageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+    		Page::EditLayout($samplePost['PageUniqId'], 'post', $user['UserId']);
+            Page::SetIsActive($samplePost['PageUniqId'], 1);
+    		
+    		Publish::PublishFragment($site['FriendlyId'], $samplePost['PageUniqId'], 'publish', $content);
+    		
+    		// create a sample blog list page
+    		$content = '';
+    		$filename = '../layouts/blog.html';
+    				
+    		if(file_exists($filename)){
+    			$content = file_get_contents($filename);
+    			$content = str_replace('{{pageTypeUniqId}}', $postPageType['PageTypeUniqId'], $content);
+    		}
+            
+    		$blog = Page::Add('blog', 'Blog', $description, -1, $site['SiteId'], $user['UserId']);
+    		Page::EditLayout($blog['PageUniqId'], 'blog', $user['UserId']);
+    		Page::SetIsActive($blog['PageUniqId'], 1);
+    		
+    		Publish::PublishFragment($site['FriendlyId'], $blog['PageUniqId'], 'publish', $content);
+    		
+    		
     		// create the menu
-    		$homeUrl = '';
-    		$aboutUsUrl = 'page/about';
-    		$contactUsUrl = 'page/contact';
-    		MenuItem::Add('Home', '', 'primary', $homeUrl, $homePage['PageId'], 0, $site['SiteId'], $user['UserId'], $user['UserId']);
-            MenuItem::Add('About', '', 'primary', $aboutUsUrl, $aboutUs['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
-    		MenuItem::Add('Contact', '', 'primary', $contactUsUrl, $contactUs['PageId'], 3, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		MenuItem::Add('Home', '', 'primary', 'index', $homePage['PageId'], 0, $site['SiteId'], $user['UserId'], $user['UserId']);
+            MenuItem::Add('Blog', '', 'primary', 'blog', $blog['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
+            MenuItem::Add('About', '', 'primary', 'page/about', $aboutUs['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $user['UserId'], $user['UserId']);
     		
     		// publishes a template for a site
     		Publish::PublishTemplate($site, $template);
@@ -181,6 +230,29 @@ class SiteCreateResource extends Tonic\Resource {
     		// publish the site
     		Publish::PublishCommonForEnrollment($site['SiteUniqId']);
     		Publish::PublishSite($site['SiteUniqId']);
+    		
+    		// send welcome email
+    		if(SEND_WELCOME_EMAIL == true){
+    		
+	    		$to = $user['Email'];
+	    		$from = REPLY_TO;
+	    		$subject = BRAND.': Welcome to '.BRAND;
+	    		$file = 'emails/new-user.html';
+	    		
+	    		// create strings to replace
+	    		$loginUrl = APP_URL;
+	    		$newSiteUrl = APP_URL.'/sites/'.$site['FriendlyId'];
+	    		
+	    		$replace = array(
+	    			'{{brand}}' => BRAND,
+	    			'{{reply-to}}' => REPLY_TO,
+	    			'{{new-site-url}}' => $newSiteUrl,
+	    			'{{login-url}}' => $loginUrl
+	    		);
+	    		
+	    		// send email from file
+	    		Utilities::SendEmailFromFile($to, $from, $subject, $replace, $file);
+	    	}
             
             return new Tonic\Response(Tonic\Response::OK);
         }
@@ -408,6 +480,109 @@ class SiteListAllResource extends Tonic\Resource {
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'applicaton/json';
             $response->body = json_encode($list);
+
+            return $response;
+
+        }
+        else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+    }
+
+}
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /site/list/extended
+ */
+class SiteListExtendedResource extends Tonic\Resource {
+
+    /**
+     * @method GET
+     */
+    function get() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            // get sites
+            $list = Site::GetSites();
+            
+            Stripe::setApiKey(STRIPE_API_KEY);
+            
+            // init
+            $status = '';
+			$plan = '';
+			$planName = '';
+			$renewalReadable = '';
+			$customerId = '';
+			
+			$sites = array();
+            
+            foreach($list as $site){ // iterate files
+            
+            	if($site['CustomerId'] != null && $site['CustomerId'] != ''){
+            	
+            		$customerId = $site['CustomerId'];
+	            	
+	            	// get customer
+					$customer = Stripe_Customer::retrieve($site['CustomerId']);
+					
+					if($customer->subscription){					
+						$status = $customer->subscription->status;
+						$plan = $customer->subscription->plan->id;
+						$planName  = $customer->subscription->plan->name;
+						
+						
+						$local = new DateTimeZone($site['TimeZone']);
+						
+						$date = new DateTime();
+						$date->setTimestamp($customer->subscription->current_period_end);
+						$date->setTimezone($local);
+						
+						$renewalReadable = $date->format('D, M d y h:i:s a');
+											}
+					else{
+						$status = 'unsubscribed';
+						$plan = '';
+						$planName = 'N/A';
+						$renewalReadable = 'N/A';
+					}
+	            	
+            	}	
+				else{
+					$customerId = $site['CustomerId'];
+					$status = 'N/A';
+					$plan = '';
+					$planName = '';
+					$renewalReadable = '';
+				}
+            
+				$new_site = array(
+					'siteId' => $site['SiteId'],
+					'siteUniqId' => $site['SiteUniqId'],
+					'name' => $site['Name'],
+					'domain' => $site['Domain'],
+					'type' => $site['Type'],
+					'status' => $status,
+					'planId' => $plan,
+					'planName' => $planName,
+					'customerId' => $customerId,
+					'renewalReadable' => $renewalReadable
+				);
+            	
+            	array_push($sites, $new_site);
+              
+            }
+
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'applicaton/json';
+            $response->body = json_encode($sites);
 
             return $response;
 

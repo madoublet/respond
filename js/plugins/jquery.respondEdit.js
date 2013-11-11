@@ -15,64 +15,64 @@ jQuery.fn.swap = function(b){
 
 	// create menu
 	var menu =  '<nav class="editor-menu">' +
-                '<a class="show-menu"><i class="icon-reorder icon-large"></i></a>' +
+                '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
                 '<div class="editor-actions"><div>' +
-				'<a class="bold icon-bold" title="Bold Text (select text first)"></a>' +
-				'<a class="italic icon-italic" title="Italicize Text (select text first)"></a>' +
-				'<a class="strike icon-strikethrough" title="Strike Text (select text first)"></a>' +
-				'<a class="subscript icon-subscript" title="Subscript Text (select text first)"></a>' +
-				'<a class="superscript icon-superscript" title="Superscript Text (select text first)"></a>' +
-				'<a class="underline icon-underline" title="Underline Text (select text first)"></a>' +
-				'<a class="align-left icon-align-left" title="Align text to the left" data-align="left"></a>' +
-				'<a class="align-center icon-align-center" title="Align text to the center" data-align="center"></a>' +
-				'<a class="align-right icon-align-right" title="Align text to the right" data-align="right"></a>' +
-				'<a class="link icon-link" title="Add Link (select text first)"></a>' +
-				'<a class="code icon-code" title="Add code"></a>' +
-        		'<a class="icon icon-flag" title="Add Font Awesome icon"></a>' + // WIP, coming soon
+				'<a class="bold fa fa-bold" title="Bold Text (select text first)"></a>' +
+				'<a class="italic fa fa-italic" title="Italicize Text (select text first)"></a>' +
+				'<a class="strike fa fa-strikethrough" title="Strike Text (select text first)"></a>' +
+				'<a class="subscript fa fa-subscript" title="Subscript Text (select text first)"></a>' +
+				'<a class="superscript fa fa-superscript" title="Superscript Text (select text first)"></a>' +
+				'<a class="underline fa fa-underline" title="Underline Text (select text first)"></a>' +
+				'<a class="align-left fa fa-align-left" title="Align text to the left" data-align="left"></a>' +
+				'<a class="align-center fa fa-align-center" title="Align text to the center" data-align="center"></a>' +
+				'<a class="align-right fa fa-align-right" title="Align text to the right" data-align="right"></a>' +
+				'<a class="link fa fa-link" title="Add Link (select text first)"></a>' +
+				'<a class="code fa fa-code" title="Add code"></a>' +
+        		'<a class="icon fa fa-flag" title="Add Font Awesome icon"></a>' + // WIP, coming soon
 				'<a class="h1" title="Add Headline">H1</a>' +
 				'<a class="h2" title="Add Headline">H2</a>' +
 				'<a class="h3" title="Add Headline">H3</a>' +
 				'<a class="p" title="Add a Paragraph">P</a>' +
-				'<a class="q icon-quote-left" title="Add Block Quote"></a>' +
-				'<a class="ul icon-list" title="Add a List"></a>' +
-				'<a class="table icon-table" title="Add Table"></a>' +
-				'<a class="hr icon-minus" title="Add a Horizontal Rule"></a>' +
-				'<a class="img icon-picture" title="Add an Image"></span>' +
-				'<a class="slideshow  icon-film" title="Add a Slideshow"></a>' +
-				'<a class="map  icon-map-marker" title="Add a Map"></a>' +
-				'<a class="twitter icon-twitter" title="Add your Twitter&reg; feed"></a>' +
-				'<a class="like icon-facebook" title="Add Facebook&reg; Like button"></a>' +
-				'<a class="comments icon-comments" title="Add Facebook&reg; comments"></a>' +
-				'<a class="youtube icon-facetime-video" title="Add a video"></span>' +
-				'<a class="list icon-list-alt" title="Add a list of pages"></span>' +
-                '<a class="featured icon-star" title="Add Featured Content"></a>' +
-				'<a class="file icon-file-alt" title="Add a File"></a>' +
-				//'<a class="cart icon-shopping-cart" title="Add SKUs"></a>' +
-				'<a class="form icon-check" title="Add a Form"></a>' +
-				'<a class="html icon-coffee" title="Add HTML"></a>' + 
-				'<a class="syntax icon-beer" title="Add Code Block"></a>';
+				'<a class="q fa fa-quote-left" title="Add Block Quote"></a>' +
+				'<a class="ul fa fa-list" title="Add a List"></a>' +
+				'<a class="table fa fa-table" title="Add Table"></a>' +
+				'<a class="hr fa fa-minus" title="Add a Horizontal Rule"></a>' +
+				'<a class="img fa fa-picture-o" title="Add an Image"></span>' +
+				'<a class="slideshow  fa fa-film" title="Add a Slideshow"></a>' +
+				'<a class="map  fa fa-map-marker" title="Add a Map"></a>' +
+				'<a class="twitter fa fa-twitter" title="Add your Twitter&reg; feed"></a>' +
+				'<a class="like fa fa-facebook" title="Add Facebook&reg; Like button"></a>' +
+				'<a class="comments fa fa-comments" title="Add Facebook&reg; comments"></a>' +
+				'<a class="youtube fa fa-video-camera" title="Add a video"></span>' +
+				'<a class="list fa fa-bars" title="Add a list of pages"></span>' +
+                '<a class="featured fa fa-star" title="Add Featured Content"></a>' +
+				'<a class="file fa fa-file-o" title="Add a File"></a>' +
+				//'<a class="cart fa fa-shopping-cart" title="Add SKUs"></a>' +
+				'<a class="form fa fa-check" title="Add a Form"></a>' +
+				'<a class="html fa fa-html5" title="Add HTML"></a>' + 
+				'<a class="syntax fa fa-terminal" title="Add Code Block"></a>';
 
-   	menu += '<a class="plugins icon-cogs" title="Plugins"></a>';
-   	menu += '<a class="settings icon-wrench" title="Page Settings"></a>';
-    menu +=  '<a class="cols icon-columns" title="Add a 50/50 Column Layout"><small>50/50</small></a>' +
-        	   '<a class="single icon-columns" title="Add a Full Column Layout"><small>100</small></a>' +
-        	   '<a class="cols73 icon-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
-        	   '<a class="cols37 icon-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
-        	   '<a class="cols333 icon-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
-        	   '<a class="cols425 icon-columns" title="Add a 25/25/25/25 Column Layout"><small>4*25</small></a>' +
-        	   '<a class="load icon-circle-arrow-up" title="Load New Layout"></a></div></div>';
-    menu += '<a class="next fs-next"><i class="icon-chevron-right"></i></a>';
-    menu += '<a class="previous fs-prev"><i class="icon-chevron-left"></i></a>';
-    menu += '<a class="primary-action preview"><i class="icon-eye-open"></i> Preview</a>';
+   	menu += '<a class="plugins fa fa-cogs" title="Plugins"></a>';
+   	menu += '<a class="settings fa fa-wrench" title="Page Settings"></a>';
+    menu +=  '<a class="cols fa fa-columns" title="Add a 50/50 Column Layout"><small>50/50</small></a>' +
+        	   '<a class="single fa fa-columns" title="Add a Full Column Layout"><small>100</small></a>' +
+        	   '<a class="cols73 fa fa-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
+        	   '<a class="cols37 fa fa-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
+        	   '<a class="cols333 fa fa-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
+        	   '<a class="cols425 fa fa-columns" title="Add a 25/25/25/25 Column Layout"><small>4*25</small></a>' +
+        	   '<a class="load fa fa-circle-arrow-up" title="Load New Layout"></a></div></div>';
+    menu += '<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>';
+    menu += '<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>';
+    menu += '<a class="primary-action preview"><i class="fa fa-eye"></i> Preview</a>';
    
    	menu += '</nav>';
 	   
    	var editor = '<div class="block row sortable">' +
-		'<a class="remove-block icon-minu-sign"></a><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a>' +
+		'<a class="remove-block fa fa-minus-circle"></a><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a>' +
 		'<div class="col col-md-12"><div class="p">' +
 		'<div class="content" contentEditable="true"></div>' +
 		'<span class="marker">P</span>' +
-		'<a class="remove icon-minus-sign"></a>' +
+		'<a class="remove fa fa-minus-circle"></a>' +
 		'</div>' +
 		'</div></div>';
 	
@@ -111,7 +111,7 @@ jQuery.fn.swap = function(b){
 				response+= '<div id="'+id+'" class="p'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 					'<div class="content" contentEditable="true">' + $(node).html() + '</div>' +
 					'<span class="marker">P</span>' +
-					'<a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>' +
+					'<a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>' +
 					'</div>';
 		  	}
 
@@ -156,12 +156,7 @@ jQuery.fn.swap = function(b){
 	            
 	            var table = '<div id="'+id+'" class="table" data-id="'+id+'" data-cssclass="'+cssclass+'"><table class="'+cssclass+'" data-columns="'+columns+'">'+
                         rows + '</table>' +
-                        //'<div class="btn-group"><a class="add-column btn btn-default">Add Column</a>' +
-          				//'<a class="add-row btn btn-default">Add Row</a>' +
-          				//'<a class="remove-row btn btn-default">Remove Row</a>' +
-          				//'<a class="remove-column btn btn-default">Remove Column</a>' +
-          				//'</div>' +
-                        '<span class="marker icon-table"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+                       '<span class="marker fa fa-table"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
                         '</div>';
 
             	response += table;
@@ -173,10 +168,10 @@ jQuery.fn.swap = function(b){
 				cssclass = $(node).attr('class');
 				if(cssclass==undefined) cssclass='';
 			
-				response+= '<div id="'+id+'" class="q" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+				response+= '<div id="'+id+'" class="q" data-id="'+id+'" data-cssclass="'+cssclass+'"><i class="fa fa-quote-left"></i>' +
 					'<div class="content" contentEditable="true">' + $(node).html() + '</div>' +
-					'<span class="marker icon-quote-left"></span>' +
-					'<a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>' +
+					'<span class="marker fa fa-quote-left"></span>' +
+					'<a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>' +
 					'</div>';
 		  	}
 		  
@@ -193,8 +188,8 @@ jQuery.fn.swap = function(b){
 					response+= '<div class="content" contentEditable="true">' + $(lis[y]).html() + '</div>';
 				}
 			  
-				response+= '<span class="marker icon-list"></span>';
-				response+= '<a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
+				response+= '<span class="marker fa fa-list"></span>';
+				response+= '<a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
 				response+= '</div>';
 		  	}
 		  
@@ -217,7 +212,7 @@ jQuery.fn.swap = function(b){
 				}
 			
 				response+= '<div id="'+id+'" class="h1'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
-					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H1</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a><a class="config icon-cog"></a>'+
+					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H1</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a><a class="config fa fa-cog"></a>'+
 					'</div>';
 		  	}
 		  
@@ -226,11 +221,12 @@ jQuery.fn.swap = function(b){
 				if(id==undefined || id=='')id='hr-'+parseInt(new Date().getTime() / 1000);
 				cssclass = $(node).attr('class');
 			  	if(cssclass==undefined) cssclass='';
-			  	response+= '<div id="'+id+'" class="hr icon-minus" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+			  	response+= '<div id="'+id+'" class="hr" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 					'<div></div>' +
-					'<span class="marker"></span>' +
-					'<a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>' +
+					'<span class="marker fa fa-minus"></span>' +
+					'<a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>' +
 					'</div>';
+	
 		  	}
 		  
 		  	if(node.nodeName=='H2'){
@@ -252,7 +248,7 @@ jQuery.fn.swap = function(b){
 				}
 				
 				response+= '<div id="'+id+'" class="h2'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
-					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H2</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H2</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 					'</div>';
 		  	}
 		  
@@ -275,7 +271,7 @@ jQuery.fn.swap = function(b){
 				}
 		  
 		  		response+= '<div id="'+id+'" class="h3'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
-					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H3</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+					'<div contentEditable="true">' + $(node).html() + '</div><span class="marker">H3</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 					'</div>';
 		  	}
 
@@ -286,7 +282,7 @@ jQuery.fn.swap = function(b){
 				response+= '<div id="'+id+'" class="syntax" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable">'+
 					'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
 					'<pre class="non-pretty">' + $(node).html() + '</pre>' +
-					'<span class="marker icon-beer"></span><a class="remove icon-minus-sign"></a>'+
+					'<span class="marker fa fa-terminal"></span><a class="remove fa fa-minus-circle"></a>'+
 					'</div>';
 		  	}
 		  
@@ -329,7 +325,7 @@ jQuery.fn.swap = function(b){
 				else{
 			  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
 				}
-				response+='<div class="content" contentEditable="true">' + html + '</div><span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
+				response+='<div class="content" contentEditable="true">' + html + '</div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
 				response+='</div>';
 		  	}
 		  	else if(className==' right'){
@@ -341,7 +337,7 @@ jQuery.fn.swap = function(b){
 				else{
 			  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
 				}
-				response+='<span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>';
+				response+='<span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
 				response+='</div>';
 		  	}
 		  	else{
@@ -352,7 +348,7 @@ jQuery.fn.swap = function(b){
 				else{
 			  		response+= '<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
 				}
-				response+= '<span class="marker icon-picture"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a></div>';
+				response+= '<span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a></div>';
 		  	}
 		}
 
@@ -379,13 +375,13 @@ jQuery.fn.swap = function(b){
 			  }
 			});
 
-			response+= '<div id="'+id+'" data-type="'+type+'" data-name="'+name+'" data-render="'+render+'" data-config="'+config+'" ' + nvps + 'class="plugin"><div>'+name+'</div><span class="marker icon-cogs" title="Module"></span>';
+			response+= '<div id="'+id+'" data-type="'+type+'" data-name="'+name+'" data-render="'+render+'" data-config="'+config+'" ' + nvps + 'class="plugin"><div>'+name+'</div><span class="marker fa fa-cogs" title="Module"></span>';
 		 
 			if(config=='true'){
-		        response +=  '<a class="remove icon-minus-sign"></a><a class="config-plugin icon-cog"></a></div>';
+		        response +=  '<a class="remove fa fa-minus-circle"></a><a class="config-plugin fa fa-cog"></a></div>';
 	      	}
 	      	else{
-		        response += '<a class="remove icon-minus-sign"></a></div>';
+		        response += '<a class="remove fa fa-minus-circle"></a></div>';
 	      	}
 		}
 		  
@@ -413,42 +409,36 @@ jQuery.fn.swap = function(b){
 			  	for(var y=0; y<imgs.length; y++){
 					var caption = $(imgs[y]).attr('title');
 					imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-					response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" class="form-control"></span><a class="remove-image icon-minus-sign"></a></span>';
+					response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" class="form-control"></span><a class="remove-image fa fa-minus-circle"></a></span>';
 			  	}
 			
-			  	response += '<button type="button" class="secondary-button add-image"><i class="icon-picture"></i></button></div><span class="marker icon-film" title="Module"></span><a class="remove icon-minus-sign"></a>' + '</div>';
+			  	response += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button></div><span class="marker fa fa-film" title="Module"></span><a class="remove fa fa-minus-circle"></a>' + '</div>';
 			}
 
-			
-			if(name=='twitter'){
-		  		var id = $(node).attr('id');
-			  	if(id==undefined || id=='')id='t-'+parseInt(new Date().getTime() / 1000);
-			  
-			  	var username = $(node).attr('username');
-			  	if(username==undefined)username='';
-			  	response+= '<div id="'+id+'" class="twitter"><div><input type="text" value="' + username + '" spellcheck="false" maxlength="15" placeholder="twittername"></div><span class="marker icon-twitter" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
-			}
-			
+	
 			if(name=='like'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='f-'+parseInt(new Date().getTime() / 1000);
 				
-				response+= '<div id="'+id+'" class="like"><div><i class="icon-facebook-sign"></i>Facebook Like</div><span class="marker icon-facebook" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+				response+= '<div id="'+id+'" class="like"><div><i class="fa fa-facebook"></i>Facebook Like</div><span class="marker fa fa-facebook" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 			}
 
 			if(name=='comments'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='c-'+parseInt(new Date().getTime() / 1000);
 				
-				response+= '<div id="'+id+'" class="comments"><div><i class="icon-facebook-sign"></i>Facebook comments</div><span class="marker icon-comments" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+				response+= '<div id="'+id+'" class="comments"><div><i class="fa fa-facebook"></i>Facebook comments</div><span class="marker fa fa-comments" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 			}
 			
 			if(name=='html'){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='h-'+parseInt(new Date().getTime() / 1000);
 				
-				var h = $(node).html();
-				response+= '<div id="'+id+'" class="html"><textarea>'+h+'</textarea><span class="marker icon-coffee" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+				response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable">'+
+					'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
+					'<pre class="non-pretty">' + $(node).html() + '</pre>' +
+					'<span class="marker fa fa-html5"></span><a class="remove fa fa-minus-circle"></a>'+
+					'</div>';
 			}
 			
 			if(name=='youtube'){
@@ -456,7 +446,7 @@ jQuery.fn.swap = function(b){
 				if(id==undefined || id=='')id='y-'+parseInt(new Date().getTime() / 1000);
 				
 				var h = $(node).html();
-				response+= '<div id="'+id+'" class="youtube"><textarea placeholder="Paste HTML embed code here">'+h+'</textarea><span class="marker icon-facetime-video" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+				response+= '<div id="'+id+'" class="youtube"><textarea placeholder="Paste HTML embed code here">'+h+'</textarea><span class="marker fa fa-video-camera" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 			}
 			
 			if(name=='map'){
@@ -465,7 +455,7 @@ jQuery.fn.swap = function(b){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='m-'+parseInt(new Date().getTime() / 1000);
 		  
-			  	response+= '<div id="'+id+'" class="map"><div><input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+			  	response+= '<div id="'+id+'" class="map"><div><i class="fa fa-map-marker"></i><input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker fa fa-map-marker" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 			}
 			
 			if(name=='list'){
@@ -496,7 +486,7 @@ jQuery.fn.swap = function(b){
 					' data-label="' + label + '"' +
 					' data-desclength="' + desclength + '"' +
 					' data-length="' + length + '" data-orderby="' + orderby + '" data-groupby="' + groupby + '" data-pageresults="' + pageresults + '">' +
-					' <div>List '+label+' </div><span class="marker icon-list-alt" title="Module"></span><a class="remove icon-minus-sign"></a><a class="config-list icon-cog"></a></div>';
+					' <div><i class="fa fa-bars"></i> List '+label+' </div><span class="marker fa fa-bars" title="Module"></span><a class="remove fa fa-minus-circle"></a><a class="config-list fa fa-cog"></a></div>';
 
 			  	response += chtml;
 			  
@@ -513,7 +503,7 @@ jQuery.fn.swap = function(b){
 			  	var pageUniqId = $(node).attr('pageUniqId');
 				
 			  	chtml = '<div id="'+id+'" data-pageuniqid="'+pageUniqId+'" data-pagename="'+pageName+'" class="featured">' +
-					' <div>'+pageName+' </div><span class="marker icon-star" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+					' <div><i class="fa fa-star"></i> Featured Content: '+pageName+' </div><span class="marker fa fa-star" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 
 			  	response += chtml;  
 			}
@@ -524,7 +514,7 @@ jQuery.fn.swap = function(b){
 			  	var id = $(node).attr('id');
 			  	if(id==undefined || id=='')id='f-'+parseInt(new Date().getTime() / 1000);
 			  
-			  	response+= '<div id="'+id+'" class="file"><div><em>'+file+'</em><input type="text" value="'+desc+'" spellcheck="false" maxlength="256" placeholder="Description for the file" class="form-control"></div><span class="marker icon-file-alt" title="Module"></span><a class="remove icon-minus-sign"></a></div>';
+			  	response+= '<div id="'+id+'" class="file" data-filename="'+file+'"><div><i class="fa fa-file-o"></i><input type="text" value="'+desc+'" spellcheck="false" maxlength="256" placeholder="Description for the file"></div><span class="marker fa fa-file-o" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
 			}
 			
 			if(name=='form'){
@@ -537,11 +527,11 @@ jQuery.fn.swap = function(b){
 			  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
 				  	response += '<span class="field-container">';
 				  	response += fhtml;
-				  	response += '<a class="remove-field icon-minus-sign"></a><span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>';
+				  	response += '<a class="remove-field fa fa-minus-circle"></a><span class="marker-field" title="Field"><i class="fa fa-arrows-v"></i></span>';
 				  	response += '</span>';
 				}
 				
-				response+= '</div><a class="add-field">Add Field</a><span class="marker" title="Module"><i class="icon-check"></i></span><a class="remove icon-minus-sign"></a>';
+				response+= '</div><a class="add-field">Add Field</a><span class="marker" title="Module"><i class="fa fa-check"></i></span><a class="remove fa fa-minus-circle"></a>';
 				response+= '</div>';
 			 }
 		  }
@@ -551,7 +541,7 @@ jQuery.fn.swap = function(b){
 				var skus = $(node).attr('skus');
 				
 				response+= '<div id="'+id+'" class="cart" data-skus="'+skus+'"><input type="button" value="Add SKU" class="secondary-button addSKU"><div>';
-				response+= '</div><span class="marker" title="Module"><i class="icon-shopping-cart"></i></span><a class="remove icon-minus-sign"></a>';
+				response+= '</div><span class="marker" title="Module"><i class="fa fa-shopping-cart"></i></span><a class="remove fa fa-minus-circle"></a>';
 				response+= '</div>';
 		  }
 		  
@@ -567,7 +557,7 @@ jQuery.fn.swap = function(b){
   	if(blocks.length==0){
 		html += '<div id="block-000" class="block sortable">';
 		html += parseModules(top);
-		html += '<span class="block-actions"><span>#block-000 .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>'; 
+		html += '<span class="block-actions"><span>#block-000 .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>'; 
 	}
 	else{
 		// walk through blocks
@@ -594,7 +584,7 @@ jQuery.fn.swap = function(b){
 		  		html += '</div>';
 		  }
 
-		  html += '<span class="block-actions"><span>#'+ id + ' ' + cssclass_readable + '</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+		  html += '<span class="block-actions"><span>#'+ id + ' ' + cssclass_readable + '</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>';
 		}
 	  }
 
@@ -612,36 +602,6 @@ jQuery.fn.swap = function(b){
 	$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
 	
 	$(this).respondHandleEvents();
-	
-	// determines where to append new content
-	function appendHere(html){
-	
-	  var blocks = $(context).find('div.block');
-	  var length = blocks.length;
-
-	  if(currnode && currnode.nodeName != undefined){
-	  	var temp = $(currnode).after(html).get(0);
-
-		var added = $(temp).next();
-		
-		$(added).find('div, input[type=text], textarea, th[contentEditable=true]:first-child').focus();
-		
-		currnode = $(added).find('div');
-	  }
-	  else{
-	  	var curr = blocks[length-1]; // get last block
-		
-		var cols = $(curr).find('div.col');
-		
-		if(cols.length>0){
-		  curr = cols[cols.length-1];
-		}
-		
-		// append!
-		$(curr).append(html);
-		$(curr).find('div').focus(); // yarhh! focus
-	  }
-	}
 	
 	// handle bold menu item
 	$('.editor-menu a.bold').click(function(){
@@ -768,9 +728,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.p').length + 1;
 	  var uniqId = 'paragraph-'+ length;
   
-	  appendHere(
+	  $(editor).respondAppend(
 		  '<div id="'+uniqId+'" class="p" data-id="'+uniqId+'" data-cssclass="">'+
-		  '<div contentEditable="true"></div><span class="marker">P</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+		  '<div contentEditable="true"></div><span class="marker">P</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 		  '</div>'
 	  );
 
@@ -786,7 +746,7 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('table').length + 1;
 	  var uniqId = 'table-'+ length;
 
-	  appendHere(
+	  $(editor).respondAppend(
 		  '<div id="'+uniqId+'" class="table" data-id="'+uniqId+'" data-cssclass="">'+
 		  '<table class="table table-striped table-bordered col-2" data-columns="2">'+
 		  '<thead><tr">'+
@@ -798,7 +758,7 @@ jQuery.fn.swap = function(b){
 		  '<td contentEditable="true" class="col-2"></td>'+
 		  '</tr></tbody>'+
 		  '</table>'+
-		  '<span class="marker icon-table"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+		  '<span class="marker fa fa-table"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 		  '</div>'
 	  );
 
@@ -814,9 +774,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.q').length + 1;
 	  var uniqId = 'quote-'+ length;
 
-	  appendHere(
-		  '<div id="'+uniqId+'" class="q" data-id="'+uniqId+'" data-cssclass="">'+
-		  '<div contentEditable="true"></div><span class="marker icon-quote-left"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+	  $(editor).respondAppend(
+		  '<div id="'+uniqId+'" class="q" data-id="'+uniqId+'" data-cssclass=""><i class="fa fa-quote-left"></i>'+
+		  '<div contentEditable="true"></div><span class="marker fa fa-quote-left"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 		  '</div>'
 	  );
 
@@ -827,15 +787,8 @@ jQuery.fn.swap = function(b){
 	
 	// handle html menu item
 	$('.editor-menu a.html').click(function(){
-      var editor = $('#desc').get(0);
+      htmlDialog.show();
 
-	  var length = $(editor).find('.html').length + 1;
-	  var uniqId = 'html-'+ length;
-
-	  appendHere('<div id="'+uniqId+'" class="html"><textarea></textarea><span class="marker icon-coffee"></span><a class="remove icon-minus-sign"></a></div>');
-
-	  $(editor).respondHandleEvents();
-	  
 	  return false;
 	});
 	
@@ -846,7 +799,8 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.youtube').length + 1;
 	  var uniqId = 'youtube-'+ length;
 
-	  appendHere('<div id="'+uniqId+'" class="youtube"><textarea placeholder="Paste HTML embed code here"></textarea><span class="marker icon-facetime-video"></span><a class="remove icon-minus-sign"></a></div>');
+	  $(editor).respondAppend(
+	  	'<div id="'+uniqId+'" class="youtube"><textarea placeholder="Paste HTML embed code here"></textarea><span class="marker fa fa-video-camera"></span><a class="remove fa fa-minus-circle"></a></div>');
 
 	  $(editor).respondHandleEvents();
 	  
@@ -878,8 +832,8 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.ul').length + 1;
 	  var uniqId = 'ul-'+ length;
 	  
-	  appendHere(
-		  '<div id="'+uniqId+'" class="ul" data-id="'+uniqId+'" data-cssclass=""><div contentEditable="true"></div><span class="marker icon-list"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>' +
+	  $(editor).respondAppend(
+		  '<div id="'+uniqId+'" class="ul" data-id="'+uniqId+'" data-cssclass=""><div contentEditable="true"></div><span class="marker fa fa-list"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>' +
 		  '</div>');
 	  
 	  $(editor).respondHandleEvents();
@@ -894,8 +848,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.hr').length + 1;
 	  var uniqId = 'hr-'+ length;
 	  
-	  appendHere('<div id="'+uniqId+'" class="hr" data-id="'+uniqId+'" data-cssclass="">'+
-		  '<div></div><span class="marker icon-minus"></span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>' +
+	 $(editor).respondAppend(
+	  	 '<div id="'+uniqId+'" class="hr" data-id="'+uniqId+'" data-cssclass="">'+
+		  '<div></div><span class="marker fa fa-minus"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>' +
 		  '</div>');
 	  
 	  $(editor).respondHandleEvents();
@@ -931,8 +886,8 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.map').length + 1;
 	  var uniqId = 'map-'+ length;
 	  
-	  appendHere(
-		'<div id="'+uniqId+'" class="map"><div><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker icon-map-marker" title="Module"></span><a class="remove icon-minus-sign"></a></div>'
+	  $(editor).respondAppend(
+		'<div id="'+uniqId+'" class="map"><div><i class="fa fa-map-marker"></i><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div><span class="marker fa fa-map-marker" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>'
 	  );
 	  
 	  $(editor).respondHandleEvents();
@@ -942,18 +897,9 @@ jQuery.fn.swap = function(b){
 	
 	// handle twitter
 	$('.editor-menu a.twitter').click(function(){
-      var editor = $('#desc').get(0);
-
-	  var length = $(editor).find('.twitter').length + 1;
-	  var uniqId = 'twitter-'+ length;
-	
-	  appendHere(
-		'<div id="'+uniqId+'" class="twitter"><div><input type="text" value="" spellcheck="false" maxlength="15" placeholder="twittername"></div><span class="marker icon-twitter" title="Module"></span><a class="remove icon-minus-sign"></a></div>'
-	  );
-	  
-	  $(editor).respondHandleEvents();
-	  
-	  return false;
+		htmlDialog.show('twitter');
+		
+		return false;
 	});
 	
 	// handle like
@@ -963,8 +909,8 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.like').length + 1;
 	  var uniqId = 'like-'+ length;
 	  
-	  appendHere(
-		'<div id="'+uniqId+'" class="like"><div><i class="icon-facebook-sign"></i> Facebook Like</div><span class="marker icon-facebook" title="Module"></span><a class="remove icon-minus-sign""></a></div>'
+	  $(editor).respondAppend(
+		'<div id="'+uniqId+'" class="like"><div><i class="fa fa-facebook"></i> Facebook Like</div><span class="marker fa fa-facebook" title="Module"></span><a class="remove fa fa-minus-circle""></a></div>'
 	  );
 	  
 	  $(editor).respondHandleEvents();
@@ -979,8 +925,8 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.comments').length + 1;
 	  var uniqId = 'comments-'+ length;
 	
-	  appendHere(
-		'<div id="'+uniqId+'" class="comments"><div><i class="icon-facebook-sign"></i> Facebook Comments</div><span class="marker icon-comments" title="Module"></span><a class="remove icon-minus-sign"></a></div>'
+	  $(editor).respondAppend(
+		'<div id="'+uniqId+'" class="comments"><div><i class="fa fa-facebook"></i> Facebook Comments</div><span class="marker fa fa-comments" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>'
 	  );
 	  
 	  $(editor).respondHandleEvents();
@@ -1001,9 +947,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.form').length + 1;
 	  var uniqId = 'form-'+ length;
 	  
-	  appendHere(
+	  $(editor).respondAppend(
 		'<div id="'+uniqId+'" class="form"><div>' +
-		'</div><a class="add-field">Add Field</a><span class="marker" title="Module"><i class="icon-check"></i></span><a class="remove icon-minus-sign"></a>' + 
+		'</div><a class="add-field">Add Field</a><span class="marker" title="Module"><i class="fa fa-check"></i></span><a class="remove fa fa-minus-circle"></a>' + 
 		'</div>'
 	  );
 	  
@@ -1019,9 +965,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.form').length + 1;
 	  var uniqId = 'cart-'+ length;
 	  
-	  appendHere(
+	  $(editor).respondAppend(
 		'<div id="'+uniqId+'" class="cart" data-skus=""><input type="button" value="Add SKU" class="secondary-button addSKU"><div>' +
-		'</div><span class="marker" title="Module"><i class="icon-shopping-cart"></i></span><a class="remove icon-minus-sign"></a>' + 
+		'</div><span class="marker" title="Module"><i class="fa fa-shopping-cart"></i></span><a class="remove fa fa-minus-circle"></a>' + 
 		'</div>'
 	  );
 	  
@@ -1037,9 +983,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.h1').length + 1;
 	  var uniqId = 'h1-'+ length;
 	
-	  appendHere(
+	  $(editor).respondAppend(
 		'<div id="'+uniqId+'" class="h1" data-id="'+uniqId+'" data-cssclass="">'+
-		'<div contentEditable="true"></div><span class="marker">H1</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+		'<div contentEditable="true"></div><span class="marker">H1</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 		'</div>'
 	  );
 	  
@@ -1055,9 +1001,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.h2').length + 1;
 	  var uniqId = 'h2-'+ length;
 	
-	  appendHere(
+	  $(editor).respondAppend(
 		  '<div id="'+uniqId+'" class="h2" data-id="'+uniqId+'" data-cssclass="">'+
-			'<div contentEditable="true"></div><span class="marker">H2</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+			'<div contentEditable="true"></div><span class="marker">H2</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 			'</div>'
 	  );
 	  
@@ -1073,9 +1019,9 @@ jQuery.fn.swap = function(b){
 	  var length = $(editor).find('.h3').length + 1;
 	  var uniqId = 'h3-'+ length;
 	
-	  appendHere(
+	  $(editor).respondAppend(
 		  '<div id="'+uniqId+'" class="h3" data-id="'+uniqId+'" data-cssclass="">'+
-			'<div contentEditable="true"></div><span class="marker">H3</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a>'+
+			'<div contentEditable="true"></div><span class="marker">H3</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'+
 			'</div>'
 	  );
 	  
@@ -1096,7 +1042,7 @@ jQuery.fn.swap = function(b){
 		  '</div>' +
 		  '<div class="col col-md-6 sortable">' +
 		  '</div>' +
-		'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>'
+		'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>'
 	  );
 
 	  $('.block-actions').show();
@@ -1134,7 +1080,7 @@ jQuery.fn.swap = function(b){
 			'</div>' +
 			'<div class="col col-md-3 sortable">' +
 			'</div>' +
-		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1164,7 +1110,7 @@ jQuery.fn.swap = function(b){
 			'</div>' +
 			'<div class="col col-md-9 sortable">' +
 			'</div>' +
-		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1196,7 +1142,7 @@ jQuery.fn.swap = function(b){
 			'</div>' +
 			'<div class="col col-md-4 sortable">' +
 			'</div>' +
-		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1230,7 +1176,7 @@ jQuery.fn.swap = function(b){
 			'</div>' +
 			'<div class="col col-md-3 sortable">' +
 			'</div>' +
-		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>';
+		  '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>';
 	  
 	  $(editor).append(
 		html
@@ -1257,7 +1203,7 @@ jQuery.fn.swap = function(b){
 	
 	  $(editor).append(
 		'<div id="'+uniqId+'" class="block row"><div class="col col-md-12 sortable"></div>' +
-		 '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up icon-chevron-up"></a><a class="down icon-chevron-down"></a><a class="config-block icon-cog"></a><a class="remove-block icon-minus-sign"></a></span></div>'
+		 '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span><a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a><a class="config-block fa fa-cog"></a><a class="remove-block fa fa-minus-circle"></a></span></div>'
 	  );
 
 	  $('.block-actions').show();
@@ -1373,11 +1319,11 @@ jQuery.fn.swap = function(b){
 		
 			// handle html
 			if($(divs[x]).hasClass('html')){
-				var id = $(divs[x]).attr('id');
+				var id = $(divs[x]).attr('data-id');
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			
-				var h = jQuery.trim($(divs[x]).find('textarea').val());
-			
+
+				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
+
 				newhtml += '<module id="'+id+'" name="html">' + h + '</module>';
 			}
 		
@@ -1642,8 +1588,8 @@ jQuery.fn.swap = function(b){
 		  
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
-					field = field.replace('<a class="remove-field icon-minus-sign"></a>', '');
-					field = field.replace('<span class="marker-field" title="Field"><i class="icon-resize-vertical"></i></span>', '');
+					field = field.replace('<a class="remove-field fa fa-minus-circle"></a>', '');
+					field = field.replace('<span class="marker-field" title="Field"><i class="fa fa-arrows-v"></i></span>', '');
 					field = global.replaceAll(field, ' ui-sortable', '');
 					newhtml += field;
 		  		}
@@ -1676,7 +1622,7 @@ jQuery.fn.swap = function(b){
 		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
 			  
 		  		var desc = $(divs[x]).find('input[type=text]').val();
-		  		var file = $(divs[x]).find('em').html();
+		  		var file = $(divs[x]).attr('data-filename');
 		  		newhtml += '<module id="'+id+'" name="file" file="'+file+'" description="'+desc+'"></module>';
 			}
 		
@@ -1728,40 +1674,42 @@ jQuery.fn.swap = function(b){
 })(jQuery);
 
 (function($){  
-  $.fn.respondAppend = function(html){
-  
-	var blocks = $(this).find('div.block');
-	var length = blocks.length;
+	$.fn.respondAppend = function(html){
 	
-	if(currnode){
-		var temp = $(currnode).parent().append(html).get(0);
+		var blocks = $(this).find('div.block');
+		var length = blocks.length;
 		
-		var added = $(temp).next();
+		if(currnode){
 		
-		$(added).find('div').focus();
+			// alert('boom');
 		
-		currnode = $(added).find('div');
+			var temp = $(currnode).after(html).get(0);
+			
+			var added = $(temp).next();
+			
+			$('[contentEditable=true], input, textarea').blur();
+			$(added).find('[contentEditable=true], input, textarea').focus();
+			
+			currnode = $(added);
+		
+		}
+		else if(length>0){  
+			var curr = blocks[length-1]; // get last block
+			
+			var cols = $(curr).find('div.col');
+			
+			if(cols.length>0){
+				curr = $(cols[0]);
+				currnode = $(html).appendTo(curr);
+			}
+			
+			// arrh! focus!
+			$(curr).find('[contentEditable=true], input, textarea').focus(); // #here
+		}
+		
+		$(this).respondHandleEvents();
+	
 	}
-	else if(length>0){  
-	  var curr = blocks[length-1]; // get last block
-
-	  var cols = $(curr).find('div.col');
-
-	  if(cols.length>0){
-		curr = cols[0];
-		$(curr).append(html);
-	  }
-	  else{
-		$(curr).find('div:last').before(html);
-	  }
-	  
-	  // arrh! focus!
-	  $(curr).find('div').focus(); // #here
-	}
-	  
-	$(this).respondHandleEvents();
-		
-  }
 
 })(jQuery);
 
@@ -2036,7 +1984,7 @@ jQuery.fn.swap = function(b){
 			}
 			else{
 				$(el).after(
-					'<div class="p"><div contentEditable="true"></div><span class="marker">P</span><a class="remove icon-minus-sign"></a><a class="config icon-cog"></a></div>'
+					'<div class="p"><div contentEditable="true"></div><span class="marker">P</span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a></div>'
 					);
 			
 					$(this.parentNode.nextSibling).find('div').focus();

@@ -24,13 +24,13 @@ var pluginsDialog = {
       var render = plugin.attr('data-render');
       var config = plugin.attr('data-config');
       var html = '<div id="'+uniqId+'" data-type="'+type+'" data-name="'+name+'" data-render="'+render+'" data-config="'+config+'" class="plugin">' +
-                    '<div>'+name+'</div><span class="marker icon-cogs" title="Module"></span>';
+                    '<div>'+name+'</div><span class="marker fa fa-cogs" title="Module"></span>';
 
       if(config=='true'){
-        html +=  '<a class="remove icon-minus-sign"></a><a class="config-plugin icon-cog"></a></div>';
+        html +=  '<a class="remove fa fa-minus-circle"></a><a class="config-plugin fa fa-cog"></a></div>';
       }
       else{
-        html += '<a class="remove icon-minus-sign"></a></div>';
+        html += '<a class="remove fa fa-minus-circle"></a></div>';
       }
 
       $(editor).respondAppend(

@@ -20,6 +20,5 @@
 
 <p class="file">
 	<i class="<?php print $file_icon; ?>"></i>
-	<a href="<?php print $rootloc.'files/'; ?><?php print $file; ?>"><?php print $file; ?></a>
-	<span><?php print $description; ?></span>
+	<a href="<?php print $rootloc.'files/'; ?><?php print $file; ?>"><?php print $description; ?></a>
 </p>

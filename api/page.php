@@ -719,8 +719,14 @@ class PageBlogResource extends Tonic\Resource {
             $imageUrl = '';
             $mImageUrl = '';
             
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
             
+            // create a readable date
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
+            $local = new DateTimeZone($site['TimeZone']);
+			$date->setTimezone($local);
+			$readable = $date->format('D, M d y h:i a');
+			
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
                     'Name' => $page['Name'],
@@ -730,6 +736,7 @@ class PageBlogResource extends Tonic\Resource {
                     'Image' => $imageUrl,
                     'Thumb' => $thumbUrl,
                     'LastModified' => $page['LastModifiedDate'],
+                    'LastModifiedReadable' => $readable,
                     'Author' => $name
                 );
                 

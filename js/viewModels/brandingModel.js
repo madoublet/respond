@@ -32,8 +32,6 @@ var brandingModel = {
             }
             
         });
-        
-        $("#drop").addClass('dropzone');
 
 		ko.applyBindings(brandingModel);  // apply bindings
 	},
