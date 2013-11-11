@@ -1,4 +1,4 @@
-aRespond CMS
+Respond CMS
 ===========
 
 Respond is an open source, responsive content management system that you can use to build responsive sites. Respond 2.4 features a REST API, a lightning-fast Knockout-based UI, Bootstrap 3.0, and an enhanced data layer using PDO. In the latest release, we have cleaned up the UI, fixed bugs, improved blog support, and added support for paid site subsciptions via Stripe. Respond 2.4 is faster, more secure, and more beautiful than ever.
