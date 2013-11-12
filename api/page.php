@@ -152,12 +152,29 @@ class PageContentResource extends Tonic\Resource {
 
             $site = Site::GetBySiteId($authUser->SiteId);
         
-            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$pageUniqId.'.html';
+			$draft = '../sites/'.$site['FriendlyId'].'/fragments/draft/'.$pageUniqId.'.html';
+            $publish = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$pageUniqId.'.html';
+            
+            $draft_time = 0;
+            $publish_time = 0;
+
+			// get times for each
+			if(file_exists($draft)){
+				$draft_time = filemtime($draft);
+			}
+			
+			if(file_exists($publish)){
+				$publish_time = filemtime($publish);
+			}
 
             $content = '';
-
-            if(file_exists($fragment)){
-              $content = file_get_contents($fragment);
+            
+			// (1) try to get a draft if it is newer, (2) else get a published version
+            if(file_exists($draft) && ($draft_time > $publish_time)){
+              $content = file_get_contents($draft);
+            }
+            else if(file_exists($publish)){
+              $content = file_get_contents($publish);
             }
             else{ // create default content for the page
                 $page = Page::GetByPageUniqId($pageUniqId); 
@@ -202,10 +219,9 @@ class PageContentResource extends Tonic\Resource {
 			Page::EditTimestamp($page['PageUniqId'], $authUser->UserId);
 			
             if($status=='publish'){
-                if($page['IsActive'] == 1){
-                    $url = Publish::PublishPage($page['PageUniqId']);
-                }
-
+            	Page::SetIsActive($page['PageUniqId'], 1);
+                $url = Publish::PublishPage($page['PageUniqId']);
+                
                 if($image!=''){
                     Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);
                 }
@@ -686,11 +702,11 @@ class PageBlogResource extends Tonic\Resource {
         $orderBy = $request['orderBy'];
         $page = $request['page'];
 
-        if($orderBy=='Created'){
-            $orderBy = $orderBy.' DESC';
+        if($orderBy=='Created'){ // need to check these to prevent SQL injections
+            $orderBy = 'Pages.Created DESC';
         }
         else{
-            $orderBy = $orderBy.' ASC';
+            $orderBy = 'Pages.Name ASC';
         }
 
         if($pageSize==''){

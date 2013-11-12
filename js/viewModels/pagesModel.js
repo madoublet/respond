@@ -1,6 +1,8 @@
 // models the pages page
 var pagesModel = {
 
+	hash: null,
+
 	url: ko.observable(''),
 	friendlyId: ko.observable('root'), // default is the root
 	pageTypeUniqId: ko.observable('-1'),
@@ -26,16 +28,17 @@ var pagesModel = {
 	    	
     	}
         
-        var hash = location.hash;
+        pagesModel.hash = location.hash;
         
-        if(hash!=''){
-            hash = hash.substr(1);
-            pagesModel.friendlyId(hash);
+        if(pagesModel.hash!=''){
+            pagesModel.hash = pagesModel.hash.substr(1);
+            pagesModel.friendlyId(pagesModel.hash);
         }
         
     	pagesModel.updatePageTypes();
 
 		ko.applyBindings(pagesModel);  // apply bindings
+		
 	},
 
 	updatePageTypes:function(){  // updates the page types arr
@@ -53,13 +56,19 @@ var pagesModel = {
 				for(x in data){
 
 					var pageType = PageType.create(data[x]);
+					
+					if(pageType.friendlyId() == pagesModel.friendlyId()){
+						pagesModel.pageTypeUniqId(pageType.pageTypeUniqId());
+						pagesModel.typeS(pageType.typeS());
+						pagesModel.typeP(pageType.typeP());
+					}
 
 					pagesModel.pageTypes.push(pageType); 
 
 				}
 
 				pagesModel.updatePages();
-
+				
 			}
 		});
 
@@ -94,7 +103,7 @@ var pagesModel = {
 
 	switchPageType:function(o, e){  // switches b/w page types
 
-		var curr= $(e.target);
+		var curr = $(e.target);
 
 		var friendlyId = curr.attr('data-friendlyid');
 		var url = curr.attr('data-friendlyid');
@@ -155,6 +164,7 @@ var pagesModel = {
 	addPage:function(){  // adds a page
 
 		var pageTypeUniqId = pagesModel.pageTypeUniqId();
+		
 		var name = $.trim($('#name').val());
         var friendlyId = $.trim($('#friendlyId').val());
         var description = $.trim($('#description').val());
@@ -172,9 +182,7 @@ var pagesModel = {
           data: {pageTypeUniqId: pageTypeUniqId, name: name, friendlyId: friendlyId, description: description},
           success: function(data){
 
-          	var page = Page.create(data);
-          	
-          	pagesModel.pages.push(page);
+          	pagesModel.updatePages();
 
     	    $('#addDialog').modal('hide');
             

@@ -293,7 +293,7 @@ class Page{
         	if($activeOnly==true){
     			$activeClause = ' AND IsActive=1';
     		}
-  
+    		
     		$next = $pageSize * $pageNo;
     
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
@@ -304,14 +304,13 @@ class Page{
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
         			Users.FirstName, Users.LastName
         			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
-        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." ORDER BY ? LIMIT ?, ?";
- 
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." ORDER BY ".$orderBy." LIMIT ?, ?";
+        			
             $s = $db->prepare($q);
             $s->bindParam(1, $siteId);
             $s->bindParam(2, $pageTypeId);
-            $s->bindParam(3, $orderBy);
-            $s->bindValue(4, intval($next), PDO::PARAM_INT);
-            $s->bindValue(5, intval($pageSize), PDO::PARAM_INT);
+            $s->bindValue(3, intval($next), PDO::PARAM_INT);
+            $s->bindValue(4, intval($pageSize), PDO::PARAM_INT);
             
             $s->execute();
             

@@ -55,7 +55,7 @@
     
     <div id="actions">
         <button class="primary-button" type="button" data-bind="click: saveContent">Save and Publish</button>
-        <!--<button class="secondary-button" type="button" data-bind="click: saveDraft">Save Draft</button>-->
+        <button class="secondary-button" type="button" data-bind="click: saveDraft">Save Draft</button>
         <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()">Return</button>
     </div>
     
