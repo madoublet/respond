@@ -24,7 +24,7 @@
 	    )));
 	    
 	// Google Maps API Key
-	define('GOOGLE_MAPS_API_KEY', 'GOOGLE_MAPS_API_KEY');
+	define('GOOGLE_MAPS_API_KEY', 'YOUR GOOGLE MAPS API KEY');
 	
 	// - Stripe
     // - set to the Stripe plan you want the user enrolled in when the site is created
