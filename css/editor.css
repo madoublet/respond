@@ -853,6 +853,7 @@ div.block div.table{
 div.table table{
 	min-width: 50%;
 	margin-bottom: 2px !important;
+	margin-top: 0 !important;
 }
 
 div.table table.col-2 td{
