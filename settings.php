@@ -57,7 +57,7 @@
 			<label for="domain" class="col-lg-2 control-label">Domain:</label>
 			<div class="col-lg-4">
 				<input id="domain" type="text"  data-bind="value: domain" class="form-control">
-				<span class="help-block">e.g. domain.com, sub.domain.com (leave off www)</span>
+				<span class="help-block">e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)</span>
 			</div>
 		</div>
 		

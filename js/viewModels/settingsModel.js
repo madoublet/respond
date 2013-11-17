@@ -40,6 +40,17 @@ var settingsModel = {
         var analyticsId = $('#analyticsId').val();
         var facebookAppId = $('#facebookAppId').val();
         
+        // clean up domain
+        domain = global.replaceAll(domain, 'www.', '');
+        domain = global.replaceAll(domain, 'http://', '');
+        domain = global.replaceAll(domain, '//', '');
+        
+        if(domain.charAt(domain.length-1) == '/') {
+		    domain = domain.slice(0, -1);
+		}
+		
+		settingsModel.site().domain(domain);
+        
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
