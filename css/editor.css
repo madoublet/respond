@@ -252,7 +252,7 @@ div.block div.ul:hover div[contentEditable=true]:first-child{
 
 /* textareas and textboxes */
 div.block div.file, div.block div.map{
-	padding: 5px 10px !important;
+	padding: 0 10px 5px 10px !important;
 }
 
 div.block div.file input, div.block div.map input{
@@ -295,7 +295,8 @@ div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
 /* facebook, featured, etc */
 div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list, div.block div.html{
 	color: #888;
-	padding: 15px 20px 15px 20px !important;
+	padding: 0 20px 15px 20px !important;
+	margin: 0 0 15px 0;
 	font-size: 1.0em !important;
 }
 
@@ -358,7 +359,7 @@ div.block div.html i.fa-angle-down{
 /* file and map  */
 div.block div.file i, div.block div.map i, div.block div.q i{
 	position: absolute;
-	top: 13px;
+	top: 8px;
 	left: 20px;
 	background-color: #94D237;
 	color: #fff;
