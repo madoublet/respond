@@ -275,11 +275,11 @@ div.block div.file input, div.block div.map input{
 		border: 1px dashed #3299BB !important;
 	}
 
-div.block div.html, div.block div.youtube, div.block div.vimeo{
+div.block div.youtube, div.block div.vimeo{
 	padding: 5px 10px !important;
 }
 
-div.block div.html textarea, div.block div.youtube textarea, div.block div.vimeo textarea{
+div.block div.youtube textarea, div.block div.vimeo textarea{
 	box-sizing: border-box;
 	height: 100px; 
 	border: 1px dashed #ddd !important;
@@ -288,18 +288,18 @@ div.block div.html textarea, div.block div.youtube textarea, div.block div.vimeo
 	outline: none;
 }
 
-div.block div.html textarea:focus, div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
+div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
 	border: 1px dashed #3299BB !important;
 }
 
 /* facebook, featured, etc */
-div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list{
+div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list, div.block div.html{
 	color: #888;
 	padding: 15px 20px 15px 20px !important;
 	font-size: 1.0em !important;
 }
 
-	div.block div.like i, div.block div.comments i,  div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i{
+	div.block div.like i, div.block div.comments i,  div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i, div.block div.html i{
 		margin-right: 5px;
 		font-size: 1.1em !important;
 		padding: 5px;
@@ -307,12 +307,12 @@ div.block div.like, div.block div.comments, div.block div.featured, div.block di
 		width: 25px;
 		height: 25px;
 		text-align: center;
+		margin-right: 10px;
 	}
 
 	div.block div.like i, div.block div.comments i{
 		color: #fff;
 		background-color: #3B5998;
-		margin-right: 10px;
 	}
 	
 	div.block div.featured i{
@@ -323,6 +323,36 @@ div.block div.like, div.block div.comments, div.block div.featured, div.block di
 	div.block div.list i{
 		color: #fff;
 		background-color: #AA65A9;
+	}
+	
+	div.block div.html i{
+		color: #fff;
+		background-color: #AA571B;
+	}
+	
+/* html */
+div.block div.html div{
+	cursor: pointer;
+}
+
+div.block div.html pre.prettyprint{
+	margin-top: 10px;
+	display: none;
+}
+
+	div.block div.html.active pre.prettyprint{
+		display: block;
+	}
+
+div.block div.html i.fa-angle-down{
+	background-color: #fff;
+	color: #ccc;
+	margin-left: 5px;
+}
+
+	div.block div.html.active i.fa-angle-down{
+		-webkit-transform: rotate(-180deg);
+		transform: rotate(-180deg);
 	}
 	
 /* file and map  */

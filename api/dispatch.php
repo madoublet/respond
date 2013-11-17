@@ -37,12 +37,27 @@
 
 	$resource = $app->getResource($request);
 	$response = $resource->exec();
+	
+	// do not trust the domain by default
+	$valid_domain = false;
     
-    // ref: http://stackoverflow.com/questions/8719276/cors-with-php-headers
+    // check to see if the domain has been setup for a site
+    $domains = Site::GetDomains();
+    
+    if(in_array($request->origin, $domains)){
+		$valid_domain = true;
+    }
+    
+    // check for domains specified in setup.php
     $cors = unserialize(CORS);
     
     if(in_array($request->origin, $cors)){
-        $response->accessControlAllowCredentials = true;
+        $valid_domain = true;
+    }
+    
+    // ref: http://stackoverflow.com/questions/8719276/cors-with-php-headers
+    if($valid_domain==true){
+	    $response->accessControlAllowCredentials = true;
         $response->accessControlAllowOrigin = $request->origin;
     }
     

@@ -235,7 +235,6 @@ class Site{
 	public static function GetSites(){
 		
         try{
-
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
@@ -259,8 +258,36 @@ class Site{
         
 		} catch(PDOException $e){
             die('[Site::GetSites] PDO Error: '.$e->getMessage());
-        } 
+        }   
+	}
+	
+	// gets all domains
+	public static function GetDomains(){
+		
+        try{
+            $db = DB::get();
+            
+            $q = "SELECT Domain FROM Sites";
+                    
+            $s = $db->prepare($q);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+        	while($row = $s->fetch(PDO::FETCH_ASSOC)) { 
+        		$domain = $row['Domain'];
+        		$www = 'www'.$domain;
+        	
+                array_push($arr, $domain);
+                array_push($arr, $www);
+            } 
+            
+            return $arr;
         
+		} catch(PDOException $e){
+            die('[Site::GetDomains] PDO Error: '.$e->getMessage());
+        }   
 	}
 	
 	// Gets a site for a specific domain name

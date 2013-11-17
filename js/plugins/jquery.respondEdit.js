@@ -434,7 +434,11 @@ jQuery.fn.swap = function(b){
 				var id = $(node).attr('id');
 				if(id==undefined || id=='')id='h-'+parseInt(new Date().getTime() / 1000);
 				
-				response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable">'+
+				var desc = $(node).attr('desc');
+				if(desc==undefined || desc=='')desc='HTML block';
+				
+				response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable"  data-desc="'+desc+'">'+
+					'<div><i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i></div>' +
 					'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
 					'<pre class="non-pretty">' + $(node).html() + '</pre>' +
 					'<span class="marker fa fa-html5"></span><a class="remove fa fa-minus-circle"></a>'+
@@ -1321,10 +1325,13 @@ jQuery.fn.swap = function(b){
 			if($(divs[x]).hasClass('html')){
 				var id = $(divs[x]).attr('data-id');
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				
+				var desc = $(divs[x]).attr('data-desc');
+				if(desc==undefined || desc=='')desc='HTML block';
 
 				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
 
-				newhtml += '<module id="'+id+'" name="html">' + h + '</module>';
+				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'">' + h + '</module>';
 			}
 		
 			// handle plugin
@@ -1722,7 +1729,7 @@ jQuery.fn.swap = function(b){
     console.log(this);
 
 	$(context).find('.sortable div').focusin(function(){
-	  currnode = this;
+		currnode = this;
 	});
 	
 	$(context).find('div.col>div').focusin(function(){
@@ -1738,31 +1745,32 @@ jQuery.fn.swap = function(b){
 	})
 
 	$(context).find('.sortable textarea').focusin(function(){
-	  currnode = this;
+		currnode = this;
 	});
 
 	$(context).find('.sortable input').focusin(function(){
 	  
-	  if($(this.parentNode).hasClass('field') || $(this.parentNode).hasClass('caption')){
+		if($(this.parentNode).hasClass('field') || $(this.parentNode).hasClass('caption')){
 		
-	  }
-	  else{
-		currnode = this.parentNode;
-	  }
+		}
+		else{
+			currnode = this.parentNode;
+		}
+		
 	});
 
 	// add field
 	$(context).find('.add-field').click(function(){
-	  var id = $(this.parentNode).attr('id');
-	  fieldDialog.show(id);
-	  return false;
+		var id = $(this.parentNode).attr('id');
+		fieldDialog.show(id);
+		return false;
 	});
 	
 	// add sku
 	$(context).find('input.addSKU').click(function(){
-	  var id = $(this.parentNode).attr('id');
-	  skuDialog.show(id);
-	  return false;
+		var id = $(this.parentNode).attr('id');
+		skuDialog.show(id);
+		return false;
 	});
 	
 	// handle focus
@@ -1823,7 +1831,7 @@ jQuery.fn.swap = function(b){
 	$('div.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 	
 	$(context).find('span.caption input').focus(function(){
-	  $(this.parentNode.parentNode).addClass('edit');
+		$(this.parentNode.parentNode).addClass('edit');
 	});
 
 	$(context).find('span.caption input').blur(function(){
@@ -1936,6 +1944,13 @@ jQuery.fn.swap = function(b){
 		var type=$(this.parentNode).attr('data-type');
 		configPluginsDialog.show(id, type);
 		return false;
+	});
+	
+	
+	$(context).find('.html div').unbind('click');
+	
+	$(context).find('.html div').on('click', function(){
+		$(this).parent().toggleClass('active');	
 	});
 		
 	$(context).find('a.switch').click(function(){

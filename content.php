@@ -861,8 +861,13 @@
 			
 				<p class="twitter-instructions instructions alert alert-info">Create your widget at <a href="https://twitter.com/settings/widgets" target="_blank">//twitter.com/settings/widgets</a> and paste the HTML code below.</p>
 			
-				<div class="control-group">
-					<label for="stylesheet">HTML:</label>
+				<div class="form-group">
+					<label for="HtmlDescription">Description:</label>
+					<input id="HtmlDescription" type="text" maxlength="50" class="form-control">
+				</div>
+			
+				<div class="form-group">
+					<label for="Html">HTML:</label>
 					<textarea id="Html" class="form-control"></textarea>
 					<span class="help-block">Add your HTML, JS, or HTML here.</span>
 				</div>
