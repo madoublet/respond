@@ -276,8 +276,8 @@ class Site{
             $arr = array();
             
         	while($row = $s->fetch(PDO::FETCH_ASSOC)) { 
-        		$domain = $row['Domain'];
-        		$www = 'www'.$domain;
+        		$domain = 'http://'.$row['Domain'];
+        		$www = 'http://www'.$domain;
         	
                 array_push($arr, $domain);
                 array_push($arr, $www);
