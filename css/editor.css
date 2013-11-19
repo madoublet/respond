@@ -873,7 +873,7 @@ div.editor a.configure{
 
 /* table */
 div.block div.table{
-	padding: 0 20px 10px 20px !important;
+	padding: 8px 20px 8px 20px !important;
 	width: auto !important;
 }
 
