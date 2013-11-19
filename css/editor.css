@@ -172,6 +172,7 @@ div.block div.col>div{
 	div.block div.col>div .remove-field, 
 	div.block div.col>div .config, 
 	div.block div.col>div .config-list, 
+	div.block div.col>div .config-html, 
 	div.block div.col>div .config-plugin{
 		display: none;
 	}
@@ -182,6 +183,7 @@ div.block div.col>div{
 		div.block div.col>div .image:hover .remove-image, 
     	div.block div.col>div .field-container:hover .remove-field, 
     	div.block div.col>div:hover .config-list, 
+    	div.block div.col>div:hover .config-html, 
     	div.block div.col>div:hover .config, 
     	div.block div.col>div:hover .config-plugin{
 			display: block;
@@ -295,12 +297,12 @@ div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
 /* facebook, featured, etc */
 div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list, div.block div.html{
 	color: #888;
-	padding: 0 20px 15px 20px !important;
+	padding: 8px 20px 8px 20px !important;
 	margin: 0 0 15px 0;
 	font-size: 1.0em !important;
 }
 
-	div.block div.like i, div.block div.comments i,  div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i, div.block div.html i{
+	div.block div.like i, div.block div.comments i, div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i, div.block div.html i{
 		margin-right: 5px;
 		font-size: 1.1em !important;
 		padding: 5px;
@@ -452,7 +454,7 @@ div.block div .remove, div.block div .remove-field{
 		text-decoration: none;
 	}
 
-div.block div a.config, div.block div a.config-list, div.block div a.config-plugin{
+div.block div a.config, div.block div a.config-list, div.block div a.config-html, div.block div a.config-plugin{
 	position: absolute;
 	top: 25px;
 	left: -25px;
