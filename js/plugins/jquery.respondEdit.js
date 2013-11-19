@@ -437,11 +437,14 @@ jQuery.fn.swap = function(b){
 				var desc = $(node).attr('desc');
 				if(desc==undefined || desc=='')desc='HTML block';
 				
-				response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable"  data-desc="'+desc+'">'+
+				var type = $(node).attr('type');
+				if(type==undefined || type=='')desc='html';
+				
+				response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable"  data-desc="'+desc+'" data-type="'+type+'">'+
 					'<div><i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i></div>' +
 					'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
 					'<pre class="non-pretty">' + $(node).html() + '</pre>' +
-					'<span class="marker fa fa-html5"></span><a class="remove fa fa-minus-circle"></a>'+
+					'<span class="marker fa fa-html5"></span><a class="remove fa fa-minus-circle"></a><a class="config-html fa fa-cog"></a>'+
 					'</div>';
 			}
 			
@@ -791,7 +794,7 @@ jQuery.fn.swap = function(b){
 	
 	// handle html menu item
 	$('.editor-menu a.html').click(function(){
-      htmlDialog.show();
+      htmlDialog.show('html', 'add', -1);
 
 	  return false;
 	});
@@ -901,7 +904,7 @@ jQuery.fn.swap = function(b){
 	
 	// handle twitter
 	$('.editor-menu a.twitter').click(function(){
-		htmlDialog.show('twitter');
+		htmlDialog.show('twitter', 'add', -1);
 		
 		return false;
 	});
@@ -1328,10 +1331,13 @@ jQuery.fn.swap = function(b){
 				
 				var desc = $(divs[x]).attr('data-desc');
 				if(desc==undefined || desc=='')desc='HTML block';
+				
+				var type = $(divs[x]).attr('data-type');
+				if(type==undefined || type=='')type='html';
 
 				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
 
-				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'">' + h + '</module>';
+				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'" type="'+type+'">' + h + '</module>';
 			}
 		
 			// handle plugin
@@ -1936,6 +1942,13 @@ jQuery.fn.swap = function(b){
 	$(context).find('.config-list').click(function(){
 		var id=$(this.parentNode).attr('id');
 		listDialog.show('edit', id);
+		return false;
+	});
+	
+	$(context).find('.config-html').click(function(){
+		var id=$(this.parentNode).attr('id');
+		
+		htmlDialog.show('html', 'edit', id);
 		return false;
 	});
 
