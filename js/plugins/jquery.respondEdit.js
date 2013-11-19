@@ -435,7 +435,7 @@ jQuery.fn.swap = function(b){
 				if(id==undefined || id=='')id='h-'+parseInt(new Date().getTime() / 1000);
 				
 				var desc = $(node).attr('desc');
-				if(desc==undefined || desc=='')desc='HTML block';
+				if(desc==undefined || desc=='')desc='HTML Block';
 				
 				var type = $(node).attr('type');
 				if(type==undefined || type=='')desc='html';
@@ -794,7 +794,7 @@ jQuery.fn.swap = function(b){
 	
 	// handle html menu item
 	$('.editor-menu a.html').click(function(){
-      htmlDialog.show('html', 'add', -1);
+      htmlDialog.show('HTML block', 'html', 'add', -1);
 
 	  return false;
 	});
@@ -904,7 +904,7 @@ jQuery.fn.swap = function(b){
 	
 	// handle twitter
 	$('.editor-menu a.twitter').click(function(){
-		htmlDialog.show('twitter', 'add', -1);
+		htmlDialog.show('Twitter Widget', 'twitter', 'add', -1);
 		
 		return false;
 	});
@@ -1947,8 +1947,10 @@ jQuery.fn.swap = function(b){
 	
 	$(context).find('.config-html').click(function(){
 		var id=$(this.parentNode).attr('id');
+		var desc=$(this.parentNode).attr('data-desc');
+		var type=$(this.parentNode).attr('data-type');
 		
-		htmlDialog.show('html', 'edit', id);
+		htmlDialog.show(desc, type, 'edit', id);
 		return false;
 	});
 

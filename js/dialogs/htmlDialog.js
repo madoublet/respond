@@ -1,6 +1,7 @@
 // handles the html dialog
 var htmlDialog = {
 
+	desc: 'HTML block',
 	type: 'html',
 	mode: 'add',
 	moduleId: null,
@@ -35,6 +36,8 @@ var htmlDialog = {
 			
 			}
 			else{
+				$('#'+htmlDialog.moduleId).attr('data-desc', desc);
+				$('#'+htmlDialog.moduleId).find('div').html('<i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i>');
 				$('#'+htmlDialog.moduleId).find('.non-pretty').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').removeClass('prettyprinted');
@@ -51,8 +54,9 @@ var htmlDialog = {
 	},
 	
 	// shows the dialog
-	show:function(type, mode, id){
+	show:function(desc, type, mode, id){
 	
+		htmlDialog.desc = desc;
 		htmlDialog.type = type;
 		htmlDialog.mode = mode;
 		htmlDialog.moduleId = id;
@@ -67,19 +71,20 @@ var htmlDialog = {
 			html = $('#'+id).find('.non-pretty').html();
 			html = global.replaceAll(html, '&lt;', '<');
 			html = global.replaceAll(html, '&gt;', '>');
+			
 		}
 		
 		if(type=='twitter'){
 			$('.twitter-instructions').show();
 			$('#htmlDialog h3').text(label + ' Twitter Widget');
 			$('#htmlDialog .primary-button').text(label + ' Twitter HTML');
-			$('#HtmlDescription').val('Twitter Widget');
 		}
 		else{
 			$('#htmlDialog h3').text(label + ' HTML');
 			$('#htmlDialog .primary-button').text(label + ' HTML');
-			$('#HtmlDescription').val('HTML block');
 		}
+		
+		$('#HtmlDescription').val(desc);
 	
 		$('#Html').val(html);
 		
