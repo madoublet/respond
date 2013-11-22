@@ -2006,10 +2006,14 @@ jQuery.fn.swap = function(b){
 				}
 		
 				html += '</tr>';
-		
-				$(table).find('tbody').append(html);
 				
-				$(table).find('tr:last-child td:first-child').focus();
+				var tr = $(this).parents('tr')[0];
+				
+				$(tr).after(html);
+		
+				//$(table).find('tbody').append(html);
+				
+				$(tr).next().find('[contentEditable=true]').get(0).focus();
 				
 			}
 			else{
