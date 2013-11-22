@@ -5,12 +5,21 @@ var pagesModel = {
 
 	url: ko.observable(''),
 	friendlyId: ko.observable('root'), // default is the root
+	sort: ko.observable('date'),
+	order: ko.observable('desc'),
 	pageTypeUniqId: ko.observable('-1'),
 	typeS: ko.observable('Page'),
 	typeP: ko.observable('Pages'),
+	
 	pageTypes: ko.observableArray([]),
 	pages: ko.observableArray([]), // observables
 	pagesLoading: ko.observable(false),
+	
+	stylesheets: ko.observableArray([]),
+    stylesheetsLoading: ko.observable(false),
+    
+    layouts: ko.observableArray([]),
+    layoutsLoading: ko.observable(false),
 
 	toBeRemoved:null,
 
@@ -31,11 +40,13 @@ var pagesModel = {
         pagesModel.hash = location.hash;
         
         if(pagesModel.hash!=''){
-            pagesModel.hash = pagesModel.hash.substr(1);
+        	pagesModel.hash = pagesModel.hash.substr(1);
             pagesModel.friendlyId(pagesModel.hash);
         }
         
     	pagesModel.updatePageTypes();
+    	pagesModel.updateLayouts();
+    	pagesModel.updateStylesheets();
 
 		ko.applyBindings(pagesModel);  // apply bindings
 		
@@ -57,10 +68,14 @@ var pagesModel = {
 
 					var pageType = PageType.create(data[x]);
 					
+					console.log(data[x]);
+					
 					if(pageType.friendlyId() == pagesModel.friendlyId()){
+					
 						pagesModel.pageTypeUniqId(pageType.pageTypeUniqId());
 						pagesModel.typeS(pageType.typeS());
 						pagesModel.typeP(pageType.typeP());
+						
 					}
 
 					pagesModel.pageTypes.push(pageType); 
@@ -79,10 +94,12 @@ var pagesModel = {
 		pagesModel.pages.removeAll();
 		pagesModel.pagesLoading(true);
         
+        var sort = pagesModel.sort() + ' ' + pagesModel.order();
+        
 		$.ajax({
-			url: 'api/page/list/'+pagesModel.friendlyId(),
-			type: 'GET',
-			data: {},
+			url: 'api/page/list/sorted',
+			type: 'POST',
+			data: {friendlyId: pagesModel.friendlyId(), sort: sort},
 			dataType: 'json',
 			success: function(data){
 
@@ -100,8 +117,42 @@ var pagesModel = {
 		});
 
 	},
+	
+	updateStylesheets:function(){ // gets the stylesheets for the current template
+
+		pagesModel.stylesheetsLoading(true);
+
+		$.ajax({
+			url: 'api/stylesheet/list',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+				pagesModel.stylesheets(data);
+				pagesModel.stylesheetsLoading(false);
+			}
+		});
+	},
+
+	updateLayouts:function(){ // gets the layouts for the current template
+
+		pagesModel.layoutsLoading(true);
+
+		$.ajax({
+			url: 'api/layout/list',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+				pagesModel.layouts(data);
+				pagesModel.layoutsLoading(false);
+			}
+		});
+	},
 
 	switchPageType:function(o, e){  // switches b/w page types
+	
+		$('#account-message').fadeOut();
 
 		var curr = $(e.target);
 
@@ -110,18 +161,19 @@ var pagesModel = {
 		var pageTypeUniqId = curr.attr('data-pagetypeuniqid');
 		var typeS = curr.attr('data-types');
 		var typeP = curr.attr('data-typep');
+		var layout = curr.attr('data-layout');
+		var stylesheet = curr.attr('data-stylesheet');
         
         location.hash = friendlyId;
         
 		if(friendlyId=='root'){
 			url = '';
 		}
-
+		
 		pagesModel.friendlyId(friendlyId);
 		pagesModel.url(url);
 		pagesModel.pageTypeUniqId(pageTypeUniqId);
 		pagesModel.typeS(typeS);
-		pagesModel.typeP(typeP);
 
 		pagesModel.updatePages();
 
@@ -151,17 +203,55 @@ var pagesModel = {
 		return false;
 	},
     
+    // adds a page
     showAddPageTypeDialog:function(o, e){ // shows a dialog to add a page
     	$('#typeS').val('');
 		$('#typeP').val('');
 		$('#typeFriendlyId').val('');
 	
-		$('#addPageTypeDialog').modal('show');
+		$('#pageTypeDialog').modal('show');
+		
+		$('#pageTypeDialog').find('.add').show();
+		$('#pageTypeDialog').find('.edit').hide();
+		$('#pageTypeDialog').find('h3').text('Add Page Type');
+		
+		// init data
+		$('#typeS').val('');
+		$('#typeP').val('');
+		$('#typeFriendlyId').val('');
+		$('#layout').val('content');
+		$('#stylesheet').val('content');
+
+		return false;
+	},
+	
+	// edits a page
+    showEditPageTypeDialog:function(o, e){ // shows a dialog to add a page
+    	
+    	$('#pageTypeDialog').modal('show');
+    	
+    	$('#pageTypeDialog').find('.edit').show();
+		$('#pageTypeDialog').find('.add').hide();
+		$('#pageTypeDialog').find('h3').text('Update Page Type');
+
+		// init data
+		var curr = $('nav li.active a');
+				
+		var typeS = curr.attr('data-types');
+		var typeP = curr.attr('data-typep');
+		var layout = curr.attr('data-layout');
+		var stylesheet = curr.attr('data-stylesheet');
+		
+		$('#typeS').val(typeS);
+		$('#typeP').val(typeP);
+		$('#layout').val(layout);
+		$('#stylesheet').val(stylesheet);
 
 		return false;
 	},
 
-	addPage:function(){  // adds a page
+	// adds a page
+	addPage:function(){  
 
 		var pageTypeUniqId = pagesModel.pageTypeUniqId();
 		
@@ -192,7 +282,8 @@ var pagesModel = {
 
 	},
 	
-	removePage:function(){  // removes a page
+	// removes a page
+	removePage:function(){
 
 		message.showMessage('progress', 'Removing page...');
 
@@ -215,11 +306,14 @@ var pagesModel = {
 
 	},
     
-    addPageType:function(){  // adds a page
+    // adds a page type
+    addPageType:function(){
 
 		var typeFriendlyId = $.trim($('#typeFriendlyId').val());
         var typeS = $.trim($('#typeS').val());
         var typeP = $.trim($('#typeP').val());
+        var layout = $.trim($('#layout').val());
+        var stylesheet = $.trim($('#stylesheet').val());
         
         if(typeFriendlyId == '' || typeS == '' || typeP == ''){
             message.showMessage('error', 'All fields are required');
@@ -232,17 +326,57 @@ var pagesModel = {
           url: 'api/pagetype/add',
           type: 'POST',
 		  dataType: 'json',
-          data: {friendlyId: typeFriendlyId, typeS: typeS, typeP: typeP},
+          data: {friendlyId: typeFriendlyId, typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet},
           success: function(data){
 
           	var pageType = PageType.create(data);
           	
           	pagesModel.pageTypes.push(pageType);
 
-    	    $('#addPageTypeDialog').modal('hide');
+    	    $('#pageTypeDialog').modal('hide');
             
             message.showMessage('success', 'The page type was added successfully');
           }
+        });
+
+	},
+	
+	 // edits a page type
+    editPageType:function(){
+
+		var typeS = $.trim($('#typeS').val());
+        var typeP = $.trim($('#typeP').val());
+        var layout = $.trim($('#layout').val());
+        var stylesheet = $.trim($('#stylesheet').val());
+        
+        if(typeFriendlyId == '' || typeS == '' || typeP == ''){
+            message.showMessage('error', 'All fields are required');
+            return;
+        }
+
+        message.showMessage('progress', 'Updating page...');
+
+        $.ajax({
+			url: 'api/pagetype/edit',
+			type: 'POST',
+			dataType: 'json',
+			data: {pageTypeUniqId: pagesModel.pageTypeUniqId(), typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet},
+			success: function(data){
+			
+				pagesModel.typeS(typeS);
+				pagesModel.typeP(typeP);
+				
+				var curr = $('nav li.active a');
+				
+				curr.attr('data-types', typeS);
+				curr.attr('data-typep', typeP);
+				curr.attr('data-layout', layout);
+				curr.attr('data-stylesheet', stylesheet);
+				
+				message.showMessage('success', 'The page type was updated successfully');
+				
+				$('#pageTypeDialog').modal('hide');
+			}
         });
 
 	},
@@ -261,6 +395,7 @@ var pagesModel = {
 		return false;
 	},
 	
+	// removes a page type
 	removePageType:function(){  // removes a page
 
 		message.showMessage('progress', 'Removing page type...');
@@ -318,6 +453,25 @@ var pagesModel = {
 				}
 			}
 		});
+	},
+	
+	// sort
+	sortName:function(o,e){
+		pagesModel.sort('name');
+		pagesModel.order('asc');
+		
+		pagesModel.updatePages();
+		$('.list-menu-actions a').removeClass('active');
+		$(e.target).parent().addClass('active');
+	},
+	
+	sortDate:function(o,e){
+		pagesModel.sort('date');
+		pagesModel.order('desc');
+		
+		pagesModel.updatePages();
+		$('.list-menu-actions a').removeClass('active');
+		$(e.target).parent().addClass('active');
 	}
 }
 

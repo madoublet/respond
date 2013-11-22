@@ -115,7 +115,7 @@ Page.create = function(data){
 }
 
 // models a pagetype
-function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, createdBy, lastModifiedBy, lastModifiedDate, created){
+function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, stylesheet, createdBy, lastModifiedBy, lastModifiedDate, created){
 
 	var self = this;
 
@@ -124,6 +124,8 @@ function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, createdB
 	self.friendlyId = ko.observable(friendlyId);
 	self.typeS = ko.observable(typeS);
 	self.typeP = ko.observable(typeP);
+	self.layout = ko.observable(layout);
+	self.stylesheet = ko.observable(stylesheet);
 	self.createdBy = ko.observable(createdBy);
 	self.lastModifiedBy = ko.observable(lastModifiedBy);
 	self.lastModifiedDate = ko.observable(lastModifiedDate);
@@ -139,7 +141,7 @@ function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, createdB
 PageType.create = function(data){
 
 	return new PageType(data['PageTypeId'], data['PageTypeUniqId'], data['FriendlyId'],
-						data['TypeS'], data['TypeP'], data['CreatedBy'], data['LastModifiedBy'],
+						data['TypeS'], data['TypeP'], data['Layout'], data['Stylesheet'], data['CreatedBy'], data['LastModifiedBy'],
 						data['LastModifiedDate'], data['Created']);
 }
 

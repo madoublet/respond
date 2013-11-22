@@ -252,3 +252,45 @@ div.listItem span.status{
 		display: none;
 	}
 	
+/* list-menu */
+.list-menu{
+	position: relative;
+	border: 1px solid #f0f0f0;	
+	margin: 10px 10px 0 10px;
+	padding: 10px 10px;
+	min-height: 40px;
+}
+
+	.list-menu-actions{
+		position: absolute;
+		top: 7px;
+		right: 5px;
+	}
+
+	.list-menu i{
+		margin-left: 5px;
+		color: #aaa;	
+		padding: 5px;
+	}
+	
+	.list-menu .active i{
+		background-color: #fff;
+		color: #FF9900;
+	}
+	
+	.list-menu a:hover i{
+		background-color: #fff;
+	}
+	
+	.list-menu p{
+		margin: 0;
+		padding: 0;
+		color: #aaa;
+		font-size: 0.95em;
+		max-width: 80%;
+		text-align: left;
+	}
+	
+	.list-menu p a{
+		margin-left: 5px;
+	}

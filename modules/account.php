@@ -27,40 +27,40 @@ if(strtoupper($type)=='SUBSCRIPTION'){ // if the site has a plan
 	// active, everything looks good
 	if($days < 30 && $status == 'active'){
 		$alertVisible = true;
-		$alertClass = 'alert-info';
+		$alertClass = 'message-info';
 		$alertText = 'Your plan will automatically renew in '.$days.' days. '.$accountLink;
 	}
 	
 	// trials
 	if($days < 30 && $status == 'trialing'){
 		$alertVisible = true;
-		$alertClass = 'alert-info';
+		$alertClass = 'message-info';
 		$alertText = 'Thank you for trying '.BRAND.'! Your trial will expire in '.$days.' days. '.$subscribeLink;
 	}
 	
 	if($days < 10 && $status == 'trialing'){
 		$alertVisible = true;
-		$alertClass = 'alert-warning';
+		$alertClass = 'message-warning';
 		$alertText = 'Thank you for trying '.BRAND.'! Your trial will expire in '.$days.' days. '.$subscribeLink;
 	}
 	
 	// past due
 	if($status == 'past_due'){
 		$alertVisible = true;
-		$alertClass = 'alert-danger';
+		$alertClass = 'message-danger';
 		$alertText = 'Your plan has expired. Please update your method of payment to avoid disruption of service.'.$updatePaymentLink;
 	}
 	
 	// canceled or unpaid
 	if($status == 'canceled' || $status == 'unpaid' || $status == 'unsubscribed'){
 		$alertVisible = true;
-		$alertClass = 'alert-danger';
+		$alertClass = 'message-danger';
 		$alertText = 'Your subscription has ended. View your account to re-subscribe.'.$accountLink;
 	}
 	
 } 
 
 if($alertVisible==true){	
-	print '<div id="account-message" class="alert '.$alertClass.' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$alertText.'</div>';
+	print '<p id="account-message" class="'.$alertClass.'">'.$alertText.'</p>';
 }
 ?>

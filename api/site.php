@@ -132,29 +132,32 @@ class SiteCreateResource extends Tonic\Resource {
         	$description = '';
     		$content = '';
     		$filename = '../layouts/home.html';
+    		$layout = 'home';
+    		$stylesheet = 'home';
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
     		
-            $homePage = Page::Add('index', 'Home', $description, -1, $site['SiteId'], $user['UserId']);
-            Page::EditLayout($$homePage['PageUniqId'], 'home', $user['UserId']);
+            $homePage = Page::Add('index', 'Home', $description, $layout, $stylesheet, -1, $site['SiteId'], $user['UserId']);
             Page::SetIsActive($homePage['PageUniqId'], 1);
             
     		Publish::PublishFragment($site['FriendlyId'], $homePage['PageUniqId'], 'publish', $content);
     		
-    		// add the general page type and create a list
-    		$pageType = PageType::Add('page', 'Page', 'Pages', $site['SiteId'], $user['UserId'], $user['UserId']);
-    		
     		// create the about page
     		$content = '';
     		$filename = '../layouts/about.html';
+    		$layout = 'content';
+    		$stylesheet = 'content';
+    		
+    		// add the general page type and create a list
+    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, $site['SiteId'], $user['UserId'], $user['UserId']);
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
             
-    		$aboutUs = Page::Add('about', 'About', $description, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+    		$aboutUs = Page::Add('about', 'About', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
             Page::SetIsActive($aboutUs['PageUniqId'], 1);
     		
     		Publish::PublishFragment($site['FriendlyId'], $aboutUs['PageUniqId'], 'publish', $content);
@@ -162,12 +165,14 @@ class SiteCreateResource extends Tonic\Resource {
     		// create the contact us page
     		$content = '';
     		$filename = '../layouts/contact.html';
+    		$layout = 'content';
+    		$stylesheet = 'content';
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
     		
-            $contactUs = Page::Add('contact', 'Contact', $description, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+            $contactUs = Page::Add('contact', 'Contact', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
             Page::SetIsActive($contactUs['PageUniqId'], 1);
         
     		Publish::PublishFragment($site['FriendlyId'], $contactUs['PageUniqId'], 'publish', $content);
@@ -175,28 +180,33 @@ class SiteCreateResource extends Tonic\Resource {
     		// create the error page
     		$content = '';
     		$filename = '../layouts/error.html';
+    		$layout = 'content';
+    		$stylesheet = 'content';
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
     		
-            $pageNotFound = Page::Add('error', 'Page Not Found', $description, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+            $pageNotFound = Page::Add('error', 'Page Not Found', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
             Page::SetIsActive($pageNotFound['PageUniqId'], 1);
             
     		Publish::PublishFragment($site['FriendlyId'], $pageNotFound['PageUniqId'], 'publish', $content);
-    		
-    		// add the post page type
-    		$postPageType = PageType::Add('post', 'Post', 'Posts', $site['SiteId'], $user['UserId'], $user['UserId']);
-    		
+
     		// create a sample blog post
     		$content = '';
     		$filename = '../layouts/post.html';
+    		$layout = 'post';
+    		$stylesheet = 'content';
+    		
+    		// add the post page type
+    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
             
-    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $postPageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $layout, $stylesheet, $postPageType['PageTypeId'], $site['SiteId'], $user['UserId']);
     		Page::EditLayout($samplePost['PageUniqId'], 'post', $user['UserId']);
             Page::SetIsActive($samplePost['PageUniqId'], 1);
     		
@@ -205,18 +215,19 @@ class SiteCreateResource extends Tonic\Resource {
     		// create a sample blog list page
     		$content = '';
     		$filename = '../layouts/blog.html';
+    		$layout = 'post';
+    		$stylesheet = 'content';
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     			$content = str_replace('{{pageTypeUniqId}}', $postPageType['PageTypeUniqId'], $content);
     		}
             
-    		$blog = Page::Add('blog', 'Blog', $description, -1, $site['SiteId'], $user['UserId']);
+    		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $user['UserId']);
     		Page::EditLayout($blog['PageUniqId'], 'blog', $user['UserId']);
     		Page::SetIsActive($blog['PageUniqId'], 1);
     		
     		Publish::PublishFragment($site['FriendlyId'], $blog['PageUniqId'], 'publish', $content);
-    		
     		
     		// create the menu
     		MenuItem::Add('Home', '', 'primary', 'index', $homePage['PageId'], 0, $site['SiteId'], $user['UserId'], $user['UserId']);

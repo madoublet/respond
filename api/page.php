@@ -22,11 +22,17 @@ class PageAddResource extends Tonic\Resource {
             $pageTypeId = -1;
             $pageTypeUniqId = $request['pageTypeUniqId']; // get page type
             
+            // default layout and stylesheet is content
+            $layout = 'content';
+            $stylesheet = 'content';
+            
             if($pageTypeUniqId != '-1'){
                 $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
             
                 if($pageType != null){
                     $pageTypeId = $pageType['PageTypeId'];
+                    $layout = $pageType['Layout'];
+                    $stylesheet = $pageType['Stylesheet'];
                 }
             }
 
@@ -34,7 +40,7 @@ class PageAddResource extends Tonic\Resource {
             $friendlyId = $request['friendlyId'];
             $description = $request['description'];
 
-            $page = Page::Add($friendlyId, $name, $description, $pageTypeId, $authUser->SiteId, $authUser->UserId);
+            $page = Page::Add($friendlyId, $name, $description, $layout, $stylesheet, $pageTypeId, $authUser->SiteId, $authUser->UserId);
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -496,6 +502,123 @@ class PageListAll extends Tonic\Resource {
 
 }
 
+/**
+ * A protected API call that shows all pages for a given PageType.FriendlyId
+ * @uri /page/list/sorted
+ */
+class PageListSortedResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+        
+        	parse_str($this->request->data, $request); // parse request
+            
+            $friendlyId = $request['friendlyId']; // get page type
+            $sort = $request['sort'];
+        
+			// default
+			$orderBy = 'LastModifiedDate DESC';
+        
+			// don't pass directly to DB
+			if($sort=='date desc'){
+				$orderBy = 'LastModifiedDate DESC';
+			}
+			
+			if($sort=='date asc'){
+				$orderBy = 'LastModified ASC';
+			}
+			
+			if($sort=='name desc'){
+				$orderBy = 'Name DESC';
+			}
+			
+			if($sort=='name asc'){
+				$orderBy = 'Name ASC';
+			}
+        
+
+            $siteId = $authUser->SiteId;
+            $pageSize = 100;
+            
+            $page = 0;
+
+            $pageTypeId = -1;
+            $dir = '/';
+
+            if($friendlyId!='root'){ // get pagetype
+                $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
+                $pageTypeId = $pageType['PageTypeId'];
+                $dir = strtolower($pageType['TypeS']).'/';
+            }
+            
+            // get site url
+            $site = Site::GetBySiteId($authUser->SiteId);
+
+            $dir = 'sites/'.$site['FriendlyId'].'/files/';
+
+            // get pages
+            $list = Page::GetPages($siteId, $pageTypeId, $pageSize, $page, $orderBy);
+            
+            $pages = array();
+            
+            foreach ($list as $row){
+
+                $page = Page::GetByPageId($row['PageId']);
+
+                $fullName = $row['FirstName'].' '.$row['LastName'];
+                $page['LastModifiedFullName'] = $fullName;
+
+                $thumbUrl = '';
+
+                if($page['Image']!=''){
+                
+                	if (strpos($page['Image'],'t-') !== false) {
+					    $thumbUrl = $dir.$page['Image'];
+					}
+					else{
+                   		$thumbUrl = $dir.'t-'.$page['Image'];
+                    }
+                    
+                }
+
+                $page['Thumb'] = $thumbUrl;
+
+                $url = $page['FriendlyId'];
+
+                if($page['PageTypeId']!=-1){
+                    $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+
+                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                }
+
+                $page['Url'] = $url;
+                    
+                $pages[$row['PageUniqId']] = $page;
+            }
+
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'applicaton/json';
+            $response->body = json_encode($pages);
+
+            return $response;
+
+        }
+        else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+    }
+
+}
 
 /**
  * A protected API call that shows all pages for a given PageType.FriendlyId

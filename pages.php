@@ -39,9 +39,9 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages">/</a></li>
+            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
         	<!--ko foreach: pageTypes -->
-    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i></li>
+    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i></li>
     		<!--/ko -->
             <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddPageTypeDialog"></i></li>
         </ul>
@@ -49,7 +49,15 @@
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add <span data-bind="text: typeS"></span></a>
     </nav>
     
-    <?php include 'modules/account.php'; ?>
+    <div class="list-menu">
+    	<?php include 'modules/account.php'; ?>
+    	
+		<div class="list-menu-actions">
+    		<a title="Sort by Last Modified" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
+			<a title="Sort by Name"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
+			<a><i class="fa fa-cog" data-bind="click: showEditPageTypeDialog, visible: pageTypeUniqId()!=-1"></i></a>
+		</div>
+    </div>
 
     <div class="list" data-bind="foreach: pages">
     
@@ -64,7 +72,7 @@
     		<p data-bind="text:description"></p>
     		<em>Last updated <span data-bind="text:friendlyDate"></span> by <span data-bind="text:lastModifiedFullName"></span></em>
     		<span class="status" data-bind="css: { 'published': isActive() == 1, 'not-published': isActive() == 0 }, click: $parent.toggleActive">
-    			<i class="not-published fa fa-circle-o fa-large"></i>
+    			<i class="not-published fa fa-circle-o fa-lg"></i>
     			<i class="published fa fa-check-circle fa-lg"></i>
     		</span>
     	</div>
@@ -190,7 +198,7 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="addPageTypeDialog">
+<div class="modal fade" id="pageTypeDialog">
 
 	<div class="modal-dialog">
 	
@@ -198,7 +206,7 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3 id="AddEditTitle">Add Page Type</h3>
+				<h3>Add Page Type</h3>
 			</div>
 			<!-- /.modal-header -->
 
@@ -207,19 +215,29 @@
 				<div class="form-group">
 					<label for="typeS" class="control-label">Name (singular):</label>
 					<input id="typeS"  value="" maxlength="100" class="form-control">
-					<span class="help-block">e.g.: Page, Blog, Product, etc.</span>
+					<span class="add help-block">e.g.: Page, Blog, Product, etc.</span>
 				</div>
 				
 				<div class="form-group">
 					<label for="typeP" class="control-label">Name (Plural):</label>
 					<input id="typeP"  value="" maxlength="100" class="form-control">
-					<span class="help-block">e.g.: Pages, Blogs, Products, etc.</span>
+					<span class="add help-block">e.g.: Pages, Blogs, Products, etc.</span>
+				</div>
+				
+				<div class="add form-group">
+					<label for="typeFriendlyId" class="control-label">Friendly URL:</label>
+					<input id="typeFriendlyId" value="" maxlength="50" class="form-control">
+					<span class="add help-block">e.g. http://respondcms.com/[friendly-url]/. Must be lowercase with no spaces.</span>
 				</div>
 				
 				<div class="form-group">
-					<label for="typeFriendlyId" class="control-label">Friendly URL:</label>
-					<input id="typeFriendlyId" value="" maxlength="50" class="form-control">
-					<span class="help-block">e.g. http://respondcms.com/[friendly-url]/. Must be lowercase with no spaces.</span>
+					<label for="layout" class="control-label">Default Layout:</label>
+					<select id="layout" data-bind="options: layouts, value: layout" class="form-control"></select>
+				</div>
+				
+				<div class="form-group">
+					<label for="stylesheet" class="control-label">Default Styles:</label>
+					<select id="stylesheet" data-bind="options: stylesheets, value: stylesheet" class="form-control"></select>
 				</div>
 			
 			</form>
@@ -230,7 +248,8 @@
 			
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addPageType">Add Type</button>
+				<button class="add primary-button" data-bind="click: addPageType">Add Type</button>
+				<button class="edit primary-button" data-bind="click: editPageType">Update Type</button>
 			</div>
 			<!-- /.modal-footer -->
 			

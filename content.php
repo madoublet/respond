@@ -818,7 +818,7 @@
 				</div>
 				
 				<div class="control-group">
-					<label for="stylesheet">Styles:</label>
+					<label for="stylesheet">Stylesheet:</label>
 					<select id="stylesheet" data-bind="options: $parent.stylesheets, value: stylesheet()" class="form-control"></select>
 					<p data-bind="visible: $parent.stylesheetsLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> Loading...</p>
 					<span class="help-block">CSS used to render the page</span>

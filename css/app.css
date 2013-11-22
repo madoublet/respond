@@ -459,7 +459,7 @@ section.main nav{
         
         section.main nav li.active i{
             position: absolute;
-            top: 16px;
+            top: 19px;
             right: 3px;
             display: inline-block;
             color: #aaa;

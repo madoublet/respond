@@ -4,7 +4,7 @@
 class PageType{
 	
 	// adds a pageType
-    public static function Add($friendlyId, $typeS, $typeP, $siteId, $createdBy, $lastModifiedBy){
+    public static function Add($friendlyId, $typeS, $typeP, $layout, $stylesheet, $siteId, $createdBy, $lastModifiedBy){
 		   
         try{
             
@@ -20,9 +20,9 @@ class PageType{
     		$timestamp = gmdate("Y-m-d H:i:s", time());
     	
     		// a bit hacky, but need to ensure that begindate and enddate are null
-    		$q = "INSERT INTO PageTypes (PageTypeUniqId, FriendlyId, TypeS, TypeP,
+    		$q = "INSERT INTO PageTypes (PageTypeUniqId, FriendlyId, TypeS, TypeP, Layout, Stylesheet,
                     SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     	
     	
             $s = $db->prepare($q);
@@ -30,11 +30,13 @@ class PageType{
             $s->bindParam(2, $friendlyId);
             $s->bindParam(3, $typeS);
             $s->bindParam(4, $typeP);
-            $s->bindParam(5, $siteId);
-            $s->bindParam(6, $createdBy);
-            $s->bindParam(7, $lastModifiedBy);
-            $s->bindParam(8, $timestamp);
-            $s->bindParam(9, $timestamp);
+            $s->bindParam(5, $layout);
+            $s->bindParam(6, $stylesheet);
+            $s->bindParam(7, $siteId);
+            $s->bindParam(8, $createdBy);
+            $s->bindParam(9, $lastModifiedBy);
+            $s->bindParam(10, $timestamp);
+            $s->bindParam(11, $timestamp);
             
             $s->execute();
             
@@ -44,6 +46,8 @@ class PageType{
                 'FriendlyId' => $friendlyId,
                 'TypeS' => $typeS,
                 'TypeP' => $typeP,
+                'Layout' => $layout,
+                'Stylesheet' => $stylesheet,
                 'SiteId' => $siteId,
                 'CreatedBy' => $createdBy,
                 'LastModifiedBy' => $lastModifiedBy,
@@ -95,29 +99,25 @@ class PageType{
 	}
 	
 	// edits a pageType
-	public static function Edit($pageTypeUniqId, $friendlyId, $typeS, $typeP, $lastModifiedBy){
+	public static function Edit($pageTypeUniqId, $typeS, $typeP, $layout, $stylesheet, $lastModifiedBy){
         
         try{
             
             $db = DB::get();
-            
-            // cleanup friendlyid (escape, trim, remove spaces, tolower)
-        	$friendlyId = trim($friendlyId);
-    		$friendlyId = str_replace(' ', '', $friendlyId);
-    		$friendlyId = strtolower($friendlyId);
-            
+      
             $timestamp = gmdate("Y-m-d H:i:s", time());
             
-            $q = "UPDATE PageTypes SET FriendlyId = ?, TypeS = ?, TypeP = ?,
-    			    LastModifiedBy = ?, LastModifiedDate= ? WHERE PageTypeUnqiId = ?";
+            $q = "UPDATE PageTypes SET TypeS = ?, TypeP = ?, Layout = ?, Stylesheet = ?,
+    			    LastModifiedBy = ?, LastModifiedDate= ? WHERE PageTypeUniqId = ?";
      
             $s = $db->prepare($q);
-            $s->bindParam(1, $friendlyId);
-            $s->bindParam(2, $typeS);
-            $s->bindParam(3, $typeP);
-            $s->bindParam(4, $lastModifiedBy);
-            $s->bindParam(5, $timestamp);
-            $s->bindParam(6, $pageTypeUniqId);
+            $s->bindParam(1, $typeS);
+            $s->bindParam(2, $typeP);
+            $s->bindParam(3, $layout);
+            $s->bindParam(4, $stylesheet);
+            $s->bindParam(5, $lastModifiedBy);
+            $s->bindParam(6, $timestamp);
+            $s->bindParam(7, $pageTypeUniqId);
             
             $s->execute();
             
@@ -154,7 +154,7 @@ class PageType{
 
             $db = DB::get();
             
-            $q = "SELECT  PageTypeId, PageTypeUniqId, FriendlyId, TypeS, TypeP,
+            $q = "SELECT  PageTypeId, PageTypeUniqId, FriendlyId, TypeS, TypeP, Layout, Stylesheet,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         			FROM PageTypes
         			WHERE PageTypes.SiteId = ?
@@ -187,7 +187,7 @@ class PageType{
             $db = DB::get();
             
             $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-            		TypeS, TypeP,
+            		TypeS, TypeP, Layout, Stylesheet,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         		 	FROM PageTypes WHERE PageTypes.SiteId = ? ORDER BY Created limit 1";
                     
@@ -216,7 +216,7 @@ class PageType{
             $db = DB::get();
             
             $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-            		TypeS, TypeP,
+            		TypeS, TypeP, Layout, Stylesheet,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         		 	FROM PageTypes WHERE FriendlyId = ? && SiteId = ?";
                     
@@ -246,7 +246,7 @@ class PageType{
             $db = DB::get();
             
             $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-            		TypeS, TypeP,
+            		TypeS, TypeP, Layout, Stylesheet,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         		 	FROM PageTypes WHERE PageTypeUniqId = ?";
                     
@@ -275,7 +275,7 @@ class PageType{
             $db = DB::get();
             
             $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
-            		TypeS, TypeP, 
+            		TypeS, TypeP, Layout, Stylesheet,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         		 	FROM PageTypes WHERE PageTypeId = ?";
                     

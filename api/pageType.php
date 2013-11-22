@@ -21,11 +21,13 @@ class PageTypeAddResource extends Tonic\Resource {
             $friendlyId = $request['friendlyId'];
             $typeS = $request['typeS'];
             $typeP = $request['typeP'];
+            $layout = $request['layout'];
+            $stylesheet = $request['stylesheet'];
             $siteId = $authUser->SiteId;
             $createdBy = $authUser->UserId;
             $lastModifiedBy = $authUser->UserId;
 
-            $pageType = PageType::Add($friendlyId, $typeS, $typeP, $siteId, $createdBy, $lastModifiedBy);
+            $pageType = PageType::Add($friendlyId, $typeS, $typeP, $layout, $stylesheet, $siteId, $createdBy, $lastModifiedBy);
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -33,6 +35,44 @@ class PageTypeAddResource extends Tonic\Resource {
             $response->body = json_encode($pageType);
 
             return $response;
+        
+        } else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+
+}
+
+/**
+ * A protected API call to add a pagetype
+ * @uri /pagetype/edit
+ */
+class PageTypeEditResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function edit() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            parse_str($this->request->data, $request); // parse request
+
+			$pageTypeUniqId = $request['pageTypeUniqId'];
+            $typeS = $request['typeS'];
+            $typeP = $request['typeP'];
+            $layout = $request['layout'];
+            $stylesheet = $request['stylesheet'];
+            $lastModifiedBy = $authUser->UserId;
+            
+            PageType::Edit($pageTypeUniqId, $typeS, $typeP, $layout, $stylesheet, $lastModifiedBy);
+
+            // return a json response
+            return new Tonic\Response(Tonic\Response::OK);
         
         } else{ // unauthorized access
 

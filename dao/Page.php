@@ -4,7 +4,7 @@
 class Page{
     
 	// adds a page
-	public static function Add($friendlyId, $name, $description, $pageTypeId, $siteId, $createdBy){
+	public static function Add($friendlyId, $name, $description, $layout, $stylesheet, $pageTypeId, $siteId, $createdBy){
 		
         try{
             
@@ -21,8 +21,6 @@ class Page{
     		$isActive = 0;
     		$image = '';
     		$lastModifiedBy = $createdBy;
-    		$layout = 'content';
-    		$stylesheet = 'content';
     		$keywords = '';
     		$callout = '';
     		$rss = '';

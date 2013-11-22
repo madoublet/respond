@@ -339,6 +339,24 @@ class Utilities
         $content = str_replace('{{synopsis}}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         $content = str_replace('{{keywords}}', $page['Keywords'], $content);
         
+        // create a friendly date
+        $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
+        $local = new DateTimeZone($site['TimeZone']);
+		$date->setTimezone($local);
+		$readable = $date->format('D, M d y h:i a');
+		
+		$content = str_replace('{{date}}', $readable, $content);
+		
+		// get the author
+		$user = User::GetByUserId($page['LastModifiedBy']);
+		$author = '';
+		
+		if($user!=null){
+			$author = $user['FirstName'].' '.$user['LastName'];
+		}
+		
+		$content = str_replace('{{author}}', $author, $content);
+        
         // menus
         $delimiter = '#';
 		$startTag = '{{menu-';
