@@ -46,19 +46,3 @@ How to Update from 2.3:
     ALTER TABLE PageTypes ADD COLUMN Layout varchar(50) DEFAULT 'content' AFTER TypeP;
     ALTER TABLE PageTypes ADD COLUMN Stylesheet varchar(50) DEFAULT 'content' AFTER Layout;
 ``` 
-
-
-
-
-Next Version:
-- Need a default layout, style for a page type
-
-- Prevent Google from indexing sites in /sites/ folder
-- Forward direct hits to /sites/ folder
-x Remove need for CORS
-- When a URL is entered into settings strip 'http://', 'www.', and trailing '/'
-- Allow editing of HTML blocks
-x Collapse HTML blocks, provide a name for a prettier L&F
-- Fix spacing on code block
-- Hitting enter should add row below
-x {{author}} and {{date}}
