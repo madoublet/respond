@@ -7,7 +7,7 @@ var imagesDialog = {
         
         // setup dropzone
         $("#drop").dropzone({ 
-            url: "/api/file/post",
+            url: "api/file/post",
             clickable: true,
             success: function(file, response){
                 var image = jQuery.parseJSON(response);
