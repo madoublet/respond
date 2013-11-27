@@ -3,8 +3,6 @@
 	
 	$authUser = new AuthUser(); // get auth user
 	$authUser->Authenticate('All');
-	
-	$path_prefix = '../';
 ?>
 <!DOCTYPE html>
 <html>
