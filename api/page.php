@@ -311,6 +311,9 @@ class PagePreviewSaveResource extends Tonic\Resource {
             Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
             
             $url = Publish::PublishPage($page['PageUniqId'], true); // publish a preview page
+            
+            // strip leading '../' from string
+            $url = str_replace('../', '', $url);
 
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'text/html';
