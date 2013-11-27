@@ -62,7 +62,7 @@ var accountModel = {
     	if(id==null)id='';
     
         $.ajax({
-    		url: '../api/customer/get',
+    		url: 'api/customer/get',
 			type: 'POST',
 			data: {id: id},
 			dataType: 'json',
@@ -91,7 +91,7 @@ var accountModel = {
 		accountModel.plansLoading(true);
 
 		$.ajax({
-			url: '../api/plan/list',
+			url: 'api/plan/list',
 			type: 'GET',
 			data: {},
 			success: function(data){
@@ -115,7 +115,7 @@ var accountModel = {
     	message.showMessage('progress', 'Unsubscribing...');
     
     	$.ajax({
-    		url: '../api/customer/plan/unsubscribe',
+    		url: 'api/customer/plan/unsubscribe',
 			type: 'POST',
 			data: {},
 			dataType: 'json',
@@ -156,7 +156,7 @@ var accountModel = {
         message.showMessage('progress', 'Updating plan...');
         
         $.ajax({
-            url: '../api/customer/plan/change',
+            url: 'api/customer/plan/change',
             type: 'POST',
             data: {plan: plan},
             success: function(data){
@@ -208,7 +208,7 @@ var accountModel = {
 	        message.showMessage('progress', 'Updating card...');
 	        
 	        $.ajax({
-	    		url: '../api/card/update',
+	    		url: 'api/card/update',
 				type: 'POST',
 				data: {month:month, year:year},
 				dataType: 'json',
@@ -248,7 +248,7 @@ var accountModel = {
             message.showMessage('progress', 'Adding new card...');
         
             $.ajax({
-                url: '../api/card/new',
+                url: 'api/card/new',
                 type: 'POST',
                 data: {token: token},
                 success: function(data){
@@ -323,7 +323,7 @@ var accountModel = {
             message.showMessage('progress', 'Paying...');
         
             $.ajax({
-                url: '../api/customer/subscribe',
+                url: 'api/customer/subscribe',
                 type: 'POST',
                 data: {token: token, plan: plan},
                 success: function(data){
