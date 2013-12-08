@@ -66,6 +66,9 @@ var contentModel = {
                 
                 // setup editor
     			$('#desc').respondEdit();
+    			
+    			// update skus
+    			// contentModel.updateProducts();
                 
                 // oh so pretty
                 prettyPrint();
@@ -112,6 +115,88 @@ var contentModel = {
             }
 		});
 
+	},
+	
+	updateProducts:function(){ // update producst on the page
+		
+		var skus = $('#desc').find('.skus');
+		
+		for(var x=0; x<skus.length; x++){
+		
+			var id = $(skus[x]).parent().attr('id');
+			
+			// inner function to grab products
+			function bindProducts(id){
+			
+				var newModel = false;
+			
+				// create an observable array from the card id
+				if(contentModel[id] == undefined){
+					contentModel[id] = ko.observableArray([]);
+					newModel = true;
+				}
+				
+				contentModel[id].removeAll();
+				
+				$.ajax({
+                	url: 'api/product/list',
+        			type: 'POST',
+                    dataType: 'JSON',
+        			data: {shelfId: id, pageUniqId: contentModel.pageUniqId()},
+        			success: function(data){
+        			   
+        			   for(x=0; x<data.length; x++){
+        			   
+        			   		console.log('push product:');
+        			   		console.log(data[x]);
+        			   		
+        			   		var priceReadable = data[x].Price + ' ' + data[x].Currency;
+        			   		var shippingReadable = data[x].ShippingType;
+        			   		
+        			   		if(data[x].Currency == 'USD'){
+	        			   		priceReadable = '$' + priceReadable;
+	        			   		if(data[x].ShippingType != 'digital' && data[x].ShippingType != 'delivered' && data[x].ShippingType != 'not shipped'){
+	        			   			shippingReadable += ' - $' + data[x].ShippingRate + ' ' + data[x].Currency;
+	        			   		}
+        			   		}
+        			   		else{
+        			   			if(data[x].ShippingType != 'digital' && data[x].ShippingType != 'delivered' && data[x].ShippingType != 'not shipped'){
+	        			   			shippingReadable += ' - ' + data[x].ShippingRate + ' ' + data[x].Currency;
+	        			   		}
+        			   		}
+        			   	
+	                        // push product to model
+	                        contentModel[id].push({
+	                            'productUniqId': data[x].ProductUniqId,
+	                            'description': data[x].Description,
+	                            'sku': data[x].SKU, 
+								'price': data[x].Price,
+								'currency': data[x].Currency,
+								'quantity': data[x].Quantity,
+								'shippingType': data[x].ShippingType,
+								'shippingRate': data[x].ShippingRate,
+								'downloadURL': data[x].DownloadURL,
+								'priceReadable': priceReadable,
+								'shippingReadable': shippingReadable
+	                            });
+                        }
+                        
+                        if(newModel == true){ // apply bindings for this element
+                        	ko.applyBindings(contentModel, document.getElementById(id));
+						}
+        			}
+        		});
+				
+			}
+			
+			bindProducts(id);
+			
+		}
+		
+	},
+	
+	editProduct:function(o,e){
+		skuDialog.edit(o);	
 	},
 
 	updatePageTypes:function(){  // updates the page types arr

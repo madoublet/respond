@@ -25,7 +25,10 @@ var filesDialog = {
         var filename = $(file).attr('data-filename');
         
         $('#desc').respondAppend(
-          '<div class="file" data-filename="'+filename+'"><div><i class="fa fa-file-o"></i><input type="text" value="Download '+filename+'" spellcheck="false" maxlength="256" placeholder="File description"></div><span class="marker fa fa-file-o" title="Module"></span><a class="remove fa fa-minus-circle" ></a></div>'
+			'<div class="file" data-filename="'+filename+'">' +
+			editorDefaults.elementMenuNoConfig +
+			'<div><i class="in-textbox fa fa-file-o"></i>' +
+			'<input type="text" value="Download '+filename+'" spellcheck="false" maxlength="256" placeholder="File description"></div></div>'
         );
 
         $('#filesDialog').modal('hide'); // show modal

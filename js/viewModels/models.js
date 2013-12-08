@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, analyticsId, facebookAppId, primaryEmail, timeZone, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -9,7 +9,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, a
     self.domain = ko.observable(domain);
     self.name = ko.observable(name);
     self.logoUrl = ko.observable(logoUrl);
-    self.template = ko.observable(template);
+    self.theme = ko.observable(theme);
     self.analyticsId = ko.observable(analyticsId);
     self.facebookAppId = ko.observable(facebookAppId);
     self.primaryEmail = ko.observable(primaryEmail);
@@ -23,7 +23,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, template, a
 // creates a site based on data returned from the API
 Site.create = function(data){
 
-	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Template'],
+	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
                     data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 
@@ -197,8 +197,8 @@ MenuItem.create = function(data){
                         data['CreatedBy'], data['LastModifiedBy'],	data['LastModifiedDate'], data['Created']);
 }
 
-// models a template
-function Template(id, name, desc){
+// models a theme
+function Theme(id, name, desc){
 
     var self = this;
 
@@ -208,8 +208,8 @@ function Template(id, name, desc){
 
 }
 
-// creates a template based on data returned from the API
-Template.create = function(data){
+// creates a theme based on data returned from the API
+Theme.create = function(data){
 
-	return new Template(data['id'], data['name'], data['desc']);
+	return new Theme(data['id'], data['name'], data['desc']);
 }

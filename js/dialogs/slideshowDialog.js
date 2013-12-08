@@ -15,9 +15,10 @@ var slideshowDialog = {
 			var width = $('#slideShowWidth').val();
 			var height = $('#slideShowHeight').val();
 
-			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'"><div>' +
-				'<button type="button" class="addImage"><i class="fa fa-picture-o"></i></button>' +
-				'</div><span class="marker fa fa-film" title="Module"></span><a class="remove fa fa-minus-circle"></a>' +
+			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'">' +
+				editorDefaults.elementMenuNoConfig +
+				'<div class="images"><button type="button" class="add-image"><i class="fa fa-picture-o"></i></button>' +
+				'</div>' +
 				'<em class="size">'+
 				width + 'px x ' + height + 'px' +
 				'</em>'+

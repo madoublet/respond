@@ -37,14 +37,24 @@
 
     <nav>
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+        
+        <div class="fs-container">
     
-        <ul>
-            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
-        	<!--ko foreach: pageTypes -->
-    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i></li>
-    		<!--/ko -->
-            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddPageTypeDialog"></i></li>
-        </ul>
+			<div class="fs">
+			
+		        <ul>
+		            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
+		        	<!--ko foreach: pageTypes -->
+		    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet}, click: $parent.switchPageType"></a> <i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i></li>
+		    		<!--/ko -->
+		            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddPageTypeDialog"></i></li>
+		        </ul>
+	        
+			</div>
+			<!-- /.fs -->
+        
+        </div>
+        <!-- /.fs-container -->
         
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add <span data-bind="text: typeS"></span></a>
     </nav>
@@ -270,6 +280,7 @@
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
 <script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>

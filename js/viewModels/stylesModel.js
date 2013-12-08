@@ -48,6 +48,8 @@ var stylesModel = {
                     stylesModel.updateContent(current);
                 }
                 
+                global.setupFs();
+                
 			}
 		});
 

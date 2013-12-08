@@ -28,6 +28,7 @@ var imagesDialog = {
       
     },
     
+    // adds an image
     addImage:function(src, t_src, filename){
       
       var images_count = $('div.img').length + 1;
@@ -36,14 +37,19 @@ var imagesDialog = {
       
       if(imagesDialog.type=='slideshow'){  // add image (thumb) to slideshow
       
-        var html = '<span class="image"><img id="' + filename + '" src="'+t_src+'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span><a class="remove fa-minus-circle"></a></span>';
+        var html = '<span class="image"><img id="' + 
+        	filename + 
+        	'" src="' +
+        	t_src + 
+        	'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span>' +
+        	'<a class="remove-image fa fa-minus-circle"></a></span>';
         
         html += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button>';
         
         $('#desc').find('div#'+imagesDialog.moduleId+' .add-image').remove();
         
         $('#desc').find('div#'+imagesDialog.moduleId+
-        ' div').append(
+        ' div.images').append(
           html
         );
         
@@ -55,9 +61,10 @@ var imagesDialog = {
           
           var href = '';
           
-          var html = '<div id="'+divId+'" class="i" data-id="'+divId+'" data-cssclass="">';
-          html += imagesDialog.getImageHtml('none', uniqId, src, href, '&nbsp;');
-          html += '</div>';
+          var html = '<div id="'+divId+'" class="i" data-id="'+divId+'" data-cssclass="">' +
+          				editorDefaults.elementMenu +
+		  				imagesDialog.getImageHtml('none', uniqId, src, href, '&nbsp;') +
+		  				'</div>';
           
           $('#desc').respondAppend(html);
       }
@@ -75,26 +82,55 @@ var imagesDialog = {
     
 		if(position=='left'){
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>';
+				html = '<div class="img"><img id="' + 
+						imageId + 
+						'" src="' + 
+						src + '"></div><div class="content" contentEditable="true">' + 
+						content + '</div>';
 			}
 			else{
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><div class="content" contentEditable="true">'+content+'</div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
+				html = '<div class="img"><img id="' + 
+						imageId + 
+						'" src="' +
+						src + '" data-url="' + href + '"></div><div class="content" contentEditable="true">' +
+						content + '</div>';
 			}
 		}
 		else if(position=='right'){
 			if(href==''){
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>';
+				html = '<div class="content" contentEditable="true">' + 
+							content +
+							'</div><div class="img"><img id="' + 
+							imageId + '" src="' + 
+							src + '"></div>';
 			}
 			else{
-				html = '<div class="content" contentEditable="true">'+content+'</div><div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>';
+				html = '<div class="content" contentEditable="true">' +
+							content +
+							'</div><div class="img hasUrl"><img id="' + 
+							imageId + '" src="' +
+							src +
+							'" data-url="' +
+							href +
+							'"></div>';
 			}
 		}
 		else{ // for no text
 			if(href==''){
-				html = '<div class="img"><img id="' + imageId + '" src="'+src+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle""></a><a class="config fa fa-cog"></a>'; 
+				html = '<div class="img"><img id="' + 
+							imageId + 
+							'" src="' +
+							src +
+							'"></div>'; 
 			}
 			else{
-				html = '<div class="img hasUrl"><img id="' + imageId + '" src="'+src+'" data-url="'+href+'"></div><span class="marker fa fa-picture-o"></span><a class="remove fa fa-minus-circle"></a><a class="config fa fa-cog"></a>'; 
+				html = '<div class="img hasUrl"><img id="' + 
+							imageId + 
+							'" src="' +
+							src + 
+							'" data-url="' +
+							href +
+							'"></div>'; 
 			}
 		}
 		
@@ -114,5 +150,5 @@ var imagesDialog = {
 }
 
 $(document).ready(function(){
-  imagesDialog.init();
+	imagesDialog.init();
 });

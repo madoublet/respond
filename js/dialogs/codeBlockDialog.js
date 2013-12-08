@@ -12,9 +12,9 @@ var codeBlockDialog = {
 			code = global.replaceAll(code, '<', '&lt;');
 			
 			var html = '<div id="'+uniqId+'" class="syntax">' +
+				editorDefaults.elementMenuNoConfig + 
 				'<pre class="prettyprint linenums pre-scrollable">' + code + '</pre>' +
-				'<pre class="non-pretty">' + code + '</pre>' +
-				'<span class="marker fa fa-terminal" title="Code block"></span><a class="remove fa fa-minus-circle"></a></div>';
+				'<pre class="non-pretty">' + code + '</pre></div>';
 			
 			$(editor).respondAppend(
 				html

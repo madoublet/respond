@@ -24,7 +24,6 @@
 <link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/menu.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
 

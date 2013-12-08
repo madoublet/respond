@@ -2,9 +2,9 @@
 
 /**
  * This class defines an example resource that is wired into the URI /example
- * @uri /template
+ * @uri /theme
  */
-class TemplateResource extends Tonic\Resource {
+class ThemeResource extends Tonic\Resource {
 
     /**
      * @method GET
@@ -16,7 +16,52 @@ class TemplateResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
             
-            $json = file_get_contents('../templates/templates.json');
+            //$json = file_get_contents('../templates/templates.json');
+            
+            $json = '{';
+            $first = true;
+            
+            // open themes direcotry
+            if($handle = opendir('../themes')){
+            
+			    $blacklist = array('.', '..');
+			    
+			    // walk through directories
+			    while (false !== ($file = readdir($handle))) {
+			    
+			        if (!in_array($file, $blacklist)) {
+			            $dir = $file;
+			            
+			            //$json.='"yup":"'.$dir.'"';
+			            
+			            $config = '../themes/'.$dir.'/theme.json';
+			            
+			            if(file_exists($config)){
+			            
+			            	$theme_json = file_get_contents($config);
+			            	
+			            	// add commas for following json objects
+			            	if($first == false){
+				            	$json .= ',';
+			            	}
+			            	
+			            	// use the dir as the id
+			            	$theme_json = preg_replace('/{/', '{"id":"'.$dir.'",', $theme_json, 1);
+			            	
+							$json .= '"'.$dir.'":'.$theme_json;
+							
+							$first = false;
+			            }
+			            
+			            
+			        }
+			        
+			    }
+			    
+			    closedir($handle);
+			}
+            
+            $json .= '}';
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -33,15 +78,15 @@ class TemplateResource extends Tonic\Resource {
 }
 
 /**
- * A protected API call to apply a template
- * @uri /template/apply/{template}
+ * A protected API call to apply a themes
+ * @uri /theme/apply/{theme}
  */
-class TemplateApplyResource extends Tonic\Resource {
+class ThemeApplyResource extends Tonic\Resource {
 
     /**
      * @method POST
      */
-    function apply($template) {
+    function apply($theme) {
 
         // get an authuser
         $authUser = new AuthUser();
@@ -50,13 +95,13 @@ class TemplateApplyResource extends Tonic\Resource {
             
             $site = Site::GetBySiteUniqId($authUser->SiteUniqId);
         
-            // edits the template for the site
-    		Site::EditTemplate($authUser->SiteUniqId, $template);
+            // edits the theme for the site
+    		Site::EditTheme($authUser->SiteUniqId, $theme);
     		
-    		// publishes a template for a site
-    		Publish::PublishTemplate($site, $template);
+    		// publishes a theme for a site
+    		Publish::PublishTheme($site, $theme);
     		
-    		// republish site with the new template
+    		// republish site with the new theme
     		Publish::PublishSite($site['SiteUniqId']);
             
             // return a json response
@@ -74,15 +119,15 @@ class TemplateApplyResource extends Tonic\Resource {
 }
 
 /**
- * A protected API call to reset a template
- * @uri /template/reset/{template}
+ * A protected API call to reset a theme
+ * @uri /theme/reset/{theme}
  */
-class TemplateResetResource extends Tonic\Resource {
+class ThemeResetResource extends Tonic\Resource {
 
     /**
      * @method POST
      */
-    function resets($template) {
+    function resets($theme) {
 
         // get an authuser
         $authUser = new AuthUser();
@@ -91,10 +136,10 @@ class TemplateResetResource extends Tonic\Resource {
             
             $site = Site::GetBySiteUniqId($authUser->SiteUniqId);
         
-        	// publishes a template for a site
-    		Publish::PublishTemplate($site, $template);
+        	// publishes a theme for a site
+    		Publish::PublishTheme($site, $theme);
     		
-    		// republish site with the new template
+    		// republish site with the new theme
     		Publish::PublishSite($site['SiteUniqId']);
             
             // return a json response

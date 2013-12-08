@@ -8,7 +8,7 @@
 <div id="<?php print $id; ?>" class="carousel slide" data-width="<?php print $width; ?>" data-height="<?php print $height; ?>"  style="max-width: <?php print $width; ?>px">
 	<div class="carousel-inner">
 		<?php 
-			if($imgHtml)
+			if($imgHtml){
 			
 				foreach($imgHtml->find('img') as $img){ ?>
 			<div class="item<?php if($img_count==0){print ' active';}?>">	

@@ -55,7 +55,6 @@ var brandingModel = {
     
     applyBranding:function(o, e){
         message.showMessage('progress', 'Updating branding');
-        var template = templateModel.toBeApplied.id();
         
         $.ajax({
         	url: 'api/site/branding/',

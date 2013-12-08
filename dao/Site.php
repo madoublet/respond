@@ -4,7 +4,7 @@
 class Site{
 	
 	// adds a Site
-	public static function Add($domain, $name, $friendlyId, $logoUrl, $template, $primaryEmail, $timeZone){
+	public static function Add($domain, $name, $friendlyId, $logoUrl, $theme, $primaryEmail, $timeZone){
         
         try{
             
@@ -18,7 +18,7 @@ class Site{
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Type, Created) 
+            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Type, Created) 
     			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
@@ -27,7 +27,7 @@ class Site{
             $s->bindParam(3, $domain);
             $s->bindParam(4, $name);
             $s->bindParam(5, $logoUrl);
-            $s->bindParam(6, $template);
+            $s->bindParam(6, $theme);
             $s->bindParam(7, $analyticsId);
             $s->bindParam(8, $facebookAppId);
             $s->bindParam(9, $primaryEmail);
@@ -44,7 +44,7 @@ class Site{
                 'Domain' => $domain,
                 'Name' => $name,
                 'LogoUrl' => $logoUrl,
-                'Template' => $template,
+                'Theme' => $theme,
                 'AnalyticsId' => $analyticsId,
                 'FacebookAppId' => $facebookAppId,
                 'PrimaryEmail' => $primaryEmail,
@@ -90,25 +90,25 @@ class Site{
         
 	}
     
-    // edits the template
-    public static function EditTemplate($siteUniqId, $template){
+    // edits the theme
+    public static function EditTheme($siteUniqId, $theme){
         
         try{
             
             $db = DB::get();
             
             $q = "UPDATE Sites SET 
-                	Template= ?
+                	Theme= ?
                 	WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
-            $s->bindParam(1, $template);
+            $s->bindParam(1, $theme);
             $s->bindParam(2, $siteUniqId);
             
             $s->execute();
             
 		} catch(PDOException $e){
-            die('[Site::EditTemplate] PDO Error: '.$e->getMessage());
+            die('[Site::EditTheme] PDO Error: '.$e->getMessage());
         }
         
 	}
@@ -237,7 +237,7 @@ class Site{
         try{
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 
@@ -297,7 +297,7 @@ class Site{
         
     		$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 
@@ -328,7 +328,7 @@ class Site{
         
     		$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 
@@ -359,7 +359,7 @@ class Site{
         
         	$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 
@@ -390,7 +390,7 @@ class Site{
         
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 
@@ -421,7 +421,7 @@ class Site{
         
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Template,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, LastLogin, 
 							Type, CustomerId, 

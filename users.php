@@ -41,7 +41,7 @@
             <li class="static active"><a>Users</a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa-plus-circle fa-lg"></i> Add User</span></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add User</span></a>
     </nav>
 
     <div class="list" data-bind="foreach: users">

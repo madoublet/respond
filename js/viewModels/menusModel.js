@@ -58,6 +58,8 @@ var menusModel = {
 					menusModel.menuTypes.push(menuType); 
 
 				}
+				
+				global.setupFs();
 
 				menusModel.updateMenuItems();
 

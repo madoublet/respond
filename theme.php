@@ -9,7 +9,7 @@
 
 <head>
 	
-<title>Template&mdash;<?php print $authUser->SiteName; ?></title>
+<title>Themes&mdash;<?php print $authUser->SiteName; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,14 +18,12 @@
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/page.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/menu.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
-<body data-currpage="template">
+<body data-currpage="theme">
 	
 <!-- required for actions -->
 <input type="hidden" name="_submit_check" value="1"/>
@@ -44,19 +42,19 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-    	    <li class="static active"><a href="template">Template</a></li>
+    	    <li class="static active"><a href="theme">Themes</a></li>
         </ul>
         
     </nav>
 
-    <div id="templatesList" class="list" data-bind="foreach: templates">
+    <div id="themesList" class="list" data-bind="foreach: themes">
     
         <div class="listItem">
             <h2 data-bind="text: name"></h2>
             <p data-bind="text: desc"></p>
             
-            <button class="primary-button" data-bind="click: $parent.showApplyDialog, visible: ($parent.template()!=id())">Apply Template</button>
-    		<button class="secondary-button" data-bind="click: $parent.showResetDialog, visible: ($parent.template()==id())">Reset Template</button>
+            <button class="primary-button" data-bind="click: $parent.showApplyDialog, visible: ($parent.theme()!=id())">Apply Theme</button>
+    		<button class="secondary-button" data-bind="click: $parent.showResetDialog, visible: ($parent.theme()==id())">Reset Theme</button>
         </div>
     
     </div>
@@ -73,12 +71,12 @@
 		
 		    <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">×</button>
-		        <h3>Apply Template</span></h3>
+		        <h3>Apply Theme</span></h3>
 		    </div>
 		    <div class="modal-body">
 		    
 		    <p>
-		    	Are you sure that you want to apply the <strong id="applyName">template</strong> Template?
+		    	Are you sure that you want to apply the <strong id="applyName">theme</strong> Theme?
 		    </p>
 		    
 		    <p>
@@ -89,7 +87,7 @@
 		    </div>
 		    <div class="modal-footer">
 		    	<button class="secondary-button" data-dismiss="modal">Close</button>
-		    	<button class="primary-button" data-bind="click: applyTemplate">Apply Template</button>
+		    	<button class="primary-button" data-bind="click: applyTheme">Apply Theme</button>
 		    </div>
 		    <!-- /.modal-footer -->
 		
@@ -113,12 +111,12 @@
 
 		    <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">×</button>
-		        <h3>Reset Template</span></h3>
+		        <h3>Reset Theme</span></h3>
 		    </div>
 		    <div class="modal-body">
 		    
 		    <p>
-		        Are you sure that you want to reset the <strong id="resetName">template</strong> Template?
+		        Are you sure that you want to reset the <strong id="resetName">theme</strong> Theme?
 		    </p>
 		    
 		    <p>
@@ -128,7 +126,7 @@
 		    </div>
 		    <div class="modal-footer">
 		        <button class="secondary-button" data-dismiss="modal">Close</button>
-		    	<button class="primary-button" data-bind="click: resetTemplate">Reset Template</button>
+		    	<button class="primary-button" data-bind="click: resetTheme">Reset Theme</button>
 		    </div>
 		    <!-- /.modal-footer -->
 		
@@ -156,6 +154,6 @@
 <script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/viewModels/templateModel.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/viewModels/themeModel.js?v=<?php print VERSION; ?>"></script>
 
 </html>

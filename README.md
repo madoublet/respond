@@ -7,42 +7,36 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-Our current version is 2.4.
+Our current version is 2.5.
 
-See whats new in the November 2013 update: http://respondcms.com/update/november-2013
+See whats new in the December 2013 update: http://respondcms.com/update/december-2013
 
-New in 2.4:
-- Paid Stripe subscriptions: bill customers via Stripe
-- New slide out menu, other UI tweaks
-- Timezone stored in PHP format
-- Better blog support: added to default site
-- Update File Upload (show progress, make icon clickable)
-- Emails for creating accounts, payment successful, payment failed
-- Bug fixes
+New in 2.5:
+- Better theme support
+	- Rename templates => themes
+	- Allow files (images, js, etc) to be included with theme
+	- Easier theme installation, just drop folder into themes directory
+	- Custom default themes and start pages
+- Touch upgrades for entire app, editor	
+- .htaccess updates to improve security
 
-How to Update from 2.3:
-- Pull latest version, does require updates to Setup.php to merge your version with the new version
-- In Sites table, change TimeZone to varchar(50), update field to your default timezone (e.g. America/Chicago).  See http://php.net/manual/en/timezones.php.
+How to update from 2.4:
+- Backup custom templates you created 
+- For each site:
+	1. Rename sites/[site name]/templates to sites/[site name]/themes
+	2. Rename sites/[site name]/themes/[theme name]/html to sites/[site name]/themes/[theme name]/layouts
+	3. Rename sites/[site name]/themes/[theme name]/less to sites/[site name]/themes/[theme name]/styles
+- For each custom template:
+	1. Create a folder in themes, e.g. themes/[template name]
+	2. Copy layouts/[template name]/html to themes/[template name]/layouts
+	3. Copy layouts/[template name]/less to themes/[template name]/styles
+	4. Copy the themes/simple/files to themes/[template name]/files
+	5. Copy the themes/simple/pages to themes/[template name]/pages
+- Rename template to theme in sites table
+	ALTER TABLE Sites CHANGE Template Theme varchar(50);
+- Republish site
+	
 
-```    
-    ALTER TABLE Sites MODIFY TimeZone varchar(50)
-    UPDATE Sites SET TimeZone = 'America/Chicago'
-```
 
-- In Sites table, add column Type varchar(25) with a default of "Non-Subscription"
 
-```
-    ALTER TABLE Sites ADD COLUMN Type varchar(25) NOT NULL DEFAULT 'Non-Subscription' AFTER LastLogin
-```
 
-- In Sites table, add column CustomerId varchar(256) with a default of NULL
-
-```	
-    ALTER TABLE Sites ADD COLUMN CustomerId varchar(256) DEFAULT NULL AFTER Type
-``` 
-- In PageTypes table, add columns Layout varchar(50) and Stylesheet(50) with a default of NULL
-
-```	
-    ALTER TABLE PageTypes ADD COLUMN Layout varchar(50) DEFAULT 'content' AFTER TypeP;
-    ALTER TABLE PageTypes ADD COLUMN Stylesheet varchar(50) DEFAULT 'content' AFTER Layout;
-``` 

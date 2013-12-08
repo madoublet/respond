@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.4');
+	define('VERSION', '2.5');
 
 	// DB connection parameters
 	define('DB_HOST', 'localhost');
@@ -47,6 +47,9 @@
     
     // start page (sets the default page a user sees after logon)
 	define('START_PAGE', 'pages');
+	
+	// set the default theme (directory name: themes/simple => simple)
+	define('DEFAULT_THEME', 'simple');
 	
 	// libraries
 	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700');

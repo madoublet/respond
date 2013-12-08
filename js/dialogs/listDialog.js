@@ -25,12 +25,18 @@ var listDialog = {
 		    return;
 		  }
 		  
-		  var html = '<div id="'+uniqId+'" data-display="'+display+'" data-type="'+pageTypeUniqId+'" class="list"';
-		  html += ' data-length="'+$('#listLength').val()+'"';
-		  html += ' data-orderby="'+$('#listOrderBy').val()+'"';
-		  html += ' data-pageresults="'+$('#listPageResults').is(':checked')+'"';
-		  html += ' data-desclength="'+$('#listDescLength').val()+'"';
-		  html += ' data-label="'+label+'"><div><i class="fa fa-bars"></i> List '+label+'</div><span class="marker fa fa-list-alt" title="Module"></span><a class="remove fa fa-minus-circle"></a><a class="config-list fa fa-cog"></a></div>';
+		  var html = '<div id="'+uniqId+'" data-display="'+display+'" data-type="'+pageTypeUniqId+'" class="list"' +
+		  				' data-length="'+$('#listLength').val() + '"' +
+		  				' data-orderby="'+$('#listOrderBy').val() + '"' +
+		  				' data-pageresults="'+$('#listPageResults').is(':checked') + '"' +
+		  				' data-desclength="'+$('#listDescLength').val() + '"' +
+		  				' data-label="' + 
+		  				label +
+		  				'">' + 
+		  				editorDefaults.elementMenuList +
+		  				'<div class="title"><i class="fa fa-bars"></i> List ' + 
+		  				label + 
+		  				'</div></div>';
 
 		  $(editor).respondAppend(
 		    html

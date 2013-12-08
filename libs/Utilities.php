@@ -310,10 +310,10 @@ class Utilities
         $siteUniqId = $site['SiteUniqId'];
         
         $siteName = $site['Name'];
-        $template = $site['Template'];
+        $theme = $site['Theme'];
         $analyticsId = $site['AnalyticsId'];
  
-        $htmlDir = $root.'sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+        $htmlDir = $root.'sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
         $htmlFile = $htmlDir.$page['Layout'].'.html';
         $content = '{{content}}';
     
@@ -833,6 +833,17 @@ class Utilities
                     
                     $el->outertext= $content;
                 }
+				else if($name=='shelf'){
+					$shelfId = $el->id;
+					$shelf = $el->innertext;
+					ob_start();
+					include $root.'sites/common/modules/shelf.php'; // loads the module
+					$content = ob_get_contents(); // holds the content
+					ob_end_clean();
+					
+					$el->outertext= $content;
+				}
+                
                 else{ 
                     // do nothing
                 }

@@ -21,7 +21,7 @@
 	<ul class="menu">
 		<li class="menu-pages"><a href="<?php print $path_prefix; ?>pages"><i class="fa fa-file"></i> Pages</a></li>
     	<li class="menu-menu"><a href="<?php print $path_prefix; ?>menus"><i class="fa fa-bars"></i> Menus</a></li>
-		<li class="menu-template"><a href="<?php print $path_prefix; ?>template"><i class="fa fa-desktop"></i> Template</a></li>
+		<li class="menu-theme"><a href="<?php print $path_prefix; ?>theme"><i class="fa fa-desktop"></i> Theme</a></li>
     	<li class="menu-branding"><a href="<?php print $path_prefix; ?>branding"><i class="fa fa-certificate"></i> Branding</a></li>
 		<li class="menu-users"><a href="<?php print $path_prefix; ?>users"><i class="fa fa-user"></i> Users</a></li>
 		<li class="menu-account"><a href="<?php print $path_prefix; ?>account"><i class="fa fa-key"></i> Account</a></li>

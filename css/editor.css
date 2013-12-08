@@ -1,21 +1,19 @@
-div.editor div.editor-highlight{
+.editor .editor-highlight{
     border: 1px solid #fbec5d !important;
     background: #fbec5d !important;
     min-height: 25px;
 } 
 
-div.editor{
+.editor{
     position: relative;
 }
 
-div.editor.container{
-    padding-top: 65px;
-    padding-left: 25px;
-    padding-right: 25px;
+.editor.container{
+    padding-top: 60px;
     padding-bottom: 100px;
 }
 
-div.editor.container .row{
+.editor.container .row{
 	margin-right: 0;
 	margin-left: 0;
 	margin-bottom: 20px;
@@ -26,7 +24,7 @@ section.main nav.editor-menu{
     margin: 0;
     position: fixed !important;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     width: 100%;
     -webkit-transition: .2s all ease;
     -moz-transition: .2s all ease;
@@ -36,7 +34,7 @@ section.main nav.editor-menu{
 }
 
 .editor-actions{
-    margin: 0 110px 0 55px;
+    margin: 0 145px 0 55px;
     height: 50px;
     overflow: hidden;
 }
@@ -49,8 +47,9 @@ body a.primary-action{
     position: absolute;
     top: 0;
     right: 0;
-    width: 110px;
+    width: 110px !important;
     font-size: 0.9em !important;
+    text-align: center;
 }
 
 a.next, a.previous{
@@ -113,33 +112,33 @@ a.next, a.previous{
         margin: 0;
     }
 
-div.block{
+.block{
 	position: relative;
 	min-height: 50px;
 	padding-bottom: 0;
 }
 
-	div.block div.p.align-center div, div.block div.h1.align-center div, div.block div.h2.align-center div, div.block div.h3.align-center div{
+	.block div.p.align-center div, .block div.h1.align-center div, .block div.h2.align-center div, .block div.h3.align-center div{
 		text-align: center;	
 	}
 	
-	div.block div.p.align-left div, div.block div.h1.align-left div, div.block div.h2.align-left div, div.block div.h3.align-left div{
+	.block div.p.align-left div, .block div.h1.align-left div, .block div.h2.align-left div, .block div.h3.align-left div{
 		text-align: left;	
 	}
 	
-	div.block div.p.align-right div, div.block div.h1.align-right div, div.block div.h2.align-right div, div.block div.h3.align-right div{
+	.block div.p.align-right div, .block div.h1.align-right div, .block div.h2.align-right div, .block div.h3.align-right div{
 		text-align: right;	
 	}
 
-div.block{
-	padding-top: 45px !important;
+.block{
+	padding-top: 50px !important;
 }
 
-div.block:last-child{
+.block:last-child{
   	border-bottom: none;
 }
 
-div.block div.col{
+.block div.col{
 	position: relative;
 	padding: 10px 0;
 	margin-bottom: 0;
@@ -150,12 +149,12 @@ div.block div.col{
 	background-color: #fff;
 }
 
-div.block div.col:empty{
+.block div.col:empty{
 	background: #888 !important;
 	opacity: 0.9;
 }
 
-div.block div.col>div{
+.block div.col>div{
 	position: relative;
 	margin: 0 !important;
 	padding: 0 0 2px 0;
@@ -163,125 +162,201 @@ div.block div.col>div{
 	font-size: 13px;
 	line-height: 18px;
 	background: #fff;
+	overflow: hidden;
 }
 
-	div.block div.col>div .marker, 
-	div.block div.col>div .marker-field, 
-	div.block div.col>div .remove, 
-	div.block div.col>div .remove-image, 
-	div.block div.col>div .remove-field, 
-	div.block div.col>div .config, 
-	div.block div.col>div .config-list, 
-	div.block div.col>div .config-html, 
-	div.block div.col>div .config-plugin{
-		display: none;
-	}
-    
-    	div.block div.col>div:hover .marker, 
-    	div.block div.col>div .field-container:hover .marker-field,
-    	div.block div.col>div:hover .remove, 
-		div.block div.col>div .image:hover .remove-image, 
-    	div.block div.col>div .field-container:hover .remove-field, 
-    	div.block div.col>div:hover .config-list, 
-    	div.block div.col>div:hover .config-html, 
-    	div.block div.col>div:hover .config, 
-    	div.block div.col>div:hover .config-plugin{
-			display: block;
-			z-index: 100;
-		}
-
-div.block div.col div div{
+.block div.col div div{
 	margin: 0; padding: 0;
 }
 
-div.block div.col div + div{
-  	margin-top: 10px;
+.block div.col div + div{
+  	/*margin-top: 10px;*/
 }
 
-div.block div.col>div div[contentEditable=true]{
+.block div.col>div div[contentEditable=true]{
 	border: 1px solid #fff;
 	margin: 0 10px;
-	padding: 10px;
+	padding: 10px 20px 10px 10px;
 }
 
-div.block div.col>div:hover div[contentEditable=true]{
-	border: 1px dashed #ddd;
+.block div.col>div:hover div[contentEditable=true]{
+	border: 1px dashed #ddd;]
 }
 
 
-div.block div.col div div[contentEditable=true]:focus{
+.block div.col div div[contentEditable=true]:focus{
  	outline: none !important;
 	border: 1px dashed #3299BB !important;
 }
 
-div.block div.h1 div{
+.block div.h1 div{
 	font-size: 30px;
 	font-weight: bold;
 	font-family: "Roboto Condensed", sans-serif;
 }
 
-div.block div.h2 div{
+.block div.h2 div{
 	font-size: 25px;
 	font-weight: bold;
 	font-family: "Roboto Condensed", sans-serif;
 }
 
-div.block div.h3 div{
+.block div.h3 div{
 	font-size: 20px;
 	font-weight: bold;
 	font-family: "Roboto Condensed", sans-serif;
 }
 
-div.block div.p div, div.block div[contentEditable=true]{
+.block div.p div, .block div[contentEditable=true]{
 	font-size: 15px;
 	line-height: 25px;
 	font-family: "Roboto", sans-serif;
 }
 
-div.block div.ul div[contentEditable=true]{
+.block div.ul div[contentEditable=true]{
 	border-top: none !important;
 	border-top: 1px dashed #fff !important;
 }
 
-div.block div.ul:hover div[contentEditable=true]:first-child{
+.block div.ul:hover div[contentEditable=true]:first-child{
 	border-top: 1px dashed #ddd !important;
 }
 
-	div.block div.ul div{
+	.block div.ul div[contentEditable=true]{
 		background: url('../images/bullet.png') no-repeat 5px 13px;
 		padding-left: 25px !important;
 	}
+	
+/* element menu */
+.editor .expand-menu{
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	line-height: 40px !important;
+	font-size: 20px;
+	text-align: center;
+	top: 0;
+	right: 0;
+	color: #f0f0f0;
+	cursor: pointer;
+	text-decoration: none;
+	z-index: 101;
+}
+
+	.editor .block .col div:hover .expand-menu{
+		display: block;
+	}
+	
+	.expand-menu.active, .expand-menu:hover, .editor .block .col div .expand-menu.active, .editor .block .col div .expand-menu:hover{
+		display: block;
+		opacity: 1;
+		background-color: #3299BB;
+		color: #fff;
+	}
+	
+	/* shelf-item, field-container */
+	.editor .shelf-item .expand-menu, 
+	.editor .field-container .expand-menu{
+		z-index: 98;
+		top: -1px;
+		right: -1px;
+	}
+	
+	.editor .block .col div .shelf-item:hover .expand-menu, 
+	.editor .block .col div .shelf-item .expand-menu.active,
+	.editor .block .col div .field-container:hover .expand-menu, 
+	.editor .block .col div .field-container .expand-menu.active{
+		display: block;
+	}
+
+.editor .element-menu{
+	background-color: #f8f8f8;
+	text-align: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0 40px 0 0 !important;
+	z-index: 10;
+	margin-right:-300px !important;
+    -webkit-transition: .2s all ease;
+	-moz-transition: .2s all ease;
+	-o-transition: .2s all ease;    
+	-ms-transition: .2s all ease;
+	transition: .2s all ease;
+	z-index: 99;
+}
+
+	.editor .element-menu.active{
+		margin-right: 0 !important;
+	}
+
+	.editor .element-menu a{
+		position: relative;
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		color: #888;
+		cursor: pointer;
+		font-size: 14px;
+		text-decoration: none;
+	}
+	
+		.editor .element-menu a:hover{
+			color: #3299BB;
+			background-color: #f8f8f8;
+		}
+		
+		.editor .element-menu a.remove:hover, .editor .element-menu a.remove-block:hover{
+			color: #B11623;
+		}
+	
+	/* shelf-item, form-group */
+	.editor .shelf-item, 
+	.editor .field-container{
+		overflow: hidden;
+	}
+	
+	
+	.editor .shelf-item .element-menu,
+	.editor .field-container .element-menu{
+		z-index: 97;
+		top: -1px;
+		right: -1px;
+	}
 
 /* textareas and textboxes */
-div.block div.file, div.block div.map{
+.block div.file, .block div.map{
 	padding: 0 10px 5px 10px !important;
 }
 
-div.block div.file input, div.block div.map input{
+.block div.file input, .block div.map input{
 	padding: 10px;
 	outline: none !important;
 	color: #808080;
 	border: 1px dashed #fff !important;
 }
 
-	div.block div.file input:hover, div.block div.map input:hover{
+	.block div.file input:hover, .block div.map input:hover{
 		border: 1px dashed #ddd !important;
 	}
 
 
-	div.block div.file input, div.block div.map input{
+	.block div.file input, .block div.map input{
 		padding-left: 45px;
 	}
 
-	div.block div.file input:focus, div.block div.map input:focus{
+	.block div.file input:focus, .block div.map input:focus{
 		border: 1px dashed #3299BB !important;
 	}
 
-div.block div.youtube, div.block div.vimeo{
+.block div.youtube, .block div.vimeo{
 	padding: 5px 10px !important;
 }
 
-div.block div.youtube textarea, div.block div.vimeo textarea{
+.block div.youtube textarea, .block div.vimeo textarea{
 	box-sizing: border-box;
 	height: 100px; 
 	border: 1px dashed #ddd !important;
@@ -290,19 +365,24 @@ div.block div.youtube textarea, div.block div.vimeo textarea{
 	outline: none;
 }
 
-div.block div.youtube textarea:focus, div.block div.vimeo textarea:focus{
+.block div.youtube textarea:focus, .block div.vimeo textarea:focus{
 	border: 1px dashed #3299BB !important;
 }
 
 /* facebook, featured, etc */
-div.block div.like, div.block div.comments, div.block div.featured, div.block div.plugin, div.block div.list, div.block div.html{
+.block .title{
 	color: #888;
 	padding: 8px 20px 8px 20px !important;
 	margin: 0 0 15px 0;
 	font-size: 1.0em !important;
 }
 
-	div.block div.like i, div.block div.comments i, div.block div.featured i, div.block div.list i, div.file i, div.block div.map i, div.block div.q i, div.block div.html i{
+	.block .form .title, .block .shelf .title{
+		margin-bottom: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	.block .title i{
 		margin-right: 5px;
 		font-size: 1.1em !important;
 		padding: 5px;
@@ -313,184 +393,165 @@ div.block div.like, div.block div.comments, div.block div.featured, div.block di
 		margin-right: 10px;
 	}
 
-	div.block div.like i, div.block div.comments i{
+	.block .like .title i, .block .comments .title i{
 		color: #fff;
 		background-color: #3B5998;
 	}
 	
-	div.block div.featured i{
+	.block .featured .title i{
 		color: #fff;
 		background-color: #fbec5d;
 	}
 	
-	div.block div.list i{
+	.block .list .title i{
 		color: #fff;
 		background-color: #AA65A9;
 	}
 	
-	div.block div.html i{
+	.block .html .title i{
 		color: #fff;
 		background-color: #AA571B;
 	}
 	
+	.block .shelf .title i{
+		color: #fff;
+		background-color: #47BE44;
+	}
+	
+	.block .form .title i{
+		color: #fff;
+		background-color: #985D67;
+	}
+	
+	.block .plugin .title i{
+		color: #fff;
+		background-color: #C94131;
+	}
+	
 /* html */
-div.block div.html div{
+.block div.html div{
 	cursor: pointer;
 }
 
-div.block div.html pre.prettyprint{
+.block div.html pre.prettyprint{
 	margin-top: 10px;
 	display: none;
 }
 
-	div.block div.html.active pre.prettyprint{
+	.block div.html.active pre.prettyprint{
 		display: block;
 	}
 
-div.block div.html i.fa-angle-down{
+.block div.html i.fa-angle-down{
 	background-color: #fff;
 	color: #ccc;
 	margin-left: 5px;
 }
 
-	div.block div.html.active i.fa-angle-down{
+	.block div.html.active i.fa-angle-down{
 		-webkit-transform: rotate(-180deg);
 		transform: rotate(-180deg);
 	}
 	
 /* file and map  */
-div.block div.file i, div.block div.map i, div.block div.q i{
+.block div.file i, .block div.map i, .block div.q i{
 	position: absolute;
 	top: 8px;
 	left: 20px;
 	background-color: #94D237;
 	color: #fff;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
 }
 
-	div.block div.q i{
+	.block div.q i{
 		background-color: #EBF966;
 		color: #fff;
 	}
 
-	div.block div.map i{
+	.block div.map i{
 		background-color: #D25F37;
 		color: #fff;
 	}
 
 /* syntax */
-div.block div.syntax{
+.block div.syntax{
 	padding: 10px !important;
 }
 
-	div.block div.syntax pre{
+	.block div.syntax pre{
 		border-radius: 0;
 	}
 	
 /* quote */
-div.block div.q div{
+.block div.q div[contentEditable=true]{
 	padding-left: 45px !important;
 }
 	
 /* handle image */
-div.block div.i{
+.block div.i{
 	box-sizing: border-box;
 }
 
-div.block div.i div{
+
+.block div.i div[contentEditable=true], .block div.i div.img{
+	display: inline-block !important;
+	box-sizing: border-box !important;
+	
+}
+
+.block div.i div[contentEditable=true]{
 	vertical-align: top;
 	margin: 0;
 	padding: 0;
-	display: inline-block;
+	width: calc(50% - 20px) !important;
 }
 
-div.block div.i div.img{
+.block div.i div.img{
   	cursor: pointer;
-  	padding-right: 20px;
+  	display: inline-block;
+	width: 50% !important;
 }
 
-div.block div.i div.img img{
+.block div.i div.img img{
 	box-sizing: border-box;
 	max-width: 100%;
 	margin: 0 0 5px 0;
 	border-left: 20px solid #fff;
 }
 
-div.block div.i.left div.img, div.block div.i.right div.img{
+.block div.i.left div.img, .block div.i.right div.img{
 	width: 50%;
 	margin: 0;
 	padding: 0;
 }
 
-div.block div.i div.content{
-	margin: 0;
-	width: 48%;
-	box-sizing: border-box;
+.block div.col>div.i{
 }
 
-div.block div.col>div.i{
-}
-
-div.block div.col>div.i div[contentEditable=true]{
+.block div.col>div.i div[contentEditable=true]{
 	margin-right: 0 !important;
 }
 
-div.block div .remove, div.block div .remove-field{
-	position: absolute;
-	top: 0;
-	right: -25px;
-	display: inline-block;
-	width: 25px !important;
-	height: 25px !important;
-	border: none !important;
-	background: #B11623;
-	text-align: center;
-	line-height: 25px;
-	font-size: 1.0em;
-	color: #fff;
-	text-decoration: none;
-}
-
-	div.block div a.remove:hover, div.block div a.remove-field:hover{
-		text-decoration: none;
-	}
-
-div.block div a.config, div.block div a.config-list, div.block div a.config-html, div.block div a.config-plugin{
-	position: absolute;
-	top: 25px;
-	left: -25px;
-	display: inline-block;
-	width: 25px !important;
-	height: 25px !important;
-	text-align: center;
-	line-height: 25px;
-	border: none !important;
-	color: #fff;
-	background-color: #ccc;
-	font-size: 1.2em;
-	text-decoration: none;
-}
-
-div.block div a.config:hover, div.block div a.config-list:hover, div.block div a.config-plugin:hover{
-	background-color: #aaa;
-	text-decoration: none;
-}
-
 /* begin block actions */
-span.block-actions{
+.block-actions{
 	position: absolute;
 	box-sizing: border-box;
 	top: 0;
 	left: 0;
-	height: 30px;
+	height: 40px;
 	width: 100%;
-	line-height: 30px;
+	line-height: 40px;
 	display: inline-block;
-	margin: 0;
+	margin: 0 0 5px 0;
 	text-align: right;
 	color: #fff;
 	background-color: #888;
 	border-left: 5px solid #aaa;
 	border-right: 5px solid #aaa;
+	overflow: hidden;
 }
 
 span.block-actions span{
@@ -501,51 +562,15 @@ span.block-actions span{
 }
 
 /* begin block actions */
-span.blockActions a{
-	margin-right: 2px;
-	margin-top: 2px;
+.block a.up.disabled, .block a.up.disabled:hover{
+	display: none !important;
 }
 
-div.block a.config-block{
-	display: inline-block;
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
+.block a.down.disabled, .block a.down.disabled:hover{
+	display: none !important;
 }
-
-	div.block a.config-block:hover{
-		background-color: #ccc;
-	}
-
-div.block a.remove-block, div.block a.up, div.block a.down{
-	display: inline-block;
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
-	color: #fff;
-	text-align: center;
-	text-decoration: none;
-}
-
-
-	div.block a.remove-block:hover{
-		background-color: #B11623;
-	}
 	
-	div.block a.up.disabled, div.block a.up.disabled:hover{
-		display: none !important;
-	}
 	
-	div.block a.down.disabled, div.block a.down.disabled:hover{
-		display: none !important;
-	}
-	
-	div.block a.up:hover, div.block a.down:hover{	
-		background-color: #ccc;
-	}
 
 /* .prettyprint */
 .block pre.prettyprint{
@@ -563,7 +588,7 @@ pre.non-pretty{
 }
 
 /* begin markers */
-div.block div span.marker, div.block div span.marker-field{
+.block div .marker, .block div .marker-field, .block div .marker-item{
 	position: absolute;
 	top: 0;
 	left: -25px;
@@ -583,30 +608,81 @@ div.date div{
 	vertical-align: middle;
 }
 
-div.block div span.marker:hover, div.block div span.marker-field:hover{
+.block div .marker:hover, .block div .marker-field:hover, .block div .marker-item:hover{
     background-color: #ccc;
 }
 
-
-/* slideshow */
-div.block div.slideshow{
-	padding: 5px 20px !important;	
+/* shelf */
+.block .shelf .shelf-group1, .block .shelf .shelf-group2{
+	display: inline-block;
+	width: 50%;
 }
 
-div.block div.slideshow div{
+
+.block .shelf .shelf-group3{
+	display: none;
+}
+
+.block .shelf .skus{
+	padding-top: 7px;
+}
+
+.block .shelf .shelf-item{
+	position: relative;
+	margin: 0 40px 0 10px;
+	padding: 5px 10px;
+	cursor: pointer;
+	border: 1px solid #fff;
+}
+	
+	.block .shelf .shelf-item:hover{
+		border: 1px dashed #ddd;
+	}
+
+.block .shelf .shelf-description{
+	display: block;
+	padding: 0 0 5px 0;
+	font-weight: bold;
+	font-size: 1.2em;
+	width: 80%;
+}
+
+	.block .shelf .shelf-sku{
+		display: block;
+		padding: 0 0 5px 0;
+		font-size: 1.0em;
+	}
+
+	.block .shelf .shelf-price{
+		font-size: 1.1em;
+		display: block;
+	}
+	
+	.block .shelf .shelf-shipping{
+		text-transform: uppercase;
+		font-size: 0.9em;
+		color: #aaa;
+	}
+
+/* slideshow */
+.block div.slideshow{
+	padding: 5px 10px !important;	
+}
+
+.block div.slideshow div.images{
 	min-height: 115px;
 	margin: 0 10px;
 }
 
-div.block div.slideshow div{
+.block div.slideshow div.images{
 	vertical-align: top;
 }
 
-div.block div.slideshow em.size{
+.block div.slideshow em.size{
 	display: none;
 }
 
-div.block div.slideshow button{
+.block div.slideshow button{
 	vertical-align: top;
 	width: 87px;
 	height: 110px;
@@ -619,19 +695,19 @@ div.block div.slideshow button{
 	box-shadow: none;
 }
 
-	div.block div.slideshow button i{
+	.block div.slideshow button i{
 		color: #aaa;
 	}
 
-div.block div.slideshow button:hover{
+.block div.slideshow button:hover{
 	border: 1px dashed #3299BB;
 }
 
-	div.block div.slideshow button:hover i{
+	.block div.slideshow button:hover i{
 		color: #3299BB;
 	}
 
-div.block div.slideshow span.image{
+.block div.slideshow span.image{
 	display: inline-block;
 	margin: 0 5px 5px 5px;
 	padding: 5px 5px 30px 5px;
@@ -643,16 +719,16 @@ div.block div.slideshow span.image{
 	cursor: move;
 }
 
-div.block div.slideshow span.image.edit{
+.block div.slideshow span.image.edit{
 	z-index: 50;
 }
 
-div.block div.slideshow span.image img{
+.block div.slideshow span.image img{
 	width: 75px;
 	height: 75px;
 }
 
-div.block div.slideshow span.image span.caption{
+.block div.slideshow span.image span.caption{
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -661,14 +737,14 @@ div.block div.slideshow span.image span.caption{
 	left: 5px;
 }
 
-div.block div.slideshow span.image.edit span.caption{
+.block div.slideshow span.image.edit span.caption{
 	left: -65px;
 	background: #fff;
 	padding: 5px;
 	border: 1px solid #f0f0f0;
 }
 
-div.block div.slideshow span.image span.caption input{
+.block div.slideshow span.image span.caption input{
 	width: 75px;
 	height: 30px;
 	font-size: 11px;
@@ -677,12 +753,12 @@ div.block div.slideshow span.image span.caption input{
 	padding: 2px;
 }
 
-div.block div.slideshow span.image span.caption input:focus{
+.block div.slideshow span.image span.caption input:focus{
 	width: 220px;
 	font-size: 10px;
 }
 
-div.block div.slideshow span.editor-highlight{
+.block div.slideshow span.editor-highlight{
 	display: inline-block;
 	width: 75px;
 	height: 75px;
@@ -694,14 +770,14 @@ div.block div.slideshow span.editor-highlight{
 	vertical-align: top;
 } 
 
-div.block div.slideshow span.image .remove-image{
+.block div.slideshow span.image .remove-image{
 	position: absolute;
 	top: 5px;
 	right: 5px;  
 	width: 25px !important;
 	height: 25px !important;
 	border: none !important;
-	background: #B11623;
+	background: #f8f8f8;
 	text-align: center;
 	line-height: 25px;
 	font-size: 1.0em;
@@ -710,17 +786,17 @@ div.block div.slideshow span.image .remove-image{
 	border: none !important;
 }
 
-div.block div.slideshow span.image .remove-image:hover{
-	background-color: #B11623;
+.block div.slideshow span.image .remove-image:hover{
+	color: #B11623;
 }
 
-div.block div.slideshow>div{
+.block div.slideshow>div{
 	color: #808080;
 	border: none;
 }
 
 /* handle hr */
-div.block div.hr div{
+.block div.hr div{
 	border: 0;
 	margin: 0 20px 20px 20px !important;
 	padding: 0 0 25px 0 !important;
@@ -728,53 +804,40 @@ div.block div.hr div{
 }
 
 /* handle list */
-div.block div div input[type=text]{
+.block div div input[type=text]{
 	border: 1px solid #f0f0f0;
 }
 
-div.block div div input:focus, div.block div div input[type=text]:hover{
+.block div div input:focus, .block div div input[type=text]:hover{
 	border: 1px solid #ccc;
 }
 
-div.block div.map div input, div.block div.file div input{
+.block div.map div input, .block div.file div input{
 	width: 100%;
 }
 
-div.block div.file div em{
+.block div.file div em{
 	display: none;
 }
 
-div.block div.file div .form-control{
+.block div.file div .form-control{
 	display: block;
 	width: 100%;
 }
 
-
-div.block div.form{
-    padding: 0;
-}
-
-div.block div.form div{
-	color: #808080;
-	border: none;
-	padding: 0;
-	min-height: 0;
-	background: none;
-}
-
 /* cart */
-div.block div.cart input{
+.block div.cart input{
 	margin-left: 5px;
 	margin-top: 0;
 }
 
 /* fields */
-div.block div.form span.editor-highlight{
+.block div.form span.editor-highlight{
 	display: inline-block;
 	width: 100%;
 	height: 30px;
-	margin: 0 5px;
-	padding: 0;
+	margin: 0 40px 0 10px;
+	padding: 20px;
 	margin: 0 0 5px 0;
 	border: 1px solid #f0f0f0;
 	border: 1px solid #fbec5d !important;
@@ -782,74 +845,69 @@ div.block div.form span.editor-highlight{
 	vertical-align: top;
 } 
 
-div.block div.form>div{
-	margin: 0;
-	padding: 0 !important;
-}
 
-div.editor div.form input.positive{
-	margin-left: 40px;
-	margin-top: 0;
-}
-
-div.editor div.form{
-	padding: 15px 0 0 0 !important;
-}
-
-div.editor span.field-container{
+.block .field-container{
 	position: relative;
 	display: block;
-	background: #fff;
-	margin: 0 !important;
-	padding: 0 20px 10px 20px;
+	margin: 0 40px 0 10px;
+	padding: 5px 10px 10px 10px;
+	cursor: pointer;
+	border: 1px solid #fff;
 }
 
-    div.editor span.field-container .radio{
+	.block .field-container input, .block .field-container textarea, .block .field-container select{
+		width: calc(100% - 25px);
+	}
+	
+	.block .field-container:hover{
+		border: 1px dashed #ddd;
+	}
+
+
+    .block .field-container .radio{
         margin-left: 20px;
     }
     
-    div.editor span.field-container:last-child{
+    .block .field-container .list{
+        margin-bottom: 0;
+    }
+    
+    .block .field-container:last-child{
         margin-bottom: 15px;
     }
     
-    div.editor .add-field{
+    .block .add-field, .editor .add-sku{
     	display: block;
-        margin: 10px 20px 5px 20px;
+        margin: 10px 10px 5px 10px;
         padding: 10px 0;
         background: #fff;
         color: #888;
-        border: 1px dashed #ccc;
+        border: 1px dashed #ddd;
         box-sizing: border-box;
         text-align: center;
     }
     
-    	div.editor .add-field:hover{
+    	.block .add-field i, .editor .add-sku i{
+	    	margin-right: 5px;
+    	}
+    
+    	.block .add-field:hover, .editor .add-sku:hover{
 	    	border: 1px dashed #3299BB;
 	    	color: #3299BB;
 	    	text-decoration: none;
     	}
 
-div.editor span.field-container span.marker-field{
-	font-style: normal; 
-	background: #3299BB;
-	color: #fff;
-}
-
-    div.editor span.field-container span.marker-field i{
-    	color: #fff;
-    }
-
-div.editor span.field{
+.block span.field{
 	margin: 0;
 	padding: 0;
 }
 
-div.editor span.list{
+.block span.list{
 	display: block;
 	width: auto;
 }
 
-div.editor span.list label{
+.block span.list label{
 	display: block;
 	text-align: left;
 	margin: 1px 0 4px 0;
@@ -857,27 +915,23 @@ div.editor span.list label{
 	width: auto;
 }
 
-div.editor span.list label label{
+.block span.list label label{
 	display: inline;
 }
 
-div.editor span.list label input[type=radio], div.editor span.list label input[type=checkbox]{
+.block span.list label input[type=radio], .block span.list label input[type=checkbox]{
 	display: inline-block;
 	width: auto;
 	margin-right: 5px;
 }
 
-div.editor a.configure{
-	margin-left: 5px;
-}
-
 /* table */
-div.block div.table{
+.block div.table{
 	padding: 8px 20px 8px 20px !important;
 	width: auto !important;
 }
 
-	div.block div.table th, div.block div.table td{
+	.block div.table th, .block div.table td{
 		outline: none;
 		font-size: 1.1em;
 	}
@@ -934,6 +988,10 @@ div.table table td div{
 	margin: 0;
 }
 
+div.table tr.curr-row td{
+	background-color: rgba(200, 227, 237, .15) !important;
+}
+
 /* dialogs */
 #htmlDialog textarea, #codeBlockDialog textarea{
 	height: 250px;
@@ -951,11 +1009,11 @@ div.table table td div{
 		margin: 10px 0 0 0 !important;
 	}
 	
-	div.block{
+	.block{
 		padding-bottom: 5px;
 	}
 	
-	div.block div.col{
+	.block div.col{
 		margin-bottom: 10px !important;
 	}
   

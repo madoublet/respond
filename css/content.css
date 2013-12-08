@@ -131,18 +131,13 @@ div#previewMessage{
     display: none;
 }
 
-	div#previewMessage span{
-		display: block;
+	div#previewMessage button{
 		margin-top: 5px;
 	}
 
 div#previewMessage button{
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-div#previewMessage span.or{
 	margin-left: 5px;
+	margin-right: 5px;
 }
 
 div#previewContainer{

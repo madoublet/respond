@@ -84,6 +84,8 @@ var pagesModel = {
 
 				pagesModel.updatePages();
 				
+				global.setupFs();
+				
 			}
 		});
 
@@ -118,7 +120,7 @@ var pagesModel = {
 
 	},
 	
-	updateStylesheets:function(){ // gets the stylesheets for the current template
+	updateStylesheets:function(){ // gets the stylesheets for the current theme
 
 		pagesModel.stylesheetsLoading(true);
 
@@ -134,7 +136,7 @@ var pagesModel = {
 		});
 	},
 
-	updateLayouts:function(){ // gets the layouts for the current template
+	updateLayouts:function(){ // gets the layouts for the current theme
 
 		pagesModel.layoutsLoading(true);
 

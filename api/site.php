@@ -96,8 +96,7 @@ class SiteCreateResource extends Tonic\Resource {
         $domain = APP_URL.'/sites/'.$friendlyId;
     	$domain = str_replace('http://', '', $domain);
 		$logoUrl = 'sample-logo.png';
-		$template = 'simple';
-        
+		
         if($s_passcode == PASSCODE){
             
             $isUserUnique = User::IsLoginUnique($email);
@@ -107,7 +106,7 @@ class SiteCreateResource extends Tonic\Resource {
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $template, $email, $timeZone); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone); // add the site
             
             // add the admin
             $user = User::Add($email, $password, $firstName, $lastName, 'Admin', $site['SiteId']);
@@ -131,7 +130,7 @@ class SiteCreateResource extends Tonic\Resource {
             // create the home page
         	$description = '';
     		$content = '';
-    		$filename = '../layouts/home.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/home.html';
     		$layout = 'home';
     		$stylesheet = 'home';
     				
@@ -146,7 +145,7 @@ class SiteCreateResource extends Tonic\Resource {
     		
     		// create the about page
     		$content = '';
-    		$filename = '../layouts/about.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/about.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     		
@@ -164,7 +163,7 @@ class SiteCreateResource extends Tonic\Resource {
     			
     		// create the contact us page
     		$content = '';
-    		$filename = '../layouts/contact.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/contact.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     				
@@ -179,7 +178,7 @@ class SiteCreateResource extends Tonic\Resource {
     			
     		// create the error page
     		$content = '';
-    		$filename = '../layouts/error.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/error.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     				
@@ -194,7 +193,7 @@ class SiteCreateResource extends Tonic\Resource {
 
     		// create a sample blog post
     		$content = '';
-    		$filename = '../layouts/post.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/post.html';
     		$layout = 'post';
     		$stylesheet = 'content';
     		
@@ -214,7 +213,7 @@ class SiteCreateResource extends Tonic\Resource {
     		
     		// create a sample blog list page
     		$content = '';
-    		$filename = '../layouts/blog.html';
+    		$filename = '../themes/'.DEFAULT_THEME.'/pages/blog.html';
     		$layout = 'post';
     		$stylesheet = 'content';
     				
@@ -235,11 +234,10 @@ class SiteCreateResource extends Tonic\Resource {
             MenuItem::Add('About', '', 'primary', 'page/about', $aboutUs['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
     		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $user['UserId'], $user['UserId']);
     		
-    		// publishes a template for a site
-    		Publish::PublishTemplate($site, $template);
+    		// publishes a theme for a site
+    		Publish::PublishTheme($site, DEFAULT_THEME);
     		
     		// publish the site
-    		Publish::PublishCommonForEnrollment($site['SiteUniqId']);
     		Publish::PublishSite($site['SiteUniqId']);
     		
     		// send welcome email

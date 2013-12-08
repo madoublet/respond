@@ -201,9 +201,9 @@ header{
     
     header .sub-menu a{
         display: inline-block;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
         text-align: center;
         border: 1px solid #555;
         color: #ccc;
@@ -250,7 +250,7 @@ header{
     }
     
     	header h2.basic{
-	    	padding: 50px 0 10px 10px;
+	    	padding: 75px 0 10px 10px;
     	}
     	
     	header h2.advanced{
@@ -484,6 +484,8 @@ section.main nav{
         padding: 0 20px;
         color: #fff;
         font-size: 1em;
+        width: 145px;
+        text-align: center;
     }
     
         section.main nav a.primary-action:hover{
@@ -505,6 +507,54 @@ section.main nav{
         background-color: #E9E9E9;
         z-index: 1000;
     }
+
+	/* flipsnap */
+	.main nav .fs-container{
+		overflow: hidden;
+		margin: 0 145px 0 50px;
+	}
+	
+		.main nav .fs-container.full{
+			margin: 0 0 0 50px;
+		}
+	
+		.main nav .fs{
+			width: 1000px;
+		}
+	
+		.main nav .fs ul{
+			margin-left: 0;
+		}
+		
+		a.fs-next, a.fs-prev{
+		    position: absolute;
+		    color: #fff;
+		    background-color: #555;
+		    height: 50px;
+		    line-height: 50px;
+		    z-index: 100;
+		    padding: 0 10px;
+		    text-decoration: none;
+		}
+		
+		    a.fs-next:hover, a.fs-previous:hover{
+		        opacity: 1;
+		    }
+		    
+		    a.fs-next{
+		        top: 0;
+		        right: 135px;
+		    }
+		    
+		    .main nav .fs-container.full a.fs-next{
+			    right: 0;
+		    }
+		    
+		    a.fs-prev{
+		        top: 0;
+		        left: 50px;
+		        display: none;
+		    }
 
 
 div.content-row{

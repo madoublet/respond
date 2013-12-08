@@ -65,9 +65,8 @@
 <p id="contentLoading" data-bind="visible: contentLoading()" class="inline-status"><i class="fa fa-spinner fa-spin"></i> Loading content and editor...</p>
 
 <div id="previewMessage">
-  <span>You are previewing this page, click save to publish it.
-  <button class="tertiary-button" data-bind="click: saveContent">Save Content</button> or
-  <button class="tertiary-button" data-bind="click: hidePreview">Return to Editor</button></span>
+  <button class="tertiary-button" data-bind="click: saveContent">Save Content</button>
+  <button class="tertiary-button" data-bind="click: hidePreview">Return to Editor</button>
 </div>
 
 <div id="previewContainer">
@@ -400,40 +399,30 @@
 				
 				<div class="form-group">
 					<label for="sku-price" class="control-label">Price:</label>
-				    <input id="sku-currency" type="number" maxlength="128" value="" class="form-control">
+				    <input id="sku-price" type="number" maxlength="128" value="" class="form-control">
 				</div>
 				
 				<div class="form-group">
-					<label for="sku-price" class="control-label">Currency:</label>
+					<label for="sku-currency" class="control-label">Currency:</label>
 				    <select id="sku-currency" class="form-control">
 				    	<option value="USD">USD</option>
 				    </select>
 				</div>
 				
 				<div class="form-group">
-					<label for="sku-quantity" class="control-label">Quantity:</label>
-					<input id="sku-quantity" type="number" value="" class="form-control">
-				</div>
-				
-				<div class="form-group">
-					<label for="sku-shipping-type" class="control-label">Shipping Type:</label>
-				    <select id="sku-shipping-type" class="form-control">
+					<label for="sku-shippingType" class="control-label">Shipping Type:</label>
+				    <select id="sku-shippingType" class="form-control">
 				    	<option value="flat-rate">Flat Rate</option>
 				    	<option value="per-item">Per Item</option>
 				    	<option value="digital">Digital Download (not shipped)</option>
-				    	<option value="delivered">Delivered (not shipped)</option>
-				    	<option value="other">Other (not shipped)</option>
+				    	<option value="delivery">Delivery (not shipped)</option>
+				    	<option value="not shipped">Other (not shipped)</option>
 				    </select>
 				</div>
 				
 				<div id="sku-show-ship" class="form-group">
-					<label for="sku-shipping" class="control-label">Shipping Rate:</label>
-				    <input id="sku-shipping" type="number" maxlength="128" value="" class="form-control">
-				</div>
-				
-				<div id="sku-show-download" class="form-group">
-					<label for="sku-download-url" class="control-label">Download URL:</label>
-					<input id="sku-download-url" type="text" maxlength="256" value="" placeholder="http://" class="form-control">
+					<label for="sku-shippingRate" class="control-label">Shipping Rate:</label>
+				    <input id="sku-shippingRate" type="number" maxlength="128" value="" class="form-control">
 				</div>
 				
 				</div>
@@ -441,7 +430,8 @@
 				
 				<div class="modal-footer">
 					<button type="button" class="secondary-button" data-dismiss="modal">Close</button>
-					<button id="addField" type="button" class="primary-button">Add SKU</button>
+					<button id="add-sku" type="button" class="primary-button">Add SKU</button>
+					<button id="update-sku" type="button" class="primary-button">Update SKU</button>
 				</div>  
 				<!-- /.modal-footer -->
 		

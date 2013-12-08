@@ -40,15 +40,25 @@
 
     <nav>
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+        
+        <div class="fs-container">
     
-        <ul>
-            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a>Primary</a></li>
-        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a>Footer</a></li>
-    	<!-- ko foreach: menuTypes -->
-    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle fa-lg"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
-    	<!-- /ko -->
-            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddMenuTypeDialog"></i></li>
-        </ul>
+			<div class="fs">
+    
+		        <ul>
+		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a>Primary</a></li>
+		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a>Footer</a></li>
+		    	<!-- ko foreach: menuTypes -->
+		    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle fa-lg"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
+		    	<!-- /ko -->
+		            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddMenuTypeDialog"></i></li>
+		        </ul>
+		        
+			</div>
+			<!-- /.fs -->
+        
+        </div>
+        <!-- /.fs-container -->
         
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add Menu Item</a>
     </nav>
@@ -274,6 +284,7 @@
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
 <script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>

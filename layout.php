@@ -37,13 +37,23 @@
 
     <nav>
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+        
+        <div class="fs-container full">
     
-        <ul>
-        <!-- ko foreach: files -->
-            <li data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle fa-lg"></i></li>
-        <!-- /ko -->    
-            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddDialog"></i></li>
-        </ul>
+			<div class="fs">
+    
+		        <ul>
+		        <!-- ko foreach: files -->
+		            <li data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle fa-lg"></i></li>
+		        <!-- /ko -->    
+		            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddDialog"></i></li>
+		        </ul>
+        
+			</div>
+			<!-- /.fs -->
+        
+        </div>
+        <!-- /.fs-container -->
         
     </nav>
 
@@ -150,6 +160,7 @@
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
 <script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/codemirror/codemirror.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/codemirror/mode/xml/xml.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>

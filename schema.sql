@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `MenuItems` (
   `LastModifiedDate` datetime NOT NULL,
   PRIMARY KEY (`MenuItemId`),
   KEY `SiteId` (`SiteId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=697 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=697;
 
 CREATE TABLE IF NOT EXISTS `MenuTypes` (
   `MenuTypeId` int(11) NOT NULL AUTO_INCREMENT,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `Domain` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `LogoUrl` varchar(512) DEFAULT NULL,
-  `Template` varchar(50) DEFAULT NULL,
+  `Theme` varchar(50) DEFAULT NULL,
   `AnalyticsId` varchar(50) DEFAULT NULL,
   `FacebookAppId` varchar(255) DEFAULT NULL,
   `PrimaryEmail` varchar(255) DEFAULT NULL,

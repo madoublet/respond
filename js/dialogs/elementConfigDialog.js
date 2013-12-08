@@ -44,7 +44,7 @@ var elementConfigDialog = {
                 
                 var html = imagesDialog.getImageHtml(position, imageId, src, href, content);
                 
-                el.html(html);             
+                el.html(editorDefaults.elementMenu + html);             
                 $('#desc').respondHandleEvents();
             }
             if(el.hasClass('table')){

@@ -32,8 +32,9 @@ var fieldDialog = {
 			var id = id.replace(/:/g, '');
 			var helperText = $('#fieldHelperText').val().trim();
 
-			var html = '<span class="field-container">';
-			html += '<div class="form-group" data-type="'+ fieldType + '"';
+			var html = '<span class="field-container">' + 
+							editorDefaults.elementMenuNoConfig +
+							'<div class="form-group" data-type="'+ fieldType + '"';
 
 			if(required=='yes'){
 				html += ' data-required="true"';
@@ -92,7 +93,7 @@ var fieldDialog = {
 
 			html += '</div>';
 
-			html += '<a class="remove-field fa fa-minus-circle"></a><span class="marker-field" title="Field"><i class="fa fa-arrows-v"></i></span>';
+			
 			html += '</span>';
 
 			var formId = fieldDialog.formId;
@@ -103,7 +104,7 @@ var fieldDialog = {
 				$(editor).find('div#'+formId+' span.field-container:last-child').after(html);
 			}
 			else{
-				$(editor).find('div#'+formId+' div').html(html);
+				$(editor).find('div#'+formId+' div.field-list').html(html);
 			}
 
 			$(editor).respondHandleEvents();

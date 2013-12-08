@@ -27,12 +27,6 @@ class Publish
 		// publish common css
 		Publish::PublishCommonCSS($siteUniqId, $root);
 		
-		// publish common images
-		Publish::PublishCommonImages($siteUniqId, $root);
-		
-		// publish template images
-		Publish::PublishTemplateImages($siteUniqId, $root);
-		
 		// publish controller
 		Publish::PublishHtaccess($siteUniqId, $root);
 
@@ -87,38 +81,56 @@ class Publish
 		
 	}
 
-	// publishes a template
-	public static function PublishTemplate($site, $template, $root='../'){
+	// publishes a theme
+	public static function PublishTheme($site, $theme, $root='../'){
 
-		$template_dir = $root.'sites/'.$site['FriendlyId'].'/templates/';
-		$src = $root.'templates/'.$template.'/';
-		$dest = $root.'sites/'.$site['FriendlyId'].'/templates/'.$template.'/';
-
-		if(!file_exists($template_dir)){
-			mkdir($template_dir, 0755, true);	
+		$theme_dir = $root.'sites/'.$site['FriendlyId'].'/themes/';
+		
+		// create themes
+		if(!file_exists($theme_dir)){
+			mkdir($theme_dir, 0755, true);	
+		}
+		
+		// create directory for theme
+		$theme_dir .= $theme .'/';
+		
+		if(!file_exists($theme_dir)){
+			mkdir($theme_dir, 0755, true);	
+		}
+		
+		// create directory for layouts
+		$layouts_dir = $theme_dir.'/layouts/';
+		
+		if(!file_exists($layouts_dir)){
+			mkdir($layouts_dir, 0755, true);	
+		}
+		
+		// create directory for styles
+		$styles_dir = $theme_dir.'/styles/';
+		
+		if(!file_exists($styles_dir)){
+			mkdir($styles_dir, 0755, true);	
 		}
 
-		Utilities::CopyDirectory($src, $dest);
+		// copy layouts
+		$layouts_src = $root.'themes/'.$theme.'/layouts/';
+		$layouts_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/layouts/';
+
+		Utilities::CopyDirectory($layouts_src, $layouts_dest);
+		
+		// copy styles
+		$styles_src = $root.'themes/'.$theme.'/styles/';
+		$styles_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/styles/';
+		
+		Utilities::CopyDirectory($styles_src, $styles_dest);
+		
+		// copy files
+		$files_src = $root.'themes/'.$theme.'/files/';
+		$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
+
+		Utilities::CopyDirectory($files_src, $files_dest);
 	}
 	
-	// publishes common folder (during enrollment)
-	public static function PublishCommonForEnrollment($siteUniqId, $root='../'){
-		
-		$site = Site::GetBySiteUniqId($siteUniqId);
-		
-		// publish files
-		$src = $root.'templates/common/files';
-		$dest = $root.'sites/'.$site['FriendlyId'].'/files';
-		
-		// create dir if it doesn't exist
-		if(!file_exists($dest)){
-			mkdir($dest, 0755, true);	
-		}
-		
-		// copies a directory
-		Utilities::CopyDirectory($src, $dest);
-		
-	}
 	
 	// publishes common js
 	public static function PublishCommonJS($siteUniqId, $root = '../'){
@@ -152,52 +164,6 @@ class Publish
 		
 		// copies a directory
 		Utilities::CopyDirectory($src, $dest);
-	}
-	
-	// publishes common images
-	public static function PublishCommonImages($siteUniqId, $root = '../'){
-		
-		$site = Site::GetBySiteUniqId($siteUniqId);
-		
-		$src = $root.'sites/common/images';
-		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
-        
-        // exit if src does not exist
-        if(!file_exists($src)){
-        	return;	
-		}
-		
-		// create dir if it doesn't exist
-		if(!file_exists($dest)){
-			mkdir($dest, 0755, true);	
-		}
-		
-		// copies a directory
-		Utilities::CopyDirectory($src, $dest);
-		
-	}
-	
-	// publishes template images
-	public static function PublishTemplateImages($siteUniqId, $root = '../'){
-		
-		$site = Site::GetBySiteUniqId($siteUniqId);
-		
-		$src = $root.'templates/'.$site['Template'].'/images';
-		$dest = $root.'sites/'.$site['FriendlyId'].'/images';
-        
-        // exit if src does not exist
-        if(!file_exists($src)){
-    		return;	
-		}
-		
-		// create dir if it doesn't exist
-		if(!file_exists($dest)){
-			mkdir($dest, 0755, true);	
-		}
-		
-		// copies a directory
-		Utilities::CopyDirectory($src, $dest);
-	
 	}
 	
 	// publishes all the pages in the site
@@ -304,7 +270,7 @@ class Publish
 	public static function PublishCSS($site, $name, $root = '../'){
 	
 		// get references to file
-	    $lessDir = $root.'sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/less/';
+	    $lessDir = $root.'sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/styles/';
 	    $cssDir = $root.'sites/'.$site['FriendlyId'].'/css/';
 
 	    $lessFile = $lessDir.$name.'.less';
@@ -341,7 +307,7 @@ class Publish
 
 		$site = Site::GetBySiteUniqId($siteUniqId); // test for now
 
-		$lessDir = $root.'sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/less/';
+		$lessDir = $root.'sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/styles/';
 		
 		//get all image files with a .less ext
 		$files = glob($lessDir . "*.less");

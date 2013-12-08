@@ -7,7 +7,7 @@
 	require_once 'page.php';
 	require_once 'pageType.php';
 	require_once 'plugin.php';
-	require_once 'template.php';
+	require_once 'theme.php';
 	require_once 'menuItem.php';
 	require_once 'menuType.php';
     require_once 'user.php';
@@ -20,7 +20,7 @@
     require_once 'plan.php';
     require_once 'card.php';
     require_once 'customer.php';
-    
+        
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];
     

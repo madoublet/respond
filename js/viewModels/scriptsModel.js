@@ -49,6 +49,8 @@ var scriptsModel = {
                     scriptsModel.updateContent(current);
                 }
                 
+                global.setupFs();
+                
 			}
 		});
 

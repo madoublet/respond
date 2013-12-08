@@ -21,7 +21,7 @@ class LayoutAddResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+            $directory = '../sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
             
             $file = $directory.$name.'.html';
 
@@ -61,7 +61,7 @@ class LayoutGetResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+            $directory = '../sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
 
             $content = html_entity_decode(file_get_contents($directory.$name.'.html'));
 
@@ -104,7 +104,7 @@ class LayoutUpdateResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+            $directory = '../sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
             
             $file = $directory.$name.'.html';
 
@@ -148,7 +148,7 @@ class LayoutDeleteResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+            $directory = '../sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
             
             $file = $directory.$name.'.html';
             
@@ -184,7 +184,7 @@ class LayoutListResource extends Tonic\Resource {
             
             $site = Site::GetBySiteId($authUser->SiteId);
 
-            $directory = '../sites/'.$site['FriendlyId'].'/templates/'.$site['Template'].'/html/';
+            $directory = '../sites/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/layouts/';
 
             //get all image files with a .html ext
             $files = glob($directory . "*.html");

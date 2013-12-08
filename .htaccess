@@ -1,4 +1,5 @@
 Options -Multiviews
+Options -Indexes
 Options +FollowSymLinks
 
 RewriteEngine on 

@@ -25,10 +25,13 @@ var htmlDialog = {
 			if(htmlDialog.mode=='add'){
 			
 				var html = '<div id="'+uniqId+'" class="html" data-desc="'+desc+'" data-type="'+type+'">' +
-						'<div><i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i></div>' +
+						editorDefaults.elementMenuHtml +
+						'<div class="title"><i class="fa fa-html5"></i>' + 
+						desc + 
+						'<i class="fa fa-angle-down"></i></div>' +
 						'<pre class="prettyprint linenums pre-scrollable">' + code + '</pre>' +
 						'<pre class="non-pretty">' + code + '</pre>' +
-						'<span class="marker fa fa-html5" title="Code block"></span><a class="remove fa fa-minus-circle"></a><a class="config-html fa fa-cog"></a></div>';
+						'</div>';
 				
 				$(editor).respondAppend(
 					html

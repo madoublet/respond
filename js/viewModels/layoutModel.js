@@ -48,6 +48,7 @@ var layoutModel = {
                     layoutModel.updateContent(current);
                 }
                 
+                global.setupFs();
 			}
 		});
 

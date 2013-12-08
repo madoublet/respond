@@ -111,6 +111,59 @@ var global = {
 		}
 		
 		return temp;
+	},
+	
+	// sets up flipsnap
+	setupFs:function(){
+	
+		// calculate distance
+		var d = $('.fs-container').width() - 100;
+		
+		// setup flipsnap
+	    var fs = Flipsnap('.main nav .fs', {distance: d, maxPoint:3});
+	    
+	    // create next and previous buttons
+	    $('.fs-container').append(
+	    		'<a class="fs-next"><i class="fa fa-chevron-right"></i></a>' +
+	    		'<a class="fs-prev"><i class="fa fa-chevron-left"></i></a>');
+        
+        $('.fs-next').on('click', function(){
+            fs.toNext(); 
+            
+            if(fs.hasPrev()){
+                $('.fs-prev').show();
+            }
+            else{
+                $('.fs-prev').hide();
+            }
+            
+            if(fs.hasNext()){
+                $('.fs-next').show();
+            }
+            else{
+                $('.fs-next').hide();
+            }
+        });
+        
+        $('.fs-prev').on('click', function(){
+            fs.toPrev(); 
+            
+            if(fs.hasPrev()){
+                $('.fs-prev').show();
+            }
+            else{
+                $('.fs-prev').hide();
+            }
+            
+            if(fs.hasNext()){
+                $('.fs-next').show();
+            }
+            else{
+                $('.fs-next').hide();
+            }
+        });
+
+		
 	}
 }
 
