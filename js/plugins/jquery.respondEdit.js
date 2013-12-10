@@ -29,6 +29,7 @@ var editorDefaults = {
 	elementMenuNoConfig: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 			'<div class="element-menu"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>',
 			
+			
 	elementMenuList: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-list fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
 				'<a class="remove fa fa-minus-circle"></a></div>',
@@ -1727,7 +1728,8 @@ var editorDefaults = {
 		  
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
-					field = field.replace(editorDefaults.elementMenuNoConfig, '');
+		  			
+					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
 					field = global.replaceAll(field, ' ui-sortable', '');
 					newhtml += field;
 		  		}
