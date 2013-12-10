@@ -36,10 +36,10 @@ var switchModel = {
         $.ajax({
     		url: 'api/site/switch',
 			type: 'POST',
-			data: {siteUniqId:o.siteUniqId()},
+			data: {siteUniqId:o.siteUniqId},
 			success: function(data){
 
-		        message.showMessage('success', 'Switch successful...');
+		        message.showMessage('success', 'Switch successful.');
 			}
 		});
         
