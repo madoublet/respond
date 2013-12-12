@@ -3,7 +3,6 @@
 	include '../app.php';
 
 	require_once 'lib/Tonic/Autoloader.php';
-	require_once 'lib/oath.php';
 	require_once 'page.php';
 	require_once 'pageType.php';
 	require_once 'plugin.php';
