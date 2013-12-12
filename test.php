@@ -161,28 +161,21 @@
                 <td class="test">MOD_REWRITE is working</td>
                 <td class="result">
 <?php 
-    $url =  APP_URL.'/create';
 
-	// mod_rewrite flag
-	$mr = false;
-	$title = 'MOD_REWRITE is not working';
+	// check PHP INFO for
+    ob_start();
+	phpinfo(INFO_MODULES);
+	$contents = ob_get_contents();
+	ob_end_clean();
 	
-    // test for mod_rewrite
-    $mr = in_array('mod_rewrite', apache_get_modules());
-    
-    if($mr == true){ // mod_php test
-	    $title = 'MOD_REWRITE working via mod_php';
-    }
-    else{ // CGI test
-	    if(strpos(shell_exec('/usr/local/apache/bin/apachectl -l'), 'mod_rewrite') !== false){
-		    $mr = true;
-		    $title = 'MOD_REWRITE working via CGI';
-	    }
-    }
-    
+	$mr = false;
+	
+	if(strpos($contents, 'mod_rewrite') !== false){
+		$mr = true;
+	}
     
     if($mr == true) {
-        print '<i title="'.$title.'" class="fa fa-check-circle"></i>';
+        print '<i title="MOD_REWRITE is working" class="fa fa-check-circle"></i>';
     }
     else{
         print '<i title="MOD_REWRITE not working" class="fa fa-times-circle"></i>';
@@ -244,7 +237,6 @@
 	</div>
 	
 	 <small><?php print COPY; ?></small>
-
 
 </div>
 <!-- /.content -->
