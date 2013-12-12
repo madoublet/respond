@@ -163,16 +163,26 @@
 <?php 
     $url =  APP_URL.'/create';
 
-    $handle = curl_init($url);
-    curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+	// mod_rewrite flag
+	$mr = false;
+	$title = 'MOD_REWRITE is not working';
+	
+    // test for mod_rewrite
+    $mr = in_array('mod_rewrite', apache_get_modules());
     
-    /* Get the HTML or whatever is linked in $url. */
-    $response = curl_exec($handle);
+    if($mr == true){ // mod_php test
+	    $title = 'MOD_REWRITE working via mod_php';
+    }
+    else{ // CGI test
+	    if(strpos(shell_exec('/usr/local/apache/bin/apachectl -l'), 'mod_rewrite') !== false){
+		    $mr = true;
+		    $title = 'MOD_REWRITE working via CGI';
+	    }
+    }
     
-    /* Check for 200*/
-    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-    if($httpCode == 200) {
-        print '<i title="MOD_REWRITE working" class="fa fa-check-circle"></i>';
+    
+    if($mr == true) {
+        print '<i title="'.$title.'" class="fa fa-check-circle"></i>';
     }
     else{
         print '<i title="MOD_REWRITE not working" class="fa fa-times-circle"></i>';
