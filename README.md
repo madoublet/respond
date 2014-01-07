@@ -7,35 +7,26 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-Our current version is 2.5.
+Our current version is 2.6.
 
-See whats new in the December 2013 update: http://respondcms.com/update/december-2013
+See whats new in the January 2014 update: http://respondcms.com/update/january-2014
 
-New in 2.5:
-- Better theme support
-	- Rename templates => themes
-	- Allow files (images, js, etc) to be included with theme
-	- Easier theme installation, just drop folder into themes directory
-	- Custom default themes and start pages
-- Touch upgrades for entire app, editor	
-- .htaccess updates to improve security
+New in 2.6:
+- Multi-lingual support for the app
+- Multi-lingual support for sites created with Respond
+- Contributor role
+- Add site w/o user
+- Re-factor the editor
+- Bug fixes:
+	- drag & drop after layout creation
+	- delete page fix
 
-How to update from 2.4:
-- Backup custom templates you created 
-- For each site:
-	1. Rename sites/[site name]/templates to sites/[site name]/themes
-	2. Rename sites/[site name]/themes/[theme name]/html to sites/[site name]/themes/[theme name]/layouts
-	3. Rename sites/[site name]/themes/[theme name]/less to sites/[site name]/themes/[theme name]/styles
-- For each custom template:
-	1. Create a folder in themes, e.g. themes/[template name]
-	2. Copy layouts/[template name]/html to themes/[template name]/layouts
-	3. Copy layouts/[template name]/less to themes/[template name]/styles
-	4. Copy the themes/simple/files to themes/[template name]/files
-	5. Copy the themes/simple/pages to themes/[template name]/pages
-- Rename template to theme in sites table
-	ALTER TABLE Sites CHANGE Template Theme varchar(50);
-- Republish site
-	
+How to update from 2.5:
+- Backup sites you created
+- Add Language to the Users table
+	- ALTER TABLE  `Users` ADD  `Language` VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  `Role`;
+- Add Language to the Sites table
+	- ALTER TABLE  `Sites` ADD  `Language` VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  `TimeZone`;
 
 
 
