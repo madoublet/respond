@@ -27,6 +27,7 @@ How to update from 2.5:
 	- ALTER TABLE  'Users' ADD  'Language' VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  'Role';
 - Add Language to the Sites table
 	- ALTER TABLE  'Sites' ADD  'Language' VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  'TimeZone';
+- Pull latest version
 
 
 
