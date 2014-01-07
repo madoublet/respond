@@ -6,6 +6,7 @@ class AuthUser{
 	public $UserId;
 	public $UserUniqId;
 	public $Role;
+	public $Language;
 	public $IsSuperAdmin;
 	public $IsFirstLogin;
 	public $Email;
@@ -44,6 +45,7 @@ class AuthUser{
 			$this->UserId = $_SESSION['UserId'];
 			$this->UserUniqId = $_SESSION['UserUniqId'];
 			$this->Role = $_SESSION['Role'];
+			$this->Language = $_SESSION['Language'];
 			$this->IsSuperAdmin = $_SESSION['IsSuperAdmin'];
 			$this->IsFirstLogin =  $_SESSION['IsFirstLogin'];
 			$this->Email = $_SESSION['Email'];
@@ -99,7 +101,8 @@ class AuthUser{
 		
 		$_SESSION['UserId'] = $user['UserId'];
 		$_SESSION['UserUniqId'] = $user['UserUniqId']; 
-		$_SESSION['Role'] = $user['Role'];  
+		$_SESSION['Role'] = $user['Role'];   
+		$_SESSION['Language'] = $user['Language'];  
 		$_SESSION['IsSuperAdmin'] = $isSuperAdmin;  
 		$_SESSION['IsFirstLogin'] = $isFirstLogin; 
 		$_SESSION['Email'] = $user['Email'];
@@ -128,7 +131,6 @@ class AuthUser{
 			$_SESSION['Plan'] = 'N/A';
 			$_SESSION['RenewalDate'] = NULL;
 		}
-
 
 	}
 	

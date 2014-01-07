@@ -126,9 +126,9 @@ var menusModel = {
         menusModel.updatePages(); // update the pages in the model
     
         $('#addEditDialog').data('mode', 'add');
-    	$('#addEditDialog h3').html('Add Menu Item');
-		$('#addEditDialog .primary-button').text('Add Menu Item');
-        
+        $('#addEditDialog').find('.edit').hide();
+        $('#addEditDialog').find('.add').show();
+      
         $('#addEditDialog .edit').hide();
         $('#addEditDialog .add').show();
 		
@@ -148,8 +148,9 @@ var menusModel = {
     showEditDialog:function(o, e){ // shows a dialog to add a page
     
         $('#addEditDialog').data('mode', 'edit');
-        $('#addEditDialog h3').html('Edit Menu Item');
-		$('#addEditDialog .primary-button').text('Update Menu Item');
+        
+        $('#addEditDialog').find('.add').hide();
+        $('#addEditDialog').find('.edit').show();
 		
 		$('#addEditDialog .edit').show();
         $('#addEditDialog .add').hide();
@@ -165,7 +166,55 @@ var menusModel = {
 		return false;
 	},
     
-    addEditMenuItem: function(o, e){
+    addMenuItem: function(o, e){
+        
+        var dialog = $('#addEditDialog');
+        
+        var name = $('#name').val();
+        var cssClass = $('#cssClass').val();
+        var type = menusModel.type();
+        var url = $('#url').val();
+        var existingUrl = $('#existingUrl').val();
+        
+        var priority = $('#menuItemsList').find('.listItem').length; // add to end by default
+        var pageId = -1;
+        
+        if(document.getElementById('existing').checked){
+    		var selected = $('#selectPage li.selected');
+            
+            if(selected.length==0){
+                message.showMessage('error', 'Select a page from the list');
+                return;
+            }
+            else{
+                url = selected.first().data('url');
+                pageId = selected.first().data('pageid');
+            }
+		}
+    
+        message.showMessage('progress', $('#msg-adding').val());
+
+        $.ajax({
+          url: 'api/menuitem/add',
+          type: 'POST',
+		  dataType: 'json',
+          data: {name: name, cssClass: cssClass, type: type, url: url, pageId: pageId, priority: priority},
+          success: function(data){
+
+            var item = MenuItem.create(data);
+          	
+          	menusModel.menuItems.push(item);
+
+            message.showMessage('success', $('#msg-added').val());
+            
+            $('#addEditDialog').modal('hide');
+          }
+        });
+        
+        
+    },
+    
+    editMenuItem: function(o, e){
         
         var dialog = $('#addEditDialog');
         
@@ -175,73 +224,32 @@ var menusModel = {
         var url = $('#url').val();
         var existingUrl = $('#existingUrl').val();
            
-        if(dialog.data('mode')=='add'){ // add
-        
-            var priority = $('#menuItemsList').find('.listItem').length; // add to end by default
-            var pageId = -1;
-            
-            if(document.getElementById('existing').checked){
-        		var selected = $('#selectPage li.selected');
-                
-                if(selected.length==0){
-                    message.showMessage('error', 'Select a page from the list');
-                    return;
-                }
-                else{
-                    url = selected.first().data('url');
-                    pageId = selected.first().data('pageid');
-                }
-    		}
-        
-            message.showMessage('progress', 'Adding menu item...');
 
-            $.ajax({
-              url: 'api/menuitem/add',
-              type: 'POST',
-			  dataType: 'json',
-              data: {name: name, cssClass: cssClass, type: type, url: url, pageId: pageId, priority: priority},
-              success: function(data){
-    
-                var item = MenuItem.create(data);
-              	
-              	menusModel.menuItems.push(item);
-    
-                message.showMessage('success', 'The menu item was added successfully');
-                
-                $('#addEditDialog').modal('hide');
-              }
-            });
-            
-        }
-        else{ // edit
-            var menuItemUniqId = menusModel.toBeEdited.menuItemUniqId();
-       
-            var name = $('#name').val();
-            var cssClass = $('#cssClass').val();
-            var url = $('#editUrl').val();
-            
-            message.showMessage('progress', 'Updating menu item...');
-
-            $.ajax({
-              url: 'api/menuitem/' + menuItemUniqId,
-              type: 'POST',
-              data: {name: name, cssClass: cssClass, url: url},
-              success: function(data){
-    
-                // update the model
-                menusModel.toBeEdited.name(name);
-                menusModel.toBeEdited.cssClass(cssClass);
-                menusModel.toBeEdited.url(url);
-                
-                message.showMessage('success', 'The menu item was updated successfully');
-         
-                $('#addEditDialog').modal('hide');
-              }
-            });
-            
-            
-        }
+        var menuItemUniqId = menusModel.toBeEdited.menuItemUniqId();
+   
+        var name = $('#name').val();
+        var cssClass = $('#cssClass').val();
+        var url = $('#editUrl').val();
         
+        message.showMessage('progress', $('#msg-updating').val());
+
+        $.ajax({
+          url: 'api/menuitem/' + menuItemUniqId,
+          type: 'POST',
+          data: {name: name, cssClass: cssClass, url: url},
+          success: function(data){
+
+            // update the model
+            menusModel.toBeEdited.name(name);
+            menusModel.toBeEdited.cssClass(cssClass);
+            menusModel.toBeEdited.url(url);
+            
+            message.showMessage('success', $('#msg-updated').val());
+     
+            $('#addEditDialog').modal('hide');
+          }
+        });
+
     },
 
     showPrimary: function(o, e){
@@ -277,7 +285,7 @@ var menusModel = {
           type: 'POST',
           data: {json: json},
           success: function(data){
-            message.showMessage('success', 'The order was updated successfully');
+            message.showMessage('success', $('#msg-order').val());
             $('#save').hide();
           }
         });
@@ -310,7 +318,7 @@ var menusModel = {
             
             menusModel.menuItems.remove(menusModel.toBeRemoved); // 
               
-            message.showMessage('success', 'The menu item was deleted successfully');
+            message.showMessage('success', $('#msg-removed').val());
     	    $('#deleteDialog').modal('hide');
           }
         });
@@ -341,7 +349,7 @@ var menusModel = {
               
           	menusModel.menuTypes.push(menuType);
 
-            message.showMessage('success', 'The menu type was added successfully');
+            message.showMessage('success', $('#msg-type-added').val());
             
             $('#addMenuTypeDialog').modal('hide');
           }
@@ -369,7 +377,7 @@ var menusModel = {
             
             menusModel.menuTypes.remove(menusModel.toBeRemoved);
               
-            message.showMessage('success', 'The menu type was deleted successfully');
+            message.showMessage('success', $('#msg-type-removed').val());
             $('#deleteMenuTypeDialog').modal('hide');
           }
         });

@@ -20,7 +20,7 @@ var featuredDialog = {
 		$('#addFeatured').click(function(){
 
 			if(featuredDialog.pageUniqId==-1){
-				message.showMessage('error', 'Please select a page to feature');
+				message.showMessage('error', $('#msg-select-feature-error').val());
 				return;
 			}
 
@@ -31,7 +31,7 @@ var featuredDialog = {
 			var html = '<div id="'+uniqId+'" data-pageuniqid="'+featuredDialog.pageUniqId +
 			'" data-pagename="'+featuredDialog.name+'" class="featured">' +
 			editorDefaults.elementMenuNoConfig + 
-			'<div class="title"><i class="fa fa-star"></i> Featured Content: '+featuredDialog.name +
+			'<div class="title"><i class="fa fa-star"></i> ' + $('#msg-featured-content').val() + ': '+featuredDialog.name +
 			'</div></div>';
 
 		  $(editor).respondAppend(

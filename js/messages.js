@@ -22,7 +22,12 @@ var message = {
 
   // shows the progress message
   showMessage:function(type, text){
-	
+  
+  	// create message if it does note exist
+  	if($('#message').length == 0){
+	  	$('body').append('<p id="message"><span></span><a class="close" href="#"></a></p>');
+	}
+  
     $('#message span').html(text); // set text
     
     // center the message

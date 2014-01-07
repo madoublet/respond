@@ -7,6 +7,6 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<h3>Comments</h3>
+<h3><?php print _("Comments"); ?></h3>
 
 <div class="fb-comments" data-href="<?php print $pageurl; ?>" data-num-posts="2" data-width="470"></div>

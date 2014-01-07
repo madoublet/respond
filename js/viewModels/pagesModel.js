@@ -106,8 +106,9 @@ var pagesModel = {
 			success: function(data){
 
 				for(x in data){
-
+				
 					var page = Page.create(data[x]);
+					page.hasDraft = ko.observable(data[x]['HasDraft']);
                     
 					pagesModel.pages.push(page); // push an event to the model
 
@@ -215,7 +216,6 @@ var pagesModel = {
 		
 		$('#pageTypeDialog').find('.add').show();
 		$('#pageTypeDialog').find('.edit').hide();
-		$('#pageTypeDialog').find('h3').text('Add Page Type');
 		
 		// init data
 		$('#typeS').val('');
@@ -234,7 +234,6 @@ var pagesModel = {
     	
     	$('#pageTypeDialog').find('.edit').show();
 		$('#pageTypeDialog').find('.add').hide();
-		$('#pageTypeDialog').find('h3').text('Update Page Type');
 
 		// init data
 		var curr = $('nav li.active a');
@@ -262,11 +261,11 @@ var pagesModel = {
         var description = $.trim($('#description').val());
         
         if(name=='' || friendlyId==''){
-            message.showMessage('error', 'Name and Friendly URL are required');
+            message.showMessage('error', $('#msg-add-error').val());
             return;
         }
         
-        message.showMessage('progress', 'Adding page...');
+        message.showMessage('progress', $('#msg-adding').val());
         
         $.ajax({
           url: 'api/page/add',
@@ -278,7 +277,7 @@ var pagesModel = {
 
     	    $('#addDialog').modal('hide');
             
-            message.showMessage('success', 'The page was added successfully');
+            message.showMessage('success', $('#msg-added').val());
           }
         });
 
@@ -287,7 +286,7 @@ var pagesModel = {
 	// removes a page
 	removePage:function(){
 
-		message.showMessage('progress', 'Removing page...');
+		message.showMessage('progress',  $('#msg-removing').val());
 
 		$.ajax({
 			url: 'api/page/'+pagesModel.toBeRemoved.pageUniqId(),
@@ -299,10 +298,10 @@ var pagesModel = {
 
 				$('#deleteDialog').modal('hide');
 
-				message.showMessage('success', 'The page was removed successfully');
+				message.showMessage('success',  $('#msg-removed').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem removing the page');
+				message.showMessage('error', $('#msg-remove-error').val());
 			}
 		});
 
@@ -318,11 +317,11 @@ var pagesModel = {
         var stylesheet = $.trim($('#stylesheet').val());
         
         if(typeFriendlyId == '' || typeS == '' || typeP == ''){
-            message.showMessage('error', 'All fields are required');
+            message.showMessage('error', $('#msg-all-required').val());
             return;
         }
 
-        message.showMessage('progress', 'Adding page...');
+        message.showMessage('progress', $('#msg-type-adding').val());
 
         $.ajax({
           url: 'api/pagetype/add',
@@ -337,7 +336,7 @@ var pagesModel = {
 
     	    $('#pageTypeDialog').modal('hide');
             
-            message.showMessage('success', 'The page type was added successfully');
+            message.showMessage('success', $('#msg-type-added').val());
           }
         });
 
@@ -352,11 +351,11 @@ var pagesModel = {
         var stylesheet = $.trim($('#stylesheet').val());
         
         if(typeFriendlyId == '' || typeS == '' || typeP == ''){
-            message.showMessage('error', 'All fields are required');
+            message.showMessage('error', $('#msg-all-required').val());
             return;
         }
 
-        message.showMessage('progress', 'Updating page...');
+        message.showMessage('progress', $('#msg-type-updating').val());
 
         $.ajax({
 			url: 'api/pagetype/edit',
@@ -375,7 +374,7 @@ var pagesModel = {
 				curr.attr('data-layout', layout);
 				curr.attr('data-stylesheet', stylesheet);
 				
-				message.showMessage('success', 'The page type was updated successfully');
+				message.showMessage('success', $('#msg-type-updated').val());
 				
 				$('#pageTypeDialog').modal('hide');
 			}
@@ -400,7 +399,7 @@ var pagesModel = {
 	// removes a page type
 	removePageType:function(){  // removes a page
 
-		message.showMessage('progress', 'Removing page type...');
+		message.showMessage('progress', $('#msg-type-removing').val());
 
 		$.ajax({
 			url: 'api/pagetype/'+pagesModel.toBeRemoved.pageTypeUniqId(),
@@ -412,10 +411,10 @@ var pagesModel = {
 
 				$('#deletePageTypeDialog').modal('hide');
 
-				message.showMessage('success', 'The page type was removed successfully');
+				message.showMessage('success', $('#msg-type-removed').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem removing the page type');
+				message.showMessage('error', $('#msg-type-remove-error').val());
 			}
 		});
 
@@ -439,20 +438,15 @@ var pagesModel = {
 			success: function(data){
 				if(isActive==1){
 					page.isActive(0);
-					message.showMessage('success', 'The page was unpublished successfully');
+					message.showMessage('success', $('#msg-unpublished').val());
 				}
 				else{
 					page.isActive(1);
-					message.showMessage('success', 'The page was published successfully');
+					message.showMessage('success', $('#msg-published').val());
 				}
 			},
 			error: function(data){
-				if(isActive==1){
-					message.showMessage('error', 'There was a problem unpublishing the page');
-				}
-				else{
-					message.showMessage('error', 'There was a problem publishing the page');
-				}
+				message.showMessage('error', $('#msg-publish-error').val());
 			}
 		});
 	},

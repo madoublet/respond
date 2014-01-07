@@ -27,25 +27,26 @@ var createModel = {
         var retype = $('#retype').val();
         var passcode = $('#passcode').val();
         var timeZone = $('#timeZone').val();
+        var language = $('#language').val();
         
         if(name=='' || friendlyId=='' || email=='' || password=='' || retype==''){
-			message.showMessage('error', 'All fields are required.');
+			message.showMessage('error', $('#msg-create-required').val());
 			return;
 		}
 		
 		if(password!=retype){
-			message.showMessage('error', 'The password and retype fields must match.');
+			message.showMessage('error', $('#msg-password-error').val());
 			return;
 		}
 
-        message.showMessage('progress', 'Creating site...');
+        message.showMessage('progress', $('#msg-creating').val());
 
         $.ajax({
           url: 'api/site/create',
           type: 'POST',
-          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone},
+          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone, language: language},
           success: function(data){
-            message.showMessage('success', 'Site created successfully');
+            message.showMessage('success', $('#msg-created-successfully').val());
             
             $('#create-form').hide();
 			$('#create-confirmation').show();
@@ -58,10 +59,10 @@ var createModel = {
           },
           statusCode: {
             401: function() {  // UNAUTHORIZED
-                message.showMessage('error', 'The passcode is invalid ');
+                message.showMessage('error', $('#msg-passcode-invalid').val());
             },
             409: function() {  // CONFLICT
-                message.showMessage('error', 'The email you provided is already used in the system');
+                message.showMessage('error', $('#msg-email-invalid').val());
             }
           },
           error: function(data){}

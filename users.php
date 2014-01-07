@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 	
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Users&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Users"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -27,10 +29,15 @@
 
 <?php include 'modules/menu.php'; ?>
 
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
+<!-- messages -->
+<input id="msg-all-required" value="<?php print _("All fields are required"); ?>" type="hidden">
+<input id="msg-match" value="<?php print _("The password must match the retype field"); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding user..."); ?>" type="hidden">
+<input id="msg-added" value="<?php print _("User successfully added"); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating user..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("User successfully updated"); ?>" type="hidden">
+<input id="msg-removing" value="<?php print _("Removing user..."); ?>" type="hidden">
+<input id="msg-removed" value="<?php print _("User successfully removed"); ?>" type="hidden">
 		
 <section class="main">
 
@@ -38,10 +45,10 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-            <li class="static active"><a>Users</a></li>
+            <li class="static active"><a><?php print _("Users"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add User</span></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add User"); ?></span></a>
     </nav>
 
     <div class="list" data-bind="foreach: users">
@@ -51,16 +58,16 @@
                 <i class="fa fa-minus-circle fa-lg"></i>
             </a>
     		<h2><a data-bind="text:fullName, click: $parent.showEditDialog"></a></h2>
-            <em>Created <span data-bind="text:friendlyDate"></span></em>
+            <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
     	</div>
     	<!-- /.listItem -->
     
     </div>
     <!-- /.list -->
     
-    <p data-bind="visible: usersLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> Loading...</p>
+    <p data-bind="visible: usersLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>
     
-    <p data-bind="visible: usersLoading()==false && users().length < 1" class="list-none">No users here. Click Add User to get started.</p>
+    <p data-bind="visible: usersLoading()==false && users().length < 1" class="list-none"><?php print _("No users here. Click Add User to get started."); ?></p>
       
 
 </section>
@@ -74,44 +81,52 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3 id="addEditTitle">Add User</h3>
+				<h3 class="add"><?php print _("Add User"); ?></h3>
+				<h3 class="edit"><?php print _("Update User"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 
 			<div class="modal-body">
 			
 				<div class="form-group">
-					<label for="firstName">First Name:</label>
+					<label for="firstName"><?php print _("First Name:"); ?></label>
 					<input id="firstName" type="text" class="form-control">
 				</div>
 				
 				<div class="form-group">
-					<label for="lastName">Last Name:</label>
+					<label for="lastName"><?php print _("Last Name:"); ?></label>
 					<input id="lastName" type="text" class="form-control">
 				</div>
 				
 				<div class="form-group">
-					<label for="role">Role:</label>
+					<label for="role"><?php print _("Role:"); ?></label>
 					<select id="role" class="form-control">
-						<option value="Admin">Administrator</option>
-						<option value="Demo">Demo</option>
+						<option value="Admin"><?php print _("Administrator"); ?></option>
+						<option value="Contributor"><?php print _("Contributor"); ?></option>
 					</select>
 				</div>
 				
 				<div class="form-group">
-					<label for="email">Email:</label>
+					<label for="language"><?php print _("Language:"); ?></label>
+					<select id="language" class="form-control">
+						<option value="en"><?php print _("English"); ?></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="email"><?php print _("Email:"); ?></label>
 					<input id="email" type="text" class="form-control">
-					<span class="help-block">Also used as the login</span>
+					<span class="help-block"><?php print _("Also used as the login"); ?></span>
 				</div>
 				
 				<div class="form-group">
-					<label for="password">Password:</label>
+					<label for="password"><?php print _("Password:"); ?></label>
 					<input id="password" type="password" class="form-control">
-					<span class="help-block">More than 5 characters, 1 letter and 1 special character</span>
+					<span class="help-block"><?php print _("More than 5 characters, 1 letter and 1 special character"); ?></span>
 				</div>
 				
 				<div class="form-group">
-					<label for="retype">Retype Password:</label>
+					<label for="retype"><?php print _("Re-type Password:"); ?></label>
 					<input id="retype" type="password" class="form-control">
 				</div>
 			
@@ -119,8 +134,9 @@
 			<!-- /.modal-body -->
 
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" type="button" data-bind="click: addEditUser">Add User</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button add" type="button" data-bind="click: addUser"><?php print _("Add User"); ?></button>
+				<button class="primary-button edit" type="button" data-bind="click: editUser"><?php print _("Update User"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		
@@ -144,22 +160,22 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Remove User</h3>
+				<h3><?php print _("Remove User"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
 			<div class="modal-body">
 			
 				<p>
-				Are you sure that you want to delete <strong id="removeName">this user</strong>?
+				<?php print _("Confirm you want to remove:"); ?> <strong id="removeName">this user</strong>
 				</p>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: removeUser">Remove User</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeUser"><?php print _("Remove User"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		

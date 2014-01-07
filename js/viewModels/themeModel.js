@@ -70,7 +70,7 @@ var themeModel = {
     },
     
     resetTheme:function(o, e){
-        message.showMessage('progress', 'Resetting theme');
+        message.showMessage('progress', $('#msg-resetting').val());
         var theme = themeModel.toBeReset.id();
         
         $.ajax({
@@ -79,13 +79,13 @@ var themeModel = {
 			data: {},
 			success: function(data){
                 $('#resetDialog').modal('hide');
-    			message.showMessage('success', 'Theme successfully reset');
+    			message.showMessage('success', $('#msg-reset').val());
 			}
 		});
     },
     
     applyTheme:function(o, e){
-        message.showMessage('progress', 'Applying theme');
+        message.showMessage('progress', $('#msg-applying').val());
         var theme = themeModel.toBeApplied.id();
         
         $.ajax({
@@ -94,7 +94,7 @@ var themeModel = {
 			data: {},
 			success: function(data){
                 $('#applyDialog').modal('hide');
-    			message.showMessage('success', 'Theme successfully applied');
+    			message.showMessage('success', $('#msg-applied').val());
 			}
 		});
     }

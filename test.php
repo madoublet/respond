@@ -1,12 +1,18 @@
 <?php	
-	include 'app.php'; // import php files
+	include 'app.php';
+	
+	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
+	$supported = Utilities::GetSupportedLanguages('');
+	$language = Utilities::GetPreferredLanguage($supported);
+	
+	Utilities::SetLanguage($language);
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Test Installation&mdash;<?php print BRAND; ?></title>
+<title><?php print _("Test Installation"); ?>&mdash;<?php print BRAND; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,11 +28,6 @@
 
 <body id="test-page">
 
-<p id="message">
-  <span></span>
-  <a class="close" href="#"></a>
-</p>
-	
 <!-- begin content -->
 <div class="content">
 
@@ -35,17 +36,17 @@
 	<div>
 	
     <p>
-        Below are some tests to help troubleshoot common problems with your installation.
+        <?php print _("Below are some tests to help troubleshoot common problems with your installation."); ?>
     </p>
     
     <p>
-    	<i class="fa fa-check-circle"></i> = success and <i class="fa fa-times-circle"></i> = faliure.
+    	<i class="fa fa-check-circle"></i> = <?php print _("success"); ?> and <i class="fa fa-times-circle"></i> = <?php print _("failure"); ?>.
     </p>
     
         <table class="test pdo">
         
             <tr class="pdo">
-                <td class="test">PDO Enabled</td>
+                <td class="test"><?php print _("PDO Enabled"); ?></td>
                 <td class="result">
 <?php 
     if (class_exists('PDO')){
@@ -60,7 +61,7 @@
             <!-- /.pdo -->
             
             <tr class="dir">
-                <td class="test">Sites Directory is Writeable</td>
+                <td class="test"><?php print _("Sites Directory is Writeable"); ?></td>
                 <td class="result">
 <?php 
     if (is_writable('sites')){
@@ -75,7 +76,7 @@
             <!-- /.dir -->
             
             <tr class="gd">
-                <td class="test">GD Library is installed</td>
+                <td class="test"><?php print _("GD Library is installed"); ?></td>
                 <td class="result">
 <?php 
     if (extension_loaded('gd') && function_exists('gd_info')) {
@@ -90,7 +91,7 @@
             <!-- /.gd -->
             
             <tr class="version">
-                <td class="test">PHP Version is greater than 5.3</td>
+                <td class="test"><?php print _("PHP Version is greater than 5.3"); ?></td>
                 <td class="result">
 <?php 
     if (!defined('PHP_VERSION_ID')) {
@@ -111,7 +112,7 @@
             <!-- /.version -->
             
             <tr class="db">
-                <td class="test">Database connection works</td>
+                <td class="test"><?php print _("Database connection works"); ?></td>
                 <td class="result">
 <?php 
     try{
@@ -128,7 +129,7 @@
             <!-- /.db -->
             
             <tr class="curl">
-                <td class="test">CURL enabled</td>
+                <td class="test"><?php print _("CURL enabled"); ?></td>
                 <td class="result">
 <?php 
     if (function_exists('curl_version')) {
@@ -143,7 +144,7 @@
             <!-- /.curl -->
             
             <tr class="app-url">
-                <td class="test">APP_URL is set in app.php</td>
+                <td class="test"><?php print _("APP_URL is set in app.php"); ?></td>
                 <td class="result">
 <?php 
     if (APP_URL != 'http://urloftheapp.com') {
@@ -158,24 +159,22 @@
             <!-- /.app-url -->
             
             <tr class="mod-rewrite">
-                <td class="test">MOD_REWRITE is working</td>
+                <td class="test"><?php print _("MOD_REWRITE is working"); ?></td>
                 <td class="result">
+                
 <?php 
+    $url =  APP_URL.'/create';
 
-	// check PHP INFO for
-    ob_start();
-	phpinfo(INFO_MODULES);
-	$contents = ob_get_contents();
-	ob_end_clean();
-	
-	$mr = false;
-	
-	if(strpos($contents, 'mod_rewrite') !== false){
-		$mr = true;
-	}
+    $handle = curl_init($url);
+    curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
     
-    if($mr == true) {
-        print '<i title="MOD_REWRITE is working" class="fa fa-check-circle"></i>';
+    /* Get the HTML or whatever is linked in $url. */
+    $response = curl_exec($handle);
+    
+    /* Check for 200*/
+    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    if($httpCode == 200) {
+        print '<i title="MOD_REWRITE working" class="fa fa-check-circle"></i>';
     }
     else{
         print '<i title="MOD_REWRITE not working" class="fa fa-times-circle"></i>';
@@ -186,7 +185,7 @@
             <!-- /.mod-rewrite -->
             
             <tr class="api">
-                <td class="test">API is working</td>
+                <td class="test"><?php print _("API is working"); ?></td>
                 <td class="result">
 <?php 
     $url =  APP_URL.'/api/site/test';
@@ -210,8 +209,22 @@
             </tr>
             <!-- /.api -->
             
+            <tr class="api">
+                <td class="test"><?php print _("Gettext is installed"); ?></td>
+                <td class="result">
+<?php
+if (function_exists("gettext")){
+    print '<i title="Gettext is working" class="fa fa-check-circle"></i>';
+}
+else{
+    print '<i title="Gettext is not working" class="fa fa-times-circle"></i>';
+}
+?>       		</td>
+            </tr>
+            <!-- /.gettext -->     
+            
              <tr class="magic-quotes">
-                <td class="test">Magic Quotes not automatically Escaping</td>
+                <td class="test"><?php print _("Magic Quotes not automatically Escaping"); ?></td>
                 <td class="result">
 <?php 
 
@@ -230,7 +243,7 @@
         </table>
         
         <p>
-        For help troubleshooting your installation, visit:
+        <?php print _("For help troubleshooting your installation, visit:"); ?>
         <a href="http://respondcms.com/documentation/troubleshooting-installation">respondcms.com/documentation/troubleshooting-installation</a>
         </p>
     

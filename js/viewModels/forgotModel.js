@@ -19,7 +19,7 @@ var forgotModel = {
     forgot:function(o, e){
         var email = $('#email').val();
         
-        message.showMessage('progress', 'Sending email...');
+        message.showMessage('progress', $('#msg-sending').val());
 
         $.ajax({
             url: 'api/user/forgot',
@@ -27,10 +27,10 @@ var forgotModel = {
             data: {email: email},
             success: function(data){
                 $('#email').val('');
-                message.showMessage('success', 'Email sent');
+                message.showMessage('success', $('#msg-sent').val());
             },
             error: function(data){
-                message.showMessage('error', 'We could not find your email in the system');
+                message.showMessage('error', $('#msg-email-invalid').val());
             }
         });
 
@@ -42,11 +42,11 @@ var forgotModel = {
         var token = forgotModel.token();
         
         if(password!=retype){
-            message.showMessage('error', 'The password and retype must match');
+            message.showMessage('error', $('#msg-match-error').val());
             return;
         }
 
-        message.showMessage('progress', 'Resetting password...');
+        message.showMessage('progress', $('#msg-resetting').val());
 
         $.ajax({
           url: 'api/user/reset',
@@ -55,10 +55,10 @@ var forgotModel = {
           success: function(data){
                 $('#password').val('');
                 $('#reset').val('');
-                message.showMessage('success', 'Password reset');
+                message.showMessage('success', $('#msg-reset').val());
           },
           error: function(data){
-                message.showMessage('error', 'Access denied');
+                message.showMessage('error', $('#msg-denied').val());
           }
         });
 

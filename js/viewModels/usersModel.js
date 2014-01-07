@@ -31,9 +31,9 @@ var usersModel = {
 
 					usersModel.users.push(user); 
     	
-                    usersModel.usersLoading(false);
-
 				}
+
+				usersModel.usersLoading(false);
 
 			}
 		});
@@ -42,13 +42,13 @@ var usersModel = {
     
     showAddDialog:function(o, e){ // shows a dialog to add a page
     
-        $('#addEditDialog').data('mode', 'add');
-    	$('#addEditDialog h3').html('Add User');
-		$('#addEditDialog .primary-button').text('Add User');
+        $('#addEditDialog').find('.edit').hide();
+        $('#addEditDialog').find('.add').show();
         
         $('#firstName').val('');
         $('#lastName').val('');
         $('#role').val('Admin');
+        $('#language').val('en');
         $('#email').val('');
         $('#password').val('');
         $('#retype').val('');
@@ -60,15 +60,15 @@ var usersModel = {
     
     showEditDialog:function(o, e){ // shows a dialog to add a page
     
-        $('#addEditDialog').data('mode', 'edit');
-        $('#addEditDialog h3').html('Edit User');
-		$('#addEditDialog .primary-button').text('Update User');
+        $('#addEditDialog').find('.add').hide();
+        $('#addEditDialog').find('.edit').show();
         
         usersModel.toBeEdited = o;
         
         $('#firstName').val(o.firstName());
         $('#lastName').val(o.lastName());
         $('#role').val(o.role());
+        $('#language').val(o.language());
         $('#email').val(o.email());
         $('#password').val('temppassword');
         $('#retype').val('temppassword');
@@ -78,76 +78,94 @@ var usersModel = {
 		return false;
 	},
     
-    addEditUser: function(o, e){
-        
-        var dialog = $('#addEditDialog');
+    // adds a user
+    addUser: function(o, e){
         
         var firstName = jQuery.trim($('#firstName').val());
         var lastName = jQuery.trim($('#lastName').val());
         var role = $('#role').val();
+        var language = $('#language').val();
         var email = jQuery.trim($('#email').val());
         var password = jQuery.trim($('#password').val());
         var retype = jQuery.trim($('#retype').val());
         
         if(firstName=='' || lastName=='' || email=='' || password==''){
-            message.showMessage('error', 'All fields are required');
+            message.showMessage('error', $('#msg-all-required').val());
             return;
         }
         
         if(password != retype){
-            message.showMessage('progress', 'The password must match the retype field');
+            message.showMessage('progress', $('#msg-match').val());
             return;
         }
            
-        if(dialog.data('mode')=='add'){ // add
+   
+        message.showMessage('progress', $('#msg-adding').val());
+
+        $.ajax({
+          url: 'api/user/add',
+          type: 'POST',
+          data: {firstName: firstName, lastName: lastName, role: role, language: language, email: email, password: password},
+		  dataType: 'json',
+          success: function(data){
+
+            var user = User.create(data);
+          	
+          	usersModel.users.push(user);
+
+            message.showMessage('success', $('#msg-added').val());
+            
+            $('#addEditDialog').modal('hide');
+          }
+        });
         
-            message.showMessage('progress', 'Adding user..');
-
-            $.ajax({
-              url: 'api/user/add',
-              type: 'POST',
-              data: {firstName: firstName, lastName: lastName, role: role, email:email, password:password},
-			  dataType: 'json',
-              success: function(data){
+    },
     
-                var user = User.create(data);
-              	
-              	usersModel.users.push(user);
-    
-                message.showMessage('success', 'User was added successfully');
-                
-                $('#addEditDialog').modal('hide');
-              }
-            });
-            
-        }
-        else{ // edit
-            var userUniqId = usersModel.toBeEdited.userUniqId();
-       
-            message.showMessage('progress', 'Updating user..');
-
-            $.ajax({
-              url: 'api/user/' + userUniqId,
-              type: 'POST',
-              data: {firstName: firstName, lastName: lastName, role: role, email:email, password:password},
-              success: function(data){
-    
-                // update the model
-                usersModel.toBeEdited.firstName(firstName);
-                usersModel.toBeEdited.lastName(lastName);
-                usersModel.toBeEdited.role(role);
-                usersModel.toBeEdited.email(email);
-                usersModel.toBeEdited.email('temppassword');
-                
-                message.showMessage('success', 'The user was updated successfully');
-         
-                $('#addEditDialog').modal('hide');
-              }
-            });
-            
-            
+    // edits a user
+    editUser: function(o, e){
+        
+        var firstName = jQuery.trim($('#firstName').val());
+        var lastName = jQuery.trim($('#lastName').val());
+        var role = $('#role').val();
+        var language = $('#language').val();
+        var email = jQuery.trim($('#email').val());
+        var password = jQuery.trim($('#password').val());
+        var retype = jQuery.trim($('#retype').val());
+        
+        if(firstName=='' || lastName=='' || email=='' || password==''){
+            message.showMessage('error', $('#msg-all-required').val());
+            return;
         }
         
+        if(password != retype){
+            message.showMessage('progress', $('#msg-match').val());
+            return;
+        }
+           
+    
+        var userUniqId = usersModel.toBeEdited.userUniqId();
+   
+        message.showMessage('progress', $('#msg-updating').val());
+
+        $.ajax({
+          url: 'api/user/' + userUniqId,
+          type: 'POST',
+          data: {firstName: firstName, lastName: lastName, role: role, language: language, email: email, password: password},
+          success: function(data){
+
+            // update the model
+            usersModel.toBeEdited.firstName(firstName);
+            usersModel.toBeEdited.lastName(lastName);
+            usersModel.toBeEdited.role(role);
+            usersModel.toBeEdited.language(language);
+            usersModel.toBeEdited.email(email);
+            usersModel.toBeEdited.password('temppassword');
+            
+            message.showMessage('success', $('#msg-updated').val());
+     
+            $('#addEditDialog').modal('hide');
+          }
+        });    
     },
 
     // shows a dialog to remove a menuitem
@@ -168,6 +186,8 @@ var usersModel = {
         
         var userUniqId = usersModel.toBeRemoved.userUniqId();
         
+        message.showMessage('progress', $('#msg-removing').val());
+        
         $.ajax({
           url: 'api/user/'+userUniqId,
           type: 'DELETE',
@@ -176,7 +196,7 @@ var usersModel = {
             
             usersModel.users.remove(usersModel.toBeRemoved);
               
-            message.showMessage('success', 'The user was removed successfully');
+            message.showMessage('success', $('#msg-removed').val());
     	    $('#deleteDialog').modal('hide');
           }
         });

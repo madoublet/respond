@@ -73,7 +73,7 @@
 			
 	    		$to = $site['PrimaryEmail'];
 	    		$from = REPLY_TO;
-	    		$subject = BRAND.': Payment Successful';
+	    		$subject = BRAND.': Payment Failed';
 	    		$file = 'emails/invoice-payment-failed.html';
 	    		
 	    		// create strings to replace

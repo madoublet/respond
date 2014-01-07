@@ -15,7 +15,7 @@
 				<img class="sliderImage" src="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>">
 				<?php if(empty($img->title)==false){?>
 				<div class="carousel-caption">
-                  <p><?php print $img->title; ?></p>
+                  <p><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
                 </div>
 				<?php } ?>
 			</div>

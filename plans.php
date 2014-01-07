@@ -3,15 +3,17 @@
 	
 	$authUser = new AuthUser(); // get auth user
 	$authUser->Authenticate('SuperAdmin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Plans&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Plans"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include styles -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -24,13 +26,15 @@
 </head>
 
 <body data-currpage="sites">
-    
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
 
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-allrequired" value="<?php print _("All fields are required"); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding plan..."); ?>" type="hidden">
+<input id="msg-added" value="<?php print _("Plan added successfully"); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating plan..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("Plan updated successfully"); ?>" type="hidden">
 
 <section class="main">
 
@@ -38,11 +42,11 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-            <li><a href="switch">Sites</a></li>
-            <li class="static active"><a href="plans">Plans</a></li>
+            <li><a href="admin"><?php print _("Sites"); ?></a></li>
+            <li class="static active"><a href="plans"><?php print _("Plans"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add Plan</a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Plan"); ?></a>
         
     </nav>
 
@@ -53,12 +57,12 @@
     		<col width="15%">
     		<thead>
     			<tr>
-	    			<th>Id</th>
-	    			<th>Name</th>
-	    			<th class="number">Amount</th>
-	    			<th>Interval</th>
-	    			<th>Currency</th>
-	    			<th class="number">Trial</th>
+	    			<th><?php print _("Id"); ?></th>
+	    			<th><?php print _("Name"); ?></th>
+	    			<th class="number"><?php print _("Amount"); ?></th>
+	    			<th><?php print _("Interval"); ?></th>
+	    			<th><?php print _("Currency"); ?></th>
+	    			<th class="number"><?php print _("Trial"); ?></th>
     			</tr>
     		</thead>
     		<tbody data-bind="foreach:plans">
@@ -88,53 +92,55 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3 data-bind="text:planAction"></h3>
+				<h3 class="add"><?php print _("Add Plan"); ?></h3>
+				<h3 class="edit"><?php print _("Update Plan"); ?></h3>
 			</div>
 			<div class="modal-body">
 			
 				<div class="form-group">
-					<label for="plan-id" class="control-label">Id:</label>
+					<label for="plan-id" class="control-label"><?php print _("Id:"); ?></label>
 					<input id="plan-id" type="text" maxlength="128" value=""class="form-control">
 				</div>
 				
 				<div class="form-group">
-					<label for="plan-name" class="control-label">Name:</label>
+					<label for="plan-name" class="control-label"><?php print _("Name:"); ?></label>
 					<input id="plan-name" type="text" value="" maxlength="255" class="form-control">
 				</div>
 				
 				
 				<div id="amount-group" class="form-group">
-					<label for="plan-amount" class="control-label">Amount (in cents):</label>
+					<label for="plan-amount" class="control-label"><?php print _("Amount (in cents):"); ?></label>
 					<input id="plan-amount" type="number" maxlength="10" value=""class="form-control">
-					<span class="help-block">e.g. 2500 = $25.00</span>
+					<span class="help-block"><?php print _("e.g. 2500 = $25.00"); ?></span>
 				</div>
 				
 				<div id="interval-group"  class="form-group">
-					<label for="plan-interval" class="control-label">Interval:</label>
+					<label for="plan-interval" class="control-label"><?php print _("Interval:"); ?></label>
 					<select id="plan-interval" class="form-control">
-						<option value="week">Week</option>
-						<option value="month">Month</option>
-						<option value="year">Year</option>
+						<option value="week"><?php print _("Week"); ?></option>
+						<option value="month"><?php print _("Month"); ?></option>
+						<option value="year"><?php print _("Year"); ?></option>
 					</select>
 				</div>
 				
 				<div id="currency-group"  class="form-group">
-					<label for="plan-currency" class="control-label">Currency:</label>
+					<label for="plan-currency" class="control-label"><?php print _("Currency:"); ?></label>
 					<select id="plan-currency" class="form-control">
 						<option value="usd">USD</option>
 					</select>
 				</div>
 				
 				<div id="trial-group" class="form-group">
-					<label for="plan-trial" class="control-label">Trial Days:</label>
+					<label for="plan-trial" class="control-label"><?php print _("Trial Days:"); ?></label>
 					<input id="plan-trial" type="number" maxlength="10" value=""class="form-control">
 				</div>
 				
 			</div>
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addEditPlan, text: planAction"></button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button add" data-bind="click: addPlan"><?php print _("Add Plan"); ?></button>
+				<button class="primary-button edit" data-bind="click: editPlan"><?php print _("Update Plan"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 			
@@ -146,8 +152,6 @@
 
 </div>
 <!-- /.modal -->
-
-
 
 </body>
 

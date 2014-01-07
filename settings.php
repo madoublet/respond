@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 	
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Settings&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Settings"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -24,12 +26,16 @@
 
 <body data-currpage="settings">
 	
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
-
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-updating" value="<?php print _("Updating settings..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("Settings updated successfully"); ?>" type="hidden">
+<input id="msg-updating-error" value="<?php print _("There was a problem saving the settings, please try again"); ?>" type="hidden">
+<input id="msg-name-content-error" value="<?php print _("The name and content are required"); ?>" type="hidden">
+<input id="msg-generating" value="<?php print _("Generating file..."); ?>" type="hidden">
+<input id="msg-generated" value="<?php print _("Verification file successfully generated"); ?>" type="hidden">
+<input id="msg-generating-error" value="<?php print _("There was a problem generating the file, please try again"); ?>" type="hidden">
 
 <section class="main">
 
@@ -37,7 +43,7 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-            <li class="static active"><a>Settings</a></li>
+            <li class="static active"><a><?php print _("Settings"); ?></a></li>
         </ul>
         
     </nav>
@@ -47,30 +53,30 @@
 	<form class="form-horizontal" data-bind="with: site">
 		
 		<div class="form-group">
-			<label for="name" class="col-lg-2 control-label">Site Name:</label>
+			<label for="name" class="col-lg-2 control-label"><?php print _("Site Name:"); ?></label>
 			<div class="col-lg-4">
 				<input id="name" type="text" data-bind="value: name" class="form-control">
 			</div>
 		</div>
 		
 		<div class="form-group">
-			<label for="domain" class="col-lg-2 control-label">Domain:</label>
+			<label for="domain" class="col-lg-2 control-label"><?php print _("Domain:"); ?></label>
 			<div class="col-lg-4">
 				<input id="domain" type="text"  data-bind="value: domain" class="form-control">
-				<span class="help-block">e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)</span>
+				<span class="help-block"><?php print _("e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"); ?></span>
 			</div>
 		</div>
 		
 		<div class="form-group">
-			<label for="primaryEmail" class="col-lg-2 control-label">Primary Email:</label>
+			<label for="primaryEmail" class="col-lg-2 control-label"><?php print _("Primary Email:"); ?></label>
 			<div class="col-lg-4">
 				<input id="primaryEmail" type="text" data-bind="value: primaryEmail" class="form-control">
-				<span class="help-block">Forms submitted on your site will be sent to this email address</span>
+				<span class="help-block"><?php print _("Forms submitted on your site will be sent to this email address"); ?></span>
 			</div>
 		</div>
 		
 		<div class="form-group">
-			<label for="timeZone" class="col-lg-2 control-label">Time Zone:</label>
+			<label for="timeZone" class="col-lg-2 control-label"><?php print _("Time Zone:"); ?></label>
 			<div class="col-lg-4">
 				<select id="timeZone" data-bind="value: timeZone" class="form-control">
 					<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -143,7 +149,7 @@
 <option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
 <option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
 <option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
-<option value="Australia/Perth">(GMT+08:00) Perth</option>
+Australia/Perth">(GMT+08:00) Perth</option>
 <option value="Australia/Eucla">(GMT+08:45) Eucla</option>
 <option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
 <option value="Asia/Seoul">(GMT+09:00) Seoul</option>
@@ -168,35 +174,178 @@
 		</div>
 		
 		<div class="form-group">
-			<label for="analyticsId" class="col-lg-2 control-label">Google Analytics ID:</label>
+			<label for="timeZone" class="col-lg-2 control-label"><?php print _("Default Language:"); ?></label>
+			<div class="col-lg-4">
+				<select id="language" data-bind="value: language" class="form-control">
+<option value="en">English</option> 
+<option value="aa">Afar</option> 
+<option value="ab">Abkhazian</option> 
+<option value="af">Afrikaans</option> 
+<option value="am">Amharic</option> 
+<option value="ar">Arabic</option> 
+<option value="as">Assamese</option> 
+<option value="ay">Aymara</option> 
+<option value="az">Azerbaijani</option> 
+<option value="ba">Bashkir</option> 
+<option value="be">Byelorussian</option> 
+<option value="bg">Bulgarian</option> 
+<option value="bh">Bihari</option> 
+<option value="bi">Bislama</option> 
+<option value="bn">Bengali/Bangla</option> 
+<option value="bo">Tibetan</option> 
+<option value="br">Breton</option> 
+<option value="ca">Catalan</option> 
+<option value="co">Corsican</option> 
+<option value="cs">Czech</option> 
+<option value="cy">Welsh</option> 
+<option value="da">Danish</option> 
+<option value="de">German</option> 
+<option value="dz">Bhutani</option> 
+<option value="el">Greek</option> 
+<option value="eo">Esperanto</option> 
+<option value="es">Spanish</option> 
+<option value="et">Estonian</option> 
+<option value="eu">Basque</option> 
+<option value="fa">Persian</option> 
+<option value="fi">Finnish</option> 
+<option value="fj">Fiji</option> 
+<option value="fo">Faeroese</option> 
+<option value="fr">French</option> 
+<option value="fy">Frisian</option> 
+<option value="ga">Irish</option> 
+<option value="gd">Scots/Gaelic</option> 
+<option value="gl">Galician</option> 
+<option value="gn">Guarani</option> 
+<option value="gu">Gujarati</option> 
+<option value="ha">Hausa</option> 
+<option value="hi">Hindi</option> 
+<option value="hr">Croatian</option> 
+<option value="hu">Hungarian</option> 
+<option value="hy">Armenian</option> 
+<option value="ia">Interlingua</option> 
+<option value="ie">Interlingue</option> 
+<option value="ik">Inupiak</option> 
+<option value="in">Indonesian</option> 
+<option value="is">Icelandic</option> 
+<option value="it">Italian</option> 
+<option value="iw">Hebrew</option> 
+<option value="ja">Japanese</option> 
+<option value="ji">Yiddish</option> 
+<option value="jw">Javanese</option> 
+<option value="ka">Georgian</option> 
+<option value="kk">Kazakh</option> 
+<option value="kl">Greenlandic</option> 
+<option value="km">Cambodian</option> 
+<option value="kn">Kannada</option> 
+<option value="ko">Korean</option> 
+<option value="ks">Kashmiri</option> 
+<option value="ku">Kurdish</option> 
+<option value="ky">Kirghiz</option> 
+<option value="la">Latin</option> 
+<option value="ln">Lingala</option> 
+<option value="lo">Laothian</option> 
+<option value="lt">Lithuanian</option> 
+<option value="lv">Latvian/Lettish</option> 
+<option value="mg">Malagasy</option> 
+<option value="mi">Maori</option> 
+<option value="mk">Macedonian</option> 
+<option value="ml">Malayalam</option> 
+<option value="mn">Mongolian</option> 
+<option value="mo">Moldavian</option> 
+<option value="mr">Marathi</option> 
+<option value="ms">Malay</option> 
+<option value="mt">Maltese</option> 
+<option value="my">Burmese</option> 
+<option value="na">Nauru</option> 
+<option value="ne">Nepali</option> 
+<option value="nl">Dutch</option> 
+<option value="no">Norwegian</option> 
+<option value="oc">Occitan</option> 
+<option value="om">(Afan)/Oromoor/Oriya</option> 
+<option value="pa">Punjabi</option> 
+<option value="pl">Polish</option> 
+<option value="ps">Pashto/Pushto</option> 
+<option value="pt">Portuguese</option> 
+<option value="qu">Quechua</option> 
+<option value="rm">Rhaeto-Romance</option> 
+<option value="rn">Kirundi</option> 
+<option value="ro">Romanian</option> 
+<option value="ru">Russian</option> 
+<option value="rw">Kinyarwanda</option> 
+<option value="sa">Sanskrit</option> 
+<option value="sd">Sindhi</option> 
+<option value="sg">Sangro</option> 
+<option value="sh">Serbo-Croatian</option> 
+<option value="si">Singhalese</option> 
+<option value="sk">Slovak</option> 
+<option value="sl">Slovenian</option> 
+<option value="sm">Samoan</option> 
+<option value="sn">Shona</option> 
+<option value="so">Somali</option> 
+<option value="sq">Albanian</option> 
+<option value="sr">Serbian</option> 
+<option value="ss">Siswati</option> 
+<option value="st">Sesotho</option> 
+<option value="su">Sundanese</option> 
+<option value="sv">Swedish</option> 
+<option value="sw">Swahili</option> 
+<option value="ta">Tamil</option> 
+<option value="te">Tegulu</option> 
+<option value="tg">Tajik</option> 
+<option value="th">Thai</option> 
+<option value="ti">Tigrinya</option> 
+<option value="tk">Turkmen</option> 
+<option value="tl">Tagalog</option> 
+<option value="tn">Setswana</option> 
+<option value="to">Tonga</option> 
+<option value="tr">Turkish</option> 
+<option value="ts">Tsonga</option> 
+<option value="tt">Tatar</option> 
+<option value="tw">Twi</option> 
+<option value="uk">Ukrainian</option> 
+<option value="ur">Urdu</option> 
+<option value="uz">Uzbek</option> 
+<option value="vi">Vietnamese</option> 
+<option value="vo">Volapuk</option> 
+<option value="wo">Wolof</option> 
+<option value="xh">Xhosa</option> 
+<option value="yo">Yoruba</option> 
+<option value="zh">Chinese</option> 
+<option value="zu">Zulu</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="analyticsId" class="col-lg-2 control-label"><?php print _("Google Analytics ID:"); ?></label>
 			<div class="col-lg-4">
 				<input id="analyticsId" type="text" data-bind="value: analyticsId" class="form-control">
-				<span class="help-block">Google Analytics Web Property Id (adds analytics to all pages on your site)</span>
+				<span class="help-block"><?php print _("Google Analytics Web Property Id (adds analytics to all pages on your site)"); ?></span>
 			</div>
 		</div>	
 		
 		<div class="form-group">
-			<label for="facebookAppId" class="col-lg-2 control-label">Facebook App ID:</label>
+			<label for="facebookAppId" class="col-lg-2 control-label"><?php print _("Facebook App ID:"); ?></label>
 			<div class="col-lg-4">
 				<input id="facebookAppId" type="text" data-bind="value: facebookAppId" class="form-control">
-				<span class="help-block">Allows you to moderate comments on your site, create here: <a href="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</a></span>
+				<span class="help-block"><?php print _("Allows you to moderate comments on your site, create here:"); ?> <a href="https://developers.facebook.com/apps/">https://developers.facebook.com/apps/</a></span>
 			</div>
 		</div>	
 		
 		<div class="form-group">
-			<label for="sitemap" class="col-lg-2 control-label">Sitemap:</label>
+			<label for="sitemap" class="col-lg-2 control-label"><?php print _("Sitemap:"); ?></label>
 			<div class="col-lg-4">
 				<span class="read-only" data-bind="text: $parent.siteMap"></span>
 			</div>
 		</div>	
 		
 		<div class="form-group">
-			<label for="verification" class="col-lg-2 control-label">Sitemap Verification:</label>
+			<label for="verification" class="col-lg-2 control-label"><?php print _("Sitemap Verification:"); ?></label>
 			<div class="col-lg-4">
 				<span class="read-only">
-					<a data-bind="click: $parent.showVerificationDialog">Generate Verification File</a>
+					<a data-bind="click: $parent.showVerificationDialog"><?php print _("Generate Verification File"); ?></a>
 				</span>
-				<span class="help-block">Setup your sitemaps at google.com/webmasters</span>
+				<span class="help-block"><?php print _("Setup your sitemaps at google.com/webmasters"); ?></span>
 			</div>
 		</div>
 		
@@ -204,7 +353,7 @@
     <!-- /.form-horizontal -->
     
     <div class="actions" data-bind="with: site">
-        <button class="primary-button" type="button" data-bind="click: $parent.save">Save</button>
+        <button class="primary-button" type="button" data-bind="click: $parent.save"><?php print _("Save"); ?></button>
     </div>
 
 </section>
@@ -218,20 +367,20 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Generate Verification File</h3>
+				<h3><?php print _("Generate Verification File"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 
 			<div class="modal-body">
 			
 				<div class="form-group">
-					<label for="fileName">File Name:</label>
+					<label for="fileName"><?php print _("File Name:"); ?></label>
 					<input id="fileName" type="text" value="" maxlength="255" class="form-control">
 					<span class="help-block">e.g. google12345678910abc123.html</span>
 				</div>
 				
 				<div class="form-group">
-					<label for="fileContent">File Contents:</label>
+					<label for="fileContent"><?php print _("File Contents:"); ?></label>
 					<textarea id="fileContent" class="form-control"></textarea>
 					<span class="help-block">e.g. google-site-verification: google12345678910abc123.html</span>
 				</div>
@@ -240,8 +389,8 @@
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: generateVerification">Generate Verification File</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: generateVerification"><?php print _("Generate Verification File"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 			

@@ -1,14 +1,20 @@
 <?php	
 	include 'app.php'; // import php files
+	
+	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
+	$supported = Utilities::GetSupportedLanguages('');
+	$language = Utilities::GetPreferredLanguage($supported);
+	
+	Utilities::SetLanguage($language);
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Create Site&mdash;<?php print BRAND; ?></title>
+<title><?php print _("Create Site"); ?>&mdash;<?php print BRAND; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include styles -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -22,18 +28,21 @@
 
 <body>
 
-<p id="message">
-  <span></span>
-  <a class="close" href="#"></a>
-</p>
-	
+<!-- messages -->
+<input id="msg-create-required" value="<?php print _("All fields are required"); ?>" type="hidden">
+<input id="msg-password-error" value="<?php print _("The password and retype fields must match"); ?>" type="hidden">
+<input id="msg-creating" value="<?php print _("Creating site..."); ?>" type="hidden">
+<input id="msg-created-successfully" value="<?php print _("Site created successfully"); ?>" type="hidden">
+<input id="msg-passcode-invalid" value="<?php print _("The passcode is invalid"); ?>" type="hidden">
+<input id="msg-email-invalid" value="<?php print _("The email you provided is already used in the system"); ?>" type="hidden">
+
 <!-- begin content -->
 <div class="content">
 
 	<h1><?php print BRAND; ?></h1>
 	
 	
-		<p>Enter your site name, login, password, and timezone to create your site.</p>
+		<p><?php print _("Enter your site name, login, password, and timezone to create your site."); ?></p>
 	
 	<div id="create-form">
 	
@@ -41,29 +50,36 @@
 	
 
 		<div class="form-group">
-			<label for="name">Site Name:</label>
+			<label for="name"><?php print _("Site Name:"); ?></label>
 			<input id="name" type="text" value="" class="form-control input-lg">
 			<p class="site-name"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
 
 		<div class="form-group">
-			<label for="email">Email:</label>
+			<label for="email"><?php print _("Email:"); ?></label>
 			<input id="email" type="text" value="" class="form-control input-lg">
 		</div>
 		
 		<div class="form-group">
-			<label for="password">Password:</label>
+			<label for="password"><?php print _("Password:"); ?></label>
 			<input id="password" type="password" class="form-control input-lg">
 		</div>
 
 		<div class="form-group">
-			<label for="password">Retype Password:</label>
+			<label for="password"><?php print _("Re-type Password:"); ?></label>
 			<input id="retype" type="password" placeholder="" class="form-control input-lg">
 		</div>
 		
 		<div class="form-group">
-			<label for="passcode">Timezone:</label>
+			<label for="language"><?php print _("Language:"); ?></label>
+			<select id="language" class="form-control">
+				<option value="en"><?php print _("English"); ?></option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="timeZone"><?php print _("Timezone:"); ?></label>
 			<select id="timeZone" data-bind="value: timeZone" class="form-control">
 					<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
 <option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -159,12 +175,12 @@
 		</div>
 
 		<div class="form-group">
-			<label for="passcode">Passcode:</label>
+			<label for="passcode"><?php print _("Passcode:"); ?></label>
 			<input id="passcode" type="text" class="form-control input-lg">
 		</div>
 
 		<span class="actions">
-			<button type="button" class="primary-button" data-bind="click: create">Create Site</button>
+			<button type="button" class="primary-button" data-bind="click: create"><?php print _("Create Site"); ?></button>
 		</span>
 
 	</fieldset>
@@ -175,26 +191,26 @@
 
 	<fieldset>
 		<p>
-			Account created! To get started, click on your login link below.
+			<?php print _("Account created! To get started, click on your login link below."); ?>
 		</p>	
 
 
 		<p>
-			Login here to update your site:
+			<?php print _("Login here to update your site:"); ?>
 		</p>
 		<p>
 			<a id="loginLink" href="<?php print APP_URL; ?>"><?php print APP_URL; ?></a>
 		</p>
 		
 		<p>
-			You can already view your site here: 
+			<?php print _("You can already view your site here:"); ?> 
 		</p>
 		<p>	
 			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>/sites/{friendlyId}</a>
 		</p>
 		
 		<p>
-			Bookmark these links for easy access.
+			<?php print _("Bookmark these links for easy access."); ?>
 		</p>
 		
 

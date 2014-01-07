@@ -112,7 +112,7 @@ var accountModel = {
     
     unsubscribe:function(o, e){
     
-    	message.showMessage('progress', 'Unsubscribing...');
+    	message.showMessage('progress', $('#msg-unsubscribing').val());
     
     	$.ajax({
     		url: 'api/customer/plan/unsubscribe',
@@ -120,7 +120,7 @@ var accountModel = {
 			data: {},
 			dataType: 'json',
 			success: function(data){
-				message.showMessage('success', 'You have successfully unsubscribed.');
+				message.showMessage('success', $('#msg-unsubscribe-success').val());
 				$('#unsubscribeDialog').modal('hide');
 				accountModel.refresh();
 			},
@@ -149,11 +149,11 @@ var accountModel = {
         }
         
         if(plan=='not-selected'){
-            message.showMessage('error', 'Please select a plan');
+            message.showMessage('error', $('#msg-select-a-plan').val());
             return;
         }
        
-        message.showMessage('progress', 'Updating plan...');
+        message.showMessage('progress', $('#msg-updating-plan').val());
         
         $.ajax({
             url: 'api/customer/plan/change',
@@ -161,7 +161,7 @@ var accountModel = {
             data: {plan: plan},
             success: function(data){
             
-                message.showMessage('success', 'Update successful');
+                message.showMessage('success', $('#msg-update-successful').val());
 				$('#changePlanDialog').modal('hide');
                 
                 // refresh the model
@@ -169,7 +169,7 @@ var accountModel = {
             
             },
             error: function(data){
-                message.showMessage('error', 'There was a problem changing the plan');
+                message.showMessage('error', $('#msg-change-plan-error').val());
             }
         });
 
@@ -195,7 +195,7 @@ var accountModel = {
 	    	
 	    	var form = $('#newcard-form');
         
-			message.showMessage('progress', 'Validating credit card...');
+			message.showMessage('progress', $('#msg-validate-card').val());
         
 			Stripe.createToken(form, accountModel.stripeUpdateResponseHandler);
 
@@ -205,7 +205,7 @@ var accountModel = {
 	    	var month = $('#changeMM').val();
 			var year = $('#changeYY').val();
 	        
-	        message.showMessage('progress', 'Updating card...');
+	        message.showMessage('progress', $('#msg-updating-card').val());
 	        
 	        $.ajax({
 	    		url: 'api/card/update',
@@ -214,7 +214,7 @@ var accountModel = {
 				dataType: 'json',
 				success: function(data){
 				
-					message.showMessage('success', 'Card updated successfully');
+					message.showMessage('success', $('#msg-updating-card-successful').val());
 					$('#updatePaymentDialog').modal('hide');
                 
 	                // refresh the model
@@ -245,7 +245,7 @@ var accountModel = {
         
         	var token = response.id;
            
-            message.showMessage('progress', 'Adding new card...');
+            message.showMessage('progress', $('#msg-add-card').val());
         
             $.ajax({
                 url: 'api/card/new',
@@ -253,7 +253,7 @@ var accountModel = {
                 data: {token: token},
                 success: function(data){
                 
-                    message.showMessage('success', 'New card added');
+                    message.showMessage('success', $('#msg-card-added').val());
                     $('#updatePaymentDialog').modal('hide');
                 
 	                // refresh the model
@@ -262,11 +262,11 @@ var accountModel = {
                 },
                 statusCode: {
                     406: function() {  // CONFLICT
-                        message.showMessage('error', 'The credit card was declined');
+                        message.showMessage('error', $('#msg-card-declined').val());
                     }
                 },
                 error: function(data){
-                    message.showMessage('error', 'There was a problem updating the card');
+                    message.showMessage('error', $('#msg-updating-card-error').val());
                 }
             });
         }
@@ -291,7 +291,7 @@ var accountModel = {
 	
         var form = $('#subscribe-form');
         
-        message.showMessage('progress', 'Validating payment...');
+        message.showMessage('progress', $('#msg-validating-payment').val());
         
         Stripe.createToken(form, accountModel.stripeResponseHandler);
 		
@@ -316,11 +316,11 @@ var accountModel = {
             }
             
             if(plan=='not-selected'){
-	            message.showMessage('error', 'Please select a plan');
+	            message.showMessage('error', $('#msg-select-a-plan').val());
 	            return;
             }
 
-            message.showMessage('progress', 'Paying...');
+            message.showMessage('progress', $('#msg-paying').val());
         
             $.ajax({
                 url: 'api/customer/subscribe',
@@ -328,7 +328,7 @@ var accountModel = {
                 data: {token: token, plan: plan},
                 success: function(data){
                 
-                    message.showMessage('success', 'Payment successful');
+                    message.showMessage('success', $('#msg-payment-successful').val());
                     
                     // redirect to account
                     $('#subscribeDialog').modal('hide');
@@ -339,11 +339,11 @@ var accountModel = {
                 },
                 statusCode: {
                     406: function() {  // CONFLICT
-                        message.showMessage('error', 'The credit card was declined');
+                        message.showMessage('error', $('#msg-card-declined').val());
                     }
                 },
                 error: function(data){
-                    message.showMessage('error', 'There was a problem paying for the subscription');
+                    message.showMessage('error', $('#msg-subscription-problem').val());
                 }
             });
         }

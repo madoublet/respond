@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Layout&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Layout"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -25,13 +27,18 @@
 </head>
 
 <body data-currpage="layout">
-	
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
 
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-updating" value="<?php print _("Updating layout..."); ?>" type="hidden">
+<input id="msg-saved" value="<?php print _("Layout saved"); ?>" type="hidden">
+<input id="msg-saving-error" value="<?php print _("There was a problem saving the layout, please try again"); ?>" type="hidden">
+<input id="msg-add-error" value="<?php print _("A name is required to add a layout"); ?>" type="hidden">
+<input id="msg-add-success" value="<?php print _("Layout successfully added"); ?>" type="hidden">
+<input id="msg-add-problem" value="<?php print _("There was a problem adding the layout, please try again"); ?>" type="hidden">
+<input id="msg-remove-success" value="<?php print _("Layout successfully removed"); ?>" type="hidden">
+<input id="msg-remove-problem" value="<?php print _("There was a problem removing the layout, please try again"); ?>" type="hidden">
 
 <section class="main">
 
@@ -66,7 +73,7 @@
 	</div>
     
     <div class="actions">
-        <button class="primary-button" type="button" data-bind="click: save">Save</button>
+        <button class="primary-button" type="button" data-bind="click: save"><?php print _("Save"); ?></button>
     </div>
 </section>
 <!-- /.main -->
@@ -80,24 +87,24 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Add Layout</h3>
+				<h3><?php print _("Add Layout"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 
 			<div class="modal-body">
 			
 			<div class="form-group">
-				<label for="name">Name:</label>
+				<label for="name"><?php print _("Name:"); ?></label>
 				<input id="name" type="text" class="form-control">
-				<span class="help-block">Lowercase, no space, <strong>leave the .html off</strong></span>
+				<span class="help-block"><?php print _("Lowercase, no space, leave the .html off"); ?></span>
 			</div>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addLayout">Add Layout</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: addLayout"><?php print _("Add Layout"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		
@@ -121,22 +128,22 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Remove Layout</h3>
+				<h3><?php print _("Remove Layout"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
 			<div class="modal-body">
 			
 			<p>
-				Are you sure that you want to delete <strong id="removeName">this layout</strong>?
+				<?php print _("Confirm that you want to delete"); ?> <strong id="removeName">this layout</strong>
 			</p>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: removeLayout">Remove Layout</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeLayout"><?php print _("Remove Layout"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		

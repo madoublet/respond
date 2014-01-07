@@ -86,7 +86,7 @@ var stylesModel = {
     
     save:function(o, e){
         
-		message.showMessage('progress', 'Updating styles...');
+		message.showMessage('progress', $('#msg-updating').val());
         
         var content = stylesModel.cm.getValue();
         
@@ -95,10 +95,10 @@ var stylesModel = {
 			type: 'POST',
 			data: {name: stylesModel.current.name, content: content},
 			success: function(data){
-    			message.showMessage('success', 'Stylesheet saved');
+    			message.showMessage('success', $('#msg-updated').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the stylesheet, please try again');
+				message.showMessage('error', $('#msg-updating-error').val());
 			}
 		});
         
@@ -119,9 +119,11 @@ var stylesModel = {
         name = global.replaceAll(name, '.less', '');
     		
 		if(name==''){
-			message.showMessage('error', 'A name is required to add a stylesheet');
+			message.showMessage('error', $('#msg-name-required').val());
 			return false;
 		}
+        
+        message.showMessage('progress', $('#msg-style-adding').val());
         
         $.ajax({
             url: 'api/stylesheet/add',
@@ -133,12 +135,12 @@ var stylesModel = {
                         'file': name+'.less'
     				});
                 
-    			message.showMessage('success', 'Stylesheet successfully added');
+    			message.showMessage('success', $('#msg-style-added').val());
                 
                 $('#addDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem adding the stylesheet, please try again');
+				message.showMessage('error', $('#msg-style-adding-error').val());
 			}
 		});
         
@@ -155,6 +157,8 @@ var stylesModel = {
     },
     
     removeStylesheet: function(o, e){
+    
+    	message.showMessage('success', $('#msg-style-removing').val());
         
         $.ajax({
             url: 'api/stylesheet/delete',
@@ -164,12 +168,12 @@ var stylesModel = {
 			success: function(data){
                 stylesModel.files.remove(stylesModel.toBeRemoved); // remove the page from the model
                 
-    			message.showMessage('success', 'Stylesheet successfully removed');
+    			message.showMessage('success', $('#msg-style-removed').val());
                 
                 $('#removeDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem deleting the stylesheet, please try again');
+				message.showMessage('error', $('#msg-style-removing-error').val());
 			}
 		});
         

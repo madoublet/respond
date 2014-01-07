@@ -61,15 +61,13 @@ var contentModel = {
 			type: 'GET',
 			data: {},
 			success: function(data){
+			
 				contentModel.content(data);
 				contentModel.contentLoading(false);
                 
                 // setup editor
     			$('#desc').respondEdit();
     			
-    			// update skus
-    			// contentModel.updateProducts();
-                
                 // oh so pretty
                 prettyPrint();
                 
@@ -117,88 +115,6 @@ var contentModel = {
 
 	},
 	
-	updateProducts:function(){ // update producst on the page
-		
-		var skus = $('#desc').find('.skus');
-		
-		for(var x=0; x<skus.length; x++){
-		
-			var id = $(skus[x]).parent().attr('id');
-			
-			// inner function to grab products
-			function bindProducts(id){
-			
-				var newModel = false;
-			
-				// create an observable array from the card id
-				if(contentModel[id] == undefined){
-					contentModel[id] = ko.observableArray([]);
-					newModel = true;
-				}
-				
-				contentModel[id].removeAll();
-				
-				$.ajax({
-                	url: 'api/product/list',
-        			type: 'POST',
-                    dataType: 'JSON',
-        			data: {shelfId: id, pageUniqId: contentModel.pageUniqId()},
-        			success: function(data){
-        			   
-        			   for(x=0; x<data.length; x++){
-        			   
-        			   		console.log('push product:');
-        			   		console.log(data[x]);
-        			   		
-        			   		var priceReadable = data[x].Price + ' ' + data[x].Currency;
-        			   		var shippingReadable = data[x].ShippingType;
-        			   		
-        			   		if(data[x].Currency == 'USD'){
-	        			   		priceReadable = '$' + priceReadable;
-	        			   		if(data[x].ShippingType != 'digital' && data[x].ShippingType != 'delivered' && data[x].ShippingType != 'not shipped'){
-	        			   			shippingReadable += ' - $' + data[x].ShippingRate + ' ' + data[x].Currency;
-	        			   		}
-        			   		}
-        			   		else{
-        			   			if(data[x].ShippingType != 'digital' && data[x].ShippingType != 'delivered' && data[x].ShippingType != 'not shipped'){
-	        			   			shippingReadable += ' - ' + data[x].ShippingRate + ' ' + data[x].Currency;
-	        			   		}
-        			   		}
-        			   	
-	                        // push product to model
-	                        contentModel[id].push({
-	                            'productUniqId': data[x].ProductUniqId,
-	                            'description': data[x].Description,
-	                            'sku': data[x].SKU, 
-								'price': data[x].Price,
-								'currency': data[x].Currency,
-								'quantity': data[x].Quantity,
-								'shippingType': data[x].ShippingType,
-								'shippingRate': data[x].ShippingRate,
-								'downloadURL': data[x].DownloadURL,
-								'priceReadable': priceReadable,
-								'shippingReadable': shippingReadable
-	                            });
-                        }
-                        
-                        if(newModel == true){ // apply bindings for this element
-                        	ko.applyBindings(contentModel, document.getElementById(id));
-						}
-        			}
-        		});
-				
-			}
-			
-			bindProducts(id);
-			
-		}
-		
-	},
-	
-	editProduct:function(o,e){
-		skuDialog.edit(o);	
-	},
-
 	updatePageTypes:function(){  // updates the page types arr
 
 		contentModel.pageTypes.removeAll();
@@ -298,7 +214,7 @@ var contentModel = {
 
 	saveSettings:function(i,e){ // saves the settings for the page
 
-		message.showMessage('progress', 'Saving settings...');
+		message.showMessage('progress', $('#msg-settings-saving').val());
 
 		var name = $('#name').val();
 		var friendlyId = $('#friendlyId').val();
@@ -323,10 +239,10 @@ var contentModel = {
 			data: {name:name, friendlyId:friendlyId, description:description, keywords:keywords, 
 				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet},
 			success: function(data){
-				message.showMessage('success', 'Content saved');
+				message.showMessage('success', $('#msg-settings-saved').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the content, please try again');
+				message.showMessage('error', $('#msg-settings-error').val());
 			}
 		});
         
@@ -336,7 +252,7 @@ var contentModel = {
 
 	saveContent:function(i,e){ // saves the content for the page
 
-		message.showMessage('progress', 'Saving content...');
+		message.showMessage('progress', $('#msg-saving').val());
 
 		var content = $('#desc').respondHtml();
   
@@ -351,11 +267,11 @@ var contentModel = {
 			type: 'POST',
 			data: {content:content, status:'publish', image:image},
 			success: function(data){
-				message.showMessage('success', 'Content saved');
+				message.showMessage('success', $('#msg-saved').val());
                 
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the content, please try again');
+				message.showMessage('error', $('#msg-saving-error').val());
 			}
 		});
 
@@ -363,7 +279,7 @@ var contentModel = {
     
     saveDraft:function(i,e){ // saves the content for the page
 
-    	message.showMessage('progress', 'Saving content...');
+    	message.showMessage('progress', $('#msg-draft-saving').val());
 
 		var content = $('#desc').respondHtml();
 		var image = $('#desc').respondGetPrimaryImage();
@@ -377,11 +293,11 @@ var contentModel = {
 			type: 'POST',
 			data: {content:content, status:'draft', image:image},
 			success: function(data){
-				message.showMessage('success', 'Content saved');
+				message.showMessage('success', $('#msg-draft-saved').val());
                 
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the content, please try again');
+				message.showMessage('error', $('#msg-draft-error').val());
 			}
 		});
 
@@ -414,7 +330,7 @@ var contentModel = {
 	},
 
 	preview:function(){ // previews the content
-		message.showMessage('progress', 'Saving draft...');
+		message.showMessage('progress', $('#msg-saving-draft').val());
 
 		var content = $('#desc').respondHtml();
 
@@ -423,7 +339,7 @@ var contentModel = {
 			type: 'POST',
 			data: {content:content},
 			success: function(data){
-				message.showMessage('success', 'Content saved, launching preview');
+				message.showMessage('success', $('#msg-draft-saved-preview').val());
 
 				var url = data;
                 
@@ -436,7 +352,7 @@ var contentModel = {
 		        $('#previewMessage').slideDown('fast');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the content, please try again');
+				message.showMessage('error', $('#msg-draft-error').val());
 			}
 		});
 	},
@@ -493,8 +409,8 @@ var contentModel = {
 		});
     },
     
-    addImage:function(o, e){
-        imagesDialog.addImage(o.fullUrl, o.thumbUrl, o.filename);
+    setImage:function(o, e){
+    	imagesDialog.addImage(o.fullUrl, o.thumbUrl, o.filename);
     },
     
     updateFiles:function(){

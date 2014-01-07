@@ -4,7 +4,7 @@
 class Site{
 	
 	// adds a Site
-	public static function Add($domain, $name, $friendlyId, $logoUrl, $theme, $primaryEmail, $timeZone){
+	public static function Add($domain, $name, $friendlyId, $logoUrl, $theme, $primaryEmail, $timeZone, $language){
         
         try{
             
@@ -18,8 +18,8 @@ class Site{
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Type, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Language, Type, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteUniqId);
@@ -32,8 +32,9 @@ class Site{
             $s->bindParam(8, $facebookAppId);
             $s->bindParam(9, $primaryEmail);
             $s->bindParam(10, $timeZone);
-            $s->bindParam(11, $type);
-            $s->bindParam(12, $timestamp);
+            $s->bindParam(11, $language);
+            $s->bindParam(12, $type);
+            $s->bindParam(13, $timestamp);
             
             $s->execute();
             
@@ -49,7 +50,8 @@ class Site{
                 'FacebookAppId' => $facebookAppId,
                 'PrimaryEmail' => $primaryEmail,
                 'TimeZone' => $timeZone,
-                'Created' => $timestamp,
+                'Language' => $language,
+                'Created' => $timestamp
                 );
                 
         } catch(PDOException $e){
@@ -59,7 +61,7 @@ class Site{
 	
 	
 	// edits the site information
-	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone){
+	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language){
 
 		try{
             
@@ -71,7 +73,8 @@ class Site{
         			AnalyticsId= ?,
         			FacebookAppId= ?,
             		PrimaryEmail = ?,
-        			TimeZone = ? WHERE SiteUniqId = ?";
+        			TimeZone = ?,
+        			Language = ? WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $name);
@@ -80,7 +83,8 @@ class Site{
             $s->bindParam(4, $facebookAppId);
             $s->bindParam(5, $primaryEmail);
             $s->bindParam(6, $timeZone);
-            $s->bindParam(7, $siteUniqId);
+            $s->bindParam(7, $language);
+            $s->bindParam(8, $siteUniqId);
             
             $s->execute();
             
@@ -239,7 +243,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created 
 							FROM Sites ORDER BY Name ASC";
@@ -299,7 +303,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE Domain = ?";
@@ -330,7 +334,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE CustomerId = ?";
@@ -361,7 +365,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE FriendlyId = ?";
@@ -392,7 +396,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE SiteUniqId = ?";
@@ -423,7 +427,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, LastLogin, 
+							TimeZone, Language, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE Siteid = ?";

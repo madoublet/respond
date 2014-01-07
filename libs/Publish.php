@@ -18,6 +18,9 @@ class Publish
 		// publish rss for page types
 		Publish::PublishRssForPageTypes($siteUniqId, $root);
 		
+		// publish lists
+		// Publish::PublishLists($siteUniqId, $root);
+		
 		// publish menu
 		Publish::PublishMenu($siteUniqId, $root);
 		
@@ -28,21 +31,41 @@ class Publish
 		Publish::PublishCommonCSS($siteUniqId, $root);
 		
 		// publish controller
-		Publish::PublishHtaccess($siteUniqId, $root);
+		Publish::PublishCommon($siteUniqId, $root);
 
 		// publish plugins
 		Publish::PublishPlugins($siteUniqId, $root);
 	}
 	
-	// publishes the controller
-	public static function PublishHtaccess($siteUniqId, $root = '../'){
+	// publishes common site files
+	public static function PublishCommon($siteUniqId, $root = '../'){
         
         $site = Site::GetBySiteUniqId($siteUniqId);
         
+        // copy the .htaccess
 		$src = $root.'sites/common/.htaccess';
 		$dest = $root.'sites/'.$site['FriendlyId'].'/.htaccess';
 		
-		copy($src, $dest); // copy the controller
+		copy($src, $dest);
+		
+		// copy site.php
+		$src = $root.'sites/common/site.php';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/site.php';
+		
+		copy($src, $dest);
+		
+		// copy Utilities
+		$libs = $root.'sites/'.$site['FriendlyId'].'/libs';
+		
+		// create libs directory if it does not exist
+		if(!file_exists($libs)){
+			mkdir($libs, 0755, true);	
+		}
+		
+		$src = $root.'sites/common/libs/Utilities.php';
+		$dest = $libs.'/Utilities.php';
+		
+		copy($src, $dest);
 	}
 
 	// publishes plugins
@@ -130,7 +153,6 @@ class Publish
 
 		Utilities::CopyDirectory($files_src, $files_dest);
 	}
-	
 	
 	// publishes common js
 	public static function PublishCommonJS($siteUniqId, $root = '../'){
@@ -226,6 +248,101 @@ class Publish
 		Utilities::SaveContent($dest, 'menu.json', $encoded);
 	}
 	
+	/*
+	// publish json for all page types
+	public static function PublishLists($siteUniqId, $root){
+	        
+        $site = Site::GetBySiteUniqId($siteUniqId);
+        
+        $list = PageType::GetPageTypes($site['SiteId']);
+        
+        foreach ($list as $row){
+        	
+        	$page_list = Page::GetPagesForPageType($site['SiteId'], $row['PageTypeId']);
+        	
+        	$output = '<?php'.PHP_EOL;
+        	$output .= '$list = array(';
+         
+			foreach ($page_list as $page_row){ // create an array for the list
+			
+				$url = strtolower($row['TypeS']).'/'.$page_row['FriendlyId'];
+				$name = $page_row['FirstName'].' '.$page_row['LastName'];
+			
+				$output .= PHP_EOL."\tarray(".PHP_EOL;
+				$output .= "\t\t'Name'=>_$('".$page_row['Name']."'),".PHP_EOL;
+				$output .= "\t\t'Description'=>_$('".$page_row['Description']."'),".PHP_EOL;
+				$output .= "\t\t'Callout'=>_$('".$page_row['Callout']."'),".PHP_EOL;
+				$output .= "\t\t'Url'=>'".$url."',".PHP_EOL;
+				$output .= "\t\t'Image'=>'".$page_row['Image']."',".PHP_EOL;
+				$output .= "\t\t'LastModified'=>'".$page_row['LastModifiedDate']."',".PHP_EOL;
+				$output .= "\t\t'Name'=>'".$name."'".PHP_EOL;
+				
+				$output .= "\t),";
+				
+			}
+			
+			$output = rtrim($output, ','); // remove traling comma
+			
+			$output .= ");".PHP_EOL; // close array, end file
+			$output .= "?>".PHP_EOL;
+			
+			$dest = $root.'sites/'.$site['FriendlyId'];
+			
+			$dir = $dest.'/fragments/list/';
+		
+			if(!file_exists($dir)){
+				mkdir($dir, 0755, true);	
+			}
+			
+			Utilities::SaveContent($dir, strtolower($row['TypeP']).'.php', $output);
+        }
+	}
+	
+	// publish json for a page type
+	public static function PublishJsonForPageType($siteUniqId, $pageTypeId, $root){
+	        
+        $site = Site::GetBySiteUniqId($siteUniqId);
+        
+        $dest = $root.'sites/'.$site['FriendlyId'];
+        
+        $pageType = PageType::GetByPageTypeId($pageTypeId);
+        
+        // Get all pages
+        $list = Page::GetPagesForPageType($site['SiteId'], $pageTypeId);
+        
+        $pages = array();
+        
+         foreach ($list as $row){
+                
+            $page = Page::GetByPageId($row['PageId']);
+            $name = $row['FirstName'].' '.$row['LastName'];
+
+            // get image url
+            $thumbUrl = '';
+            $imageUrl = '';
+
+            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            
+            $item = array(
+                'PageUniqId'  => $page['PageUniqId'],
+                'Name' => $page['Name'],
+                'Description' => $page['Description'],
+                'Callout' => $page['Callout'],
+                'Url' => $url,
+                'Image' => $page['Image'],
+                'Thumb' => $thumbUrl,
+                'LastModified' => $page['LastModifiedDate'],
+                'Author' => $name
+				);
+                    
+            $pages[$page['PageUniqId']] = $item;
+        }
+        
+        $encoded = json_encode($pages);
+        
+        Utilities::SaveContent($dest.'/data/', strtolower($pageType['TypeP']).'.json', $encoded);
+	} */
+	
 	// publish rss for all page types
 	public static function PublishRssForPageTypes($siteUniqId, $root = '../'){
 		
@@ -301,7 +418,6 @@ class Publish
 
 	}
 
-	
 	// publishes all css
 	public static function PublishAllCSS($siteUniqId, $root = '../'){
 
@@ -331,7 +447,7 @@ class Publish
 		$content = str_replace( "&nbsp;", ' ', $content);
 
 		$dir = $root.'sites/'.$siteFriendlyId.'/fragments/'.$status.'/';
-
+		
 		if(!file_exists($dir)){
 			mkdir($dir, 0755, true);	
 		}
@@ -364,8 +480,10 @@ class Publish
 		// run the content through the parser
 		$content = Utilities::ParseHTML($site, $page, $content, $preview, $root);
 		
+		//$content = Utilities::StripGettext($content);
+		
 		// create fragment
-		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';
+		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.php';
 		file_put_contents($fragment, $content); // save to file
 	}
 
@@ -394,7 +512,7 @@ class Publish
             else{
 	 	  	    $file = $page['FriendlyId'].'.php';
             }
-			
+            
 			// create a nice path to store the file
 			if($page['PageTypeId']==-1){
 				$url = $page['FriendlyId'].'.php';
@@ -413,7 +531,16 @@ class Publish
 		
 			// generate default
 			$html = Utilities::GeneratePage($site, $page, $siteurl, $imageurl, $preview, $root);
-            
+
+			// remove any drafts associated with the page
+			if($preview==false){
+				$draft = $root.'sites/'.$site['FriendlyId'].'/fragments/draft/'.$page['PageUniqId'].'.html';
+					
+				if(file_exists($draft)){
+					unlink($draft);
+				}
+			}
+			
             if($preview == true){
                  $s_dest = $dest.'preview/';
             }

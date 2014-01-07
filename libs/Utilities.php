@@ -2,6 +2,84 @@
 	
 class Utilities
 {
+	// sets a language for the app
+	public static function SetLanguage($language, $domain = 'locale'){
+		putenv('LANG='.$language); 
+		setlocale(LC_ALL, $language);
+		
+		// set text domain
+		$domain = 'messages';
+		bindtextdomain($domain, $domain); 
+		bind_textdomain_codeset($domain, 'UTF-8');
+		
+		textdomain($domain);
+	}
+	
+	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
+	public static function GetPreferredLanguage($available_languages) { 
+    	
+    	// if $http_accept_language was left out, read it from the HTTP-Header 
+	    $http_accept_language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : ''; 
+
+
+	    preg_match_all("/([[:alpha:]]{1,8})(-([[:alpha:]|-]{1,8}))?" . 
+	                   "(\s*;\s*q\s*=\s*(1\.0{0,3}|0\.\d{0,3}))?\s*(,|$)/i", 
+	                   $http_accept_language, $hits, PREG_SET_ORDER); 
+	
+	    // default language (in case of no hits) is the first in the array 
+	    $bestlang = $available_languages[0]; 
+	    $bestqval = 0; 
+	
+	    foreach ($hits as $arr) { 
+	        // read data from the array of this hit 
+	        $langprefix = strtolower ($arr[1]); 
+	        if (!empty($arr[3])) { 
+	            $langrange = strtolower ($arr[3]); 
+	            $language = $langprefix . "-" . $langrange; 
+	        } 
+	        else $language = $langprefix; 
+	        $qvalue = 1.0; 
+	        if (!empty($arr[5])) $qvalue = floatval($arr[5]); 
+	      
+	        // find q-maximal language  
+	        if (in_array($language,$available_languages) && ($qvalue > $bestqval)) { 
+	            $bestlang = $language; 
+	            $bestqval = $qvalue; 
+	        } 
+	        // if no direct hit, try the prefix only but decrease q-value by 10% (as http_negotiate_language does) 
+	        else if (in_array($langprefix,$available_languages) && (($qvalue*0.9) > $bestqval)) { 
+	            $bestlang = $langprefix; 
+	            $bestqval = $qvalue*0.9; 
+	        } 
+	    } 
+	    
+	    // convert to dir format (e.g. en-us -> en_US)
+	    if(strlen($bestlang) > 2){ 
+			$arr = explode('-', $bestlang);
+			$bestlang = strtolower($arr[0]).'_'.strtoupper($arr[1]);
+		}
+		
+		// returns the bestlang
+	    return $bestlang;    
+	} 
+	
+	// determines the user's preferred language,
+	public static function GetSupportedLanguages($rootPrefix){
+		
+		$directories = glob($rootPrefix.'locale/*' , GLOB_ONLYDIR);
+		$languages = array();
+		
+		foreach ($directories as &$value) {
+		    $language = str_replace($rootPrefix.'locale/', '', $value);
+		    $language = str_replace('_', '-', $language);
+		    $language = strtolower($language);
+		    
+		    array_push($languages, $language);
+		}
+		
+		return $languages;
+	}
+
 	// gets a query string
 	public static function GetQueryString($field){
 		
@@ -338,6 +416,10 @@ class Utilities
         $content = str_replace('{{description}}', $page['Description'], $content);
         $content = str_replace('{{synopsis}}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         $content = str_replace('{{keywords}}', $page['Keywords'], $content);
+        $content = str_replace('{{callout}}', $page['Callout'], $content);
+        
+        // replace with php
+        $content = str_replace('{{language}}', '<?php print $language; ?>', $content);
         
         // create a friendly date
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
@@ -399,6 +481,17 @@ class Utilities
 		    $content = str_replace('{{menu-'.$value.'}}', $menu, $content);
 		    
 		}
+		
+		// cart
+		$cartFile = $root.'sites/common/modules/cart.php';
+		$cart = '';
+		
+		if(file_exists($cartFile)){
+            $cart = file_get_contents($cartFile);
+		}
+		
+		$content = str_replace('{{cart}}', $cart, $content);
+		$content = str_replace('{{email}}', $site['PrimaryEmail'], $content);
 		
 		// css
 		$stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css';
@@ -530,7 +623,7 @@ class Utilities
         }
     
         $fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/'.$status.'/'.$page['PageUniqId'].'.html';
-    
+        
         if(file_exists($fragment)){
           $p_content = file_get_contents($fragment);
         }
@@ -540,6 +633,7 @@ class Utilities
         //content and synopsis
         $content = str_replace('{{content}}', $p_content, $content);
           
+        // parses the template to get the html  
         $html = Utilities::ParseHTML($site, $page, $content, $preview, $root);
         
         $pageTypeUniqId = '-1';
@@ -554,11 +648,14 @@ class Utilities
         
         // setup php header
         $header = '<?php '.PHP_EOL.
+        	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.
             '$siteFriendlyId="'.$site['FriendlyId'].'";'.PHP_EOL.
             '$pageUniqId="'.$page['PageUniqId'].'";'.PHP_EOL.
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
+            '$language="'.$site['Language'].'";'.PHP_EOL.
+            'include \''.$rootloc.'site.php\';'.PHP_EOL.
             '?>';
             
 		$api = APP_URL;
@@ -571,7 +668,36 @@ class Utilities
         return $header.$html;
         
     }
-      
+    
+    // generates gettext for multi-lingual support for sites
+    public static function GenerateGettext($html){
+	    $html = str_replace('"', '\\"', $html);
+	    
+	    if($html == ''){
+		    return '';
+	    }
+	    else{
+			return '<?php print _("'.$html.'"); ?>';   
+		}
+    }
+    
+    // strips gettext
+    public static function StripGettext($html){
+	    
+	    // remove start php tag
+		$html = str_replace('<?php print _("', '', $html);
+		
+		// remove end php tag
+		$html = str_replace('"); ?>', '', $html);
+		
+		// remove escaped double quotes
+		$html = str_replace('\"', '"', $html);
+		
+		return $html;
+	    
+    }
+    
+    // parses the html  
     public static function ParseHTML($site, $page, $content, $preview, $root='../'){
     
         $html = str_get_html($content, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
@@ -604,7 +730,56 @@ class Utilities
 		if($html == null){
 			return '';
 		}
-    
+
+		// setup gettext blockquote, h1, h2, h3, p, td, th, li, meta tags for multi-lingual support
+		foreach($html->find('blockquote') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('h1') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('h2') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('h3') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('p') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('td') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('th') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('li') as $el){
+			$el->innertext = Utilities::GenerateGettext($el->innertext);
+		}
+		
+		foreach($html->find('meta[name=description]') as $el){
+			$content = $el->content;
+			$el->content = Utilities::GenerateGettext($content);
+		}
+		
+		foreach($html->find('meta[name=keywords]') as $el){
+			$content = $el->content;
+			$el->content = Utilities::GenerateGettext($content);
+		}
+		
+		foreach($html->find('meta[name=callout]') as $el){
+			$content = $el->content;
+			$el->content = Utilities::GenerateGettext($content);
+		}
+			
+		// parse module
         foreach($html->find('module') as $el){
           
             if(isset($el->name)){
@@ -789,6 +964,26 @@ class Utilities
                     $el->outertext= $content;
                 }
                 else if($name=='form'){
+                
+                	// place gettext around labels
+                	foreach($el->find('label') as $el_label){
+                	
+                		if(count($el_label->find('input')) > 0){ // generate gettext for radios, checkboxes
+                			$input_arr = $el_label->find('input');
+							$input_txt = $input_arr[0]->outertext;
+                			$text = str_replace($input_txt, '', $el_label->innertext); // replace input text
+	                		$el_label->innertext = $input_txt.Utilities::GenerateGettext($text);
+                		}
+						else{
+                			$el_label->innertext = Utilities::GenerateGettext($el_label->innertext);
+                		}
+					}
+					
+					// place gettext around spans
+                	foreach($el->find('.help-block') as $el_block){
+						$el_block->innertext = Utilities::GenerateGettext($el_block->innertext);
+					}
+                
                     $form = $el->innertext;
                     $file = $el->file;
                     $description = $el->description;
@@ -802,7 +997,7 @@ class Utilities
                 else if($name=='map'){
                     $address = $el->address;
                     ob_start();
-                    include $root.'sites/common/modules//map.php'; // loads the module
+                    include $root.'sites/common/modules/map.php'; // loads the module
                     $content = ob_get_contents(); // holds the content
                     ob_end_clean();
                     
@@ -834,6 +1029,22 @@ class Utilities
                     $el->outertext= $content;
                 }
 				else if($name=='shelf'){
+				
+					// place gettext around descripton
+                	foreach($el->find('.shelf-description') as $el_label){
+						$el_label->innertext = Utilities::GenerateGettext($el_label->innertext);
+					}
+					
+					// place gettext around shipping
+                	foreach($el->find('.shelf-shipping') as $el_label){
+						$el_label->innertext = Utilities::GenerateGettext($el_label->innertext);
+					}
+					
+					// place gettext around add to cart button
+                	foreach($el->find('.btn span') as $el_label){
+						$el_label->innertext = Utilities::GenerateGettext($el_label->innertext);
+					}
+				
 					$shelfId = $el->id;
 					$shelf = $el->innertext;
 					ob_start();

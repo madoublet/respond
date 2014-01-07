@@ -411,7 +411,7 @@ class Page{
 
             $db = DB::get();
 		    
-            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Callout,
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Callout,
             		Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,

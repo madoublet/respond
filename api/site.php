@@ -85,10 +85,30 @@ class SiteCreateResource extends Tonic\Resource {
 
         $friendlyId = $request['friendlyId'];
         $name = $request['name'];
-        $email = $request['email'];
-        $password = $request['password'];
         $s_passcode = $request['passcode'];
         $timeZone = $request['timeZone'];
+        $email = '';
+        $password = '';
+        $language = 'en'; // language for the app
+        $userId = -1;
+        
+        // check for email and password
+        if(isset($request['email'])){
+       		$language = $request['language'];
+	        $email = $request['email'];
+	        $password = $request['password'];
+        }
+        else{
+			// get an authuser
+			$authUser = new AuthUser();
+			
+			if($authUser->UserUniqId && $authUser->IsSuperAdmin==true){ // check if authorized
+				$userId = $authUser->UserId;
+			}
+			else{
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
+        }
         
         // defaults
         $firstName = 'New';
@@ -98,18 +118,24 @@ class SiteCreateResource extends Tonic\Resource {
 		$logoUrl = 'sample-logo.png';
 		
         if($s_passcode == PASSCODE){
-            
-            $isUserUnique = User::IsLoginUnique($email);
-            
-            if($isUserUnique==false){
-                return new Tonic\Response(Tonic\Response::CONFLICT);
+           
+           	// check for uniqueness of email 
+            if($email != ''){
+	            $isUserUnique = User::IsLoginUnique($email);
+	            
+	            if($isUserUnique==false){
+	                return new Tonic\Response(Tonic\Response::CONFLICT);
+	            }
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone, DEFAULT_LANGUAGE); // add the site
             
             // add the admin
-            $user = User::Add($email, $password, $firstName, $lastName, 'Admin', $site['SiteId']);
+            if($email != ''){
+            	$user = User::Add($email, $password, $firstName, $lastName, 'Admin', $language, $site['SiteId']);
+            	$userId = $user['UserId'];
+            }
             
             // set the stripe plan, customer id, status
             if(DEFAULT_STRIPE_PLAN != ''){
@@ -138,7 +164,7 @@ class SiteCreateResource extends Tonic\Resource {
     			$content = file_get_contents($filename);
     		}
     		
-            $homePage = Page::Add('index', 'Home', $description, $layout, $stylesheet, -1, $site['SiteId'], $user['UserId']);
+            $homePage = Page::Add('index', 'Home', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
             Page::SetIsActive($homePage['PageUniqId'], 1);
             
     		Publish::PublishFragment($site['FriendlyId'], $homePage['PageUniqId'], 'publish', $content);
@@ -150,13 +176,13 @@ class SiteCreateResource extends Tonic\Resource {
     		$stylesheet = 'content';
     		
     		// add the general page type and create a list
-    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, $site['SiteId'], $userId, $userId);
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
             
-    		$aboutUs = Page::Add('about', 'About', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+    		$aboutUs = Page::Add('about', 'About', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
             Page::SetIsActive($aboutUs['PageUniqId'], 1);
     		
     		Publish::PublishFragment($site['FriendlyId'], $aboutUs['PageUniqId'], 'publish', $content);
@@ -171,7 +197,7 @@ class SiteCreateResource extends Tonic\Resource {
     			$content = file_get_contents($filename);
     		}
     		
-            $contactUs = Page::Add('contact', 'Contact', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+            $contactUs = Page::Add('contact', 'Contact', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
             Page::SetIsActive($contactUs['PageUniqId'], 1);
         
     		Publish::PublishFragment($site['FriendlyId'], $contactUs['PageUniqId'], 'publish', $content);
@@ -186,7 +212,7 @@ class SiteCreateResource extends Tonic\Resource {
     			$content = file_get_contents($filename);
     		}
     		
-            $pageNotFound = Page::Add('error', 'Page Not Found', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $user['UserId']);
+            $pageNotFound = Page::Add('error', 'Page Not Found', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
             Page::SetIsActive($pageNotFound['PageUniqId'], 1);
             
     		Publish::PublishFragment($site['FriendlyId'], $pageNotFound['PageUniqId'], 'publish', $content);
@@ -198,15 +224,15 @@ class SiteCreateResource extends Tonic\Resource {
     		$stylesheet = 'content';
     		
     		// add the post page type
-    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, $site['SiteId'], $userId, $userId);
     		
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
             
-    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $layout, $stylesheet, $postPageType['PageTypeId'], $site['SiteId'], $user['UserId']);
-    		Page::EditLayout($samplePost['PageUniqId'], 'post', $user['UserId']);
+    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $layout, $stylesheet, $postPageType['PageTypeId'], $site['SiteId'], $userId);
+    		Page::EditLayout($samplePost['PageUniqId'], 'post', $userId);
             Page::SetIsActive($samplePost['PageUniqId'], 1);
     		
     		Publish::PublishFragment($site['FriendlyId'], $samplePost['PageUniqId'], 'publish', $content);
@@ -222,17 +248,17 @@ class SiteCreateResource extends Tonic\Resource {
     			$content = str_replace('{{pageTypeUniqId}}', $postPageType['PageTypeUniqId'], $content);
     		}
             
-    		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $user['UserId']);
-    		Page::EditLayout($blog['PageUniqId'], 'blog', $user['UserId']);
+    		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
+    		Page::EditLayout($blog['PageUniqId'], 'blog', $userId);
     		Page::SetIsActive($blog['PageUniqId'], 1);
     		
     		Publish::PublishFragment($site['FriendlyId'], $blog['PageUniqId'], 'publish', $content);
     		
     		// create the menu
-    		MenuItem::Add('Home', '', 'primary', 'index', $homePage['PageId'], 0, $site['SiteId'], $user['UserId'], $user['UserId']);
-            MenuItem::Add('Blog', '', 'primary', 'blog', $blog['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
-            MenuItem::Add('About', '', 'primary', 'page/about', $aboutUs['PageId'], 2, $site['SiteId'], $user['UserId'], $user['UserId']);
-    		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $user['UserId'], $user['UserId']);
+    		MenuItem::Add('Home', '', 'primary', 'index', $homePage['PageId'], 0, $site['SiteId'], $userId, $userId);
+            MenuItem::Add('Blog', '', 'primary', 'blog', $blog['PageId'], 2, $site['SiteId'], $userId, $userId);
+            MenuItem::Add('About', '', 'primary', 'page/about', $aboutUs['PageId'], 2, $site['SiteId'], $userId, $userId);
+    		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $userId, $userId);
     		
     		// publishes a theme for a site
     		Publish::PublishTheme($site, DEFAULT_THEME);
@@ -241,9 +267,9 @@ class SiteCreateResource extends Tonic\Resource {
     		Publish::PublishSite($site['SiteUniqId']);
     		
     		// send welcome email
-    		if(SEND_WELCOME_EMAIL == true){
+    		if(SEND_WELCOME_EMAIL == true && $email != ''){
     		
-	    		$to = $user['Email'];
+	    		$to = $email;
 	    		$from = REPLY_TO;
 	    		$subject = BRAND.': Welcome to '.BRAND;
 	    		$file = 'emails/new-user.html';
@@ -417,8 +443,9 @@ class SiteResource extends Tonic\Resource {
             $facebookAppId = $request['facebookAppId'];
             $primaryEmail = $request['primaryEmail'];
             $timeZone = $request['timeZone'];
+            $language = $request['language'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language);
 
             return new Tonic\Response(Tonic\Response::OK);
         

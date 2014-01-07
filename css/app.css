@@ -74,6 +74,10 @@ a{
         background-color: #f0f0f0;
     }
     
+    .primary-button i, .secondary-button i, .tertiary-button i{
+    	margin-right: 5px;
+    }
+    
 .offset-left{
     margin-left: 20px;
 }

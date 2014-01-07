@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Themes&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Themes"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -24,17 +26,14 @@
 </head>
 
 <body data-currpage="theme">
-	
-<!-- required for actions -->
-<input type="hidden" name="_submit_check" value="1"/>
-
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
-
 
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-resetting" value="<?php print _("Resetting theme..."); ?>" type="hidden">
+<input id="msg-reset" value="<?php print _("Theme successfully reset"); ?>" type="hidden">
+<input id="msg-applying" value="<?php print _("Applying theme..."); ?>" type="hidden">
+<input id="msg-applied" value="<?php print _("Theme successfully applied"); ?>" type="hidden">
 
 <section class="main">
 
@@ -42,7 +41,7 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-    	    <li class="static active"><a href="theme">Themes</a></li>
+    	    <li class="static active"><a href="theme"><?php print _("Themes"); ?></a></li>
         </ul>
         
     </nav>
@@ -53,8 +52,8 @@
             <h2 data-bind="text: name"></h2>
             <p data-bind="text: desc"></p>
             
-            <button class="primary-button" data-bind="click: $parent.showApplyDialog, visible: ($parent.theme()!=id())">Apply Theme</button>
-    		<button class="secondary-button" data-bind="click: $parent.showResetDialog, visible: ($parent.theme()==id())">Reset Theme</button>
+            <button class="primary-button" data-bind="click: $parent.showApplyDialog, visible: ($parent.theme()!=id())"><?php print _("Apply Theme"); ?></button>
+    		<button class="secondary-button" data-bind="click: $parent.showResetDialog, visible: ($parent.theme()==id())"><?php print _("Reset Theme"); ?></button>
         </div>
     
     </div>
@@ -71,23 +70,22 @@
 		
 		    <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">×</button>
-		        <h3>Apply Theme</span></h3>
+		        <h3><?php print _("Apply Theme"); ?></span></h3>
 		    </div>
 		    <div class="modal-body">
 		    
 		    <p>
-		    	Are you sure that you want to apply the <strong id="applyName">theme</strong> Theme?
+		    	<?php print _("Confirm you want to apply:"); ?> <strong id="applyName">theme</strong>
 		    </p>
 		    
 		    <p>
-		        This will completely change the look &amp; feel of your site and remove any custom
-		        changes you made to the Layout and Styles of the site.
+		        <?php print _("This will completely change the look and feel of your site and remove any custom changes you made to the layout and styles of the site."); ?>
 		    </p>
 		    
 		    </div>
 		    <div class="modal-footer">
-		    	<button class="secondary-button" data-dismiss="modal">Close</button>
-		    	<button class="primary-button" data-bind="click: applyTheme">Apply Theme</button>
+		    	<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+		    	<button class="primary-button" data-bind="click: applyTheme"><?php print _("Apply Theme"); ?></button>
 		    </div>
 		    <!-- /.modal-footer -->
 		
@@ -111,22 +109,22 @@
 
 		    <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">×</button>
-		        <h3>Reset Theme</span></h3>
+		        <h3><?php print _("Reset Theme"); ?></span></h3>
 		    </div>
 		    <div class="modal-body">
 		    
 		    <p>
-		        Are you sure that you want to reset the <strong id="resetName">theme</strong> Theme?
+		        <?php print _("Confirm you want to reset:"); ?> <strong id="resetName">theme</strong>
 		    </p>
 		    
 		    <p>
-		        This will override any custom changes you made to the Layout or Styles for the site.
+		        <?php print _("This will override any custom changes you made to the Layout or Styles for the site."); ?>
 		    </p>
 		    
 		    </div>
 		    <div class="modal-footer">
-		        <button class="secondary-button" data-dismiss="modal">Close</button>
-		    	<button class="primary-button" data-bind="click: resetTheme">Reset Theme</button>
+		        <button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+		    	<button class="primary-button" data-bind="click: resetTheme"><?php print _("Reset Theme"); ?></button>
 		    </div>
 		    <!-- /.modal-footer -->
 		

@@ -12,6 +12,23 @@ jQuery.fn.swap = function(b){
 	return this; 
 };
 
+// parse gettext (WIP)
+function parseGettext(html){
+
+	// remove start php tag
+	html = global.replaceAll(html, '<?php print _("', '');
+	
+	// remove end php tag
+	html = global.replaceAll(html, '"); ?>', '');
+	
+	// remove escaped quotes
+	html = global.replaceAll(html, '/"', '"');
+	
+	// return html
+	return html;
+	
+}
+
 
 // editor defaults
 var editorDefaults = {
@@ -56,7 +73,7 @@ var editorDefaults = {
 
 // editor plugin
 (function($){  
-  $.fn.respondEdit = function () {
+	$.fn.respondEdit = function () {
 
 		// create menu
 		var menu =  '<nav class="editor-menu">' +
@@ -143,10 +160,15 @@ var editorDefaults = {
 						else if(cssclass.indexOf('align-right')!=-1){
 							alignclass = ' align-right';
 						}
+						
+						var h = $(node).html();
+						
+						// remove gettext
+						h = parseGettext(h); 
 					
 						response+= '<div id="'+id+'" class="p'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 							editorDefaults.elementMenu +
-							'<div class="content" contentEditable="true">' + $(node).html() + '</div>' +
+							'<div class="content" contentEditable="true">' + h + '</div>' +
 							'</div>';
 				  	}
 		
@@ -721,12 +743,6 @@ var editorDefaults = {
 	  
 	  	// add editor class
 		$(this).addClass('editor');
-		 
-		// make blocks sortable 
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-		
-		// setup events
-		$(this).respondHandleEvents();
 		
 		// create BOLD
 		$('.editor-menu a.bold').click(function(){
@@ -887,7 +903,8 @@ var editorDefaults = {
 			  '</div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -906,7 +923,8 @@ var editorDefaults = {
 			  '</div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -929,8 +947,6 @@ var editorDefaults = {
 				'<div id="'+uniqId+'" class="youtube">' +
 				editorDefaults.elementMenuNoConfig + 
 				'<textarea placeholder="Paste HTML embed code here"></textarea></div>');
-			
-			$(editor).respondHandleEvents();
 			
 			return false;
 		});
@@ -966,7 +982,8 @@ var editorDefaults = {
 			  '<div contentEditable="true"></div>' +
 			  '</div>');
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -983,8 +1000,6 @@ var editorDefaults = {
 				 editorDefaults.elementMenuNoConfig + 
 				 '<div></div>' +
 				 '</div>');
-			
-			$(editor).respondHandleEvents();
 			
 			return false;
 		});
@@ -1022,8 +1037,6 @@ var editorDefaults = {
 			'<div><i class="in-textbox fa fa-map-marker"></i><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div></div>'
 			);
 			
-			$(editor).respondHandleEvents();
-			
 			return false;
 		});
 		
@@ -1047,8 +1060,6 @@ var editorDefaults = {
 				'<div class="title"><i class="fa fa-facebook"></i> Facebook Like</div></div>'
 				);
 			
-			$(editor).respondHandleEvents();
-			
 			return false;
 		});
 	
@@ -1064,8 +1075,6 @@ var editorDefaults = {
 				editorDefaults.elementMenuNoConfig + 
 				'<div class="title"><i class="fa fa-facebook"></i> Facebook Comments</div></div>'
 				);
-			
-			$(editor).respondHandleEvents();
 			
 			return false;
 		});
@@ -1089,7 +1098,8 @@ var editorDefaults = {
 				'<div class="field-list"></div><a class="add-field"><i class="fa fa-check"></i> Add Field</a></div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// set up sorting on form elements
+			$('.form div').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
 			
 			return false;
 		});
@@ -1108,7 +1118,8 @@ var editorDefaults = {
 				'<a class="add-sku"><i class="fa fa-tag"></i> Add SKU</a></div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// set up sorting on shelf items
+			$('.shelf-items').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
 			
 			return false;
 		});
@@ -1126,7 +1137,8 @@ var editorDefaults = {
 				'<div contentEditable="true"></div></div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -1144,7 +1156,8 @@ var editorDefaults = {
 				'<div contentEditable="true"></div></div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -1162,7 +1175,8 @@ var editorDefaults = {
 				'<div contentEditable="true"></div></div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -1185,19 +1199,17 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			var sortable = $('div.sortable');
-			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
 	
 		
-		// generate PREVIEW
+		// create PREVIEW
 		$('.editor-menu a.preview').click(function(){
 			var editor = $('#desc').get(0);
 			
@@ -1205,7 +1217,6 @@ var editorDefaults = {
 			
 			return false;
 		});
-	
 	
 		// create COLS 7/3
 		$('.editor-menu a.cols73').click(function(){
@@ -1227,13 +1238,11 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			var sortable = $('div.sortable');
-			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
@@ -1258,13 +1267,11 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			var sortable = $('div.sortable');
-			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
@@ -1291,13 +1298,11 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			var sortable = $('div.sortable');
-			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
@@ -1326,13 +1331,11 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			var sortable = $('div.sortable');
-			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
@@ -1351,11 +1354,11 @@ var editorDefaults = {
 			
 			$('.block-actions').show();
 			
+			// reset currnode (new content should be added to the end)
 			currnode = null;
 			
-			$('div.sortable').sortable({handle:'span.marker', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: "pointer"});
-			
-			$(editor).respondHandleEvents();
+			// re-init sortable
+			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
 			
 			return false;
 		});
@@ -1371,449 +1374,841 @@ var editorDefaults = {
 			featuredDialog.show();
 			return false;
 		});
+		
+		// #persistent events
+		
+		// setup context
+		var context = this;
+		
+		// make blocks sortable 
+		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		
+		// handle remove-block
+		$(this).on('click', '.remove-block', function(){
+			$(this.parentNode.parentNode.parentNode).remove();
+			
+			$(context).find('.up').removeClass('disabled');
+			$(context).find('.up').first().addClass('disabled');
 	
+			$(context).find('.down').removeClass('disabled');
+			$(context).find('.down').last().addClass('disabled');
+			
+			return false;
+		});
+		
+		// handle expand-menu
+		$(this).on('click', '.expand-menu', function(){
+			$(this).toggleClass('active');
+			$(this).next().toggleClass('active');
+		});
+		
+		// add field
+		$(this).on('click', '.add-field', function(){
+			var id = $(this.parentNode).attr('id');
+			fieldDialog.show(id);
+			return false;
+		});
+		
+		// add sku
+		$(this).on('click', '.add-sku', function(){
+			var id = $(this.parentNode).attr('id');
+			skuDialog.show(id);
+			return false;
+		});
+		
+		// set currnode when div is focused
+		$(this).on('focusin', '.sortable div', function(){
+			currnode = this;
+		});
+		
+		// set currrow when the th or td is focused
+		$(this).on('focusin', 'th, td', function(){
+			currrow = this.parentNode;
+			$('tr').removeClass('curr-row');
+			$(this.parentNode).addClass('curr-row');
+		});
+		
+		// set currnode when textarea is focused
+		$(this).on('focusin', '.sortable textarea, .sortable input', function(){
+			if(!$(this.parentNode).hasClass('field') && !$(this.parentNode).hasClass('caption')){
+				currnode = this.parentNode;
+			}
+		});
+		
+		// add row
+		$(this).on('click', '.add-row', function(){
+			var table = $(this).parent().parent().find('table');
+			var cols = $(table).attr('data-columns');
+	
+			var html = '<tr>';
+	
+			for(var x=0; x<cols; x++){
+				html += '<td contentEditable="true"></td>';
+			}
+	
+			html += '</tr>';
+			
+			if(currrow){
+				$(currrow).after(html);
+			}
+			else{
+				$(table).find('tbody').append(html);
+			}
+	
+			return false;
+		});
+		
+		// remove row
+		$(this).on('click', '.remove-row', function(){
+			if(currrow){
+				$(currrow).remove();
+			}
+			
+			return false;
+		});
+	
+		// add column
+		$(this).on('click', '.add-column', function(){
+			var table = $(this).parent().parent().find('table');
+			var cols = parseInt($(table).attr('data-columns'));
+			var trs = table.find('tr');
+	
+			for(var x=0; x<trs.length; x++){
+	
+				if(trs[x].parentNode.nodeName=='THEAD'){
+					$(trs[x]).append('<th contentEditable="true"></th>');
+				}
+				else{
+					$(trs[x]).append('<td contentEditable="true"></td>');
+				}
+			}
+	
+			var n_cols = cols + 1;
+	
+			table.removeClass('col-'+cols);
+			table.addClass('col-'+(n_cols));
+			table.attr('data-columns', (n_cols));
+	
+			return false;
+		});
+		
+		// caption focus (for images)
+		$(this).on('focus', '.caption input', function(){
+			$(this.parentNode.parentNode).addClass('edit');
+		});
+	
+		// caption blur (for images)
+		$(this).on('blur', '.caption input', function(){
+			var caption = $(this).val();
+			$(this.parentNode.parentNode).find('img').attr('title', caption);
+			$(this.parentNode.parentNode).removeClass('edit');
+		});
+	
+		// image click
+		$(this).on('click', '.img', function(){
+			var moduleId = this.parentNode.id;
+			var src = $('div#'+moduleId+' img').attr('src');
+			var uniqueName = $('div#'+moduleId+' img').attr('id');
+	
+			aviaryDialog.show(uniqueName, src);
+	
+			return false;
+		});
+		
+		// remove click
+		$(this).on('click', '.remove', function(){
+			$(this.parentNode.parentNode).remove();
+			context.find('a.'+this.parentNode.className).show();
+			currnode = null;
+			return false;
+		}); 
+	
+		// remove-image click
+		$(this).on('click', '.remove-image', function(){
+			$(this.parentNode).remove();
+			context.find('a.'+this.parentNode.className).show();
+			currnode = null;
+			return false;
+		}); 
+	
+		// config click
+		$(this).on('click', '.config', function(){
+			$(this.parentNode.parentNode).find('.expand-menu').toggleClass('active');
+			$(this.parentNode.parentNode).find('.element-menu').toggleClass('active');
+	
+			var moduleId = $(this.parentNode.parentNode).attr('id');
+	
+			var id = $(this.parentNode.parentNode).attr('data-id');
+			var cssClass = $(this.parentNode.parentNode).attr('data-cssclass');
+			
+			elementConfigDialog.show(moduleId, id, cssClass);
+	
+			currnode = null;
+			return false;
+		}); 
+	
+		// config block click
+		$(this).on('click', '.config-block', function(){
+			var blockId = $(this.parentNode.parentNode.parentNode).attr('id');
+			var id = $(this.parentNode.parentNode.parentNode).attr('id');
+			var cssClass = $(this.parentNode.parentNode.parentNode).attr('data-cssclass');
+			
+			blockConfigDialog.show(blockId, id, cssClass);
+	
+			currnode = null;
+			return false;
+		}); 
+	
+		// remove field click
+		$(this).on('click', '.remove-field', function(){
+			$(this.parentNode).remove();
+			return false;
+		});
+		
+		// add image click
+		$(this).on('click', '.add-image', function(){
+			var d = this.parentNode.parentNode;
+			var id = $(d).attr('id');
+	
+			imagesDialog.show('slideshow', id);
+		});
+		
+		// config list click   
+		$(this).on('click', '.config-list', function(){
+			var id=$(this.parentNode.parentNode).attr('id');
+			listDialog.show('edit', id);
+			return false;
+		});
+		
+		// config html click
+		$(this).on('click', '.config-html', function(){
+			var id=$(this.parentNode.parentNode).attr('id');
+			var desc=$(this.parentNode.parentNode).attr('data-desc');
+			var type=$(this.parentNode.parentNode).attr('data-type');
+			
+			htmlDialog.show(desc, type, 'edit', id);
+			return false;
+		});
+	
+		// config plugin click
+		$(this).on('click', '.config-plugin', function(){
+			var id=$(this.parentNode.parentNode).attr('id');
+			var type=$(this.parentNode.parentNode).attr('data-type');
+			configPluginsDialog.show(id, type);
+			return false;
+		});
+
+		// handle html div click
+		$(this).on('click', '.html div', function(){
+			$(this).parent().toggleClass('active');	
+		});
+			
+		// handle switch
+		$(this).on('click', '.switch', function(){
+			$(this.parentNode).find('a').removeClass('selected');
+			$(this).addClass('selected');
+			return false;
+		});
+		
+		// handle down
+		$(this).on('click', '.down', function(){
+			if($(this).hasClass('disabled')){return false;}
+	
+			var curr = $(this.parentNode.parentNode.parentNode);
+			var next = $(this.parentNode.parentNode.parentNode).next();
+	
+			$(curr).swap(next); 
+			
+			$(context).find('a.up').removeClass('disabled');
+			$(context).find('a.up').first().addClass('disabled');
+	
+			$(context).find('a.down').removeClass('disabled');
+			$(context).find('a.down').last().addClass('disabled'); 
+			
+			return false;
+		});
+	
+		// handle up
+		$(this).on('click', '.up', function(){
+			if($(this).hasClass('disabled')){return false;}
+			  
+			var curr = $(this.parentNode.parentNode.parentNode);
+			var next = $(this.parentNode.parentNode.parentNode).prev();
+			  
+			$(curr).swap(next); 
+			
+			$(context).find('a.up').removeClass('disabled');
+			$(context).find('a.up').first().addClass('disabled');
+	
+			$(context).find('a.down').removeClass('disabled');
+			$(context).find('a.down').last().addClass('disabled'); 
+			
+			return false;
+		});
+		
+		// handle key events
+		$(this).on('keydown', '[contentEditable=true]', function(){
+		
+			var editor = $(context).get(0);
+			
+			var el = $(this).parents('div')[0];
+		 
+			// ENTER KEY events
+			if(event.keyCode == '13'){
+			
+				if($(el).hasClass('ul')){
+					$(this).after(
+						'<div contentEditable="true"></div>'
+					);
+				
+					$(this.nextSibling).focus();
+				}
+				else if($(el).hasClass('table')){
+				
+					// add row
+					var table = $(el).find('table');
+					var cols = $(table).attr('data-columns');
+			
+					var html = '<tr>';
+			
+					for(var x=0; x<cols; x++){
+						html += '<td contentEditable="true"></td>';
+					}
+			
+					html += '</tr>';
+					
+					var tr = $(this).parents('tr')[0];
+					
+					$(tr).after(html);
+			
+					$(tr).next().find('[contentEditable=true]').get(0).focus();
+				}
+				else{
+					$(el).after(
+						'<div class="p">' +
+						editorDefaults.elementMenu + 
+						'<div contentEditable="true"></div></div>'
+						);
+				
+					$(this.parentNode.nextSibling).find('div').focus();
+				}
+			
+				$(editor).respondHandleEvents();
+			
+				event.preventDefault();
+				return false;
+			  }
+			  else if(event.keyCode == '8'){
+					var h = $(this).html().trim();
+					h = global.replaceAll(h, '<br>', '');
+					
+					if(h==''){
+					
+						if($(el).hasClass('table')){
+						
+							var previous = $(this.parentNode.previousSibling);
+						
+							$(this.parentNode).remove();
+							
+							if(previous){
+								$(previous).find('td')[0].focus();
+							}
+							
+							return false;
+							
+						}
+					
+						if($(el).hasClass('ul')){
+			  		
+							var parent = $(this.parentNode);
+							var divs = $(this.parentNode).find('div');
+							
+							if(divs.length>1){
+							$(this).remove();
+							
+							var last = parent.find('div:last');
+							
+							last.focus();
+							last.select();
+							
+							return false;
+						}
+						
+						
+					}
+				}
+			
+			}
+		});
+		
+		// setup sorting on .shelf-items, forms, slideshows
+		$('.shelf-items').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
+		$('.form div').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
+		$('.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
+		
+		// setup paste
+		$('[contentEditable=true]').paste();
+		
+		// setup events
+		$(this).respondHandleEvents();	
 	}
 
 })(jQuery);
 
 (function($){  
-  $.fn.respondHtml = function () {
-  
-	var html = '';
+	$.fn.respondHtml = function () {
 	
-	// gets html for a given block
-	function getBlockHtml(block){
-	
-  		var newhtml = '';
-	  
-	  	var divs = $(block).find('div');
-	  
-	  	for(var x=0; x<divs.length; x++){
+		var html = '';
 		
-			// generate P
-			if($(divs[x]).hasClass('p')){
-		  		var id = $(divs[x]).attr('data-id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  		var cssclass = $(divs[x]).attr('data-cssclass');
-		  		if(cssclass==undefined || cssclass=='')cssclass = '';
+		// gets html for a given block
+		function getBlockHtml(block){
+		
+			var newhtml = '';
 		  
-		  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
-				newhtml += '<p id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '>' + h + '</p>';
-			}
-
-			// generate TABLE
-			if($(divs[x]).hasClass('table')){
-		  		var id = $(divs[x]).attr('data-id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		 
-		 		var table = $(divs[x]).find('table');
-		 		var cols = $(table).attr('data-columns');
-		 		var cssclass = $(table).attr('class');
-
-				newhtml += '<table id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += ' data-columns="'+cols+'"';
-				newhtml += '>';
-
-				newhtml+='<thead>';
-
-				var tr = $(table).find('thead tr');		
-
-				newhtml += '<tr>';
-				var ths = $(tr).find('th');
-
-				for(var d=0; d<ths.length; d++){
-					newhtml += '<th class="col-'+(d+1)+'">'+$(ths[d]).html()+'</th>';
-				}
-				newhtml += '</tr>';		
-
-				newhtml+='</thead>';
-				newhtml+='<tbody>';
-
-				var trs = $(table).find('tbody tr');
-
-				for(var t=0; t<trs.length; t++){
-					newhtml += '<tr class="row-'+(t+1)+'">';
-					var tds = $(trs[t]).find('td');
-
-					for(var d=0; d<tds.length; d++){
-						newhtml += '<td class="col-'+(d+1)+'">'+$(tds[d]).html()+'</td>';
-					}
-					newhtml += '</tr>';
-				}
-
-				newhtml += '</tbody></table>';
-			}
-		
-			// generate BLOCKQUOTE
-			if($(divs[x]).hasClass('q')){
-		  		var id = $(divs[x]).attr('data-id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  		var cssclass = $(divs[x]).attr('data-cssclass');
-		  		if(cssclass==undefined || cssclass=='')cssclass = '';
+		  	var divs = $(block).find('div');
 		  
-		  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
-				newhtml += '<blockquote id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '>' + h + '</blockquote>';
-			}
-		
-			// genearate HTML
-			if($(divs[x]).hasClass('html')){
-				var id = $(divs[x]).attr('data-id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				
-				var desc = $(divs[x]).attr('data-desc');
-				if(desc==undefined || desc=='')desc='HTML block';
-				
-				var type = $(divs[x]).attr('data-type');
-				if(type==undefined || type=='')type='html';
-
-				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
-
-				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'" type="'+type+'">' + h + '</module>';
-			}
-		
-			// generate PLUGIN
-			if($(divs[x]).hasClass('plugin')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-				var data = $(divs[x]).data();
-				var attrs = '';
-
-				for(var i in data){
-					if(i != 'sortableItem'){
-						attrs += i + '="' + data[i] + '" ';
-					}
-				}
-
-				var html = '<plugin id="'+id+'" ' + attrs + '></plugin>';
-				newhtml += html;
-			}
-		
-			// generate YOUTUBE
-			if($(divs[x]).hasClass('youtube')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				
-				var h = jQuery.trim($(divs[x]).find('textarea').val());
-				
-				newhtml += '<module id="'+id+'" name="youtube">' + h + '</module>';
-			}
+		  	for(var x=0; x<divs.length; x++){
 			
-			// generate VIMEO
-			if($(divs[x]).hasClass('vimeo')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				
-				var h = jQuery.trim($(divs[x]).find('textarea').val());
-				
-				newhtml += '<module id="'+id+'" name="vimeo">' + h + '</module>';
-			}
-		
-			// generate UL
-			if($(divs[x]).hasClass('ul')){
-				var id = $(divs[x]).attr('data-id');
-			  	if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			  	var cssclass = $(divs[x]).attr('data-cssclass');
-			  	if(cssclass==undefined || cssclass=='')cssclass = '';
+				// generate P
+				if($(divs[x]).hasClass('p')){
+			  		var id = $(divs[x]).attr('data-id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  		var cssclass = $(divs[x]).attr('data-cssclass');
+			  		if(cssclass==undefined || cssclass=='')cssclass = '';
 			  
-			  	var lis = $(divs[x]).find('[contentEditable=true]');
-			  	newhtml += '<ul id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-			  	newhtml += '>';
-			  
-			  	for(var y=0; y<lis.length; y++){
-					newhtml += '<li>' + jQuery.trim($(lis[y]).html()) + '</li>';
-			  	}
-			  
-			  	newhtml += '</ul>';
-			}
-		
-			// generate H1
-			if($(divs[x]).hasClass('h1')){
-				var id = $(divs[x]).attr('data-id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				var cssclass = $(divs[x]).attr('data-cssclass');
-				if(cssclass==undefined || cssclass=='')cssclass = '';
-				
-				var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
-				newhtml += '<h1 id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '>' + h + '</h1>';
-			}
-		
-			// generate H2
-			if($(divs[x]).hasClass('h2')){
-		  		var id = $(divs[x]).attr('data-id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  		var cssclass = $(divs[x]).attr('data-cssclass');
-				if(cssclass==undefined || cssclass=='')cssclass = '';
-		  
-		  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
-		  		newhtml += '<h2 id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '>' + h + '</h2>';
-	  		}
-		
-			// generate H3
-			if($(divs[x]).hasClass('h3')){
-				var id = $(divs[x]).attr('data-id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				var cssclass = $(divs[x]).attr('data-cssclass');
-				if(cssclass==undefined || cssclass=='')cssclass = '';
-
-				var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
-				newhtml += '<h3 id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '>' + h + '</h3>';
-			}
-
-			// generate SYNTAX
-			if($(divs[x]).hasClass('syntax')){
-				var id = $(divs[x]).attr('data-id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
-
-				newhtml += '<pre id="'+id+'" class="prettyprint linenums pre-scrollable">' + h + '</pre>';
-			}
-		
-			// generate images
-			if($(divs[x]).hasClass('i')){
-				var id = $(divs[x]).attr('data-id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-				var dir = 'o';
-				if($(divs[x]).hasClass('right')){
-					dir = 'r';
+			  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+			  		
+					newhtml += '<p id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '>' + h + '</p>';
 				}
-				else if($(divs[x]).hasClass('left')){
-					dir = 'l';
-				}
-		  
-				var constraints = '';
-				var width = $(divs[x]).attr('data-width');
-				var height = $(divs[x]).attr('data-height');
-				if(width!=''&&height!=''){
-					if(!isNaN(width)&&!isNaN(height)){ // set constraints
-						constraints = ' data-width="'+width+'" data-height="'+height+'"';
-					}
-	  			}
-		  
-				var i_id = $(divs[x]).find('img').attr('id');
-				var src = $(divs[x]).find('img').attr('src');
-				var url = $(divs[x]).find('img').attr('data-url');
-				var h = jQuery.trim($(divs[x]).find('div.content').html());
-	   
-		  		newhtml += '<div id="'+id+'" class="'+dir+'-image"'+constraints+'>';
-		  		if(url!=undefined){
-					newhtml += '<a href="'+url+'"';
+		
+				// generate TABLE
+				if($(divs[x]).hasClass('table')){
+			  		var id = $(divs[x]).attr('data-id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			 
+			 		var table = $(divs[x]).find('table');
+			 		var cols = $(table).attr('data-columns');
+			 		var cssclass = $(table).attr('class');
+		
+					newhtml += '<table id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += ' data-columns="'+cols+'"';
 					newhtml += '>';
-		  		}
-		  		newhtml += '<img id="'+i_id+'" src="'+src+'">';
-		  		if(url!=undefined)newhtml += '</a>';
-		  		if(dir=='o'){
-					newhtml += '</div>';
-		  		}
-		  		else{
-					newhtml += '<p>'+h+'</p></div>';
-		  		}
-	   
-			}	
 		
-			// generate MODULES
-			if($(divs[x]).hasClass('slideshow')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-				var width = $(divs[x]).attr('data-width');
-				if(width==undefined || width=='')width=300;
-
-				var height = $(divs[x]).attr('data-height');
-				if(height==undefined || height=='')height=200;
-
-				var imgs = $(divs[x]).find('span.image img');
-
-				newhtml += '<module id="'+id+'" name="slideshow" width="'+width+'" height="'+height+'">';
-
-				for(var y=0; y<imgs.length; y++){
-					var imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-					newhtml += imghtml;
+					newhtml+='<thead>';
+		
+					var tr = $(table).find('thead tr');		
+		
+					newhtml += '<tr>';
+					var ths = $(tr).find('th');
+		
+					for(var d=0; d<ths.length; d++){
+						newhtml += '<th class="col-'+(d+1)+'">'+$(ths[d]).html()+'</th>';
+					}
+					newhtml += '</tr>';		
+		
+					newhtml+='</thead>';
+					newhtml+='<tbody>';
+		
+					var trs = $(table).find('tbody tr');
+		
+					for(var t=0; t<trs.length; t++){
+						newhtml += '<tr class="row-'+(t+1)+'">';
+						var tds = $(trs[t]).find('td');
+		
+						for(var d=0; d<tds.length; d++){
+							newhtml += '<td class="col-'+(d+1)+'">'+$(tds[d]).html()+'</td>';
+						}
+						newhtml += '</tr>';
+					}
+		
+					newhtml += '</tbody></table>';
 				}
-
-				newhtml += '</module>';
-			}
-		
-			// generate LIST
-			if($(divs[x]).hasClass('list')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-				  
-				var display = $(divs[x]).attr('data-display');
-				var type = $(divs[x]).attr('data-type');
-				var label = $(divs[x]).attr('data-label');
-
-				var desclength = $(divs[x]).attr('data-desclength');
-				var length = $(divs[x]).attr('data-length');
-				var orderby = $(divs[x]).attr('data-orderby');
-				var groupby = $(divs[x]).attr('data-groupby');
-				var pageresults = $(divs[x]).attr('data-pageresults');
-
-				newhtml += '<module id="'+id+'" name="list" display="'+display+'" type="'+type+'" label="' + label + '"' +
-					' desclength="'+desclength+'"' +
-					' length="'+length+'"' +
-					' orderby="'+orderby+'" groupby="'+groupby+'" pageresults="'+pageresults+'"' +
-					'></module>';
-			}
 			
-			// generate FEATURED
-			if($(divs[x]).hasClass('featured')){
-				var id = $(divs[x]).attr('id');
-				  
-				var pageUniqId = $(divs[x]).attr('data-pageuniqid');
-				var pageName = $(divs[x]).attr('data-pagename');
-				
-				newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
-			}
-		
-			// generate LIKE
-			if($(divs[x]).hasClass('like')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			
-				newhtml += '<module id="'+id+'" name="like"></module>';
-			}
-
-			// generate COMMENTS
-			if($(divs[x]).hasClass('comments')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			
-				newhtml += '<module id="'+id+'" name="comments"></module>';
-			}
-
-			// generate BLOG
-			if($(divs[x]).hasClass('blog')){
-				var id = $(divs[x]).attr('id');
-				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-			
-				newhtml += '<module id="'+id+'" name="blog"></module>';
-			}
-		
-			// generate H$
-			if($(divs[x]).hasClass('hr')){
-		  		var id = $(divs[x]).attr('data-id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-				var cssclass = $(divs[x]).attr('data-cssclass');
-				if(cssclass==undefined || cssclass=='')cssclass = '';
-			
-				newhtml += '<hr id="'+id+'"';
-				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
-				newhtml += '></hr>';
-			}
-		
-			// generate FORM
-			if($(divs[x]).hasClass('form')){
-		  		var id= $(divs[x]).attr('id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  
-		 		newhtml += '<module id="'+id+'" name="form">';
-		  
-		  		var fields = $(divs[x]).find('span.field-container');
-		  
-		  		for(var y=0; y<fields.length; y++){
-		  			field = $(fields[y]).html();
-		  			
-					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
-					field = global.replaceAll(field, ' ui-sortable', '');
-					newhtml += field;
-		  		}
-		  
-		  		newhtml += '</module>';
-			}
-			
-			// generate SHELF
-			if($(divs[x]).hasClass('shelf')){
-		  		var id= $(divs[x]).attr('id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-
-		  		var items = $(divs[x]).find('.shelf-items').html();
-		  		items = global.replaceAll(items, editorDefaults.elementMenuShelf, '');
-				items = global.replaceAll(items, ' ui-sortable', '');
-		  
-		 		newhtml += '<module id="'+id+'" name="shelf">' +
-		 					items + 
-		 					'</module>';
-			}
-		
-			// generate MAP
-			if($(divs[x]).hasClass('map')){
-		  		var id = $(divs[x]).attr('id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  
-		  		var address = $(divs[x]).find('input[type=text]').val();
-		  		newhtml += '<module id="'+id+'" name="map" address="'+address+'"></module>';
-			}
-	
-			// generate FILE
-			if($(divs[x]).hasClass('file')){
-		  		var id = $(divs[x]).attr('id');
-		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				// generate BLOCKQUOTE
+				if($(divs[x]).hasClass('q')){
+			  		var id = $(divs[x]).attr('data-id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  		var cssclass = $(divs[x]).attr('data-cssclass');
+			  		if(cssclass==undefined || cssclass=='')cssclass = '';
 			  
-		  		var desc = $(divs[x]).find('input[type=text]').val();
-		  		var file = $(divs[x]).attr('data-filename');
-		  		newhtml += '<module id="'+id+'" name="file" file="'+file+'" description="'+desc+'"></module>';
-			}
+			  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+					newhtml += '<blockquote id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '>' + h + '</blockquote>';
+				}
+			
+				// genearate HTML
+				if($(divs[x]).hasClass('html')){
+					var id = $(divs[x]).attr('data-id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					
+					var desc = $(divs[x]).attr('data-desc');
+					if(desc==undefined || desc=='')desc='HTML block';
+					
+					var type = $(divs[x]).attr('data-type');
+					if(type==undefined || type=='')type='html';
 		
-	  	}
-
-	  	return newhtml;
-	}
-
-	var blocks = $(this).find('div.block');
-	
-	// walk through blocks
-	for(var y=0; y<blocks.length; y++){
-	  	var id = $(blocks[y]).attr('id');
-	  	var cssclass = $(blocks[y]).attr('data-cssclass');
-
-	  	if(cssclass==undefined || cssclass=='')cssclass = '';
-
-	  	if(cssclass!=''){
-	  		cssclass = ' ' + cssclass;
-	  	}
-	  
-	  	if(id==undefined || id=='')id='block-'+y;
-	  
-	  	html += '<div id="'+id+'" class="block row' + cssclass + '">';
-	  
-	  	// determine if there are columns
-	  	var cols = $(blocks[y]).find('.col');
-
-	  	if(cols.length==0){
-			html += getBlockHtml(blocks[y]);
-	  	}
-	  	else{
-			for(var z=0; z<cols.length; z++){
-		  		var className = $(cols[z]).attr('class').replace(' sortable', '').replace(' ui-sortable', '');
+					var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
+		
+					newhtml += '<module id="'+id+'" name="html" desc="'+desc+'" type="'+type+'">' + h + '</module>';
+				}
+			
+				// generate PLUGIN
+				if($(divs[x]).hasClass('plugin')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+					var data = $(divs[x]).data();
+					var attrs = '';
+		
+					for(var i in data){
+						if(i != 'sortableItem'){
+							attrs += i + '="' + data[i] + '" ';
+						}
+					}
+		
+					var html = '<plugin id="'+id+'" ' + attrs + '></plugin>';
+					newhtml += html;
+				}
+			
+				// generate YOUTUBE
+				if($(divs[x]).hasClass('youtube')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					
+					var h = jQuery.trim($(divs[x]).find('textarea').val());
+					
+					newhtml += '<module id="'+id+'" name="youtube">' + h + '</module>';
+				}
+				
+				// generate VIMEO
+				if($(divs[x]).hasClass('vimeo')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					
+					var h = jQuery.trim($(divs[x]).find('textarea').val());
+					
+					newhtml += '<module id="'+id+'" name="vimeo">' + h + '</module>';
+				}
+			
+				// generate UL
+				if($(divs[x]).hasClass('ul')){
+					var id = $(divs[x]).attr('data-id');
+				  	if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				  	var cssclass = $(divs[x]).attr('data-cssclass');
+				  	if(cssclass==undefined || cssclass=='')cssclass = '';
+				  
+				  	var lis = $(divs[x]).find('[contentEditable=true]');
+				  	newhtml += '<ul id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+				  	newhtml += '>';
+				  
+				  	for(var y=0; y<lis.length; y++){
+						newhtml += '<li>' + jQuery.trim($(lis[y]).html()) + '</li>';
+				  	}
+				  
+				  	newhtml += '</ul>';
+				}
+			
+				// generate H1
+				if($(divs[x]).hasClass('h1')){
+					var id = $(divs[x]).attr('data-id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					var cssclass = $(divs[x]).attr('data-cssclass');
+					if(cssclass==undefined || cssclass=='')cssclass = '';
+					
+					var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+					newhtml += '<h1 id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '>' + h + '</h1>';
+				}
+			
+				// generate H2
+				if($(divs[x]).hasClass('h2')){
+			  		var id = $(divs[x]).attr('data-id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  		var cssclass = $(divs[x]).attr('data-cssclass');
+					if(cssclass==undefined || cssclass=='')cssclass = '';
+			  
+			  		var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+			  		newhtml += '<h2 id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '>' + h + '</h2>';
+		  		}
+			
+				// generate H3
+				if($(divs[x]).hasClass('h3')){
+					var id = $(divs[x]).attr('data-id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					var cssclass = $(divs[x]).attr('data-cssclass');
+					if(cssclass==undefined || cssclass=='')cssclass = '';
+		
+					var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+					newhtml += '<h3 id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '>' + h + '</h3>';
+				}
+		
+				// generate SYNTAX
+				if($(divs[x]).hasClass('syntax')){
+					var id = $(divs[x]).attr('data-id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+					var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
+		
+					newhtml += '<pre id="'+id+'" class="prettyprint linenums pre-scrollable">' + h + '</pre>';
+				}
+			
+				// generate images
+				if($(divs[x]).hasClass('i')){
+					var id = $(divs[x]).attr('data-id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+					var dir = 'o';
+					if($(divs[x]).hasClass('right')){
+						dir = 'r';
+					}
+					else if($(divs[x]).hasClass('left')){
+						dir = 'l';
+					}
+			  
+					var constraints = '';
+					var width = $(divs[x]).attr('data-width');
+					var height = $(divs[x]).attr('data-height');
+					if(width!=''&&height!=''){
+						if(!isNaN(width)&&!isNaN(height)){ // set constraints
+							constraints = ' data-width="'+width+'" data-height="'+height+'"';
+						}
+		  			}
+			  
+					var i_id = $(divs[x]).find('img').attr('id');
+					var src = $(divs[x]).find('img').attr('src');
+					var url = $(divs[x]).find('img').attr('data-url');
+					var h = jQuery.trim($(divs[x]).find('div.content').html());
+		   
+			  		newhtml += '<div id="'+id+'" class="'+dir+'-image"'+constraints+'>';
+			  		if(url!=undefined){
+						newhtml += '<a href="'+url+'"';
+						newhtml += '>';
+			  		}
+			  		newhtml += '<img id="'+i_id+'" src="'+src+'">';
+			  		if(url!=undefined)newhtml += '</a>';
+			  		if(dir=='o'){
+						newhtml += '</div>';
+			  		}
+			  		else{
+						newhtml += '<p>'+h+'</p></div>';
+			  		}
+		   
+				}	
+			
+				// generate MODULES
+				if($(divs[x]).hasClass('slideshow')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+					var width = $(divs[x]).attr('data-width');
+					if(width==undefined || width=='')width=300;
+		
+					var height = $(divs[x]).attr('data-height');
+					if(height==undefined || height=='')height=200;
+		
+					var imgs = $(divs[x]).find('span.image img');
+		
+					newhtml += '<module id="'+id+'" name="slideshow" width="'+width+'" height="'+height+'">';
+		
+					for(var y=0; y<imgs.length; y++){
+						var imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
+						newhtml += imghtml;
+					}
+		
+					newhtml += '</module>';
+				}
+			
+				// generate LIST
+				if($(divs[x]).hasClass('list')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+					  
+					var display = $(divs[x]).attr('data-display');
+					var type = $(divs[x]).attr('data-type');
+					var label = $(divs[x]).attr('data-label');
+		
+					var desclength = $(divs[x]).attr('data-desclength');
+					var length = $(divs[x]).attr('data-length');
+					var orderby = $(divs[x]).attr('data-orderby');
+					var groupby = $(divs[x]).attr('data-groupby');
+					var pageresults = $(divs[x]).attr('data-pageresults');
+		
+					newhtml += '<module id="'+id+'" name="list" display="'+display+'" type="'+type+'" label="' + label + '"' +
+						' desclength="'+desclength+'"' +
+						' length="'+length+'"' +
+						' orderby="'+orderby+'" groupby="'+groupby+'" pageresults="'+pageresults+'"' +
+						'></module>';
+				}
+				
+				// generate FEATURED
+				if($(divs[x]).hasClass('featured')){
+					var id = $(divs[x]).attr('id');
+					  
+					var pageUniqId = $(divs[x]).attr('data-pageuniqid');
+					var pageName = $(divs[x]).attr('data-pagename');
+					
+					newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
+				}
+			
+				// generate LIKE
+				if($(divs[x]).hasClass('like')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				
+					newhtml += '<module id="'+id+'" name="like"></module>';
+				}
+		
+				// generate COMMENTS
+				if($(divs[x]).hasClass('comments')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				
+					newhtml += '<module id="'+id+'" name="comments"></module>';
+				}
+		
+				// generate BLOG
+				if($(divs[x]).hasClass('blog')){
+					var id = $(divs[x]).attr('id');
+					if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				
+					newhtml += '<module id="'+id+'" name="blog"></module>';
+				}
+			
+				// generate H$
+				if($(divs[x]).hasClass('hr')){
+			  		var id = $(divs[x]).attr('data-id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+					var cssclass = $(divs[x]).attr('data-cssclass');
+					if(cssclass==undefined || cssclass=='')cssclass = '';
+				
+					newhtml += '<hr id="'+id+'"';
+					if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+					newhtml += '></hr>';
+				}
+			
+				// generate FORM
+				if($(divs[x]).hasClass('form')){
+			  		var id= $(divs[x]).attr('id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  
+			 		newhtml += '<module id="'+id+'" name="form">';
+			  
+			  		var fields = $(divs[x]).find('span.field-container');
+			  
+			  		for(var y=0; y<fields.length; y++){
+			  			field = $(fields[y]).html();
+			  			
+			  			field = global.replaceAll(field, editorDefaults.elementMenuNoConfig, '');
+			  			
+						field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
+						
+						field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v active"></a><div class="element-menu ui-sortable active"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
+						
+						field = global.replaceAll(field, ' ui-sortable', '');
+						newhtml += field;
+			  		}
+			  
+			  		newhtml += '</module>';
+				}
+				
+				// generate SHELF
+				if($(divs[x]).hasClass('shelf')){
+			  		var id= $(divs[x]).attr('id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		
+			  		var items = $(divs[x]).find('.shelf-items').html();
+			  		
+			  		items = global.replaceAll(items, editorDefaults.elementMenuShelf, '');
+			  		
+			  		items = global.replaceAll(items, '<i class="expand-menu fa fa-ellipsis-v"></i>' +
+				'<div class="element-menu"><a class="config-shelf fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>', '');
+						
+					items = global.replaceAll(items, '<i class="expand-menu fa fa-ellipsis-v active"></i>' +
+				'<div class="element-menu active"><a class="config-shelf fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>', '');
+			  		
+					items = global.replaceAll(items, ' ui-sortable', '');
+			  
+			 		newhtml += '<module id="'+id+'" name="shelf">' +
+			 					items + 
+			 					'</module>';
+				}
+			
+				// generate MAP
+				if($(divs[x]).hasClass('map')){
+			  		var id = $(divs[x]).attr('id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  
+			  		var address = $(divs[x]).find('input[type=text]').val();
+			  		newhtml += '<module id="'+id+'" name="map" address="'+address+'"></module>';
+				}
+		
+				// generate FILE
+				if($(divs[x]).hasClass('file')){
+			  		var id = $(divs[x]).attr('id');
+			  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				  
+			  		var desc = $(divs[x]).find('input[type=text]').val();
+			  		var file = $(divs[x]).attr('data-filename');
+			  		newhtml += '<module id="'+id+'" name="file" file="'+file+'" description="'+desc+'"></module>';
+				}
+			
+		  	}
+		
+		  	return newhtml;
+		}
+		
+		var blocks = $(this).find('div.block');
+		
+		// walk through blocks
+		for(var y=0; y<blocks.length; y++){
+		  	var id = $(blocks[y]).attr('id');
+		  	var cssclass = $(blocks[y]).attr('data-cssclass');
+		
+		  	if(cssclass==undefined || cssclass=='')cssclass = '';
+		
+		  	if(cssclass!=''){
+		  		cssclass = ' ' + cssclass;
+		  	}
 		  
-		  		html += '<div class="'+className+'">';
-		  		html += getBlockHtml(cols[z]);
-		  		html += '</div>';
-			}
-	  	}
-
-	  	html+= '</div>';
-	
+		  	if(id==undefined || id=='')id='block-'+y;
+		  
+		  	html += '<div id="'+id+'" class="block row' + cssclass + '">';
+		  
+		  	// determine if there are columns
+		  	var cols = $(blocks[y]).find('.col');
+		
+		  	if(cols.length==0){
+				html += getBlockHtml(blocks[y]);
+		  	}
+		  	else{
+				for(var z=0; z<cols.length; z++){
+			  		var className = $(cols[z]).attr('class').replace(' sortable', '').replace(' ui-sortable', '');
+			  
+			  		html += '<div class="'+className+'">';
+			  		html += getBlockHtml(cols[z]);
+			  		html += '</div>';
+				}
+		  	}
+		
+		  	html+= '</div>';
+		
+		}
+		
+		return html;
 	}
-
-	return html;
-  }
 
 })(jQuery);
 
@@ -1848,7 +2243,7 @@ var editorDefaults = {
 			}
 			
 			// arrh! focus!
-			$(curr).find('[contentEditable=true], input, textarea').focus(); // #here
+			$(curr).find('[contentEditable=true], input, textarea').focus();
 		}
 		
 		$(this).respondHandleEvents();
@@ -1858,450 +2253,69 @@ var editorDefaults = {
 })(jQuery);
 
 (function($){  
-  $.fn.respondHandleEvents = function(){
-	
-	var context = this;
-    
-    console.log('handle events');
-    console.log(this);
-
-	// set currnode
-	$(context).find('.sortable div').focusin(function(){
-		currnode = this;
-	});
-	
-	$(context).find('table').on('focusin', 'th, td', function(){
-		currrow = this.parentNode;
-		$('tr').removeClass('curr-row');
-		$(this.parentNode).addClass('curr-row');
-	});
-	
-	$(context).find('.sortable textarea').focusin(function(){
-		currnode = this;
-	});
-
-	$(context).find('.sortable input').focusin(function(){
-	  
-		if($(this.parentNode).hasClass('field') || $(this.parentNode).hasClass('caption')){
-		
-		}
-		else{
-			currnode = this.parentNode;
-		}
-		
-	});
-
-	// add field
-	$(context).find('.add-field').click(function(){
-		var id = $(this.parentNode).attr('id');
-		fieldDialog.show(id);
-		return false;
-	});
-	
-	// add sku
-	$(context).find('.add-sku').click(function(){
-		var id = $(this.parentNode).attr('id');
-		skuDialog.show(id);
-		return false;
-	});
-	
-	// handle focus
-	$(context).find('div.table td').focus(function(){
-		$(this).addClass('current');
-	});
-
-	$(context).find('div.table td').blur(function(){
-		$(this).removeClass('current');
-	});
-
-	// handle add row
-	$(context).find('.add-row').unbind('click');
-	
-	$(context).find('.add-row').click(function(){
-		var table = $(this).parent().parent().find('table');
-		var cols = $(table).attr('data-columns');
-
-		var html = '<tr>';
-
-		for(var x=0; x<cols; x++){
-			html += '<td contentEditable="true"></td>';
-		}
-
-		html += '</tr>';
-		
-		if(currrow){
-			$(currrow).after(html);
-		}
-		else{
-			$(table).find('tbody').append(html);
-		}
-
-		return false;
-	});
-	
-	// handle remove row
-	$(context).find('.remove-row').unbind('click');
-	
-	$(context).find('.remove-row').click(function(){
-		if(currrow){
-			$(currrow).remove();
-		}
-		
-		return false;
-	});
-
-	// handle add column
-	$(context).find('.add-column').click(function(){
-		var table = $(this).parent().parent().find('table');
-		var cols = parseInt($(table).attr('data-columns'));
-		var trs = table.find('tr');
-
-		for(var x=0; x<trs.length; x++){
-
-			if(trs[x].parentNode.nodeName=='THEAD'){
-				$(trs[x]).append('<th contentEditable="true"></th>');
-			}
-			else{
-				$(trs[x]).append('<td contentEditable="true"></td>');
-			}
-		}
-
-		var n_cols = cols + 1;
-
-		table.removeClass('col-'+cols);
-		table.addClass('col-'+(n_cols));
-		table.attr('data-columns', (n_cols));
-
-		return false;
-	});
-
-
-	$('.form div').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
-	
-	$('.shelf-items').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
-
-	$('div.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
-	
-	$(context).find('span.caption input').focus(function(){
-		$(this.parentNode.parentNode).addClass('edit');
-	});
-
-	$(context).find('span.caption input').blur(function(){
-		var caption = $(this).val();
-		$(this.parentNode.parentNode).find('img').attr('title', caption);
-		$(this.parentNode.parentNode).removeClass('edit');
-	});
-
-	$(context).find('div.img').click(function(){
-		var moduleId = this.parentNode.id;
-		var src = $('div#'+moduleId+' img').attr('src');
-		var uniqueName = $('div#'+moduleId+' img').attr('id');
-
-		aviaryDialog.show(uniqueName, src);
-
-		return false;
-	});
+	$.fn.respondHandleEvents = function(){
 	
 	
-	$(context).find('.expand-menu').unbind('click');
-	$(context).find('.expand-menu').unbind('hover');
-	$(context).find('.element-menu').unbind('blur');
-	
-	$(context).find('.expand-menu').click(function(){
-		$(this).toggleClass('active');
-		$(this).next().toggleClass('active');
-	});
-	
-
-	$(context).find('.remove').click(function(){
-	
-		$(this.parentNode.parentNode).remove();
-		context.find('a.'+this.parentNode.className).show();
-		currnode = null;
-		return false;
-	}); 
-
-	$(context).find('.remove-image').click(function(){
-	
-		$(this.parentNode).remove();
-		context.find('a.'+this.parentNode.className).show();
-		currnode = null;
-		return false;
-	}); 
-
-	$(context).find('.config').click(function(){
-	
-		$(this.parentNode.parentNode).find('.expand-menu').toggleClass('active');
-		$(this.parentNode.parentNode).find('.element-menu').toggleClass('active');
-
-		var moduleId = $(this.parentNode.parentNode).attr('id');
-
-		var id = $(this.parentNode.parentNode).attr('data-id');
-		var cssClass = $(this.parentNode.parentNode).attr('data-cssclass');
-		
-		elementConfigDialog.show(moduleId, id, cssClass);
-
-		currnode = null;
-		return false;
-	}); 
-
-	$(context).find('.config-block').click(function(){
-
-		var blockId = $(this.parentNode.parentNode.parentNode).attr('id');
-		var id = $(this.parentNode.parentNode.parentNode).attr('id');
-		var cssClass = $(this.parentNode.parentNode.parentNode).attr('data-cssclass');
-		
-		blockConfigDialog.show(blockId, id, cssClass);
-
-		currnode = null;
-		return false;
-	}); 
-
-	$(context).find('.remove-field').click(function(){
-		$(this.parentNode).remove();
-		return false;
-	});  
-	
-	function handleUpDown(){
-		$(context).find('a.up').removeClass('disabled');
-		$(context).find('a.up').first().addClass('disabled');
-
-		$(context).find('a.down').removeClass('disabled');
-		$(context).find('a.down').last().addClass('disabled');   
 	}
-   
-	$(context).find('.remove-block').click(function(){
-		$(this.parentNode.parentNode.parentNode).remove();
-		handleUpDown();
-		return false;
-	});
-	
- 	handleUpDown();
-	
-	$(context).find('.down').click(function(){
-		if($(this).hasClass('disabled')){return false;}
-
-		var curr = $(this.parentNode.parentNode.parentNode);
-		var next = $(this.parentNode.parentNode.parentNode).next();
-
-		$(curr).swap(next); 
-		handleUpDown();
-		return false;
-	});
-
-	$(context).find('.up').click(function(){
-		if($(this).hasClass('disabled')){return false;}
-		  
-		var curr = $(this.parentNode.parentNode.parentNode);
-		var next = $(this.parentNode.parentNode.parentNode).prev();
-		  
-		$(curr).swap(next); 
-		handleUpDown();
-		return false;
-	});
-   
-	$(context).find('button.add-image').click(function(){
-		var d = this.parentNode.parentNode;
-		var id = $(d).attr('id');
-
-		imagesDialog.show('slideshow', id);
-	});
-	   
-	$(context).find('.config-list').click(function(){
-		var id=$(this.parentNode.parentNode).attr('id');
-		listDialog.show('edit', id);
-		return false;
-	});
-	
-	$(context).find('.config-html').click(function(){
-		var id=$(this.parentNode.parentNode).attr('id');
-		var desc=$(this.parentNode.parentNode).attr('data-desc');
-		var type=$(this.parentNode.parentNode).attr('data-type');
-		
-		htmlDialog.show(desc, type, 'edit', id);
-		return false;
-	});
-
-	$(context).find('.config-plugin').click(function(){
-		var id=$(this.parentNode.parentNode).attr('id');
-		var type=$(this.parentNode.parentNode).attr('data-type');
-		configPluginsDialog.show(id, type);
-		return false;
-	});
-	
-	
-	$(context).find('.html div').unbind('click');
-	
-	$(context).find('.html div').on('click', function(){
-		$(this).parent().toggleClass('active');	
-	});
-		
-	$(context).find('a.switch').click(function(){
-		$(this.parentNode).find('a').removeClass('selected');
-		$(this).addClass('selected');
-		return false;
-	});
-	  
-	$(context).find('[contentEditable=true]').unbind('keydown');
-		
-	$('[contentEditable=true]').paste();
-	 
-	$(context).find('[contentEditable=true]').keydown(function(event){
-	
-		var editor = $('#desc').get(0);
-		
-		var el = $(this).parents('div')[0];
-	 
-		// ENTER KEY events
-		if(event.keyCode == '13'){
-		
-			if($(el).hasClass('ul')){
-				$(this).after(
-					'<div contentEditable="true"></div>'
-				);
-			
-				$(this.nextSibling).focus();
-			}
-			else if($(el).hasClass('table')){
-			
-				// add row
-				var table = $(el).find('table');
-				var cols = $(table).attr('data-columns');
-		
-				var html = '<tr>';
-		
-				for(var x=0; x<cols; x++){
-					html += '<td contentEditable="true"></td>';
-				}
-		
-				html += '</tr>';
-				
-				var tr = $(this).parents('tr')[0];
-				
-				$(tr).after(html);
-		
-				//$(table).find('tbody').append(html);
-				
-				$(tr).next().find('[contentEditable=true]').get(0).focus();
-				
-			}
-			else{
-				$(el).after(
-					'<div class="p">' +
-					editorDefaults.elementMenu + 
-					'<div contentEditable="true"></div></div>'
-					);
-			
-					$(this.parentNode.nextSibling).find('div').focus();
-			}
-		
-			$(editor).respondHandleEvents();
-		
-			event.preventDefault();
-			return false;
-	  }
-	  else if(event.keyCode == '8'){
-			var h = $(this).html().trim();
-			h = global.replaceAll(h, '<br>', '');
-			
-			if(h==''){
-			
-				if($(el).hasClass('table')){
-				
-					var previous = $(this.parentNode.previousSibling);
-				
-					$(this.parentNode).remove();
-					
-					if(previous){
-						$(previous).find('td')[0].focus();
-					}
-					
-					return false;
-					
-				}
-			
-				if($(el).hasClass('ul')){
-	  		
-					var parent = $(this.parentNode);
-					var divs = $(this.parentNode).find('div');
-					
-					if(divs.length>1){
-					$(this).remove();
-					
-					var last = parent.find('div:last');
-					
-					last.focus();
-					last.select();
-					
-					return false;
-				}
-				
-				
-			}
-		}
-		
-	  }
-	});
-  }
 
 })(jQuery);
 
 
 (function($){  
-  $.fn.respondGetDesc = function(){
-  
-	var divs = $(this).find('div.p');
-   
-	var desc = '';
+	$.fn.respondGetDesc = function(){
 	
-	for(var x=0; x<divs.length; x++){
-	  desc += jQuery.trim($(divs[x]).find('div').text());
+		var divs = $(this).find('div.p');
+	
+		var desc = '';
+	
+		for(var x=0; x<divs.length; x++){
+			desc += jQuery.trim($(divs[x]).find('div').text());
+		}
+	
+		if(desc.length>200){
+			desc = desc.substring(0, 200) + '...';
+		}
+		
+		return desc;
 	}
-  
-  if(desc.length>200){
-	desc = desc.substring(0, 200) + '...';
-  }
-	return desc;
-  }
 
 })(jQuery);
 
 (function($){  
-  $.fn.respondGetPrimaryImage = function(){
-  
-	var imgs = $(this).find('div.block .img img');
-   
-	if(imgs.length==0){
-	  imgs = $(this).find('div.block span.image img');
+	$.fn.respondGetPrimaryImage = function(){
+	
+		var imgs = $(this).find('div.block .img img');
+		
+		if(imgs.length==0){
+			imgs = $(this).find('div.block span.image img');
+		}
+		
+		var image = '';
+		
+		if(imgs && imgs.length>0){
+			var parts = imgs[0].src.split('/');
+			
+			if(parts.length>0){
+				image = parts[parts.length-1];
+			}
+		}
+		
+		return image;
 	}
-	
-	var image = '';
-	
-	if(imgs && imgs.length>0){
-	    var parts = imgs[0].src.split('/');
-        
-        if(parts.length>0){
-            image = parts[parts.length-1];
-        }
-    }
-    
-	return image;
-  }
 
 })(jQuery);
 
 (function($){  
-  $.fn.respondGetLocation = function(){
-  
-	var inputs = $(this).find('div.map input');
-   
-	var address='';
+	$.fn.respondGetLocation = function(){
 	
-	if(inputs.length>0){
-	  address = $(inputs[0]).val();
+		var inputs = $(this).find('div.map input');
+		
+		var address='';
+		
+		if(inputs.length>0){
+			address = $(inputs[0]).val();
+		}
+	
+		return address;
 	}
-
-	return address;
-  }
-
 })(jQuery);

@@ -84,7 +84,7 @@ var layoutModel = {
     
     save:function(o, e){
         
-		message.showMessage('progress', 'Updating layout...');
+		message.showMessage('progress', $('#msg-updating').val());
         
         var content = layoutModel.cm.getValue();
         
@@ -93,10 +93,10 @@ var layoutModel = {
 			type: 'POST',
 			data: {name: layoutModel.current.name, content: content},
 			success: function(data){
-    			message.showMessage('success', 'Layout saved');
+    			message.showMessage('success', $('#msg-saved').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the layout, please try again');
+				message.showMessage('error', $('#msg-saving-error').val());
 			}
 		});
         
@@ -117,7 +117,7 @@ var layoutModel = {
         name = global.replaceAll(name, '.html', '');
     		
 		if(name==''){
-			message.showMessage('error', 'A name is required to add a layout');
+			message.showMessage('error', $('#msg-add-error').val());
 			return false;
 		}
 		
@@ -131,12 +131,12 @@ var layoutModel = {
                         'file': name+'.html'
     				});
                 
-    			message.showMessage('success', 'Layout successfully added');
+    			message.showMessage('success', $('#msg-add-success').val());
                 
                 $('#addDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem adding the layout, please try again');
+				message.showMessage('error', $('#msg-add-problem').val());
 			}
 		});
         
@@ -161,11 +161,11 @@ var layoutModel = {
 			success: function(data){
                 layoutModel.files.remove(layoutModel.toBeRemoved); // remove the page from the model
                 
-    			message.showMessage('success', 'Layout successfully removed');
+    			message.showMessage('success', $('#msg-remove-success').val());
     	        $('#removeDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem deleting the layout, please try again');
+				message.showMessage('error', $('msg-remove-problem').val());
 			}
 		});
         

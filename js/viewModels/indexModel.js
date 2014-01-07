@@ -14,7 +14,7 @@ var indexModel = {
         var email = $('#email').val();
         var password = $('#password').val();
 
-        message.showMessage('progress', 'Login...');
+        message.showMessage('progress', $('#msg-progress').val());
 
         $.ajax({
 			url: 'api/user/login',
@@ -25,7 +25,7 @@ var indexModel = {
 			},
 			error: function(xhr, errorText, thrownError){
 				console.log(xhr.responseText);
-				message.showMessage('error', xhr.responseText);
+				message.showMessage('error', $('#msg-error').val());
 			}
         });
 

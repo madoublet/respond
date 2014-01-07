@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Scripts&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Scripts"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -25,13 +27,20 @@
 </head>
 
 <body data-currpage="scripts">
-	
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
 
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-updating" value="<?php print _("Updating scripts..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("Scripts updated successfully"); ?>" type="hidden">
+<input id="msg-updating-error" value="<?php print _("There was a problem saving the script file, please try again"); ?>" type="hidden">
+<input id="msg-name-required" value="<?php print _("A name is required to add a script"); ?>" type="hidden">
+<input id="msg-script-adding" value="<?php print _("Adding a script..."); ?>" type="hidden">
+<input id="msg-script-added" value="<?php print _("Script successfully added"); ?>" type="hidden">
+<input id="msg-script-adding-error" value="<?php print _("Adding a script..."); ?>" type="hidden">
+<input id="msg-script-removing" value="<?php print _("Removing the script..."); ?>" type="hidden">
+<input id="msg-script-removed" value="<?php print _("Script successfully removed"); ?>" type="hidden">
+<input id="msg-script-remove-error" value="<?php print _("There was a problem removing the script file, please try again"); ?>" type="hidden">
 
 <section class="main">
 
@@ -64,7 +73,7 @@
 	</div>
     
     <div class="actions">
-        <button class="primary-button" data-bind="click: save">Save</button>
+        <button class="primary-button" data-bind="click: save"><?php print _("Save"); ?></button>
     </div>
 </section>
 <!-- /.main -->
@@ -78,24 +87,24 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Add Script</h3>
+				<h3><?php print _("Add Script"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 
 			<div class="modal-body">
 			
 				<div class="form-group">
-					<label for="name">Name:</label>
+					<label for="name"><?php print _("Name:"); ?></label>
 					<input id="name" type="text" class="form-control">
-					<span class="help-block">Lowercase, no spaces, no special characters (., !, etc), <strong>leave the .js off</strong></span>
+					<span class="help-block"><?php print _("Lowercase, no spaces, no special characters (., !, etc), leave the .js off"); ?></span>
 				</div>
 				
 			</div>
 			<!-- /.modal-body -->
 
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addScript">Add Script</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: addScript"><?php print _("Add Script"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		
@@ -119,22 +128,22 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Remove Script</h3>
+				<h3><?php print _("Remove Script"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
 			<div class="modal-body">
 			
 			<p>
-				Are you sure that you want to delete <strong id="removeName">this script</strong>?
+				<?php print _("Confirm that you want to delete:"); ?> <strong id="removeName">this script</strong>
 			</p>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: removeScript">Remove Script</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeScript"><?php print _("Remove Script"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		

@@ -25,6 +25,9 @@ var slideshowDialog = {
 				'</div>';
 
 			$(editor).respondAppend(html);
+			
+			// setup sorting on slideshows
+			$('.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 
 			$('#slideshowDialog').modal('hide');
 		});

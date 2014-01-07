@@ -1,12 +1,14 @@
 // handles the html dialog
 var htmlDialog = {
 
-	desc: 'HTML block',
+	desc: '',
 	type: 'html',
 	mode: 'add',
 	moduleId: null,
 
 	init:function(){
+	
+		htmlDialog.desc = $('#msg-html-dialog-desc').val();
 	
 		$('#addHtml').click(function(){
 		

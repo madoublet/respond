@@ -34,8 +34,8 @@ var filesModel = {
             		var ext = file.name.split('.').pop();
             	
 					if(tbe.toUpperCase() != ext.toUpperCase()) {
-						message.showMessage('error', 'The extensions must match when editing an existing file.');
-						done('The extensions must match when editing an existing file.');
+						message.showMessage('error', $('#msg-extension-match').val());
+						done($('#msg-extension-match').val());
 					}
 					else{ 
 						done();
@@ -52,7 +52,7 @@ var filesModel = {
                 
                 // undo edit
                 filesModel.toBeEdited = null;
-                $('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>');
+                $('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> ' + $('#msg-drag').val() + '</span>');
 				$('.dropzone').removeClass('edit-mode');
             }
             
@@ -107,7 +107,7 @@ var filesModel = {
 	
 		$('.listItem').removeClass('edit-mode');
 		$(e.target).parents('.listItem').addClass('edit-mode');
-		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here to replace selected file</span>');
+		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> ' + $('#msg-drag-replace').val() + '</span>');
 		$('.dropzone').addClass('edit-mode');
 	},
 
@@ -115,7 +115,7 @@ var filesModel = {
 		filesModel.toBeEdited = null;
 		
 		$('.listItem').removeClass('edit-mode');
-		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>');
+		$('.dz-message').html('<i class="fa fa-cloud-upload fa-4x"></i> ' + $('#msg-drag').val() + '</span>');
 		$('.dropzone').removeClass('edit-mode');
 	},
 
@@ -143,7 +143,7 @@ var filesModel = {
 
     			$('#deleteDialog').modal('hide');
 
-				message.showMessage('success', 'The file was removed successfully');
+				message.showMessage('success', $('#msg-remove-successfully').val());
 
 			},
 			error: function(xhr, errorText, thrownError){

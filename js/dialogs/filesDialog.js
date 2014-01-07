@@ -28,7 +28,10 @@ var filesDialog = {
 			'<div class="file" data-filename="'+filename+'">' +
 			editorDefaults.elementMenuNoConfig +
 			'<div><i class="in-textbox fa fa-file-o"></i>' +
-			'<input type="text" value="Download '+filename+'" spellcheck="false" maxlength="256" placeholder="File description"></div></div>'
+			'<input type="text" value="' + $('#msg-files-dialog-download').val() + 
+			' ' +
+			filename + '" spellcheck="false" maxlength="256" placeholder="' +
+			$('#msg-files-dialog-desc').val() + '"></div></div>'
         );
 
         $('#filesDialog').modal('hide'); // show modal

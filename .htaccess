@@ -3,6 +3,11 @@ Options -Indexes
 Options +FollowSymLinks
 
 RewriteEngine on 
+
+RewriteCond %{REQUEST_URI} !api\\dispatch\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/.* api/dispatch.php [L,QSA]
+
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME}\.php -f 
 RewriteRule ^(.*)$ $1.php

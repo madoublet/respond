@@ -123,14 +123,40 @@ class PageResource extends Tonic\Resource {
      * @method DELETE
      */
     function remove($pageUniqId) {
+    
         // get an authuser
         $authUser = new AuthUser();
 
         if(isset($authUser->UserUniqId)){ // check if authorized
+        
+        	$site = Site::GetBySiteId($authUser->SiteId);
+        	$page = Page::GetByPageUniqId($pageUniqId);
+        	
+        	if($page['SiteId']==$site['SiteId']){ // make sure page is part of the site
+        	
+        		$file = '../sites/'.$site['FriendlyId'].'/'.$page['FriendlyId'].'.php';
+        	
+	        	if($page['PageTypeId']!=-1){
+			        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+			        $file = '../sites/'.$site['FriendlyId'].'/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'].'.php';
+		        }
+		        
+		        //print $file;
+		        
+		        // remove page
+		        Page::Remove($pageUniqId);
+		        
+		        // remove file
+		        if(file_exists($file)){
+		        	unlink($file);
+		        }
 
-            Page::Remove($pageUniqId);
+				return new Tonic\Response(Tonic\Response::OK);
+	        }
+	        else{
+		        return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+	        }
 
-            return new Tonic\Response(Tonic\Response::OK);
         }
         else{
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
@@ -225,6 +251,7 @@ class PageContentResource extends Tonic\Resource {
 			Page::EditTimestamp($page['PageUniqId'], $authUser->UserId);
 			
             if($status=='publish'){
+            
             	Page::SetIsActive($page['PageUniqId'], 1);
                 $url = Publish::PublishPage($page['PageUniqId']);
                 
@@ -603,6 +630,18 @@ class PageListSortedResource extends Tonic\Resource {
 
                 $page['Url'] = $url;
                     
+                
+                // determine if the page has a draft
+                $draft = '../sites/'.$site['FriendlyId'].'/fragments/draft/'.$page['PageUniqId'].'.html';
+                
+                $hasDraft = false;
+                
+                if(file_exists($draft)){
+                	$hasDraft = true;
+                }
+                
+                $page['HasDraft'] = $hasDraft;
+                
                 $pages[$row['PageUniqId']] = $page;
             }
 
@@ -733,7 +772,15 @@ class PageListResource extends Tonic\Resource {
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
         $page = $request['page'];
+        
+        // get language
+        $language = 'en';
+        
+        if(isset($request['language'])){
+        	$language = $request['language'];
+		}
 
+		// set order
         if($orderBy=='Created'){
             $orderBy = $orderBy.' DESC';
         }
@@ -749,6 +796,12 @@ class PageListResource extends Tonic\Resource {
         $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
 
 
+		// set language to the domain for the site
+    	$domain = '../sites/'.$site['FriendlyId'].'/locale';
+		
+		Utilities::SetLanguage($language, $domain);
+
+		// set destination
         $dest = 'sites/'.$site['FriendlyId'];
         
         // Get all pages
@@ -783,9 +836,9 @@ class PageListResource extends Tonic\Resource {
             
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
-                    'Name' => $page['Name'],
-                    'Description' => $page['Description'],
-                    'Callout' => $page['Callout'],
+                    'Name' => _($page['Name']),	// get a translation for name, description, and callout
+                    'Description' => _($page['Description']),
+                    'Callout' => _($page['Callout']),
                     'HasCallout' => $hasCallout,
                     'Url' => $url,
                     'Image' => $imageUrl,
@@ -827,6 +880,13 @@ class PageBlogResource extends Tonic\Resource {
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
         $page = $request['page'];
+        
+        // get language
+        $language = 'en';
+        
+        if(isset($request['language'])){
+        	$language = $request['language'];
+		}
 
         if($orderBy=='Created'){ // need to check these to prevent SQL injections
             $orderBy = 'Pages.Created DESC';
@@ -882,10 +942,25 @@ class PageBlogResource extends Tonic\Resource {
                     'Author' => $name
                 );
                 
-            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.html';
+            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.php';
 
             if(file_exists($fragment)){
-                $content = file_get_contents($fragment);
+            
+            	// set language to the domain for the site
+            	$domain = '../sites/'.$site['FriendlyId'].'/locale';
+				
+				Utilities::SetLanguage($language, $domain);
+				
+            	ob_start(); // start output buffer
+            	
+				textdomain($domain);
+
+			    include $fragment;
+			    $content = ob_get_contents(); // get contents of buffer
+			    
+			    ob_end_clean();
+			    
+                //$content = file_get_contents($fragment); #old
             }
             else{
                 $content = 'Not found';

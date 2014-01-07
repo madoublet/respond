@@ -13,7 +13,7 @@ var pluginsDialog = {
 			var plugin = $('#selectPlugin li.selected a');
 			
 			if(plugin.length==0){
-				message.showMessage('error', 'Please select a plugin.');
+				message.showMessage('error', $('#msg-select-plugins-error').val());
 				return;
 			}
 			

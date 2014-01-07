@@ -90,7 +90,7 @@ var scriptsModel = {
     
     save:function(o, e){
         
-		message.showMessage('progress', 'Updating styles...');
+		message.showMessage('progress', $('#msg-updating').val());
         
         var content = scriptsModel.cm.getValue();
         
@@ -99,10 +99,10 @@ var scriptsModel = {
 			type: 'POST',
 			data: {file: scriptsModel.current.file, content: content},
 			success: function(data){
-    			message.showMessage('success', 'Script saved');
+    			message.showMessage('success', $('#msg-updated').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the script file, please try again');
+				message.showMessage('error', $('#msg-updating-error').val());
 			}
 		});
         
@@ -123,9 +123,11 @@ var scriptsModel = {
         name = global.replaceAll(name, '.js', '');
     		
 		if(name==''){
-			message.showMessage('error', 'A name is required to add a script');
+			message.showMessage('error', $('#msg-name-required').val());
 			return false;
 		}
+		
+		message.showMessage('progress', $('#msg-script-adding').val());
         
         $.ajax({
             url: 'api/script/add',
@@ -138,12 +140,12 @@ var scriptsModel = {
                         'file': name+'.js'
     				});
                 
-    			message.showMessage('success', 'Script successfully added');
+    			message.showMessage('success', $('#msg-script-added').val());
                 
                 $('#addDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem adding the script, please try again');
+				message.showMessage('error', $('#msg-script-adding-error').val());
 			}
 		});
         
@@ -160,6 +162,8 @@ var scriptsModel = {
     },
     
     removeScript: function(o, e){
+    
+    	message.showMessage('progress', $('#msg-script-removing').val());
         
         $.ajax({
             url: 'api/script/delete',
@@ -168,12 +172,12 @@ var scriptsModel = {
 			success: function(data){
                 scriptsModel.files.remove(scriptsModel.toBeRemoved); // remove the page from the model
                 
-    			message.showMessage('success', 'Script successfully removed');
+    			message.showMessage('success', $('#msg-script-removed').val());
                 
                 $('#removeDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem deleting the script, please try again');
+				message.showMessage('error', $('#msg-script-remove-error').val());
 			}
 		});
         

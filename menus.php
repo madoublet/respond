@@ -2,39 +2,42 @@
 	include 'app.php'; // import php files
 	
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Menu&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Menus"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/page.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/menu.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/pages.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/menuItems.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
 <body data-currpage="menu">
 
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
-	
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-adding" value="<?php print _("Adding menu item..."); ?>" type="hidden">
+<input id="msg-added" value="<?php print _("The menu item was added successfully"); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating menu item..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("The menu item was updated successfully"); ?>" type="hidden">
+<input id="msg-order" value="<?php print _("The order was updated successfully"); ?>" type="hidden">
+<input id="msg-removed" value="<?php print _("The menu item was removed successfully"); ?>" type="hidden">
+<input id="msg-type-added" value="<?php print _("The menu type was added successfully"); ?>" type="hidden">
+<input id="msg-type-removed" value="<?php print _("The menu type was removed successfully"); ?>" type="hidden">
 			
 <section class="main">
 
@@ -46,8 +49,8 @@
 			<div class="fs">
     
 		        <ul>
-		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a>Primary</a></li>
-		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a>Footer</a></li>
+		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a><?php print _("Primary"); ?></a></li>
+		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a><?php print _("Footer"); ?></a></li>
 		    	<!-- ko foreach: menuTypes -->
 		    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle fa-lg"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
 		    	<!-- /ko -->
@@ -60,7 +63,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> Add Menu Item</a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Menu Item"); ?></a>
     </nav>
 
 	<div id="menuItemsList" class="list" data-bind="foreach: menuItems">
@@ -75,11 +78,11 @@
 	</div>
 	<!-- /.list -->
     
-    <p data-bind="visible: menuLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> Loading...</p>
+    <p data-bind="visible: menuLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>
 
-    <p data-bind="visible: menuLoading()==false && menuItems().length < 1" class="list-none">No menu items here. Click Add Menu Item to get started.</p>
+    <p data-bind="visible: menuLoading()==false && menuItems().length < 1" class="list-none"><?php print _("No menu items here. Click Add Menu Item to get started."); ?></p>
     
-    <button id="save" class="primary-button"style="display: none; margin-left: 20px" data-bind="click:saveOrder">Save Order</button>
+    <button id="save" class="primary-button"style="display: none; margin-left: 20px" data-bind="click:saveOrder"><?php print _("Save Order"); ?></button>
 	
 </section>
 <!-- /.main -->
@@ -93,7 +96,8 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3></h3>
+				<h3 class="add"><?php print _("Add Menu Item"); ?></h3>
+				<h3 class="edit"><?php print _("Update Menu Item"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
@@ -101,19 +105,19 @@
 			
 	
 				<div class="form-group">
-					<label for="name" class="control-label">Label:</label>
+					<label for="name" class="control-label"><?php print _("Label:"); ?></label>
 					<input id="name" type="text" value="" maxlength="140" class="form-control">
 				</div>
 			
 				<div class="form-group">
-					<label for="cssClass" class="control-label">CSS Class:</label>
+					<label for="cssClass" class="control-label"><?php print _("CSS Class:"); ?></label>
 					<input id="cssClass" type="text" value="" maxlength="140" class="form-control">
 				</div>
 			
 				<div class="edit">
 			    
 					<div class="form-group">
-						<label for="editUrl" class="control-label">Url:</label>
+						<label for="editUrl" class="control-label"><?php print _("Url:"); ?></label>
 						<input id="editUrl" value="" maxlength="140" class="form-control">
 					</div>
 					
@@ -123,7 +127,7 @@
 				<div class="add">
 			    
 					<div class="form-group">
-						<label class="radio"><input id="existing" type="radio" name="content" checked> Existing Page</label>
+						<label class="radio"><input id="existing" type="radio" name="content" checked> <?php print _("Existing Page"); ?></label>
 					</div>	
 					
 					<div class="form-group">
@@ -138,7 +142,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="radio"><input id="customUrl" type="radio" name="content"> Custom URL</label>
+						<label class="radio"><input id="customUrl" type="radio" name="content"> <?php print _("Custom URL"); ?></label>
 					</div>
 					
 					<div class="form-group">
@@ -152,8 +156,9 @@
 			<!-- /.modal-body -->
 
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addEditMenuItem">Add Menu Item</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button add" data-bind="click: addMenuItem"><?php print _("Add Menu Item"); ?></button>
+				<button class="primary-button edit" data-bind="click: editMenuItem"><?php print _("Update Menu Item"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 
@@ -177,19 +182,19 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>Remove Menu Item</h3>
+				<h3><?php print _("Remove Menu Item"); ?></h3>
 			</div>
 			
 			<div class="modal-body">
 			
 				<p>
-					Are you sure that you want to delete <strong id="removeName">this page</strong>?
-					</p>
+					<?php print _("Confirm that you want to remove:"); ?> <strong id="removeName">this page</strong>
+				</p>
 			
 			</div>
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: removeMenuItem">Remove Menu Item</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeMenuItem"><?php print _("Remove Menu Item"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 
@@ -213,29 +218,29 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Add Menu Type</h3>
+				<h3><?php print _("Add Menu Type"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
 			<div class="modal-body">
 			
 			<div class="form-group">
-				<label for="menuTypeName" class="control-label">Name:</label>
+				<label for="menuTypeName" class="control-label"><?php print _("Name:"); ?></label>
 				<input id="menuTypeName" value="" maxlength="50" class="form-control">
 			</div>
 			
 			<div class="form-group">
-				<label for="menuTypeFriendlyId" class="control-label">Friendly Id:</label>
+				<label for="menuTypeFriendlyId" class="control-label"><?php print _("Friendly Id:"); ?></label>
 				<input id="menuTypeFriendlyId" value="" maxlength="50" class="form-control">
-				<span class="help-block">Lowercase, no spaces, must be unique</span>
+				<span class="help-block"><?php print _("Lowercase, no spaces, must be unique"); ?></span>
 			</div>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: addMenuType" class="form-control">Add Menu Type</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: addMenuType" class="form-control"><?php print _("Add Menu Type"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		
@@ -254,22 +259,22 @@
 <div class="modal hide" id="deleteMenuTypeDialog">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Remove Menu Type</h3>
+    <h3><?php print _("Remove Menu Type"); ?></h3>
   </div>
   <!-- /.modal-header -->
 
   <div class="modal-body">
 
 	<p>
-		Are you sure that you want to delete <strong id="removeName">this menu type</strong>?
+		<?php print _("Are you sure that you want to delete"); ?> <strong id="removeName">this menu type</strong>?
 	</p>
 
   </div>
   <!-- /.modal-body -->
 
   <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal">Close</button>
-    <button class="primary-button" data-bind="click: removeMenuType">Remove Menu Type</button>
+    <button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+    <button class="primary-button" data-bind="click: removeMenuType"><?php print _("Remove Menu Type"); ?></button>
   </div>
   <!-- /.modal-footer -->
 

@@ -168,8 +168,9 @@ class UserAddResource extends Tonic\Resource {
             $firstName = $request['firstName'];
             $lastName = $request['lastName'];
             $role = $request['role'];
+            $language = $request['language'];
 
-            $user = User::Add($email, $password, $firstName, $lastName, $role, $authUser->SiteId);
+            $user = User::Add($email, $password, $firstName, $lastName, $role, $language, $authUser->SiteId);
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -180,6 +181,38 @@ class UserAddResource extends Tonic\Resource {
         
         } else{ // unauthorized access
 
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+
+}
+
+/**
+ * A protected API call to get the current user
+ * @uri /user/current
+ */
+class UserCurrentResource extends Tonic\Resource {
+
+    /**
+     * @method GET
+     */
+    function get() {
+
+		// get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            $user = User::GetByUserUniqId($authUser->UserUniqId);
+
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'applicaton/json';
+            $response->body = json_encode($user);
+
+            return $response;
+        }
+        else{
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
         }
     }
@@ -231,10 +264,17 @@ class UserResource extends Tonic\Resource {
             $password = $request['password'];
             $firstName = $request['firstName'];
             $lastName = $request['lastName'];
-            $role = $request['role'];
+            $language = $request['language'];
 
-            User::Edit($userUniqId, $email, $password, $firstName, $lastName, $role);
-            
+			if(isset($request['role'])){
+            	$role = $request['role'];
+				User::Edit($userUniqId, $email, $password, $firstName, $lastName, $role, $language);
+			}
+			else{
+				$role = $request['role'];
+				User::EditProfile($userUniqId, $email, $password, $firstName, $lastName, $language);
+			}
+
             return new Tonic\Response(Tonic\Response::OK);
         
         } else{ // unauthorized access

@@ -2,16 +2,18 @@
 	include 'app.php'; // import php files
 	
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Files&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Files"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -26,12 +28,13 @@
 
 <body>
 
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
-
 <?php include 'modules/menu.php'; ?>
+
+<!-- messages -->
+<input id="msg-extension-match" value="<?php print _("The extensions must match when editing an existing file"); ?>" type="hidden">
+<input id="msg-drag" value="<?php print _("Drag file here or click to upload"); ?>" type="hidden">
+<input id="msg-drag-replace" value="<?php print _("Drag file here to replace selected file"); ?>" type="hidden">
+<input id="msg-remove-successfully" value="<?php print _("The file was removed successfully"); ?>" type="hidden">
 		
 <section class="main">
 
@@ -39,14 +42,14 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-    	    <li class="static active"><a>Files</a></li>
+    	    <li class="static active"><a><?php print _("Files"); ?></a></li>
         </ul>
     </nav>
     
     
     <div id="drop" class="dropzone dark">
         <span class="dz-message">
-            <i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>
+            <i class="fa fa-cloud-upload fa-4x"></i> <?php print _("Drag file here or click to upload"); ?></span>
         </span>
     </div>
     
@@ -59,7 +62,7 @@
     			<i class="fa fa-undo fa-lg"></i>
     		</a>
     		
-    		<span class="editable-selected">Selected</span>
+    		<span class="editable-selected"><?php print _("Selected"); ?></span>
             
             <span class="image" data-bind="if: isImage"><img height="75" width="75" data-bind="attr:{'src':thumbUrl}"></span>
             
@@ -72,9 +75,9 @@
     </div>
     <!-- /.list -->
     
-    <p data-bind="visible: filesLoading()" class="list-loading"><i class="fa fa-spinner fa fa-spin"></i> Loading...</p>
+    <p data-bind="visible: filesLoading()" class="list-loading"><i class="fa fa-spinner fa fa-spin"></i> <?php print _("Loading..."); ?></p>
     
-    <p data-bind="visible: filesLoading()==false && files().length < 1" class="list-none">No files here. Click Upload File to get started.</p>
+    <p data-bind="visible: filesLoading()==false && files().length < 1" class="list-none"><?php print _("No files here. Click Upload File to get started."); ?></p>
       
 </section>
 <!-- /.main -->
@@ -87,26 +90,26 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3>Remove File</h3>
+				<h3><?php print _("Remove File"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 			
 			<div class="modal-body">
 			
 				<p>
-					Are you sure that you want to delete <strong id="removeName"></strong>?
+					<?php print _("Confirm you want to delete:"); ?> <strong id="removeName"></strong>
 				</p>
 				
 				<p>
-					This will completely remove it from the system.
+					<?php print _("This will completely remove it from the system."); ?>
 				</p>
 			
 			</div>
 			<!-- /.modal-body -->
 			
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">Close</button>
-				<button class="primary-button" data-bind="click: removeFile">Remove File</button>
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeFile"><?php print _("Remove File"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
   

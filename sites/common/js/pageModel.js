@@ -2,6 +2,7 @@
 var pageModel = {
     
     apiEndpoint: '',
+    language: 'en',
     
     prefix: ko.observable(''),
     siteUniqId: ko.observable(''),
@@ -13,15 +14,18 @@ var pageModel = {
     
     init:function(){
     
+    	// get the api and language
     	pageModel.apiEndpoint = $('body').attr('data-api');
+    	pageModel.language = $('html').attr('lang');
     	
+    	// setup the controls
         pageModel.setupProperties();
 		pageModel.setupControls();
 		pageModel.updateLists();
 		pageModel.updateFeatured();
         
         // apply bindings
-        ko.applyBindings(pageModel);
+        ko.applyBindings(pageModel, $('#content').get(0));
 
 	},
 
@@ -45,14 +49,15 @@ var pageModel = {
             
             console.log('create observableArray: ' + id);
             
-            // use an anonymous function to pass the id, ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
+            // use an anonymous function to pass the id
+            // #ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
             function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, page){
                 
                 $.ajax({
                 	url: pageModel.apiEndpoint + '/api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
-        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: page},
+        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: page, language: pageModel.language},
         			success: function(data){
         			
         				if(data.length == 0){ // hide pager when we hit the end

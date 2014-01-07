@@ -11,7 +11,7 @@ var settingsModel = {
 	},
     
     updateSite:function(o){
-        
+    
         $.ajax({
     		url: 'api/site/current',
 			type: 'GET',
@@ -31,12 +31,13 @@ var settingsModel = {
     
     save:function(o, e){
         
-		message.showMessage('progress', 'Updating settings...');
+		message.showMessage('progress', $('#msg-updating').val());
         
         var name = $('#name').val();
         var domain = $('#domain').val();
         var primaryEmail = $('#primaryEmail').val();
         var timeZone = $('#timeZone').val();
+        var language = $('#language').val();
         var analyticsId = $('#analyticsId').val();
         var facebookAppId = $('#facebookAppId').val();
         
@@ -50,16 +51,16 @@ var settingsModel = {
 		}
 		
 		settingsModel.site().domain(domain);
-        
+		
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
-			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, analyticsId: analyticsId, facebookAppId: facebookAppId},
+			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
-    			message.showMessage('success', 'Settings saved');
+    			message.showMessage('success', $('#msg-updated').val());
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem saving the settings, please try again');
+				message.showMessage('error', $('#msg-updating-error').val());
 			}
 		});
         
@@ -79,11 +80,11 @@ var settingsModel = {
         var content = $('#fileContent').val();
         
         if(name=='' || content==''){
-            message.showMessage('error', 'The name and content are required');
+            message.showMessage('error', $('#msg-name-content-error').val());
             return;
         }
         
-        message.showMessage('progress', 'Generating file...');
+        message.showMessage('progress', $('#msg-generating').val());
    
         $.ajax({
             url: 'api/site/verification/generate',
@@ -91,11 +92,11 @@ var settingsModel = {
 			data: {name: name, content: content},
 			dataType: 'json',
 			success: function(data){
-    			message.showMessage('success', 'Verification file generated');
+    			message.showMessage('success', $('#msg-generated').val());
                 $('#verificationDialog').modal('hide');
 			},
 			error: function(data){
-				message.showMessage('error', 'There was a problem generating the file, please try again');
+				message.showMessage('error', $('#msg-generating-error').val());
 			}
 		});
     }

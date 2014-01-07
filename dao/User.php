@@ -4,7 +4,7 @@
 class User{
 
 	// adds a user
-	public static function Add($email, $password, $firstName, $lastName, $role, $siteId){
+	public static function Add($email, $password, $firstName, $lastName, $role, $language, $siteId){
 		
         try{
             
@@ -24,8 +24,8 @@ class User{
     		$s_password = $hasher->HashPassword($password);
     		unset($hasher);
         
-            $q = "INSERT INTO Users (UserUniqId, Email, Password, FirstName, LastName, Role, SiteId, Created) 
-        		 	VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Users (UserUniqId, Email, Password, FirstName, LastName, Role, Language, SiteId, Created) 
+        		 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $userUniqId);
@@ -34,8 +34,9 @@ class User{
             $s->bindParam(4, $firstName);
             $s->bindParam(5, $lastName);
             $s->bindParam(6, $role);
-            $s->bindParam(7, $siteId);
-            $s->bindParam(8, $timestamp);
+            $s->bindParam(7, $language);
+            $s->bindParam(8, $siteId);
+            $s->bindParam(9, $timestamp);
             
             $s->execute();
             
@@ -46,6 +47,7 @@ class User{
                 'FirstName' => $firstName,
                 'LastName' => $lastName,
                 'Role' => $role,
+                'Language' => $language,
                 'Token' => $token
                 );
                 
@@ -86,7 +88,7 @@ class User{
 	}
 	
 	// edit user
-	public static function Edit($userUniqId, $email, $password, $firstName, $lastName, $role){
+	public static function Edit($userUniqId, $email, $password, $firstName, $lastName, $role, $language){
 		
     	try{
 
@@ -97,7 +99,8 @@ class User{
                 Email = ?,
                 FirstName = ?,
     			LastName = ?,
-    			Role = ?
+    			Role = ?,
+    			Language = ?
     			WHERE UserUniqId = ?";
     		
     		$s = $db->prepare($q);
@@ -105,6 +108,39 @@ class User{
             $s->bindParam(2, $firstName);
             $s->bindParam(3, $lastName);
             $s->bindParam(4, $role);
+            $s->bindParam(5, $language);
+            $s->bindParam(6, $userUniqId);
+            
+            $s->execute();
+            
+            // edit password
+    		User::EditPassword($userUniqId, $password);
+            
+    	} catch(PDOException $e){
+            die('[User::Edit] PDO Error: '.$e->getMessage());
+        } 
+	}
+	
+	// edits a user profile
+	public static function EditProfile($userUniqId, $email, $password, $firstName, $lastName, $language){
+		
+    	try{
+
+            $db = DB::get();
+    		
+            // edit basic information
+    		$q = "UPDATE Users SET 
+                Email = ?,
+                FirstName = ?,
+    			LastName = ?,
+    			Language = ?
+    			WHERE UserUniqId = ?";
+    		
+    		$s = $db->prepare($q);
+            $s->bindParam(1, $email);
+            $s->bindParam(2, $firstName);
+            $s->bindParam(3, $lastName);
+            $s->bindParam(4, $language);
             $s->bindParam(5, $userUniqId);
             
             $s->execute();
@@ -208,7 +244,7 @@ class User{
             $db = DB::get();
             
             $q = "SELECT Users.UserId, Users.UserUniqId, Users.Email, Users.FirstName, Users.LastName, 
-        		    Users.Role, Users.SiteId, Users.Created
+        		    Users.Role, Users.Language, Users.SiteId, Users.Created
     			    FROM Users
     			    WHERE Users.SiteId=? ORDER BY Users.LastName";
                     
@@ -239,7 +275,7 @@ class User{
             $db = DB::get();
             
             $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-            		Role, SiteId, Created, Token 
+            		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE Email=?";
             
             $s = $db->prepare($q);
@@ -284,7 +320,7 @@ class User{
     		$db = DB::get();
             
             $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-            		Role, SiteId, Created, Token 
+            		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE Email=?";
                     
             $s = $db->prepare($q);
@@ -312,7 +348,7 @@ class User{
     		$db = DB::get();
             
             $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-            		Role, SiteId, Created 
+            		Role, Language, SiteId, Created 
         			FROM Users WHERE Token=?";
                     
             $s = $db->prepare($q);
@@ -340,7 +376,7 @@ class User{
         	$db = DB::get();
             
             $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-            		Role, SiteId, Created, Token 
+            		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE UserUniqId=?";
                     
             $s = $db->prepare($q);
@@ -368,7 +404,7 @@ class User{
             $db = DB::get();
             
             $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
-            		Role, SiteId, Created, Token 
+            		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE UserId=?";
                     
             $s = $db->prepare($q);

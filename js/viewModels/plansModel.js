@@ -3,7 +3,6 @@ var plansModel = {
 
 	plans: ko.observableArray([]), // observables
 	plansLoading: ko.observable(false),
-	planAction: ko.observable('Add Plan'),
 	
 	mode: 'add', // add or edit
 	toBeEdited: null,
@@ -15,7 +14,7 @@ var plansModel = {
 		ko.applyBindings(plansModel);  // apply bindings
 	},
 
-	updatePlans:function(){  // updates the sites arr
+	updatePlans:function(){  // updates the plans
 
 		plansModel.plans.removeAll();
 		plansModel.plansLoading(true);
@@ -33,10 +32,11 @@ var plansModel = {
 
 	},
 	
-	showAddDialog:function(o, e){ // shows a dialog to add a page
+	showAddDialog:function(o, e){ // shows a dialog to add a plan
 	
 		plansModel.mode = 'add';
-		plansModel.planAction('Add Plan');
+		$('#addEditDialog').find('.add').show();
+		$('#addEditDialog').find('.edit').hide();
 	
 		$('#plan-id').removeAttr('disabled');
 		$('#amount-group').show();
@@ -55,10 +55,11 @@ var plansModel = {
 		return false;
 	},
 	
-	showEditDialog:function(o, e){ // shows a dialog to add a page
+	showEditDialog:function(o, e){ // shows a dialog to add a plan
 	
 		plansModel.mode = 'edit';
-		plansModel.planAction('Edit Plan');
+		$('#addEditDialog').find('.edit').show();
+		$('#addEditDialog').find('.add').hide();
 		
 		plansModel.toBeEdited = o;
 		
@@ -76,17 +77,6 @@ var plansModel = {
 		return false;
 	},
 	
-	addEditPlan:function(o, e){
-	
-		if(plansModel.mode == 'edit'){
-			plansModel.editPlan(o, e);
-		}
-		else{
-			plansModel.addPlan(o, e);
-		}
-		
-	},
-	
 	addPlan:function(o, e){
 	
 		var id = $('#plan-id').val();
@@ -97,18 +87,18 @@ var plansModel = {
 		var trial = $('#plan-trial').val();
 	
 		if(id=='' || name=='' || amount=='' || interval=='' || currency==''){
-			message.showMessage('error', 'All fields are required');
+			message.showMessage('error', $('#msg-allrequired').val());
 			return;
 		}
 		
-		message.showMessage('progress', 'Adding plan...');
+		message.showMessage('progress', $('#msg-adding').val());
 		
 		$.ajax({
 			url: 'api/plan/add',
 			type: 'POST',
 			data: {id:id, name:name, amount:amount, interval:interval, currency:currency, trial:trial},
 			success: function(data){
-				message.showMessage('success', 'Plan added successfully');
+				message.showMessage('success', $('#msg-added').val());
 
 				plansModel.updatePlans();
 				
@@ -124,18 +114,18 @@ var plansModel = {
 		var name = $('#plan-name').val();
 		
 		if(id=='' || name==''){
-			message.showMessage('error', 'All fields are required');
+			message.showMessage('error', $('#msg-allrequired').val());
 			return;
 		}
 		
-		message.showMessage('progress', 'Updating plan...');
+		message.showMessage('progress', $('#msg-updating').val());
 		
 		$.ajax({
 			url: 'api/plan/edit',
 			type: 'POST',
 			data: {id:id, name:name},
 			success: function(data){
-				message.showMessage('success', 'Plan updated successfully');
+				message.showMessage('success', $('#msg-updated').val());
 
 				plansModel.updatePlans();
 				

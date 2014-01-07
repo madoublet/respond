@@ -3,6 +3,7 @@ var skuDialog = {
 	dialog: null,
 	shelfId: -1,
 	product: null,
+	currency: 'USD', // default for now (will be set at site level)
 
 	init:function(){
 
@@ -16,25 +17,14 @@ var skuDialog = {
 			var sku = $('#sku').val();
 			var desc = $('#sku-desc').val();
 			var price = $('#sku-price').val();
-			var currency = $('#sku-currency').val();
 			var shippingType = $('#sku-shippingType').val();
-			var shippingRate = $('#sku-shippingRate').val();
 			
 			// get readable
-			var priceReadable = price+' '+currency;
-			var shippingReadable = shippingType;
+			var priceReadable = price+' '+skuDialog.currency;
 			
-			if(currency == 'USD'){
+			if(skuDialog.currency == 'USD'){
 	   			priceReadable = '$'+priceReadable;
 	   		
-		   		if(shippingType != 'digital' && shippingType != 'delivered' && shippingType != 'not shipped'){
-		   			shippingReadable += ' - $'+shippingRate+' '+currency;
-		   		}
-	   		}
-	   		else{
-	   			if(shippingType != 'digital' && shippingType != 'delivered' && shippingType != 'not shipped'){
-		   		 	shippingReadable += ' - '+shippingRate+' '+currency;
-		   		 }
 	   		}
 			
 			var item = '<div class="shelf-item">'+
@@ -44,13 +34,14 @@ var skuDialog = {
 								'<span class="shelf-sku">'+sku+'</span>'+
 								'</div>'+
 								'<div class="shelf-group2">'+
-								'<span class="shelf-price" data-price="'+price+'">'+priceReadable+'</span>'+
-								'<span class="shelf-shipping" data-type="'+shippingType+'" data-rate="'+shippingRate+'">'+shippingReadable+'</span>'+
+								'<span class="shelf-price" data-currency="'+skuDialog.currency+'" data-price="'+price+'">'+priceReadable+'</span>'+
+								'<span class="shelf-shipping" data-type="'+shippingType+'">'+shippingType+'</span>'+
 								'</div>'+
 								'<div class="shelf-group3">'+
 								'<span class="shelf-quantity"><input type="number" value="1" class="form-control"></span>'+
 								'<span class="shelf-add"><button class="btn btn-default"><i class="fa fa-shopping-cart"></i> <span>Add to Cart</span></button></span>'+
 								'</div></div>'; 
+								
 			
 			$('#'+skuDialog.shelfId).find('.shelf-items').append(item);
 			
@@ -76,25 +67,13 @@ var skuDialog = {
 			var description = $(item).find('.shelf-description').text();
 			var price = $(item).find('.shelf-price').attr('data-price');
 			var shippingType = $(item).find('.shelf-shipping').attr('data-type');
-			var shippingRate = $(item).find('.shelf-shipping').attr('data-rate');
 			
-			// show/hide
-			if(shippingType=='flat-rate' || shippingType=='per-item'){
-				$('#sku-show-ship').show();
-			}
-			else if(shippingType=='digital'){
-				$('#sku-show-ship').hide();
-			}
-			else{
-				$('#sku-show-ship').hide();
-			}
 			
 			// populate fields
 			$('#sku').val(sku);
 			$('#sku-desc').val(description);
 			$('#sku-price').val(price);
 			$('#sku-shippingType').val(shippingType);
-			$('#sku-shippingRate').val(shippingRate);
 	
 		    $('#skuDialog').modal('show');
 			
@@ -105,26 +84,11 @@ var skuDialog = {
 			var sku = $('#sku').val();
 			var desc = $('#sku-desc').val();
 			var price = $('#sku-price').val();
-			var currency = $('#sku-currency').val();
 			var shippingType = $('#sku-shippingType').val();
-			var shippingRate = $('#sku-shippingRate').val();
+			
+			alert('boom!');
 			
 			return false;
-			
-		});
-
-		
-		$('#sku-shippingType').on('change', function(){
-		
-			if($(this).val()=='flat-rate' || $(this).val()=='per-item'){
-				$('#sku-show-ship').show();
-			}
-			else if($(this).val()=='digital'){
-				$('#sku-show-ship').hide();
-			}
-			else{
-				$('#sku-show-ship').hide();
-			}
 			
 		});
 	},
@@ -143,8 +107,7 @@ var skuDialog = {
 		$('#sku').val('');
 		$('#sku-desc').val('');
 		$('#sku-price').val('');
-		$('#sku-shippingType').val('flat-rate');
-		$('#sku-shippingRate').val('');
+		$('#sku-shippingType').val('shipped');
 
 	    $('#skuDialog').modal('show');
 

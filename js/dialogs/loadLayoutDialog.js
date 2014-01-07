@@ -17,7 +17,7 @@ var loadLayoutDialog = {
 		$('#loadLayout').click(function(){
 
 			if(loadLayoutDialog.pageUniqId==-1){
-				message.showMessage('error', 'Please select a layout.');
+				message.showMessage('error', $('#msg-select-layout-error').val());
 				return;
 			}
 

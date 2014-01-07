@@ -29,6 +29,22 @@ var global = {
         });
       
     },
+    
+    // parse gettext (for multi-lingual support)
+    parseGettext:function(html){
+    
+	    // remove start php tag
+		html = global.replaceAll(html, '<?php print _("', '');
+		
+		// remove end php tag
+		html = global.replaceAll(html, '"); ?>', '');
+		
+		// remove escaped double quotes
+		html = html.replace(/\\"/g, '"');
+		
+		return html;
+	  	  
+    },
 	
 	// gets a query string variable by name	
 	getQueryStringByName:function(name){

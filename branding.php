@@ -5,16 +5,18 @@
 	include 'app.php'; // import php files
 	
 	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
 	
-<title>Branding&mdash;<?php print $authUser->SiteName; ?></title>
+<title><?php print _("Branding"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 <!-- include css -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
@@ -30,14 +32,12 @@
 </head>
 
 <body data-currpage="branding">
-	
-<!-- required for actions -->
-<input type="hidden" name="_submit_check" value="1"/>
 
-<p id="message">
-  <span>Holds the message text.</span>
-  <a class="close" href="#"></a>
-</p>
+<!-- messages -->
+<input id="msg-updating-branding" value="<?php print _("Updating branding..."); ?>" type="hidden">
+<input id="msg-branding-updated" value="<?php print _("Branding successfully updated"); ?>" type="hidden">
+<input id="msg-updating-logo" value="<?php print _("Updating logo..."); ?>" type="hidden">
+<input id="msg-logo-updated" value="<?php print _("Logo successfully updated"); ?>" type="hidden">
 
 <?php include 'modules/menu.php'; ?>
 
@@ -47,10 +47,10 @@
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
     
         <ul>
-		    <li class="static active"><a href="branding">Branding</a></li>
+		    <li class="static active"><a href="branding"><?php print _("Branding"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showImagesDialog"><i class="fa fa-plus-circle fa-lg"></i> Update Logo</a>
+        <a class="primary-action" data-bind="click: showImagesDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Update Logo"); ?></a>
     </nav>
 
   <div class="row-fluid">
@@ -59,7 +59,7 @@
 		<form class="form-horizontal">
 
 		<div class="form-group">
-			<label class="col-lg-2 control-label">Default Logo:</label>
+			<label class="col-lg-2 control-label"><?php print _("Default Logo:"); ?></label>
 
 			<div class="col-lg-10">
                 <span id="logo">
@@ -82,60 +82,7 @@
 
 <div id="overlay"></div>
 
-<div class="immersive" id="imagesDialog">
-  <div class="immersive-header">
-    <h3>Select or upload a new image</h3>
-    <button type="button" class="close" data-dismiss="modal">x</button>
-  </div>
-  <!-- /.modal-header -->
-
-  <div class="immersive-body">
-  
-    <h2 data-bind="visible: (newimages().length > 0)">New Images</h2>
-
-    <div  data-bind="visible: (newimages().length > 0)" class="image-list">
-    
-        <!-- ko foreach:newimages -->
-        <div class="image new">
-            <img data-bind="attr:{'src': thumbUrl}, click: $parent.changeLogo">
-            <small>
-                <span data-bind="text: filename"></span><br>
-                <span data-bind="text: width"></span>px x <span data-bind="text: height"></span>px
-            </small>
-        </div>
-        <!-- /ko -->
-
-    </div>
-  
-    <h2>Existing Images</h2>
-
-    <div class="image-list">
-    
-        <!-- ko foreach:images -->
-        <div class="image existing">
-            <img data-bind="attr:{'src': thumbUrl}, click: $parent.changeLogo">
-            <small>
-                <span data-bind="text: filename"></span><br>
-                <span data-bind="text: width"></span>px x <span data-bind="text: height"></span>px
-            </small>
-        </div>
-        <!-- /ko -->
-
-    </div>
-    
-    <div id="drop" class="dropzone in-dialog">
-        <span class="dz-message">
-            <i class="fa fa-cloud-upload fa-4x"></i> Drag file here or click to upload</span>
-        </span>
-    </div>
-    <!-- /.dropzone -->
-    
-  </div>
-  <!-- /.modal-body -->
-
-</div>
-<!-- /.modal -->
-
+<?php include 'modules/dialogs/imagesDialog.php'; ?>
 
 </body>
 

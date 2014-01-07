@@ -11,6 +11,7 @@
 .editor.container{
     padding-top: 60px;
     padding-bottom: 100px;
+    z-index: 100;
 }
 
 .editor.container .row{
@@ -37,6 +38,7 @@ section.main nav.editor-menu{
     margin: 0 145px 0 55px;
     height: 50px;
     overflow: hidden;
+    z-index: 1000;
 }
 
     .editor-actions div{
@@ -864,7 +866,7 @@ div.date div{
 	}
 
 
-    .block .field-container .radio{
+    .block .field-container .radio, .block .field-container .checkbox{
         margin-left: 20px;
     }
     

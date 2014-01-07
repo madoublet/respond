@@ -1,7 +1,9 @@
 <form role="form" class="respond-form">
-	<div class="alert alert-success">Form submitted successfully!</div>
-	<div class="alert alert-danger">You are missing required fields.</div>
-	<?php print html_entity_decode($form); ?>
-	<button type="button" class="btn btn-default btn-lg">Submit <i class="icon-spinner icon-spin"></i></button>
+	<?php 
+	print '<div class="alert alert-success"><?php print _("Form submitted successfully!"); ?></div>';
+	print '<div class="alert alert-danger"><?php print _("You are missing required fields."); ?></div>';
+	print html_entity_decode($form); 
+	print '<button type="button" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="icon-spinner icon-spin"></i></button>';
+	?>
 </form>
 

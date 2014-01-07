@@ -54,23 +54,23 @@ var brandingModel = {
 	},
     
     applyBranding:function(o, e){
-        message.showMessage('progress', 'Updating branding');
+        message.showMessage('progress', $('#msg-updating-branding').val());
         
         $.ajax({
         	url: 'api/site/branding/',
 			type: 'POST',
 			data: {},
 			success: function(data){
-    			message.showMessage('success', 'Branding successfully updated');
+    			message.showMessage('success', $('#msg-branding-updated').val());
 			}
 		});
     },
     
-    changeLogo:function(o, e){
+    setImage:function(o, e){
   
         var logoUrl = o.filename;
         
-        message.showMessage('progress', 'Updating logo...');
+        message.showMessage('progress', $('#msg-updating-logo').val());
         
 		$.ajax({
 			url: 'api/site/logo/'+brandingModel.siteUniqId(),
@@ -82,7 +82,7 @@ var brandingModel = {
                 brandingModel.fullUrl(o.fullUrl);
                 brandingModel.logoUrl(o.filename);
                 
-                message.showMessage('success', 'Logo updated');
+                message.showMessage('success', $('#msg-logo-updated').val());
                 
                 $('#imagesDialog').modal('hide');
 

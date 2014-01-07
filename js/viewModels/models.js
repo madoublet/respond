@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -14,6 +14,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
     self.facebookAppId = ko.observable(facebookAppId);
     self.primaryEmail = ko.observable(primaryEmail);
     self.timeZone = ko.observable(timeZone);
+    self.language = ko.observable(language);
     self.lastLogin = ko.observable(lastLogin);
     self.type = ko.observable(type);
     self.customerId = ko.observable(customerId);
@@ -24,11 +25,11 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 
 // models a user
-function User(userId, userUniqId, email, password, firstName, lastName, role, created, token){
+function User(userId, userUniqId, email, password, firstName, lastName, role, language, created, token){
 
     var self = this;
 
@@ -39,6 +40,7 @@ function User(userId, userUniqId, email, password, firstName, lastName, role, cr
     self.firstName = ko.observable(firstName);
     self.lastName = ko.observable(lastName);
     self.role = ko.observable(role);
+    self.language = ko.observable(language);
     self.created = ko.observable(created);
     self.token = ko.observable(token);
     
@@ -56,7 +58,7 @@ function User(userId, userUniqId, email, password, firstName, lastName, role, cr
 // creates a user based on data returned from the API
 User.create = function(data){
 
-	return new User(data['UserId'], data['UserUniqId'], data['Email'], data['Password'], data['FirstName'], data['LastName'], data['Role'],
+	return new User(data['UserId'], data['UserUniqId'], data['Email'], data['Password'], data['FirstName'], data['LastName'], data['Role'], data['Language'],
                     data['Created'], data['Token']);
 }
 

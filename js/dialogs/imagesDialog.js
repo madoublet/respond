@@ -41,7 +41,7 @@ var imagesDialog = {
         	filename + 
         	'" src="' +
         	t_src + 
-        	'" title=""><span class="caption"><input type="text" value="" placeholder="Enter caption" maxwidth="140"></span>' +
+        	'" title=""><span class="caption"><input type="text" value="" placeholder="' + $('#msg-enter-caption').val() + '" maxwidth="140"></span>' +
         	'<a class="remove-image fa fa-minus-circle"></a></span>';
         
         html += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button>';
@@ -77,7 +77,7 @@ var imagesDialog = {
     getImageHtml:function(position, imageId, src, href, content){
     
     	if(content == '&nbsp;'){
-	    	content = 'Add your content here or click the settings icon to change the image layout...';
+    		content = $('#msg-image-instructions').val();
     	}
     
 		if(position=='left'){

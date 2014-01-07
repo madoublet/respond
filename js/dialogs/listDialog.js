@@ -21,7 +21,7 @@ var listDialog = {
 		  label = label.toLowerCase();
 
 		  if(pageTypeUniqId==-1){
-		    message.showMessage('error', 'You must select a type of list.');
+		    message.showMessage('error', $('#msg-select-list-error').val());
 		    return;
 		  }
 		  
@@ -39,7 +39,7 @@ var listDialog = {
 		  				'</div></div>';
 
 		  $(editor).respondAppend(
-		    html
+		  	html
 		  );
 		  
 		  $(editor).respondHandleEvents();
@@ -74,7 +74,9 @@ var listDialog = {
 
 	    if(mode=='add'){
 
-			$('#listDialog h3').html('Add List');  // show/hide
+			 $('#listDialog .add').show();  // show/hide
+			 $('#listDialog .show').hide();
+
 			$('#addList').show();
 			$('#updateList').hide();
 			$('#showSelectOptions').show();
@@ -93,7 +95,9 @@ var listDialog = {
 			$('#listDialog').modal('show'); // show modal
 	    }
 	    else{
-	      $('#listDialog h3').html('Edit List');  // show/hide
+	      $('#listDialog .edit').show();  // show/hide
+	      $('#listDialog .add').hide();
+	      
 	      $('#addList').hide();
 	      $('#updateList').show();
 	      $('#listPageTypeBlock').hide();
@@ -108,7 +112,7 @@ var listDialog = {
 	      var desclength = $(node).attr('data-desclength');
 
 	      if(desclength==undefined){
-	        desclength = 250;
+	      	desclength = 250;
 	      }
 
 	      $('#listDisplay').val(display);   // set current values
