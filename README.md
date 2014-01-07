@@ -24,9 +24,9 @@ New in 2.6:
 How to update from 2.5:
 - Backup sites you created
 - Add Language to the Users table
-	- ALTER TABLE  `Users` ADD  `Language` VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  `Role`;
+	- ALTER TABLE  'Users' ADD  'Language' VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  'Role';
 - Add Language to the Sites table
-	- ALTER TABLE  `Sites` ADD  `Language` VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  `TimeZone`;
+	- ALTER TABLE  'Sites' ADD  'Language' VARCHAR( 10 ) NOT NULL DEFAULT  'en' AFTER  'TimeZone';
 
 
 
