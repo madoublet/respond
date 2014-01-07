@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.5');
+	define('VERSION', '2.6');
 
 	// DB connection parameters
 	define('DB_HOST', 'localhost');
@@ -9,7 +9,7 @@
 	define('DB_USER', 'dbuser');
 	define('DB_PASSWORD', 'dbpass');
 	
-	// app URL
+	// app URL NOTE: include the subdirectory if applicable, leave off the trailing /
 	define('APP_URL', 'http://path.torespond.com');
 	
 	// site admin
@@ -43,7 +43,7 @@
 	
 	// the brand of your app
     define('BRAND', 'Respond CMS');
-    define('COPY', 'Version 2.4.  Made by <a href="http://matthewsmith.com">Matthew Smith</a> in Manchester, MO');
+    define('COPY', 'Version 2.6.  Made by <a href="http://matthewsmith.com">Matthew Smith</a> in Manchester, MO');
     
     // start page (sets the default page a user sees after logon)
 	define('START_PAGE', 'pages');
