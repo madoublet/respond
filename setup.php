@@ -12,6 +12,9 @@
 	// app URL NOTE: include the subdirectory if applicable, leave off the trailing /
 	define('APP_URL', 'http://path.torespond.com');
 	
+	// setup default language for the site
+	define('DEFAULT_LANGUAGE', 'en');
+	
 	// site admin
 	define('SITE_ADMIN', '');
 	
