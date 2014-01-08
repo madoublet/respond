@@ -1,11 +1,23 @@
 <?php	
 	include 'app.php';
 	
-	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
-	$supported = Utilities::GetSupportedLanguages('');
-	$language = Utilities::GetPreferredLanguage($supported);
+	// test for gettext
+	if (function_exists("gettext")){
 	
-	Utilities::SetLanguage($language);
+		// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
+		$supported = Utilities::GetSupportedLanguages('');
+		$language = Utilities::GetPreferredLanguage($supported);
+		
+		Utilities::SetLanguage($language);
+	}
+	else{
+		
+		// fallback for gettext
+		function _($str){
+			return $str;
+		}
+		
+	}
 ?>
 <!DOCTYPE html>
 <html>
