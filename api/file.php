@@ -49,9 +49,6 @@ class ImageListAllResource extends Tonic\Resource {
                     $is_thumb = true;
                 }
                 
-                // get mimetype
-                $mime_type = mime_content_type($directory.$filename);
-                
                 if($is_thumb==false && $is_image==true){
                     
                     list($width, $height, $type, $attr) = getimagesize($directory.$filename);
@@ -61,8 +58,7 @@ class ImageListAllResource extends Tonic\Resource {
                         'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                         'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
-                        'mimetype' => $mime_type,
-                        'isImage' => $is_image,
+						'isImage' => $is_image,
                         'width' => $width,
                         'height' => $height
                     );
@@ -144,7 +140,6 @@ class FilePostResource extends Tonic\Resource {
                         'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                         'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
-                        'mimetype' => $contentType,
                         'isImage' => true,
                         'width' => $width,
                         'height' => $height
@@ -161,7 +156,6 @@ class FilePostResource extends Tonic\Resource {
                     'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                     'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                     'extension' => $ext,
-                    'mimetype' => $mime_type,
                     'isImage' => false,
                     'width' => -1,
                     'height' => -1
@@ -235,9 +229,6 @@ class FileListAllResource extends Tonic\Resource {
                     $is_thumb = true;
                 }
                 
-                // get mimetype
-                $mime_type = mime_content_type($directory.$filename);
-                
                 if($is_thumb==false && $is_image==true){
                     
                     list($width, $height, $type, $attr) = getimagesize($directory.$filename);
@@ -247,7 +238,6 @@ class FileListAllResource extends Tonic\Resource {
                         'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                         'thumbUrl' => 'sites/'.$site['FriendlyId'].'/files/t-'.$filename,
                         'extension' => $ext,
-                        'mimetype' => $mime_type,
                         'isImage' => $is_image,
                         'width' => $width,
                         'height' => $height
@@ -261,7 +251,6 @@ class FileListAllResource extends Tonic\Resource {
                         'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
                         'thumbUrl' => 'n/a',
                         'extension' => $ext,
-                        'mimetype' => $mime_type,
                         'isImage' => $is_image,
                         'width' => -1,
                         'height' => -1
