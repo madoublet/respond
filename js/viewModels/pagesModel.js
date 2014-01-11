@@ -47,6 +47,12 @@ var pagesModel = {
     	pagesModel.updatePageTypes();
     	pagesModel.updateLayouts();
     	pagesModel.updateStylesheets();
+    	
+    	$('#name').keyup(function(){
+    		var keyed = $(this).val().toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'').replace(/\s/g, '-');
+			keyed = keyed.substring(0,25);
+			$('#friendlyId').val(keyed);
+		});
 
 		ko.applyBindings(pagesModel);  // apply bindings
 		
