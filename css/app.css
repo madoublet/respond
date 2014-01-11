@@ -753,6 +753,12 @@ table.table tr.active a.switch{
 	margin-top: 10px;
 }
 
+.template-insert{
+	margin-top: 10px;
+	color: #888;
+	font-size: 0.9em;
+}
+
 /* page-specific */
 #test-page .fa-check-circle{
 	color: #7ec57e;

@@ -15,6 +15,7 @@
     require_once 'form.php';
     require_once 'stylesheet.php';
     require_once 'script.php';
+    require_once 'snippet.php';
     require_once 'layout.php';
     require_once 'plan.php';
     require_once 'card.php';

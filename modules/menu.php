@@ -34,6 +34,7 @@
 	
 	<ul class="menu">	
         <li class="menu-layout"><a href="<?php print $path_prefix; ?>layout"><i class="fa fa-th-large"></i> <?php print _("Layout"); ?></a></li>
+        <li class="menu-snippets"><a href="<?php print $path_prefix; ?>snippets"><i class="fa fa-scissors"></i> <?php print _("Snippets"); ?></a></li>	
         <li class="menu-styles"><a href="<?php print $path_prefix; ?>styles"><i class="fa fa-text-height"></i> <?php print _("Styles"); ?></a></li>
         <li class="menu-scripts"><a href="<?php print $path_prefix; ?>scripts"><i class="fa fa-bolt"></i> <?php print _("Scripts"); ?></a></li>
 		<li class="menu-settings"><a href="<?php print $path_prefix; ?>settings"><i class="fa fa-cog"></i> <?php print _("Settings"); ?></a></li>

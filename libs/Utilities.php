@@ -482,6 +482,31 @@ class Utilities
 		    
 		}
 		
+		// snippets
+        $delimiter = '#';
+		$startTag = '{{snippet-';
+		$endTag = '}}';
+		$regex = $delimiter . preg_quote($startTag, $delimiter) 
+		                    . '(.*?)' 
+		                    . preg_quote($endTag, $delimiter) 
+		                    . $delimiter 
+		                    . 's';
+		
+		preg_match($regex, $content, $matches);
+		
+		foreach($matches as &$value) {
+		    
+		    // get snippet
+		    $snippet = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/'.$value.'.php';
+		    $snippet_content = '';
+		    
+		    if(file_exists($snippet)){
+	            $snippet_content = file_get_contents($snippet);
+	        }
+		    
+		    $content = str_replace('{{snippet-'.$value.'}}', $snippet_content, $content);
+		}
+		
 		// cart
 		$cartFile = $root.'sites/common/modules/cart.php';
 		$cart = '';
