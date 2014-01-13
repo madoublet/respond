@@ -2,11 +2,13 @@
 var profileModel = {
     
     user: ko.observable(''),
+    languages: ko.observableArray([]),
     
     init:function(){ // initializes the model
+    	profileModel.updateLanguages();
         profileModel.updateProfile();
-
-		ko.applyBindings(profileModel);  // apply bindings
+        
+        ko.applyBindings(profileModel);  // apply bindings
 	},
     
     updateProfile:function(o){
@@ -24,6 +26,31 @@ var profileModel = {
 			}
 		});
         
+    },
+    
+    updateLanguages:function(){
+        
+        profileModel.languages.removeAll();
+       
+    	$.ajax({
+			url: 'data/languages.json',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+	
+                for(x in data.languages){
+    
+    				var language = {
+        			    'code': data.languages[x]['code'],
+                        'text': data.languages[x]['text']
+    				};
+                
+					profileModel.languages.push(language); 
+				}
+
+			}
+		});
     },
     
     save:function(o, e){

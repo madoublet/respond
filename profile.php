@@ -24,7 +24,7 @@
 
 </head>
 
-<body data-currpage="settings">
+<body data-currpage="profile">
 	
 <?php include 'modules/menu.php'; ?>
 
@@ -67,9 +67,13 @@
 		<div class="form-group">
 			<label for="language" class="col-lg-2 control-label"><?php print _("Language:"); ?></label>
 			<div class="col-lg-4">
-				<select id="language" class="form-control" data-bind="value: language">
-					<option value="en"><?php print _("English"); ?></option>
-				</select>
+				<select id="language" class="form-control" data-bind="
+				    options: $parent.languages,
+				    optionsText: 'text',
+				    optionsValue: 'code',
+				    value: language">
+					    <option value="en">English</option>
+				    </select>
 			</div>
 		</div>
 		

@@ -3,6 +3,8 @@
   
   $authUser = new AuthUser(); // get auth user
   $authUser->Authenticate('All');
+  
+  Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

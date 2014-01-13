@@ -2,6 +2,7 @@
 var createModel = {
     
     timeZone: ko.observable('America/Chicago'),
+    languages: ko.observableArray([]),
     
     init:function(){
         
@@ -15,6 +16,8 @@ var createModel = {
 			$('#tempUrl').html(keyed);
 			$('#friendlyId').val(keyed);
 		});
+        
+        createModel.updateLanguages();
         
         ko.applyBindings(createModel);  // apply bindings
     },
@@ -69,7 +72,32 @@ var createModel = {
         });
 
         return false;
-    }
+    },
+    
+    updateLanguages:function(){
+        
+        createModel.languages.removeAll();
+       
+    	$.ajax({
+			url: 'data/languages.json',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+	
+                for(x in data.languages){
+    
+    				var language = {
+        			    'code': data.languages[x]['code'],
+                        'text': data.languages[x]['text']
+    				};
+                
+					createModel.languages.push(language); 
+				}
+
+			}
+		});
+    },
     
 }
 

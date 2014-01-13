@@ -4,7 +4,7 @@
 	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
 	$supported = Utilities::GetSupportedLanguages('');
 	$language = Utilities::GetPreferredLanguage($supported);
-	
+
 	Utilities::SetLanguage($language); 
 ?>
 <!DOCTYPE html>

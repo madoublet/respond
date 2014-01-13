@@ -2,24 +2,24 @@
 
 	// Version
 	define('VERSION', '2.6');
-
+	
 	// DB connection parameters
 	define('DB_HOST', 'localhost');
-	define('DB_NAME', 'respond');
-	define('DB_USER', 'dbuser');
-	define('DB_PASSWORD', 'dbpass');
+	define('DB_NAME', 'respond2dev');
+	define('DB_USER', 'root');
+	define('DB_PASSWORD', 'desmond9912!');
 	
-	// app URL NOTE: include the subdirectory if applicable, leave off the trailing /
-	define('APP_URL', 'http://path.torespond.com');
+	// app URL
+	define('APP_URL', 'http://dev.respondcms.com');
 	
 	// setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');
 	
 	// site admin
-	define('SITE_ADMIN', '');
+	define('SITE_ADMIN', 'matt+test@matthewsmith.com');
 	
 	// passcode
-	define('PASSCODE', 'iloverespond');
+	define('PASSCODE', 'iloverespond33!');
 	
 	// CORS
 	define ('CORS', serialize (array (
@@ -27,22 +27,22 @@
 	    )));
 	    
 	// Google Maps API Key
-	define('GOOGLE_MAPS_API_KEY', 'YOUR GOOGLE MAPS API KEY');
+	define('GOOGLE_MAPS_API_KEY', 'AIzaSyCoFLCbYAgQYuACXTa8-E94z4of3LXxJE8');
 	
 	// - Stripe
     // - set to the Stripe plan you want the user enrolled in when the site is created
     // - create account and plans at stripe.com (a trial period is recommended)
-    define('DEFAULT_STRIPE_PLAN', '');
+    define('DEFAULT_STRIPE_PLAN', 'respond-test');
     
     // set Stripe API keys 
-	define('STRIPE_API_KEY', '');
-    define('STRIPE_PUB_KEY', '');
+	define('STRIPE_API_KEY', 'sk_test_I8ldpi8G2IEa4N9fv2NxQWAp');
+    define('STRIPE_PUB_KEY', 'pk_test_FnhHnW31Z7M7ggXsStF19xXJ');
     
     // set what emails should be sent out and a reply-to email address
-    define('REPLY_TO', '');
-	define('SEND_WELCOME_EMAIL', false);
-	define('SEND_PAYMENT_SUCCESSFUL_EMAIL', false);
-	define('SEND_PAYMENT_FAILED_EMAIL', false);
+    define('REPLY_TO', 'matt@matthewsmith.com');
+	define('SEND_WELCOME_EMAIL', true);
+	define('SEND_PAYMENT_SUCCESSFUL_EMAIL', true);
+	define('SEND_PAYMENT_FAILED_EMAIL', true);
 	
 	// the brand of your app
     define('BRAND', 'Respond CMS');

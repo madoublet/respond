@@ -73,9 +73,12 @@
 		
 		<div class="form-group">
 			<label for="language"><?php print _("Language:"); ?></label>
-			<select id="language" class="form-control">
-				<option value="en"><?php print _("English"); ?></option>
-			</select>
+			<select id="language" class="form-control" data-bind="
+			    options: languages,
+			    optionsText: 'text',
+			    optionsValue: 'code'">
+				    <option value="en">English</option>
+			    </select>
 		</div>
 		
 		<div class="form-group">

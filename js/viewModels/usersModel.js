@@ -3,11 +3,14 @@ var usersModel = {
 
 	users: ko.observableArray([]),
 	usersLoading: ko.observable(true),
+	
+    languages: ko.observableArray([]),
 
 	toBeRemoved: null,
     toBeEdited: null,
 
 	init:function(){ // initializes the model
+		usersModel.updateLanguages();
 		usersModel.updateUsers();	
 
 		ko.applyBindings(usersModel);  // apply bindings
@@ -39,6 +42,31 @@ var usersModel = {
 		});
 
 	},
+	
+	updateLanguages:function(){
+        
+        usersModel.languages.removeAll();
+       
+    	$.ajax({
+			url: 'data/languages.json',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+	
+                for(x in data.languages){
+    
+    				var language = {
+        			    'code': data.languages[x]['code'],
+                        'text': data.languages[x]['text']
+    				};
+                
+					usersModel.languages.push(language); 
+				}
+
+			}
+		});
+    },
     
     showAddDialog:function(o, e){ // shows a dialog to add a page
     

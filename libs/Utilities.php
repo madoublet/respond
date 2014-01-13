@@ -3,16 +3,20 @@
 class Utilities
 {
 	// sets a language for the app
-	public static function SetLanguage($language, $domain = 'locale'){
+	public static function SetLanguage($language, $directory = 'locale'){
+	
+		$domain = 'messages';
+	
 		putenv('LANG='.$language); 
 		setlocale(LC_ALL, $language);
 		
 		// set text domain
-		$domain = 'messages';
-		bindtextdomain($domain, $domain); 
+		bindtextdomain($domain, $directory); 
 		bind_textdomain_codeset($domain, 'UTF-8');
 		
 		textdomain($domain);
+		
+		//	echo _("Select a Plan");
 	}
 	
 	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
