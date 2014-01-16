@@ -308,3 +308,15 @@ div.listItem span.status{
 	.list-menu p a{
 		margin-left: 5px;
 	}
+	
+		.list-menu .categories .caret{
+			border-top-color: #888;
+			margin-left: 3px;
+		}
+	
+		.list-menu .categories .btn-default{
+			border: none;
+			padding: 2px 5px;
+			color: #999;
+			font-size: 0.95em;
+		}

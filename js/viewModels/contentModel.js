@@ -2,6 +2,7 @@
 var contentModel = {
 
     pageUniqId: ko.observable(''),
+    pageTypeUniqId: ko.observable(''),
     page: ko.observable(null),
     toPagePrefix: ko.observable(''),
     domain: ko.observable(''),
@@ -10,6 +11,10 @@ var contentModel = {
     content: ko.observable(''),
     contentLoading: ko.observable(false),
     pageTypes: ko.observableArray([]),
+    
+    categories: ko.observableArray([]), // observables
+    categoriesForPage: ko.observable(), // comma separated list of current categories
+	categoriesLoading: ko.observable(false),
     
     pages: ko.observableArray([]),
     pagesLoading: ko.observable(false),
@@ -115,6 +120,100 @@ var contentModel = {
 
 	},
 	
+	// updates the categories
+	updateCategories:function(){  // updates the categories array
+
+		contentModel.categories.removeAll();
+		contentModel.categoriesLoading(true);
+		
+		$.ajax({
+			url: 'api/category/list/all',
+			type: 'POST',
+			data: {pageTypeId: contentModel.page().pageTypeId},
+			dataType: 'json',
+			success: function(data){
+			
+				console.log(data[x]);
+
+				for(x in data){
+				
+					var category = Category.create(data[x]);
+					
+					console.log(category);
+					
+					contentModel.categories.push(category); // push a category to the model
+				}
+
+				contentModel.categoriesLoading(false);
+
+			}
+		});
+
+	},
+	
+	// updates the categories
+	updateCategoriesForPage:function(){  // updates the categories array
+	
+		contentModel.categories.removeAll();
+		contentModel.categoriesLoading(true);
+		
+		$.ajax({
+			url: 'api/category/list/page',
+			type: 'POST',
+			data: {pageId: contentModel.page().pageId},
+			dataType: 'json',
+			success: function(data){
+			
+				var c = '';
+
+				for(x in data){
+				
+					c += data[x]['CategoryUniqId'] + ',';
+				}
+				
+				c = c.replace(/,+$/, "");
+				
+				contentModel.categoriesForPage(c);
+
+			}
+		});
+
+	},
+	
+	// updates the categories
+	updateCategoriesWithPageTypeUniqId:function(pageTypeUniqId, callback){  // updates the categories array
+
+		contentModel.categories.removeAll();
+		contentModel.categoriesLoading(true);
+		
+		$.ajax({
+			url: 'api/category/list/all',
+			type: 'POST',
+			data: {pageTypeUniqId: pageTypeUniqId},
+			dataType: 'json',
+			success: function(data){
+			
+				console.log(data[x]);
+
+				for(x in data){
+				
+					var category = Category.create(data[x]);
+					
+					console.log(category);
+					
+					contentModel.categories.push(category); // push a category to the model
+				}
+
+				contentModel.categoriesLoading(false);
+				
+				callback();
+
+			}
+		});
+
+	},
+	
+	// update the page types
 	updatePageTypes:function(){  // updates the page types arr
 
 		contentModel.pageTypes.removeAll();
@@ -139,7 +238,8 @@ var contentModel = {
 
 	},
 
-	updatePages:function(){  // updates the pages arr
+	// updates the pages
+	updatePages:function(){ 
 
 		contentModel.pages.removeAll();
 		contentModel.pagesLoading(true);
@@ -164,7 +264,8 @@ var contentModel = {
 
 	},
 
-	updatePlugins:function(){ // gets the plugins for the system
+	// updates the plugins
+	updatePlugins:function(){
 
 		contentModel.pluginsLoading(true);
 
@@ -180,7 +281,8 @@ var contentModel = {
 		});
 	},
 
-	updateStylesheets:function(){ // gets the stylesheets for the current template
+	// updates the stylesheets for the current template
+	updateStylesheets:function(){ 
 
 		contentModel.stylesheetsLoading(true);
 
@@ -196,7 +298,8 @@ var contentModel = {
 		});
 	},
 
-	updateLayouts:function(){ // gets the layouts for the current template
+	// updates the layouts for the current template
+	updateLayouts:function(){ 
 
 		contentModel.layoutsLoading(true);
 
@@ -212,7 +315,8 @@ var contentModel = {
 		});
 	},
 
-	saveSettings:function(i,e){ // saves the settings for the page
+	// saves the settings for the page
+	saveSettings:function(i,e){ 
 
 		message.showMessage('progress', $('#msg-settings-saving').val());
 
@@ -232,14 +336,24 @@ var contentModel = {
 		}
 
 		if(rss.length>0)rss=rss.substring(0,rss.length-1);
+		
+		var checks = $('.categories-list input[type=checkbox]:checked');
+		var categories = '';
+      
+		for(var x=0; x<checks.length; x++){
+			categories += $(checks[x]).val() + ',';
+		}
+
+		if(categories.length>0)categories=categories.substring(0,categories.length-1);
 
 		$.ajax({
 			url: 'api/page/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {name:name, friendlyId:friendlyId, description:description, keywords:keywords, 
-				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet},
+				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet, categories:categories},
 			success: function(data){
 				message.showMessage('success', $('#msg-settings-saved').val());
+				contentModel.updateCategoriesForPage();
 			},
 			error: function(data){
 				message.showMessage('error', $('#msg-settings-error').val());
@@ -303,7 +417,8 @@ var contentModel = {
 
 	},
 
-	updatePage:function(){ // grabs the content 
+	// updates the page
+	updatePage:function(){
 
 		$.ajax({
 			url: 'api/page/'+contentModel.pageUniqId(),
@@ -315,7 +430,7 @@ var contentModel = {
 				var page = Page.create(data);
 
 				contentModel.page(page);
-
+				
 				var prefix = '';
 				
 				if(page.pageTypeId()!='-1'){
@@ -323,13 +438,15 @@ var contentModel = {
 				}
 
 				contentModel.toPagePrefix(prefix);
+				contentModel.updateCategoriesForPage();
 
 			}
 		});
 
 	},
 
-	preview:function(){ // previews the content
+	// previews the content
+	preview:function(){ 
 		message.showMessage('progress', $('#msg-saving-draft').val());
 
 		var content = $('#desc').respondHtml();
@@ -357,6 +474,7 @@ var contentModel = {
 		});
 	},
     
+    // hides the preview
     hidePreview:function(){
         $('#editorContainer').show();
         $('#actions').show();
@@ -374,6 +492,7 @@ var contentModel = {
 		});
     },
     
+    // updates the images for the site
     updateImages:function(){
         
         contentModel.images.removeAll();
@@ -409,10 +528,12 @@ var contentModel = {
 		});
     },
     
+    // sets the image
     setImage:function(o, e){
     	imagesDialog.addImage(o.fullUrl, o.thumbUrl, o.filename);
     },
     
+    // update files for the site
     updateFiles:function(){
         
         contentModel.files.removeAll();
@@ -448,6 +569,7 @@ var contentModel = {
 		});
     },
     
+    // update icons (from json)
     updateIcons:function(){
         
         contentModel.icons.removeAll();
@@ -477,10 +599,12 @@ var contentModel = {
 		});
     },
     
+    // add a file
     addFile:function(o, e){
         filesDialog.addFile();
     },
     
+    // add an icon
     addIcon: function(o, e){
 	    fontAwesomeDialog.addIcon();
     }

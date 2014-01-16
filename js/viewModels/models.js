@@ -116,6 +116,24 @@ Page.create = function(data){
 					data['IsActive']);
 }
 
+// models a category
+function Category(categoryId, categoryUniqId, pageTypeId, friendlyId, name){
+
+	var self = this;
+
+	self.categoryId = ko.observable(categoryId);
+	self.categoryUniqId = ko.observable(categoryUniqId);
+	self.pageTypeId = ko.observable(pageTypeId);
+	self.friendlyId = ko.observable(friendlyId);
+	self.name = ko.observable(name);
+}
+
+// creates a category based on data returned from the API
+Category.create = function(data){
+
+	return new Category(data['CategoryId'], data['CategoryUniqId'], data['PageTypeId'], data['FriendlyId'], data['Name']);
+}
+
 // models a pagetype
 function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, stylesheet, createdBy, lastModifiedBy, lastModifiedDate, created){
 

@@ -43,11 +43,12 @@ var pageModel = {
             var pageTypeUniqId = $(lists[x]).attr('data-pagetypeid');
             var pageSize = $(lists[x]).attr('data-length');
             var orderBy = $(lists[x]).attr('data-orderby');
+            var category = $(lists[x]).attr('data-category');
             var siteUniqId = pageModel.siteUniqId();
-        
+            
             pageModel[id] = ko.observableArray([]);
             
-            console.log('create observableArray: ' + id);
+            // #debug console.log('create observableArray: ' + id);
             
             // use an anonymous function to pass the id
             // #ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
@@ -57,7 +58,7 @@ var pageModel = {
                 	url: pageModel.apiEndpoint + '/api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
-        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, page: page, language: pageModel.language},
+        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, category: category, page: page, language: pageModel.language},
         			success: function(data){
         			
         				if(data.length == 0){ // hide pager when we hit the end
@@ -67,8 +68,6 @@ var pageModel = {
                         for(x=0; x<data.length; x++){
                         
                             if(display=='blog'){
-                                
-                                console.log(data);
                         
                                 // replace image url
                                 var content = data[x].Content;

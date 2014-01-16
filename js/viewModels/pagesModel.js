@@ -15,11 +15,16 @@ var pagesModel = {
 	pages: ko.observableArray([]), // observables
 	pagesLoading: ko.observable(false),
 	
+	categories: ko.observableArray([]), // observables
+	categoriesLoading: ko.observable(false),
+	
 	stylesheets: ko.observableArray([]),
     stylesheetsLoading: ko.observable(false),
     
     layouts: ko.observableArray([]),
     layoutsLoading: ko.observable(false),
+    
+    categoryUniqId: ko.observable('-1'),
 
 	toBeRemoved:null,
 
@@ -58,6 +63,7 @@ var pagesModel = {
 		
 	},
 
+	// updates the page types
 	updatePageTypes:function(){  // updates the page types arr
 
 		pagesModel.pageTypes.removeAll();
@@ -74,8 +80,6 @@ var pagesModel = {
 
 					var pageType = PageType.create(data[x]);
 					
-					console.log(data[x]);
-					
 					if(pageType.friendlyId() == pagesModel.friendlyId()){
 					
 						pagesModel.pageTypeUniqId(pageType.pageTypeUniqId());
@@ -89,6 +93,7 @@ var pagesModel = {
 				}
 
 				pagesModel.updatePages();
+				pagesModel.updateCategories();
 				
 				global.setupFs();
 				
@@ -97,6 +102,7 @@ var pagesModel = {
 
 	},
 
+	// updates the pages
 	updatePages:function(){  // updates the page arr
 
 		pagesModel.pages.removeAll();
@@ -104,10 +110,17 @@ var pagesModel = {
         
         var sort = pagesModel.sort() + ' ' + pagesModel.order();
         
+        // set data
+        var data = {friendlyId: pagesModel.friendlyId(), sort: sort};
+        
+        if(pagesModel.categoryUniqId() != '-1'){
+	        data = {friendlyId: pagesModel.friendlyId(), sort: sort, categoryUniqId: pagesModel.categoryUniqId()};
+        }
+        
 		$.ajax({
 			url: 'api/page/list/sorted',
 			type: 'POST',
-			data: {friendlyId: pagesModel.friendlyId(), sort: sort},
+			data: data,
 			dataType: 'json',
 			success: function(data){
 
@@ -127,6 +140,38 @@ var pagesModel = {
 
 	},
 	
+	// updates the categories
+	updateCategories:function(){  // updates the categories array
+
+		pagesModel.categories.removeAll();
+		pagesModel.categoriesLoading(true);
+        
+		$.ajax({
+			url: 'api/category/list/all',
+			type: 'POST',
+			data: {pageTypeUniqId:pagesModel.pageTypeUniqId()},
+			dataType: 'json',
+			success: function(data){
+			
+				console.log(data[x]);
+
+				for(x in data){
+				
+					var category = Category.create(data[x]);
+					
+					console.log(category);
+					
+					pagesModel.categories.push(category); // push a category to the model
+				}
+
+				pagesModel.categoriesLoading(false);
+
+			}
+		});
+
+	},
+	
+	// updates the stylesheets
 	updateStylesheets:function(){ // gets the stylesheets for the current theme
 
 		pagesModel.stylesheetsLoading(true);
@@ -143,6 +188,7 @@ var pagesModel = {
 		});
 	},
 
+	// updates the layouts
 	updateLayouts:function(){ // gets the layouts for the current theme
 
 		pagesModel.layoutsLoading(true);
@@ -159,6 +205,7 @@ var pagesModel = {
 		});
 	},
 
+	// switches page types
 	switchPageType:function(o, e){  // switches b/w page types
 	
 		$('#account-message').fadeOut();
@@ -185,6 +232,7 @@ var pagesModel = {
 		pagesModel.typeS(typeS);
 
 		pagesModel.updatePages();
+		pagesModel.updateCategories();
 
 	},
 
@@ -202,10 +250,12 @@ var pagesModel = {
 		return false;
 	},
 
+	// shows the add page dialog
 	showAddDialog:function(o, e){ // shows a dialog to add a page
 		$('#name').val('');
 		$('#friendlyId').val('');
 		$('#description').val('');
+		$('.categories-list input[type=checkbox]').attr('checked', false);
 	
 		$('#addDialog').modal('show');
 
@@ -271,12 +321,21 @@ var pagesModel = {
             return;
         }
         
+        var checks = $('.categories-list input[type=checkbox]:checked');
+		var categories = '';
+      
+		for(var x=0; x<checks.length; x++){
+			categories += $(checks[x]).val() + ',';
+		}
+
+		if(categories.length>0)categories=categories.substring(0,categories.length-1);
+		
         message.showMessage('progress', $('#msg-adding').val());
         
         $.ajax({
           url: 'api/page/add',
           type: 'POST',
-          data: {pageTypeUniqId: pageTypeUniqId, name: name, friendlyId: friendlyId, description: description},
+          data: {pageTypeUniqId: pageTypeUniqId, name: name, friendlyId: friendlyId, description: description, categories: categories},
           success: function(data){
 
           	pagesModel.updatePages();
@@ -474,6 +533,100 @@ var pagesModel = {
 		pagesModel.updatePages();
 		$('.list-menu-actions a').removeClass('active');
 		$(e.target).parent().addClass('active');
+	},
+	
+	// shows add category dialog
+	showAddCategoryDialog:function(o, e){ // shows a dialog to add a page
+		$('#categoryName').val('');
+		$('#categoryFriendlyId').val('');
+		
+		$('#addCategoryDialog').modal('show');
+
+		return false;
+	},
+	
+	// adds a category
+	addCategory:function(){  
+
+		var pageTypeUniqId = pagesModel.pageTypeUniqId();
+		
+		var name = $.trim($('#categoryName').val());
+        var friendlyId = $.trim($('#categoryFriendlyId').val());
+        
+        if(name=='' || friendlyId==''){
+            message.showMessage('error', $('#msg-add-error').val());
+            return;
+        }
+        
+        message.showMessage('progress', $('#msg-category-adding').val());
+        
+        $.ajax({
+          url: 'api/category/add',
+          type: 'POST',
+          data: {pageTypeUniqId: pageTypeUniqId, name: name, friendlyId: friendlyId},
+          success: function(data){
+
+          	pagesModel.updateCategories();
+
+    	    $('#addCategoryDialog').modal('hide');
+            
+            message.showMessage('success', $('#msg-category-added').val());
+          }
+        });
+
+	},
+	
+	// shows a dialog to remove a category
+	showRemoveCategoryDialog:function(o, e){
+	
+		pagesModel.toBeRemoved = o;
+
+		console.log(o);
+
+		var name = pagesModel.toBeRemoved.name();
+		
+		$('#removeCategoryName').html(name);  // show remove dialog
+		$('#deleteCategoryDialog').modal('show');
+
+		return false;
+	},
+	
+	// removes a category
+	removeCategory:function(){  // removes a page
+
+		message.showMessage('progress', $('#msg-category-removing').val());
+
+		$.ajax({
+			url: 'api/category/'+pagesModel.toBeRemoved.categoryUniqId(),
+			type: 'DELETE',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+				pagesModel.categories.remove(pagesModel.toBeRemoved); // remove the page from the model
+
+				$('#deleteCategoryDialog').modal('hide');
+
+				message.showMessage('success', $('#msg-category-removed').val());
+			},
+			error: function(data){
+				message.showMessage('error', $('#msg-category-remove-error').val());
+			}
+		});
+
+	},
+	
+	// sets the categoryUniqId
+	setCategory:function(o, e){
+		$('#categories .current-category').text(o.name());
+		pagesModel.categoryUniqId(o.categoryUniqId);
+		pagesModel.updatePages();
+	},
+	
+	// resets the categoryUniqId
+	resetCategory:function(o, e){
+		$('#categories .current-category').text($(e.target).text());
+		pagesModel.categoryUniqId('-1');
+		pagesModel.updatePages();
 	}
 }
 

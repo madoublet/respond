@@ -15,8 +15,6 @@ class Utilities
 		bind_textdomain_codeset($domain, 'UTF-8');
 		
 		textdomain($domain);
-		
-		//	echo _("Select a Plan");
 	}
 	
 	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
@@ -868,12 +866,12 @@ class Utilities
                     $desclength = $el->desclength;
                     $length = $el->length;
                     $orderby = $el->orderby;
-                    $groupby = $el->groupby;
+                    $category = $el->category;
                     $pageresults = $el->pageresults;
                   
                     if($el->display == 'blog'){
                       
-                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'">'
+                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
                                 .'<div class="content" data-bind="html:content"></div>'
                                 .'<div class="blog-meta">'
                                 .'<p>'
@@ -884,17 +882,15 @@ class Utilities
                                 .'</div>'
                                 .'</div>';  
                                 
-						if(settype($pageresults, 'boolean') == true){
-							
+						if($pageresults == 'true'){
 							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">Older Posts</button></div>';
-							
 						}
 						
 						
                      
                     }
                     else{
-                        $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'">'
+                        $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
                                 .'<li class="list-group-item">'
                                 	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
                                 	.'<img data-bind="attr: {\'src\': thumb}">'
@@ -905,10 +901,8 @@ class Utilities
 								.'</li>'
                                 .'</ul>';  
                                 
-                       if(settype($pageresults, 'boolean') == true){
-							
+                       if($pageresults == 'true'){
 							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
-							
 						}
                     }
                     

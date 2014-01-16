@@ -22,6 +22,7 @@
 	require_once 'dao/MenuType.php';
 	require_once 'dao/Page.php';
 	require_once 'dao/MenuItem.php';
+	require_once 'dao/Category.php';
 	
 	// include external libs
     require_once 'libs/stripe/lib/Stripe.php';

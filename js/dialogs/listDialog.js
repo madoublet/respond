@@ -28,6 +28,7 @@ var listDialog = {
 		  var html = '<div id="'+uniqId+'" data-display="'+display+'" data-type="'+pageTypeUniqId+'" class="list"' +
 		  				' data-length="'+$('#listLength').val() + '"' +
 		  				' data-orderby="'+$('#listOrderBy').val() + '"' +
+		  				' data-category="'+$('#listCategory').val() + '"' +
 		  				' data-pageresults="'+$('#listPageResults').is(':checked') + '"' +
 		  				' data-desclength="'+$('#listDescLength').val() + '"' +
 		  				' data-label="' + 
@@ -48,7 +49,7 @@ var listDialog = {
 		});
 
 
-		$('#updateList').click(function(){
+		$('#updateList').on('click', function(){
 		  
 		  var pageTypeUniqId = listDialog.pageTypeUniqId;
 		  var moduleId = listDialog.moduleId;
@@ -60,10 +61,18 @@ var listDialog = {
 		  $('div#'+moduleId+'.list').attr('data-display', $('#listDisplay').val());
 		  $('div#'+moduleId+'.list').attr('data-length', $('#listLength').val());
 		  $('div#'+moduleId+'.list').attr('data-orderby', $('#listOrderBy').val());
+		  $('div#'+moduleId+'.list').attr('data-category', $('#listCategory').val());
 		  $('div#'+moduleId+'.list').attr('data-pageresults', $('#listPageResults').val());
 		  $('div#'+moduleId+'.list').attr('data-desclength', desclength);
 		 
 		  $('#listDialog').modal('hide');
+		});
+		
+		// retrieves new categories for page type
+		$('#listPageType').on('change', function(){
+			var pageTypeUniqId = $(this).val();
+			
+			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
 		});
 	},
 
@@ -75,16 +84,21 @@ var listDialog = {
 	    if(mode=='add'){
 
 			 $('#listDialog .add').show();  // show/hide
-			 $('#listDialog .show').hide();
+			 $('#listDialog .edit').hide();
 
-			$('#addList').show();
-			$('#updateList').hide();
 			$('#showSelectOptions').show();
 			$('#selectList li').removeClass('selected');
 			$('#showCategoryOptions').hide();
 			$('#showCategoryPageTypes').show();
 
+			$("#listPageType")[0].selectedIndex = 0;
+			
+			var pageTypeUniqId = $("#listPageType").val();
+			
+			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
+			
 			$('#listLength').val('10');   // set initial values
+			$('#listCategory').val('-1');
 			$('#listOrderBy').val('Name');
 			$('#listPageResults').val('false');
 			$('#listDescLength').val(250);
@@ -98,16 +112,23 @@ var listDialog = {
 	      $('#listDialog .edit').show();  // show/hide
 	      $('#listDialog .add').hide();
 	      
-	      $('#addList').hide();
-	      $('#updateList').show();
 	      $('#listPageTypeBlock').hide();
 
 	      var node = $('div#'+listDialog.moduleId+'.list');   // get reference to list
 	      var display = $(node).attr('data-display');
 	      var type = $(node).attr('data-type');
+	      var category = $(node).attr('data-category')
+	      
+	      function setCategory(){
+		      $('#listCategory').val(category);
+	      }
+	      
+	      contentModel.updateCategoriesWithPageTypeUniqId(type, setCategory);
+	      
 	      var label = $(node).attr('data-label');
 	      var length = $(node).attr('data-length');
 	      var orderby = $(node).attr('data-orderby');
+	      
 	      var pageresults = $(node).attr('data-pageresults');
 	      var desclength = $(node).attr('data-desclength');
 

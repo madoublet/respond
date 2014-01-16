@@ -20,6 +20,7 @@
     require_once 'plan.php';
     require_once 'card.php';
     require_once 'customer.php';
+    require_once 'category.php';
         
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];

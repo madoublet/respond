@@ -40,6 +40,16 @@
 			</div>
 			
 			<div class="form-group">
+				<label for="listCategory"><?php print _("Filter By Category:"); ?></label>
+				<select id="listCategory" class="form-control">
+					<option value="-1"><?php print _("All Categories"); ?></option>
+				<!--ko foreach: categories -->
+					<option data-bind="value:categoryUniqId, text:name"></option>
+				<!--/ko -->
+				</select>
+			</div>
+			
+			<div class="form-group">
 				<label for="listDescLength"><?php print _("Description Length:"); ?></label>
 				<input id="listDescLength" type="number" value="250" class="form-control">
 			</div>

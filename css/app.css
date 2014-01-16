@@ -743,6 +743,48 @@ table.table tr.active a.switch{
  	display: none;
 }
 
+/* dropdown */
+body .btn-group.open .dropdown-toggle{
+	background-color: #fff;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+body .dropdown-menu{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+	body .dropdown-menu li, body .dropdown-menu a{
+		color: #888;
+	}
+
+	body .dropdown-menu li:hover, body .dropdown-menu a:hover{
+		background-color: #f8f8f8;
+		color: #888;
+	}
+	
+	body .dropdown-menu li{
+		position: relative;
+	}
+	
+		body .dropdown-menu li a{
+			padding-left: 5px;
+			margin-left: 5px;
+		}
+	
+		body .dropdown-menu li .remove{
+			position: absolute;
+			top: 2px;
+			right: 5px;
+			z-index: 10;
+			cursor: pointer;
+		}
+		
+		body .dropdown-menu li i:hover{
+            color: #A4110A;
+        }
+
 /* codemirror */
 .CodeMirror{
     border: 1px solid #ccc;

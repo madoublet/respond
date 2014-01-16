@@ -48,6 +48,11 @@
 <input id="msg-unpublished" value="<?php print _("The page was un-published successfully"); ?>" type="hidden">
 <input id="msg-published" value="<?php print _("The page was published successfully"); ?>" type="hidden">
 <input id="msg-publish-error" value="<?php print _("There was a problem publishing/un-publishing the page"); ?>" type="hidden">
+<input id="msg-category-adding" value="<?php print _("Adding category..."); ?>" type="hidden">
+<input id="msg-category-added" value="<?php print _("Category added successfully"); ?>" type="hidden">
+<input id="msg-category-removing" value="<?php print _("Removing category..."); ?>" type="hidden">
+<input id="msg-category-removed" value="<?php print _("Category removed successfully"); ?>" type="hidden">
+<input id="msg-category-remove-error" value="<?php print _("There was a problem removing the category"); ?>" type="hidden">
 
 <section class="main">
 
@@ -85,6 +90,21 @@
     	<?php include 'modules/account.php'; ?>
     	
 		<div class="list-menu-actions">
+		
+			<div id="categories" class="categories btn-group" data-bind="visible: pageTypeUniqId()!=-1">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				  <span class="current-category"><?php print _("All Categories"); ?></span> <i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu">
+				  <li><a data-bind="click:resetCategory"><?php print _("All Categories"); ?></a></li>
+				  <!--ko foreach: categories -->
+				  <li><a data-bind="text:name, click: $parent.setCategory"></a><i data-bind="click: $parent.showRemoveCategoryDialog" class="fa fa-minus-circle remove"></i></li>
+				  <!--/ko -->
+				  <li role="presentation" class="divider"></li>
+				  <li><a data-bind="click:showAddCategoryDialog"><?php print _("Add Category"); ?></a></li>
+				</ul>
+			</div>
+		
     		<a title="Sort by Last Modified" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
 			<a title="Sort by Name"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
 			<a><i class="fa fa-cog" data-bind="click: showEditPageTypeDialog, visible: pageTypeUniqId()!=-1"></i></a>
@@ -151,6 +171,13 @@
 				<div class="form-group">
 					<label for="description" class="control-label"><?php print _("Description:"); ?></label>
 					<textarea id="description" class="form-control"></textarea>
+				</div>
+				
+				<div class="form-group" data-bind="visible: categories().length>0">
+					<label for="categories-list" class="control-label"><?php print _("Categories:"); ?></label>  
+					<span class="checklist categories-list" data-bind="foreach: categories">
+						<label class="checkbox"><input type="checkbox" data-bind="value: categoryUniqId"> <span data-bind="text:name"></span></label>
+					</span>
 				</div>
 				
 			</div>
@@ -299,6 +326,80 @@
 
 </div>
 <!-- /.modal -->
+
+<div class="modal fade" id="addCategoryDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3><?php print _("Add Category"); ?></h3>
+			</div>
+			<div class="modal-body">
+				
+				<div class="form-group">
+					<label for="name" class="control-label"><?php print _("Name:"); ?></label>
+					<input id="categoryName" type="text" value="" maxlength="255" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="URL" class="control-label"><?php print _("Friendly URL:"); ?></label>
+					<input id="categoryFriendlyId" type="text" maxlength="128" value="" placeholder="category-name" class="form-control">
+					<span class="help-block">e.g. /list#category:name</span>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: addCategory"><?php print _("Add Category"); ?></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="deleteCategoryDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3><?php print _("Remove Cateogry"); ?></h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<p>
+					<?php print _("Confirm you want to remove:"); ?> <strong id="removeCategoryName">this category</strong>
+				</p>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeCategory"><?php print _("Remove Category"); ?></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
 	
 </body>
 

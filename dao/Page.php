@@ -94,7 +94,7 @@ class Page{
     
         	$s = $db->prepare($q);
             $s->bindParam(1, $friendlyId);
-            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $siteId);
             
     		$s->execute();
     
@@ -279,6 +279,48 @@ class Page{
         
 	}
 	
+	// adds a category to a page
+	public static function AddCategory($pageId, $categoryId){
+	
+		try{
+            
+            $db = DB::get();
+            
+            $q = "INSERT INTO Category_Page_Rel (PageId, CategoryId) 
+    			    VALUES (?, ?)";
+
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageId);
+            $s->bindParam(2, $categoryId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::AddCategory] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
+	// removes a page
+	public static function RemoveCategories($pageId){
+		
+        try{
+            
+            $db = DB::get();
+            
+            $q = "DELETE FROM Category_Page_Rel WHERE PageId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::RemoveCategoriess] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
 	// gets all pages
 	public static function GetPages($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $activeOnly = false){
 		
@@ -309,6 +351,56 @@ class Page{
             $s->bindParam(2, $pageTypeId);
             $s->bindValue(3, intval($next), PDO::PARAM_INT);
             $s->bindValue(4, intval($pageSize), PDO::PARAM_INT);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPages]'.'[next='.$next.'pageSize='.$pageSize.']---PDO Error: '.$e->getMessage().'trace='.$e->getTraceAsString());
+        } 
+        
+	}
+	
+	// gets all pages for a given category
+	public static function GetPagesByCategory($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $categoryId, $activeOnly = false){
+		
+        try{
+
+            $db = DB::get();
+            
+            $activeClause = '';
+
+        	if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+    		
+    		$next = $pageSize * $pageNo;
+    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
+            		Pages.Description, Pages.Keywords, Pages.Callout,
+        			Pages.Layout, Pages.Stylesheet, Pages.RSS,
+        			Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Pages 
+        				LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
+        				LEFT JOIN Category_Page_Rel ON Pages.PageId = Category_Page_Rel.PageId
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." AND Category_Page_Rel.CategoryId = ? ORDER BY ".$orderBy." LIMIT ?, ?";
+        			
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            $s->bindParam(3, $categoryId);
+            $s->bindValue(4, intval($next), PDO::PARAM_INT);
+            $s->bindValue(5, intval($pageSize), PDO::PARAM_INT);
             
             $s->execute();
             

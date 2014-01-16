@@ -41,6 +41,24 @@ class PageAddResource extends Tonic\Resource {
             $description = $request['description'];
 
             $page = Page::Add($friendlyId, $name, $description, $layout, $stylesheet, $pageTypeId, $authUser->SiteId, $authUser->UserId);
+            
+            // add categories to the page (if set)
+            if(isset($request['categories'])){
+	            
+	            $categories = $request['categories'];
+	            
+	            $arr = explode(',', $categories);
+	            
+				foreach($arr as $categoryUniqId) { 
+				
+					$category = Category::GetByCategoryUniqId($categoryUniqId);
+				   
+					if($category != NULL){
+						Page::AddCategory($page['PageId'], $category['CategoryId']);
+					}
+				}
+	            
+            }
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -108,6 +126,28 @@ class PageResource extends Tonic\Resource {
             $stylesheet = $request['stylesheet'];
 
             Page::EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $authUser->UserId);
+            
+            // add categories to the page (if set)
+            if(isset($request['categories'])){
+            
+            	$page = Page::GetByPageUniqId($pageUniqId);
+            
+            	Page::RemoveCategories($page['PageId']);
+	            
+	            $categories = $request['categories'];
+	            
+	            $arr = explode(',', $categories);
+	            
+				foreach($arr as $categoryUniqId) { 
+				
+					$category = Category::GetByCategoryUniqId($categoryUniqId);
+				   
+					if($category != NULL){
+						Page::AddCategory($page['PageId'], $category['CategoryId']);
+					}
+				}
+	            
+            }
 
             return new Tonic\Response(Tonic\Response::OK);
         
@@ -552,6 +592,14 @@ class PageListSortedResource extends Tonic\Resource {
             
             $friendlyId = $request['friendlyId']; // get page type
             $sort = $request['sort'];
+            
+            $categoryId = -1;
+            
+            if(isset($request['categoryUniqId'])){
+	            $categoryUniqId = $request['categoryUniqId'];
+	            $category = Category::GetByCategoryUniqId($request['categoryUniqId']);
+	            $categoryId = $category['CategoryId'];
+            }
         
 			// default
 			$orderBy = 'LastModifiedDate DESC';
@@ -573,7 +621,6 @@ class PageListSortedResource extends Tonic\Resource {
 				$orderBy = 'Name ASC';
 			}
         
-
             $siteId = $authUser->SiteId;
             $pageSize = 100;
             
@@ -594,7 +641,12 @@ class PageListSortedResource extends Tonic\Resource {
             $dir = 'sites/'.$site['FriendlyId'].'/files/';
 
             // get pages
-            $list = Page::GetPages($siteId, $pageTypeId, $pageSize, $page, $orderBy);
+            if($categoryId == -1){
+            	$list = Page::GetPages($siteId, $pageTypeId, $pageSize, $page, $orderBy);
+            }
+            else{
+	            $list = Page::GetPagesByCategory($siteId, $pageTypeId, $pageSize, $page, $orderBy, $categoryId);
+            }
             
             $pages = array();
             
@@ -773,6 +825,13 @@ class PageListResource extends Tonic\Resource {
         $orderBy = $request['orderBy'];
         $page = $request['page'];
         
+        // get a categoryUniqId (if set)
+        $categoryUniqId = '-1';
+        
+        if(isset($request['category'])){
+        	$categoryUniqId = $request['category'];
+        }
+        
         // get language
         $language = 'en';
         
@@ -805,7 +864,22 @@ class PageListResource extends Tonic\Resource {
         $dest = 'sites/'.$site['FriendlyId'];
         
         // Get all pages
-        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
+        $hasCategory = false;
+        
+        // if category is set, try to get pages by Category
+        if($categoryUniqId != '-1'){
+	        $category = Category::GetByCategoryUniqId($categoryUniqId);
+	        
+	        if(isset($category['CategoryId'])){
+	        	$hasCategory = true;
+	        	$list = Page::GetPagesByCategory($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true);
+	        }
+        }
+        
+        // if the category did not work or is not set, just get a list by the other params
+        if($hasCategory == false){
+	        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
+        }
         
         $pages = array();
         
@@ -881,6 +955,13 @@ class PageBlogResource extends Tonic\Resource {
         $orderBy = $request['orderBy'];
         $page = $request['page'];
         
+        // get a categoryUniqId (if set)
+        $categoryUniqId = '-1';
+        
+        if(isset($request['category'])){
+        	$categoryUniqId = $request['category'];
+        }
+        
         // get language
         $language = 'en';
         
@@ -905,8 +986,23 @@ class PageBlogResource extends Tonic\Resource {
 
         $dest = 'sites/'.$site['FriendlyId'];
         
-        // Get all pages
-        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
+         // Get all pages
+        $hasCategory = false;
+        
+        // if category is set, try to get pages by Category
+        if($categoryUniqId != '-1'){
+	        $category = Category::GetByCategoryUniqId($categoryUniqId);
+	        
+	        if(isset($category['CategoryId'])){
+	        	$hasCategory = true;
+	        	$list = Page::GetPagesByCategory($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true);
+	        }
+        }
+        
+        // if the category did not work or is not set, just get a list by the other params
+        if($hasCategory == false){
+	        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
+        }
         
         $pages = array();
         

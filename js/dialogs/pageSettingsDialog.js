@@ -2,7 +2,6 @@
 var pageSettingsDialog = {
 
 	init:function(){
-		
 			
 	},
 
@@ -11,6 +10,7 @@ var pageSettingsDialog = {
 	
 		contentModel.updateStylesheets();
 		contentModel.updateLayouts();
+		contentModel.updateCategories();
 		
 		$('#pageSettingsDialog').modal('show');
 		

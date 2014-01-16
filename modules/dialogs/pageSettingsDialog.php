@@ -54,6 +54,13 @@
 					<span class="help-block"><?php print _("Adds a reference to the selected RSS feeds in the head of the page"); ?></span>
 				</div>
 				
+				<div class="form-group" data-bind="visible: $parent.categories().length>0">
+					<label for="categories-list" class="control-label"><?php print _("Categories:"); ?></label>  
+					<span class="checklist categories-list" data-bind="foreach: $parent.categories">
+						<label class="checkbox"><input type="checkbox" data-bind="value: categoryUniqId, checked: ($parents[1].categoriesForPage().indexOf(categoryUniqId())>-1)"> <span data-bind="text:name"></span></label>
+					</span>
+				</div>
+				
 				<div class="form-group">
 					<label for="layout"><?php print _("Layout:"); ?></label>
 					<select id="layout" data-bind="options: $parent.layouts, value: layout()" class="form-control"></select>

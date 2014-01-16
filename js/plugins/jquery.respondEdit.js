@@ -585,20 +585,19 @@ var editorDefaults = {
 						  	var desclength = $(node).attr('desclength');
 						  	var length = $(node).attr('length');
 						  	var orderby = $(node).attr('orderby');
-						  	var groupby = $(node).attr('groupby');
+						  	var category = $(node).attr('category');
 						  	var pageresults = $(node).attr('pageresults');
 						  	if(type==undefined)type='';
 							if(label==undefined)label='';
 							if(desclength==undefined)desclength='250';
 							if(length==undefined)length='';
 							if(orderby==undefined)orderby='';
-							if(groupby==undefined)groupby='';
 							if(pageresults==undefined)pageresults='';
 							
 						  	chtml = '<div id="'+id+'" data-display="'+display+'" data-type="'+type+'" class="list"' +
 								' data-label="' + label + '"' +
 								' data-desclength="' + desclength + '"' +
-								' data-length="' + length + '" data-orderby="' + orderby + '" data-groupby="' + groupby + '" data-pageresults="' + pageresults + '">' +
+								' data-length="' + length + '" data-orderby="' + orderby + '" data-category="' + category  + '" data-pageresults="' + pageresults + '">' +
 								editorDefaults.elementMenuList +
 								' <div class="title"><i class="fa fa-bars"></i> List '+label+' </div></div>';
 			
@@ -2040,13 +2039,13 @@ var editorDefaults = {
 					var desclength = $(divs[x]).attr('data-desclength');
 					var length = $(divs[x]).attr('data-length');
 					var orderby = $(divs[x]).attr('data-orderby');
-					var groupby = $(divs[x]).attr('data-groupby');
+					var category = $(divs[x]).attr('data-category');
 					var pageresults = $(divs[x]).attr('data-pageresults');
 		
 					newhtml += '<module id="'+id+'" name="list" display="'+display+'" type="'+type+'" label="' + label + '"' +
 						' desclength="'+desclength+'"' +
 						' length="'+length+'"' +
-						' orderby="'+orderby+'" groupby="'+groupby+'" pageresults="'+pageresults+'"' +
+						' orderby="'+orderby+'" category="'+category+'" pageresults="'+pageresults+'"' +
 						'></module>';
 				}
 				
