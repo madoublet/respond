@@ -133,7 +133,14 @@ class FilePostResource extends Tonic\Resource {
             
     			$size=Image::SaveImageWithThumb($directory, $filename, $file);
     			
-    			list($width, $height, $type, $attr) = getimagesize($directory.$filename); // get width and height
+    			$width = 0;
+    			$height = 0;
+    			
+    			// try to get width and height
+    			try{
+    				list($width, $height, $type, $attr) = getimagesize($directory.$filename); // get width and height
+                }
+                catch(Exception $e){}
                 
                 $arr = array(
                         'filename' => $filename,
@@ -231,8 +238,14 @@ class FileListAllResource extends Tonic\Resource {
                 
                 if($is_thumb==false && $is_image==true){
                     
-                    list($width, $height, $type, $attr) = getimagesize($directory.$filename);
+                    $width = 0;
+                    $height = 0;
                     
+                    try{
+                    	list($width, $height, $type, $attr) = getimagesize($directory.$filename);
+                    }
+					catch(Exception $e){}
+					
                     $file = array(
                         'filename' => $filename,
                         'fullUrl' => 'sites/'.$site['FriendlyId'].'/files/'.$filename,
