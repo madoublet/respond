@@ -19,6 +19,10 @@ class Utilities
 	
 	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
 	public static function GetPreferredLanguage($available_languages) { 
+	
+		if(count($available_languages) == 0){
+			return 'en';
+		}
     	
     	// if $http_accept_language was left out, read it from the HTTP-Header 
 	    $http_accept_language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : ''; 
