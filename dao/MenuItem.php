@@ -42,6 +42,7 @@ class MenuItem{
                 'Url' => $url,
                 'PageId' => $pageId,
                 'Priority' => $priority,
+                'IsNested' => 0,
                 'SiteId' => $siteId,
                 'CreatedBy' => $createdBy,
                 'LastModifiedBy' => $lastModifiedBy,
@@ -79,7 +80,7 @@ class MenuItem{
         
 	}
     
-    // updates the name, cssClass, and url
+    // updates the priority
     public static function EditPriority($menuItemUniqId, $priority){
 		
         try{
@@ -96,6 +97,27 @@ class MenuItem{
             
     	} catch(PDOException $e){
             die('[MenuItem::EditPriority] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
+	// updates the isNested flag
+    public static function EditIsNested($menuItemUniqId, $isNested){
+		
+        try{
+            
+            $db = DB::get();
+
+            $q = "UPDATE MenuItems SET IsNested = ? WHERE MenuItemUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $isNested, PDO::PARAM_INT);
+            $s->bindParam(2, $menuItemUniqId);
+            
+            $s->execute();
+            
+    	} catch(PDOException $e){
+            die('[MenuItem::EditIsNested] PDO Error: '.$e->getMessage());
         }
         
 	}
@@ -129,7 +151,7 @@ class MenuItem{
             
             $q = "SELECT MenuItems.MenuItemId, MenuItems.MenuItemUniqId, MenuItems.Name, MenuItems.CssClass,
             		MenuItems.Type,
-        			MenuItems.Url, MenuItems.PageId, MenuItems.Priority,
+        			MenuItems.Url, MenuItems.PageId, MenuItems.Priority, MenuItems.IsNested,
         			MenuItems.SiteId, MenuItems.CreatedBy, 
         			MenuItems.LastModifiedBy, MenuItems.LastModifiedDate, MenuItems.Created
         			FROM MenuItems
@@ -164,7 +186,7 @@ class MenuItem{
             
             $q = "SELECT MenuItems.MenuItemId, MenuItems.MenuItemUniqId, MenuItems.Name, MenuItems.CssClass,
             		MenuItems.Type,
-        			MenuItems.Url, MenuItems.PageId, MenuItems.Priority,
+        			MenuItems.Url, MenuItems.PageId, MenuItems.Priority, MenuItems.IsNested,
         			MenuItems.SiteId, MenuItems.CreatedBy, 
         			MenuItems.LastModifiedBy, MenuItems.LastModifiedDate, MenuItems.Created
         			FROM MenuItems
@@ -199,7 +221,7 @@ class MenuItem{
             $db = DB::get();
             
             $q = "SELECT MenuItemId, MenuItemUniqId, Name, CssClass, Type,
-            		Url, PageId, Priority, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+            		Url, PageId, Priority, IsNested, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
         		 	FROM MenuItems WHERE MenuItemUniqId = ?";
                     
             $s = $db->prepare($q);
@@ -227,7 +249,7 @@ class MenuItem{
             $db = DB::get();
             
             $q = "SELECT MenuItemId, MenuItemUniqId, Name, CssClass, Type,
-    		        Url, PageId, Priority, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
+    		        Url, PageId, Priority, isNested, SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
 		 	        FROM MenuItems WHERE MenuItemId = ?";
                     
             $s = $db->prepare($q);

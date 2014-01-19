@@ -267,6 +267,7 @@ var menusModel = {
         menusModel.updateMenuItems();
     },
     
+    // saves the new order
     saveOrder: function(){
         
         var items = $('#menuItemsList .listItem');
@@ -287,6 +288,39 @@ var menusModel = {
           success: function(data){
             message.showMessage('success', $('#msg-order').val());
             $('#save').hide();
+          }
+        });
+        
+    },
+    
+    // updates whether the item is nested
+    toggleIsNested: function(o, e){
+        
+        var el = e.target;
+        var isNested = 1;
+        
+        if($(el).parents('.listItem').hasClass('is-nested')){
+	        isNested = 0;
+        }
+        
+        $(this).addClass('active');
+        
+        // update with ajax
+        $.ajax({
+          url: 'api/menuitem/nested',
+          type: 'POST',
+          data: {menuItemUniqId: o.menuItemUniqId(), isNested: isNested},
+          success: function(data){
+          	if(isNested == 1){
+	          	$(el).parents('.listItem').addClass('is-nested');
+	          	$(this).addClass('pad-left');
+          	}
+          	else{
+	          	$(el).parents('.listItem').removeClass('is-nested');
+	          	$(this).removeClass('pad-left');
+          	}
+          	
+          	 $(this).removeClass('active');
           }
         });
         

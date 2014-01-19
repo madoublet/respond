@@ -190,7 +190,7 @@ MenuType.create = function(data){
 }
 
 // models a menuitem
-function MenuItem(menuItemId, menuItemUniqId, name, cssClass, type, url, pageId, priority, createdBy, lastModifiedBy, lastModifiedDate, created){
+function MenuItem(menuItemId, menuItemUniqId, name, cssClass, type, url, pageId, priority, isNested, createdBy, lastModifiedBy, lastModifiedDate, created){
 
     var self = this;
 
@@ -202,6 +202,7 @@ function MenuItem(menuItemId, menuItemUniqId, name, cssClass, type, url, pageId,
     self.url = ko.observable(url);
     self.pageId = ko.observable(pageId);
     self.priority = ko.observable(priority);
+    self.isNested = ko.observable(isNested);
 	self.createdBy = ko.observable(createdBy);
 	self.lastModifiedBy = ko.observable(lastModifiedBy);
 	self.lastModifiedDate = ko.observable(lastModifiedDate);
@@ -213,7 +214,7 @@ function MenuItem(menuItemId, menuItemUniqId, name, cssClass, type, url, pageId,
 MenuItem.create = function(data){
 
 	return new MenuItem(data['MenuItemId'], data['MenuItemUniqId'], data['Name'], data['CssClass'],
-						data['Type'], data['Url'], data['PageId'], data['Priority'], 
+						data['Type'], data['Url'], data['PageId'], data['Priority'], data['IsNested'], 
                         data['CreatedBy'], data['LastModifiedBy'],	data['LastModifiedDate'], data['Created']);
 }
 

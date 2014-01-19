@@ -56,6 +56,12 @@ ALTER TABLE `Category_Page_Rel`
 ALTER TABLE `Categories`
 	ADD CONSTRAINT `Categories_ibfk_1` FOREIGN KEY (`PageTypeId`) REFERENCES `PageTypes` (`PageTypeId`) ON DELETE CASCADE ON UPDATE CASCADE;
 ```
+
+- Add IsNested to MenuItems
+
+```
+ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER  `Priority`
+```
 	  
 - Pull latest version
 

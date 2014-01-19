@@ -116,6 +116,40 @@ class MenuItemOrderResource extends Tonic\Resource {
 
 }
 
+/**
+ * A protected API call to update the order of a menu
+ * @uri /menuitem/nested
+ */
+class MenuItemNestedResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function updateIsNested() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            parse_str($this->request->data, $request); // parse request
+
+            $menuItemUniqId = $request['menuItemUniqId'];
+            $isNested = $request['isNested'];
+            
+            $menuItem = MenuItem::EditIsNested($menuItemUniqId, $isNested);
+         
+            // return a 200
+            return new Tonic\Response(Tonic\Response::OK);
+        
+        } else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+
+}
+
 
 /**
  * A protected API call to update a menu item

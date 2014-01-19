@@ -30,8 +30,10 @@ body{
     	font-family: "Roboto Condensed", sans-serif;
     }
 
-a{
+a, a:hover{
 	cursor: pointer;
+	color: #3299BB;
+	text-decoration: none;
 }
 
 .primary-button, .secondary-button, .tertiary-button{

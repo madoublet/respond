@@ -68,10 +68,21 @@
 
 	<div id="menuItemsList" class="list" data-bind="foreach: menuItems">
     
-        <div class="listItem sortable" data-bind="attr:{'data-id':menuItemUniqId}">
+        <div class="listItem sortable" data-bind="css: {'is-nested': isNested()==1}, attr:{'data-id':menuItemUniqId, 'data-isnested':isNested}">
             <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published fa fa-minus-circle fa-lg"></i></a>
             <span class="hook"></span>
-            <h2><a data-bind="text: name, click: $parent.showEditDialog"></a> <small data-bind="text: url"></small></h2>
+            <h2>
+	            <span class="nested-left" data-bind="click: $parent.toggleIsNested">
+	            	<i class="fa fa-angle-left arrow"></i> 
+	            	<i class="fa fa-spinner fa-spin"></i>
+	            </span> 
+	            <span class="nested-right" data-bind="click: $parent.toggleIsNested">
+	            	<i class="fa fa-angle-right arrow"></i> 
+	            	<i class="fa fa-spinner fa-spin"></i>
+	            </span>
+	            <a data-bind="click: $parent.showEditDialog"><span class="name" data-bind="text:name"></span></a>
+	            <span class="url" data-bind="text: url"></span>             
+	        </h2>
         </div>
 		<!-- /.listItem -->
     

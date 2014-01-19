@@ -461,6 +461,9 @@ class Utilities
 		    
 		    $menuItems = MenuItem::GetMenuItemsForType($site['SiteId'], $value);
 		    $menu = '';
+		    $i = 0;
+		    $parent_flag = false;
+		    $new_parent = true;
 		    
 		    foreach($menuItems as $menuItem){
 		    	$url = $menuItem['Url'];
@@ -479,9 +482,45 @@ class Utilities
 					$cssClass = ' class="'.$css.'"';
 				}
 			
-			    $menu .= '<li'.$cssClass.'>';
-			    $menu .= '<a href="'.$rootloc.$url.'">'.$name.'</a>';
-			    $menu .= '</li>';
+				// check for new parent
+				if(isset($menuItems[$i+1])){
+					if($menuItems[$i+1]['IsNested'] == 1 && $new_parent==true){
+						$parent_flag = true;
+					}
+				}
+			
+				if($new_parent == true && $parent_flag == true){
+					$menu .= '<li class="dropdown">';
+					$menu .= '<a href="'.$rootloc.$url.'" class="dropdown-toggle" data-toggle="dropdown">'.$menuItem['Name'].' <b class="caret"></b></a>';
+					$menu .= '<ul class="dropdown-menu">';
+					$new_parent = false;
+				}
+				else{
+			    	$menu .= '<li'.$cssClass.'>';
+					$menu .= '<a href="'.$rootloc.$url.'">'.$menuItem['Name'].'</a>';
+					$menu .= '</li>';
+			    }
+			    
+			    // end parent
+			    if(isset($menuItems[$i+1])){
+					if($menuItems[$i+1]['IsNested'] == 0 && $parent_flag==true){
+						$menu .= '</ul></li>'; // end parent if next item is not nested
+						$parent_flag = false;
+						$new_parent = true;
+					}
+				}
+				else{
+					if($parent_flag == true){
+						$menu .= '</ul></li>'; // end parent if next menu item is null
+						$parent_flag = false;
+						$new_parent = true;
+					}
+				}
+				
+				$i = $i+1;
+				
+			    
+			    
 		    }
 		    
 		    $content = str_replace('{{menu-'.$value.'}}', $menu, $content);
