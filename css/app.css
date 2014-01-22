@@ -90,9 +90,25 @@ a, a:hover{
 	margin: 20px;
 }
 
-	.main .form-horizontal input, .main .form-horizontal select{
-		max-width: 400px;
+	.main .form-horizontal input, 
+	.main .form-horizontal select,
+	.main .form-vertical input, 
+	.main .form-vertical select{
+		max-width: 450px;
 	}
+	
+	.main .form-vertical{
+		padding-bottom: 50px;
+	}
+	
+		.main .form-vertical .form-group{
+			border-bottom: 1px solid #f0f0f0;
+			padding-bottom: 20px;
+		}
+		
+		.main .form-vertical .help-block{
+			margin-bottom: 0;
+		}
 	
 	.main .form-group label{
 		color: #888;

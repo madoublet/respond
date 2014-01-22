@@ -1,7 +1,7 @@
 .editor .editor-highlight{
     border: 1px solid #fbec5d !important;
     background: #fbec5d !important;
-    min-height: 25px;
+    min-height: 50px;
 } 
 
 .editor{
@@ -17,7 +17,7 @@
 .editor.container .row{
 	margin-right: 0;
 	margin-left: 0;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 section.main nav.editor-menu{
@@ -42,7 +42,7 @@ section.main nav.editor-menu{
 }
 
     .editor-actions div{
-        width: 1681px;  /* 41 * 41 = 1681 */
+        width: 1804px;  /* 41 * 41 = 1681 */
     }
 
 body a.primary-action{
@@ -118,6 +118,8 @@ a.next, a.previous{
 	position: relative;
 	min-height: 50px;
 	padding-bottom: 0;
+	background-color: #fff;
+	padding-top: 50px;
 }
 
 	.block div.p.align-center div, .block div.h1.align-center div, .block div.h2.align-center div, .block div.h3.align-center div{
@@ -132,28 +134,61 @@ a.next, a.previous{
 		text-align: right;	
 	}
 
-.block{
-	padding-top: 50px !important;
-}
-
 .block:last-child{
   	border-bottom: none;
 }
 
-.block div.col{
+/* draws the line b/w columns */
+.block .col{
 	position: relative;
 	padding: 10px 0;
 	margin-bottom: 0;
 	vertical-align: top;
 	min-height: 40px;
-	border-right: 5px solid #aaa;
-	border-left: 5px solid #aaa;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
 	background-color: #fff;
+	margin-left: -.5px;
+	margin-right: -.5px;
 }
 
+	.block .col:first-child{
+		margin-left: 0;
+		border-left: 0;	
+	}
+	
+	.block .col-md-12{
+		border: 0;
+		margin: 0;
+	}
+	
+	.block .col-md-4:nth-child(3){
+		margin-right: 0;
+		border-right: 0;
+	}
+	
+	.block .col-md-6:nth-child(2){
+		margin-right: 0;
+		border-right: 0;
+	}
+	
+	.block .col-md-3:nth-child(2){
+		margin-right: 0;
+		border-right: 0;
+	}
+	
+	.block .col-md-9:nth-child(2){
+		margin-right: 0;
+		border-right: 0;
+	}
+	
+	.block .col-md-3:nth-child(4){
+		margin-right: 0;
+		border-right: 0;
+	}
+	
 .block div.col:empty{
-	background: #888 !important;
-	opacity: 0.9;
+	background: #fff;
 }
 
 .block div.col>div{
@@ -514,7 +549,7 @@ a.next, a.previous{
 .block div.i div.img{
   	cursor: pointer;
   	display: inline-block;
-	width: 50% !important;
+	width: calc(100% - 20px);
 }
 
 .block div.i div.img img{
@@ -543,17 +578,16 @@ a.next, a.previous{
 	box-sizing: border-box;
 	top: 0;
 	left: 0;
-	height: 40px;
+	height: 50px;
 	width: 100%;
 	line-height: 40px;
 	display: inline-block;
-	margin: 0 0 5px 0;
+	margin: 0 0 0 0;
 	text-align: right;
 	color: #fff;
 	background-color: #888;
-	border-left: 5px solid #aaa;
-	border-right: 5px solid #aaa;
 	overflow: hidden;
+	border-bottom: 10px solid #aaa;
 }
 
 span.block-actions span{
