@@ -5,6 +5,7 @@ var scriptsModel = {
     content: ko.observable(''),
     cm: null,
     hasFile: ko.observable(false),
+    name: ko.observable(''),
     
     current: null,
     toBeRemoved: null,
@@ -59,11 +60,13 @@ var scriptsModel = {
     updateContent:function(o){
         
         scriptsModel.current = o;
+        
+        var name = global.replaceAll(o.file, '.js', '');
+        scriptsModel.name(name);
    
     	$('nav ul li').removeClass('active');
 		$('nav ul li[data-file="'+o.file+'"]').addClass('active');
         
-
         $.ajax({
         	url: 'api/script/get',
 			type: 'POST',

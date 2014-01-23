@@ -70,6 +70,8 @@
     	<div class="codemirror-block" data-bind="visible: hasFile">
 	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
     	</div>
+    	
+    	<p class="template-insert" data-bind="visible:hasFile">Insert into layout using <code>{{script-<span data-bind="text:name"></span>}}</code></p>
 	</div>
     
     <div class="actions">

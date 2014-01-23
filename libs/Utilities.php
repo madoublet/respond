@@ -552,6 +552,27 @@ class Utilities
 		    $content = str_replace('{{snippet-'.$value.'}}', $snippet_content, $content);
 		}
 		
+		// custom scripts
+        $delimiter = '#';
+		$startTag = '{{script-';
+		$endTag = '}}';
+		$regex = $delimiter . preg_quote($startTag, $delimiter) 
+		                    . '(.*?)' 
+		                    . preg_quote($endTag, $delimiter) 
+		                    . $delimiter 
+		                    . 's';
+		
+		preg_match($regex, $content, $matches);
+		
+		foreach($matches as &$value) {
+		    
+		    // get snippet
+		    $script_url = $rootloc.'js/custom/'.$value.'.js';
+		    $script_content = '<script type="text/javascript" src="'.$script_url.'"></script>';
+		    
+		    $content = str_replace('{{script-'.$value.'}}', $script_content, $content);
+		}
+		
 		// cart
 		$cartFile = $root.'sites/common/modules/cart.php';
 		$cart = '';
@@ -730,7 +751,10 @@ class Utilities
             
 		$api = APP_URL;
         
-        $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.'"';
+        $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].
+        			'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].
+        			'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.
+        			'" data-currency="'.$site['Currency'].'" data-weightunit="'.$site['WeightUnit'].'"';
         
         $html = str_replace('<body', $inject, $html);
         $html = str_replace('{root}', $rootloc, $html);
