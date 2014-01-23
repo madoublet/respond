@@ -28,6 +28,8 @@ class AuthUser{
 	public $HomeUrl;
 	public $TimeZone;
 	public $Domain;
+	public $Currency;
+	public $WeightUnit;
 	
 	// subscription
 	public $Type;
@@ -63,6 +65,8 @@ class AuthUser{
 			$this->FileUrl = $_SESSION['FileUrl'];
 			$this->TimeZone = $_SESSION['TimeZone']; 
 			$this->Domain = $_SESSION['Domain']; 
+			$this->Currency = $_SESSION['Currency']; 
+			$this->WeightUnit = $_SESSION['WeightUnit']; 
 			$this->Type = $_SESSION['Type'];
 			$this->CustomerId = $_SESSION['CustomerId'];
 			$this->Plan = $_SESSION['Plan'];
@@ -113,6 +117,8 @@ class AuthUser{
 		$_SESSION['SiteUniqId'] = $site['SiteUniqId'];
 		$_SESSION['SiteFriendlyId'] = $site['FriendlyId'];
 		$_SESSION['Domain'] = $site['Domain'];
+		$_SESSION['Currency'] = $site['Currency'];
+		$_SESSION['WeightUnit'] = $site['WeightUnit'];
 		$_SESSION['Directory'] = $directory;
 		$_SESSION['LogoUrl'] = $site['LogoUrl'];
 		$_SESSION['sid'] = session_id(); 

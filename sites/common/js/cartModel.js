@@ -1,11 +1,13 @@
 // models a cart item
-var CartItem = function(description, sku, price, shippingType, quantity){
+var CartItem = function(description, sku, price, shippingType, weight, unit, quantity){
 	
 	var self = this;
 	self.description = ko.observable(description);
 	self.sku = ko.observable(sku);
 	self.price = ko.observable(price);
 	self.shippingType = ko.observable(shippingType);
+	self.weight = ko.observable(weight);
+	self.unit = ko.observable(unit);
 	self.quantity = ko.observable(quantity);	
 	
 	// need to add thumbnail and return url
@@ -45,13 +47,16 @@ var CartItem = function(description, sku, price, shippingType, quantity){
 var cartModel = {
    
    	currency: 'USD',
-   	tax: 0,
+   	weightUnit: 'kgs',
    	returnUrl: 'temp.html',
    
     items: ko.observableArray([]),
     
     init:function(){
     
+    	cartModel.currency = $('body').attr('data-currency');
+    	cartModel.weightUnit = $('body').attr('data-weightunit');
+    	
     	// setup events used by the cart
     	cartModel.setupEvents();
     
@@ -82,10 +87,12 @@ var cartModel = {
 			var sku = $(shelfItem).find('.shelf-sku').text();
 			var price = $(shelfItem).find('.shelf-price').attr('data-price');
 			var type = $(shelfItem).find('.shelf-shipping').attr('data-type');
+			var weight = $(shelfItem).find('.shelf-shipping').attr('data-weight');
+			var unit = $(shelfItem).find('.shelf-shipping').attr('data-unit');
 			var quantity = $(shelfItem).find('.shelf-quantity input').val();
 		
 			// create new cart item
-			var item = new CartItem(description, sku, price, type, quantity);
+			var item = new CartItem(description, sku, price, type, weight, unit, quantity);
 			
 			// check for match
 			var match = false;
@@ -131,10 +138,12 @@ var cartModel = {
 				var sku = storedItems[x].sku;
 				var price = storedItems[x].price;
 				var type = storedItems[x].shippingType;
+				var weight = storedItems[x].weight;
+				var unit = storedItems[x].unit;
 				var quantity = storedItems[x].quantity;
 			
 				// create new cart item
-				var item = new CartItem(description, sku, price, type, quantity);
+				var item = new CartItem(description, sku, price, type, weight, unit, quantity);
 				
 				// push item to model
 				cartModel.items.push(item);
@@ -204,15 +213,15 @@ var cartModel = {
 			'upload':			'1',
 			'currency_code': 	cartModel.currency,
 			'business':			email,
-			//'rm':				'0',
-			'tax_cart':			(cartModel.tax * 1).toFixed(2),
-			//'handling_cart':	cartModel.shippingTotal(),
+			'rm':				'0',
 			'charset':			'utf-8',
 			'return':			cartModel.returnUrl,
 			'cancel_return':	cartModel.returnUrl + '#cancel',
 			'notify_url':		cartModel.returnUrl + '#notify'
-		
+			// 'no_shipping':    	1, // 1 = do not prompt, 2 = prompt for address and require it
 		};
+		
+		var noshipping = 1;
 	
 		// add cart items
 		for (x=0; x<cartModel.items().length; x++){
@@ -225,8 +234,16 @@ var cartModel = {
 			data['quantity_'+c] = item.quantity();
 			data['amount_'+c] = item.price();
 			data['item_number_'+c] = item.sku();
+			data['weight_'+c] = item.weight();
+			
+			if(item.shippingType == 'shipped'){
+				noshipping = 2;
+			}
 			
 		}
+		
+		data['no_shipping'] = noshipping;
+		data['weight_unit'] = cartModel.weightUnit;
 		
 		// create form with data values
 		var form = $('<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="POST"></form');
@@ -275,17 +292,6 @@ cartModel.totalFriendly = ko.computed(function() {
 	}
 
     return p;
-}, cartModel);
-
-cartModel.shippingTotal = ko.computed(function() {
-    var total = 0;
-    
-    /* TBD
-    ko.utils.arrayForEach(this.items(), function(item) {
-        total += parseFloat(item.subtotal());
-    });*/
-
-    return total.toFixed(2);
 }, cartModel);
 
 $(document).ready(function(){cartModel.init();});

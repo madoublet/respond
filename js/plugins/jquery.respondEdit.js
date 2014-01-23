@@ -109,7 +109,7 @@ var editorDefaults = {
 					'<a class="list fa fa-bars" title="Add a list of pages"></span>' +
 	                '<a class="featured fa fa-star" title="Add Featured Content"></a>' +
 					'<a class="file fa fa-file-o" title="Add a File"></a>' +
-					// '<a class="shelf fa fa-tags" title="Add SKUs"></a>' +  prep for carts (Jan 2014)
+					'<a class="shelf fa fa-tags" title="Add SKUs"></a>' +  // prep for carts (Jan 2014)
 					'<a class="form fa fa-check" title="Add a Form"></a>' +
 					'<a class="html fa fa-html5" title="Add HTML"></a>' + 
 					'<a class="syntax fa fa-terminal" title="Add Code Block"></a>' +
@@ -121,7 +121,7 @@ var editorDefaults = {
 					'<a class="cols37 fa fa-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
 					'<a class="cols333 fa fa-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
 					'<a class="cols425 fa fa-columns" title="Add a 25/25/25/25 Column Layout"><small>4*25</small></a>' +
-					'<a class="load fa fa-circle-arrow-up" title="Load New Layout"></a></div></div>' +
+					'</div></div>' +
 					'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 					'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
 					'<a class="primary-action preview"><i class="fa fa-eye"></i> Preview</a>' +

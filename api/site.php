@@ -444,8 +444,10 @@ class SiteResource extends Tonic\Resource {
             $primaryEmail = $request['primaryEmail'];
             $timeZone = $request['timeZone'];
             $language = $request['language'];
+            $currency = $request['currency'];
+            $weightUnit = $request['weightUnit'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit);
 
             return new Tonic\Response(Tonic\Response::OK);
         

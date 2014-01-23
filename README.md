@@ -59,7 +59,14 @@ ALTER TABLE `Categories`
 - Add IsNested to MenuItems
 
 ```
-ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER  `Priority`
+ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER `Priority`
+```
+	  
+- Add Currency, WeightUnit to Sites	  
+
+```
+ALTER TABLE  `Sites` ADD  `Currency` VARCHAR(10) NOT NULL DEFAULT  'USD' AFTER `Language`
+ALTER TABLE  `Sites` ADD  `WeightUnit` VARCHAR(10) NOT NULL DEFAULT  'kgs' AFTER `Currency`
 ```
 	  
 - Pull latest version

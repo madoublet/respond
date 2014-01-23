@@ -24,15 +24,26 @@
 				
 				<div class="form-group">
 					<label for="sku-price" class="control-label"><?php print _("Price:"); ?></label>
-				    <input id="sku-price" type="number" maxlength="128" value="" class="form-control">
+				    <div class="input-group">
+					 	<input id="sku-price" type="number" maxlength="128" value="" class="form-control">
+					 	<span class="input-group-addon"><?php print $authUser->Currency; ?></span>
+					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="sku-shippingType" class="control-label"><?php print _("Shipping Type:"); ?></label>
 				    <select id="sku-shippingType" class="form-control">
+				    	<option value="not shipped"><?php print _("Not Shipped"); ?></option>
 				    	<option value="shipped"><?php print _("Shipped"); ?></option>
-				    	<option value="download"><?php print _("Digital Download"); ?></option>
 				    </select>
+				</div>
+				
+				<div class="form-group shipped">
+					<label for="sku-weight" class="control-label"><?php print _("Weight:"); ?> (<?php print _("optional"); ?>)</label>
+				    <div class="input-group">
+					 	<input id="sku-weight" type="number" maxlength="128" value="" class="form-control">
+					 	<span class="input-group-addon"><?php print $authUser->WeightUnit; ?></span>
+					</div>
 				</div>
 				
 			</div>

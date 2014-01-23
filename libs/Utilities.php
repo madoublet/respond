@@ -585,7 +585,7 @@ class Utilities
 		$content = str_replace('{{email}}', $site['PrimaryEmail'], $content);
 		
 		// css
-		$stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css';
+		$stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css?t='.strtotime('now');
 		$css = '<link href="'.$stylesheet.'" type="text/css" rel="stylesheet" media="screen">'.PHP_EOL;
         
         $content = str_replace('{{css}}', $css, $content);

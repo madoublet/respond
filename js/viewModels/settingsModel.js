@@ -3,9 +3,21 @@ var settingsModel = {
     
     site: ko.observable(''),
     siteMap: ko.observable(''),
+    currencies: ko.observableArray([]),
     
     init:function(){ // initializes the model
         settingsModel.updateSite();
+        settingsModel.updateCurrencies();
+        
+        $('.segmented-control li').on('click', function(){
+	        
+	        var segment = $(this).data('navigate');
+	        $('form>div').addClass('hidden');
+	        $('.section-'+segment).removeClass('hidden');
+	        $(this).parent().find('li').removeClass('active');
+	        $(this).addClass('active');
+	        
+        });
 
 		ko.applyBindings(settingsModel);  // apply bindings
 	},
@@ -29,6 +41,31 @@ var settingsModel = {
         
     },
     
+    updateCurrencies:function(o){
+    
+	    settingsModel.currencies.removeAll();
+       
+    	$.ajax({
+			url: 'data/currencies.json',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+	
+                for(x in data.currencies){
+    
+    				var currency = {
+        			    'code': data.currencies[x]['code'],
+                        'text': data.currencies[x]['text']
+    				};
+                
+					settingsModel.currencies.push(currency); 
+				}
+
+			}
+		});
+    },
+    
     save:function(o, e){
         
 		message.showMessage('progress', $('#msg-updating').val());
@@ -38,6 +75,8 @@ var settingsModel = {
         var primaryEmail = $('#primaryEmail').val();
         var timeZone = $('#timeZone').val();
         var language = $('#language').val();
+        var currency = $('#currency').val();
+        var weightUnit = $('#weightUnit').val();
         var analyticsId = $('#analyticsId').val();
         var facebookAppId = $('#facebookAppId').val();
         
@@ -55,7 +94,7 @@ var settingsModel = {
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
-			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, analyticsId: analyticsId, facebookAppId: facebookAppId},
+			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
     			message.showMessage('success', $('#msg-updated').val());
 			},

@@ -3,6 +3,7 @@ var skuDialog = {
 	dialog: null,
 	shelfId: -1,
 	product: null,
+	toBeEdited: null,
 	currency: 'USD', // default for now (will be set at site level)
 
 	init:function(){
@@ -18,6 +19,8 @@ var skuDialog = {
 			var desc = $('#sku-desc').val();
 			var price = $('#sku-price').val();
 			var shippingType = $('#sku-shippingType').val();
+			var weight = $('#sku-weight').val();
+			var unit = $('#sku-unit').val();
 			
 			// get readable
 			var priceReadable = price+' '+skuDialog.currency;
@@ -27,7 +30,7 @@ var skuDialog = {
 	   		
 	   		}
 			
-			var item = '<div class="shelf-item">'+
+			var item = '<div id="'+itemId+'" class="shelf-item">'+
 								editorDefaults.elementMenuShelf +
 								'<div class="shelf-group1">'+
 								'<span class="shelf-description">'+desc+'</span>'+
@@ -35,7 +38,7 @@ var skuDialog = {
 								'</div>'+
 								'<div class="shelf-group2">'+
 								'<span class="shelf-price" data-currency="'+skuDialog.currency+'" data-price="'+price+'">'+priceReadable+'</span>'+
-								'<span class="shelf-shipping" data-type="'+shippingType+'">'+shippingType+'</span>'+
+								'<span class="shelf-shipping" data-type="'+shippingType+'" data-weight="'+weight+'" data-unit="'+unit+'">'+shippingType+'</span>'+
 								'</div>'+
 								'<div class="shelf-group3">'+
 								'<span class="shelf-quantity"><input type="number" value="1" class="form-control"></span>'+
@@ -45,11 +48,54 @@ var skuDialog = {
 			
 			$('#'+skuDialog.shelfId).find('.shelf-items').append(item);
 			
-			$('#desc').respondHandleEvents();
+			$('#skuDialog').modal('hide');
+			
+			return false;
+		});
+		
+		$('#update-sku').click(function(){
+		
+			var sku = $('#sku').val();
+			var desc = $('#sku-desc').val();
+			var price = $('#sku-price').val();
+			var shippingType = $('#sku-shippingType').val();
+			var weight = $('#sku-weight').val();
+			var unit = $('#sku-unit').val();
+			
+			// get readable
+			var priceReadable = price+' '+skuDialog.currency;
+			
+			if(skuDialog.currency == 'USD'){
+	   			priceReadable = '$'+priceReadable;
+	   		}
+			
+			// update
+			$(skuDialog.toBeEdited).find('.shelf-sku').text(sku);
+			$(skuDialog.toBeEdited).find('.shelf-description').text(desc);
+			$(skuDialog.toBeEdited).find('.shelf-price').attr('data-price', price);
+			$(skuDialog.toBeEdited).find('.shelf-price').text(priceReadable);
+			$(skuDialog.toBeEdited).find('.shelf-shipping').text(shippingType);
+			$(skuDialog.toBeEdited).find('.shelf-shipping').attr('data-type', shippingType);
+			$(skuDialog.toBeEdited).find('.shelf-shipping').attr('data-weight', weight);
+			$(skuDialog.toBeEdited).find('.shelf-shipping').attr('data-unit', unit);
 			
 			$('#skuDialog').modal('hide');
-
+			
 			return false;
+			
+		});
+		
+		// hide/show shipping information
+		$('#sku-shippingType').on('change', function(){
+			
+			var shippingType = $('#sku-shippingType').val();
+			
+			if(shippingType == 'not shipped'){
+				$('.shipped').hide();
+			}
+			else{
+				$('.shipped').show();
+			}
 			
 		});
 
@@ -57,6 +103,7 @@ var skuDialog = {
 		
 			var item = $(this.parentNode.parentNode);
 		
+			skuDialog.toBeEdited = item;
 			skuDialog.shelfId = $(item).id;
 		
 			$('#skuDialog h3').text('Update SKU');
@@ -67,30 +114,29 @@ var skuDialog = {
 			var description = $(item).find('.shelf-description').text();
 			var price = $(item).find('.shelf-price').attr('data-price');
 			var shippingType = $(item).find('.shelf-shipping').attr('data-type');
+			var weight = $(item).find('.shelf-shipping').attr('data-weight');
+			var unit = $(item).find('.shelf-shipping').attr('data-unit');
 			
+			// set shipping
+			if(shippingType == 'not shipped'){
+				$('.shipped').hide();
+			}
+			else{
+				$('.shipped').show();
+			}
 			
 			// populate fields
 			$('#sku').val(sku);
 			$('#sku-desc').val(description);
 			$('#sku-price').val(price);
 			$('#sku-shippingType').val(shippingType);
+			$('#sku-weight').val(weight);
+			$('#sku-unit').val(unit);
 	
 		    $('#skuDialog').modal('show');
 			
 		});
 
-		$('#update-sku').click(function(){
-		
-			var sku = $('#sku').val();
-			var desc = $('#sku-desc').val();
-			var price = $('#sku-price').val();
-			var shippingType = $('#sku-shippingType').val();
-			
-			alert('boom!');
-			
-			return false;
-			
-		});
 	},
 
 	show:function(shelfId){ // shows the dialog
@@ -107,7 +153,10 @@ var skuDialog = {
 		$('#sku').val('');
 		$('#sku-desc').val('');
 		$('#sku-price').val('');
-		$('#sku-shippingType').val('shipped');
+		$('#sku-shippingType').val('not shipped');
+		$('#sku-shippingWeight').val('');
+		$('#sku-shippingUnit').val('kgs');
+		$('.shipped').hide();
 
 	    $('#skuDialog').modal('show');
 

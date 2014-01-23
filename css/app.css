@@ -106,6 +106,10 @@ a, a:hover{
 			padding-bottom: 20px;
 		}
 		
+		.main .form-vertical .form-group:last-child{
+			border-bottom: none;
+		}
+		
 		.main .form-vertical .help-block{
 			margin-bottom: 0;
 		}
@@ -524,7 +528,7 @@ section.main nav{
         box-sizing: border-box;
         left: 0;
         bottom: 0;
-        padding: 10px 50px;
+        padding: 10px 20px;
         width: 100%;
         background-color: #E9E9E9;
         z-index: 1000;
@@ -818,6 +822,49 @@ body .dropdown-menu{
 	color: #888;
 	font-size: 0.9em;
 }
+
+/* segmented control */
+.segmented-control{
+	display: block;
+	text-align: left;
+	margin: 20px 20px 0 20px;
+	padding: 0;
+	height: 35px;
+	max-width: 450px;
+}
+
+	.segmented-control li{
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		display: block;
+		float: left;
+		height: 35px;
+		padding: 0;
+		width: 25%;	
+	}
+	
+		.segmented-control li:first-child{
+			border-left: 1px solid #ccc;
+		}
+	
+		.segmented-control li a{
+			display: block;
+			text-align: center;
+			color: #aaa;
+			height: 35px;
+			line-height: 35px;
+			margin: 0;
+			padding: 0;
+		}
+	
+	.segmented-control .active{
+		background-color: #ccc;
+	}
+	
+		.segmented-control .active a{
+			color: #fff;
+		}
 
 /* page-specific */
 #test-page .fa-check-circle{

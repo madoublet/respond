@@ -61,7 +61,7 @@ class Site{
 	
 	
 	// edits the site information
-	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language){
+	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit){
 
 		try{
             
@@ -74,7 +74,9 @@ class Site{
         			FacebookAppId= ?,
             		PrimaryEmail = ?,
         			TimeZone = ?,
-        			Language = ? WHERE SiteUniqId = ?";
+        			Language = ?,
+        			Currency = ?,
+        			WeightUnit = ? WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $name);
@@ -84,7 +86,9 @@ class Site{
             $s->bindParam(5, $primaryEmail);
             $s->bindParam(6, $timeZone);
             $s->bindParam(7, $language);
-            $s->bindParam(8, $siteUniqId);
+            $s->bindParam(8, $currency);
+            $s->bindParam(9, $weightUnit);
+            $s->bindParam(10, $siteUniqId);
             
             $s->execute();
             
@@ -243,7 +247,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created 
 							FROM Sites ORDER BY Name ASC";
@@ -303,7 +307,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE Domain = ?";
@@ -334,7 +338,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE CustomerId = ?";
@@ -365,7 +369,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE FriendlyId = ?";
@@ -396,7 +400,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE SiteUniqId = ?";
@@ -427,7 +431,7 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, LastLogin, 
+							TimeZone, Language, Currency, WeightUnit, LastLogin, 
 							Type, CustomerId, 
 							Created
 							FROM Sites WHERE Siteid = ?";

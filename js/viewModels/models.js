@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -15,6 +15,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
     self.primaryEmail = ko.observable(primaryEmail);
     self.timeZone = ko.observable(timeZone);
     self.language = ko.observable(language);
+    self.currency = ko.observable(currency);
+    self.weightUnit = ko.observable(weightUnit);
     self.lastLogin = ko.observable(lastLogin);
     self.type = ko.observable(type);
     self.customerId = ko.observable(customerId);
@@ -25,7 +27,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 
 // models a user
