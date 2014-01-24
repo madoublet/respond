@@ -489,15 +489,22 @@ class Utilities
 					}
 				}
 			
+				$menu_root = $rootloc;
+				
+				// check for external links
+				if(strpos($menu_root,'http') !== false) {
+				    $menu_root = '';
+				}
+		
 				if($new_parent == true && $parent_flag == true){
 					$menu .= '<li class="dropdown">';
-					$menu .= '<a href="'.$rootloc.$url.'" class="dropdown-toggle" data-toggle="dropdown">'.$menuItem['Name'].' <b class="caret"></b></a>';
+					$menu .= '<a href="'.$menu_root.$url.'" class="dropdown-toggle" data-toggle="dropdown">'.$menuItem['Name'].' <b class="caret"></b></a>';
 					$menu .= '<ul class="dropdown-menu">';
 					$new_parent = false;
 				}
 				else{
 			    	$menu .= '<li'.$cssClass.'>';
-					$menu .= '<a href="'.$rootloc.$url.'">'.$menuItem['Name'].'</a>';
+					$menu .= '<a href="'.$menu_root.$url.'">'.$menuItem['Name'].'</a>';
 					$menu .= '</li>';
 			    }
 			    
