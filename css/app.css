@@ -881,6 +881,10 @@ body .dropdown-menu{
 	border-radius: 2px;
 }
 
+#menu-republish-message{
+	display: none;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) { }
  

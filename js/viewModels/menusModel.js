@@ -18,6 +18,7 @@ var menusModel = {
         menusModel.setupControls();
 
 		ko.applyBindings(menusModel);  // apply bindings
+		
 	},
     
     setupControls:function(){
@@ -36,6 +37,10 @@ var menusModel = {
         	$('#selectPage li').removeClass('selected');
     		document.getElementById('customUrl').checked = true;	
 		});  
+		
+		$('#menu-republish-message a').on('click', function(){
+			$('#menu-republish-message').hide();
+		});
         
     },
 
@@ -208,6 +213,8 @@ var menusModel = {
             message.showMessage('success', $('#msg-added').val());
             
             $('#addEditDialog').modal('hide');
+            
+			$('#menu-republish-message').show();
           }
         });
         
@@ -247,6 +254,8 @@ var menusModel = {
             message.showMessage('success', $('#msg-updated').val());
      
             $('#addEditDialog').modal('hide');
+            
+            $('#menu-republish-message').show();
           }
         });
 
@@ -288,6 +297,8 @@ var menusModel = {
           success: function(data){
             message.showMessage('success', $('#msg-order').val());
             $('#save').hide();
+            
+            $('#menu-republish-message').show();
           }
         });
         
@@ -321,6 +332,8 @@ var menusModel = {
           	}
           	
           	 $(this).removeClass('active');
+          	 
+          	 $('#menu-republish-message').show();
           }
         });
         
@@ -354,6 +367,8 @@ var menusModel = {
               
             message.showMessage('success', $('#msg-removed').val());
     	    $('#deleteDialog').modal('hide');
+    	    
+    	    $('#menu-republish-message').show();
           }
         });
         

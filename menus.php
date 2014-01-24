@@ -66,6 +66,14 @@
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Menu Item"); ?></a>
     </nav>
 
+	<div id="menu-republish-message" class="list-menu">
+		<p>
+			<?php print _("Updates to the menu will not be reflected on the site until the site or page is re-published."); ?>
+			<a class="publish-site"><?php print _("Re-publish now"); ?></a>
+		</p>
+	</div>
+	<!-- /.list-menu -->
+	
 	<div id="menuItemsList" class="list" data-bind="foreach: menuItems">
     
         <div class="listItem sortable" data-bind="css: {'is-nested': isNested()==1}, attr:{'data-id':menuItemUniqId, 'data-isnested':isNested}">
