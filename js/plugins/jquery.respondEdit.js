@@ -617,7 +617,8 @@ var editorDefaults = {
 						  	var pageUniqId = $(node).attr('pageUniqId');
 							
 						  	chtml = '<div id="'+id+'" data-pageuniqid="'+pageUniqId+'" data-pagename="'+pageName+'" class="featured">' +
-								' <div class="title"><i class="fa fa-star"></i> Featured Content: '+pageName+' </div><span class="marker fa fa-star" title="Module"></span><a class="remove fa fa-minus-circle"></a></div>';
+						  		editorDefaults.elementMenuNoConfig +
+								' <div class="title"><i class="fa fa-star"></i> Featured content: '+pageName+' </div></div>';
 			
 						  	response += chtml;  
 						}
