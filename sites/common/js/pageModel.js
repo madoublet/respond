@@ -148,7 +148,7 @@ var pageModel = {
 		
 		function setFeatured(el, pageUniqId){
 			$.ajax({
-				url: pageModel.prefix() + 'fragments/render/' + pageUniqId + '.html',
+				url: pageModel.prefix() + 'fragments/render/' + pageUniqId + '.php',
 				type: 'GET',
 				data: {},
 				success: function(data){
