@@ -14,6 +14,7 @@ New in 2.7:
 - Category support for list widget
 - Code snippets for templates
 - Nested menus
+- E-commerce Cart with Paypal (beta)
 
 How to update from 2.6:
 - Backup sites you created

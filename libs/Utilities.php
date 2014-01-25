@@ -674,6 +674,10 @@ class Utilities
 		
 		$content = str_replace('{{js}}', $js, $content);
 		
+		$js_cart = '<script type="text/javascript" src="'.$rootloc.'js/cartModel.js"></script>'.PHP_EOL;
+		
+		$content = str_replace('{{js-cart}}', $js_cart, $content);
+		
 		// analytics
 		$analytics = '';
 		
@@ -759,6 +763,7 @@ class Utilities
 		$api = APP_URL;
         
         $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].
+        			'" data-domain="'.$site['Domain'].
         			'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].
         			'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.
         			'" data-currency="'.$site['Currency'].'" data-weightunit="'.$site['WeightUnit'].'"';

@@ -48,7 +48,7 @@ var cartModel = {
    
    	currency: 'USD',
    	weightUnit: 'kgs',
-   	returnUrl: 'temp.html',
+   	returnUrl: 'return',
    
     items: ko.observableArray([]),
     
@@ -56,6 +56,9 @@ var cartModel = {
     
     	cartModel.currency = $('body').attr('data-currency');
     	cartModel.weightUnit = $('body').attr('data-weightunit');
+    	
+    	var url = 'http://' + $('body').attr('data-domain') + '/return';
+    	cartModel.returnUrl = url;
     	
     	// setup events used by the cart
     	cartModel.setupEvents();
@@ -132,7 +135,7 @@ var cartModel = {
 			var storedItems = eval(str);
 			
 			for(x=0; x<storedItems.length; x++){
-				console.log(storedItems[x]);
+				// #debug console.log(storedItems[x]);
 				
 				var description = storedItems[x].description;
 				var sku = storedItems[x].sku;

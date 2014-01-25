@@ -352,13 +352,14 @@
 				</div>
 			</div>
 			
+			<!-- future release, for now set to primary-email
 			<div class="form-group">
 				<label for="paypal" class="control-label"><?php print _("PayPal ID:"); ?></label>
 				<div>
 					<input id="paypal" type="text" class="form-control">
 					<span class="help-block"><?php print _("Your PayPal email (used to accept payments)"); ?></span>
 				</div>
-			</div>
+			</div -->
 			
 		</div>	
 		<!-- /.section-payments -->
