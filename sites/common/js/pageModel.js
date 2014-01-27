@@ -58,7 +58,7 @@ var pageModel = {
                 	url: pageModel.apiEndpoint + '/api/page/published/' + display,
         			type: 'POST',
                     dataType: 'JSON',
-        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, category: category, page: page, language: pageModel.language},
+        			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, category: category, page: page, language: pageModel.language, prefix: pageModel.prefix()},
         			success: function(data){
         			
         				if(data.length == 0){ // hide pager when we hit the end

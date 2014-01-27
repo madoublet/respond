@@ -492,7 +492,7 @@ class Utilities
 				$menu_root = $rootloc;
 				
 				// check for external links
-				if(strpos($menu_root,'http') !== false) {
+				if(strpos($url,'http') !== false) {
 				    $menu_root = '';
 				}
 		
@@ -730,8 +730,8 @@ class Utilities
           $p_content = file_get_contents($fragment);
         }
 
-		// fix images
-        $p_content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="http://'.$site['Domain'].'/', $p_content);
+		// update images with sites/[name] to a relative URL
+        $p_content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="'.$rootloc, $p_content);
         
         //content and synopsis
         $content = str_replace('{{content}}', $p_content, $content);

@@ -954,6 +954,7 @@ class PageBlogResource extends Tonic\Resource {
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
         $page = $request['page'];
+        $prefix = $request['prefix'];
         
         // get a categoryUniqId (if set)
         $categoryUniqId = '-1';
@@ -1062,9 +1063,15 @@ class PageBlogResource extends Tonic\Resource {
                 $content = 'Not found';
             }
 
-			// fix URL for images
-			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="http://'.$site['Domain'].'/', $content);
-
+			// fix nested, relative URLs if displayed in the root
+			if($prefix == ''){
+				$content = str_replace('src="../', 'src="', $content);
+				$content = str_replace('href="../', 'href="', $content);	
+			}
+			
+			// update images with sites/[name] to a relative URL
+			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="'.$prefix, $content);
+			
             $item['Content'] = $content;
             
             array_push($pages, $item);
