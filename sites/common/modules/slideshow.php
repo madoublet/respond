@@ -12,10 +12,12 @@
 			
 				foreach($imgHtml->find('img') as $img){ ?>
 			<div class="item<?php if($img_count==0){print ' active';}?>">	
-				<img class="sliderImage" src="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>">
+				<img class="sliderImage" src="<?php print 'http://'.$site['Domain'].'/files/'; ?><?php print $img->id; ?>">
 				<?php if(empty($img->title)==false){?>
 				<div class="carousel-caption">
-                  <p><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
+                  <p>
+                  	<?php print '<?php print _("'.$img->title.'"); ?>'; ?>
+				  </p>
                 </div>
 				<?php } ?>
 			</div>

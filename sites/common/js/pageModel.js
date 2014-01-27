@@ -71,10 +71,6 @@ var pageModel = {
                         
                                 // replace image url
                                 var content = data[x].Content;
-                                var stringToFind = 'sites/' + pageModel.siteFriendlyId() + '/';
-                                var stringToReplace = pageModel.prefix();
-                                
-                                content = pageModel.replaceAll(content, stringToFind, stringToReplace);
                                 
                                 // push page to model
 	                            pageModel[id].push({

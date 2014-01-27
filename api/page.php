@@ -1062,6 +1062,9 @@ class PageBlogResource extends Tonic\Resource {
                 $content = 'Not found';
             }
 
+			// fix URL for images
+			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="http://'.$site['Domain'].'/', $content);
+
             $item['Content'] = $content;
             
             array_push($pages, $item);

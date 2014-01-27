@@ -90,10 +90,7 @@ a, a:hover{
 	margin: 20px;
 }
 
-	.main .form-horizontal input, 
-	.main .form-horizontal select,
-	.main .form-vertical input, 
-	.main .form-vertical select{
+	.main .form-group div, .main .form-group table{
 		max-width: 450px;
 	}
 	
@@ -137,6 +134,17 @@ a, a:hover{
 		.inline-actions span{
 			color: #888;
 		}
+		
+	/* tables */
+	.main .form-group table{
+		margin: 0;
+	}
+		
+	.main .form-group table th small{
+		font-weight: normal;
+		color: #aaa;
+		margin-left: 5px;
+	}
 
 /* .read-only.table */
 .read-only-table small, .read-only-table span{
@@ -882,6 +890,10 @@ body .dropdown-menu{
 }
 
 #menu-republish-message{
+	display: none;
+}
+
+#settings-page .shipping-type{
 	display: none;
 }
 

@@ -730,7 +730,8 @@ class Utilities
           $p_content = file_get_contents($fragment);
         }
 
-        $p_content = str_replace('sites/'.$site['FriendlyId'].'/', $rootloc, $p_content);
+		// fix images
+        $p_content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="http://'.$site['Domain'].'/', $p_content);
         
         //content and synopsis
         $content = str_replace('{{content}}', $p_content, $content);
