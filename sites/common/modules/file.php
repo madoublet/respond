@@ -22,5 +22,3 @@
 	<i class="<?php print $file_icon; ?>"></i>
 	<a href="<?php print 'http://'.$site['Domain'].'/files/'; ?><?php print $file; ?>"><?php print '<?php print _("'.$description.'"); ?>'; ?></a>
 </p>
-
-<?php print $site['Domain']; ?>
