@@ -66,8 +66,8 @@ ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER `Priori
 - Add Currency, WeightUnit to Sites	  
 
 ```
-ALTER TABLE  `Sites` ADD  `Currency` VARCHAR(10) NOT NULL DEFAULT  'USD' AFTER `Language`
-ALTER TABLE  `Sites` ADD  `WeightUnit` VARCHAR(10) NOT NULL DEFAULT  'kgs' AFTER `Currency`
+ALTER TABLE  `Sites` ADD  `Currency` VARCHAR(10) NOT NULL DEFAULT  'USD' AFTER `Language`;
+ALTER TABLE  `Sites` ADD  `WeightUnit` VARCHAR(10) NOT NULL DEFAULT  'kgs' AFTER `Currency`;
 ```
 	  
 - Pull latest version
