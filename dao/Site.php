@@ -18,8 +18,8 @@ class Site{
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Language, Type, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme, AnalyticsId, FacebookAppId, PrimaryEmail, TimeZone, Language, PayPalId, Type, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteUniqId);
@@ -33,8 +33,9 @@ class Site{
             $s->bindParam(9, $primaryEmail);
             $s->bindParam(10, $timeZone);
             $s->bindParam(11, $language);
-            $s->bindParam(12, $type);
-            $s->bindParam(13, $timestamp);
+            $s->bindParam(12, $primaryEmail);
+            $s->bindParam(13, $type);
+            $s->bindParam(14, $timestamp);
             
             $s->execute();
             
@@ -51,6 +52,7 @@ class Site{
                 'PrimaryEmail' => $primaryEmail,
                 'TimeZone' => $timeZone,
                 'Language' => $language,
+                'PayPalId' => $primaryEmail,
                 'Created' => $timestamp
                 );
                 
@@ -61,7 +63,7 @@ class Site{
 	
 	
 	// edits the site information
-	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit){
+	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId){
 
 		try{
             
@@ -76,7 +78,13 @@ class Site{
         			TimeZone = ?,
         			Language = ?,
         			Currency = ?,
-        			WeightUnit = ? WHERE SiteUniqId = ?";
+        			WeightUnit = ?,
+        			ShippingCalculation = ?, 
+        			ShippingRate = ?,
+        			ShippingTiers = ?,
+        			TaxRate = ?,
+        			PayPalId = ?
+        			WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $name);
@@ -88,7 +96,12 @@ class Site{
             $s->bindParam(7, $language);
             $s->bindParam(8, $currency);
             $s->bindParam(9, $weightUnit);
-            $s->bindParam(10, $siteUniqId);
+            $s->bindParam(10, $shippingCalculation);
+            $s->bindValue(11, strval($shippingRate), PDO::PARAM_STR);
+            $s->bindParam(12, $shippingTiers);
+            $s->bindParam(13, $taxRate);
+            $s->bindParam(14, $payPalId);
+            $s->bindParam(15, $siteUniqId);
             
             $s->execute();
             
@@ -247,8 +260,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created 
 							FROM Sites ORDER BY Name ASC";
                     
@@ -307,8 +321,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE Domain = ?";
                     
@@ -338,8 +353,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE CustomerId = ?";
                     
@@ -369,8 +385,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE FriendlyId = ?";
                     
@@ -400,8 +417,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE SiteUniqId = ?";
                     
@@ -431,8 +449,9 @@ class Site{
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
-							TimeZone, Language, Currency, WeightUnit, LastLogin, 
-							Type, CustomerId, 
+							TimeZone, Language, Currency, WeightUnit, 
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE Siteid = ?";
                     

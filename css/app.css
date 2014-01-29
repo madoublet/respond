@@ -36,6 +36,10 @@ a, a:hover{
 	text-decoration: none;
 }
 
+input.error{
+	border: 1px solid #A4110A;
+}
+
 .primary-button, .secondary-button, .tertiary-button{
     display: inline-block;
     background-color: #3299bb;

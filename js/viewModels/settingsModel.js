@@ -18,6 +18,65 @@ var settingsModel = {
 	        $(this).addClass('active');
 	        
         });
+        
+        // set the from value to the previous to value
+        $('body').on('focus', '.to', function(){ 
+	        
+	        var from = $(this).parent().parent().find('.from');
+			$(this).removeClass('error');
+	        
+	        if(from){
+	        
+	        	var to = $(this).parent().parent().prev().find('.to');
+	      
+	        	if(to){
+					$(from).text($(to).val());
+				}
+				else{
+					$(from).text(0);
+				}
+	        }
+		    
+        });
+        
+        $('body').on('blur', '.to', function(){
+        
+        	var to = Number($(this).val().replace(/[^0-9\.]+/g, ''));
+        	
+			$(this).val(to);
+			
+			var prev = $(this).parent().parent().prev().find('.to');
+			
+			if(prev){
+				prev = Number($(prev).val().replace(/[^0-9\.]+/g, ''));
+				
+				console.log(prev);
+				
+				if(to < prev){
+					$(this).addClass('error');
+					$(this).val('');
+				}
+			}
+        
+        });
+        
+        $('body').on('blur', '.rate', function(){
+        
+        	var rate = Number($(this).val().replace(/[^0-9\.]+/g, ''));
+        	
+        	$(this).val(rate);
+        
+        });
+        
+        
+        $('body').on('change', '#shippingCalculation', function(){
+	        
+	        var calc = $(this).val();
+	        
+	        $('.shipping-type').hide();
+	        $('.'+calc).show();
+	    
+        });
 
 		ko.applyBindings(settingsModel);  // apply bindings
 	},
@@ -36,6 +95,28 @@ var settingsModel = {
                 settingsModel.siteMap('http://'+site.domain()+'/sitemap.xml');
                 
                 settingsModel.site(site);
+                
+                // set up tiers
+                var shippingCalculation = settingsModel.site().shippingCalculation();
+                
+                if(shippingCalculation == 'amount' || shippingCalculation == 'weight'){
+	                
+	                var tiers = JSON.parse(settingsModel.site().shippingTiers());
+	                var tos = $('.'+shippingCalculation).find('.to');
+			        var froms = $('.'+shippingCalculation).find('.from');
+			        var rates = $('.'+shippingCalculation).find('.rate');
+	                
+	                for(x=0; x<tiers.length; x++){
+		                
+		                var tier = tiers[x];
+		                $(froms[x]).text(tier.from); 
+		                $(tos[x]).val(tier.to);
+		                $(rates[x]).val(tier.rate); 
+		                
+		                
+	                }
+	                
+                }
 			}
 		});
         
@@ -77,8 +158,46 @@ var settingsModel = {
         var language = $('#language').val();
         var currency = $('#currency').val();
         var weightUnit = $('#weightUnit').val();
+        var shippingCalculation = $('#shippingCalculation').val();
+        var shippingRate = $('#shippingRate').val();
         var analyticsId = $('#analyticsId').val();
         var facebookAppId = $('#facebookAppId').val();
+        var taxRate = $('#taxRate').val();
+        var payPalId = $('#payPalId').val();
+        
+        var shippingTiers = '';
+        
+        if(shippingCalculation == 'amount' || shippingCalculation == 'weight'){
+	        
+	        var tos = $('.'+shippingCalculation).find('.to');
+	        var froms = $('.'+shippingCalculation).find('.from');
+	        var rates = $('.'+shippingCalculation).find('.rate');
+	        
+	        var tiers = []; // create array
+	        
+	        for(x=0; x<tos.length; x++){
+		        
+		        var from = Number($(froms[x]).text().replace(/[^0-9\.]+/g,""));
+		        var to = Number($(tos[x]).val().replace(/[^0-9\.]+/g,""));
+		        var rate = Number($(rates[x]).val().replace(/[^0-9\.]+/g,""));
+		        
+		        if(jQuery.trim($(tos[x]).val()) != '' && to != 0){
+			        var tier = {
+				        'from': from,
+				        'to': to,
+				        'rate': rate
+			        }
+			        
+			        tiers.push(tier);
+		        }
+		        
+	        }
+	        
+	        shippingTiers = JSON.stringify(tiers);
+	        
+	        console.log(shippingTiers);
+	        
+        }
         
         // clean up domain
         domain = global.replaceAll(domain, 'www.', '');
@@ -94,7 +213,7 @@ var settingsModel = {
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
-			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, analyticsId: analyticsId, facebookAppId: facebookAppId},
+			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
     			message.showMessage('success', $('#msg-updated').val());
 			},

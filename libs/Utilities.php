@@ -586,6 +586,15 @@ class Utilities
 		
 		if(file_exists($cartFile)){
             $cart = file_get_contents($cartFile);
+            
+            // fill in the blanks
+            $cart = str_replace('{{payPalId}}', $site['PayPalId'], $cart);
+            $cart = str_replace('{{currency}}', $site['Currency'], $cart);
+            $cart = str_replace('{{weightUnit}}', $site['WeightUnit'], $cart);
+            $cart = str_replace('{{taxRate}}', $site['TaxRate'], $cart);
+            $cart = str_replace('{{shippingCalculation}}', $site['ShippingCalculation'], $cart);
+            $cart = str_replace('{{shippingRate}}', $site['ShippingRate'], $cart);
+            $cart = str_replace('{{shippingTiers}}', htmlentities($site['ShippingTiers']), $cart);
 		}
 		
 		$content = str_replace('{{cart}}', $cart, $content);
@@ -766,8 +775,7 @@ class Utilities
         $inject = '<body data-siteuniqid="'.$site['SiteUniqId'].'" data-sitefriendlyid="'.$site['FriendlyId'].
         			'" data-domain="'.$site['Domain'].
         			'" data-pageuniqid="'.$page['PageUniqId'].'" data-pagefriendlyid="'.$page['FriendlyId'].
-        			'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.
-        			'" data-currency="'.$site['Currency'].'" data-weightunit="'.$site['WeightUnit'].'"';
+        			'" data-pagetypeuniqid="'.$pageTypeUniqId.'" data-api="'.$api.'"';
         
         $html = str_replace('<body', $inject, $html);
         $html = str_replace('{root}', $rootloc, $html);

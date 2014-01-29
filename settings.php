@@ -24,7 +24,7 @@
 
 </head>
 
-<body data-currpage="settings">
+<body id="settings-page" data-currpage="settings">
 	
 <?php include 'modules/menu.php'; ?>
 
@@ -329,6 +329,14 @@
 		<!-- /.section-site -->
 
 		<div class="section-payments hidden">
+		
+			<div class="form-group">
+				<label for="payPalId" class="control-label"><?php print _("PayPal ID:"); ?></label>
+				<div>
+					<input id="payPalId" type="text"  data-bind="value: payPalId" class="form-control">
+				</div>
+			</div>
+		
 			<div class="form-group">
 				<label for="currency" class="control-label"><?php print _("Currency:"); ?></label>
 				<div>
@@ -352,14 +360,117 @@
 				</div>
 			</div>
 			
-			<!-- future release, for now set to primary-email
 			<div class="form-group">
-				<label for="paypal" class="control-label"><?php print _("PayPal ID:"); ?></label>
+				<label for="taxRate" class="control-label"><?php print _("Tax Rate:"); ?></label>
 				<div>
-					<input id="paypal" type="text" class="form-control">
-					<span class="help-block"><?php print _("Your PayPal email (used to accept payments)"); ?></span>
+					<input id="taxRate" type="number" class="form-control" data-bind="value:taxRate">
 				</div>
-			</div -->
+			</div>
+			
+			<div class="form-group">
+				<label for="shippingCalculation" class="control-label"><?php print _("Shipping Calculation:"); ?></label>
+				<div>
+					<select id="shippingCalculation" class="form-control" data-bind="value:shippingCalculation">
+						<option value="free"><?php print _("Free"); ?></option>
+						<option value="flat-rate"><?php print _("Flat Rate"); ?></option>
+						<option value="amount"><?php print _("By Order Amount"); ?></option>
+						<option value="weight"><?php print _("By Weight"); ?></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group flat-rate" data-bind="visible: shippingCalculation()=='flat-rate'">
+				<label for="shippingRate" class="control-label"><?php print _("Shipping Rate:"); ?></label>
+			    <div class="input-group">
+				 	<input id="shippingRate" type="number" maxlength="128" value="" class="form-control" data-bind="value:shippingRate">
+				 	<span class="input-group-addon"><?php print $authUser->Currency; ?></span>
+				</div>
+			</div>
+			
+			
+			<div class="form-group weight" data-bind="visible: shippingCalculation()=='weight'">
+				<table class="table">
+					<col width="33.3%">
+					<col width="33.3%">
+					<col width="33.3%">
+					<thead>
+						<tr>
+							<th>From <small>(<?php print $authUser->WeightUnit; ?>)</small></th>
+							<th>To <small>(<?php print $authUser->WeightUnit; ?>)</small></th>
+							<th>Rate <small>(<?php print $authUser->Currency; ?>)</small></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span class="from">0</span></td>
+							<td><input class="to" class="form-control" type="number"></td>
+							<td><input class="rate" class="form-control" type="number"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="number"></td>
+							<td><input class="rate" class="form-control" type="number"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="number"></td>
+							<td><input class="rate" class="form-control" type="number"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="form-group amount" data-bind="visible: shippingCalculation()=='amount'">
+				<table class="table">
+					<col width="33.3%">
+					<col width="33.3%">
+					<col width="33.3%">
+					<thead>
+						<tr>
+							<th>From <small>(<?php print $authUser->Currency; ?>)</small></th>
+							<th>To <small>(<?php print $authUser->Currency; ?>)</small></th>
+							<th>Rate <small>(<?php print $authUser->Currency; ?>)</small></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span class="from">0</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="from">--</span></td>
+							<td><input class="to" class="form-control" type="text"></td>
+							<td><input class="rate" class="form-control" type="text"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			
 		</div>	
 		<!-- /.section-payments -->

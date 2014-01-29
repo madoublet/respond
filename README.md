@@ -60,7 +60,7 @@ ALTER TABLE `Categories`
 - Add IsNested to MenuItems
 
 ```
-ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER `Priority`
+ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER `Priority`;
 ```
 	  
 - Add Currency, WeightUnit to Sites	  
@@ -68,6 +68,13 @@ ALTER TABLE  `MenuItems` ADD  `IsNested` INT NOT NULL DEFAULT  '0' AFTER `Priori
 ```
 ALTER TABLE  `Sites` ADD  `Currency` VARCHAR(10) NOT NULL DEFAULT  'USD' AFTER `Language`;
 ALTER TABLE  `Sites` ADD  `WeightUnit` VARCHAR(10) NOT NULL DEFAULT  'kgs' AFTER `Currency`;
+ALTER TABLE  `Sites` ADD  `ShippingCalculation` VARCHAR(10) NOT NULL DEFAULT  'free' AFTER `WeightUnit`;
+ALTER TABLE  `Sites` ADD  `ShippingRate` DECIMAL(15,2) NOT NULL DEFAULT  '0.00' AFTER `ShippingCalculation`;
+ALTER TABLE  `Sites` ADD  `ShippingTiers` TEXT AFTER `ShippingRate`;
+ALTER TABLE  `Sites` ADD  `TaxRate` DECIMAL(5, 5) NOT NULL DEFAULT '0' AFTER `ShippingRate`;
+ALTER TABLE  `Sites` ADD  `PayPalId` VARCHAR(255) AFTER `TaxRate`;
+
+UPDATE Sites SET PayPalId = PrimaryEmail WHERE PayPalId is null;
 ```
 	  
 - Pull latest version

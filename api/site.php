@@ -446,8 +446,13 @@ class SiteResource extends Tonic\Resource {
             $language = $request['language'];
             $currency = $request['currency'];
             $weightUnit = $request['weightUnit'];
+            $shippingCalculation = $request['shippingCalculation'];
+            $shippingRate = $request['shippingRate'];
+            $shippingTiers = $request['shippingTiers'];
+            $taxRate = $request['taxRate'];
+            $payPalId = $request['payPalId'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId);
 
             return new Tonic\Response(Tonic\Response::OK);
         

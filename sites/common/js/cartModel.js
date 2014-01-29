@@ -1,5 +1,5 @@
 // models a cart item
-var CartItem = function(description, sku, price, shippingType, weight, unit, quantity){
+var CartItem = function(description, sku, price, shippingType, weight, quantity){
 	
 	var self = this;
 	self.description = ko.observable(description);
@@ -7,10 +7,7 @@ var CartItem = function(description, sku, price, shippingType, weight, unit, qua
 	self.price = ko.observable(price);
 	self.shippingType = ko.observable(shippingType);
 	self.weight = ko.observable(weight);
-	self.unit = ko.observable(unit);
 	self.quantity = ko.observable(quantity);	
-	
-	// need to add thumbnail and return url
 	
 	self.priceFriendly = ko.computed(function(){
 		var p = self.price() + ' ' + cartModel.currency;
@@ -22,18 +19,28 @@ var CartItem = function(description, sku, price, shippingType, weight, unit, qua
     	return p;
 	});
 	
-	self.subtotal = ko.computed(function(){
+	// total weight for line item
+	self.totalWeight = ko.computed(function(){
 	
-		var subtotal = parseFloat(self.price()) * parseInt(self.quantity());
+		var weight = parseFloat(self.weight()) * parseInt(self.quantity());
 		
-		return parseFloat(subtotal).toFixed(2);
+		return Number(weight);
 	});
 	
-	self.subtotalFriendly = ko.computed(function(){
+	// total price for line item
+	self.total = ko.computed(function(){
 	
-		var subtotal = parseFloat(self.price()) * parseInt(self.quantity());
+		var total = parseFloat(self.price()) * parseInt(self.quantity());
+		
+		return Number(total);
+	});
 	
-		var p = parseFloat(subtotal).toFixed(2) + ' ' + cartModel.currency;
+	// total price for line item (formatted)
+	self.totalFriendly = ko.computed(function(){
+	
+		var total = parseFloat(self.price()) * parseInt(self.quantity());
+	
+		var p = Number(total).toFixed(2) + ' ' + cartModel.currency;
 		
 		if(cartModel.currency == 'USD'){
 			p = '$' + p;
@@ -46,16 +53,45 @@ var CartItem = function(description, sku, price, shippingType, weight, unit, qua
 // models the cart
 var cartModel = {
    
+   	payPalId: '',
    	currency: 'USD',
    	weightUnit: 'kgs',
+   	taxRate: 0,
    	returnUrl: 'return',
+   	calculation: 'free',
+   	flatRate: 0,
+   	tiers: [],
    
     items: ko.observableArray([]),
     
     init:function(){
-    
-    	cartModel.currency = $('body').attr('data-currency');
-    	cartModel.weightUnit = $('body').attr('data-weightunit');
+    	
+    	cartModel.payPalId = $('#cart').attr('data-currency');
+    	cartModel.currency = $('#cart').attr('data-currency');
+    	cartModel.weightUnit = $('#cart').attr('data-weightunit');
+    	cartModel.calculation = $('#cart').attr('data-shippingcalculation');  	
+		cartModel.flatRate = Number($('#cart').attr('data-shippingrate'));
+		cartModel.tiers = $('#cart').attr('data-shippingtiers');
+	
+		// validate flatrate
+		if(isNaN(cartModel.flatRate)){
+			cartModel.flatRate = 0;
+		}
+		
+		// parse tiers if not empty
+		if(cartModel.tiers != ''){
+	    	cartModel.tiers = JSON.parse(decodeURI(tiers));
+	    }
+	    else{
+		    cartModel.tiers = [];
+	    }
+    	
+    	// get taxrate
+    	var taxRate = Number($('#cart').attr('data-taxrate').replace(/[^0-9\.]+/g, ''));
+    	
+    	if(!isNaN(taxRate)){
+    		cartModel.taxRate = taxRate;
+    	}
     	
     	var url = 'http://' + $('body').attr('data-domain') + '/return';
     	cartModel.returnUrl = url;
@@ -88,14 +124,35 @@ var cartModel = {
 			
 			var description = $(shelfItem).find('.shelf-description').text();
 			var sku = $(shelfItem).find('.shelf-sku').text();
-			var price = $(shelfItem).find('.shelf-price').attr('data-price');
+			
+			// get price
+			var price = Number($(shelfItem).find('.shelf-price').attr('data-price'));
+    	
+			// handle error
+	    	if(isNaN(price)){
+	    		throw('cartModel.js: pricing error');
+	    	}
+			
 			var type = $(shelfItem).find('.shelf-shipping').attr('data-type');
-			var weight = $(shelfItem).find('.shelf-shipping').attr('data-weight');
-			var unit = $(shelfItem).find('.shelf-shipping').attr('data-unit');
-			var quantity = $(shelfItem).find('.shelf-quantity input').val();
-		
+			
+			// get weight
+			var weight = Number($(shelfItem).find('.shelf-shipping').attr('data-weight'));
+    	
+	    	// handle error (set default weight to 0)
+	    	if(isNaN(weight)){
+	    		weight = 0;
+	    	}
+			
+			// get quantity
+			var quantity = Number($(shelfItem).find('.shelf-quantity input').val());
+    	
+	    	// handle error (set default quantity to 1)
+	    	if(isNaN(quantity)){
+	    		quantity = 1;
+	    	}
+			
 			// create new cart item
-			var item = new CartItem(description, sku, price, type, weight, unit, quantity);
+			var item = new CartItem(description, sku, price, type, weight, quantity);
 			
 			// check for match
 			var match = false;
@@ -139,14 +196,13 @@ var cartModel = {
 				
 				var description = storedItems[x].description;
 				var sku = storedItems[x].sku;
-				var price = storedItems[x].price;
+				var price = Number(storedItems[x].price);
 				var type = storedItems[x].shippingType;
-				var weight = storedItems[x].weight;
-				var unit = storedItems[x].unit;
-				var quantity = storedItems[x].quantity;
+				var weight = Number(storedItems[x].weight);
+				var quantity = Number(storedItems[x].quantity);
 			
 				// create new cart item
-				var item = new CartItem(description, sku, price, type, weight, unit, quantity);
+				var item = new CartItem(description, sku, price, type, weight, quantity);
 				
 				// push item to model
 				cartModel.items.push(item);
@@ -172,7 +228,7 @@ var cartModel = {
 	updateExternal:function(){
 		
 		$('.cart-count').text(cartModel.count());
-		$('.cart-total').text(cartModel.totalFriendly());
+		$('.cart-total').text(cartModel.subtotalFriendly());
 		
 	},
 	
@@ -218,10 +274,9 @@ var cartModel = {
 			'business':			email,
 			'rm':				'0',
 			'charset':			'utf-8',
-			'return':			cartModel.returnUrl,
-			'cancel_return':	cartModel.returnUrl + '#cancel',
-			'notify_url':		cartModel.returnUrl + '#notify'
-			// 'no_shipping':    	1, // 1 = do not prompt, 2 = prompt for address and require it
+			'return':			cartModel.returnUrl + '?processor=paypal&action=success',
+			'cancel_return':	cartModel.returnUrl + '?processor=paypal&action=cancel',
+			'notify_url':		cartModel.returnUrl + '?processor=paypal&action=notify'
 		};
 		
 		var noshipping = 1;
@@ -235,9 +290,8 @@ var cartModel = {
 			
 			data['item_name_'+c] = item.description();
 			data['quantity_'+c] = item.quantity();
-			data['amount_'+c] = item.price();
+			data['amount_'+c] = item.price().toFixed(2);
 			data['item_number_'+c] = item.sku();
-			data['weight_'+c] = item.weight();
 			
 			if(item.shippingType == 'shipped'){
 				noshipping = 2;
@@ -245,11 +299,16 @@ var cartModel = {
 			
 		}
 		
-		data['no_shipping'] = noshipping;
+		data['no_shipping'] = noshipping; // 1 = do not prompt, 2 = prompt for address and require it
 		data['weight_unit'] = cartModel.weightUnit;
+		data['handling_cart'] = cartModel.shipping().toFixed(2);
+		data['tax_cart'] = cartModel.tax().toFixed(2);
+		
+		//var url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // sandbox
+		var url = 'https://www.paypal.com/cgi-bin/webscr'; // live
 		
 		// create form with data values
-		var form = $('<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="POST"></form');
+		var form = $('<form id="paypal-form" action="' + url + '" method="POST"></form');
 		
 		for(x in data){
 			form.append('<input type="hidden" name="'+x+'" value="'+data[x]+'" />');
@@ -264,31 +323,160 @@ var cartModel = {
 	}
 }
 
+// total count calculation
 cartModel.count = ko.computed(function() {
     var count = 0;
     ko.utils.arrayForEach(this.items(), function(item) {
-        count += parseInt(item.quantity());
+        count += item.quantity();
     });
 
     return count;
 }, cartModel);
 
-cartModel.total = ko.computed(function() {
-    var total = 0;
+// total count of shipped items
+cartModel.countShipped = ko.computed(function() {
+    var count = 0;
     ko.utils.arrayForEach(this.items(), function(item) {
-        total += parseFloat(item.subtotal());
+    	if(item.shippingType() == 'shipped'){
+        	count += item.quantity();
+        }
     });
 
-    return total.toFixed(2);
+    return count;
 }, cartModel);
 
-cartModel.totalFriendly = ko.computed(function() {
+
+// subtotal calculation (line item total)
+cartModel.subtotal = ko.computed(function() {
     var total = 0;
     ko.utils.arrayForEach(this.items(), function(item) {
-        total += parseFloat(item.subtotal());
+        total += item.total();
     });
+
+    return total;
+}, cartModel);
+
+// subtotal calculation for shipped items (line item total)
+cartModel.subtotalShipped = ko.computed(function() {
+    var total = 0;
+    ko.utils.arrayForEach(this.items(), function(item) {
+        if(item.shippingType() == 'shipped'){
+        	total += item.total();
+        }
+    });
+
+    return total;
+}, cartModel);
+
+// subtotal display
+cartModel.subtotalFriendly = ko.computed(function() {
+    var p = cartModel.subtotal().toFixed(2) + ' ' + cartModel.currency;
     
-    var p = total.toFixed(2) + ' ' + this.currency;
+    if(cartModel.currency == 'USD'){
+		p = '$' + p;
+	}
+
+    return p;
+}, cartModel);
+
+// tax calculation (subtotal * rate)
+cartModel.tax = ko.computed(function() {
+	return cartModel.subtotal() * cartModel.taxRate;
+}, cartModel);
+
+// tax display
+cartModel.taxFriendly = ko.computed(function() {
+    var p = cartModel.tax().toFixed(2) + ' ' + cartModel.currency;
+    
+    if(cartModel.currency == 'USD'){
+		p = '$' + p;
+	}
+	
+	p = '(' + cartModel.taxRate + '%) ' + p;
+
+    return p;
+}, cartModel);
+
+// total weight calculation
+cartModel.totalWeight = ko.computed(function() {
+    var total = 0;
+    ko.utils.arrayForEach(this.items(), function(item) {
+    	if(item.shippingType() == 'shipped'){
+        	total += item.totalWeight();
+        }
+    });
+
+    return total;
+}, cartModel);
+
+// total weight display
+cartModel.totalWeightFriendly = ko.computed(function() {
+   return cartModel.totalWeight() + ' ' + this.weightUnit;
+}, cartModel);
+
+// shipping calculation (based on settings)
+cartModel.shipping = ko.computed(function() {
+    
+    var stop = 0;
+    
+    // get totals (this also makes sure the model is up-to-date)
+    var subtotal = cartModel.subtotalShipped();
+	var totalWeight = cartModel.totalWeight();
+	
+	// get params
+	var calculation = cartModel.calculation;	
+	var flatRate = cartModel.flatRate;
+	var tiers = cartModel.tiers;
+
+    if(calculation == 'free'){
+	    return 0;
+    }
+    else if(calculation == 'flat-rate'){
+    	if(cartModel.countShipped() > 0){
+			return flatRate;
+		}
+		else{
+			return 0;
+		}
+    }
+    else if(calculation == 'amount'){
+	    stop = subtotal;
+    }
+    else if(calculation == 'weight'){
+	    stop = totalWeight;
+    }
+    else{
+	    return 0;
+    }
+    
+    // walk through tiers
+    for(x=0; x<tiers.length; x++){
+	    var from = tiers[x].from;
+	    var to = tiers[x].to;
+	    
+	    // determine if rate falls between to and from
+	    if(stop > from && stop <= to){
+		    var rate = Number(tiers[x].rate);
+		    
+		    console.log('rate='+rate);
+		    
+		    // return rate
+		    if(!isNaN(rate)){
+			    return rate;
+		    }
+	    }
+	    
+    } 
+    
+    // easy default
+    return 0;
+    
+}, cartModel);
+
+// shipping display
+cartModel.shippingFriendly = ko.computed(function() {
+    
+    var p = cartModel.shipping().toFixed(2) + ' ' + this.currency;
     
     if(this.currency == 'USD'){
 		p = '$' + p;
@@ -297,4 +485,25 @@ cartModel.totalFriendly = ko.computed(function() {
     return p;
 }, cartModel);
 
+// total calculation (subtotal + shipping + tax)
+cartModel.total = ko.computed(function() {
+    
+    var total = cartModel.subtotal() + cartModel.shipping() + cartModel.tax();
+	return total;
+	
+}, cartModel);
+
+// total display
+cartModel.totalFriendly = ko.computed(function() {
+    
+    var p = cartModel.total().toFixed(2) + ' ' + this.currency;
+    
+    if(this.currency == 'USD'){
+		p = '$' + p;
+	}
+
+    return p;
+}, cartModel);
+
+// init model
 $(document).ready(function(){cartModel.init();});
