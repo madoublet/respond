@@ -455,9 +455,9 @@ class Utilities
 		                    . $delimiter 
 		                    . 's';
 		
-		preg_match($regex, $content, $matches);
+		preg_match_all($regex, $content, $matches);
 		
-		foreach($matches as &$value) {
+		foreach($matches[1] as &$value) {
 		    
 		    $menuItems = MenuItem::GetMenuItemsForType($site['SiteId'], $value);
 		    $menu = '';
@@ -544,10 +544,10 @@ class Utilities
 		                    . $delimiter 
 		                    . 's';
 		
-		preg_match($regex, $content, $matches);
+		preg_match_all($regex, $content, $matches);
 		
-		foreach($matches as &$value) {
-		    
+		foreach($matches[1] as &$value) {
+		
 		    // get snippet
 		    $snippet = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/'.$value.'.php';
 		    $snippet_content = '';
@@ -569,9 +569,9 @@ class Utilities
 		                    . $delimiter 
 		                    . 's';
 		
-		preg_match($regex, $content, $matches);
+		preg_match_all($regex, $content, $matches);
 		
-		foreach($matches as &$value) {
+		foreach($matches[1] as &$value) {
 		    
 		    // get snippet
 		    $script_url = $rootloc.'js/custom/'.$value.'.js';
