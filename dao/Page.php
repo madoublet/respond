@@ -524,7 +524,7 @@ class Page{
                     
             $s = $db->prepare($q);
             $s->bindParam(1, $friendlyId);
-            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $siteId);
             
             $s->execute();
             
