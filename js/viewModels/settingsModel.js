@@ -19,6 +19,10 @@ var settingsModel = {
 	        
         });
         
+        $('.list-menu a').on('click', function(){
+	        $('.list-menu').addClass('hidden');
+        });
+        
         // set the from value to the previous to value
         $('body').on('focus', '.to', function(){ 
 	        
@@ -216,6 +220,7 @@ var settingsModel = {
 			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
     			message.showMessage('success', $('#msg-updated').val());
+    			$('.list-menu').removeClass('hidden');
 			},
 			error: function(data){
 				message.showMessage('error', $('#msg-updating-error').val());

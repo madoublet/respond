@@ -110,7 +110,7 @@ class LayoutUpdateResource extends Tonic\Resource {
 
             file_put_contents($file, $content); // save to file
 
-            Publish::PublishAllPages($site->SiteUniqId);
+			Publish::PublishAllPages($site['SiteUniqId']);
         
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);

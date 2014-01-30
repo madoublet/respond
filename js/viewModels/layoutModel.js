@@ -10,7 +10,7 @@ var layoutModel = {
 
     init:function(){ // initializes the model
         layoutModel.updateFiles();
-
+       
 		ko.applyBindings(layoutModel);  // apply bindings
 	},
     

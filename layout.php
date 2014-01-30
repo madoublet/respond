@@ -63,14 +63,10 @@
         <!-- /.fs-container -->
         
     </nav>
-
-    <div class="container">
-    
+   
     	<div class="codemirror-block">
 	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
     	</div>
-    	
-	</div>
     
     <div class="actions">
         <button class="primary-button" type="button" data-bind="click: save"><?php print _("Save"); ?></button>

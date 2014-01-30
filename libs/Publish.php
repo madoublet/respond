@@ -197,7 +197,8 @@ class Publish
 		$list = Page::GetPagesForSite($site['SiteId']);
 		
 		foreach ($list as $row){
-			Publish::PublishPage($row['PageUniqId'], false, $root);
+		
+			Publish::PublishPage($row['PageUniqId'], false, false, $root);
 		}
 	}
 	
@@ -488,7 +489,7 @@ class Publish
 	}
 
 	// publishes a page
-	public static function PublishPage($pageUniqId, $preview = false, $root = '../'){
+	public static function PublishPage($pageUniqId, $preview = false, $remove_draft = false, $root = '../'){
 	
 		$page = Page::GetByPageUniqId($pageUniqId);
         
@@ -531,9 +532,10 @@ class Publish
 		
 			// generate default
 			$html = Utilities::GeneratePage($site, $page, $siteurl, $imageurl, $preview, $root);
-
+			
 			// remove any drafts associated with the page
-			if($preview==false){
+			if($remove_draft==true){
+			
 				$draft = $root.'sites/'.$site['FriendlyId'].'/fragments/draft/'.$page['PageUniqId'].'.html';
 					
 				if(file_exists($draft)){

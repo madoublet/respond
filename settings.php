@@ -20,6 +20,7 @@
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
 <link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 <link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
@@ -48,6 +49,14 @@
         
     </nav>
     <!-- /nav -->
+    
+    <div class="list-menu hidden">
+		<p>
+			<?php print _("Updates to settings will not be reflected until the site is re-published."); ?>
+			<a class="publish-site"><?php print _("Re-publish now"); ?></a>
+		</p>
+	</div>
+	<!-- /.list-menu -->
    
 	<ul class="segmented-control">
 		<li class="active" data-navigate="site"><a>Site</a></li>

@@ -227,22 +227,10 @@ class PageContentResource extends Tonic\Resource {
 			$draft = '../sites/'.$site['FriendlyId'].'/fragments/draft/'.$pageUniqId.'.html';
             $publish = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$pageUniqId.'.html';
             
-            $draft_time = 0;
-            $publish_time = 0;
-
-			// get times for each
-			if(file_exists($draft)){
-				$draft_time = filemtime($draft);
-			}
-			
-			if(file_exists($publish)){
-				$publish_time = filemtime($publish);
-			}
-
             $content = '';
             
-			// (1) try to get a draft if it is newer, (2) else get a published version
-            if(file_exists($draft) && ($draft_time > $publish_time)){
+			// (1) try to get a draft, (2) else get a published version
+            if(file_exists($draft)){
               $content = file_get_contents($draft);
             }
             else if(file_exists($publish)){
@@ -293,7 +281,7 @@ class PageContentResource extends Tonic\Resource {
             if($status=='publish'){
             
             	Page::SetIsActive($page['PageUniqId'], 1);
-                $url = Publish::PublishPage($page['PageUniqId']);
+                $url = Publish::PublishPage($page['PageUniqId'], false, true);
                 
                 if($image!=''){
                     Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);

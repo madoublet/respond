@@ -68,7 +68,7 @@
 
 	<div id="menu-republish-message" class="list-menu">
 		<p>
-			<?php print _("Updates to the menu will not be reflected on the site until the site or page is re-published."); ?>
+			<?php print _("Updates to the menu will not be reflected until the site is re-published.."); ?>
 			<a class="publish-site"><?php print _("Re-publish now"); ?></a>
 		</p>
 	</div>

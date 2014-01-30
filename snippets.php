@@ -66,13 +66,11 @@
         
     </nav>
 
-    <div class="container">
-    	<div class="codemirror-block" data-bind="visible: hasFile">
-	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
-    	</div>
-    	
-    	<p class="template-insert" data-bind="visible:hasFile">Insert into layout using <code>{{snippet-<span data-bind="text:name"></span>}}</code></p>
+	<div class="codemirror-block" data-bind="visible: hasFile">
+    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
 	</div>
+	
+	<p class="template-insert" data-bind="visible:hasFile">Insert into layout using <code>{{snippet-<span data-bind="text:name"></span>}}</code></p>
     
     <div class="actions">
         <button class="primary-button" data-bind="click: save"><?php print _("Save"); ?></button>
