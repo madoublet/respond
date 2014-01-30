@@ -31,7 +31,7 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating layout..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-saved" value="<?php print _("Layout saved"); ?>" type="hidden">
 <input id="msg-saving-error" value="<?php print _("There was a problem saving the layout, please try again"); ?>" type="hidden">
 <input id="msg-add-error" value="<?php print _("A name is required to add a layout"); ?>" type="hidden">

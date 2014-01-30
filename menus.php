@@ -30,9 +30,9 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-adding" value="<?php print _("Adding menu item..."); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("The menu item was added successfully"); ?>" type="hidden">
-<input id="msg-updating" value="<?php print _("Updating menu item..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("The menu item was updated successfully"); ?>" type="hidden">
 <input id="msg-order" value="<?php print _("The order was updated successfully"); ?>" type="hidden">
 <input id="msg-removed" value="<?php print _("The menu item was removed successfully"); ?>" type="hidden">

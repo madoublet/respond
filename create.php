@@ -31,7 +31,7 @@
 <!-- messages -->
 <input id="msg-create-required" value="<?php print _("All fields are required"); ?>" type="hidden">
 <input id="msg-password-error" value="<?php print _("The password and retype fields must match"); ?>" type="hidden">
-<input id="msg-creating" value="<?php print _("Creating site..."); ?>" type="hidden">
+<input id="msg-creating" value="<?php print _("Creating..."); ?>" type="hidden">
 <input id="msg-created-successfully" value="<?php print _("Site created successfully"); ?>" type="hidden">
 <input id="msg-passcode-invalid" value="<?php print _("The passcode is invalid"); ?>" type="hidden">
 <input id="msg-email-invalid" value="<?php print _("The email you provided is already used in the system"); ?>" type="hidden">

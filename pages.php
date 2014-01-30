@@ -32,25 +32,25 @@
 
 <!-- messages -->
 <input id="msg-add-error" value="<?php print _("Name and Friendly URL are required"); ?>" type="hidden">
-<input id="msg-adding" value="<?php print _("Adding page..."); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("Page added successfully"); ?>" type="hidden">
-<input id="msg-removing" value="<?php print _("Removing page..."); ?>" type="hidden">
+<input id="msg-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-removed" value="<?php print _("Page removed successfully"); ?>" type="hidden">
 <input id="msg-remove-error" value="<?php print _("There was a problem removing the page"); ?>" type="hidden">
 <input id="msg-all-required" value="<?php print _("All fields are required"); ?>" type="hidden">
-<input id="msg-type-adding" value="<?php print _("Adding page type..."); ?>" type="hidden">
+<input id="msg-type-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-type-added" value="<?php print _("Page type added successfully"); ?>" type="hidden">
-<input id="msg-type-updating" value="<?php print _("Updating page type..."); ?>" type="hidden">
+<input id="msg-type-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-type-updated" value="<?php print _("Page type updated successfully"); ?>" type="hidden">
-<input id="msg-type-removing" value="<?php print _("Removing page type..."); ?>" type="hidden">
+<input id="msg-type-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-type-removed" value="<?php print _("Page type removed successfully"); ?>" type="hidden">
 <input id="msg-type-remove-error" value="<?php print _("There was a problem removing the page type"); ?>" type="hidden">
 <input id="msg-unpublished" value="<?php print _("The page was un-published successfully"); ?>" type="hidden">
 <input id="msg-published" value="<?php print _("The page was published successfully"); ?>" type="hidden">
 <input id="msg-publish-error" value="<?php print _("There was a problem publishing/un-publishing the page"); ?>" type="hidden">
-<input id="msg-category-adding" value="<?php print _("Adding category..."); ?>" type="hidden">
+<input id="msg-category-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-category-added" value="<?php print _("Category added successfully"); ?>" type="hidden">
-<input id="msg-category-removing" value="<?php print _("Removing category..."); ?>" type="hidden">
+<input id="msg-category-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-category-removed" value="<?php print _("Category removed successfully"); ?>" type="hidden">
 <input id="msg-category-remove-error" value="<?php print _("There was a problem removing the category"); ?>" type="hidden">
 

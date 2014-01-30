@@ -40,13 +40,13 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-saving" value="<?php print _("Saving content..."); ?>" type="hidden">
+<input id="msg-saving" value="<?php print _("Saving..."); ?>" type="hidden">
 <input id="msg-saved" value="<?php print _("Content successfully saved"); ?>" type="hidden">
 <input id="msg-saving-error" value="<?php print _("There was a problem saving content, please try again"); ?>" type="hidden">
-<input id="msg-draft-saving" value="<?php print _("Saving draft..."); ?>" type="hidden">
+<input id="msg-draft-saving" value="<?php print _("Saving..."); ?>" type="hidden">
 <input id="msg-draft-saved" value="<?php print _("Draft successfully saved"); ?>" type="hidden">
 <input id="msg-draft-error" value="<?php print _("There was a problem saving the draft, please try again"); ?>" type="hidden">
-<input id="msg-settings-saving" value="<?php print _("Saving settings..."); ?>" type="hidden">
+<input id="msg-settings-saving" value="<?php print _("Saving..."); ?>" type="hidden">
 <input id="msg-settings-saved" value="<?php print _("Settings successfully saved"); ?>" type="hidden">
 <input id="msg-settings-error" value="<?php print _("There was a problem saving settings, please try again"); ?>" type="hidden">
 <input id="msg-draft-saved-preview" value="<?php print _("Draft saved, launching preview"); ?>" type="hidden">

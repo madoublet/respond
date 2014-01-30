@@ -31,14 +31,14 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating snippets..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Snippets updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the snippet file, please try again"); ?>" type="hidden">
 <input id="msg-name-required" value="<?php print _("A name is required to add a snippet"); ?>" type="hidden">
-<input id="msg-snippet-adding" value="<?php print _("Adding a snippet..."); ?>" type="hidden">
+<input id="msg-snippet-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-snippet-added" value="<?php print _("Snippet successfully added"); ?>" type="hidden">
-<input id="msg-snippet-adding-error" value="<?php print _("Adding a snippet..."); ?>" type="hidden">
-<input id="msg-snippet-removing" value="<?php print _("Removing the snippet..."); ?>" type="hidden">
+<input id="msg-snippet-adding-error" value="<?php print _("Adding..."); ?>" type="hidden">
+<input id="msg-snippet-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-snippet-removed" value="<?php print _("Snippet successfully removed"); ?>" type="hidden">
 <input id="msg-snippet-remove-error" value="<?php print _("There was a problem removing the snippet file, please try again"); ?>" type="hidden">
 

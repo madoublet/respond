@@ -31,9 +31,9 @@
 <body data-currpage="branding">
 
 <!-- messages -->
-<input id="msg-updating-branding" value="<?php print _("Updating branding..."); ?>" type="hidden">
+<input id="msg-updating-branding" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-branding-updated" value="<?php print _("Branding successfully updated"); ?>" type="hidden">
-<input id="msg-updating-logo" value="<?php print _("Updating logo..."); ?>" type="hidden">
+<input id="msg-updating-logo" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-logo-updated" value="<?php print _("Logo successfully updated"); ?>" type="hidden">
 
 <?php include 'modules/menu.php'; ?>

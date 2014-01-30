@@ -32,17 +32,17 @@
 <input id="msg-unsubscribing" value="<?php print _("Unsubscribing..."); ?>" type="hidden">
 <input id="msg-unsubscribe-success" value="<?php print _("You have successfully unsubscribed"); ?>" type="hidden">
 <input id="msg-select-a-plan" value="<?php print _("Select a Plan"); ?>" type="hidden">
-<input id="msg-updating-plan" value="<?php print _("Updating Plan..."); ?>" type="hidden">
+<input id="msg-updating-plan" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-update-successful" value="<?php print _("Update Successful"); ?>" type="hidden">
 <input id="msg-change-plan-error" value="<?php print _("There was a problem changing the plan"); ?>" type="hidden">
-<input id="msg-validating-card" value="<?php print _("Validating Credit Card"); ?>" type="hidden">
-<input id="msg-updating-card" value="<?php print _("Updating Credit Card..."); ?>" type="hidden">
+<input id="msg-validating-card" value="<?php print _("Validating..."); ?>" type="hidden">
+<input id="msg-updating-card" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updating-card-successful" value="<?php print _("Credit Card Update Successful"); ?>" type="hidden">
-<input id="msg-add-card" value="<?php print _("Adding new Card..."); ?>" type="hidden">
+<input id="msg-add-card" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-card-added" value="<?php print _("New card added"); ?>" type="hidden">
 <input id="msg-card-declined" value="<?php print _("Credit Card declined"); ?>" type="hidden">
 <input id="msg-updating-card-error" value="<?php print _("There was a problem updating the card"); ?>" type="hidden">
-<input id="msg-validating-payment" value="<?php print _("Validating payment..."); ?>" type="hidden">
+<input id="msg-validating-payment" value="<?php print _("Validating..."); ?>" type="hidden">
 <input id="msg-paying" value="<?php print _("Paying..."); ?>" type="hidden">
 <input id="msg-payment-successful" value="<?php print _("Payment successful"); ?>" type="hidden">
 <input id="msg-subscription-problem" value="<?php print _("There was a problem paying for the subscription"); ?>" type="hidden">

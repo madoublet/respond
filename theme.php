@@ -30,9 +30,9 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-resetting" value="<?php print _("Resetting theme..."); ?>" type="hidden">
+<input id="msg-resetting" value="<?php print _("Resetting..."); ?>" type="hidden">
 <input id="msg-reset" value="<?php print _("Theme successfully reset"); ?>" type="hidden">
-<input id="msg-applying" value="<?php print _("Applying theme..."); ?>" type="hidden">
+<input id="msg-applying" value="<?php print _("Applying..."); ?>" type="hidden">
 <input id="msg-applied" value="<?php print _("Theme successfully applied"); ?>" type="hidden">
 
 <section class="main">

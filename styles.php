@@ -31,14 +31,14 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating styles..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Styles updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the style file, please try again"); ?>" type="hidden">
 <input id="msg-name-required" value="<?php print _("A name is required to add a stylesheet"); ?>" type="hidden">
-<input id="msg-style-adding" value="<?php print _("Adding a stylesheet..."); ?>" type="hidden">
+<input id="msg-style-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-style-added" value="<?php print _("Stylesheet successfully added"); ?>" type="hidden">
-<input id="msg-style-adding-error" value="<?php print _("Adding a stylesheet..."); ?>" type="hidden">
-<input id="msg-style-removing" value="<?php print _("Removing the stylesheet..."); ?>" type="hidden">
+<input id="msg-style-adding-error" value="<?php print _("Adding..."); ?>" type="hidden">
+<input id="msg-style-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-style-removed" value="<?php print _("Stylesheet successfully removed"); ?>" type="hidden">
 <input id="msg-style-removing-error" value="<?php print _("There was a problem removing the stylesheet, please try again"); ?>" type="hidden">
 

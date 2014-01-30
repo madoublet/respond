@@ -4,7 +4,7 @@
 	<input id="msg-page-settings-name-error" value="<?php print _("You must add a name"); ?>" type="hidden">
 	<input id="msg-page-settings-friendly-error" value="<?php print _("You must select a friendly URL"); ?>" type="hidden">
 	<input id="msg-page-settings-success" value="<?php print _("You have successfully updated the page"); ?>" type="hidden">
-	<input id="msg-page-settings-updating" value="<?php print _("Updating page..."); ?>" type="hidden">
+	<input id="msg-page-settings-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 
 	<div class="modal-dialog">
 	

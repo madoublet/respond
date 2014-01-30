@@ -30,11 +30,11 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating settings..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Settings updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the settings, please try again"); ?>" type="hidden">
 <input id="msg-name-content-error" value="<?php print _("The name and content are required"); ?>" type="hidden">
-<input id="msg-generating" value="<?php print _("Generating file..."); ?>" type="hidden">
+<input id="msg-generating" value="<?php print _("Generating..."); ?>" type="hidden">
 <input id="msg-generated" value="<?php print _("Verification file successfully generated"); ?>" type="hidden">
 <input id="msg-generating-error" value="<?php print _("There was a problem generating the file, please try again"); ?>" type="hidden">
 

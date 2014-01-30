@@ -29,8 +29,8 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating profile..."); ?>" type="hidden">
-<input id="msg-updated" value="<?php print _("Porfile updated successfully"); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
+<input id="msg-updated" value="<?php print _("Profile updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the settings, please try again"); ?>" type="hidden">
 <input id="msg-all-required" value="<?php print _("All fields are required"); ?>" type="hidden">
 <input id="msg-match" value="<?php print _("The password must match the retype field"); ?>" type="hidden">

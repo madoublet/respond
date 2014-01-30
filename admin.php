@@ -31,9 +31,9 @@
 
 <!-- messages -->
 <input id="msg-required" value="<?php print _("All fields required"); ?>" type="hidden">
-<input id="msg-adding" value="<?php print _("Adding site..."); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("Site added successfully"); ?>" type="hidden">
-<input id="msg-switching" value="<?php print _("Switched sites..."); ?>" type="hidden">
+<input id="msg-switching" value="<?php print _("Switching..."); ?>" type="hidden">
 <input id="msg-switched" value="<?php print _("Switch successful"); ?>" type="hidden">
 
 <section class="main">

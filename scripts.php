@@ -31,14 +31,14 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
-<input id="msg-updating" value="<?php print _("Updating scripts..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Scripts updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the script file, please try again"); ?>" type="hidden">
 <input id="msg-name-required" value="<?php print _("A name is required to add a script"); ?>" type="hidden">
-<input id="msg-script-adding" value="<?php print _("Adding a script..."); ?>" type="hidden">
+<input id="msg-script-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-script-added" value="<?php print _("Script successfully added"); ?>" type="hidden">
-<input id="msg-script-adding-error" value="<?php print _("Adding a script..."); ?>" type="hidden">
-<input id="msg-script-removing" value="<?php print _("Removing the script..."); ?>" type="hidden">
+<input id="msg-script-adding-error" value="<?php print _("Adding..."); ?>" type="hidden">
+<input id="msg-script-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-script-removed" value="<?php print _("Script successfully removed"); ?>" type="hidden">
 <input id="msg-script-remove-error" value="<?php print _("There was a problem removing the script file, please try again"); ?>" type="hidden">
 

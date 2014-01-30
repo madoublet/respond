@@ -32,11 +32,11 @@
 <!-- messages -->
 <input id="msg-all-required" value="<?php print _("All fields are required"); ?>" type="hidden">
 <input id="msg-match" value="<?php print _("The password must match the retype field"); ?>" type="hidden">
-<input id="msg-adding" value="<?php print _("Adding user..."); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("User successfully added"); ?>" type="hidden">
-<input id="msg-updating" value="<?php print _("Updating user..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("User successfully updated"); ?>" type="hidden">
-<input id="msg-removing" value="<?php print _("Removing user..."); ?>" type="hidden">
+<input id="msg-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-removed" value="<?php print _("User successfully removed"); ?>" type="hidden">
 		
 <section class="main">

@@ -31,9 +31,9 @@
 
 <!-- messages -->
 <input id="msg-allrequired" value="<?php print _("All fields are required"); ?>" type="hidden">
-<input id="msg-adding" value="<?php print _("Adding plan..."); ?>" type="hidden">
+<input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("Plan added successfully"); ?>" type="hidden">
-<input id="msg-updating" value="<?php print _("Updating plan..."); ?>" type="hidden">
+<input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Plan updated successfully"); ?>" type="hidden">
 
 <section class="main">
