@@ -29,11 +29,11 @@
 <body id="forgot" class="external default">
 
 <!-- messages -->
-<input id="msg-sending" value="<?php print _("Sending email..."); ?>" type="hidden">
+<input id="msg-sending" value="<?php print _("Sending..."); ?>" type="hidden">
 <input id="msg-sent" value="<?php print _("Email sent"); ?>" type="hidden">
 <input id="msg-email-invalid" value="<?php print _("We could not find your email in the system"); ?>" type="hidden">
 <input id="msg-match-error" value="<?php print _("The password and retype must match"); ?>" type="hidden">
-<input id="msg-resetting" value="<?php print _("Resetting password..."); ?>" type="hidden">
+<input id="msg-resetting" value="<?php print _("Resetting..."); ?>" type="hidden">
 <input id="msg-reset" value="<?php print _("Password successfully reset"); ?>" type="hidden">
 <input id="msg-denied" value="<?php print _("Access denied"); ?>" type="hidden">
 

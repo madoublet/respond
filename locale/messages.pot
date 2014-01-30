@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # MATTHEW SMITH matt@matthewsmith.com, 2014
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Respond CMS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2014-01-30 12:48-0600\n"
 "Last-Translator: MATTHEW SMITH matt@matthewsmith.com\n"
-"Language-Team: MATTHEW SMITH matt@matthewsmith.com\n"
-"Language: \n"
+"Language-Team: MATTHEW SMITH matt@matthewsmith.com <matt@matthewsmith.com>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: blockConfigDialog.php:9 elementConfigDialog.php:9
 msgid "Settings"
