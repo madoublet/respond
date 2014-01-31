@@ -57,7 +57,7 @@ class User{
 	}
 	
 	// determines whether a login is unique
-	public static function IsLoginUnique($login){
+	public static function IsLoginUnique($email){
 
 		try{
 

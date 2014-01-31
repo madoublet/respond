@@ -124,8 +124,15 @@ class SiteCreateResource extends Tonic\Resource {
 	            $isUserUnique = User::IsLoginUnique($email);
 	            
 	            if($isUserUnique==false){
+	            
 	                return new Tonic\Response(Tonic\Response::CONFLICT);
 	            }
+            }
+            
+            $isFriendlyIdUnique = Site::IsFriendlyIdUnique($friendlyId);
+	            
+            if($isFriendlyIdUnique==false){
+                return new Tonic\Response(Tonic\Response::CONFLICT);
             }
             
             // add the site
