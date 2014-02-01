@@ -69,7 +69,15 @@ var createModel = {
 			
 			var email = $.trim($('#email').val());
 			
+			// validate against blanks
 			if(email == ''){
+				$('#validate-email').hide();
+				$('#email-invalid').show();
+				return;
+			}
+			
+			// validate agains form
+			if(!global.veryBasicEmailValidation(email)){
 				$('#validate-email').hide();
 				$('#email-invalid').show();
 				return;

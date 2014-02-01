@@ -30,6 +30,14 @@ var global = {
       
     },
     
+    // basic email validation, ref: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+    veryBasicEmailValidation:function(email){
+	
+    	var re = /\S+@\S+\.\S+/;
+		return re.test(email);
+	    
+    },
+    
     // parse gettext (for multi-lingual support)
     parseGettext:function(html){
     
