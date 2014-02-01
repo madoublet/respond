@@ -34,31 +34,37 @@
 <input id="msg-creating" value="<?php print _("Creating..."); ?>" type="hidden">
 <input id="msg-created-successfully" value="<?php print _("Site created successfully"); ?>" type="hidden">
 <input id="msg-passcode-invalid" value="<?php print _("The passcode is invalid"); ?>" type="hidden">
-<input id="msg-email-invalid" value="<?php print _("The email you provided is already used in the system"); ?>" type="hidden">
+<input id="msg-email-invalid" value="<?php print _("The email or site name you provided is already used in the system"); ?>" type="hidden">
 
 <!-- begin content -->
-<div class="content">
+<div id="create" class="content">
 
 	<h1><?php print BRAND; ?></h1>
-	
-	
-		<p><?php print _("Enter your site name, login, password, and timezone to create your site."); ?></p>
 	
 	<div id="create-form">
 	
 	<fieldset>
 	
+		<p><?php print _("Enter your site name, login, password, and timezone to create your site."); ?></p>
 
-		<div class="form-group">
+		<div class="form-group divider">
 			<label for="name"><?php print _("Site Name:"); ?></label>
 			<input id="name" type="text" value="" class="form-control input-lg">
-			<p class="site-name"><?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span></p>
+			<p class="site-name">
+				<?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span> 
+			</p>
+			<i id="validate-site" class="validating fa fa-spinner fa-spin"></i>
+			<i id="site-valid" class="valid fa fa-check"></i>
+			<i id="site-invalid" class="invalid fa fa-times"></i>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
 
 		<div class="form-group">
 			<label for="email"><?php print _("Email:"); ?></label>
 			<input id="email" type="text" value="" class="form-control input-lg">
+			<i id="validate-email" class="validating fa fa-spinner fa-spin"></i>
+			<i id="email-valid" class="valid fa fa-check"></i>
+			<i id="email-invalid" class="invalid fa fa-times"></i>
 		</div>
 		
 		<div class="form-group">
@@ -66,7 +72,7 @@
 			<input id="password" type="password" class="form-control input-lg">
 		</div>
 
-		<div class="form-group">
+		<div class="form-group divider">
 			<label for="password"><?php print _("Re-type Password:"); ?></label>
 			<input id="retype" type="password" placeholder="" class="form-control input-lg">
 		</div>
@@ -81,7 +87,7 @@
 			    </select>
 		</div>
 		
-		<div class="form-group">
+		<div class="form-group divider">
 			<label for="timeZone"><?php print _("Timezone:"); ?></label>
 			<select id="timeZone" data-bind="value: timeZone" class="form-control">
 					<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -199,16 +205,12 @@
 
 
 		<p>
-			<?php print _("Login here to update your site:"); ?>
-		</p>
-		<p>
+			<?php print _("Login here to update your site:"); ?><br>
 			<a id="loginLink" href="<?php print APP_URL; ?>"><?php print APP_URL; ?></a>
 		</p>
 		
 		<p>
-			<?php print _("You can already view your site here:"); ?> 
-		</p>
-		<p>	
+			<?php print _("You can already view your site here:"); ?> <br>
 			<a id="siteLink" href="<?php print APP_URL; ?>/sites/{friendlyId}"><?php print APP_URL; ?>/sites/{friendlyId}</a>
 		</p>
 		

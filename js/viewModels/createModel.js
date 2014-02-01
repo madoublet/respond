@@ -16,6 +16,91 @@ var createModel = {
 			$('#tempUrl').html(keyed);
 			$('#friendlyId').val(keyed);
 		});
+		
+		// validate site id
+		$('#name').blur(function(){
+			
+			$('#site-invalid').hide()
+			$('#site-valid').hide();
+			$('#validate-site').show();
+			
+			var name = $.trim($('#name').val());
+			var friendlyId = $('#friendlyId').val();
+			
+			if(name == ''){
+				$('#validate-site').hide();
+				$('#site-invalid').show();
+				return;
+			}
+			
+			$.ajax({
+	          url: 'api/site/validate/id',
+	          type: 'POST',
+	          data: {friendlyId: friendlyId},
+	          success: function(data){
+	            $('#site-invalid').hide()
+				$('#site-valid').show();
+				$('#validate-site').hide();
+	          },
+	          statusCode: {
+	            401: function() {  // UNAUTHORIZED
+	                $('#site-invalid').show()
+					$('#site-valid').hide();
+					$('#validate-site').hide();
+	            },
+	            409: function() {  // CONFLICT
+	                $('#site-invalid').show()
+					$('#site-valid').hide();
+					$('#validate-site').hide();
+	            }
+	          },
+	          error: function(data){}
+	        });
+			
+		});
+		
+		
+		// validate email
+		$('#email').blur(function(){
+			
+			$('#email-invalid').hide()
+			$('#email-valid').hide();
+			$('#validate-email').show();
+			
+			var email = $.trim($('#email').val());
+			
+			if(email == ''){
+				$('#validate-email').hide();
+				$('#email-invalid').show();
+				return;
+			}
+			
+			$.ajax({
+	          url: 'api/site/validate/email',
+	          type: 'POST',
+	          data: {email: email},
+	          success: function(data){
+	            $('#email-invalid').hide()
+				$('#email-valid').show();
+				$('#validate-email').hide();
+	          },
+	          statusCode: {
+	            401: function() {  // UNAUTHORIZED
+	                $('#email-invalid').show()
+					$('#email-valid').hide();
+					$('#validate-email').hide();
+	            },
+	            409: function() {  // CONFLICT
+	                $('#email-invalid').show()
+					$('#email-valid').hide();
+					$('#validate-email').hide();
+	            }
+	          },
+	          error: function(data){}
+	        });
+			
+		});
+
         
         createModel.updateLanguages();
         

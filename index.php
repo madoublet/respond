@@ -51,13 +51,13 @@
 		</div>
 		
 		<span class="actions">
-			<button class="primary-button" type="submit" data-bind="click: login"><?php print _("Login"); ?> <i class="fa fa-chevron-right fa-white"></i></button>
+			<button class="primary-button" type="submit" data-bind="click: login"><?php print _("Login"); ?> <i class="fa fa-angle-right fa-white"></i></button>
 		</span>
 	</fieldset>
     </form>
 	<!-- /.login -->
     
-    <p>
+    <p class="alternate">
     	<a href="forgot"><?php print _("Forgot your Password?"); ?></a>
 	</p>
     

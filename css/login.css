@@ -2,47 +2,31 @@ html{
     overflow: auto;
 }
 
-body{
-	background-color: #bbb;
-}
-
-img{
-	max-width: 100%;
-}
-
-a{
-	color: #fff;
-	text-decoration: underline;
-}
-
-	a:hover{
-		color: #fff;
-	}
-
-div.content{
+.content{
 	text-align: center;
-	color: #fff;
-	padding-top: 50px;
+	padding: 50px 20px;
 }
 
 #create-confirmation{
 	display: none;
 }
 
-div.content h1{
+body .content h1{
 	font-family: "Roboto Condensed", sans-serif;
-	font-size: 3.5rem;
+	font-size: 45px;
 	padding-bottom: 25px;
     color: #777;
 	text-transform: uppercase;
 	font-weight: bold;
 }
 
-div.content p{
+body .content p{
 	font-family: "Roboto", sans-serif;
-	font-size: 1.6rem;
+	font-size: 16px;
 	text-align: center;
-	margin-bottom: 25px;
+	margin-bottom: 35px;
+	color: #aaa;
+	
 }
 
 fieldset{
@@ -50,72 +34,127 @@ fieldset{
 	text-align: center;
 	border-bottom: none;
 	margin: 0 auto;
-	padding: 0 5px;
+	padding: 0;
 }
 
-div.content fieldset p{
-	text-align: left;
-}
+	.content fieldset p{
+		text-align: left;
+	}
 
-body div.form-group{
+body .form-group{
+	position: relative;
 	margin: 0 0 20px 0;
 }
 
-span.actions{
-	display: block;
-	text-align: right;
+body .divider{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #f0f0f0;
 }
 
-div.content fieldset label{
+	.actions{
+		display: block;
+		text-align: right;
+	}
+
+	body p.alternate{
+		margin-top: 35px;
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+
+.content fieldset label{
 	width: 100%;
 	text-align: left;
-	font-size: 1.1em;
+	font-size: 15px;
 }
 
-span.actions{
+.actions{
 	margin-top: 25px;	
     display: block;
-    width: 410px;
+    width: 100%;
 }
 
+	.actions button i{
+		display: inline-block;
+		margin-left: 5px;
+		margin-right: -10px;
+		margin-top: -2px;
+		font-size: 13px;
+		background-color: #fff;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		text-align: center;
+		border-radius: 50%;	
+		color: #3299bb;
+	}
 
 small{
 	text-transform: uppercase;
 	margin-top: 50px;
 	padding-bottom: 50px;
-    color: #777;
+    color: #aaa;
     display: block;
     text-align: center;
 }
 
-small a{
-    color: #777;
-}
-
-p.demo b{
+.demo b{
 	display: inline-block;
 	color: #fff;
 }
 
-p.footer{
+.footer{
 	margin: 100px auto;
 	text-align: center;
 }
 
 body p.site-name{
-	margin-top: 10px;
-	font-size: 1.1em;
-	color: #777;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #aaa;
 	margin-bottom: 0;
 	padding-bottom: 0;
+	height: 25px;
+	line-height: 25px;
+	color: #aaa;
 }
 
 	body p.site-name span{
 		font-weight: bold;
 		display: inline-block;
-		padding: 4px 8px;
-		margin: -4px 0 0 2px;
-		background-color: #ddd;
+		padding: 4px 15px;
+		margin: 0 0 0 5px;
+		background-color: #f0f0f0;
+		color: #3299bb;
+		border-radius: 15px;
+	}
+	
+/* create styles */
+.validating, .valid, .invalid{
+	position: absolute;
+	top: 37px;
+	right: 10px;
+	background-color: #3299bb;
+	color: #fff;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 50%;
+	margin-left: 5px;
+	display: none;
+}
+
+	.valid{
+		background-color: #7ec57e;
+	}
+	
+	.invalid{
+		background-color: #A4110A;
+	}
+	
+	.validating.visible, .valid.visible, .invalid.visible{
+		display: inline-block;
 	}
 
 /* test styles */

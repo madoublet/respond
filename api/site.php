@@ -69,6 +69,63 @@ class SiteSwitchResource extends Tonic\Resource {
     }
 }
 
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /site/validate/id
+ */
+class SiteValidateIdResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+
+        // parse request
+        parse_str($this->request->data, $request);
+
+        $friendlyId = $request['friendlyId'];
+        
+        $isFriendlyIdUnique = Site::IsFriendlyIdUnique($friendlyId);
+	            
+        if($isFriendlyIdUnique==false){
+            return new Tonic\Response(Tonic\Response::CONFLICT);
+        }
+        else{
+	        return new Tonic\Response(Tonic\Response::OK);
+        }
+
+    }
+}
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /site/validate/email
+ */
+class SiteValidateEmailResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+
+        // parse request
+        parse_str($this->request->data, $request);
+
+        $email = $request['email'];
+        
+        $isUserUnique = User::IsLoginUnique($email);
+	            
+        if($isUserUnique==false){
+        
+            return new Tonic\Response(Tonic\Response::CONFLICT);
+        }
+        else{
+	        return new Tonic\Response(Tonic\Response::OK);
+        }
+
+    }
+}
+
 
 /**
  * A protected API call to retrieve the current site

@@ -42,11 +42,9 @@
 
 	<h1><?php print BRAND; ?></h1>
 	
-	<p>
-		<?php print _("Type your email address and we will send you a link to reset your password."); ?>
-	</p>
-
 	<fieldset class="forgot" data-bind="visible:hasToken()==false">
+	
+		<p><?php print _("Type your email address and we will send you a link to reset your password."); ?></p>
 		
 		<div class="form-group">
 			<label for="email"><?php print _("Email:"); ?></label>
@@ -54,7 +52,7 @@
 		</div>
 		
 		<span class="actions">
-			<button type="submit" class="primary-button" data-bind="click:forgot"><?php print _("Send Email"); ?></button>
+			<button type="submit" class="primary-button" data-bind="click:forgot"><?php print _("Send Email"); ?> <i class="fa fa-envelope-o"></i></button>
 		</span>
 		
 	</fieldset>
@@ -83,7 +81,7 @@
 	</fieldset>
 	<!-- /.reset -->
 
-	<p class="return">
+	<p  class="alternate">
 		<a href="/"><?php print _("Return to Login"); ?></a>
 	</p>
 
