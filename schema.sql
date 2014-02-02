@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `ShippingRate` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
   `ShippingTiers` TEXT,
   `TaxRate` DECIMAL(5, 5) NOT NULL DEFAULT '0',
-  `PayPalId` VARCHAR(255) AFTER `TaxRate`,
+  `PayPalId` VARCHAR(255),
   `LastLogin` datetime DEFAULT NULL,
   `Type` varchar(25) NOT NULL DEFAULT 'Non-Subscription',
   `CustomerId` varchar(256) DEFAULT NULL,
