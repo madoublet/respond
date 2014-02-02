@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `WeightUnit` varchar(10) NOT NULL DEFAULT 'kgs',
   `ShippingCalculation` VARCHAR(10) NOT NULL DEFAULT  'free',
   `ShippingRate` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
-  `ShippingTiers` TEXT AFTER `ShippingRate`,
+  `ShippingTiers` TEXT,
   `TaxRate` DECIMAL(5, 5) NOT NULL DEFAULT '0',
   `PayPalId` VARCHAR(255) AFTER `TaxRate`,
   `LastLogin` datetime DEFAULT NULL,
