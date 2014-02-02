@@ -66,7 +66,7 @@ var cartModel = {
     
     init:function(){
     	
-    	cartModel.payPalId = $('#cart').attr('data-currency');
+    	cartModel.payPalId = $('#cart').attr('data-paypalid');
     	cartModel.currency = $('#cart').attr('data-currency');
     	cartModel.weightUnit = $('#cart').attr('data-weightunit');
     	cartModel.calculation = $('#cart').attr('data-shippingcalculation');  	
@@ -93,7 +93,7 @@ var cartModel = {
     		cartModel.taxRate = taxRate;
     	}
     	
-    	var url = 'http://' + $('body').attr('data-domain') + '/return';
+    	var url = 'http://' + $('body').attr('data-domain') + '/';
     	cartModel.returnUrl = url;
     	
     	// setup events used by the cart
@@ -261,11 +261,12 @@ var cartModel = {
 	// checkout using PayPal
 	checkoutWithPayPal:function(o, e){
 	
-		var email = $(e.target).attr('data-email');
+		var email = cartModel.payPalId;
 	
 		// data setup
 		// #ref tutorial: https://developer.paypal.com/webapps/developer/docs/classic/paypal-payments-standard/integration-guide/cart_upload/
 		// #ref: form: https://developer.paypal.com/webapps/developer/docs/classic/paypal-payments-standard/integration-guide/Appx_websitestandard_htmlvariables/#id08A6HF00TZS
+		// #ref: notify: https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNIntro/
 		var data = {
 			'email':			email,
 			'cmd':				'_cart',
@@ -274,9 +275,9 @@ var cartModel = {
 			'business':			email,
 			'rm':				'0',
 			'charset':			'utf-8',
-			'return':			cartModel.returnUrl + '?processor=paypal&action=success',
-			'cancel_return':	cartModel.returnUrl + '?processor=paypal&action=cancel',
-			'notify_url':		cartModel.returnUrl + '?processor=paypal&action=notify'
+			'return':			cartModel.returnUrl + 'thankyou?p=paypal',
+			'cancel_return':	cartModel.returnUrl + 'cancel?p=paypal',
+			'notify_url':		cartModel.returnUrl + 'notify?p=paypal'
 		};
 		
 		var noshipping = 1;
@@ -293,7 +294,7 @@ var cartModel = {
 			data['amount_'+c] = item.price().toFixed(2);
 			data['item_number_'+c] = item.sku();
 			
-			if(item.shippingType == 'shipped'){
+			if(item.shippingType() == 'shipped'){
 				noshipping = 2;
 			}
 			
