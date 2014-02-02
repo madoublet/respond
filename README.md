@@ -7,7 +7,7 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-Our current version is 2.6.  You are viewing the development branch for 2.7.
+Our current version is 2.7.
 
 New in 2.7:
 - Categories for pages
