@@ -1,0 +1,1966 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Jan Lipovský <janlipovsky@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: RESPONDCMS 2.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-03 16:00+0100\n"
+"PO-Revision-Date: 2014-02-03 16:09+0100\n"
+"Last-Translator: Jan Lipovský <janlipovsky@gmail.com>\n"
+"Language-Team: ICT & MEDIA, s.r.o. <info@ictmedia.cz>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: htmlDialog.php:18 modules/dialogs/htmlDialog.php:18
+msgid ". Paste the HTML code below."
+msgstr ". Vložte HTML kód níže."
+
+#: account.php:272
+msgid ">New Card"
+msgstr ">Nová karta:"
+
+#: layout.php:37
+msgid "A name is required to add a layout"
+msgstr "K přidání rozvržení je nutné zadat název"
+
+#: scripts.php:37
+msgid "A name is required to add a script"
+msgstr "Pro přidání skriptu musíte vyplnit Název"
+
+#: snippets.php:37
+msgid "A name is required to add a snippet"
+msgstr "Pro přidání snippetu musíte vyplnit Název"
+
+#: styles.php:37
+msgid "A name is required to add a stylesheet"
+msgstr "Pro přidání stylu musí být vyplněn Název"
+
+#: test.php:200
+msgid "API is working"
+msgstr "API je funkční"
+
+#: test.php:159
+msgid "APP_URL is set in app.php"
+msgstr "APP_URL je nataveno v app.php"
+
+#: index.php:33
+msgid "Access Denied"
+msgstr "Přístup zamítnut"
+
+#: forgot.php:38
+msgid "Access denied"
+msgstr "Přístup odmítnut"
+
+#: account.php:14 account.php:56 modules/menu.php:30
+msgid "Account"
+msgstr "Účet"
+
+#: create.php:197 create.php:203
+msgid "Account created! To get started, click on your login link below."
+msgstr "Účet byl vytvořen! Pokračujte kliknutím na odkaz pro přihlášení."
+
+#: pages.php:104 pages.php:338 pages.php:356
+msgid "Add Category"
+msgstr "Přidat kategorii"
+
+#: codeBlockDialog.php:9 codeBlockDialog.php:26
+#: modules/dialogs/codeBlockDialog.php:9
+#: modules/dialogs/codeBlockDialog.php:26
+msgid "Add Code Block"
+msgstr "Přidat blok kódu"
+
+#: featuredDialog.php:33 modules/dialogs/featuredDialog.php:33
+msgid "Add Featured Content"
+msgstr "Vložit obsah stránky"
+
+#: fieldDialog.php:9 fieldDialog.php:57 modules/dialogs/fieldDialog.php:9
+#: modules/dialogs/fieldDialog.php:57
+msgid "Add Field"
+msgstr "Přidat pole"
+
+#: filesDialog.php:13 filesDialog.php:36 modules/dialogs/filesDialog.php:13
+#: modules/dialogs/filesDialog.php:36
+msgid "Add File"
+msgstr "Přidat soubor"
+
+#: fontAwesomeDialog.php:9 modules/dialogs/fontAwesomeDialog.php:9
+msgid "Add Font Awesome Icon"
+msgstr "Přidat Font Awesome Icon"
+
+#: htmlDialog.php:12 htmlDialog.php:36 modules/dialogs/htmlDialog.php:12
+#: modules/dialogs/htmlDialog.php:36
+msgid "Add HTML"
+msgstr "Přidat HTML"
+
+#: fontAwesomeDialog.php:30 modules/dialogs/fontAwesomeDialog.php:30
+msgid "Add Icon"
+msgstr "Přidat ikonu"
+
+#: layout.php:86 layout.php:103
+msgid "Add Layout"
+msgstr "Přidat rozvržení"
+
+#: linkDialog.php:9 linkDialog.php:41 modules/dialogs/linkDialog.php:9
+#: modules/dialogs/linkDialog.php:41
+msgid "Add Link"
+msgstr "Přidat odkaz"
+
+#: listDialog.php:12 listDialog.php:75 modules/dialogs/listDialog.php:12
+#: modules/dialogs/listDialog.php:75
+msgid "Add List"
+msgstr "Přidat seznam:"
+
+#: menus.php:66 menus.php:118 menus.php:179
+msgid "Add Menu Item"
+msgstr "Přidat položku menu"
+
+#: menus.php:240 menus.php:262
+msgid "Add Menu Type"
+msgstr "Přidat položku menu"
+
+#: pages.php:86 pages.php:156 pages.php:186
+msgid "Add Page"
+msgstr "Přidat stránku"
+
+#: pages.php:273
+msgid "Add Page Type"
+msgstr "Přidat typ stránky"
+
+#: plans.php:49 plans.php:95 plans.php:142
+msgid "Add Plan"
+msgstr "Přidat plán"
+
+#: pluginsDialog.php:36 modules/dialogs/pluginsDialog.php:36
+msgid "Add Plugin"
+msgstr "Přidat plugin"
+
+#: skuDialog.php:9 skuDialog.php:54 modules/dialogs/skuDialog.php:9
+#: modules/dialogs/skuDialog.php:54
+msgid "Add SKU"
+msgstr "Přidat SKU"
+
+#: scripts.php:90 scripts.php:107
+msgid "Add Script"
+msgstr "Přidat skript"
+
+#: admin.php:49 admin.php:98 admin.php:215
+msgid "Add Site"
+msgstr "Přidat stránku"
+
+#: slideshowDialog.php:9 modules/dialogs/slideshowDialog.php:9
+msgid "Add Slideshow"
+msgstr "Přidat prezentaci"
+
+#: snippets.php:90 snippets.php:107
+msgid "Add Snippet"
+msgstr "Přidat snippet"
+
+#: styles.php:88 styles.php:105
+msgid "Add Stylesheet"
+msgstr "Přidat styl"
+
+#: pages.php:316
+msgid "Add Type"
+msgstr "Přidat typ"
+
+#: users.php:51 users.php:84 users.php:141
+msgid "Add User"
+msgstr "Přidat uživatele"
+
+#: htmlDialog.php:28 modules/dialogs/htmlDialog.php:28
+msgid "Add your HTML, JS, or HTML here"
+msgstr "Přidejte Vaše HTML nebo JS zde"
+
+#: imagesDialog.php:5 modules/dialogs/imagesDialog.php:5
+msgid ""
+"Add your content here or click the settings icon to change the image layout"
+msgstr ""
+"Vložte Váš obsah zde nebo klikněte na ikonu nastavení pro změnu rozložení "
+"obrázku"
+
+#: pageSettingsDialog.php:35 modules/dialogs/pageSettingsDialog.php:35
+msgid ""
+"Added to the head of the page, used as the description in search engines and "
+"for lists"
+msgstr ""
+"Vloženo do hlavičky stránky, použité jako popis ve vyhledávačích obrázků a "
+"pro seznam"
+
+#: account.php:41 admin.php:34 menus.php:33 pages.php:35 pages.php:41
+#: pages.php:51 plans.php:34 scripts.php:38 scripts.php:40 snippets.php:38
+#: snippets.php:40 styles.php:38 styles.php:40 users.php:35
+msgid "Adding..."
+msgstr "Přidávám..."
+
+#: pageSettingsDialog.php:54 modules/dialogs/pageSettingsDialog.php:54
+msgid "Adds a reference to the selected RSS feeds in the head of the page"
+msgstr "Přidá referenci do vybraného RSS v hlavičce stránky"
+
+#: users.php:104
+msgid "Administrator"
+msgstr "Administrátor"
+
+#: listDialog.php:45 pages.php:96 pages.php:99
+#: modules/dialogs/listDialog.php:45
+msgid "All Categories"
+msgstr "Všechny kategorie"
+
+#: create.php:32 pages.php:40 plans.php:33 profile.php:35 users.php:33
+msgid "All fields are required"
+msgstr "Všechny položky jsou povinné"
+
+#: admin.php:33
+msgid "All fields required"
+msgstr "Všechny položky jsou povinné"
+
+#: settings.php:493
+msgid "Allows you to moderate comments on your site, create here:"
+msgstr "Povolí moderování komentářů na Vašich stránkách, vytvořit zde:"
+
+#: profile.php:84 users.php:122
+msgid "Also used as the login"
+msgstr "Použito jako login"
+
+#: plans.php:62
+msgid "Amount"
+msgstr "Množství"
+
+#: plans.php:112
+msgid "Amount (in cents):"
+msgstr "Množství (v centech):"
+
+#: theme.php:55 theme.php:73 theme.php:88
+msgid "Apply Theme"
+msgstr "Použít téma"
+
+#: theme.php:35
+msgid "Applying..."
+msgstr "Aktualizuji..."
+
+#: menus.php:288
+msgid "Are you sure that you want to delete"
+msgstr "Opravdu si přejete odstranit"
+
+#: account.php:138
+msgid "Are you sure that you want to unsubscribe?"
+msgstr "Opravdu chcete odhlásit odběr?"
+
+#: test.php:51
+msgid ""
+"Below are some tests to help troubleshoot common problems with your "
+"installation."
+msgstr ""
+"Níže jsou uvedeny testy, které Vám pomohou při řešení problému s instalací."
+
+#: blockConfigDialog.php:21 modules/dialogs/blockConfigDialog.php:21
+msgid "Block Class:"
+msgstr "Třída bloku:"
+
+#: blockConfigDialog.php:16 modules/dialogs/blockConfigDialog.php:16
+msgid "Block Id:"
+msgstr "Blok ID:"
+
+#: listDialog.php:30 modules/dialogs/listDialog.php:30
+msgid "Blog"
+msgstr "Blog"
+
+#: create.php:216 create.php:218
+msgid "Bookmark these links for easy access."
+msgstr "Přidejte si odkazy do záložek pro rychlý přistup."
+
+#: branding.php:14 branding.php:47 modules/menu.php:28
+msgid "Branding"
+msgstr "Značka"
+
+#: branding.php:35
+msgid "Branding successfully updated"
+msgstr "Značka úspěšně aktualizována"
+
+#: settings.php:385
+msgid "By Order Amount"
+msgstr "Dle množství objednávek"
+
+#: settings.php:386
+msgid "By Weight"
+msgstr "Dle váhy"
+
+#: elementConfigDialog.php:21 menus.php:132
+#: modules/dialogs/elementConfigDialog.php:21
+msgid "CSS Class:"
+msgstr "CSS třída:"
+
+#: pageSettingsDialog.php:75 modules/dialogs/pageSettingsDialog.php:75
+msgid "CSS used to render the page"
+msgstr "CSS použité k zobrazení stránky"
+
+#: test.php:144
+msgid "CURL enabled"
+msgstr "CURL povoleno"
+
+#: pageSettingsDialog.php:44 modules/dialogs/pageSettingsDialog.php:44
+msgid "Callout:"
+msgstr "Popiska:"
+
+#: account.php:255 account.php:324
+msgid "Card Code (CVC):"
+msgstr "Kontrolní kód (CVC): "
+
+#: pageSettingsDialog.php:58 pages.php:177
+#: modules/dialogs/pageSettingsDialog.php:58
+msgid "Categories:"
+msgstr "Kategorie:"
+
+#: pages.php:52
+msgid "Category added successfully"
+msgstr "Kategorie byla úspěšně přidána"
+
+#: pages.php:54
+msgid "Category removed successfully"
+msgstr "Kategorie byla úspěšně odstraněna"
+
+#: forgot.php:80 forgot.php:78
+msgid "Change Password"
+msgstr "Změnit heslo"
+
+#: account.php:90 account.php:166 account.php:192
+msgid "Change Plan"
+msgstr "Změnit plán"
+
+#: fieldDialog.php:27 modules/dialogs/fieldDialog.php:27
+msgid "Checkbox List"
+msgstr "Checkbox List"
+
+#: blockConfigDialog.php:29 codeBlockDialog.php:25 configPluginsDialog.php:19
+#: elementConfigDialog.php:56 featuredDialog.php:32 fieldDialog.php:56
+#: filesDialog.php:35 fontAwesomeDialog.php:29 htmlDialog.php:35
+#: linkDialog.php:40 listDialog.php:74 loadLayoutDialog.php:29
+#: pageSettingsDialog.php:82 pluginsDialog.php:35 skuDialog.php:53
+#: slideshowDialog.php:36 account.php:144 account.php:191 account.php:273
+#: account.php:342 admin.php:214 files.php:111 layout.php:102 layout.php:141
+#: menus.php:178 menus.php:215 menus.php:261 menus.php:295 pages.php:185
+#: pages.php:217 pages.php:251 pages.php:315 pages.php:355 pages.php:389
+#: plans.php:141 scripts.php:106 scripts.php:145 settings.php:562
+#: snippets.php:106 snippets.php:145 styles.php:104 styles.php:143
+#: theme.php:87 theme.php:126 users.php:140 users.php:180
+#: modules/dialogs/linkDialog.php:40 modules/dialogs/filesDialog.php:35
+#: modules/dialogs/pluginsDialog.php:35 modules/dialogs/slideshowDialog.php:36
+#: modules/dialogs/htmlDialog.php:35 modules/dialogs/fontAwesomeDialog.php:29
+#: modules/dialogs/codeBlockDialog.php:25 modules/dialogs/listDialog.php:74
+#: modules/dialogs/loadLayoutDialog.php:29
+#: modules/dialogs/blockConfigDialog.php:29 modules/dialogs/skuDialog.php:53
+#: modules/dialogs/featuredDialog.php:32 modules/dialogs/fieldDialog.php:56
+#: modules/dialogs/configPluginsDialog.php:19
+#: modules/dialogs/elementConfigDialog.php:56
+#: modules/dialogs/pageSettingsDialog.php:82
+msgid "Close"
+msgstr "Zavřít"
+
+#: codeBlockDialog.php:16 modules/dialogs/codeBlockDialog.php:16
+msgid "Code:"
+msgstr "Kód:"
+
+#: configPluginsDialog.php:9 modules/dialogs/configPluginsDialog.php:9
+msgid "Configure Plugin"
+msgstr "Nastavit plugin"
+
+#: layout.php:134
+msgid "Confirm that you want to delete"
+msgstr "Potvrďte zda si opravdu přejete odstranit"
+
+#: scripts.php:138 snippets.php:138
+msgid "Confirm that you want to delete:"
+msgstr "Potvrďte zda chcete odstranit:"
+
+#: menus.php:210 pages.php:212 styles.php:136
+msgid "Confirm that you want to remove:"
+msgstr "Potvrďte zda si opravdu přejete odstranit:"
+
+#: theme.php:78
+msgid "Confirm you want to apply:"
+msgstr "Opravdu si přejete použít:"
+
+#: files.php:100
+msgid "Confirm you want to delete:"
+msgstr "Opravdu si přejete smazat:"
+
+#: pages.php:245 pages.php:383 users.php:173
+msgid "Confirm you want to remove:"
+msgstr "Opravdu si přejete odstranit:"
+
+#: theme.php:117
+msgid "Confirm you want to reset:"
+msgstr "Opravdu si přejete obnovit:"
+
+#: content.php:14
+msgid "Content"
+msgstr "Obsah"
+
+#: content.php:44
+msgid "Content successfully saved"
+msgstr "Obsah byl úspěšně uložen"
+
+#: users.php:105
+msgid "Contributor"
+msgstr "Přispěvatel"
+
+#: create.php:15 create.php:186 create.php:192
+msgid "Create Site"
+msgstr "Vytvořit stránku"
+
+#: htmlDialog.php:18 modules/dialogs/htmlDialog.php:18
+msgid "Create your widget at:"
+msgstr "Vytvořit widget na:"
+
+#: users.php:61
+msgid "Created"
+msgstr "Vytvořen"
+
+#: create.php:34
+msgid "Creating..."
+msgstr "Vytvářím..."
+
+#: account.php:250 account.php:319
+msgid "Credit Card #:"
+msgstr "Číslo kreditní karty:"
+
+#: account.php:40
+msgid "Credit Card Update Successful"
+msgstr "Aktualizace kreditní karty byla úspěšná"
+
+#: account.php:43
+msgid "Credit Card declined"
+msgstr "Kreditní karta odmítnuta"
+
+#: plans.php:64
+msgid "Currency"
+msgstr "Měna"
+
+#: plans.php:127 settings.php:350
+msgid "Currency:"
+msgstr "Měna:"
+
+#: linkDialog.php:29 menus.php:164 modules/dialogs/linkDialog.php:29
+msgid "Custom URL"
+msgstr "Vlastní URL"
+
+#: admin.php:67
+msgid "Customer"
+msgstr "Zákazník"
+
+#: test.php:127
+msgid "Database connection works"
+msgstr "Připojení k databázi je funkční"
+
+#: listDialog.php:38 modules/dialogs/listDialog.php:38
+msgid "Date Created (newest first)"
+msgstr "Datum vytvoření (od nejnovějšího)"
+
+#: settings.php:195
+msgid "Default Language:"
+msgstr "Výchozí jazyk:"
+
+#: pages.php:299
+msgid "Default Layout:"
+msgstr "Výchozí rozložení:"
+
+#: branding.php:59
+msgid "Default Logo:"
+msgstr "Výchozí logo:"
+
+#: pages.php:304
+msgid "Default Styles:"
+msgstr "Výchozí styly:"
+
+#: listDialog.php:53 modules/dialogs/listDialog.php:53
+msgid "Description Length:"
+msgstr "Délka popisu:"
+
+#: htmlDialog.php:21 pageSettingsDialog.php:33 skuDialog.php:21 pages.php:172
+#: modules/dialogs/htmlDialog.php:21 modules/dialogs/skuDialog.php:21
+#: modules/dialogs/pageSettingsDialog.php:33
+msgid "Description:"
+msgstr "Popis:"
+
+#: listDialog.php:27 modules/dialogs/listDialog.php:27
+msgid "Display:"
+msgstr "Zobrazení:"
+
+#: settings.php:81
+msgid "Domain:"
+msgstr "Doména:"
+
+#: filesDialog.php:4 modules/dialogs/filesDialog.php:4
+msgid "Download"
+msgstr "Stáhnout"
+
+#: pages.php:126
+msgid "Draft"
+msgstr "Koncept"
+
+#: content.php:52
+msgid "Draft saved, launching preview"
+msgstr "Koncept uložen, spouštím náhled"
+
+#: content.php:47
+msgid "Draft successfully saved"
+msgstr "Koncept byl úspěšně uložen"
+
+#: imagesDialog.php:50 files.php:35 files.php:52
+#: modules/dialogs/imagesDialog.php:50
+msgid "Drag file here or click to upload"
+msgstr "Přetáhněte soubor nebo klikněte na upload"
+
+#: files.php:36
+msgid "Drag file here to replace selected file"
+msgstr "Přetáhněte soubor pro nahrazení vybraného souboru"
+
+#: fieldDialog.php:26 modules/dialogs/fieldDialog.php:26
+msgid "Dropdown List"
+msgstr "Dropdown List"
+
+#: elementConfigDialog.php:16 modules/dialogs/elementConfigDialog.php:16
+msgid "Element Id:"
+msgstr "Element ID:"
+
+#: forgot.php:33
+msgid "Email sent"
+msgstr "E-mail odeslán"
+
+#: create.php:60 forgot.php:52 index.php:44 profile.php:81 users.php:120
+#: forgot.php:50 create.php:63
+msgid "Email:"
+msgstr "E-mail:"
+
+#: imagesDialog.php:4 imagesDialog.php:6 modules/dialogs/imagesDialog.php:4
+#: modules/dialogs/imagesDialog.php:6
+msgid "Enter caption"
+msgstr "Vložte titulek"
+
+#: account.php:246
+msgid "Enter the details for your new credit card."
+msgstr "Vložte údaje nové kreditní karty."
+
+#: create.php:45 create.php:48
+msgid ""
+"Enter your site name, login, password, and timezone to create your site."
+msgstr ""
+"Pro vytvoření stránky vložte název stránky, login, heslo a časové pásmo"
+
+#: imagesDialog.php:32 modules/dialogs/imagesDialog.php:32
+msgid "Existing Images"
+msgstr "Existující obrázky"
+
+#: linkDialog.php:16 menus.php:149 modules/dialogs/linkDialog.php:16
+msgid "Existing Page"
+msgstr "Existující stránka"
+
+#: account.php:234 account.php:260 account.php:329
+msgid "Expires:"
+msgstr "Expirace:"
+
+#: settings.php:490
+msgid "Facebook App ID:"
+msgstr "Facebook App ID:"
+
+#: featuredDialog.php:13 modules/dialogs/featuredDialog.php:13
+msgid "Feature Content"
+msgstr "Vložit obsah stránky"
+
+#: featuredDialog.php:5 modules/dialogs/featuredDialog.php:5
+msgid "Featured content:"
+msgstr "Vkládaný obsah:"
+
+#: fieldDialog.php:16 modules/dialogs/fieldDialog.php:16
+msgid "Field Name:"
+msgstr "Název pole:"
+
+#: fieldDialog.php:22 modules/dialogs/fieldDialog.php:22
+msgid "Field Type:"
+msgstr "Typ pole:"
+
+#: settings.php:553
+msgid "File Contents:"
+msgstr "Obsah souboru:"
+
+#: filesDialog.php:5 modules/dialogs/filesDialog.php:5
+msgid "File Description"
+msgstr "Popis souboru"
+
+#: settings.php:547
+msgid "File Name:"
+msgstr "Název souboru:"
+
+#: files.php:14 files.php:45 modules/menu.php:14
+msgid "Files"
+msgstr "Soubory"
+
+#: listDialog.php:43 modules/dialogs/listDialog.php:43
+msgid "Filter By Category:"
+msgstr "Filtrovat dle kategorie:"
+
+#: profile.php:54 users.php:92
+msgid "First Name:"
+msgstr "Jméno:"
+
+#: settings.php:384
+msgid "Flat Rate"
+msgstr "Paušální sazba"
+
+#: menus.php:53
+msgid "Footer"
+msgstr "Zápatí"
+
+#: test.php:258
+msgid "For help troubleshooting your installation, visit:"
+msgstr "Pro pomoc s instalací navštivte:"
+
+#: forgot.php:15
+msgid "Forgot Password"
+msgstr "Zapomenuté heslo"
+
+#: index.php:61
+msgid "Forgot your Password?"
+msgstr "Zapomenuté heslo?"
+
+#: settings.php:92
+msgid "Forms submitted on your site will be sent to this email address"
+msgstr "Formuláře z Vašich stránek budou odesílány na tento e-mail"
+
+#: settings.php:383
+msgid "Free"
+msgstr "Zdarma"
+
+#: menus.php:252
+msgid "Friendly Id:"
+msgstr "Přívětivé ID:"
+
+#: pages.php:166 pages.php:293 pages.php:348
+msgid "Friendly URL:"
+msgstr "Přívětivá URL:"
+
+#: test.php:91
+msgid "GD Library is installed"
+msgstr "Knihovna GD je nainstalovaná"
+
+#: settings.php:515 settings.php:540 settings.php:563
+msgid "Generate Verification File"
+msgstr "Vygenerovat ověřovací soubor"
+
+#: settings.php:37
+msgid "Generating..."
+msgstr "Generuji..."
+
+#: test.php:225
+msgid "Gettext is installed"
+msgstr "Gettext je nainstalován"
+
+#: settings.php:503
+msgid "Google Analytics ID:"
+msgstr "Google Analytics ID:"
+
+#: settings.php:506
+msgid ""
+"Google Analytics Web Property Id (adds analytics to all pages on your site)"
+msgstr ""
+"Google Analytics Web Property Id (přidá analytics na všechny stránky Vašich "
+"stránek)"
+
+#: htmlDialog.php:4 modules/dialogs/htmlDialog.php:4
+msgid "HTML block"
+msgstr "HTML blok"
+
+#: pageSettingsDialog.php:68 modules/dialogs/pageSettingsDialog.php:68
+msgid "HTML used to render the page"
+msgstr "HTML použité při zobrazení stránky"
+
+#: htmlDialog.php:26 modules/dialogs/htmlDialog.php:26
+msgid "HTML:"
+msgstr "HTML:"
+
+#: fieldDialog.php:47 modules/dialogs/fieldDialog.php:47
+msgid "Helper Text:"
+msgstr "Text nápovědy:"
+
+#: plans.php:60
+msgid "Id"
+msgstr "ID"
+
+#: plans.php:101
+msgid "Id:"
+msgstr "ID:"
+
+#: elementConfigDialog.php:36 modules/dialogs/elementConfigDialog.php:36
+msgid "Image Link:"
+msgstr "Odkaz na obrázek:"
+
+#: elementConfigDialog.php:27 modules/dialogs/elementConfigDialog.php:27
+msgid "Image Orientation:"
+msgstr "Orientace obrázku:"
+
+#: slideshowDialog.php:22 slideshowDialog.php:28
+#: modules/dialogs/slideshowDialog.php:22
+#: modules/dialogs/slideshowDialog.php:28
+msgid "In Pixels"
+msgstr "V pixelech"
+
+#: plans.php:63
+msgid "Interval"
+msgstr "Interval"
+
+#: plans.php:118
+msgid "Interval:"
+msgstr "Interval:"
+
+#: pageSettingsDialog.php:39 modules/dialogs/pageSettingsDialog.php:39
+msgid "Keywords:"
+msgstr "Klíčová slova:"
+
+#: menus.php:127
+msgid "Label:"
+msgstr "Štítek:"
+
+#: create.php:75 profile.php:68 users.php:110 create.php:81
+msgid "Language:"
+msgstr "Jazyk:"
+
+#: profile.php:61 users.php:97
+msgid "Last Name:"
+msgstr "Příjmení:"
+
+#: pages.php:128
+msgid "Last updated"
+msgstr "Naposledy aktualizoval"
+
+#: layout.php:14 modules/menu.php:36
+msgid "Layout"
+msgstr "Rozvržení"
+
+#: layout.php:35
+msgid "Layout saved"
+msgstr "Rozvržení uloženo"
+
+#: layout.php:38
+msgid "Layout successfully added"
+msgstr "Rozvržení bylo úspěšně přidáno"
+
+#: layout.php:40
+msgid "Layout successfully removed"
+msgstr "Rozvržení bylo úspěšně odstraněno"
+
+#: pageSettingsDialog.php:65 modules/dialogs/pageSettingsDialog.php:65
+msgid "Layout:"
+msgstr "Rozložení:"
+
+#: elementConfigDialog.php:29 modules/dialogs/elementConfigDialog.php:29
+msgid "Left of the text"
+msgstr "Nalevo od textu"
+
+#: listDialog.php:29 modules/dialogs/listDialog.php:29
+msgid "List"
+msgstr "Seznam"
+
+#: loadLayoutDialog.php:12 modules/dialogs/loadLayoutDialog.php:12
+msgid "Load Existing Page"
+msgstr "Načítám existující stránku"
+
+#: loadLayoutDialog.php:30 modules/dialogs/loadLayoutDialog.php:30
+msgid "Load Layout"
+msgstr "Načíst rozložení"
+
+#: content.php:79
+msgid "Loading content..."
+msgstr "Načítám obsah..."
+
+#: account.php:184
+msgid "Loading plans..."
+msgstr "Načítám plány..."
+
+#: featuredDialog.php:24 filesDialog.php:28 fontAwesomeDialog.php:22
+#: linkDialog.php:24 loadLayoutDialog.php:22 pageSettingsDialog.php:67
+#: pageSettingsDialog.php:74 pluginsDialog.php:27 files.php:78 menus.php:100
+#: users.php:68 modules/dialogs/linkDialog.php:24
+#: modules/dialogs/filesDialog.php:28 modules/dialogs/pluginsDialog.php:27
+#: modules/dialogs/fontAwesomeDialog.php:22
+#: modules/dialogs/loadLayoutDialog.php:22
+#: modules/dialogs/featuredDialog.php:24
+#: modules/dialogs/pageSettingsDialog.php:67
+#: modules/dialogs/pageSettingsDialog.php:74
+msgid "Loading..."
+msgstr "Nahrávám..."
+
+#: index.php:15 index.php:54
+msgid "Login"
+msgstr "Přihlásit"
+
+#: create.php:202 create.php:208
+msgid "Login here to update your site:"
+msgstr "Přihlaste se pro aktualizaci stránky:"
+
+#: index.php:32
+msgid "Login..."
+msgstr "Přihlašuji..."
+
+#: branding.php:37
+msgid "Logo successfully updated"
+msgstr "Logo úspěšně aktualizováno"
+
+#: layout.php:95
+msgid "Lowercase, no space, leave the .html off"
+msgstr "malá písmena, bez mezer, vynechte příponu .html"
+
+#: styles.php:97
+msgid "Lowercase, no spaces, leave the .less off"
+msgstr "malá písmena, bez mezer, vynechte příponu .less"
+
+#: menus.php:254
+msgid "Lowercase, no spaces, must be unique"
+msgstr "malá písmena, bez mezer, musí být unikátní"
+
+#: scripts.php:99
+msgid ""
+"Lowercase, no spaces, no special characters (., !, etc), leave the .js off"
+msgstr ""
+"Malá písmena, bez mezer, bez speciálních znaků (., !, atd.), bez přípony .js"
+
+#: snippets.php:99
+msgid ""
+"Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
+msgstr ""
+"Malá písmena, bez mezer, bez speciálních znaků (., !, atd.), bez přípony .php"
+
+#: test.php:174
+msgid "MOD_REWRITE is working"
+msgstr "MOD_REWRITE je funkční"
+
+#: test.php:239
+msgid "Magic Quotes not automatically Escaping"
+msgstr "Magic Quotes not automatically Escaping"
+
+#: menus.php:14 modules/menu.php:26
+msgid "Menus"
+msgstr "Menu"
+
+#: plans.php:121
+msgid "Month"
+msgstr "Měsíc"
+
+#: profile.php:92 users.php:128
+msgid "More than 5 characters, 1 letter and 1 special character"
+msgstr "Více než 5 znaků, 1 písmeno a 1 speciální znak"
+
+#: pages.php:295
+msgid "Must be lowercase with no spaces."
+msgstr "Musí byt malá písmena bez mezer."
+
+#: listDialog.php:37 plans.php:61 modules/dialogs/listDialog.php:37
+msgid "Name"
+msgstr "Název"
+
+#: pages.php:287
+msgid "Name (Plural):"
+msgstr "Jméno (množné číslo):"
+
+#: pages.php:281
+msgid "Name (singular):"
+msgstr "Jméno (jednotné číslo):"
+
+#: pages.php:34
+msgid "Name and Friendly URL are required"
+msgstr "Název a přívětivá URL musí být vyplněna"
+
+#: pageSettingsDialog.php:22 layout.php:93 menus.php:247 pages.php:161
+#: pages.php:343 plans.php:106 scripts.php:97 snippets.php:97 styles.php:95
+#: modules/dialogs/pageSettingsDialog.php:22
+msgid "Name:"
+msgstr "Název:"
+
+#: imagesDialog.php:16 modules/dialogs/imagesDialog.php:16
+msgid "New Images"
+msgstr "Nové obrázky"
+
+#: account.php:42
+msgid "New card added"
+msgstr "Nová karta byla přidána"
+
+#: fieldDialog.php:36 listDialog.php:66 modules/dialogs/listDialog.php:66
+#: modules/dialogs/fieldDialog.php:36
+msgid "No"
+msgstr "Ne"
+
+#: files.php:80
+msgid "No files here. Click Upload File to get started."
+msgstr "Žádné soubory. Pokračujte kliknutím na tlačítko Upload souboru."
+
+#: menus.php:102
+msgid "No menu items here. Click Add Menu Item to get started."
+msgstr "Menu je prázdné. Pokračujte kliknutím na tlačítko Přidat položku menu"
+
+#: pages.php:143
+msgid "No pages here. Click Add Page to get started."
+msgstr "Žádné stránky. Pokračujte kliknutím na tlačítko Přidat stránku"
+
+#: pageSettingsDialog.php:29 pages.php:168
+#: modules/dialogs/pageSettingsDialog.php:29
+msgid "No spaces, no special characters, dashes allowed."
+msgstr "Bez mezer, bez speciálních znaků, pomlčka je povolena."
+
+#: elementConfigDialog.php:31 modules/dialogs/elementConfigDialog.php:31
+msgid "No text"
+msgstr "Bez textu"
+
+#: users.php:70
+msgid "No users here. Click Add User to get started."
+msgstr "Žádní uživatelé. Pokračujte kliknutím na tlačítko Přidat uživatele."
+
+#: skuDialog.php:36 modules/dialogs/skuDialog.php:36
+msgid "Not Shipped"
+msgstr "Neodesláno"
+
+#: settings.php:368
+msgid "Optionally used to calculate shipping costs"
+msgstr "Volby použité při kalkulaci přepravy"
+
+#: fieldDialog.php:41 modules/dialogs/fieldDialog.php:41
+msgid "Options:"
+msgstr "Volby:"
+
+#: listDialog.php:35 modules/dialogs/listDialog.php:35
+msgid "Order By:"
+msgstr "Seřadit dle:"
+
+#: test.php:61
+msgid "PDO Enabled"
+msgstr "PDO povoleno"
+
+#: test.php:106
+msgid "PHP Version is greater than 5.3"
+msgstr "Verze php je větší než 5.3"
+
+#: listDialog.php:63 modules/dialogs/listDialog.php:63
+msgid "Page Results:"
+msgstr "Výsledky stránky:"
+
+#: pageSettingsDialog.php:15 modules/dialogs/pageSettingsDialog.php:15
+msgid "Page Settings"
+msgstr "Nastavení stránky"
+
+#: listDialog.php:58 modules/dialogs/listDialog.php:58
+msgid "Page Size:"
+msgstr "Velikost stránky:"
+
+#: listDialog.php:20 modules/dialogs/listDialog.php:20
+msgid "Page Type:"
+msgstr "Typ stránky:"
+
+#: pages.php:36
+msgid "Page added successfully"
+msgstr "Stránka byla úspěšně přidána"
+
+#: pages.php:38
+msgid "Page removed successfully"
+msgstr "Stránka byla úspěšně přidána"
+
+#: pages.php:42
+msgid "Page type added successfully"
+msgstr "Typ stránky bul úspěšně přidán"
+
+#: pages.php:46
+msgid "Page type removed successfully"
+msgstr "Typ stránky byl úspěšně odstraněn"
+
+#: pages.php:44
+msgid "Page type updated successfully"
+msgstr "Typ stránky byl úspěšně aktualizován"
+
+#: pages.php:14 modules/menu.php:25 modules/menu.php:48
+msgid "Pages"
+msgstr "Stránky"
+
+#: admin.php:206 create.php:181 create.php:187
+msgid "Passcode:"
+msgstr "Heslo:"
+
+#: forgot.php:37
+msgid "Password successfully reset"
+msgstr "Heslo bylo úspěšně obnoveno"
+
+#: create.php:65 forgot.php:70 index.php:49 profile.php:89 users.php:126
+#: forgot.php:68 create.php:71
+msgid "Password:"
+msgstr "Heslo:"
+
+#: codeBlockDialog.php:18 modules/dialogs/codeBlockDialog.php:18
+msgid "Paste your code in the textarea above."
+msgstr "Vložte Váš kód do pole níže."
+
+#: settings.php:343
+msgid "PayPal ID:"
+msgstr "PayPal ID:"
+
+#: account.php:46
+msgid "Paying..."
+msgstr "Probíhá placení..."
+
+#: account.php:47
+msgid "Payment successful"
+msgstr "Platba byla úspěšná"
+
+#: account.php:101
+msgid "Payment:"
+msgstr "Platba:"
+
+#: admin.php:66
+msgid "Plan"
+msgstr "Plán"
+
+#: plans.php:35
+msgid "Plan added successfully"
+msgstr "Plán byl úspěšně přidán"
+
+#: plans.php:37
+msgid "Plan updated successfully"
+msgstr "Plán byl aktualizován úspěšně"
+
+#: account.php:86
+msgid "Plan:"
+msgstr "Plán:"
+
+#: admin.php:46 plans.php:14 plans.php:46
+msgid "Plans"
+msgstr "Plány"
+
+#: loadLayoutDialog.php:4 modules/dialogs/loadLayoutDialog.php:4
+msgid "Please select a layout"
+msgstr "Prosím vyberte rozložení"
+
+#: featuredDialog.php:4 modules/dialogs/featuredDialog.php:4
+msgid "Please select a page to feature"
+msgstr "Prosím vyberte stránku k úpravě"
+
+#: pluginsDialog.php:4 modules/dialogs/pluginsDialog.php:4
+msgid "Please select a plugin"
+msgstr "Prosím vyberte plugin"
+
+#: skuDialog.php:26 modules/dialogs/skuDialog.php:26
+msgid "Price:"
+msgstr "Cena:"
+
+#: menus.php:52
+msgid "Primary"
+msgstr "Primární"
+
+#: settings.php:89
+msgid "Primary Email:"
+msgstr "Primární e-mail:"
+
+#: profile.php:14 profile.php:44 modules/menu.php:49
+msgid "Profile"
+msgstr "Profil"
+
+#: profile.php:33
+msgid "Profile updated successfully"
+msgstr "Profil byl úspěšně aktualizován"
+
+#: pageSettingsDialog.php:50 modules/dialogs/pageSettingsDialog.php:50
+msgid "RSS:"
+msgstr "RSS:"
+
+#: fieldDialog.php:28 modules/dialogs/fieldDialog.php:28
+msgid "Radio button List"
+msgstr "Radio button List"
+
+#: menus.php:72 settings.php:56
+msgid "Re-publish now"
+msgstr "Znovu publikovat"
+
+#: create.php:70 profile.php:97 users.php:132 create.php:76
+msgid "Re-type Password:"
+msgstr "Heslo znovu:"
+
+#: pages.php:390
+msgid "Remove Category"
+msgstr "Odstranit kategorii"
+
+#: pages.php:377
+msgid "Remove Cateogry"
+msgstr "Odstranit kategorii"
+
+#: files.php:93 files.php:112
+msgid "Remove File"
+msgstr "Odstranit soubor"
+
+#: layout.php:127 layout.php:142
+msgid "Remove Layout"
+msgstr "Odstranit rozvržení"
+
+#: menus.php:204 menus.php:216
+msgid "Remove Menu Item"
+msgstr "Odstranit položku menu"
+
+#: menus.php:281 menus.php:296
+msgid "Remove Menu Type"
+msgstr "Odstranit typ menu"
+
+#: pages.php:207 pages.php:218
+msgid "Remove Page"
+msgstr "Odstranit stránku"
+
+#: pages.php:239
+msgid "Remove Page Type"
+msgstr "Odstranit typ stránky"
+
+#: scripts.php:131 scripts.php:146
+msgid "Remove Script"
+msgstr "Odstranit skript"
+
+#: snippets.php:131 snippets.php:146
+msgid "Remove Snippet"
+msgstr "Odstranit snippet"
+
+#: styles.php:129 styles.php:144
+msgid "Remove Stylesheet"
+msgstr "Odstranit styl"
+
+#: pages.php:252
+msgid "Remove Type"
+msgstr "Odstranit typ"
+
+#: users.php:166 users.php:181
+msgid "Remove User"
+msgstr "Odstranit uživatele"
+
+#: pages.php:37 pages.php:45 pages.php:53 scripts.php:41 snippets.php:41
+#: styles.php:41 users.php:39
+msgid "Removing..."
+msgstr "Odstraňuji..."
+
+#: admin.php:68
+msgid "Renewal Date"
+msgstr "Datum aktualizace"
+
+#: account.php:95
+msgid "Renewal Date:"
+msgstr "Datum aktualizace:"
+
+#: fieldDialog.php:33 modules/dialogs/fieldDialog.php:33
+msgid "Required:"
+msgstr "Povinné:"
+
+#: theme.php:56 theme.php:112 theme.php:127
+msgid "Reset Theme"
+msgstr "Obnovit téma"
+
+#: forgot.php:36 theme.php:33
+msgid "Resetting..."
+msgstr "Obnovuji..."
+
+#: content.php:72
+msgid "Return"
+msgstr "Zpět"
+
+#: content.php:85
+msgid "Return to Editor"
+msgstr "Zpět do editoru"
+
+#: forgot.php:87 forgot.php:85
+msgid "Return to Login"
+msgstr "Zpět na přihlášení"
+
+#: forgot.php:75 forgot.php:73
+msgid "Retype Password:"
+msgstr "Heslo znovu:"
+
+#: elementConfigDialog.php:30 modules/dialogs/elementConfigDialog.php:30
+msgid "Right of the text"
+msgstr "Napravo od textu"
+
+#: users.php:102
+msgid "Role:"
+msgstr "Role:"
+
+#: skuDialog.php:16 modules/dialogs/skuDialog.php:16
+msgid "SKU:"
+msgstr "SKU:"
+
+#: content.php:70 layout.php:72 profile.php:107 scripts.php:76
+#: settings.php:526 snippets.php:76 styles.php:74
+msgid "Save"
+msgstr "Uložit"
+
+#: content.php:83
+msgid "Save Content"
+msgstr "Uložit obsah"
+
+#: content.php:67
+msgid "Save Draft"
+msgstr "Uložit koncept"
+
+#: menus.php:104
+msgid "Save Order"
+msgstr "Uložit pořadí"
+
+#: content.php:66
+msgid "Save and Publish"
+msgstr "Uložit a publikovat"
+
+#: content.php:43 content.php:46 content.php:49
+msgid "Saving..."
+msgstr "Ukládám..."
+
+#: scripts.php:39
+msgid "Script successfully added"
+msgstr "Skript byl úspěšně přidán"
+
+#: scripts.php:42
+msgid "Script successfully removed"
+msgstr "Skript byl úspěšně odstraněn"
+
+#: scripts.php:14 modules/menu.php:39
+msgid "Scripts"
+msgstr "Skripty"
+
+#: scripts.php:35
+msgid "Scripts updated successfully"
+msgstr "Skripty aktualizovány úspěšně"
+
+#: pluginsDialog.php:12 modules/dialogs/pluginsDialog.php:12
+msgid "Select Plugin"
+msgstr "Vybrat plugin"
+
+#: account.php:34
+msgid "Select a Plan"
+msgstr "Vyberte plán"
+
+#: account.php:303
+msgid "Select a plan and enter your credit card information to subscribe."
+msgstr "K přihlášení odběru vyberte plán a vložte informace o kreditní kartě."
+
+#: imagesDialog.php:9 modules/dialogs/imagesDialog.php:9
+msgid "Select or upload a new image"
+msgstr "Vyberte nebo nahrajte obrázek"
+
+#: slideshowDialog.php:16 modules/dialogs/slideshowDialog.php:16
+msgid "Select the target width and height for the images in the slideshow."
+msgstr "Vyberte cílovou výšku a šířku obrázků v prezentaci"
+
+#: account.php:172
+msgid "Select your new plan from the list below."
+msgstr "Vyberte nový plán ze seznamu."
+
+#: files.php:65
+msgid "Selected"
+msgstr "Vybraný"
+
+#: forgot.php:57 forgot.php:55
+msgid "Send Email"
+msgstr "Odeslat e-mail"
+
+#: forgot.php:32
+msgid "Sending..."
+msgstr "Odesílám..."
+
+#: fieldDialog.php:43 modules/dialogs/fieldDialog.php:43
+msgid "Separate each option with a comma"
+msgstr "Oddělte čárkou"
+
+#: blockConfigDialog.php:9 elementConfigDialog.php:9 settings.php:14
+#: settings.php:47 modules/dialogs/blockConfigDialog.php:9
+#: modules/dialogs/elementConfigDialog.php:9 modules/menu.php:40
+msgid "Settings"
+msgstr "Nastavení"
+
+#: content.php:50
+msgid "Settings successfully saved"
+msgstr "Nastavení bylo úspěšně uloženo"
+
+#: settings.php:34
+msgid "Settings updated successfully"
+msgstr "Nastavení bylo úspěšně aktualizováno"
+
+#: skuDialog.php:37 sites/common/modules/cart.php:21
+#: modules/dialogs/skuDialog.php:37
+msgid "Shipped"
+msgstr "Dodáno"
+
+#: settings.php:380
+msgid "Shipping Calculation:"
+msgstr "Kalkulace přepravy:"
+
+#: settings.php:392
+msgid "Shipping Rate:"
+msgstr "Rychlost přepravy:"
+
+#: skuDialog.php:34 modules/dialogs/skuDialog.php:34
+msgid "Shipping Type:"
+msgstr "Typ dodávky:"
+
+#: pageSettingsDialog.php:46 modules/dialogs/pageSettingsDialog.php:46
+msgid "Shows below the page name in lists to call attention to the item"
+msgstr "Zobrazí pod názvem stránky v seznamu a přitáhne pozornost"
+
+#: admin.php:62 settings.php:62
+msgid "Site"
+msgstr "Stránka"
+
+#: admin.php:103 create.php:53 settings.php:74 create.php:51
+msgid "Site Name:"
+msgstr "Název stránky:"
+
+#: admin.php:35
+msgid "Site added successfully"
+msgstr "Stránka byla úspěšně přidána"
+
+#: create.php:35
+msgid "Site created successfully"
+msgstr "Stránka byla úspěšně vytvořena"
+
+#: settings.php:513
+msgid "Sitemap:"
+msgstr "Mapa stránek:"
+
+#: admin.php:45 plans.php:45
+msgid "Sites"
+msgstr "Stránky"
+
+#: test.php:76
+msgid "Sites Directory is Writeable"
+msgstr "Právo zapisovat do adresář stránek"
+
+#: snippets.php:39
+msgid "Snippet successfully added"
+msgstr "Snippet byl úspěšně přidán"
+
+#: snippets.php:42
+msgid "Snippet successfully removed"
+msgstr "Snippet byl úspěšně odstraněn"
+
+#: snippets.php:14 modules/menu.php:37
+msgid "Snippets"
+msgstr "Snippety"
+
+#: snippets.php:35
+msgid "Snippets updated successfully"
+msgstr "Snippety aktualizovány úspěšně"
+
+#: account.php:79 admin.php:65
+msgid "Status"
+msgstr "Status"
+
+#: styles.php:35
+msgid "Styles updated successfully"
+msgstr "Styly aktualizovány úspěšně"
+
+#: styles.php:39
+msgid "Stylesheet successfully added"
+msgstr "Styl byl úspěšně přidán"
+
+#: styles.php:42
+msgid "Stylesheet successfully removed"
+msgstr "Styl byl úspěšně odstraněn"
+
+#: pageSettingsDialog.php:72 modules/dialogs/pageSettingsDialog.php:72
+msgid "Stylesheet:"
+msgstr "Styl:"
+
+#: styles.php:14
+msgid "Stylesheets"
+msgstr "Styly:"
+
+#: account.php:82 account.php:295 account.php:343 modules/account.php:7
+msgid "Subscribe"
+msgstr "Odebírat"
+
+#: admin.php:69
+msgid "Switch"
+msgstr "Změnit"
+
+#: admin.php:37
+msgid "Switch successful"
+msgstr "Změna byla úspěšná"
+
+#: admin.php:36
+msgid "Switching..."
+msgstr "Přepínám..."
+
+#: elementConfigDialog.php:47 modules/dialogs/elementConfigDialog.php:47
+msgid "Table Columns:"
+msgstr "Sloupce tabulky:"
+
+#: elementConfigDialog.php:42 modules/dialogs/elementConfigDialog.php:42
+msgid "Table Rows:"
+msgstr "Řádky tabulky:"
+
+#: slideshowDialog.php:26 modules/dialogs/slideshowDialog.php:26
+msgid "Target Height:"
+msgstr "Cílová výška:"
+
+#: slideshowDialog.php:20 modules/dialogs/slideshowDialog.php:20
+msgid "Target Width:"
+msgstr "Cílová šířka:"
+
+#: settings.php:373
+msgid "Tax Rate:"
+msgstr "Daňová sazba:"
+
+#: test.php:27
+msgid "Test Installation"
+msgstr "Test instalace"
+
+#: fieldDialog.php:25 modules/dialogs/fieldDialog.php:25
+msgid "Text Area"
+msgstr "Text Area"
+
+#: fieldDialog.php:24 modules/dialogs/fieldDialog.php:24
+msgid "Text Box"
+msgstr "Text Box"
+
+#: create.php:37
+msgid "The email you provided is already used in the system"
+msgstr "Zadaný e-mail je již v systému"
+
+#: files.php:34
+msgid "The extensions must match when editing an existing file"
+msgstr "Rozšíření se musí shodovat pokud editujete existující soubor"
+
+#: files.php:37
+msgid "The file was removed successfully"
+msgstr "Soubor byl úspěšně odstraněn"
+
+#: menus.php:34
+msgid "The menu item was added successfully"
+msgstr "Položka menu byla úspěšně přidána"
+
+#: menus.php:38
+msgid "The menu item was removed successfully"
+msgstr "Položka menu byla úspěšně odstraněna"
+
+#: menus.php:36
+msgid "The menu item was updated successfully"
+msgstr "Položka menu byla úspěšně aktualizována"
+
+#: menus.php:39
+msgid "The menu type was added successfully"
+msgstr "Typ menu byl úspěšně přidán"
+
+#: menus.php:40
+msgid "The menu type was removed successfully"
+msgstr "Typ menu byl úspěšně odstraněn"
+
+#: settings.php:36
+msgid "The name and content are required"
+msgstr "Název a obsah jsou povinné"
+
+#: menus.php:37
+msgid "The order was updated successfully"
+msgstr "Pořadí bylo úspěšně aktualizováno"
+
+#: pages.php:49
+msgid "The page was published successfully"
+msgstr "Stránka byla úspěšně publikována"
+
+#: pages.php:48
+msgid "The page was un-published successfully"
+msgstr "Stránka byla úspěšně skryta"
+
+#: create.php:36
+msgid "The passcode is invalid"
+msgstr "Heslo je neplatné"
+
+#: create.php:33
+msgid "The password and retype fields must match"
+msgstr "Hesla se neshodují"
+
+#: forgot.php:35
+msgid "The password and retype must match"
+msgstr "Heslo a heslo znovu se musí shodovat"
+
+#: profile.php:36 users.php:34
+msgid "The password must match the retype field"
+msgstr "Heslo a heslo znovu se musí shodovat"
+
+#: theme.php:36
+msgid "Theme successfully applied"
+msgstr "Téma bylo úspěšně použito"
+
+#: theme.php:34
+msgid "Theme successfully reset"
+msgstr "Téma úspěšně obnoveno"
+
+#: theme.php:14 theme.php:44
+msgid "Themes"
+msgstr "Témata"
+
+#: layout.php:39
+msgid "There was a problem adding the layout, please try again"
+msgstr "Nastala chyba při přidávání rozvržení, prosím opakujte akci znovu."
+
+#: account.php:37
+msgid "There was a problem changing the plan"
+msgstr "Nastala chyba při změně plánu"
+
+#: settings.php:39
+msgid "There was a problem generating the file, please try again"
+msgstr "Nastala chyba při generování souboru, prosím opakujte akci znovu."
+
+#: account.php:48
+msgid "There was a problem paying for the subscription"
+msgstr "Nastala chyba při placení předplatného"
+
+#: pages.php:50
+msgid "There was a problem publishing/un-publishing the page"
+msgstr "Nastala chyba při publikování/skrývání stránky"
+
+#: pages.php:55
+msgid "There was a problem removing the category"
+msgstr "Nastala chyba při odstraňování kategorie"
+
+#: layout.php:41
+msgid "There was a problem removing the layout, please try again"
+msgstr "Nastala chyba při odstraňování rozvržení, prosím opakujte akci znovu."
+
+#: pages.php:39
+msgid "There was a problem removing the page"
+msgstr "Nastala chyba při odstraňování stránky"
+
+#: pages.php:47
+msgid "There was a problem removing the page type"
+msgstr "Nastala chyba při odstraňování typu stránky"
+
+#: scripts.php:43
+msgid "There was a problem removing the script file, please try again"
+msgstr "Nastala chyba při odstraňování skriptu, prosím opakujte akci znovu"
+
+#: snippets.php:43
+msgid "There was a problem removing the snippet file, please try again"
+msgstr "Nastala chyba při odstraňování snippetu, prosím opakujte akci znovu"
+
+#: styles.php:43
+msgid "There was a problem removing the stylesheet, please try again"
+msgstr "Nastala chyba při odstraňování stylu, prosím opakujte akci znovu."
+
+#: content.php:45
+msgid "There was a problem saving content, please try again"
+msgstr "Nastala chyba při ukládání obsahu, prosím opakujte akci znovu"
+
+#: content.php:51
+msgid "There was a problem saving settings, please try again"
+msgstr "Nastala chyba při ukládání nastavení, prosím opakujte akci znovu"
+
+#: content.php:48
+msgid "There was a problem saving the draft, please try again"
+msgstr "Nastala chyba při ukládání konceptu, prosím opakujte akci znovu"
+
+#: layout.php:36
+msgid "There was a problem saving the layout, please try again"
+msgstr "Nastala chyba při ukládání rozvržení, prosím opakujte akci znovu."
+
+#: scripts.php:36
+msgid "There was a problem saving the script file, please try again"
+msgstr "Nastala chyba při ukládání skriptu, prosím opakujte akci znovu"
+
+#: profile.php:34 settings.php:35
+msgid "There was a problem saving the settings, please try again"
+msgstr "Nastala chyba při ukládání nastavení, prosím opakujte akci znovu."
+
+#: snippets.php:36
+msgid "There was a problem saving the snippet file, please try again"
+msgstr "Nastala chyba při ukládání snippetu, prosím opakujte akci znovu"
+
+#: styles.php:36
+msgid "There was a problem saving the style file, please try again"
+msgstr ""
+"Nastala chyba při ukládání stylu do souboru, prosím opakujte akci znovu."
+
+#: account.php:44
+msgid "There was a problem updating the card"
+msgstr "Nastala chyba při aktualizaci karty"
+
+#: theme.php:82
+msgid ""
+"This will completely change the look and feel of your site and remove any "
+"custom changes you made to the layout and styles of the site."
+msgstr ""
+"Tato akce kompletně změní vzhled Vaší stránky a zruší všechny Vámi provedené "
+"změny v rozložení a stylech stránky."
+
+#: files.php:104
+msgid "This will completely remove it from the system."
+msgstr "Kompletní odstranění ze systému."
+
+#: theme.php:121
+msgid ""
+"This will override any custom changes you made to the Layout or Styles for "
+"the site."
+msgstr "Tohle přepíše všechny změny v rozložení a stylech Vašich stránek."
+
+#: settings.php:97
+msgid "Time Zone:"
+msgstr "Časové pásmo:"
+
+#: admin.php:110 create.php:85 create.php:91
+msgid "Timezone:"
+msgstr "Časové pásmo:"
+
+#: plans.php:65
+msgid "Trial"
+msgstr "Pokus"
+
+#: plans.php:134
+msgid "Trial Days:"
+msgstr "Zkušební dny:"
+
+#: admin.php:64
+msgid "Type"
+msgstr "Typ"
+
+#: forgot.php:46 forgot.php:47
+msgid ""
+"Type your email address and we will send you a link to reset your password."
+msgstr ""
+"Napište svoji e-mailovou adresu a my Vám zašleme odkaz na změnu Vašeho hesla."
+
+#: account.php:72
+msgid "Type:"
+msgstr "Typ:"
+
+#: admin.php:63
+msgid "URL"
+msgstr "URL"
+
+#: pageSettingsDialog.php:27 modules/dialogs/pageSettingsDialog.php:27
+msgid "URL:"
+msgstr "URL:"
+
+#: account.php:91 account.php:132 account.php:145
+msgid "Unsubscribe"
+msgstr "Odhlásit odběr"
+
+#: account.php:32
+msgid "Unsubscribing..."
+msgstr "Odhlašuji..."
+
+#: blockConfigDialog.php:30 configPluginsDialog.php:20
+#: elementConfigDialog.php:57 pageSettingsDialog.php:83
+#: modules/dialogs/blockConfigDialog.php:30
+#: modules/dialogs/configPluginsDialog.php:20
+#: modules/dialogs/elementConfigDialog.php:57
+#: modules/dialogs/pageSettingsDialog.php:83
+msgid "Update"
+msgstr "Aktualizace"
+
+#: listDialog.php:13 listDialog.php:76 modules/dialogs/listDialog.php:13
+#: modules/dialogs/listDialog.php:76
+msgid "Update List"
+msgstr "Aktualizovat seznam"
+
+#: branding.php:50
+msgid "Update Logo"
+msgstr "Aktualizovat logo"
+
+#: menus.php:119 menus.php:180
+msgid "Update Menu Item"
+msgstr "Aktualizovat položku menu"
+
+#: pages.php:274
+msgid "Update Page Type"
+msgstr "Aktualizovat typ stránky"
+
+#: account.php:213 account.php:274 modules/account.php:9
+msgid "Update Payment"
+msgstr "Aktualizuji platbu"
+
+#: plans.php:96 plans.php:143
+msgid "Update Plan"
+msgstr "Aktualizovat plán"
+
+#: skuDialog.php:55 modules/dialogs/skuDialog.php:55
+msgid "Update SKU"
+msgstr "Aktualizace "
+
+#: account.php:36
+msgid "Update Successful"
+msgstr "Aktualizace úspěšná"
+
+#: pages.php:317
+msgid "Update Type"
+msgstr "Aktualizovat typ"
+
+#: users.php:85 users.php:142
+msgid "Update User"
+msgstr "Aktualizovat uživatele"
+
+#: account.php:221
+msgid ""
+"Update the expiration date for your card. If you want to add a new card, "
+"click the New Card button."
+msgstr ""
+"Aktualizujte datum expirace vaší kreditní karty. Pokud chcete přidat novou "
+"kartu, klikněte na tlačítko Přidat kartu"
+
+#: settings.php:55
+msgid ""
+"Updates to settings will not be reflected until the site is re-published."
+msgstr "Změny v nastavení se projeví až po opětovném publikování stránky..."
+
+#: menus.php:71
+msgid ""
+"Updates to the menu will not be reflected until the site is re-published.."
+msgstr "Změny v menu se projeví až po opětovném publikování stránky..."
+
+#: pageSettingsDialog.php:7 account.php:35 account.php:39 branding.php:34
+#: branding.php:36 layout.php:34 menus.php:35 pages.php:43 plans.php:36
+#: profile.php:32 scripts.php:34 settings.php:33 snippets.php:34 styles.php:34
+#: users.php:37 modules/dialogs/pageSettingsDialog.php:7
+msgid "Updating..."
+msgstr "Aktualizuji..."
+
+#: menus.php:139
+msgid "Url:"
+msgstr "URL:"
+
+#: users.php:36
+msgid "User successfully added"
+msgstr "Uživatel byl úspěšně přidán"
+
+#: users.php:40
+msgid "User successfully removed"
+msgstr "Uživatel byl úspěšně odstraněn"
+
+#: users.php:38
+msgid "User successfully updated"
+msgstr "Uživatel byl úspěšně aktualizován"
+
+#: users.php:14 users.php:48 modules/menu.php:29
+msgid "Users"
+msgstr "Uživatelé"
+
+#: account.php:38 account.php:45
+msgid "Validating..."
+msgstr "Ověřuji..."
+
+#: settings.php:38
+msgid "Verification file successfully generated"
+msgstr "Ověřovací soubor byl úspěšně vygenerován"
+
+#: forgot.php:34
+msgid "We could not find your email in the system"
+msgstr "Nepodařilo se najít Váš e-mail v systému"
+
+#: plans.php:120
+msgid "Week"
+msgstr "Týden"
+
+#: settings.php:362
+msgid "Weight Unit:"
+msgstr "Jednotka váhy:"
+
+#: skuDialog.php:42 modules/dialogs/skuDialog.php:42
+msgid "Weight:"
+msgstr "Šířka:"
+
+#: forgot.php:66 forgot.php:64
+msgid "Welcome back. Type a new password for your account."
+msgstr "Vítejte zpět. Zadejte heslo Vašeho účtu."
+
+#: plans.php:122
+msgid "Year"
+msgstr "Rok"
+
+#: fieldDialog.php:35 listDialog.php:65 modules/dialogs/listDialog.php:65
+#: modules/dialogs/fieldDialog.php:35
+msgid "Yes"
+msgstr "Ano"
+
+#: create.php:209 create.php:213
+msgid "You can already view your site here:"
+msgstr "Svoji stránku můžete vidět zde:"
+
+#: account.php:33
+msgid "You have successfully unsubscribed"
+msgstr "Odhlášení bylo úspěšné"
+
+#: pageSettingsDialog.php:6 modules/dialogs/pageSettingsDialog.php:6
+msgid "You have successfully updated the page"
+msgstr "Aktualizace stránky byla úspěšná"
+
+#: pageSettingsDialog.php:4 modules/dialogs/pageSettingsDialog.php:4
+msgid "You must add a name"
+msgstr "Musíte přidat jméno"
+
+#: pageSettingsDialog.php:5 modules/dialogs/pageSettingsDialog.php:5
+msgid "You must select a friendly URL"
+msgstr "Musíte vybrat přívětivou URL"
+
+#: listDialog.php:4 modules/dialogs/listDialog.php:4
+msgid "You must select a type of list"
+msgstr "Musíte vybrat typ seznamu"
+
+#: pages.php:128
+msgid "by"
+msgstr "uživatel"
+
+#: plans.php:114
+msgid "e.g. 2500 = $25.00"
+msgstr "Např.: 2500 = $25.00"
+
+#: settings.php:84
+msgid ""
+"e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
+msgstr ""
+"Např.: domena.cz, sub.domena.cz (vynechte: www, http://, koncové lomítko /)"
+
+#: fieldDialog.php:49 modules/dialogs/fieldDialog.php:49
+msgid "e.g.: (314) 444-2343"
+msgstr "Např.: (+420 123 456 789)"
+
+#: pages.php:283
+msgid "e.g.: Page, Blog, Product, etc."
+msgstr "Např.: Stránka, Blog, Produkt."
+
+#: pages.php:289
+msgid "e.g.: Pages, Blogs, Products, etc."
+msgstr "Např.: Stránky, Blogy, Produkty."
+
+#: fieldDialog.php:18 modules/dialogs/fieldDialog.php:18
+msgid "e.g.: Phone Number, Name, etc."
+msgstr "Např.: Telefon, Jméno, ..."
+
+#: test.php:55
+msgid "failure"
+msgstr "chyba"
+
+#: skuDialog.php:42 modules/dialogs/skuDialog.php:42
+msgid "optional"
+msgstr "volitelné"
+
+#: test.php:55
+msgid "success"
+msgstr "úspěšný"
+
+#: create.php:37
+msgid "The email or site name you provided is already used in the system"
+msgstr "Zadaný e-mail nebo název stránek je již v systému"
+
+#: sites/common/modules/cart.php:10
+msgid "Shopping Cart"
+msgstr "Nákupní košík"
+
+#: sites/common/modules/cart.php:27
+msgid "Remove"
+msgstr "Odstranit"
+
+#: sites/common/modules/cart.php:40
+msgid "Subtotal:"
+msgstr "Mezisoučet:"
+
+#: sites/common/modules/cart.php:45
+msgid "Total Weight:"
+msgstr "Celková váha:"
+
+#: sites/common/modules/cart.php:50
+msgid "Shipping:"
+msgstr "Přeprava:"
+
+#: sites/common/modules/cart.php:55
+msgid "Tax:"
+msgstr "Daň:"
+
+#: sites/common/modules/cart.php:60
+msgid "Total:"
+msgstr "Celkem:"
+
+#: sites/common/modules/cart.php:68
+msgid "Checkout with Paypal"
+msgstr "Platba pomocí PayPal"
+
+#: sites/common/modules/comments.php:10
+msgid "Comments"
+msgstr "Komentáře"
+
+#: sites/common/modules/crumbs.php:2
+msgid "Home"
+msgstr "Domů"
+
+#: sites/common/modules/crumbs.php:3
+msgid "Back to Previous"
+msgstr "Zpět"
+
+#: modules/account.php:8
+msgid "Manage Account"
+msgstr "Správa účtu"
+
+#: modules/account.php:33
+#, php-format
+msgid "Your plan will automatically renew in %s days."
+msgstr "Váš plán bude automaticky obnoven za %s dní."
+
+#: modules/account.php:41 modules/account.php:48
+#, php-format
+msgid "Your trial will expire in %s days."
+msgstr "Váš pokus vyprší za %s dní."
+
+#: modules/account.php:56
+msgid ""
+"Your plan has expired. Please update your method of payment to avoid "
+"disruption of service."
+msgstr ""
+"Váš plán vypršel. Prosím aktualizujte si metodu platby a vyhněte se tak "
+"přerušení služby."
+
+#: modules/account.php:64
+msgid "Your subscription has ended. View your account to re-subscribe."
+msgstr "Váš odběr skončil. Ve svém účtu zažádejte o znovu přihlášení odběru."
+
+#: modules/menu.php:11
+msgid "Site Admin"
+msgstr "Stránka Admin"
+
+#: modules/menu.php:15
+msgid "Re-publish Site"
+msgstr "Znovu publikovat stránku"
+
+#: modules/menu.php:17
+msgid "Sign Out"
+msgstr "Odhlásit se"
+
+#: modules/menu.php:18
+msgid "Close Menu"
+msgstr "Zavřít menu"
+
+#: modules/menu.php:22
+msgid "Manage your Site"
+msgstr "Správa stránek"
+
+#: modules/menu.php:27
+msgid "Theme"
+msgstr "Téma"
+
+#: modules/menu.php:33
+msgid "Advanced Configurations"
+msgstr "Pokročílé nastavení"
+
+#: modules/menu.php:38
+msgid "Styles"
+msgstr "Styly"
+
+#: modules/menu.php:45
+msgid "Menu"
+msgstr "Menu"
+
+#: settings.php:63
+msgid "Payments"
+msgstr "Platby"
+
+#: settings.php:64
+msgid "Social"
+msgstr "Sociální"
+
+#: settings.php:65
+msgid "Analytics"
+msgstr "Analýzy"
+

@@ -59,10 +59,10 @@
 	<!-- /.list-menu -->
    
 	<ul class="segmented-control">
-		<li class="active" data-navigate="site"><a>Site</a></li>
-		<li data-navigate="payments"><a>Payments</a></li>
-		<li data-navigate="social"><a>Social</a></li>
-		<li data-navigate="analytics"><a>Analytics</a></li>
+		<li class="active" data-navigate="site"><a><?php print _("Site"); ?></a></li>
+		<li data-navigate="payments"><a><?php print _("Payments"); ?></a></li>
+		<li data-navigate="social"><a><?php print _("Social"); ?></a></li>
+		<li data-navigate="analytics"><a><?php print _("Analytics"); ?></a></li>
 	</ul>
 	<!-- /.segmented-control -->
 	
