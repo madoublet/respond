@@ -269,7 +269,7 @@
 			</div>
 			
 			<div class="modal-footer">
-				<button class="tertiary-button" data-bind="click: newCard, visible: (showNewCard()==false)"<?php print _(">New Card"); ?></button>
+				<button class="tertiary-button" data-bind="click: newCard, visible: (showNewCard()==false)"><?php print _("New Card"); ?></button>
 				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
 				<button class="primary-button" data-bind="click: updatePayment"><?php print _("Update Payment"); ?></button>
 			</div>
