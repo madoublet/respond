@@ -7,6 +7,10 @@
 		{
 			"code": "de_DE",
 			"text": "Deutsch"
-		}
+		},
+        {
+            "code": "es_ES.UTF-8",
+            "text": "Spanish (es_ES)"
+        }
 	]
 }
