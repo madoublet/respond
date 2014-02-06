@@ -23,7 +23,7 @@ msgid ". Paste the HTML code below."
 msgstr ""
 
 #: account.php:272
-msgid ">New Card"
+msgid "New Card"
 msgstr ""
 
 #: layout.php:37
