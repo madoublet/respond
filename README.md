@@ -10,11 +10,7 @@ View our documentation at: http://respondcms.com/page/documentation
 This is the development branch for version 2.8.
 
 New in 2.8:
-- Categories for pages
-- Category support for list widget
-- Code snippets for templates
-- Nested menus
-- E-commerce Cart with Paypal (beta)
+- Dates (begin/end) and Spatial (address/lat/long) metadata for pages
 
 How to update from 2.7:
 - Add Dates and Spatial columns
