@@ -124,8 +124,17 @@ class PageResource extends Tonic\Resource {
             $rss = $request['rss'];
             $layout = $request['layout'];
             $stylesheet = $request['stylesheet'];
-
-            Page::EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $authUser->UserId);
+            $beginDate = $request['beginDate'];
+            $endDate = $request['endDate'];
+            $timeZone = $request['timeZone'];
+            $location = $request['location'];
+            $latitude = $request['latitude'];
+            $longitude = $request['longitude'];
+           
+            Page::EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, 
+            	$beginDate, $endDate, $timeZone,
+            	$location, $latitude, $longitude,
+            	$rss, $layout, $stylesheet, $authUser->UserId);
             
             // add categories to the page (if set)
             if(isset($request['categories'])){

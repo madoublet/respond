@@ -26,7 +26,7 @@
 
 </head>
 
-<body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>">
+<body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 	
 <?php include 'modules/menu.php'; ?>
 
@@ -83,7 +83,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Page"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Page"); ?></a>
     </nav>
     
     <div class="list-menu">

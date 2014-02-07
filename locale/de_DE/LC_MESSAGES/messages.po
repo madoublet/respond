@@ -177,7 +177,7 @@ msgid "Card Code (CVC):"
 msgstr "Kartenprüfnummer/ Sicherheitscode:"
 
 #: account.php:272
-msgid ">New Card"
+msgid "New Card"
 msgstr "Neue Karte"
 
 #: account.php:303

@@ -166,7 +166,19 @@ class AuthUser{
 		}
 		
 	}
+	
+	// gets timezone offset in hours for a user
+	public function Offset(){
+		$zone = new DateTimeZone($this->TimeZone);
+		$now = new DateTime("now", $zone);
+		
+		$offset = $zone->getOffset($now);
+		$offset_hours = round(($offset)/3600); 
+	
+		return $offset_hours;
+	}
 
+	// authenticates a user based on role
 	public function Authenticate($auth){
 		
 		if($auth=='Admin'){

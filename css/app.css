@@ -216,7 +216,21 @@ body .modal-header{
 	body .modal .modal-info{
 		color: #888;
 		margin-bottom: 25px;
+	}
+	
+	body .modal .help-block{
+		margin-bottom: 0;
 	}	
+	
+	body .modal .form-group{
+		border-bottom: 1px solid #f0f0f0;
+		padding-bottom: 15px;
+		margin-bottom: 10px;
+	}
+
+		body .modal .form-group:last-child{
+			border-bottom: none;
+		}
 
 
 header{
@@ -243,7 +257,6 @@ header{
         height: 40px;
         line-height: 40px;
         text-align: center;
-        border: 1px solid #555;
         color: #ccc;
         font-size: 1em;
         margin-left: 2px;
@@ -519,9 +532,9 @@ section.main nav{
         line-height: 50px;
         font-size: 1em;
         background: #FF9900;
-        padding: 0 20px;
+        padding: 0 5px;
         color: #fff;
-        font-size: 1em;
+        font-size: 14px;
         width: 145px;
         text-align: center;
     }
@@ -532,7 +545,8 @@ section.main nav{
         }
         
         section.main nav a.primary-action i{
-            margin-right: 3px;
+            margin-right: 5px;
+            font-size: 16px;
         }
     
     section.main .actions{
@@ -680,17 +694,28 @@ div#actions{
     z-index: 100;
 }
 
-div#actions button:first-child, div#actions input:first-child, div#actions a:first-child{
-	margin-left: 20px;
-}
-
-div#actions button, div#actions input, div#actions a{
-	margin-right: 5px;
-}
-
-div.dialog, div.immersive, div.immersive-actions{
-	display: none;
-}
+	div#actions .alternate{
+		position: absolute;
+		top: 23px;
+		right: 20px;
+	}
+	
+		div#actions .alternate i{
+			color: #aaa;
+			margin-left: 5px;
+		}
+	
+	div#actions button:first-child, div#actions input:first-child, div#actions a:first-child{
+		margin-left: 20px;
+	}
+	
+	div#actions button, div#actions input, div#actions a{
+		margin-right: 5px;
+	}
+	
+	div.dialog, div.immersive, div.immersive-actions{
+		display: none;
+	}
 
 /* select list */
 div.select{
@@ -845,6 +870,12 @@ body .dropdown-menu{
 	height: 35px;
 	max-width: 450px;
 }
+
+	.modal .segmented-control{
+		max-width: none;
+		margin-bottom: -5px;
+		margin-top: 15px;
+	}
 
 	.segmented-control li{
 		border-top: 1px solid #ccc;

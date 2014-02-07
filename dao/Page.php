@@ -167,7 +167,29 @@ class Page{
 	}
 
 	// edits the settings for a page
-	public static function EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $rss, $layout, $stylesheet, $lastModifiedBy){
+	public static function EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, $beginDate, $endDate, $timeZone, $location, $latitude, $longitude, $rss, $layout, $stylesheet, $lastModifiedBy){
+	
+		$gm_bdate = null;
+		
+		if(trim($beginDate) != ''){
+			$time = strtotime($beginDate.' '.$timeZone);
+			
+			$gm_bdate = gmdate("Y-m-d H:i:s", $time);
+		}
+		
+		$gm_edate = null;
+		
+		if(trim($endDate) != ''){
+			$time = strtotime($endDate.' '.$timeZone);
+        
+			$gm_edate = gmdate("Y-m-d H:i:s", $time);
+		}
+		
+		$latLong = '';
+		
+		if($latitude != '' && $longitude != ''){
+			$latLong = 'POINT(' . $latitude . " " . $longitude . ')';
+		}
 		
         try{
             
@@ -181,6 +203,10 @@ class Page{
 					Description = ?, 
 					Keywords = ?, 
 					Callout = ?, 
+					BeginDate = ?,
+					EndDate = ?,
+					Location = ?,
+					LatLong = PointFromText(?),
 					Rss = ?, 
 					Layout = ?, 
 					Stylesheet = ?, 
@@ -194,14 +220,19 @@ class Page{
             $s->bindParam(3, $description);
             $s->bindParam(4, $keywords);
             $s->bindParam(5, $callout);
-            $s->bindParam(6, $rss);
-            $s->bindParam(7, $layout);
-            $s->bindParam(8, $stylesheet);
-            $s->bindParam(9, $lastModifiedBy);
-            $s->bindParam(10, $timestamp);
-            $s->bindParam(11, $pageUniqId);
+            $s->bindParam(6, $gm_bdate);
+            $s->bindParam(7, $gm_edate);
+            $s->bindParam(8, $location);
+            $s->bindParam(9, $latLong);
+            $s->bindParam(10, $rss);
+            $s->bindParam(11, $layout);
+            $s->bindParam(12, $stylesheet);
+            $s->bindParam(13, $lastModifiedBy);
+            $s->bindParam(14, $timestamp);
+            $s->bindParam(15, $pageUniqId);
             
             $s->execute();
+           
             
 		} catch(PDOException $e){
             die('[Page::EditSettings] PDO Error: '.$e->getMessage());
@@ -338,6 +369,7 @@ class Page{
     
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
             		Pages.Description, Pages.Keywords, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
         			Pages.Layout, Pages.Stylesheet, Pages.RSS,
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
@@ -385,6 +417,7 @@ class Page{
     
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
             		Pages.Description, Pages.Keywords, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
         			Pages.Layout, Pages.Stylesheet, Pages.RSS,
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
@@ -468,6 +501,7 @@ class Page{
     		
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
             		Pages.Description, Pages.Keywords, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
         			Pages.Layout, Pages.Stylesheet, Pages.RSS,
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
@@ -504,6 +538,7 @@ class Page{
             $db = DB::get();
 		    
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
             		Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
@@ -577,7 +612,9 @@ class Page{
         	$db = DB::get();
             
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-            		Pages.Callout, Pages.Rss,
+            		Pages.Callout, 
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
+            		Pages.Rss,
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
         			Pages.IsActive, Pages.Image, Pages.Created
@@ -608,7 +645,9 @@ class Page{
             $db = DB::get();
             
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-            		Pages.Callout, Pages.Rss,
+            		Pages.Callout, 
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
+            		Pages.Rss,
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
         			Pages.IsActive, Pages.Image, Pages.Created
@@ -640,7 +679,9 @@ class Page{
             $db = DB::get();
             
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, 
-            		Pages.Callout, Pages.Rss,
+            		Pages.Callout, 
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
+            		Pages.Rss,
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
         			Pages.IsActive, Pages.Image, Pages.Created

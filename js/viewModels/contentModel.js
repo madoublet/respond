@@ -133,13 +133,9 @@ var contentModel = {
 			dataType: 'json',
 			success: function(data){
 			
-				console.log(data[x]);
-
 				for(x in data){
 				
 					var category = Category.create(data[x]);
-					
-					console.log(category);
 					
 					contentModel.categories.push(category); // push a category to the model
 				}
@@ -327,7 +323,27 @@ var contentModel = {
 		var callout = $('#callout').val();
 		var layout = $('#layout').val();
 		var stylesheet = $('#stylesheet').val();
-
+		
+		// begin 
+		var beginDate = $('#beginDate').val();
+		var beginTime = $('#beginTime').val();
+		
+		var beginDateTime = beginDate + ' ' + beginTime;
+		
+		// end
+		var endDate = $('#endDate').val();
+		var endTime = $('#endTime').val();
+		
+		var endDateTime = endDate + ' ' + endTime;
+		
+		var timeZone = $('#pageSettingsDialog').attr('data-timezone');
+		
+		// location
+		var location = $('#location').val();
+		var latitude = $('#lat').val();
+		var longitude = $('#long').val();
+		
+		
 		var checks = $('input.rss:checked');
 		var rss = '';
       
@@ -350,7 +366,9 @@ var contentModel = {
 			url: 'api/page/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {name:name, friendlyId:friendlyId, description:description, keywords:keywords, 
-				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet, categories:categories},
+				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet, categories:categories,
+				   beginDate: beginDateTime, endDate: endDateTime, timeZone: timeZone,
+				   location: location, latitude: latitude, longitude: longitude},
 			success: function(data){
 				message.showMessage('success', $('#msg-settings-saved').val());
 				contentModel.updateCategoriesForPage();
