@@ -21,8 +21,8 @@ msgid ". Paste the HTML code below."
 msgstr ". Vložte HTML kód níže."
 
 #: account.php:272
-msgid ">New Card"
-msgstr ">Nová karta:"
+msgid "New Card"
+msgstr "Nová karta:"
 
 #: layout.php:37
 msgid "A name is required to add a layout"
