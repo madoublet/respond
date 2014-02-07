@@ -53,6 +53,58 @@ var global = {
 		return html;
 	  	  
     },
+    
+    // use Google maps to geocode address, #ref: https://developers.google.com/maps/documentation/javascript/geocoding
+    geocode:function(address, callback){
+    
+    	if(google.maps.Geocoder){
+    
+			var geocoder = new google.maps.Geocoder();
+			
+			geocoder.geocode({'address': address}, function(results, status){
+			
+				console.log('fn geocode: ' + results);
+			
+				if (status == google.maps.GeocoderStatus.OK){
+					// #ref: https://developers.google.com/maps/documentation/javascript/reference#LatLng
+					callback(results[0].geometry.location.lat(), results[0].geometry.location.lng(), results[0].formatted_address);
+				}
+			
+			});
+	      
+      	}
+      	else{
+	      	return false;
+      	}
+
+    },
+
+
+    // use Google maps to reverse geocode address, #ref: https://developers.google.com/maps/documentation/javascript/geocoding
+    reverseGeocode:function(latitude, longitude, callback){
+		
+		if(google.maps.Geocoder){
+
+			var latLng  = new google.maps.LatLng(latitude, longitude);
+			var geocoder = new google.maps.Geocoder();
+			
+			geocoder.geocode({'latLng': latLng}, function(results, status){
+			
+				console.log(results);
+			
+				if (status == google.maps.GeocoderStatus.OK){
+					// #ref: https://developers.google.com/maps/documentation/javascript/reference#LatLng
+					callback(results[0].geometry.location.lat(), results[0].geometry.location.lng(), results[0].formatted_address);
+				}
+			
+			});
+		
+		}
+      	else{
+	      	return false;
+      	}
+
+    },
 	
 	// gets a query string variable by name	
 	getQueryStringByName:function(name){

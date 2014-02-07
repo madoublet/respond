@@ -63,7 +63,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Menu Item"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Menu Item"); ?></a>
     </nav>
 
 	<div id="menu-republish-message" class="list-menu">

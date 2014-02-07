@@ -33,7 +33,13 @@ span.config textarea{
 /* begin checklist */
 span.checklist{
 	display: block;
+	padding: 0;
+	margin: -5px 0 -5px 0;
 }
+
+	span.checklist .checkbox:last-child{
+		margin-bottom: 5px;
+	}
 
 	span.checklist label.checkbox{
 		display: block;

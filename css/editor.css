@@ -35,7 +35,7 @@ section.main nav.editor-menu{
 }
 
 .editor-actions{
-    margin: 0 145px 0 55px;
+    margin: 0 130px 0 55px;
     height: 50px;
     overflow: hidden;
     z-index: 1000;
@@ -45,14 +45,33 @@ section.main nav.editor-menu{
         width: 1804px;  /* 41 * 41 = 1681 */
     }
 
-body a.primary-action{
+body section.main nav a.primary-action{
     position: absolute;
     top: 0;
-    right: 0;
-    width: 110px !important;
-    font-size: 0.9em !important;
+    right: 50px;
+    width: 50px;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
+
+	body section.main nav a.primary-action.settings{
+	    right: 0;
+	}
+	
+	body section.main nav a.primary-action i{
+		box-sizing: border-box;
+		margin-right: 0;
+		width: 50px;
+		height: 40px;
+		margin: 5px 0;
+		padding: 0;
+		line-height: 40px;
+	}
+
+	body section.main nav a.primary-action.settings i{
+		border-left: 1px solid #ffb648;
+	}
 
 a.next, a.previous{
     position: absolute;
@@ -72,7 +91,7 @@ a.next, a.previous{
     
     a.next{
         top: 0;
-        right: 110px;
+        right: 100px;
     }
     
     a.previous{
@@ -91,7 +110,6 @@ a.next, a.previous{
 	padding: 0;
 	text-align: center;
 	line-height: 40px;
-	background-color: #ddd !important; 
 	color: #777;
 	font-size: 1.1em !important;
 }
@@ -912,7 +930,7 @@ div.date div{
         margin-bottom: 15px;
     }
     
-    .block .add-field, .editor .add-sku{
+    .block .add-field, .editor .add-sku, .editor .add-event{
     	display: block;
         margin: 10px 10px 5px 10px;
         padding: 10px 0;
@@ -923,11 +941,11 @@ div.date div{
         text-align: center;
     }
     
-    	.block .add-field i, .editor .add-sku i{
+    	.block .add-field i, .editor .add-sku i,  .editor .add-event i{
 	    	margin-right: 5px;
     	}
     
-    	.block .add-field:hover, .editor .add-sku:hover{
+    	.block .add-field:hover, .editor .add-sku:hover, .editor .add-event:hover{
 	    	border: 1px dashed #3299BB;
 	    	color: #3299BB;
 	    	text-decoration: none;

@@ -114,7 +114,7 @@ var editorDefaults = {
 					'<a class="html fa fa-html5" title="Add HTML"></a>' + 
 					'<a class="syntax fa fa-terminal" title="Add Code Block"></a>' +
 					'<a class="plugins fa fa-cogs" title="Plugins"></a>' +
-					'<a class="settings fa fa-wrench" title="Page Settings"></a>' +
+					//'<a class="settings fa fa-wrench" title="Page Settings"></a>' +
 					'<a class="cols fa fa-columns" title="Add a 50/50 Column Layout"><small>50/50</small></a>' +
 					'<a class="single fa fa-columns" title="Add a Full Column Layout"><small>100</small></a>' +
 					'<a class="cols73 fa fa-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
@@ -124,7 +124,8 @@ var editorDefaults = {
 					'</div></div>' +
 					'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 					'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-					'<a class="primary-action preview"><i class="fa fa-eye"></i> Preview</a>' +
+					'<a class="primary-action alt preview"><i class="fa fa-play-circle"></i></a>' +
+					'<a class="primary-action settings"><i class="fa fa-cog"></i></a>' +
 					'</nav>';
 		   
 	   	var editor = '';

@@ -1,10 +1,10 @@
 <?php 
-  include 'app.php'; // import php files
-  
-  $authUser = new AuthUser(); // get auth user
-  $authUser->Authenticate('All');
-  
-  Utilities::SetLanguage($authUser->Language); // set language
+	include 'app.php'; // import php files
+	
+	$authUser = new AuthUser(); // get auth user
+	$authUser->Authenticate('All');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -35,7 +35,7 @@
 
 </head>
 
-<body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>">
+<body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 
 <?php include 'modules/menu.php'; ?>
 
@@ -70,6 +70,8 @@
         <button class="primary-button" type="button" data-bind="click: saveDraft"><?php print _("Save"); ?></button>
 	<?php } ?>
         <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()"><i class="fa fa-reply"></i> <?php print _("Return"); ?></button>
+    
+		<a class="alternate">View Live Page <i class="fa fa-external-link-square"></i></a>
     </div>
     <!-- /#actions -->
     
@@ -139,6 +141,10 @@
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+
+<?php if(GOOGLE_MAPS_API_KEY != '' && GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){ ?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php print GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
+<?php } ?>
 
 <!-- plugins -->
 <script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js?v=<?php print VERSION; ?>"></script>

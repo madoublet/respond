@@ -47,7 +47,7 @@
 		    <li class="static active"><a href="branding"><?php print _("Branding"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showImagesDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Update Logo"); ?></a>
+        <a class="primary-action" data-bind="click: showImagesDialog"><i class="fa fa-plus-circle"></i> <?php print _("Update Logo"); ?></a>
     </nav>
 
   <div class="row-fluid">

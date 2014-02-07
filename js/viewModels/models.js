@@ -72,6 +72,8 @@ User.create = function(data){
 
 // models a page
 function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, keywords, callout, 
+				beginDate, endDate,
+				location, latLong,
 				rss, layout, stylesheet, url, image, thumb, lastModifiedDate, lastModifiedFullName, isActive){
 
 	var self = this;
@@ -84,6 +86,10 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 	self.description = ko.observable(description);
 	self.keywords = ko.observable(keywords);
 	self.callout = ko.observable(callout);
+	self.beginDate = ko.observable(beginDate);
+	self.endDate = ko.observable(endDate);
+	self.location = ko.observable(location);
+	self.latLong = ko.observable(latLong);
 	self.rss = ko.observable(rss);
 	self.layout = ko.observable(layout);
 	self.stylesheet = ko.observable(stylesheet);
@@ -111,6 +117,98 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 	self.editUrl = ko.computed(function(){
 		return 'content?p=' + self.pageUniqId();
 	});
+	
+	self.localBeginDate = ko.computed(function(){
+		if(self.beginDate() != null && self.beginDate() != ''){
+			var offset = $('body').attr('data-offset');
+			
+			var m = moment.utc(self.beginDate(), 'YYYY-MM-DD HH:mm:ss');
+			m.zone(offset);
+			
+			return m.format('YYYY-MM-DD');
+		}
+		else{
+			return '';
+		}
+	});
+	
+
+	self.localBeginTime = ko.computed(function(){
+		if(self.beginDate() != null && self.beginDate() != ''){
+			var offset = $('body').attr('data-offset');
+			
+			var m = moment.utc(self.beginDate(), 'YYYY-MM-DD HH:mm:ss');
+			m.add('hours',offset);
+			
+			return m.format('HH:mm:ss');
+		}
+		else{
+			return '';
+		}
+	});
+	
+	self.localEndDate = ko.computed(function(){
+	
+		if(self.endDate() != null && self.endDate() != ''){
+			var offset = $('body').attr('data-offset');
+			
+			var m = moment.utc(self.endDate(), 'YYYY-MM-DD HH:mm:ss');
+			m.add('hours',offset);
+			
+			return m.format('YYYY-MM-DD');
+		}
+		else{
+			return '';
+		}
+	});
+	
+
+	self.localEndTime = ko.computed(function(){
+	
+		if(self.endDate() != null && self.endDate() != ''){
+			var offset = $('body').attr('data-offset');
+			
+			var m = moment.utc(self.endDate(), 'YYYY-MM-DD HH:mm:ss');
+			m.add('hours',offset);
+			
+			return m.format('HH:mm:ss');
+		}
+		else{
+			return '';
+		}
+	});
+	
+	
+	self.latitude = ko.computed(function(){
+	
+		if(self.latLong() != null && self.latLong() != ''){
+		
+			var point = self.latLong().replace('POINT(', '').replace(')', '');
+			var arr = point.split(' ');
+		
+			
+			return arr[0];
+		}
+		else{
+			return '';
+		}
+	});
+	
+	self.longitude = ko.computed(function(){
+	
+	
+		if(self.latLong() != null && self.latLong() != ''){
+			
+			var point = self.latLong().replace('POINT(', '').replace(')', '');
+			var arr = point.split(' ');
+			
+			return arr[1];
+		}
+		else{
+			return '';
+		}
+		
+	});
 
 }
 
@@ -118,7 +216,10 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 Page.create = function(data){
 
 	return new Page(data['PageId'], data['PageUniqId'], data['PageTypeId'], data['FriendlyId'], data['Name'], data['Description'], 
-					data['Keywords'], data['Callout'], data['Rss'], data['Layout'], data['Stylesheet'], 
+					data['Keywords'], data['Callout'], 
+					data['BeginDate'], data['EndDate'],
+					data['Location'], data['LatLong'],
+					data['Rss'], data['Layout'], data['Stylesheet'], 
 					data['Url'], data['Image'], data['Thumb'], data['LastModifiedDate'], data['LastModifiedFullName'], 
 					data['IsActive']);
 }

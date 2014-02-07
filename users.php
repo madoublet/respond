@@ -48,7 +48,7 @@
             <li class="static active"><a><?php print _("Users"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add User"); ?></span></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
     </nav>
 
     <div class="list" data-bind="foreach: users">
