@@ -7,7 +7,7 @@
 	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
 
 <head>
   

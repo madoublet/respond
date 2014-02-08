@@ -8,7 +8,7 @@
 	Utilities::SetLanguage($language);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php print str_replace('_', '-', $language) ?>">
 
 <head>
 	
