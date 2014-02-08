@@ -53,10 +53,7 @@ var pageModel = {
             
             pageModel[id] = ko.observableArray([]);
             
-            // #debug console.log('create observableArray: ' + id);
-            
             // use an anonymous function to pass the id
-            // #ref: http://stackoverflow.com/questions/1194104/jquery-ajax-ajax-passing-parameters-to-callback-good-pattern-to-use
             function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, page){
                 
                 $.ajax({
@@ -205,19 +202,31 @@ var pageModel = {
     // sets up controls for the page
     setupControls: function(){
         
-        var maps = $('.map'); // setup maps
+        // setup maps
+        var maps = $('.map');
     	
 		for(var x=0; x<maps.length; x++){
 			$(maps[x]).respondMap();
 		}
 		
+		// setup carousels
 		$('.carousel').carousel();
 		
+		// setup forms
 		var forms = $('.respond-form');
 		
 		for(var x=0; x<forms.length; x++){
             
             $(forms[x]).respondForm();
+    
+		}
+		
+		// setup calendars
+		var cals = $('.respond-calendar');
+		
+		for(var x=0; x<cals.length; x++){
+            
+            $(cals[x]).respondCalendar();
     
 		}
         

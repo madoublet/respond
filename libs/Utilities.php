@@ -665,21 +665,11 @@ class Utilities
         // js
         $js = '';
         
-        if($site['FacebookAppId']!=''){
-			$js .= '<meta property="fb:app_id" content="'.$site['FacebookAppId'].'">'.PHP_EOL;
-		}
-		$js .= '<script type="text/javascript" src="'.JQUERY_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.BOOTSTRAP_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.KNOCKOUT_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.cookie.js"></script>'.PHP_EOL;
-		if(GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){
-			$js .= '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.GOOGLE_MAPS_API_KEY.'&sensor=false"></script>'.PHP_EOL;
-		}
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.respondMap-1.0.1.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.respondForm-1.0.1.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/messages.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/pageModel.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/prettify.js"></script>'.PHP_EOL;
+        ob_start();
+              
+        include $root.'sites/common/modules/js.php'; // loads the module
+        $js = ob_get_contents(); // get content from module
+        ob_end_clean();
 		
 		$content = str_replace('{{js}}', $js, $content);
 		
@@ -1004,6 +994,23 @@ class Utilities
 										.'</div>'
 								    .'</span>'
 								.'</div>';  
+                                
+                       if($pageresults == 'true'){
+							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
+						}
+                    }
+                    else if($el->display == 'calendar'){
+                    	$list =	'<div class="respond-calendar" data-list="'.$listid.'"></div>'; 
+                        $list .= '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
+                                .'<li class="list-group-item">'
+                                	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
+                                	.'<img data-bind="attr: {\'src\': thumb}">'
+                                	.'</a>'
+                                	.'<h4><a data-bind="attr:{\'href\':url}, text:name"></a></h4>'
+									.'<small data-bind="visible: hasCallout, text: callout"></small>'
+									.'<p data-bind="text:desc"></p>'
+								.'</li>'
+                                .'</ul>';  
                                 
                        if($pageresults == 'true'){
 							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
