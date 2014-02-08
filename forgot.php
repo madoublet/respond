@@ -82,7 +82,7 @@
 	<!-- /.reset -->
 
 	<p  class="alternate">
-		<a href="/"><?php print _("Return to Login"); ?></a>
+		<a href="index"><?php print _("Return to Login"); ?></a>
 	</p>
 
 	<small><?php print COPY; ?></small>
