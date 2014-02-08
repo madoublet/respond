@@ -45,6 +45,11 @@ var pageModel = {
             var orderBy = $(lists[x]).attr('data-orderby');
             var category = $(lists[x]).attr('data-category');
             var siteUniqId = pageModel.siteUniqId();
+            var url = pageModel.apiEndpoint + '/api/page/published/list';
+            
+            if(display == 'blog'){
+	            url = pageModel.apiEndpoint + '/api/page/published/blog';
+            }
             
             pageModel[id] = ko.observableArray([]);
             
@@ -55,7 +60,7 @@ var pageModel = {
             function updateList(id, display, pageTypeUniqId, pageSize, orderBy, siteUniqId, page){
                 
                 $.ajax({
-                	url: pageModel.apiEndpoint + '/api/page/published/' + display,
+                	url: url,
         			type: 'POST',
                     dataType: 'JSON',
         			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, category: category, page: page, language: pageModel.language, prefix: pageModel.prefix()},

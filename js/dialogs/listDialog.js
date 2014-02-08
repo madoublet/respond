@@ -16,6 +16,8 @@ var listDialog = {
           
           var uniqId = 'list'+ ($(editor).find('.list').length + 1);
           
+          alert(uniqId);
+          
 		  var display = $('#listDisplay').val();
 		  var label = $('#listPageType option:selected').text();
 		  label = label.toLowerCase();

@@ -977,7 +977,7 @@ class Utilities
 						
                      
                     }
-                    else{
+                    else if($el->display == 'list'){
                         $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
                                 .'<li class="list-group-item">'
                                 	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
@@ -988,6 +988,22 @@ class Utilities
 									.'<p data-bind="text:desc"></p>'
 								.'</li>'
                                 .'</ul>';  
+                                
+                       if($pageresults == 'true'){
+							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
+						}
+                    }
+                    else if($el->display == 'thumbnails'){
+                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'		
+									.'<span class="thumbnail">'
+								    	.'<img data-bind="attr: {\'src\': thumb},visible: hasImage">'
+								    	.'<div class="caption">'
+								     		.'<h3><a data-bind="attr:{\'href\':url}, text:name"></a></h3>'
+								     		.'<small data-bind="visible: hasCallout, text: callout"></small>'
+								        	.'<p data-bind="text:desc"></p>'
+										.'</div>'
+								    .'</span>'
+								.'</div>';  
                                 
                        if($pageresults == 'true'){
 							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';

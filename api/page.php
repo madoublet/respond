@@ -821,6 +821,7 @@ class PageListResource extends Tonic\Resource {
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
         $page = $request['page'];
+        $prefix = $request['prefix'];
         
         // get a categoryUniqId (if set)
         $categoryUniqId = '-1';
@@ -893,7 +894,7 @@ class PageListResource extends Tonic\Resource {
             
             if($page['Image']!=''){
                 $hasImage = true;
-                $thumbUrl = 'files/'.$page['Image'];
+                $thumbUrl = 'files/t-'.$page['Image'];
                 $imageUrl = 'files/'.substr($page['Image'], 2);
             }
             
