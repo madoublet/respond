@@ -252,7 +252,7 @@ msgstr "Todos los campos son obligatorios"
 
 #: settings.php:493
 msgid "Allows you to moderate comments on your site, create here:"
-msgstr "Te permite moderar los comentarios del sitio, crea aquí:"
+msgstr "Te permite moderar los comentarios del sitio, creala aquí:"
 
 #: profile.php:84
 #: users.php:122
@@ -340,7 +340,7 @@ msgstr "CURL habilitado"
 
 #: pageSettingsDialog.php:44
 msgid "Callout:"
-msgstr "Llamada:"
+msgstr "Texto Promocional:"
 
 #: account.php:255
 #: account.php:324
@@ -743,6 +743,9 @@ msgstr "Generando..."
 #: test.php:225
 msgid "Gettext is installed"
 msgstr "Gettext instalado"
+
+msgid "Analytics"
+msgstr "Estadísticas"
 
 #: settings.php:503
 msgid "Google Analytics ID:"
@@ -1183,7 +1186,7 @@ msgstr "Publicar de nuevo ahora"
 #: profile.php:97
 #: users.php:132
 msgid "Re-type Password:"
-msgstr "Repite Contraseá:"
+msgstr "Repite Contraseña:"
 
 #: pages.php:390
 msgid "Remove Category"
@@ -1289,7 +1292,7 @@ msgstr "Volver al Editor"
 
 #: forgot.php:87
 msgid "Return to Login"
-msgstr "Volver al Acceso"
+msgstr "Volver a la Pantalla de Acceso"
 
 #: forgot.php:75
 msgid "Retype Password:"
@@ -1471,7 +1474,7 @@ msgstr "Script PHP eliminado correctamente"
 
 #: snippets.php:14
 msgid "Snippets"
-msgstr "Script PHP"
+msgstr "Scripts PHP"
 
 #: snippets.php:35
 msgid "Snippets updated successfully"
@@ -1757,7 +1760,7 @@ msgstr "Tipo"
 #: forgot.php:46
 msgid ""
 "Type your email address and we will send you a link to reset your password."
-msgstr "Introduce tu email y mandaremos un enlace para cambiar tu contraseña."
+msgstr "Introduce tu email y te mandaremos un enlace para que cambies tu contraseña."
 
 #: account.php:72
 msgid "Type:"
@@ -1991,3 +1994,46 @@ msgstr "opcional"
 #: test.php:55
 msgid "success"
 msgstr "éxito"
+
+msgid "Sort by Last Modified"
+msgstr "Ordenar Fecha Modificación"
+
+msgid "Sort by Name"
+msgstr "Ordenar por Nombre"
+
+#: modules/menu.php:22
+msgid "Manage your Site"
+msgstr "Administra tus Sitios"
+
+#: modules/menu.php:27
+msgid "Theme"
+msgstr "Tema"
+
+#: modules/menu.php:33
+msgid "Advanced Configurations"
+msgstr "Configuraciones Avanzadas"
+
+#: modules/menu.php:15
+msgid "Re-publish Site"
+msgstr "Publicar de nuevo Sitio"
+
+#: modules/menu.php:17
+msgid "Sign Out"
+msgstr "Salir"
+
+#: modules/menu.php:38
+msgid "Styles"
+msgstr "Hojas de Estilo"
+
+#: modules/menu.php:18
+msgid "Close Menu"
+msgstr "Cerrar Menú"
+
+msgid "View Live Page"
+msgstr "Ver en Sitio Web"
+
+msgid "Payments"
+msgstr "Pagos"
+
+msgid "Social"
+msgstr "Social"
