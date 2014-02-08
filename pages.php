@@ -105,8 +105,8 @@
 				</ul>
 			</div>
 		
-    		<a title="Sort by Last Modified" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
-			<a title="Sort by Name"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
+    		<a title="<?php print _("Sort by Last Modified"); ?>" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
+			<a title="<?php print _("Sort by Name"); ?>"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
 			<a><i class="fa fa-cog" data-bind="click: showEditPageTypeDialog, visible: pageTypeUniqId()!=-1"></i></a>
 		</div>
     </div>
@@ -138,7 +138,7 @@
     </div>
     <!-- /.list -->
     
-    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> Loading...</p>
+    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> <?php print _("Loading..."); ?></p>
     
     <p data-bind="visible: pagesLoading()==false && pages().length < 1" class="list-none"><?php print _("No pages here. Click Add Page to get started."); ?></p>
       
