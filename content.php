@@ -1,40 +1,20 @@
 <?php 
-	include 'app.php'; // import php files
-	
-	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
-	
-	Utilities::SetLanguage($authUser->Language); // set language
+$headerValues = array(
+	'stylesheet' => array(
+		'css/content.css',
+		'css/editor.css',
+		'css/dialog.css',
+		'css/list.css',
+		'css/prettify.css',
+		'css/dropzone.css',
+		'{{JQUERYUI_CSS}}',
+	),
+	'jsscript' => array(
+		'js/helper/head.min.js',
+	),
+);
+include 'include/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-  
-<title><?php print _("Content"); ?> - <?php print $authUser->SiteName; ?></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-<!-- css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/content.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/editor.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/prettify.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link href="<?php print JQUERYUI_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-
-<!-- head -->
-<script src="js/helper/head.min.js"></script>
-
-</head>
-
 <body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 
 <?php include 'modules/menu.php'; ?>

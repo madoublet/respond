@@ -1,31 +1,11 @@
 <?php    
-    include 'app.php'; // import php files
-	
-	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');	
-	
-	Utilities::SetLanguage($authUser->Language); // set language
+$headerValues = array(
+	'stylesheet' => array(
+		'css/list.css',
+	),
+);
+include 'include/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	
-<title><?php print _("Pages"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-<!-- include css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
-
-</head>
-
 <body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 	
 <?php include 'modules/menu.php'; ?>

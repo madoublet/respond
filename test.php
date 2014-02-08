@@ -27,7 +27,7 @@
 <title><?php print _("Test Installation"); ?>&mdash;<?php print BRAND; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <!-- include styles -->
 <link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
 <link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">

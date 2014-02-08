@@ -1,31 +1,19 @@
 <?php	
-	include 'app.php';
-	
-	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
-	$supported = Utilities::GetSupportedLanguages('');
-	$language = Utilities::GetPreferredLanguage($supported);
-	
-	Utilities::SetLanguage($language); 
+$headerValues = array(
+	'user' => array(
+		'authenticate' => false,
+	),
+	'language' => 'preferred',
+	'title' => array(
+		'first' => 'Forgot Password',
+		'second' => '{{BRAND}}'
+	),
+	'stylesheet' => array(
+		'css/login.css'
+	),
+);
+include 'include/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	
-<title><?php print _("Forgot Password"); ?> - <?php print BRAND; ?></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-<!-- include styles -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/login.css?v=<?php print VERSION; ?>" rel="stylesheet">
-
-</head>
-
 <body id="forgot" class="external default">
 
 <!-- messages -->

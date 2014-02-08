@@ -1,30 +1,17 @@
 <?php	
-	include 'app.php'; // import php files
-	
-	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('SuperAdmin');
-	
-	Utilities::SetLanguage($authUser->Language); // set language
+$headerValues = array(
+	'user' => array(
+		'user' => 'SuperAdmin',
+	),
+	'title' => array(
+		'first' => 'Sites',
+	),
+	'stylesheet' => array(
+		'css/list.css'
+	),
+);
+include 'include/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	
-<title>Sites&mdash;<?php print $authUser->SiteName; ?></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-<!-- include styles -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
-
-</head>
-
 <body data-currpage="sites">
 
 <?php include 'modules/menu.php'; ?>

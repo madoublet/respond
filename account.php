@@ -1,29 +1,11 @@
 <?php	
-	include 'app.php'; // import php files
-	
-	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('Admin');
-	
-	Utilities::SetLanguage($authUser->Language); // set language
+$headerValues = array(
+	'user' => array(
+		'user' => 'Admin',
+	),
+);
+include 'include/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-	
-<title><?php print _("Account"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-<!-- include css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-
-</head>
-
 <body data-currpage="account" data-pubkey="<?php print STRIPE_PUB_KEY; ?>">
 
 <?php include 'modules/menu.php'; ?>
