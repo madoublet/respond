@@ -172,4 +172,4 @@
 <script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/stylesModel.js?v=<?php print VERSION; ?>"></script>
 
-</html>Layout
+</html>
