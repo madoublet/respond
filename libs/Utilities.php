@@ -8,7 +8,7 @@ class Utilities
 		$domain = 'messages';
 	
 		putenv('LANG='.$language); 
-		setlocale(LC_ALL, $language.'.UTF-8',$language);  // first we try UTF-8, if not, normal language code
+		setlocale(LC_ALL, $language.'.UTF-8',$language,"en");  // first we try UTF-8, if not, normal language code
 		
 		// set text domain
 		bindtextdomain($domain, $directory); 
