@@ -2037,3 +2037,12 @@ msgstr "Pagos"
 
 msgid "Social"
 msgstr "Social"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "There seems to be some error accessing the database or configuration files."
+msgstr "Parece que hay algún error accediendo a la base de datos o ficheros de configuración."
+
+msgid "Please review the installation steps and the test configuration screen."
+msgstr "Por favor revisa los pasos de instalación y la pantalla de comprobación."
