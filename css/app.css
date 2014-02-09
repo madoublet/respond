@@ -845,9 +845,9 @@ body .dropdown-menu{
         }
 
 /* codemirror */
-.CodeMirror{
+body .CodeMirror{
     border: 1px solid #ccc;
-    height: 550px;`
+    height: 550px;
     margin: 0;
 }
 

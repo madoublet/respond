@@ -17,18 +17,13 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<?php include 'modules/css.php'; ?>
 <link type="text/css" href="css/content.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/editor.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/prettify.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link href="<?php print JQUERYUI_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 
 <!-- head -->
 <script src="js/helper/head.min.js"></script>
@@ -131,12 +126,10 @@
 
 </body>
 
-<!-- helper -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
+<!-- js -->
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
@@ -147,13 +140,8 @@
 <?php } ?>
 
 <!-- plugins -->
-<script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
-
-<!-- app -->
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
 <script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
