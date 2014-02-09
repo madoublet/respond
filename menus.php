@@ -299,7 +299,6 @@
 
 <!-- include js -->
 <?php include 'modules/js.php'; ?>
-<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/menusModel.js?v=<?php print VERSION; ?>"></script>
 

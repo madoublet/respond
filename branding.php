@@ -79,7 +79,6 @@
 
 <!-- include js -->
 <?php include 'modules/js.php'; ?>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/brandingModel.js?v=<?php print VERSION; ?>"></script>
 

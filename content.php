@@ -128,7 +128,6 @@
 
 <!-- js -->
 <?php include 'modules/js.php'; ?>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
