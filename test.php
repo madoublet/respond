@@ -1,6 +1,8 @@
 <?php	
 	include 'app.php';
 	
+	$language = 'en';
+	
 	// test for gettext
 	if (function_exists("gettext")){
 	
@@ -20,7 +22,7 @@
 	}
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php print str_replace('_', '-', $language) ?>">
 
 <head>
 	

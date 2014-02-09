@@ -400,6 +400,58 @@ class Page{
         
 	}
 	
+	// gets all pages for dates
+	public static function GetPagesForDates($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $activeOnly, $beginDate, $endDate){
+		
+        try{
+
+            $db = DB::get();
+            
+            $activeClause = '';
+
+        	if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+    		
+    		$next = $pageSize * $pageNo;
+    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
+            		Pages.Description, Pages.Keywords, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
+        			Pages.Layout, Pages.Stylesheet, Pages.RSS,
+        			Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?"
+        				." ((Pages.BeginDate BETWEEN '".$beginDate."' AND '".$endDate."') OR"
+        				." (Pages.EndDate BETWEEN '".$beginDate."' AND '".$endDate."'))"
+        				.$activeClause." ORDER BY "
+        				.$orderBy." LIMIT ?, ?";
+        			
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            $s->bindValue(3, intval($next), PDO::PARAM_INT);
+            $s->bindValue(4, intval($pageSize), PDO::PARAM_INT);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPages]'.'[next='.$next.'pageSize='.$pageSize.']---PDO Error: '.$e->getMessage().'trace='.$e->getTraceAsString());
+        } 
+        
+	}
+	
 	// gets all pages for a given category
 	public static function GetPagesByCategory($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $categoryId, $activeOnly = false){
 		
@@ -427,6 +479,60 @@ class Page{
         				LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         				LEFT JOIN Category_Page_Rel ON Pages.PageId = Category_Page_Rel.PageId
         			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." AND Category_Page_Rel.CategoryId = ? ORDER BY ".$orderBy." LIMIT ?, ?";
+        			
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            $s->bindParam(3, $categoryId);
+            $s->bindValue(4, intval($next), PDO::PARAM_INT);
+            $s->bindValue(5, intval($pageSize), PDO::PARAM_INT);
+            
+            $s->execute();
+            
+            $arr = array();
+            
+            while($row = $s->fetch(PDO::FETCH_ASSOC)) {  
+                array_push($arr, $row);
+            } 
+            
+            return $arr;
+        
+		} catch(PDOException $e){
+            die('[Page::GetPages]'.'[next='.$next.'pageSize='.$pageSize.']---PDO Error: '.$e->getMessage().'trace='.$e->getTraceAsString());
+        } 
+        
+	}
+	
+	// gets all pages for a given category for dates
+	public static function GetPagesByCategoryForDates($siteId, $pageTypeId, $pageSize, $pageNo, $orderBy, $categoryId, $activeOnly, $beginDate, $endDate){
+		
+        try{
+
+            $db = DB::get();
+            
+            $activeClause = '';
+
+        	if($activeOnly==true){
+    			$activeClause = ' AND IsActive=1';
+    		}
+    		
+    		$next = $pageSize * $pageNo;
+    
+            $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 
+            		Pages.Description, Pages.Keywords, Pages.Callout,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
+        			Pages.Layout, Pages.Stylesheet, Pages.RSS,
+        			Pages.SiteId, Pages.CreatedBy, 
+        			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
+        			Pages.IsActive, Pages.Image, Pages.PageTypeId,
+        			Users.FirstName, Users.LastName
+        			FROM Pages 
+        				LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
+        				LEFT JOIN Category_Page_Rel ON Pages.PageId = Category_Page_Rel.PageId
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?"
+        				." ((Pages.BeginDate BETWEEN '".$beginDate."' AND '".$endDate."') OR"
+        				." (Pages.EndDate BETWEEN '".$beginDate."' AND '".$endDate."'))"
+        				.$activeClause." AND Category_Page_Rel.CategoryId = ? ORDER BY ".$orderBy." LIMIT ?, ?";
         			
             $s = $db->prepare($q);
             $s->bindParam(1, $siteId);

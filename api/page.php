@@ -821,6 +821,7 @@ class PageListResource extends Tonic\Resource {
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
         $page = $request['page'];
+        $prefix = $request['prefix'];
         
         // get a categoryUniqId (if set)
         $categoryUniqId = '-1';
@@ -893,7 +894,7 @@ class PageListResource extends Tonic\Resource {
             
             if($page['Image']!=''){
                 $hasImage = true;
-                $thumbUrl = 'files/'.$page['Image'];
+                $thumbUrl = 'files/t-'.$page['Image'];
                 $imageUrl = 'files/'.substr($page['Image'], 2);
             }
             
@@ -1083,6 +1084,142 @@ class PageBlogResource extends Tonic\Resource {
     }
 
 }
+
+/**
+ * This is a public API call that shows you the list of pages for the specified parameters in a list format
+ * @uri /page/published/calendar
+ */
+class PageCalendarResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function get() {
+
+        parse_str($this->request->data, $request); // parse request
+        $siteUniqId = $request['siteUniqId'];
+        $pageTypeUniqId = $request['pageTypeUniqId'];
+        $pageSize = $request['pageSize'];
+        $orderBy = $request['orderBy'];
+        $page = $request['page'];
+        $prefix = $request['prefix'];
+        
+        // get begin and end
+        $beginDate = $request['beginDate'];
+        $endDdate = $request['endDate'];
+        
+        // get a categoryUniqId (if set)
+        $categoryUniqId = '-1';
+        
+        if(isset($request['category'])){
+        	$categoryUniqId = $request['category'];
+        }
+        
+        // get language
+        $language = 'en';
+        
+        if(isset($request['language'])){
+        	$language = $request['language'];
+		}
+
+		// set order
+        if($orderBy=='Created'){
+            $orderBy = $orderBy.' DESC';
+        }
+        else{
+            $orderBy = $orderBy.' ASC';
+        }
+
+        if($pageSize==''){
+            $pageSize = 10;
+        }
+
+        $site = Site::GetBySiteUniqId($siteUniqId);
+        $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
+
+		// set language to the domain for the site
+    	$domain = '../sites/'.$site['FriendlyId'].'/locale';
+		
+		Utilities::SetLanguage($language, $domain);
+
+		// set destination
+        $dest = 'sites/'.$site['FriendlyId'];
+        
+        // Get all pages
+        $hasCategory = false;
+        
+        // if category is set, try to get pages by Category
+        if($categoryUniqId != '-1'){
+	        $category = Category::GetByCategoryUniqId($categoryUniqId);
+	        
+	        if(isset($category['CategoryId'])){
+	        	$hasCategory = true;
+	        	$list = Page::GetPagesByCategoryForDates($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true, $beginDate, $endDate);
+	        }
+        }
+        
+        // if the category did not work or is not set, just get a list by the other params
+        if($hasCategory == false){
+	        $list = Page::GetPagesForDates($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true, $beginDate, $endDate);
+        }
+        
+        $pages = array();
+        
+        foreach ($list as $row){
+
+            $page = Page::GetByPageId($row['PageId']);
+
+            $name = $row['FirstName'].' '.$row['LastName'];
+            
+            // get image url
+            $thumbUrl = '';
+            $imageUrl = '';
+            $hasImage = false;
+            
+            if($page['Image']!=''){
+                $hasImage = true;
+                $thumbUrl = 'files/t-'.$page['Image'];
+                $imageUrl = 'files/'.substr($page['Image'], 2);
+            }
+            
+            $hasCallout = false;
+            
+            if($page['Callout']!=''){
+                $hasCallout = true;
+            }
+
+            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            
+            $item = array(
+                    'PageUniqId'  => $page['PageUniqId'],
+                    'Name' => _($page['Name']),	// get a translation for name, description, and callout
+                    'Description' => _($page['Description']),
+                    'Callout' => _($page['Callout']),
+                    'HasCallout' => $hasCallout,
+                    'Url' => $url,
+                    'Image' => $imageUrl,
+                    'Thumb' => $thumbUrl,
+                    'HasImage' => $hasImage,
+                    'LastModified' => $page['LastModifiedDate'],
+                    'Author' => $name
+                );
+            
+            array_push($pages, $item);
+        }
+
+        // return a json response
+        $response = new Tonic\Response(Tonic\Response::OK);
+        $response->contentType = 'applicaton/json';
+        $response->body = json_encode($pages);
+
+        return $response;
+
+        return new Tonic\Response(Tonic\Response::CREATED);
+    }
+
+}
+
+
 
 /**
  * This is a public API call that shows the total # of published pages for your site

@@ -1,20 +1,35 @@
 <?php 
-$headerValues = array(
-	'stylesheet' => array(
-		'css/content.css',
-		'css/editor.css',
-		'css/dialog.css',
-		'css/list.css',
-		'css/prettify.css',
-		'css/dropzone.css',
-		'{{JQUERYUI_CSS}}',
-	),
-	'jsscript' => array(
-		'js/helper/head.min.js',
-	),
-);
-include 'include/header.php';
+	include 'app.php'; // import php files
+	
+	$authUser = new AuthUser(); // get auth user
+	$authUser->Authenticate('All');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
+<!DOCTYPE html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
+
+<head>
+  
+<title><?php print _("Content"); ?> - <?php print $authUser->SiteName; ?></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- css -->
+<?php include 'modules/css.php'; ?>
+<link type="text/css" href="css/content.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/editor.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/prettify.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
+
+<!-- head -->
+<script src="js/helper/head.min.js"></script>
+
+</head>
+
 <body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 
 <?php include 'modules/menu.php'; ?>
@@ -111,12 +126,9 @@ include 'include/header.php';
 
 </body>
 
-<!-- helper -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<!-- js -->
+<?php include 'modules/js.php'; ?>
+
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
@@ -127,13 +139,8 @@ include 'include/header.php';
 <?php } ?>
 
 <!-- plugins -->
-<script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
-
-<!-- app -->
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
 <script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>

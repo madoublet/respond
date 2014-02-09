@@ -1,19 +1,28 @@
 <?php	
-$headerValues = array(
-	'user' => array(
-		'authenticate' => false,
-	),
-	'language' => 'preferred',
-	'title' => array(
-		'first' => 'Forgot Password',
-		'second' => '{{BRAND}}'
-	),
-	'stylesheet' => array(
-		'css/login.css'
-	),
-);
-include 'include/header.php';
+	include 'app.php';
+	
+	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
+	$supported = Utilities::GetSupportedLanguages('');
+	$language = Utilities::GetPreferredLanguage($supported);
+	
+	Utilities::SetLanguage($language); 
 ?>
+<!DOCTYPE html>
+<html lang="<?php print str_replace('_', '-', $language) ?>">
+
+<head>
+	
+<title><?php print _("Forgot Password"); ?> - <?php print BRAND; ?></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- include styles -->
+<?php include 'modules/css.php'; ?>
+<link type="text/css" href="css/login.css?v=<?php print VERSION; ?>" rel="stylesheet">
+
+</head>
+
 <body id="forgot" class="external default">
 
 <!-- messages -->
@@ -70,7 +79,7 @@ include 'include/header.php';
 	<!-- /.reset -->
 
 	<p  class="alternate">
-		<a href="index.php"><?php print _("Return to Login"); ?></a>
+		<a href="index"><?php print _("Return to Login"); ?></a>
 	</p>
 
 	<small><?php print COPY; ?></small>
@@ -82,13 +91,7 @@ include 'include/header.php';
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="js/viewModels/forgotModel.js?v=<?php print VERSION; ?>"></script>
 
 </html>

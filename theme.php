@@ -1,17 +1,26 @@
 <?php	
-$headerValues = array(
-	'user' => array(
-		'user' => 'Admin',
-	),
-	'title' => array(
-		'first' => 'Themes',
-	),
-	'stylesheet' => array(
-		'css/list.css',
-	),
-);
-include 'include/header.php';
+	include 'app.php'; // import php files
+
+	$authUser = new AuthUser(); // get auth user
+	$authUser->Authenticate('Admin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
+<!DOCTYPE html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
+
+<head>
+	
+<title><?php print _("Themes"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- include css -->
+<?php include 'modules/css.php'; ?>
+
+</head>
+
 <body data-currpage="theme">
 
 <?php include 'modules/menu.php'; ?>
@@ -130,14 +139,7 @@ include 'include/header.php';
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/themeModel.js?v=<?php print VERSION; ?>"></script>
 

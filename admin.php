@@ -1,17 +1,26 @@
 <?php	
-$headerValues = array(
-	'user' => array(
-		'user' => 'SuperAdmin',
-	),
-	'title' => array(
-		'first' => 'Sites',
-	),
-	'stylesheet' => array(
-		'css/list.css'
-	),
-);
-include 'include/header.php';
+	include 'app.php'; // import php files
+	
+	$authUser = new AuthUser(); // get auth user
+	$authUser->Authenticate('SuperAdmin');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
+<!DOCTYPE html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
+
+<head>
+	
+<title>Sites&mdash;<?php print $authUser->SiteName; ?></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- include styles -->
+<?php include 'modules/css.php'; ?>
+
+</head>
+
 <body data-currpage="sites">
 
 <?php include 'modules/menu.php'; ?>
@@ -215,14 +224,8 @@ include 'include/header.php';
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="<?php print TIMEZONEDETECT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/adminModel.js?v=<?php print VERSION; ?>"></script>
 
