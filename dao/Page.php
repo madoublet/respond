@@ -424,7 +424,7 @@ class Page{
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
         			Users.FirstName, Users.LastName
         			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
-        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?"
+        			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ? AND"
         				." ((Pages.BeginDate BETWEEN '".$beginDate."' AND '".$endDate."') OR"
         				." (Pages.EndDate BETWEEN '".$beginDate."' AND '".$endDate."'))"
         				.$activeClause." ORDER BY "

@@ -666,7 +666,6 @@ class Utilities
         $js = '';
         
         ob_start();
-              
         include $root.'sites/common/modules/js.php'; // loads the module
         $js = ob_get_contents(); // get content from module
         ob_end_clean();
@@ -949,72 +948,39 @@ class Utilities
                   
                     if($el->display == 'blog'){
                       
-                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
-                                .'<div class="content" data-bind="html:content"></div>'
-                                .'<div class="blog-meta">'
-                                .'<p>'
-                                .'<a data-bind="attr:{\'href\':url}">Permanent Link</a> '
-                                .'Last modified by <span data-bind="text:author"></span>'
-                                .' on <span data-bind="text:lastModifiedReadable" class="last-modified-date"></span>'
-                                .'</p>'
-                                .'</div>'
-                                .'</div>';  
-                                
-						if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">Older Posts</button></div>';
-						}
+                        $list = '';
+        
+				        ob_start();
+				        include $root.'sites/common/modules/list-blog.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
 						
-						
-                     
                     }
                     else if($el->display == 'list'){
-                        $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
-                                .'<li class="list-group-item">'
-                                	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
-                                	.'<img data-bind="attr: {\'src\': thumb}">'
-                                	.'</a>'
-                                	.'<h4><a data-bind="attr:{\'href\':url}, text:name"></a></h4>'
-									.'<small data-bind="visible: hasCallout, text: callout"></small>'
-									.'<p data-bind="text:desc"></p>'
-								.'</li>'
-                                .'</ul>';  
-                                
-                       if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
-						}
+                        $list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+                        
                     }
                     else if($el->display == 'thumbnails'){
-                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'		
-									.'<span class="thumbnail">'
-								    	.'<img data-bind="attr: {\'src\': thumb},visible: hasImage">'
-								    	.'<div class="caption">'
-								     		.'<h3><a data-bind="attr:{\'href\':url}, text:name"></a></h3>'
-								     		.'<small data-bind="visible: hasCallout, text: callout"></small>'
-								        	.'<p data-bind="text:desc"></p>'
-										.'</div>'
-								    .'</span>'
-								.'</div>';  
-                                
-                       if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
-						}
+                        $list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-thumbnails.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+				        
                     }
                     else if($el->display == 'calendar'){
-                    	$list =	'<div class="respond-calendar" data-list="'.$listid.'"></div>'; 
-                        $list .= '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
-                                .'<li class="list-group-item">'
-                                	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
-                                	.'<img data-bind="attr: {\'src\': thumb}">'
-                                	.'</a>'
-                                	.'<h4><a data-bind="attr:{\'href\':url}, text:name"></a></h4>'
-									.'<small data-bind="visible: hasCallout, text: callout"></small>'
-									.'<p data-bind="text:desc"></p>'
-								.'</li>'
-                                .'</ul>';  
-                                
-                       if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
-						}
+                    	$list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-calendar.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
                     }
                     
                     $el->outertext = $list;
