@@ -2158,3 +2158,6 @@ msgstr "Añadir Párrafo"
 #: menu.php:11
 msgid "Site Admin"
 msgstr "Administrador"
+
+msgid "No Payment Method Configured for Plans"
+msgstr "No hay Métodos de Pago Configurados"
