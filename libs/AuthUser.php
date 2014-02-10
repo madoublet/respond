@@ -38,12 +38,11 @@ class AuthUser{
 	public $Status;			// trialing, active, past_due, canceled, or unpaid
 	public $RenewalDate;
 	
-	function __construct(){
+	function __construct($redirect=true){
 		
 		session_start();
 		
-		if(isset($_SESSION['UserId']))
-		{
+		if(isset($_SESSION['UserId'])){
 			$this->UserId = $_SESSION['UserId'];
 			$this->UserUniqId = $_SESSION['UserUniqId'];
 			$this->Role = $_SESSION['Role'];
@@ -74,7 +73,9 @@ class AuthUser{
 			$this->RenewalDate = $_SESSION['RenewalDate'];
 			
 		}
-		else $this->Redirect();
+		else{
+			if ($redirect) $this->Redirect();
+		}
 	}
 	
 	private function Redirect(){

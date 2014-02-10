@@ -79,53 +79,52 @@ var editorDefaults = {
 		var menu =  '<nav class="editor-menu">' +
 	                '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
 	                '<div class="editor-actions"><div>' +
-					'<a class="bold fa fa-bold" title="Bold Text (select text first)"></a>' +
-					'<a class="italic fa fa-italic" title="Italicize Text (select text first)"></a>' +
-					'<a class="strike fa fa-strikethrough" title="Strike Text (select text first)"></a>' +
-					'<a class="subscript fa fa-subscript" title="Subscript Text (select text first)"></a>' +
-					'<a class="superscript fa fa-superscript" title="Superscript Text (select text first)"></a>' +
-					'<a class="underline fa fa-underline" title="Underline Text (select text first)"></a>' +
-					'<a class="align-left fa fa-align-left" title="Align text to the left" data-align="left"></a>' +
-					'<a class="align-center fa fa-align-center" title="Align text to the center" data-align="center"></a>' +
-					'<a class="align-right fa fa-align-right" title="Align text to the right" data-align="right"></a>' +
-					'<a class="link fa fa-link" title="Add Link (select text first)"></a>' +
-					'<a class="code fa fa-code" title="Add code"></a>' +
-	        		'<a class="icon fa fa-flag" title="Add Font Awesome icon"></a>' + // WIP, coming soon
-					'<a class="h1" title="Add Headline">H1</a>' +
-					'<a class="h2" title="Add Headline">H2</a>' +
-					'<a class="h3" title="Add Headline">H3</a>' +
-					'<a class="p" title="Add a Paragraph">P</a>' +
-					'<a class="q fa fa-quote-left" title="Add Block Quote"></a>' +
-					'<a class="ul fa fa-list" title="Add a List"></a>' +
-					'<a class="table fa fa-table" title="Add Table"></a>' +
-					'<a class="hr fa fa-minus" title="Add a Horizontal Rule"></a>' +
-					'<a class="img fa fa-picture-o" title="Add an Image"></span>' +
-					'<a class="slideshow  fa fa-film" title="Add a Slideshow"></a>' +
-					'<a class="map  fa fa-map-marker" title="Add a Map"></a>' +
-					'<a class="twitter fa fa-twitter" title="Add your Twitter&reg; feed"></a>' +
-					'<a class="like fa fa-facebook" title="Add Facebook&reg; Like button"></a>' +
-					'<a class="comments fa fa-comments" title="Add Facebook&reg; comments"></a>' +
-					'<a class="youtube fa fa-video-camera" title="Add a video"></span>' +
-					'<a class="list fa fa-bars" title="Add a list of pages"></span>' +
-	                '<a class="featured fa fa-star" title="Add Featured Content"></a>' +
-					'<a class="file fa fa-file-o" title="Add a File"></a>' +
-					'<a class="shelf fa fa-tags" title="Add SKUs"></a>' +  // prep for carts (Jan 2014)
-					'<a class="form fa fa-check" title="Add a Form"></a>' +
-					'<a class="html fa fa-html5" title="Add HTML"></a>' + 
-					'<a class="syntax fa fa-terminal" title="Add Code Block"></a>' +
-					'<a class="plugins fa fa-cogs" title="Plugins"></a>' +
-					//'<a class="settings fa fa-wrench" title="Page Settings"></a>' +
-					'<a class="cols fa fa-columns" title="Add a 50/50 Column Layout"><small>50/50</small></a>' +
-					'<a class="single fa fa-columns" title="Add a Full Column Layout"><small>100</small></a>' +
-					'<a class="cols73 fa fa-columns" title="Add a 70/30 Column Layout"><small>70/30</small></a>' +
-					'<a class="cols37 fa fa-columns" title="Add a 30/70 Column Layout"><small>30/70</small></a>' +
-					'<a class="cols333 fa fa-columns" title="Add a 33/33/33 Column Layout"><small>3/3/3</small></a>' +
-					'<a class="cols425 fa fa-columns" title="Add a 25/25/25/25 Column Layout"><small>4*25</small></a>' +
+					'<a class="bold fa fa-bold" title="'+t('bold_text')+'"></a>' +
+					'<a class="italic fa fa-italic" title="'+t('italic_text')+'"></a>' +
+					'<a class="strike fa fa-strikethrough" title="'+t('strike_text')+'"></a>' +
+					'<a class="subscript fa fa-subscript" title="'+t('subscript_text')+'"></a>' +
+					'<a class="superscript fa fa-superscript" title="'+t('superscript_text')+'"></a>' +
+					'<a class="underline fa fa-underline" title="'+t('underline_text')+'"></a>' +
+					'<a class="align-left fa fa-align-left" title="'+t('align-left_text')+'" data-align="left"></a>' +
+					'<a class="align-center fa fa-align-center" title="'+t('align-center_text')+'" data-align="center"></a>' +
+					'<a class="align-right fa fa-align-right" title="'+t('align-right_text')+'" data-align="right"></a>' +
+					'<a class="link fa fa-link" title="'+t('addLink')+'"></a>' +
+					'<a class="code fa fa-code" title="'+t('addCode')+'"></a>' +
+	        		'<a class="icon fa fa-flag" title="'+t('iconfa')+'"></a>' + // WIP, coming soon
+					'<a class="h1" title="'+t('addHeadline')+'">H1</a>' +
+					'<a class="h2" title="'+t('addHeadline')+'">H2</a>' +
+					'<a class="h3" title="'+t('addHeadline')+'">H3</a>' +
+					'<a class="p" title="'+t('addParagraph')+'">P</a>' +
+					'<a class="q fa fa-quote-left" title="'+t('addquote')+'"></a>' +
+					'<a class="ul fa fa-list" title="'+t('addlist')+'"></a>' +
+					'<a class="table fa fa-table" title="'+t('addtable')+'"></a>' +
+					'<a class="hr fa fa-minus" title="'+t('addhr')+'"></a>' +
+					'<a class="img fa fa-picture-o" title="'+t('addimg')+'"></span>' +
+					'<a class="slideshow  fa fa-film" title="'+t('addslideshow')+'"></a>' +
+					'<a class="map  fa fa-map-marker" title="'+t('addmap')+'"></a>' +
+					'<a class="twitter fa fa-twitter" title="'+t('addtwitter')+'"></a>' +
+					'<a class="like fa fa-facebook" title="'+t('addfacebook')+'"></a>' +
+					'<a class="comments fa fa-comments" title="'+t('fa-comments')+'"></a>' +
+					'<a class="youtube fa fa-video-camera" title="'+t('youtube')+'"></span>' +
+					'<a class="list fa fa-bars" title="'+t('list_pages')+'"></span>' +
+	                '<a class="featured fa fa-star" title="'+t('featured')+'"></a>' +
+					'<a class="file fa fa-file-o" title="'+t('addFile')+'"></a>' +
+					'<a class="shelf fa fa-tags" title="'+t('addSKUs')+'"></a>' +
+					'<a class="form fa fa-check" title="'+t('addForm')+'"></a>' +
+					'<a class="html fa fa-html5" title="'+t('addhtml')+'"></a>' + 
+					'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'"></a>' +
+					'<a class="plugins fa fa-cogs" title="'+t('Plugins')+'"></a>' +
+					'<a class="cols fa fa-columns" title="'+t('cols55')+'"><small>50/50</small></a>' +
+					'<a class="single fa fa-columns" title="'+t('cols100')+'"><small>100</small></a>' +
+					'<a class="cols73 fa fa-columns" title="'+t('cols73')+'"><small>70/30</small></a>' +
+					'<a class="cols37 fa fa-columns" title="'+t('cols37')+'"><small>30/70</small></a>' +
+					'<a class="cols333 fa fa-columns" title="'+t('cols333')+'"><small>3/3/3</small></a>' +
+					'<a class="cols425 fa fa-columns" title="'+t('cols425')+'"><small>4*25</small></a>' +
 					'</div></div>' +
 					'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 					'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-					'<a class="primary-action alt preview"><i class="fa fa-play-circle"></i></a>' +
-					'<a class="primary-action settings"><i class="fa fa-cog"></i></a>' +
+					'<a class="primary-action alt preview" title="'+t('preview')+'"><i class="fa fa-play-circle"></i></a>' +
+					'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
 					'</nav>';
 		   
 	   	var editor = '';
