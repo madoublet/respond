@@ -1,5 +1,5 @@
 <?php 
-	include 'app.php'; // import php files
+	include '../app.php'; // import php files
 	$language = '';
 	if(session_id() == '') {
 		$authUser = new AuthUser(false); // get auth user
@@ -12,6 +12,8 @@
 		$language = Utilities::GetPreferredLanguage($supported);
 	}
 	Utilities::SetLanguage($language); // set language
+	
+	header('Content-type: text/javascript');
 ?>
 var i18njsstrings = {
 	'bold_text':"<?php echo _("Bold Text (select text first)"); ?>",
@@ -48,6 +50,7 @@ var i18njsstrings = {
 	'addSyntax':"<?php echo _("Add Code Block"); ?>",
 	'plugins':"<?php echo _("Plugins"); ?>",
 	'settings':"<?php echo _("Page Settings"); ?>",
+	'preview':"<?php echo _("Preview"); ?>",
 	'cols55':"<?php echo _("Add a 50/50 Column Layout"); ?>",
 	'cols100':"<?php echo _("Add a Full Column Layout"); ?>",
 	'cols73':"<?php echo _("Add a 70/30 Column Layout"); ?>",

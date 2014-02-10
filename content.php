@@ -143,7 +143,6 @@
 <script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
-<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/loadLayoutDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/pluginsDialog.js?v=<?php print VERSION; ?>"></script>

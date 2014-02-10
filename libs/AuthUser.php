@@ -42,8 +42,7 @@ class AuthUser{
 		
 		session_start();
 		
-		if(isset($_SESSION['UserId']))
-		{
+		if(isset($_SESSION['UserId'])){
 			$this->UserId = $_SESSION['UserId'];
 			$this->UserUniqId = $_SESSION['UserUniqId'];
 			$this->Role = $_SESSION['Role'];
@@ -74,7 +73,7 @@ class AuthUser{
 			$this->RenewalDate = $_SESSION['RenewalDate'];
 			
 		}
-		else {
+		else{
 			if ($redirect) $this->Redirect();
 		}
 	}

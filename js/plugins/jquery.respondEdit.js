@@ -109,12 +109,11 @@ var editorDefaults = {
 					'<a class="list fa fa-bars" title="'+t('list_pages')+'"></span>' +
 	                '<a class="featured fa fa-star" title="'+t('featured')+'"></a>' +
 					'<a class="file fa fa-file-o" title="'+t('addFile')+'"></a>' +
-					'<a class="shelf fa fa-tags" title="'+t('addSKUs')+'"></a>' +  // prep for carts (Jan 2014)
+					'<a class="shelf fa fa-tags" title="'+t('addSKUs')+'"></a>' +
 					'<a class="form fa fa-check" title="'+t('addForm')+'"></a>' +
 					'<a class="html fa fa-html5" title="'+t('addhtml')+'"></a>' + 
 					'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'"></a>' +
 					'<a class="plugins fa fa-cogs" title="'+t('Plugins')+'"></a>' +
-					//'<a class="settings fa fa-wrench" title="'+t('settings')+'"></a>' +
 					'<a class="cols fa fa-columns" title="'+t('cols55')+'"><small>50/50</small></a>' +
 					'<a class="single fa fa-columns" title="'+t('cols100')+'"><small>100</small></a>' +
 					'<a class="cols73 fa fa-columns" title="'+t('cols73')+'"><small>70/30</small></a>' +
@@ -124,8 +123,8 @@ var editorDefaults = {
 					'</div></div>' +
 					'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 					'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-					'<a class="primary-action alt preview"><i class="fa fa-play-circle"></i></a>' +
-					'<a class="primary-action settings"><i class="fa fa-cog"></i></a>' +
+					'<a class="primary-action alt preview" title="'+t('preview')+'"><i class="fa fa-play-circle"></i></a>' +
+					'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
 					'</nav>';
 		   
 	   	var editor = '';
