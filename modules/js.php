@@ -2,6 +2,7 @@
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
+<script type="text/javascript" src="js/translate.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/moment-with-langs.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript">moment.lang("<?php echo (isset($authUser) ? $authUser->Language : (empty($language) ? "en" : $language)); ?>");</script>
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>

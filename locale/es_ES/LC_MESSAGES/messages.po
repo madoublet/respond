@@ -2046,3 +2046,111 @@ msgstr "Parece que hay algún error accediendo a la base de datos o ficheros de 
 
 msgid "Please review the installation steps and the test configuration screen."
 msgstr "Por favor revisa los pasos de instalación y la pantalla de comprobación."
+
+msgid "Bold Text (select text first)"
+msgstr "Negrita (selecciona texto primero)"
+
+msgid "Italicize Text (select text first)"
+msgstr "Itálica  (selecciona texto primero)"
+
+msgid "Strike Text (select text first)"
+msgstr "Tachado  (selecciona texto primero)"
+
+msgid "Subscript Text (select text first)"
+msgstr "Subíndice  (selecciona texto primero)"
+
+msgid "Superscript Text (select text first)"
+msgstr "Superíndice  (selecciona texto primero)"
+
+msgid "Underline Text (select text first)"
+msgstr "Subrayado (selecciona texto primero)"
+
+msgid "Align text to the left"
+msgstr "Alinea a la izquierda"
+
+msgid "Align text to the center"
+msgstr "Alinea al centro"
+
+msgid "Align text to the right"
+msgstr "Alinea a la derecha"
+
+msgid "Add Link (select text first)"
+msgstr "Añadir Enlace (selecciona texto primero)"
+
+msgid "Add Code"
+msgstr "Añadir Código"
+
+msgid "Add Font Awesome icon"
+msgstr "Añadir Icono Font Awesome"
+
+msgid "Add Block Quote"
+msgstr "Añadir Cita"
+
+msgid "Add a List"
+msgstr "Añadir Lista"
+
+msgid "Add Table"
+msgstr "Añadir Tabla"
+
+msgid "Add a Horizontal Rule"
+msgstr "Añadir Línea Horizontal"
+
+msgid "Add an Image"
+msgstr "Añadir Imagen"
+
+msgid "Add a Slideshow"
+msgstr "Añadir Presentación"
+
+msgid "Add a Map"
+msgstr "Añadir Mapa"
+
+msgid "Add your Twitter&reg; feed"
+msgstr "Añadir Lectura Twitter&reg;"
+
+msgid "Add Facebook&reg; Like button"
+msgstr "Añadir Me Gusta de Facebook&reg;"
+
+msgid "Add Facebook&reg; comments"
+msgstr "Añadir Comentarios Facebook&reg;"
+
+msgid "Add a video"
+msgstr "Añadir Vídeo"
+
+msgid "Add a list of pages"
+msgstr "Añadir Lista de Páginas"
+
+msgid "Add a File"
+msgstr "Añadir Fichero"
+
+msgid "Add SKUs"
+msgstr "Añadir Nº Registro"
+
+msgid "Add a Form"
+msgstr "Añadir Formulario"
+
+msgid "Plugins"
+msgstr "Complementos"
+
+msgid "Add a 50/50 Column Layout"
+msgstr "Añadir Disposición 50/50"
+
+msgid "Add a Full Column Layout"
+msgstr "Añadir Disposición 100%"
+
+msgid "Add a 70/30 Column Layout"
+msgstr "Añadir Disposición 70/30"
+
+msgid "Add a 30/70 Column Layout"
+msgstr "Añadir Disposición 30/70"
+
+msgid "Add a 33/33/33 Column Layout"
+msgstr "Añadir Disposición 33/33/33"
+
+msgid "Add a 25/25/25/25 Column Layout"
+msgstr "Añadir Disposición 25/25/25/25"
+
+msgid "Add Headline"
+msgstr "Añadir Cabecera"
+
+msgid "Add a Paragraph"
+msgstr "Añadir Párrafo"
