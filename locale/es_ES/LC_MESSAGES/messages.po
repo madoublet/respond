@@ -2154,3 +2154,7 @@ msgstr "Añadir Cabecera"
 
 msgid "Add a Paragraph"
 msgstr "Añadir Párrafo"
+
+#: menu.php:11
+msgid "Site Admin"
+msgstr "Administrador"
