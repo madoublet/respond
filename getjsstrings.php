@@ -1,10 +1,17 @@
 <?php 
 	include 'app.php'; // import php files
-	
-	$authUser = new AuthUser(); // get auth user
-	$authUser->Authenticate('All');
-	
-	Utilities::SetLanguage($authUser->Language); // set language
+	$language = '';
+	if(session_id() == '') {
+		$authUser = new AuthUser(false); // get auth user
+		$authUser->Authenticate('All');
+		$language = isset($authUser->Language) ? $authUser->Language : '';
+	}
+	if ($language=='') {
+		// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
+		$supported = Utilities::GetSupportedLanguages('');
+		$language = Utilities::GetPreferredLanguage($supported);
+	}
+	Utilities::SetLanguage($language); // set language
 ?>
 var i18njsstrings = {
 	'bold_text':"<?php echo _("Bold Text (select text first)"); ?>",
@@ -47,4 +54,8 @@ var i18njsstrings = {
 	'cols37':"<?php echo _("Add a 30/70 Column Layout"); ?>",
 	'cols333':"<?php echo _("Add a 33/33/33 Column Layout"); ?>",
 	'cols425':"<?php echo _("Add a 25/25/25/25 Column Layout"); ?>"
+}
+
+function t(text) {
+	return (i18njsstrings[text]==undefined ? text : i18njsstrings[text]);
 }
