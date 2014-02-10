@@ -10,7 +10,7 @@
     		var days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     		var days_f = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     		
-    		var container = '<div class="respond-calendar">';
+    		var container = '<div class="respond-calendar-container">';
     		
     		var day = d.getDay();
     		
@@ -49,7 +49,7 @@
     				container += '<span class="day'+cssClass+'" data-date="'+m.format('YYYY-MM-DD')+'">';
     			}
     			
-    			container += curr_date.getDate();
+    			container += '<span class="day-number">'+curr_date.getDate()+'</span>';
     			
     			container += '</span>';
     			

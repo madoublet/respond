@@ -1,38 +1,65 @@
 .respond-calendar{ 
   margin: 0px 0px 20px 0px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 	.respond-calendar .header, .respond-calendar .week{
 		clear: both;
 	}
 
-    .respond-calendar span.day{
+    .respond-calendar .day, .respond-calendar .header span{
+  		position: relative;
         display: block;
-        margin: 0 5px 5px 0;
+  		box-sizing: border-box;
+        margin: 0;
         padding: 0;
-        width: 50px;
-        height: 50px;
-        text-align: center;
+        width: 14.2857%;
+        height: 100px;
+        text-align: left;
         line-height: 50px;
         font-size: 0.8em;
-    		color: #ddd;
-    		border: 1px solid #fff;
-    		float: left;
+        color: #ddd;
+        float: left;
         color: #888;
-      	border: 1px solid #ccc;
-    		cursor: pointer;
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        cursor: pointer;
     }
+
+
+	.respond-calendar .day{
+		background-color: #f8f8f8;
+	}
+
+    .respond-calendar .day.active{
+        background-color: #fff;
+    }
+
+		.respond-calendar .day-number{
+			position: absolute;
+  			top: 0;
+  			left: 0;
+  			background-color: #fff;
+  			border-right: 1px solid #ddd;
+  			border-bottom: 1px solid #ddd;
+  			color: #222;
+  			text-align: center;
+  			line-height: 30px;
+  			width: 30px;
+  			height: 30px;
+		}
     
-        .respond-calendar span.day.selected {
+        .respond-calendar .day.selected {
             background-color: #CBE86B;
             border: 1px solid #CBE86B;
             color: #fff;
         }
  
-	.respond-calendar.header span{
-		background-color: #ccc;
-		border: 1px solid #ccc;
+	.respond-calendar .header span{
+		background-color: #ddd;
 		color: #fff;
 		height: 25px;
-		line-height: 25px;		
+		line-height: 25px;
+  		text-align: center;
 	}
