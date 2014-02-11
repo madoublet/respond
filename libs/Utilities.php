@@ -283,7 +283,7 @@ class Utilities
         $now = new DateTime("now", $timeZone);
         $offset = $timeZone->getOffset($now);
         
-        $rss = '<?xml version="1.0" encoding="ISO-8859-1"?>'.
+        $rss = '<?xml version="1.0" encoding="utf-8"?>'.
             '<rss version="2.0">'.
               '<channel>'.
               '<title>'.$site['Name'].' - '.$pageType['TypeP'].'</title>'.
