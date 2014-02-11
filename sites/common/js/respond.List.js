@@ -5,92 +5,133 @@ var respond = respond || {};
 
 respond.List = function(config){
 
-	var url = pageModel.apiEndpoint + '/api/page/published/list';
-	
-	if(config.display == 'blog'){
-        url = pageModel.apiEndpoint + '/api/page/published/blog';
-    }
-    
-    var model = config.model;
-    
-    model[config.id] = ko.observableArray([]);
-            
-    // use an anonymous function to pass the id
-    function updateList(id, display, pageTypeUniqId, category, pageSize, orderBy, siteUniqId, page){
-        
-        $.ajax({
-        	url: url,
+	this.el = config.el;
+
+    function updateList(params){
+           
+		// get the list from the API
+	    $.ajax({
+	    	url: params.url,
 			type: 'POST',
-            dataType: 'JSON',
-			data: {siteUniqId: siteUniqId, pageTypeUniqId: pageTypeUniqId, pageSize: pageSize, orderBy: orderBy, category: category, page: page, language: model.language, prefix: model.prefix()},
+	        dataType: 'JSON',
+			data: params,
 			success: function(data){
 			
 				if(data.length == 0){ // hide pager when we hit the end
-    				$('#pager-'+id).hide();
+					$('#pager-'+params.id).hide();
 				}
 			
-                for(x=0; x<data.length; x++){
-                
-                    if(display=='blog'){
-                
-                        // replace image url
-                        var content = data[x].Content;
-                        
-                        // push page to model
-                        model[id].push({
-                            'pageUniqId': data[x].PageUniqId,
-                            'name': data[x].Name, 
-                            'content': content,
-                            'url': data[x].Url,
-                            'lastModifiedReadable': data[x].LastModifiedReadable,
-                            'lastModified': data[x].LastModified,
-                            'author': data[x].Author
-                            });
-                    }
-                    else{
-                        model[id].push({
-                            'pageUniqId': data[x].PageUniqId,
-                            'name': data[x].Name, 
-                            'desc': data[x].Description,
-                            'url': model.prefix()+data[x].Url,
-                            'hasImage': data[x].HasImage,
-                            'image': model.prefix()+data[x].Image,
-                            'thumb': model.prefix()+data[x].Thumb,
-                            'hasCallout': data[x].HasCallout,
-                            'callout': data[x].Callout
-                            });
-                    }
-                }
-                
-                
+	            for(x=0; x<data.length; x++){
+	            
+	                if(params.display=='blog'){
+	            
+	                    // replace image url
+	                    var content = data[x].Content;
+	                    
+	                    // push page to model
+	                    pageModel[params.id].push({
+	                        'pageUniqId': data[x].PageUniqId,
+	                        'name': data[x].Name, 
+	                        'content': content,
+	                        'url': data[x].Url,
+	                        'lastModifiedReadable': data[x].LastModifiedReadable,
+	                        'lastModified': data[x].LastModified,
+	                        'author': data[x].Author
+	                        });
+	                }
+	                else{
+	                    pageModel[params.id].push({
+	                        'pageUniqId': data[x].PageUniqId,
+	                        'name': data[x].Name, 
+	                        'desc': data[x].Description,
+	                        'url': pageModel.prefix()+data[x].Url,
+	                        'hasImage': data[x].HasImage,
+	                        'image': pageModel.prefix()+data[x].Image,
+	                        'thumb': pageModel.prefix()+data[x].Thumb,
+	                        'hasCallout': data[x].HasCallout,
+	                        'callout': data[x].Callout
+	                        });
+	                }
+	            }
+	            
+	            
 			}
 		});
-    }
-    
-    updateList(config.id, config.display, config.pageTypeUniqId, config.category, config.pageSize, config.orderBy, config.siteUniqId, 0);
-    
-    // handles paging the list
-    $('#pager-'+config.id).on('click', function(){
-        
-        var id = $(this).attr('data-id');
+		
+	}
 	
-		var list = $('#'+id);
-		var label = $(list).attr('data-label');
-        var display = $(list).attr('data-display');
-        var pageTypeUniqId = $(list).attr('data-pagetypeid');
-        var pageSize = $(list).attr('data-length');
-        var orderBy = $(list).attr('data-orderby');
-        var category = $(list).attr('data-category')
-        var page = parseInt($(list).attr('data-page'));
-        var siteUniqId = model.siteUniqId();
+	// build initial params
+	var params = respond.List.BuildParams(this.el);
+	params.page = 0;
+	
+	// create observable array
+	pageModel[params.id] = ko.observableArray([]);
+	
+	// update list
+	updateList(params);
+	
+    // handles paging the list
+    $('#pager-' + $(this.el).attr('id')).on('click', function(){
+    
+    	var id = $(this).attr('data-id');
+		var el = $('#'+id);
+		var page = parseInt($(el).attr('data-page'));
         
-        page += 1; // increment the page
+		// build initial params
+		var params = respond.List.BuildParams(el);
+		params.page = page + 1;
+		$(el).attr('data-page', params.page);
         
-        $(list).attr('data-page', page);
-        
-        updateList(id, display, pageTypeUniqId, category, pageSize, orderBy, siteUniqId, page);
+        updateList(params);
         
     });
 
 
+}
+
+// builds parameters for the API call
+respond.List.BuildParams = function(el){
+
+	// parse element to build the params
+	var params = {
+				id: $(el).attr('id'),
+				label: $(el).attr('data-label'),
+				display: $(el).attr('data-display'),
+				siteUniqId: pageModel.siteUniqId(), 
+				pageTypeUniqId: $(el).attr('data-pagetypeid'), 
+				pageSize: $(el).attr('data-length'), 
+				orderBy: $(el).attr('data-orderby'), 
+				category: $(el).attr('data-category'),
+				language: pageModel.language, 
+				prefix: pageModel.prefix()
+				};
+
+	
+	// set URL based on display
+	var url = pageModel.apiEndpoint + '/api/page/published/list';
+	
+	if(params.display == 'blog'){
+        url = pageModel.apiEndpoint + '/api/page/published/blog';
+    }
+    
+    if(params.display == 'calendar'){
+	    
+	    url = '/api/page/published/calendar';
+	    
+	    // set begin equal to today
+	    var today = moment().startOf('day');
+	    
+	    params.beginDate = today.format('YYYY-MM-DD 00:00:00');
+	    
+	    // 2 weeks
+	    var end = moment().add('days', 14).endOf('day');
+	    
+	    params.endDate = end.format('YYYY-MM-DD 23:59:59'); //two weeks from now by default
+    }
+    
+    // set the url
+    params.url = url;
+    
+	return params;
+    
 }

@@ -70,16 +70,8 @@ var pageModel = {
 			$(els[x]).attr('data-page', '0');
 		    
 		    // create list
-            var list = respond.List({
-            	model: pageModel,
-	            id:	$(els[x]).attr('id'),
-				label: $(els[x]).attr('data-label'),
-				display: $(els[x]).attr('data-display'),
-				pageTypeUniqId: $(els[x]).attr('data-pagetypeid'),
-				pageSize: $(els[x]).attr('data-length'),
-				orderBy: $(els[x]).attr('data-orderby'),
-				category: $(els[x]).attr('data-category'),
-				siteUniqId: pageModel.siteUniqId() 
+            var list = new respond.List({
+            	el: els[x]
 			});                
 		}
 		
@@ -88,7 +80,7 @@ var pageModel = {
 		
 		for(x=0; x<els.length; x++){
 		
-			var featured = respond.Featured({
+			var featured = new respond.Featured({
 				el: els[x]	
 			});  
 		

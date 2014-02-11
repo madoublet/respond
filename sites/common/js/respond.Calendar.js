@@ -9,7 +9,7 @@ respond.Calendar = function(config){
 	this.weeks = config.weeks;
 	
 	var d = new Date();
-	var m_d = moment(d);
+	var m_d = moment(d).startOf('day');
 	
 	var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	var days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -27,7 +27,7 @@ respond.Calendar = function(config){
 	var pastDate = true;
 	var cssClass = '';
 
-	for(x=start; x<(7*weeks)+day+1; x++){
+	for(x=start; x<(7*this.weeks)+day+1; x++){
 		var offset = x - day;
 		
 		var curr_date = new Date();
@@ -38,12 +38,16 @@ respond.Calendar = function(config){
 		curr_date.setMilliseconds(0);
 		var curr_day = curr_date.getDay();
 		
-		var m = moment(curr_date);
+		var m = moment(curr_date).startOf('day');
         
         var diff = m.diff(m_d, 'days');
         
-		if(diff > -2){
+		if(diff >= 0){
 			cssClass = ' active';
+		}
+		
+		if(diff == 0){
+			cssClass += ' today';
 		}
         
 		if(offset==0){
@@ -54,7 +58,7 @@ respond.Calendar = function(config){
 			container += '<span class="day'+cssClass+'" data-date="'+m.format('YYYY-MM-DD')+'">';
 		}
 		
-		container += '<span class="day-number">'+curr_date.getDate()+'</span>';
+		container += '<span class="day-number">'+curr_date.getDate() + '</span>';
 		
 		container += '</span>';
 		

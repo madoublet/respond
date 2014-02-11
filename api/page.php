@@ -1106,7 +1106,7 @@ class PageCalendarResource extends Tonic\Resource {
         
         // get begin and end
         $beginDate = $request['beginDate'];
-        $endDdate = $request['endDate'];
+        $endDate = $request['endDate'];
         
         // get a categoryUniqId (if set)
         $categoryUniqId = '-1';
