@@ -76,6 +76,6 @@
 	define('KNOCKOUT_JS', 'http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js');
     define('TIMEZONEDETECT_JS', '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js');
 	define('STRIPE_JS', 'https://js.stripe.com/v2/');
-	define('MOMENT_JS', 'js/helper/moment-with-langs.min.js');
+	define('MOMENT_JS', APP_URL.'/js/helper/moment-with-langs.min.js');
 
 ?>
