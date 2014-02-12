@@ -20,7 +20,20 @@ respond.List = function(config){
 				if(data.length == 0){ // hide pager when we hit the end
 					$('#pager-'+params.id).hide();
 				}
+				
+				// gets a reference to the calendar
+				var calendar = null;
+				
+				if(params.display=='calendar'){
+				
+					var els = $('.respond-calendar[data-list='+ params.id+ ']');
+					
+					if(els.length>0){
+						calendar = $(els[0]).get(0);
+					}
+				}
 			
+				// iterate through the data
 	            for(x=0; x<data.length; x++){
 	            
 	                if(params.display=='blog'){
@@ -39,7 +52,34 @@ respond.List = function(config){
 	                        'author': data[x].Author
 	                        });
 	                }
+	                else if(params.display=='calendar'){
+	                
+	                	// push page to model
+	                	pageModel[params.id].push({
+	                        'pageUniqId': data[x].PageUniqId,
+	                        'name': data[x].Name, 
+	                        'desc': data[x].Description,
+	                        'url': pageModel.prefix()+data[x].Url,
+	                        'hasImage': data[x].HasImage,
+	                        'image': pageModel.prefix()+data[x].Image,
+	                        'thumb': pageModel.prefix()+data[x].Thumb,
+	                        'hasCallout': data[x].HasCallout,
+	                        'beginDate': data[x].BeginDate,
+	                        'beginDateReadable': data[x].BeginDateReadable,
+	                        'endDate': data[x].EndDate,
+	                        'endDateReadable': data[x].EndDateReadable,
+	                        'callout': data[x].Callout
+	                        });
+	                        
+						respond.Calendar.AddEvent(calendar, 
+							data[x].Name, data[x].Description, 
+							pageModel.prefix()+data[x].Url, 
+							data[x].BeginDate, data[x].EndDate);
+	                        
+	                }
 	                else{
+	                
+	                	// push page to model
 	                    pageModel[params.id].push({
 	                        'pageUniqId': data[x].PageUniqId,
 	                        'name': data[x].Name, 

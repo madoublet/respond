@@ -74,3 +74,29 @@ respond.Calendar = function(config){
     $(this.el).html(container);
     
 }
+
+// adds an event to a calendar, el is a DOM reference to the calendar
+respond.Calendar.AddEvent = function(el, name, description, url, beginDate, endDate){
+
+	// create begin and end from moment
+	var m_begin = moment(beginDate, "YYYY-MM-DD HH:mm:ss");
+	var m_end = moment(endDate, "YYYY-MM-DD HH:mm:ss");
+	
+	var time = m_begin.format('h:mm a') + ' - ' + m_end.format('h:mm a')
+
+	var event = '<div class="event">' +
+					'<h4><a href="' + url + '">' + name + '</a></h4>' +
+					'<h5>' + time + '</h5>' +
+				//	'<p>' + description + '</p>' +
+				'</div>';
+				
+	
+	var els = $(el).find('[data-date='+m_begin.format('YYYY-MM-DD')+']');
+	
+	if(els.length > 0){
+		$(els[0]).append(event);
+	}				
+
+	
+}
+

@@ -8,22 +8,14 @@ respond.Featured = function(config){
 	this.el = config.el;
 
 	var pageUniqId = $(this.el).attr('data-pageuniqid');
-	var context = this;
 		
 	$.ajax({
-		url: pageModel.prefix() + 'fragments/render/' + pageUniqId + '.php',
-		type: 'GET',
-		data: {},
+		url:  pageModel.apiEndpoint + '/api/page/published/featured',
+		type: 'POST',
+		context: this,
+		data: {siteUniqId: pageModel.siteUniqId(), pageUniqId: pageUniqId, prefix: pageModel.prefix(), language: pageModel.language},
 		success: function(data){
-			
-			// replace image url
-            var content = data;
-            var stringToFind = 'sites/' + pageModel.siteFriendlyId() + '/';
-            var stringToReplace = pageModel.prefix();
-            
-            content = pageModel.replaceAll(content, stringToFind, stringToReplace);
-			
-			$(context.el).html(content);
+			$(this.el).html(data);
 		}
 	});
 	
