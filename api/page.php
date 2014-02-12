@@ -475,7 +475,7 @@ class PageUnPublishResource extends Tonic\Resource {
 
             $page = Page::GetByPageUniqId($pageUniqId);
 
-            Page::SetIsActive($pageUniqId, 1);
+            Page::SetIsActive($pageUniqId, 0);
 
             // delete page
             $site = Site::GetBySiteId($page['SiteId']);
@@ -1123,12 +1123,7 @@ class PageCalendarResource extends Tonic\Resource {
 		}
 
 		// set order
-        if($orderBy=='Created'){
-            $orderBy = $orderBy.' DESC';
-        }
-        else{
-            $orderBy = $orderBy.' ASC';
-        }
+        $orderBy = 'BeginDate ASC';
 
         if($pageSize==''){
             $pageSize = 10;
@@ -1190,6 +1185,18 @@ class PageCalendarResource extends Tonic\Resource {
 
             $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
             
+            // create a readable begin date
+            $begin = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
+            $local = new DateTimeZone($site['TimeZone']);
+			$begin->setTimezone($local);
+			$beginReadable = $begin->format('D, M d y h:i a');
+			
+			// create a readable end date
+            $end = DateTime::createFromFormat('Y-m-d H:i:s', $page['EndDate']);
+            $local = new DateTimeZone($site['TimeZone']);
+			$end->setTimezone($local);
+			$endReadable = $end->format('D, M d y h:i a');
+			
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
                     'Name' => _($page['Name']),	// get a translation for name, description, and callout
@@ -1200,6 +1207,10 @@ class PageCalendarResource extends Tonic\Resource {
                     'Image' => $imageUrl,
                     'Thumb' => $thumbUrl,
                     'HasImage' => $hasImage,
+                    'BeginDate' => $begin->format('Y-m-d H:i:s'),
+                    'BeginDateReadable' => $beginReadable,
+                    'EndDate' => $end->format('Y-m-d H:i:s'),
+                    'EndDateReadable' => $endReadable,
                     'LastModified' => $page['LastModifiedDate'],
                     'Author' => $name
                 );
@@ -1213,8 +1224,74 @@ class PageCalendarResource extends Tonic\Resource {
         $response->body = json_encode($pages);
 
         return $response;
+    }
 
-        return new Tonic\Response(Tonic\Response::CREATED);
+}
+
+/**
+ * This is a public API call that shows you the list of pages for the specified parameters in a list format
+ * @uri /page/published/featured
+ */
+class PageFeaturedResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function get() {
+
+        parse_str($this->request->data, $request); // parse request
+        $siteUniqId = $request['siteUniqId'];
+        $pageUniqId = $request['pageUniqId'];
+        $prefix = $request['prefix'];
+        
+        // get language
+        $language = 'en';
+        
+        if(isset($request['language'])){
+        	$language = $request['language'];
+		}
+        
+        $site = Site::GetBySiteUniqId($siteUniqId);
+        
+		// get fragment
+		$fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$pageUniqId.'.php';
+
+        if(file_exists($fragment)){
+        
+        	// set language to the domain for the site
+        	$domain = '../sites/'.$site['FriendlyId'].'/locale';
+			
+			Utilities::SetLanguage($language, $domain);
+			
+        	ob_start(); // start output buffer
+        	
+			textdomain($domain);
+
+		    include $fragment;
+		    $content = ob_get_contents(); // get contents of buffer
+		    
+		    ob_end_clean();
+		    
+		    // fix nested, relative URLs if displayed in the root
+			if($prefix == ''){
+				$content = str_replace('src="../', 'src="', $content);
+				$content = str_replace('href="../', 'href="', $content);	
+			}
+			
+			// update images with sites/[name] to a relative URL
+			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="'.$prefix, $content);
+		    
+            // return html response
+	        $response = new Tonic\Response(Tonic\Response::OK);
+	        $response->contentType = 'text/html';
+	        $response->body = $content;
+	        
+	        return $response;
+        }
+        else{
+	       	return new Tonic\Response(Tonic\Response::NOTFOUND);
+        }
+        
     }
 
 }

@@ -12,6 +12,7 @@
 	        	<img data-bind="attr: {'src': thumb}">
             </a>
             <h4><a data-bind="attr:{'href':url}, text:name"></a></h4>
+            <h5><i class="fa fa-calendar"></i><span data-bind="text:beginDateReadable"></span> &ndash; <span data-bind="text:endDateReadable"></span></h5>
 			<small data-bind="visible: hasCallout, text: callout"></small>
 			<p data-bind="text:desc"></p>
 		</li>
