@@ -87,7 +87,7 @@ var pageModel = {
 		}
         
         // setup maps
-        var els = $('.map');
+        var els = $('.respond-map');
     	
 		for(var x=0; x<els.length; x++){
 			var map = new respond.Map({

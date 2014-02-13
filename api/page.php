@@ -935,6 +935,8 @@ class PageListResource extends Tonic\Resource {
                     'Name' => _($page['Name']),	// get a translation for name, description, and callout
                     'Description' => _($page['Description']),
                     'Callout' => _($page['Callout']),
+                    'Location' => $page['Location'],
+                    'LatLong' => $page['LatLong'],
                     'HasCallout' => $hasCallout,
                     'Url' => $url,
                     'Image' => $imageUrl,

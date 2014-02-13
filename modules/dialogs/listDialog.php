@@ -30,7 +30,7 @@
 					<option value="blog"><?php print _("Blog"); ?></option>
 					<option value="thumbnails"><?php print _("Thumbnails"); ?></option>
 					<option value="calendar"><?php print _("Calendar"); ?></option>
-					<!--<option value="map"><?php print _("Map"); ?></option> -->
+					<option value="map"><?php print _("Map"); ?></option>
 				</select>
 			</div>
 			

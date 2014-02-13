@@ -668,6 +668,10 @@ class Utilities
         $css = '<link href="'.BOOTSTRAP_UNITED_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-united}}', $css, $content);
         
+        // css-bootstrap-yeti
+        $css = '<link href="'.BOOTSTRAP_YETI_CSS.'" rel="stylesheet">'.PHP_EOL;
+        $content = str_replace('{{css-bootstrap-yeti}}', $css, $content);
+        
         // css-fontawesome
         $css = '<link href="'.FONTAWESOME_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-fontawesome}}', $css, $content);
@@ -993,6 +997,14 @@ class Utilities
                         
                         ob_start();
 				        include $root.'sites/common/modules/list-calendar.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+                    }
+                    else if($el->display == 'map'){
+                    	$list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-map.php'; // loads the module
 				        $list = ob_get_contents(); // get content from module
 				        ob_end_clean();
                     }
