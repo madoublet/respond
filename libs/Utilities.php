@@ -138,6 +138,20 @@ class Utilities
 	    closedir($dir); 
 	} 
 	
+	// removes a directory and its files
+	public static function RemoveDirectory($dir) {
+     	
+     	$files = glob($dir.'/*'); // get all file names
+		foreach($files as $file){ // iterate files
+		  if(is_file($file))
+		    unlink($file); // delete file
+		}
+		
+		if (is_dir($dir)) {
+		    rmdir($dir);
+		}
+     	
+	}
 	
 	// saves specified content to a file
 	public static function SaveContent($dir, $filename, $content){
@@ -283,7 +297,7 @@ class Utilities
         $now = new DateTime("now", $timeZone);
         $offset = $timeZone->getOffset($now);
         
-        $rss = '<?xml version="1.0" encoding="ISO-8859-1"?>'.
+        $rss = '<?xml version="1.0" encoding="utf-8"?>'.
             '<rss version="2.0">'.
               '<channel>'.
               '<title>'.$site['Name'].' - '.$pageType['TypeP'].'</title>'.
@@ -1227,7 +1241,7 @@ class Utilities
     
     	// send an email
         $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
         $headers .= 'From: ' . $from . "\r\n" .
             		'Reply-To: ' . $from . "\r\n";
         

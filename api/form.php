@@ -45,7 +45,7 @@ class FormResource extends Tonic\Resource {
             
             // send an email
             $headers  = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
             $headers .= 'From: ' . $site['PrimaryEmail'] . "\r\n" .
                 		'Reply-To: ' . $site['PrimaryEmail'] . "\r\n";
             
