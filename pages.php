@@ -236,15 +236,19 @@
 			
 			<div class="modal-body">
 			
-				<p>
+				<p data-bind="visible: pages().length == 0">
 					<?php print _("Confirm you want to remove:"); ?> <strong id="removePageTypeName">this page type</strong>
+				</p>
+				
+				<p data-bind="visible: pages().length > 0">
+					<?php print _("Please remove all pages first."); ?></strong>
 				</p>
 				
 			</div>
 			
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
-				<button class="primary-button" data-bind="click: removePageType"><?php print _("Remove Type"); ?></button>
+				<button class="primary-button" data-bind="click: removePageType, visible: pages().length == 0"><?php print _("Remove Type"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 			
