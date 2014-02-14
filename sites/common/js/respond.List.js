@@ -117,7 +117,14 @@ respond.List = function(config){
 						if(latitude != null && longitude != null){
 							var mapId = 'list-map-' + params.id;
 							
-							respond.Map.CreatePoint(mapId, latitude, longitude, location);
+							var content = '<div class="content">' +
+											'<h4><a href="' + pageModel.prefix()+data[x].Url + '">' + data[x].Name + '</a></h4>' +
+											'<h5>' + location + '</h5>' +
+											'<p>' + data[x].Description + '</p>' +
+											'</div>';
+							
+							
+							respond.Map.CreatePoint(mapId, latitude, longitude, content);
 						}
 	                }
 	                else{

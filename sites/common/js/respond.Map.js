@@ -23,7 +23,11 @@ respond.Map = function(config){
     var map = new google.maps.Map(document.getElementById(mapId), mapOptions);
 
 	// add it to the associative array
-	respond.maps[mapId] = map;
+	respond.maps[mapId] = {
+		reference:map, 
+		bounds:new google.maps.LatLngBounds(),
+		markers: []
+		};
 	
 	// look for a default address
 	if($(this.el).find('p.map-address span').length > 0){
@@ -49,9 +53,6 @@ respond.Map = function(config){
 // creates and adds a point to a map
 respond.Map.CreatePoint = function(mapId, latitude, longitude, content){
 	
-	// get a reference to the map
-	var map = respond.maps[mapId];
-    
     // create coords
     var coords = new google.maps.LatLng(latitude, longitude);
     
@@ -60,14 +61,43 @@ respond.Map.CreatePoint = function(mapId, latitude, longitude, content){
         content: content
     });
     
-    // center map with coords
-    map.setCenter(coords);
-    
     // create marker
     var marker = new google.maps.Marker({
         position: coords,
-        map: map,
+        map: respond.maps[mapId].reference,
         title: content
     });
+    
+    // push marker to array
+    respond.maps[mapId].markers.push(marker);
+    
+    // set map
+    var map =  respond.maps[mapId].reference;
+    
+	// handle click of marker (future)
+	google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.open(map, marker);
+		});
+    
+    // extend the bounds based on the new marker
+    respond.maps[mapId].bounds.extend(marker.position);
+    
+    // fit the map to the bounds
+    respond.maps[mapId].reference.fitBounds(respond.maps[mapId].bounds);
+
+}
+
+// creates and adds a point to a map
+respond.Map.ClearPoints = function(mapId){
+
+	if(respond.maps[mapId]){
+
+		for (var i = 0; i < respond.maps[mapId].markers.length; i++ ) {
+			respond.maps[mapId].markers[i].setMap(null);
+		}
+		
+		respond.maps[mapId].markers.length = 0;
+		
+	}
 
 }
