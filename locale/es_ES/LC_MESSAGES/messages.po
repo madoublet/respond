@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Respond CMS\n"
 "Report-Msgid-Bugs-To: JOE BORDES joe@tsolucio.com\n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-01-30 12:48-0600\n"
+"PO-Revision-Date: 2014-02-11 12:48-0600\n"
 "Last-Translator: JOE BORDES joe@tsolucio.com\n"
 "Language-Team: JPL TSolucio, S.L.\n"
 "Language: es_ES.utf8\n"
@@ -1015,7 +1015,7 @@ msgstr "No hay usuarios. Pulsa sobre Añadir Usuario para empezar."
 
 #: skuDialog.php:36
 msgid "Not Shipped"
-msgstr "No Enviado"
+msgstr "Sin Envíos"
 
 #: settings.php:368
 msgid "Optionally used to calculate shipping costs"
@@ -1415,7 +1415,7 @@ msgstr "Configuración actualizada correctamente"
 
 #: skuDialog.php:37
 msgid "Shipped"
-msgstr "Enviado"
+msgstr "Con Envíos"
 
 #: settings.php:380
 msgid "Shipping Calculation:"
@@ -2161,3 +2161,16 @@ msgstr "Administrador"
 
 msgid "No Payment Method Configured for Plans"
 msgstr "No hay Métodos de Pago Configurados"
+
+msgid "Small"
+msgstr "Pequeño"
+
+msgid "Medium"
+msgstr "Medio"
+
+msgid "Large"
+msgstr "Grande"
+
+msgid "Size of widget"
+msgstr "Tamaño del elemento"
+
