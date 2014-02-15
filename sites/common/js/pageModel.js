@@ -16,7 +16,14 @@ var pageModel = {
     
     	// get the api and language
     	pageModel.apiEndpoint = $('body').attr('data-api');
-    	pageModel.language = $('html').attr('lang');
+    	var language = $('html').attr('lang');
+    	
+    	if(language != ''){
+	    	pageModel.language = language;
+    	}
+    	
+    	// set language for moment
+    	moment.lang(pageModel.language);
     	
     	// setup the controls
         pageModel.setupProperties();
