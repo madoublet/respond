@@ -10,6 +10,7 @@ respond.Calendar = function(config){
 	
 	var d = new Date();
 	var m_d = moment(d).startOf('day');
+	var m_end = moment(d).startOf('day').add('days', this.weeks*7);
 	
 	var month = moment.months();
 	var days = moment.weekdaysShort();
@@ -18,12 +19,18 @@ respond.Calendar = function(config){
 	
 	var day = d.getDay();
 	
-	var header =  '<div class="header">'
+	// create title
+	var title = '<div class="title">' +
+				 m_d.format('dddd, MMMM Do') + ' - ' + m_end.format('dddd, MMMM Do') +
+				 '<i class="prev fa fa-angle-left"></i><i class="next fa fa-angle-right"></i>' +
+				 '</div>'
+	
+	// create header (weeks)
+	var header =  '<div class="header">';
 	
 	for(x=0; x<days.length; x++){
 		header += '<span>' + days[x] + '</span>';
 	}
-	
 		
 	header += '</div>';
 	
@@ -77,7 +84,7 @@ respond.Calendar = function(config){
     container += '</div></div>';
 
 
-    $(this.el).html(header+container);
+    $(this.el).html(title+header+container);
     
 }
 
