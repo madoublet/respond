@@ -183,24 +183,48 @@ class PageResource extends Tonic\Resource {
         	
         	if($page['SiteId']==$site['SiteId']){ // make sure page is part of the site
         	
-        		$file = '../sites/'.$site['FriendlyId'].'/'.$page['FriendlyId'].'.php';
-        	
+        		// get file location
+        		$path = '../sites/'.$site['FriendlyId'].'/';
+        		
+        		// set draft, publish, render locations
+        		$draft = $path .'fragments/draft/'.$page['PageUniqId'].'.html';
+        		$publish = $path .'fragments/publish/'.$page['PageUniqId'].'.html';
+        		$render = $path .'fragments/render/'.$page['PageUniqId'].'.php';
+        		
+        		// determine if file is in sub-direcotry
 	        	if($page['PageTypeId']!=-1){
 			        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
-			        $file = '../sites/'.$site['FriendlyId'].'/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'].'.php';
+			        $path = '../sites/'.$site['FriendlyId'].'/'.$pageType['FriendlyId'].'/';
 		        }
 		        
-		        //print $file;
-		        
-		        // remove page
-		        Page::Remove($pageUniqId);
+		        // set file
+		        $file = $path.$page['FriendlyId'].'.php';
 		        
 		        // remove file
 		        if(file_exists($file)){
 		        	unlink($file);
 		        }
-
+		        
+		        // remove draft
+		        if(file_exists($draft)){
+		        	unlink($draft);
+		        }
+		        
+				// remove publish
+		        if(file_exists($publish)){
+		        	unlink($publish);
+		        }
+		        
+		        // remove render
+		        if(file_exists($render)){
+		        	unlink($render);
+		        }
+		        
+		        // remove page from the DB
+		        Page::Remove($pageUniqId);
+		        
 				return new Tonic\Response(Tonic\Response::OK);
+			
 	        }
 	        else{
 		        return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
@@ -911,6 +935,8 @@ class PageListResource extends Tonic\Resource {
                     'Name' => _($page['Name']),	// get a translation for name, description, and callout
                     'Description' => _($page['Description']),
                     'Callout' => _($page['Callout']),
+                    'Location' => $page['Location'],
+                    'LatLong' => $page['LatLong'],
                     'HasCallout' => $hasCallout,
                     'Url' => $url,
                     'Image' => $imageUrl,

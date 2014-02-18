@@ -128,16 +128,25 @@ class PageType{
 	}
 	
 	// deletes a pageType
-	public static function Delete($pageTypeUniqId){
+	public static function Delete($pageTypeId){
 		
         try{
             
             $db = DB::get();
             
-            $q = "DELETE FROM PageTypes WHERE PageTypeUniqId = ?";
+            // remove page types
+            $q = "DELETE FROM PageTypes WHERE PageTypeId = ?";
      
             $s = $db->prepare($q);
-            $s->bindParam(1, $pageTypeUniqId);
+            $s->bindParam(1, $pageTypeId);
+            
+            $s->execute();
+            
+            // remove pages associated with that pagetype
+            $q = "DELETE FROM Pages WHERE PageTypeId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $pageTypeId);
             
             $s->execute();
             
