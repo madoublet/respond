@@ -97,7 +97,18 @@ class PageTypeResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
         
-            PageType::Delete($pageTypeUniqId);
+        	$pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
+			$site = Site::GetBySiteId($pageType['SiteId']);
+			
+			// remove pages for that pagetype in that site
+			$dir = '../sites/'.$site['FriendlyId'].'/'.$pageType['FriendlyId'];
+			
+			if(file_exists($dir)){
+				Utilities::RemoveDirectory($dir);
+			}
+		
+			// remove page type and pages from DB
+            PageType::Delete($pageType['PageTypeId']);
 
             return new Tonic\Response(Tonic\Response::OK);
         }

@@ -4,22 +4,35 @@
 var respond = respond || {};
 
 respond.Calendar = function(config){
-	
+
 	this.el = config.el;
 	this.weeks = config.weeks;
 	
 	var d = new Date();
 	var m_d = moment(d).startOf('day');
+	var m_end = moment(d).startOf('day').add('days', this.weeks*7);
 	
-	var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-	var days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-	var days_f = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	var month = moment.months();
+	var days = moment.weekdaysShort();
 	
 	var container = '<div class="respond-calendar-container">';
 	
 	var day = d.getDay();
 	
-	container += '<div class="header"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>';
+	// create title
+	var title = '<div class="title">' +
+				 m_d.format('dddd, MMMM Do') + ' - ' + m_end.format('dddd, MMMM Do') +
+				 '<i class="prev fa fa-angle-left"></i><i class="next fa fa-angle-right"></i>' +
+				 '</div>'
+	
+	// create header (weeks)
+	var header =  '<div class="header">';
+	
+	for(x=0; x<days.length; x++){
+		header += '<span>' + days[x] + '</span>';
+	}
+		
+	header += '</div>';
 	
 	container += '<div class="week">';
 	var start = 0;
@@ -71,7 +84,7 @@ respond.Calendar = function(config){
     container += '</div></div>';
 
 
-    $(this.el).html(container);
+    $(this.el).html(title+header+container);
     
 }
 

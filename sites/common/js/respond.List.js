@@ -77,6 +77,56 @@ respond.List = function(config){
 							data[x].BeginDate, data[x].EndDate);
 	                        
 	                }
+	                else if(params.display=='map'){
+	                
+	                	// get location and latlong
+	                	var location = data[x].Location;
+	                	var latLong = data[x].LatLong;
+	                	var latitude = null;
+	                	var longitude = null;
+	                	
+	                	// parse latitude and longitude
+	                	if(latLong != null && latLong != ''){
+		
+							var point = latLong.replace('POINT(', '').replace(')', '');
+							var arr = point.split(' ');
+						
+							// set latitude and longitude
+							latitude = arr[0];
+							longitude = arr[1];
+						}
+	                
+	                
+	                	// push page to model
+	                    pageModel[params.id].push({
+	                        'pageUniqId': data[x].PageUniqId,
+	                        'name': data[x].Name, 
+	                        'desc': data[x].Description,
+	                        'url': pageModel.prefix()+data[x].Url,
+	                        'location': location,
+	                        'latitude': latitude,
+	                        'longitude': longitude,
+	                        'hasImage': data[x].HasImage,
+	                        'image': pageModel.prefix()+data[x].Image,
+	                        'thumb': pageModel.prefix()+data[x].Thumb,
+	                        'hasCallout': data[x].HasCallout,
+	                        'callout': data[x].Callout
+	                        });
+	                    
+	                    // add a point to the map    
+						if(latitude != null && longitude != null){
+							var mapId = 'list-map-' + params.id;
+							
+							var content = '<div class="content">' +
+											'<h4><a href="' + pageModel.prefix()+data[x].Url + '">' + data[x].Name + '</a></h4>' +
+											'<h5>' + location + '</h5>' +
+											'<p>' + data[x].Description + '</p>' +
+											'</div>';
+							
+							
+							respond.Map.CreatePoint(mapId, latitude, longitude, content);
+						}
+	                }
 	                else{
 	                
 	                	// push page to model
