@@ -2243,8 +2243,6 @@ var editorDefaults = {
 			$(curr).find('[contentEditable=true], input, textarea').focus();
 		}
 		
-		$(this).respondHandleEvents();
-	
 	}
 
 })(jQuery);
