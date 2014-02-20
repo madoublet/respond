@@ -875,7 +875,8 @@ var editorDefaults = {
 			  '</div>'
 			);
 			
-			$(editor).respondHandleEvents();
+			// setup paste filter
+			$('#'+uniqId+' [contentEditable=true]').paste();
 			
 			return false;
 		});
@@ -1693,8 +1694,6 @@ var editorDefaults = {
 					$(this.parentNode.nextSibling).find('div').focus();
 				}
 			
-				$(editor).respondHandleEvents();
-			
 				event.preventDefault();
 				return false;
 			  }
@@ -1749,8 +1748,6 @@ var editorDefaults = {
 		// setup paste
 		$('[contentEditable=true]').paste();
 		
-		// setup events
-		$(this).respondHandleEvents();	
 	}
 
 })(jQuery);
