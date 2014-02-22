@@ -27,7 +27,6 @@ var loadLayoutDialog = {
 				data: {},
 				success: function(data){
 					contentModel.content(data);
-					$('#desc').respondEdit();
 					contentModel.contentLoading(false);
 
 					$('#loadLayoutDialog').modal('hide');
@@ -39,7 +38,9 @@ var loadLayoutDialog = {
 	},
 
 	// shows the slide show dialog
-	show:function(){
+	show:function(editor){
+		loadLayoutDialog.editor = editor;
+	
 		contentModel.updatePages(); // update pages for the dialog
 
 		$('#selectPage').show();

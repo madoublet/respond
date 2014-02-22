@@ -31,7 +31,7 @@ var skuDialog = {
 	   		}
 			
 			var item = '<div id="'+itemId+'" class="shelf-item">'+
-								editorDefaults.elementMenuShelf +
+								respond.defaults.elementMenuShelf +
 								'<div class="shelf-group1">'+
 								'<span class="shelf-description">'+desc+'</span>'+
 								'<span class="shelf-sku">'+sku+'</span>'+
@@ -99,7 +99,7 @@ var skuDialog = {
 			
 		});
 
-		$('#desc').on('click', '.config-shelf', function(){
+		$('body').on('click', '.config-shelf', function(){
 		
 			var item = $(this.parentNode.parentNode);
 		

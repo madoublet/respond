@@ -1,6 +1,7 @@
 // handles the featured dialog on content.php
 var featuredDialog = {
 
+	editor: null,
 	pageUniqId: -1,
 	name: '',
 
@@ -25,29 +26,33 @@ var featuredDialog = {
 			}
 
 			// add featured widget
-			var editor = $('#desc');
-			var uniqId = 'featured'+ ($(editor).find('.featured').length + 1);
+			var editor = featuredDialog.editor;
+			var className = 'featured';
+			var prefix = 'featured';
+		
+			var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 			
 			var html = '<div id="'+uniqId+'" data-pageuniqid="'+featuredDialog.pageUniqId +
 			'" data-pagename="'+featuredDialog.name+'" class="featured">' +
-			editorDefaults.elementMenuNoConfig + 
+			respond.defaults.elementMenuNoConfig + 
 			'<div class="title"><i class="fa fa-star"></i> ' + $('#msg-featured-content').val() + ' '+featuredDialog.name +
 			'</div></div>';
 
-		  $(editor).respondAppend(
-		    html
-		  );
+			respond.Editor.Append(editor,
+				html
+			);
 		  
-		  $(editor).respondHandleEvents();
-
-		  $('#featuredDialog').modal('hide');
+			$('#featuredDialog').modal('hide');
 
 		});
 
 	},
 
 	// shows the slide show dialog
-	show:function(){
+	show:function(editor){
+		
+		featuredDialog.editor = editor;
+	
 		contentModel.updatePages(); // update pages for the dialog
 
 		$('#selectFeaturedPage').show();

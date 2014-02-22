@@ -1,5 +1,6 @@
 var slideshowDialog = {
 
+	editor: null,
 	dialog: null,
 	id: -1,
 
@@ -8,7 +9,7 @@ var slideshowDialog = {
 		slideshowDialog.dialog = $('#slideshowDialog');
 
 		$('#addSlideShow').click(function(){
-			var editor = $('#desc');
+			var editor = slideshowDialog.editor;
 
 			var moduleId = slideshowDialog.id;
 
@@ -16,7 +17,7 @@ var slideshowDialog = {
 			var height = $('#slideShowHeight').val();
 
 			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'">' +
-				editorDefaults.elementMenuNoConfig +
+				respond.defaults.elementMenuNoConfig +
 				'<div class="images"><button type="button" class="add-image"><i class="fa fa-picture-o"></i></button>' +
 				'</div>' +
 				'<em class="size">'+
@@ -24,7 +25,8 @@ var slideshowDialog = {
 				'</em>'+
 				'</div>';
 
-			$(editor).respondAppend(html);
+			respond.Editor.Append(editor,
+				html);
 			
 			// setup sorting on slideshows
 			$('.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
@@ -33,7 +35,9 @@ var slideshowDialog = {
 		});
 	},
 
-	show:function(id){ // shows the dialog
+	show:function(editor, id){ // shows the dialog
+	
+		slideshowDialog.editor = editor;
 
 		$('#slideshowId').val(id);
     	$('#slideShowWidth').val('1024');

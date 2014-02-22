@@ -21,6 +21,7 @@
     .immersive-header h3{
         color: #fff;
         padding: 10px 10px;
+        position: relative;
     }
     
     .immersive-header button.close{
@@ -38,13 +39,27 @@
         overflow: scroll;
     }
     
+    	.immersive-body.full{
+	    	margin-right: 0;
+    	}
+    
     .immersive-body h2{
         font-size: 1.2em;
         color: #ccc;
         padding: 10px 10px;
     }
 
-    
+.immersive-body h4{
+    color: #fff;
+    padding: 10px 10px;
+    margin: 0;
+}  
+
+.immersive-body p{
+    color: #ddd;
+    padding: 10px 10px 20px 10px;
+    margin: 0;
+}  
     
 .imagesDialog .existing{
     display: inline-block;

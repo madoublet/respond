@@ -71,7 +71,13 @@ var contentModel = {
 				contentModel.contentLoading(false);
                 
                 // setup editor
-    			$('#desc').respondEdit();
+    			//$('#desc').respondEdit();
+    			var editor = $('#desc').get(0);
+    			
+    			new respond.Editor({
+	    			el: editor
+    			});
+    			
     			
                 // oh so pretty
                 prettyPrint();
@@ -385,10 +391,12 @@ var contentModel = {
 	saveContent:function(i,e){ // saves the content for the page
 
 		message.showMessage('progress', $('#msg-saving').val());
-
-		var content = $('#desc').respondHtml();
-  
-		var image = $('#desc').respondGetPrimaryImage();
+		
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
+		var image = respond.Editor.GetPrimaryImage(editor);
         
         if(contentModel.previewUrl != ''){
             contentModel.hidePreview();
@@ -413,8 +421,11 @@ var contentModel = {
 
     	message.showMessage('progress', $('#msg-draft-saving').val());
 
-		var content = $('#desc').respondHtml();
-		var image = $('#desc').respondGetPrimaryImage();
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
+		var image = respond.Editor.GetPrimaryImage(editor);
         
         if(contentModel.previewUrl != ''){
             contentModel.hidePreview();
@@ -467,7 +478,10 @@ var contentModel = {
 	preview:function(){ 
 		message.showMessage('progress', $('#msg-saving-draft').val());
 
-		var content = $('#desc').respondHtml();
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
 
 		$.ajax({
 			url: 'api/page/content/preview/'+contentModel.pageUniqId(),

@@ -120,6 +120,8 @@
 
 <?php include 'modules/dialogs/fontAwesomeDialog.php'; ?>
 
+<?php include 'modules/dialogs/layoutDialog.php'; ?>
+
 <div id='aviary-modal'></div>
 
 <div id="overlay"></div>
@@ -140,7 +142,9 @@
 
 <!-- plugins -->
 <script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
+
+<!-- respond.Editor -->
+<script type="text/javascript" src="js/respond.Editor.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
 <script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js?v=<?php print VERSION; ?>"></script>
@@ -161,6 +165,7 @@
 <script type="text/javascript" src="js/dialogs/elementConfigDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/blockConfigDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/aviaryDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/layoutDialog.js?v=<?php print VERSION; ?>"></script>
 
 <!-- page -->
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>" defer="defer"></script>

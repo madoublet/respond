@@ -850,7 +850,7 @@ div.date div{
 }
 
 /* handle hr */
-.block div.hr div{
+.block div.hr .line{
 	border: 0;
 	margin: 0 20px 20px 20px !important;
 	padding: 0 0 25px 0 !important;
@@ -1051,6 +1051,74 @@ div.table tr.curr-row td{
 	height: 250px;
 }
 
+/* layoutDialog */
+.layouts button{
+	position: relative;
+	width: 165px;
+	height: 165px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	vertical-align: top;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 12px;
+}
+
+	.layouts button small{
+		position: absolute;
+		left: 0;
+		bottom: 5px;
+		width: 165px;
+		text-align: center;
+		color: #888;
+	}
+	
+	.layouts .cols{
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		display: block;
+		box-sizing: border-box;
+		width: 145px;
+		height: 125px;
+		border-right: none;
+	}
+	
+		.layouts .cols.wrap{
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			display: block;
+			box-sizing: border-box;
+			width: 145px;
+			height: 125px;
+			border: 2px solid #99B2B7;
+			padding: 2px 0 2px 2px;
+		}
+	
+		.layouts .cols span{
+			box-sizing: border-box;
+			display: block;
+			float: left;
+			height: 117px;
+			border-right: 2px solid #fff;
+			background-color: #E9E9E9;
+		}
+	
+	#layoutDialog .wrap{
+		color: #fff;
+		right: 20px;
+		background-color: #99B2B7;
+		display: inline-block;
+		padding: 5px 10px;
+		border-radius: 10px;
+		font-size: 12px;
+	}
+	
+		#layoutDialog .wrap code{
+			background-color: #E9E9E9;
+			color: #99B2B7;
+		}
 
 @media (min-width: 768px){
 

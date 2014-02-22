@@ -7,6 +7,7 @@
 	?>
 	
 	<div class="sub-menu">
+		<a class="site" target="_blank" href="sites/<?php print $authUser->SiteFriendlyId; ?>" title="<?php print _("View Site"); ?>"><i class="fa fa-eye"></i></a>
     <?php if($authUser->IsSuperAdmin==true){ ?>
         <a class="switch" href="admin" title="<?php print _("Site Admin"); ?>"><i class="fa fa-briefcase"></i></a>
 	<?php } ?>	
