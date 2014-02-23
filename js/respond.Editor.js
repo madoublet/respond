@@ -1049,7 +1049,7 @@ respond.Editor.SetupMenuEvents = function(){
 	$('.editor-menu a.slideshow').click(function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'slideshow';
-		var prefix = 'slideshow';
+		var prefix = 'imagegroup';
 		
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
