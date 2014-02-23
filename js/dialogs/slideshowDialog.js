@@ -11,18 +11,14 @@ var slideshowDialog = {
 		$('#addSlideShow').click(function(){
 			var editor = slideshowDialog.editor;
 
-			var moduleId = slideshowDialog.id;
+			var uniqId = slideshowDialog.id;
 
-			var width = $('#slideShowWidth').val();
-			var height = $('#slideShowHeight').val();
+			var display = $('#slideShowDisplay').val();
 
-			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'">' +
+			var html = '<div id="' + uniqId + '" class="slideshow" data-display="'+display+'">' +
 				respond.defaults.elementMenuNoConfig +
 				'<div class="images"><button type="button" class="add-image"><i class="fa fa-picture-o"></i></button>' +
 				'</div>' +
-				'<em class="size">'+
-				width + 'px x ' + height + 'px' +
-				'</em>'+
 				'</div>';
 
 			respond.Editor.Append(editor,
@@ -33,16 +29,17 @@ var slideshowDialog = {
 
 			$('#slideshowDialog').modal('hide');
 		});
+		
+
 	},
 
 	show:function(editor, id){ // shows the dialog
 	
 		slideshowDialog.editor = editor;
+		slideshowDialog.id = id;
 
-		$('#slideshowId').val(id);
-    	$('#slideShowWidth').val('1024');
-    	$('#slideShowHeight').val('768');
-
+		$('#slideShowDisplay').val('slideshow');
+    
 		$('#slideshowDialog').modal('show'); // show modal
 	 
 	}

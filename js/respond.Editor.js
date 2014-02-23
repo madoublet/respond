@@ -6,6 +6,7 @@ var respond = respond || {};
 // holds current row and node
 respond.currnode = null;
 respond.currrow = null;
+respond.prefix = '';
 
 // set debug
 respond.debug = true;
@@ -476,20 +477,15 @@ respond.Editor.ParseHTML = function(top){
 					
 					// parse SLIDESHOW MODULE
 					if(name=='slideshow'){
-						var width = $(node).attr('width');  
+						var display = $(node).attr('display');  
 					  	
-					  	if(width==undefined || width==''){
-							width = '300';
+					  	if(display==undefined || display==''){
+							display = 'slideshow';
 					  	}
-					  	
-					  	var height = $(node).attr('height'); 
-					  	if(height==undefined || height==''){
-							height = '200';
-					  	}
-					  
+					  					  
 					  	var imgs = $(node).find('img');
 					  
-					  	response+= '<div id="' + id + '" class="slideshow" data-width="'+width+'" data-height="'+height+'">' +
+					  	response+= '<div id="' + id + '" class="slideshow" data-display="'+display+'">' +
 					  		respond.defaults.elementMenuNoConfig +
 					  		'<div class="images">';
 					
@@ -2183,15 +2179,13 @@ respond.Editor.GetContent = function(el){
 				var id = $(divs[x]).attr('id');
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
 	
-				var width = $(divs[x]).attr('data-width');
-				if(width==undefined || width=='')width=300;
-	
-				var height = $(divs[x]).attr('data-height');
-				if(height==undefined || height=='')height=200;
+				// slideshow is the default
+				var display = $(divs[x]).attr('data-display');
+				if(display==undefined || display=='')display='slideshow';
 	
 				var imgs = $(divs[x]).find('span.image img');
 	
-				newhtml += '<module id="'+id+'" name="slideshow" width="'+width+'" height="'+height+'">';
+				newhtml += '<module id="'+id+'" name="slideshow" display="'+display+'">';
 	
 				for(var y=0; y<imgs.length; y++){
 					var imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
@@ -2440,7 +2434,7 @@ respond.Editor.GenerateUniqId = function(el, className, prefix){
 	}
 	
 	var length = $(el).find('.p').length + 1;
-	var uniqId = prefix +'-'+ length;
+	var uniqId = respond.prefix+prefix +'-'+ length;
 	
 	// find a uniqId
 	while($('#'+uniqId).length > 0){

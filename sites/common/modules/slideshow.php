@@ -5,7 +5,7 @@
 	
 ?>
 
-<div id="<?php print $id; ?>" class="carousel slide" data-width="<?php print $width; ?>" data-height="<?php print $height; ?>"  style="max-width: <?php print $width; ?>px">
+<div id="<?php print $id; ?>" class="carousel slide">
 	<div class="carousel-inner">
 		<?php 
 			if($imgHtml){

@@ -71,9 +71,9 @@ var contentModel = {
 				contentModel.contentLoading(false);
                 
                 // setup editor
-    			//$('#desc').respondEdit();
     			var editor = $('#desc').get(0);
     			
+    			// create editor
     			new respond.Editor({
 	    			el: editor
     			});
@@ -457,6 +457,9 @@ var contentModel = {
 			success: function(data){
 
 				var page = Page.create(data);
+				
+				// set the prefix for ids created with respond.Editor.js
+				respond.prefix = page.friendlyId() + '-';
 
 				contentModel.page(page);
 				

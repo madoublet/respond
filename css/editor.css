@@ -732,10 +732,6 @@ div.date div{
 	vertical-align: top;
 }
 
-.block div.slideshow em.size{
-	display: none;
-}
-
 .block div.slideshow button{
 	vertical-align: top;
 	width: 87px;
@@ -792,9 +788,10 @@ div.date div{
 }
 
 .block div.slideshow span.image.edit span.caption{
-	left: -65px;
+	left: 0;
+	bottom: -2px;
 	background: #fff;
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid #f0f0f0;
 }
 
@@ -809,7 +806,7 @@ div.date div{
 
 .block div.slideshow span.image span.caption input:focus{
 	width: 220px;
-	font-size: 10px;
+	font-size: 13px;
 }
 
 .block div.slideshow span.editor-highlight{
