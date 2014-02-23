@@ -1,6 +1,7 @@
 var filesDialog = {
 
 	dialog: null,
+	editor: null,
 
 	init:function(){
 
@@ -24,9 +25,11 @@ var filesDialog = {
         
         var filename = $(file).attr('data-filename');
         
-        $('#desc').respondAppend(
+        var editor = filesDialog.editor;
+        
+        respond.Editor.Append(editor,
 			'<div class="file" data-filename="'+filename+'">' +
-			editorDefaults.elementMenuNoConfig +
+			respond.defaults.elementMenuNoConfig +
 			'<div><i class="in-textbox fa fa-file-o"></i>' +
 			'<input type="text" value="' + $('#msg-files-dialog-download').val() + 
 			' ' +
@@ -37,8 +40,9 @@ var filesDialog = {
         $('#filesDialog').modal('hide'); // show modal
     },
 
-	show:function(){ // shows the dialog
+	show:function(editor){ // shows the dialog
     
+    	filesDialog.editor = editor;
         contentModel.updateFiles();
 		
 	    $('#filesDialog').modal('show'); // show modal

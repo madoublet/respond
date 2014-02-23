@@ -11,6 +11,17 @@ This is the development branch for version 2.8.
 
 New in 2.8:
 - Dates (begin/end) and Spatial (address/lat/long) metadata for pages
+- Thumbnail, calendar and map display for lists
+- Gallery display for Image Groups
+- All generated content available in sites/common/modulels/
+
+Bug fixes:
+- UTF-8 support for languages
+- Better unique element names
+
+Refactoring:
+- js/respond.Editor.js
+- sites
 
 How to update from 2.7:
 - Add Dates and Spatial columns

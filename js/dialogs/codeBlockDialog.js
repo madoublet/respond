@@ -1,22 +1,28 @@
 // handles the plugin configurations dialog on content.php
 var codeBlockDialog = {
 
+	editor: null,
+
 	init:function(){
 	
 		$('#addCode').click(function(){
 		
-			var editor = $('#desc');
-			var uniqId = 'code-'+parseInt(new Date().getTime() / 1000);
+			var editor = codeBlockDialog.editor;
+			var className = 'syntax';
+			var prefix = 'syntax';
+		
+			var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+			
 			var code = $('#Code').val();
 			
 			code = global.replaceAll(code, '<', '&lt;');
 			
 			var html = '<div id="'+uniqId+'" class="syntax">' +
-				editorDefaults.elementMenuNoConfig + 
+				respond.defaults.elementMenuNoConfig + 
 				'<pre class="prettyprint linenums pre-scrollable">' + code + '</pre>' +
 				'<pre class="non-pretty">' + code + '</pre></div>';
 			
-			$(editor).respondAppend(
+			respond.Editor.Append(editor, 
 				html
 			);
 			
@@ -29,7 +35,9 @@ var codeBlockDialog = {
 	},
 	
 	// shows the dialog
-	show:function(){
+	show:function(editor){
+
+		codeBlockDialog.editor = editor;
 	
 		$('#Code').val('');
 	

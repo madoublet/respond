@@ -1,6 +1,8 @@
 // handles the plugins dialog on content.php
 var pluginsDialog = {
 
+	editor: null,
+
 	init:function(){
 		
 		$('#selectPlugin li').live('click',function(){
@@ -17,7 +19,7 @@ var pluginsDialog = {
 				return;
 			}
 			
-			var editor = $('#desc');
+			var editor = pluginsDialog.editor;
 			var uniqId = 'p-'+parseInt(new Date().getTime() / 1000);
 			var name = plugin.attr('data-name');
 			var type = plugin.attr('data-type');
@@ -29,15 +31,15 @@ var pluginsDialog = {
 						'" data-config="'+config+'" class="plugin">';
 			
 			if(config=='true'){
-		        html +=  editorDefaults.elementMenuPlugin;
+		        html +=  respond.defaults.elementMenuPlugin;
 	      	}
 	      	else{
-		        html += editorDefaults.elementMenuNoConfig;
+		        html += respond.defaults.elementMenuNoConfig;
 	      	}
 			
 			html += '<div class="title"><i class="fa fa-cogs"></i> '+name+'</div></div>';
 			
-			$(editor).respondAppend(
+			respond.Editor.Append(editor,
 				html
 				);
 			
@@ -48,7 +50,10 @@ var pluginsDialog = {
 	},
 	
 	// shows the slide show dialog
-	show:function(){
+	show:function(editor){
+	
+		pluginsDialog.editor = editor;
+	
 		contentModel.updatePlugins();
 		
 		$('#pluginsDialog').modal('show');

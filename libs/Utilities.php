@@ -615,10 +615,16 @@ class Utilities
 		$content = str_replace('{{email}}', $site['PrimaryEmail'], $content);
 		
 		// css
-		$stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css?t='.strtotime('now');
-		$css = '<link href="'.$stylesheet.'" type="text/css" rel="stylesheet" media="screen">'.PHP_EOL;
+		$css = '';
         
-        $content = str_replace('{{css}}', $css, $content);
+        $stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css';
+        
+        ob_start();
+        include $root.'sites/common/modules/css.php'; // loads the module
+        $css = ob_get_contents(); // get content from module
+        ob_end_clean();
+		
+		$content = str_replace('{{css}}', $css, $content);
         
         // css-bootstrap
         $css = '<link href="'.BOOTSTRAP_CSS.'" rel="stylesheet">'.PHP_EOL;
@@ -1048,21 +1054,24 @@ class Utilities
                 }
                 else if($name=='slideshow'){
                     $id = $el->id;
-                    $width = $el->width;
-                    $height = $el->height;
-                    $imgList = $el->innertext;
-                    ob_start();
-                    include $root.'sites/common/modules/slideshow.php'; // loads the module
-                    $content = ob_get_contents(); // holds the content
-                    ob_end_clean();
                     
-                    $el->outertext= $content;
-                }
-                else if($name=='gallery'){
-                    $id = $el->id;
+                    $display = 'slideshow';
+                    
+                    if(isset($el->display)){
+	                  $display = $el->display;  
+                    }
+                    
                     $imgList = $el->innertext;
+                    
                     ob_start();
-                    include $root.'sites/common/modules/gallery.php'; // loads the module
+                    
+                    if($display=='gallery'){
+                    	include $root.'sites/common/modules/gallery.php'; // loads the module
+                    }
+                    else{
+	                    include $root.'sites/common/modules/slideshow.php'; // loads the module
+                    }
+                    
                     $content = ob_get_contents(); // holds the content
                     ob_end_clean();
                     

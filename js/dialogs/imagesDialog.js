@@ -1,6 +1,7 @@
 // handles the images dialog on content.php
 var imagesDialog = {
     
+    editor: null,
     moduleId: null,
 
     init:function(){
@@ -46,14 +47,12 @@ var imagesDialog = {
         
         html += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button>';
         
-        $('#desc').find('div#'+imagesDialog.moduleId+' .add-image').remove();
+        $(imagesDialog.editor).find('div#'+imagesDialog.moduleId+' .add-image').remove();
         
-        $('#desc').find('div#'+imagesDialog.moduleId+
+        $(imagesDialog.editor).find('div#'+imagesDialog.moduleId+
         ' div.images').append(
           html
         );
-        
-        $('#desc').respondHandleEvents();
           
       }
       else{ // add image
@@ -62,11 +61,15 @@ var imagesDialog = {
           var href = '';
           
           var html = '<div id="'+divId+'" class="i" data-id="'+divId+'" data-cssclass="">' +
-          				editorDefaults.elementMenu +
+          				respond.defaults.elementMenu +
 		  				imagesDialog.getImageHtml('none', uniqId, src, href, '&nbsp;') +
 		  				'</div>';
           
-          $('#desc').respondAppend(html);
+          var editor = imagesDialog.editor;
+          
+          respond.Editor.Append(editor, 
+          	html
+          );
       }
       
       $('#imagesDialog').modal('hide');
@@ -138,7 +141,9 @@ var imagesDialog = {
 	},
 
     // shows the images dialog
-    show:function(type, moduleId){
+    show:function(editor, type, moduleId){
+    
+    	imagesDialog.editor = editor;
         
         imagesDialog.type = type;
         imagesDialog.moduleId = moduleId;

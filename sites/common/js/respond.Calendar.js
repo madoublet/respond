@@ -7,22 +7,40 @@ respond.Calendar = function(config){
 
 	this.el = config.el;
 	this.weeks = config.weeks;
+
+	var now = moment();
 	
-	var d = new Date();
-	var m_d = moment(d).startOf('day');
-	var m_end = moment(d).startOf('day').add('days', this.weeks*7);
+	// build calendar
+	respond.Calendar.Build(this.el, now, this.weeks);
 	
-	var month = moment.months();
+}
+
+// build calendar
+respond.Calendar.Build = function(el, m_start, weeks){
+	
+	// set begin and end
+	var m_start = m_start.startOf('day');
+	var m_end = moment(m_start).startOf('day').add('days', weeks*7);
+	
+	
+	// build weekdays
 	var days = moment.weekdaysShort();
 	
 	var container = '<div class="respond-calendar-container">';
 	
-	var day = d.getDay();
+	var day = parseInt(m_start.format('d'));
 	
 	// create title
 	var title = '<div class="title">' +
-				 m_d.format('dddd, MMMM Do') + ' - ' + m_end.format('dddd, MMMM Do') +
-				 '<i class="prev fa fa-angle-left"></i><i class="next fa fa-angle-right"></i>' +
+				 m_start.format('dddd, MMMM Do') + ' - ' + m_end.format('dddd, MMMM Do') +
+				 '<i class="prev fa fa-angle-left" ' +
+				 'data-start="' + m_start.format('YYYY-MM-DD HH:mm:ss') + '" data-weeks="' + weeks + '" ' +
+				 'data-list="' + $(el).attr('data-list') + '"' +
+				 '></i>' +
+				 '<i class="next fa fa-angle-right" ' +
+				 'data-start="' + m_start.format('YYYY-MM-DD HH:mm:ss') + '" data-weeks="' + weeks + '" ' +
+				 'data-list="' + $(el).attr('data-list') + '"' +
+				 '></i>' +
 				 '</div>'
 	
 	// create header (weeks)
@@ -35,57 +53,56 @@ respond.Calendar = function(config){
 	header += '</div>';
 	
 	container += '<div class="week">';
-	var start = 0;
 	
 	var pastDate = true;
 	var cssClass = '';
+	
 
-	for(x=start; x<(7*this.weeks)+day+1; x++){
+	for(x=0; x<(7*weeks)+day+1; x++){
+	
+		// create offset
 		var offset = x - day;
 		
-		var curr_date = new Date();
-		curr_date.setDate(d.getDate()+offset);
-		curr_date.setHours(0);
-		curr_date.setMinutes(0);
-		curr_date.setSeconds(0);
-		curr_date.setMilliseconds(0);
-		var curr_day = curr_date.getDay();
+		// get date
+		var curr_date = moment(m_start).add('days', offset);
 		
-		var m = moment(curr_date).startOf('day');
-        
-        var diff = m.diff(m_d, 'days');
+		// current day
+		var curr_day = parseInt(curr_date.format('d'));
+		
+		// difference b/w days
+        var diff = curr_date.diff(m_start, 'days');
         
 		if(diff >= 0){
 			cssClass = ' active';
 		}
 		
-		if(diff == 0){
+		if(moment(curr_date).isSame(moment(), 'day')){
 			cssClass += ' today';
 		}
         
 		if(offset==0){
-			container += '<span class="day'+cssClass+'" data-date="'+m.format('YYYY-MM-DD')+'">';
+			container += '<span class="day'+cssClass+'" data-date="'+curr_date.format('YYYY-MM-DD')+'">';
 			pastDate = true;
 		}
 		else{
-			container += '<span class="day'+cssClass+'" data-date="'+m.format('YYYY-MM-DD')+'">';
+			container += '<span class="day'+cssClass+'" data-date="'+curr_date.format('YYYY-MM-DD')+'">';
 		}
 		
-		container += '<span class="day-number">'+curr_date.getDate() + '</span>';
+		container += '<span class="day-number">'+curr_date.format('D') + '</span>';
 		
 		container += '</span>';
 		
 		if((x+1)%7==0){
 			container+='</div><div class="week">';
 		}
-	
+		
     }
 
     container += '</div></div>';
 
 
-    $(this.el).html(title+header+container);
-    
+    $(el).html(title+header+container);
+	
 }
 
 // adds an event to a calendar, el is a DOM reference to the calendar

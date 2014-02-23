@@ -126,6 +126,9 @@ var pageModel = {
         
         // setup pretty print
         prettyPrint();
+        
+        // setup fancy box
+        $('.gallery-image').fancybox();
     }
 }
 

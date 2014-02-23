@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.8');
+	define('VERSION', '2.8.1');
 
 	// debugging
 	define('DEBUG', true);
@@ -32,6 +32,7 @@
 	define('BOOTSTRAP_SPACELAB_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css');
 	define('BOOTSTRAP_UNITED_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css');
 	define('BOOTSTRAP_YETI_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.0/yeti/bootstrap.min.css');
+	define('FANCYBOX_CSS', '//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css');
 	
 	// js libraries
 	define('BOOTSTRAP_JS', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js');
@@ -43,6 +44,7 @@
 	define('MOMENT_JS', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment-with-langs.min.js');
     define('TIMEZONEDETECT_JS', '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js');
 	define('STRIPE_JS', 'https://js.stripe.com/v2/');
+	define('FANCYBOX_JS', '//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.js');
     
     // include data-access objects
 	require_once 'dao/DB.php';
