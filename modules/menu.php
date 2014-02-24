@@ -7,12 +7,12 @@
 	?>
 	
 	<div class="sub-menu">
+		<a class="site" target="_blank" href="sites/<?php print $authUser->SiteFriendlyId; ?>" title="<?php print _("View Site"); ?>"><i class="fa fa-eye"></i></a>
     <?php if($authUser->IsSuperAdmin==true){ ?>
         <a class="switch" href="admin" title="<?php print _("Site Admin"); ?>"><i class="fa fa-briefcase"></i></a>
 	<?php } ?>	
 	<?php if($authUser->Role=='Admin'){ ?>
-    	<a class="files" href="<?php print $path_prefix; ?>files" title="<?php print _("Files"); ?>"><i class="fa fa-folder-open"></i></a>
-		<a class="republish publish-site" title="<?php print _("Re-publish Site"); ?>"><i class="fa fa-refresh"></i></a>
+    	<a class="republish publish-site" title="<?php print _("Re-publish Site"); ?>"><i class="fa fa-refresh"></i></a>
 	<?php } ?>	
 		<a class="signout" href="<?php print $path_prefix; ?>logout" title="<?php print _("Sign Out"); ?>"><i class="fa fa-power-off"></i></a>
 		<a class="hide-menu" title="<?php print _("Close Menu"); ?>"><i class="fa fa-times"></i></a>
@@ -26,6 +26,9 @@
     	<li class="menu-menu"><a href="<?php print $path_prefix; ?>menus"><i class="fa fa-bars"></i> <?php print _("Menus"); ?></a></li>
 		<li class="menu-theme"><a href="<?php print $path_prefix; ?>theme"><i class="fa fa-desktop"></i> <?php print _("Theme"); ?></a></li>
     	<li class="menu-branding"><a href="<?php print $path_prefix; ?>branding"><i class="fa fa-certificate"></i> <?php print _("Branding"); ?></a></li>
+    <?php if($authUser->Role=='Admin'){ ?>	
+    	<li class="menu-files"><a href="<?php print $path_prefix; ?>files"><i class="fa fa-folder-open"></i> <?php print _("Files"); ?></a></li>
+    <?php } ?>	
 		<li class="menu-users"><a href="<?php print $path_prefix; ?>users"><i class="fa fa-user"></i> <?php print _("Users"); ?></a></li>
 		<li class="menu-account"><a href="<?php print $path_prefix; ?>account"><i class="fa fa-key"></i> <?php print _("Account"); ?></a></li>
 	</ul>

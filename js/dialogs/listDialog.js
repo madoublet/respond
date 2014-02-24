@@ -1,5 +1,6 @@
 var listDialog = {
 
+	editor: null,
 	dialog: null,
 	mode: null, 
 	moduleId: null,
@@ -10,7 +11,7 @@ var listDialog = {
 
 		$('#addList').click(function(){
             
-			var editor = $('#desc');
+			var editor = listDialog.editor;
 			
 			var pageTypeUniqId = $('#listPageType').val();
 			
@@ -34,16 +35,14 @@ var listDialog = {
 							' data-label="' + 
 							label +
 							'">' + 
-							editorDefaults.elementMenuList +
+							respond.defaults.elementMenuList +
 							'<div class="title"><i class="fa fa-bars"></i> List ' + 
 							label + 
 							'</div></div>';
 			
-			$(editor).respondAppend(
+			respond.Editor.Append(editor,
 				html
 			);
-			
-			$(editor).respondHandleEvents();
 			
 			$('#listDialog').modal('hide');
 		});
@@ -54,7 +53,7 @@ var listDialog = {
 			var pageTypeUniqId = listDialog.pageTypeUniqId;
 			var moduleId = listDialog.moduleId;
 			
-			var editor = $('#desc');
+			var editor = listDialog.editor;
 			
 			var desclength = parseInt($('#listDescLength').val());
 			
@@ -76,8 +75,9 @@ var listDialog = {
 		});
 	},
 
-	show:function(mode, moduleId){ // shows the dialog
+	show:function(editor, mode, moduleId){ // shows the dialog
 
+		listDialog.editor = editor;
 		listDialog.mode = mode;
 		listDialog.moduleId = moduleId;
 

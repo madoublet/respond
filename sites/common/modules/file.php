@@ -5,17 +5,17 @@
 ?>
 
 <?php
-	$file_icon = 'icon-file';
+    $file_icon = 'fa fa-file-text-o';
 
-	if($ext=='pdf'){
-		$file_icon = 'icon-file';
-	}
-	else if($ext=='doc' || $ext=='docx'){
-		$file_icon = 'icon-file-text';
-	}
-	else if($ext=='png' || $ext=='jpg' || $ext=='jpeg' || $ext='gif'){
-		$file_icon = 'icon-picture';
-	}
+    if($ext=='pdf'){
+        $file_icon = 'fa fa-file-text-o';
+    }
+    else if($ext=='doc' || $ext=='docx'){
+        $file_icon = 'fa fa-file-text-o';
+    }
+    else if($ext=='png' || $ext=='jpg' || $ext=='jpeg' || $ext='gif'){
+        $file_icon = 'fa fa-picture-o';
+    }
 ?>
 
 <p class="file">

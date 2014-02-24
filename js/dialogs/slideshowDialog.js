@@ -1,5 +1,6 @@
 var slideshowDialog = {
 
+	editor: null,
 	dialog: null,
 	id: -1,
 
@@ -8,37 +9,37 @@ var slideshowDialog = {
 		slideshowDialog.dialog = $('#slideshowDialog');
 
 		$('#addSlideShow').click(function(){
-			var editor = $('#desc');
+			var editor = slideshowDialog.editor;
 
-			var moduleId = slideshowDialog.id;
+			var uniqId = slideshowDialog.id;
 
-			var width = $('#slideShowWidth').val();
-			var height = $('#slideShowHeight').val();
+			var display = $('#slideShowDisplay').val();
 
-			var html = '<div id="' + moduleId + '" class="slideshow" data-width="'+width+'" data-height="'+height+'">' +
-				editorDefaults.elementMenuNoConfig +
+			var html = '<div id="' + uniqId + '" class="slideshow" data-display="'+display+'">' +
+				respond.defaults.elementMenuNoConfig +
 				'<div class="images"><button type="button" class="add-image"><i class="fa fa-picture-o"></i></button>' +
 				'</div>' +
-				'<em class="size">'+
-				width + 'px x ' + height + 'px' +
-				'</em>'+
 				'</div>';
 
-			$(editor).respondAppend(html);
+			respond.Editor.Append(editor,
+				html);
 			
 			// setup sorting on slideshows
 			$('.slideshow div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
 
 			$('#slideshowDialog').modal('hide');
 		});
+		
+
 	},
 
-	show:function(id){ // shows the dialog
+	show:function(editor, id){ // shows the dialog
+	
+		slideshowDialog.editor = editor;
+		slideshowDialog.id = id;
 
-		$('#slideshowId').val(id);
-    	$('#slideShowWidth').val('1024');
-    	$('#slideShowHeight').val('768');
-
+		$('#slideShowDisplay').val('slideshow');
+    
 		$('#slideshowDialog').modal('show'); // show modal
 	 
 	}

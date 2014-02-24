@@ -1,4 +1,4 @@
-<?php	
+<?php
 	include 'app.php';
 	
 	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)
@@ -12,7 +12,7 @@
 
 <head>
 	
-<title><?php print _("Error"); ?>&mdash;<?php print BRAND; ?></title>
+<title><?php print _("Login"); ?>&mdash;<?php print BRAND; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -25,14 +25,20 @@
 
 <body>
 
+<!-- messages -->
+<input id="msg-progress" value="<?php print _("Login..."); ?>" type="hidden">
+<input id="msg-error" value="<?php print _("Access Denied"); ?>" type="hidden">
+		
 <!-- begin content -->
 <div class="content">
 
     <h1><span class="brand"><?php print BRAND; ?></span></h1>
-	<div><img alt="<?php print _("Error"); ?>" src="images/error404.png">
-	<p><?php print _("There seems to be some error accessing the database or configuration files.");?><br>
-	<?php print _("Please review the installation steps and the test configuration screen.");?></p>
-	</div>
+
+    <p>
+    	<?php print _("You have reached this page because of an error in your configuration.  Please review your configuration. To review installation instructions, visit:"); ?>
+    	<a href="http://respondcms.com/documentation/installation">http://respondcms.com/documentation/installation</a>
+    </p>
+    
     <small><?php print COPY; ?></small>
 
 </div>
