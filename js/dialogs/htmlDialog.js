@@ -43,7 +43,7 @@ var htmlDialog = {
 			}
 			else{
 				$('#'+htmlDialog.moduleId).attr('data-desc', desc);
-				$('#'+htmlDialog.moduleId).find('div').html('<i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i>');
+				$('#'+htmlDialog.moduleId).find('div.title').html('<i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i>');
 				$('#'+htmlDialog.moduleId).find('.non-pretty').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').removeClass('prettyprinted');
