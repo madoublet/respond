@@ -20,7 +20,7 @@ jQuery.fn.swap = function(b){
 };
 
 // set debug
-respond.debug = true;
+respond.debug = false;
 
 // defaults
 respond.defaults = {
@@ -361,17 +361,24 @@ respond.Editor.ParseHTML = function(top){
 			  	// parse DIV
 			  	if(node.nodeName=='DIV'){
 					var className = $(node).attr('class');
+					var p_classname = $(node).attr('class'); // parsed classname
 	
-					if(className=='l-image'){
+					if(className.indexOf('l-image')!=-1){
 						className = ' left';
+						p_classname =  global.replaceAll(p_classname, 'l-image', '');
 					}
-					else if(className=='r-image'){
+					else if(className.indexOf('r-image')!=-1){
 						className = ' right';
+						p_classname =  global.replaceAll(p_classname, 'r-image', '');
 					}
-					else if(className=='o-image'){
+					else if(className.indexOf('o-image')!=-1){
 						className = '';
+						p_classname =  global.replaceAll(p_classname, 'o-image', '');
 					}
-	
+					
+					// trim any whitespace
+					p_classname = $.trim(p_classname);
+					
 					var rel = $(node).find('a').attr('rel');
 					
 					if(rel==undefined || rel==''){
@@ -402,7 +409,7 @@ respond.Editor.ParseHTML = function(top){
 		  
 				  	if(className==' left'){
 						response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
-										' data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+										' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
 										respond.defaults.elementMenu;
 										
 						if(href==undefined){
@@ -416,7 +423,7 @@ respond.Editor.ParseHTML = function(top){
 				  	}
 				  	else if(className==' right'){
 						response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
-										' data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+										' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
 										respond.defaults.elementMenu;
 						response+='<div class="content" contentEditable="true">' + html + '</div>';
 						if(href==undefined){
@@ -428,7 +435,7 @@ respond.Editor.ParseHTML = function(top){
 						response+='</div>';
 				  	}
 				  	else{
-						response+= '<div id="'+id+'" class="i"'+constraints+' data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+						response+= '<div id="'+id+'" class="i"'+constraints+' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
 										respond.defaults.elementMenu;
 						if(href==undefined){
 					  		response+= '<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
@@ -1451,7 +1458,6 @@ respond.Editor.SetupMenuEvents = function(){
 		
 }
 
-
 // sets up persistent events for the ediotr
 respond.Editor.SetupPersistentEvents = function(el){
 	
@@ -1766,11 +1772,19 @@ respond.Editor.SetupPersistentEvents = function(el){
 		
 				html += '</tr>';
 				
-				var tr = $(this).parents('tr')[0];
+				// for headers (TH) prepend the row to the tbody
+				if($(this).get(0).nodeName == 'TH'){
 				
-				$(tr).after(html);
-		
-				$(tr).next().find('[contentEditable=true]').get(0).focus();
+					$(el).find('tbody').prepend(html);
+					$(el).find('tbody').find('[contentEditable=true]').get(0).focus();
+				}
+				else{ // for non-headers, insert the row after the current row
+					var tr = $(this).parents('tr')[0];
+					
+					$(tr).after(html);
+			
+					$(tr).next().find('[contentEditable=true]').get(0).focus();
+				}
 			}
 			else{
 				$(el).after(
@@ -2145,7 +2159,13 @@ respond.Editor.GetContent = function(el){
 			// generate images
 			if($(divs[x]).hasClass('i')){
 				var id = $(divs[x]).attr('data-id');
+				var cssclass = $.trim($(divs[x]).attr('data-cssclass'));
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				
+				// add a space to separate class
+				if(cssclass != ''){
+					cssclass = ' ' + cssclass;
+				}
 	
 				var dir = 'o';
 				if($(divs[x]).hasClass('right')){
@@ -2155,21 +2175,12 @@ respond.Editor.GetContent = function(el){
 					dir = 'l';
 				}
 		  
-				var constraints = '';
-				var width = $(divs[x]).attr('data-width');
-				var height = $(divs[x]).attr('data-height');
-				if(width!=''&&height!=''){
-					if(!isNaN(width)&&!isNaN(height)){ // set constraints
-						constraints = ' data-width="'+width+'" data-height="'+height+'"';
-					}
-	  			}
-		  
 				var i_id = $(divs[x]).find('img').attr('id');
 				var src = $(divs[x]).find('img').attr('src');
 				var url = $(divs[x]).find('img').attr('data-url');
 				var h = jQuery.trim($(divs[x]).find('div.content').html());
-	   
-		  		newhtml += '<div id="'+id+'" class="'+dir+'-image"'+constraints+'>';
+				
+		  		newhtml += '<div id="'+id+'" class="'+dir+'-image'+cssclass+'">';
 		  		if(url!=undefined){
 					newhtml += '<a href="'+url+'"';
 					newhtml += '>';
