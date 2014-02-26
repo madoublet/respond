@@ -2,6 +2,7 @@
 var loadLayoutDialog = {
 
 	pageUniqId: -1,
+	editor: null,
 
 	init:function(){
 		
@@ -28,6 +29,9 @@ var loadLayoutDialog = {
 				success: function(data){
 					contentModel.content(data);
 					contentModel.contentLoading(false);
+					
+					// create editor
+	    			respond.Editor.Refresh(loadLayoutDialog.editor);
 
 					$('#loadLayoutDialog').modal('hide');
 				}
