@@ -122,6 +122,8 @@
 
 <?php include 'modules/dialogs/layoutDialog.php'; ?>
 
+<?php include 'modules/dialogs/loadLayoutDialog.php'; ?>
+
 <div id='aviary-modal'></div>
 
 <div id="overlay"></div>

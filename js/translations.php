@@ -51,6 +51,8 @@ var i18njsstrings = {
 	'plugins':"<?php echo _("Plugins"); ?>",
 	'settings':"<?php echo _("Page Settings"); ?>",
 	'preview':"<?php echo _("Preview"); ?>",
+	'load':"<?php echo _("Load Existing Page"); ?>",
+	'layout':"<?php echo _("Add New Columnar Layout"); ?>",
 	'cols55':"<?php echo _("Add a 50/50 Column Layout"); ?>",
 	'cols100':"<?php echo _("Add a Full Column Layout"); ?>",
 	'cols73':"<?php echo _("Add a 70/30 Column Layout"); ?>",
