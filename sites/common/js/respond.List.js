@@ -196,7 +196,9 @@ respond.List.Update = function(params){
                         'url': data[x].Url,
                         'lastModifiedReadable': data[x].LastModifiedReadable,
                         'lastModified': data[x].LastModified,
-                        'author': data[x].Author
+                        'author': data[x].Author,
+                        'hasPhoto': data[x].HasPhoto,
+                        'photo': pageModel.prefix()+data[x].Photo
                         });
                 }
                 else if(params.display=='calendar'){
@@ -215,7 +217,10 @@ respond.List.Update = function(params){
                         'beginDateReadable': data[x].BeginDateReadable,
                         'endDate': data[x].EndDate,
                         'endDateReadable': data[x].EndDateReadable,
-                        'callout': data[x].Callout
+                        'callout': data[x].Callout,
+                        'author': data[x].Author,
+                        'hasPhoto': data[x].HasPhoto,
+                        'photo': pageModel.prefix()+data[x].Photo
                         });
                         
 					respond.Calendar.AddEvent(calendar, 
@@ -257,7 +262,10 @@ respond.List.Update = function(params){
                         'image': pageModel.prefix()+data[x].Image,
                         'thumb': pageModel.prefix()+data[x].Thumb,
                         'hasCallout': data[x].HasCallout,
-                        'callout': data[x].Callout
+                        'callout': data[x].Callout,
+                        'author': data[x].Author,
+                        'hasPhoto': data[x].HasPhoto,
+                        'photo': pageModel.prefix()+data[x].Photo
                         });
                     
                     // add a point to the map    
@@ -286,7 +294,10 @@ respond.List.Update = function(params){
                         'image': pageModel.prefix()+data[x].Image,
                         'thumb': pageModel.prefix()+data[x].Thumb,
                         'hasCallout': data[x].HasCallout,
-                        'callout': data[x].Callout
+                        'callout': data[x].Callout,
+                        'author': data[x].Author,
+                        'hasPhoto': data[x].HasPhoto,
+                        'photo': pageModel.prefix()+data[x].Photo
                         });
                 }
             }

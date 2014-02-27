@@ -39,6 +39,8 @@ var contentModel = {
     icons: ko.observableArray([]),
     iconsLoading: ko.observable(false),
     
+    fullUrl: ko.observable(''),
+    
     previewUrl: '',
 
 	init:function(){ // initializes the model
@@ -457,6 +459,13 @@ var contentModel = {
 			success: function(data){
 
 				var page = Page.create(data);
+				
+				// build URL
+				var domain = $('body').attr('data-domain');
+				var url = 'http://'+domain+'/'+data.Url;
+				
+				// set fullUrl
+				contentModel.fullUrl(url);
 				
 				// set the prefix for ids created with respond.Editor.js
 				respond.prefix = page.friendlyId() + '-';

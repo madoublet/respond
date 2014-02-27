@@ -36,7 +36,7 @@ Site.create = function(data){
 }
 
 // models a user
-function User(userId, userUniqId, email, password, firstName, lastName, role, language, created, token){
+function User(userId, userUniqId, email, password, firstName, lastName, photoUrl, role, language, created, token){
 
     var self = this;
 
@@ -46,10 +46,21 @@ function User(userId, userUniqId, email, password, firstName, lastName, role, la
     self.password = ko.observable(password);
     self.firstName = ko.observable(firstName);
     self.lastName = ko.observable(lastName);
+    self.photoUrl = ko.observable(photoUrl);
     self.role = ko.observable(role);
     self.language = ko.observable(language);
     self.created = ko.observable(created);
     self.token = ko.observable(token);
+    
+    self.hasPhotoUrl = ko.computed(function(){
+    	if(self.photoUrl() == '' || self.photoUrl() == null || self.photoUrl() == undefined){
+	    	return false;
+    	}
+    	else{
+	    	return true;
+    	}
+	});
+    
     
     self.fullName = ko.computed(function(){
     	return self.firstName() + ' ' + self.lastName();
@@ -65,8 +76,7 @@ function User(userId, userUniqId, email, password, firstName, lastName, role, la
 // creates a user based on data returned from the API
 User.create = function(data){
 
-	return new User(data['UserId'], data['UserUniqId'], data['Email'], data['Password'], data['FirstName'], data['LastName'], data['Role'], data['Language'],
-                    data['Created'], data['Token']);
+	return new User(data['UserId'], data['UserUniqId'], data['Email'], data['Password'], data['FirstName'], data['LastName'], data['PhotoUrl'],  data['Role'], data['Language'], data['Created'], data['Token']);
 }
 
 

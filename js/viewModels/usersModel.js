@@ -4,6 +4,12 @@ var usersModel = {
 	users: ko.observableArray([]),
 	usersLoading: ko.observable(true),
 	
+	images: ko.observableArray([]),
+    imagesLoading: ko.observable(false),
+    
+    newimages: ko.observableArray([]),
+
+	
     languages: ko.observableArray([]),
 
 	toBeRemoved: null,
@@ -12,6 +18,25 @@ var usersModel = {
 	init:function(){ // initializes the model
 		usersModel.updateLanguages();
 		usersModel.updateUsers();	
+		
+		$("#drop").dropzone({ 
+            url: "api/file/post",
+            success: function(file, response){
+                var image = jQuery.parseJSON(response);
+                
+                var filename = image.filename;
+    
+                var match = ko.utils.arrayFirst(brandingModel.images(), function (item) {
+                                return item.filename === filename; 
+                            });
+                                
+                if (!match) {
+                    brandingModel.images.push(image); 
+                    brandingModel.newimages.push(image); 
+                }
+            }
+            
+        });
 
 		ko.applyBindings(usersModel);  // apply bindings
 	},
@@ -228,6 +253,68 @@ var usersModel = {
     	    $('#deleteDialog').modal('hide');
           }
         });
+        
+    },
+    
+    setImage:function(o, e){
+    
+        var photoUrl = o.filename;
+        
+        message.showMessage('progress', $('#msg-updating').val());
+        
+		$.ajax({
+			url: 'api/user/photo/',
+			type: 'POST',
+			data: {userUniqId: usersModel.toBeEdited.userUniqId(), photoUrl:photoUrl},
+			dataType: 'json',
+			success: function(data){
+     
+                message.showMessage('success', $('#msg-updated').val());
+                
+                $('#imagesDialog').modal('hide');
+                
+                // update model
+                usersModel.updateUsers();
+
+			}
+		});
+        
+    },
+    
+    showImagesDialog:function(o, e){
+    
+    	usersModel.toBeEdited = o;
+        
+        $('#imagesDialog').modal('show');
+        
+        usersModel.images.removeAll();
+    	usersModel.imagesLoading(true);
+
+		$.ajax({
+			url: 'api/image/list/all',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+     
+                for(x in data){
+            
+    				var image = {
+        			    'filename': data[x].filename,
+                        'fullUrl': data[x].fullUrl,
+                        'thumbUrl': data[x].thumbUrl,
+                        'extension': data[x].extension,
+                        'mimetype': data[x].mimetype,
+                        'isImage': data[x].isImage,
+                        'width': data[x].width,
+                        'height': data[x].height
+    				};
+                
+					usersModel.images.push(image); 
+				}
+
+			}
+		});
         
     }
 }

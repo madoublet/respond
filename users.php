@@ -18,10 +18,12 @@
 
 <!-- include css -->
 <?php include 'modules/css.php'; ?>
+<link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
-<body data-currpage="users">
+<body data-currpage="users" data-sitefriendlyid="<?php print $authUser->SiteFriendlyId; ?>">
 
 <?php include 'modules/menu.php'; ?>
 
@@ -47,12 +49,13 @@
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
     </nav>
 
-    <div class="list" data-bind="foreach: users">
+    <div class="list has-photo" data-bind="foreach: users">
     
         <div class="listItem" data-bind="attr: { 'data-id': userUniqId}">
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
                 <i class="fa fa-minus-circle fa-lg"></i>
             </a>
+            <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
     		<h2><a data-bind="text:fullName, click: $parent.showEditDialog"></a></h2>
             <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
     	</div>
@@ -68,6 +71,8 @@
 
 </section>
 <!-- /.main -->
+
+<?php include 'modules/dialogs/imagesDialog.php'; ?>
 
 <div class="modal fade" id="addEditDialog">
 
@@ -196,6 +201,7 @@
 
 <!-- include js -->
 <?php include 'modules/js.php'; ?>
+<script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/usersModel.js?v=<?php print VERSION; ?>"></script>
 

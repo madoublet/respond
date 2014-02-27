@@ -117,7 +117,7 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="form fa fa-check" title="'+t('addForm')+'" data-target="'+id+'"></a>' +
 				'<a class="html fa fa-html5" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
 				'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
-				'<a class="plugins fa fa-cogs" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
+				'<a class="plugins" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
 				'<a class="load fa fa-upload" title="'+t('load')+'" data-target="'+id+'"></a>' +
 				'<a class="layout fa fa-columns" title="'+t('layout')+'" data-target="'+id+'"></a>';
 	

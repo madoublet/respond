@@ -121,6 +121,29 @@ class User{
         } 
 	}
 	
+	// edits the photo
+    public static function EditPhoto($userUniqId, $photoUrl){
+
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Users SET 
+                    PhotoUrl= ?
+                    WHERE UserUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $photoUrl);
+            $s->bindParam(2, $userUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[User::EditPhoto] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
 	// edits a user profile
 	public static function EditProfile($userUniqId, $email, $password, $firstName, $lastName, $language){
 		
@@ -243,7 +266,7 @@ class User{
 
             $db = DB::get();
             
-            $q = "SELECT Users.UserId, Users.UserUniqId, Users.Email, Users.FirstName, Users.LastName, 
+            $q = "SELECT Users.UserId, Users.UserUniqId, Users.Email, Users.FirstName, Users.LastName, Users.PhotoUrl, 
         		    Users.Role, Users.Language, Users.SiteId, Users.Created
     			    FROM Users
     			    WHERE Users.SiteId=? ORDER BY Users.LastName";
@@ -274,7 +297,7 @@ class User{
          
             $db = DB::get();
             
-            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, PhotoUrl,
             		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE Email=?";
             
@@ -319,7 +342,7 @@ class User{
     	
     		$db = DB::get();
             
-            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, PhotoUrl,
             		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE Email=?";
                     
@@ -347,7 +370,7 @@ class User{
         
     		$db = DB::get();
             
-            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, PhotoUrl,
             		Role, Language, SiteId, Created 
         			FROM Users WHERE Token=?";
                     
@@ -375,7 +398,7 @@ class User{
         
         	$db = DB::get();
             
-            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, PhotoUrl,
             		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE UserUniqId=?";
                     
@@ -403,7 +426,7 @@ class User{
         
             $db = DB::get();
             
-            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, 
+            $q = "SELECT UserId, UserUniqId, Email, Password, FirstName, LastName, PhotoUrl,
             		Role, Language, SiteId, Created, Token 
         			FROM Users WHERE UserId=?";
                     
