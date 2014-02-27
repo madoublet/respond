@@ -12,6 +12,12 @@ div.listItem{
 	margin: 0;
 }
 
+	div.list.has-photo div.listItem{
+		min-height: 105px;
+		padding-left: 105px;
+		padding-top: 27px;
+	}
+
 div.listItem:last-child{
   	border-bottom: none;
 }
@@ -151,6 +157,35 @@ div.listItem button{
 	top: 15px;
 	right: 20px;
 }
+
+div.listItem button.update-photo{
+	box-sizing: border-box;
+	right: auto;
+	left: 20px;
+	width: 65px;
+	height: 65px;
+	padding-top: 4px;
+	background-color: #fff;
+	border: 2px dashed #eee;
+	border-radius: 50%;
+	color: #ccc;
+	font-size: 10px;
+	text-transform: uppercase;
+	outline: none;
+}
+
+	div.listItem button.update-photo.has-photo{
+		border: none;
+		background-size:cover;
+	}
+
+	div.listItem button.update-photo.has-photo span{
+		display: none;
+	}
+
+	div.listItem button.update-photo:hover{
+		border-color: #3299BB;
+	}
 
 
 /* begin images */

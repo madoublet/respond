@@ -91,6 +91,13 @@ class PageResource extends Tonic\Resource {
         if(isset($authUser->UserUniqId)){ // check if authorized
 
             $page = Page::GetByPageUniqId($pageUniqId);
+            
+            $page['Url'] = $page['FriendlyId'];
+            
+            if($page['PageTypeId']!=-1){
+	            $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+	            $page['Url'] = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
+            }
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -922,12 +929,23 @@ class PageListResource extends Tonic\Resource {
                 $imageUrl = 'files/'.substr($page['Image'], 2);
             }
             
+            // check for callout
             $hasCallout = false;
             
             if($page['Callout']!=''){
                 $hasCallout = true;
             }
 
+			// get photo
+            $hasPhoto = false;
+            $photo = '';
+            
+            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
+	            $hasPhoto = true;
+	            $photo = 'files/'.$row['PhotoUrl'];
+            }
+
+			// build URL
             $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
             
             $item = array(
@@ -943,7 +961,9 @@ class PageListResource extends Tonic\Resource {
                     'Thumb' => $thumbUrl,
                     'HasImage' => $hasImage,
                     'LastModified' => $page['LastModifiedDate'],
-                    'Author' => $name
+                    'Author' => $name,
+                    'HasPhoto' => $hasPhoto,
+                    'Photo' => $photo
                 );
             
             array_push($pages, $item);
@@ -1035,7 +1055,17 @@ class PageBlogResource extends Tonic\Resource {
 
             $page = Page::GetByPageId($row['PageId']);
 
+			// get name
             $name = $row['FirstName'].' '.$row['LastName'];
+            
+            // get photo
+            $hasPhoto = false;
+            $photo = '';
+            
+            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
+	            $hasPhoto = true;
+	            $photo = 'files/'.$row['PhotoUrl'];
+            }
             
             // get image url
             $thumbUrl = '';
@@ -1060,7 +1090,9 @@ class PageBlogResource extends Tonic\Resource {
                     'Thumb' => $thumbUrl,
                     'LastModified' => $page['LastModifiedDate'],
                     'LastModifiedReadable' => $readable,
-                    'Author' => $name
+                    'Author' => $name,
+                    'HasPhoto' => $hasPhoto,
+                    'Photo' => $photo
                 );
                 
             $fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.php';
@@ -1203,10 +1235,20 @@ class PageCalendarResource extends Tonic\Resource {
                 $imageUrl = 'files/'.substr($page['Image'], 2);
             }
             
+            // check for callout
             $hasCallout = false;
             
             if($page['Callout']!=''){
                 $hasCallout = true;
+            }
+            
+            // get photo
+            $hasPhoto = false;
+            $photo = '';
+            
+            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
+	            $hasPhoto = true;
+	            $photo = 'files/'.$row['PhotoUrl'];
             }
 
             $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
@@ -1238,7 +1280,9 @@ class PageCalendarResource extends Tonic\Resource {
                     'EndDate' => $end->format('Y-m-d H:i:s'),
                     'EndDateReadable' => $endReadable,
                     'LastModified' => $page['LastModifiedDate'],
-                    'Author' => $name
+                    'Author' => $name,
+                    'HasPhoto' => $hasPhoto,
+                    'Photo' => $photo
                 );
             
             array_push($pages, $item);

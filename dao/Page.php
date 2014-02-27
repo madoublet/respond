@@ -374,7 +374,7 @@ class Page{
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName
+        			Users.FirstName, Users.LastName, Users.PhotoUrl
         			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ?".$activeClause." ORDER BY ".$orderBy." LIMIT ?, ?";
         			
@@ -422,7 +422,7 @@ class Page{
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName
+        			Users.FirstName, Users.LastName, Users.PhotoUrl
         			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         			WHERE Pages.SiteId = ? AND Pages.PageTypeId = ? AND"
         				." ((Pages.BeginDate BETWEEN '".$beginDate."' AND '".$endDate."') OR"
@@ -474,7 +474,7 @@ class Page{
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName
+        			Users.FirstName, Users.LastName, Users.PhotoUrl
         			FROM Pages 
         				LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         				LEFT JOIN Category_Page_Rel ON Pages.PageId = Category_Page_Rel.PageId
@@ -525,7 +525,7 @@ class Page{
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName
+        			Users.FirstName, Users.LastName, Users.PhotoUrl
         			FROM Pages 
         				LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         				LEFT JOIN Category_Page_Rel ON Pages.PageId = Category_Page_Rel.PageId
@@ -612,7 +612,7 @@ class Page{
         			Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName 
+        			Users.FirstName, Users.LastName, Users.PhotoUrl 
         			FROM Pages LEFT JOIN Users ON Pages.LastModifiedBy = Users.UserId
         			WHERE Pages.SiteId = ?".$activeClause.
         			" ORDER BY Pages.Name ASC";
@@ -648,7 +648,7 @@ class Page{
             		Pages.SiteId, Pages.CreatedBy, 
         			Pages.LastModifiedBy, Pages.Created, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
-        			Users.FirstName, Users.LastName
+        			Users.FirstName, Users.LastName, Users.PhotoUrl
         			FROM Users, Pages
         			WHERE Pages.LastModifiedBy = Users.UserId AND Pages.SiteId = ? AND Pages.PageTypeId = ?
         			ORDER BY Pages.Name ASC";

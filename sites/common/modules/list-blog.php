@@ -8,9 +8,10 @@
 		<div class="content" data-bind="html:content"></div>
         <div class="blog-meta">
 			<p>
-				<a data-bind="attr:{'href':url}"><?php print '<?php print _("Permanent Link"); ?>'; ?></a>
-                <?php print '<?php print _("Last modified by"); ?>'; ?> <span data-bind="text:author"></span>
+				<span class="photo" data-bind="visible:hasPhoto, attr:{'style': 'background-image: url('+photo+')'}"></span>
+                <?php print '<?php print _("Last modified by"); ?>'; ?> <span class="author" data-bind="text:author"></span>
                 <span data-bind="text:lastModifiedReadable" class="last-modified-date"></span>
+                <a data-bind="attr:{'href':url}"><?php print '<?php print _("Permanent Link"); ?>'; ?></a>
 			</p>
         </div>
 </div>

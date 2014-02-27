@@ -66,7 +66,7 @@
 	<?php } ?>
         <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()"><i class="fa fa-reply"></i> <?php print _("Return"); ?></button>
     
-		<a class="alternate"><?php print _("View Live Page"); ?> <i class="fa fa-external-link-square"></i></a>
+		<a class="alternate" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("View Live Page"); ?> <i class="fa fa-external-link"></i></a>
     </div>
     <!-- /#actions -->
     

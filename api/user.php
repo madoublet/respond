@@ -220,6 +220,47 @@ class UserCurrentResource extends Tonic\Resource {
 }
 
 /**
+ * A protected API call to add a user
+ * @uri /user/photo
+ */
+class UserPhotoResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function add() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            parse_str($this->request->data, $request); // parse request
+
+            $userUniqId = $request['userUniqId'];
+            $photoUrl = $request['photoUrl'];
+
+            $user = User::EditPhoto($userUniqId, $photoUrl);
+            
+            // update the user in session
+            $authUser->UpdateUser();
+
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'applicaton/json';
+
+            return $response;
+        
+        } else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+
+}
+
+
+/**
  * A protected API call to edit, delete an existing user
  * @uri /user/{userUniqId}
  */
@@ -274,6 +315,9 @@ class UserResource extends Tonic\Resource {
 				$role = $request['role'];
 				User::EditProfile($userUniqId, $email, $password, $firstName, $lastName, $language);
 			}
+			
+			// update the user in session
+            $authUser->UpdateUser();
 
             return new Tonic\Response(Tonic\Response::OK);
         

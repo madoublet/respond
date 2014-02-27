@@ -34,6 +34,11 @@ section.main nav.editor-menu{
 	transition: .2s all ease;
 }
 
+	section.main nav.editor-menu .plugins{
+		background: url('../images/plug.png') no-repeat 11px 11px;
+		background-size: 17px 17px;
+	}
+
 .editor-actions{
     margin: 0 130px 0 55px;
     height: 50px;

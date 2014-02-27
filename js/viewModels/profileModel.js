@@ -4,6 +4,11 @@ var profileModel = {
     user: ko.observable(''),
     languages: ko.observableArray([]),
     
+    images: ko.observableArray([]),
+    imagesLoading: ko.observable(false),
+    
+    newimages: ko.observableArray([]),
+    
     init:function(){ // initializes the model
     	profileModel.updateLanguages();
         profileModel.updateProfile();
@@ -53,7 +58,17 @@ var profileModel = {
 		});
     },
     
-    save:function(o, e){
+    showEditDialog:function(o, e){ // shows a dialog to add a page
+    
+        $('#password').val('temppassword');
+        $('#retype').val('temppassword');
+
+		$('#editDialog').modal('show');
+
+		return false;
+	},
+    
+    editUser:function(o, e){
         
 		var firstName = jQuery.trim($('#firstName').val());
         var lastName = jQuery.trim($('#lastName').val());
@@ -72,9 +87,8 @@ var profileModel = {
             return;
         }
            
-    
         var userUniqId = profileModel.user().userUniqId();
-   
+        
         message.showMessage('progress', $('#msg-updating').val());
 
         $.ajax({
@@ -84,16 +98,81 @@ var profileModel = {
           success: function(data){
 
             // update the model
-            profileModel.user().firstName(firstName);
-            profileModel.user().lastName(lastName);
-            profileModel.user().language(language);
-            profileModel.user().email(email);
-            profileModel.user().password('temppassword');
+            profileModel.updateProfile();
+            
+            // update the menu
+            $('#menu-name').text(firstName + ' ' + lastName);
             
             message.showMessage('success', $('#msg-updated').val());
+            
+            $('#editDialog').modal('hide');
      
           }
         });    
+        
+    },
+    
+    setImage:function(o, e){
+    
+        var photoUrl = o.filename;
+        
+        message.showMessage('progress', $('#msg-updating').val());
+        
+		$.ajax({
+			url: 'api/user/photo/',
+			type: 'POST',
+			data: {userUniqId: profileModel.user().userUniqId(), photoUrl:photoUrl},
+			dataType: 'json',
+			success: function(data){
+     
+                message.showMessage('success', $('#msg-updated').val());
+                
+                $('#imagesDialog').modal('hide');
+                
+                // update the menu
+	            var sitename = $('body').attr('data-sitefriendlyid');
+	            $('#menu-photo').attr('style', 'background-image:url(sites/'+sitename+'/files/'+photoUrl+')');
+                
+                // update model
+                profileModel.updateProfile();
+
+			}
+		});
+        
+    },
+    
+    showImagesDialog:function(o, e){
+    
+        $('#imagesDialog').modal('show');
+        
+        profileModel.images.removeAll();
+    	profileModel.imagesLoading(true);
+
+		$.ajax({
+			url: 'api/image/list/all',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+     
+                for(x in data){
+            
+    				var image = {
+        			    'filename': data[x].filename,
+                        'fullUrl': data[x].fullUrl,
+                        'thumbUrl': data[x].thumbUrl,
+                        'extension': data[x].extension,
+                        'mimetype': data[x].mimetype,
+                        'isImage': data[x].isImage,
+                        'width': data[x].width,
+                        'height': data[x].height
+    				};
+                
+					profileModel.images.push(image); 
+				}
+
+			}
+		});
         
     }
 }
