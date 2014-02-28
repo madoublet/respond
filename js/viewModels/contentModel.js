@@ -55,6 +55,7 @@ var contentModel = {
 		contentModel.updateContent();
 		contentModel.updatePage();
 		contentModel.updatePageTypes();
+		
 
 		ko.applyBindings(contentModel);  // apply bindings
 	},
@@ -480,6 +481,15 @@ var contentModel = {
 
 				contentModel.toPagePrefix(prefix);
 				contentModel.updateCategoriesForPage();
+				
+				// setup fallback for html5 date
+				if (!Modernizr.inputtypes.date) {
+
+					$('input[type=date]').datepicker({
+					    dateFormat: 'yy-mm-dd'
+					});
+					
+				}
 
 			}
 		});
