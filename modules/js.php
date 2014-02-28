@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php print MODERNIZR_JS; ?>"></script>
 <script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
 <script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>

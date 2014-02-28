@@ -44,6 +44,7 @@
 	define('MOMENT_JS', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment-with-langs.min.js');
     define('TIMEZONEDETECT_JS', '//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js');
 	define('STRIPE_JS', 'https://js.stripe.com/v2/');
+	define('MODERNIZR_JS', '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js');
 	define('FANCYBOX_JS', '//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.js');
     
     // include data-access objects
