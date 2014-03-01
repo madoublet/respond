@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: RESPONDCMS 2.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-03-01 14:18+0100\n"
+"PO-Revision-Date: 2014-03-01 15:14+0100\n"
 "Last-Translator: Jan Lipovský <janlipovsky@gmail.com>\n"
 "Language-Team: ICT & MEDIA, s.r.o. <info@ictmedia.cz>\n"
 "Language: cs_CZ\n"
@@ -1677,11 +1677,11 @@ msgstr "Odebírat"
 
 #: translations.php:22
 msgid "Subscript Text (select text first)"
-msgstr "Dolni index (nejprve vyberte text)"
+msgstr "Dolní index (nejprve vyberte text)"
 
 #: translations.php:23
 msgid "Superscript Text (select text first)"
-msgstr "Horni index (nejprve vyberte text)"
+msgstr "Horní index (nejprve vyberte text)"
 
 #: admin.php:69 admin.php:65
 msgid "Switch"
