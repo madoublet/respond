@@ -4,15 +4,23 @@
 	
 	session_start();
 
-	if(isset($_SESSION['Language'])){
-		$language = $_SESSION['Language'];
-	}
-	else{
-		$supported = Utilities::GetSupportedLanguages($rootPrefix);
-		$language = Utilities::GetPreferredLanguage($supported);
+	// get supported language
+	$supported = Utilities::GetSupportedLanguages($rootPrefix);
+	
+	// check if multiple languages are supported
+	if(count($supported) > 1){
+	
+		if(isset($_SESSION['Language'])){
+			$language = $_SESSION['Language'];
+		}
+		else{
+			// get the preferred language from the supported list
+			$language = Utilities::GetPreferredLanguage($supported);
+			
+			// set language in the session
+			$_SESSION['Language'] = $language;
+		}
 		
-		// set language in the session
-		$_SESSION['Language'] = $language;
 	}
 	
 	Utilities::SetLanguage($language, $rootPrefix);

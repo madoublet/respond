@@ -2,6 +2,7 @@
 var loadLayoutDialog = {
 
 	pageUniqId: -1,
+	editor: null,
 
 	init:function(){
 		
@@ -27,8 +28,10 @@ var loadLayoutDialog = {
 				data: {},
 				success: function(data){
 					contentModel.content(data);
-					$('#desc').respondEdit();
 					contentModel.contentLoading(false);
+					
+					// create editor
+	    			respond.Editor.Refresh(loadLayoutDialog.editor);
 
 					$('#loadLayoutDialog').modal('hide');
 				}
@@ -39,7 +42,9 @@ var loadLayoutDialog = {
 	},
 
 	// shows the slide show dialog
-	show:function(){
+	show:function(editor){
+		loadLayoutDialog.editor = editor;
+	
 		contentModel.updatePages(); // update pages for the dialog
 
 		$('#selectPage').show();

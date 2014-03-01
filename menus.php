@@ -7,21 +7,17 @@
 	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
 
 <head>
 	
 <title><?php print _("Menus"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- include css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<?php include 'modules/css.php'; ?>
 
 </head>
 
@@ -63,7 +59,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Menu Item"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Menu Item"); ?></a>
     </nav>
 
 	<div id="menu-republish-message" class="list-menu">
@@ -303,14 +299,7 @@
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/menusModel.js?v=<?php print VERSION; ?>"></script>
 

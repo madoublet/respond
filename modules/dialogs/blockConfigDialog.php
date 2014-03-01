@@ -21,6 +21,24 @@
 					<label for="blockCssClass" class="control-label"><?php print _("Block Class:"); ?></label>
 					<input id="blockCssClass" type="text" maxlength="128" value="" class="form-control">
 				</div>
+				
+				<div class="form-group">
+					<label for="blockNested" class="control-label"><?php print _("Block Nesting:"); ?></label>
+					<select id="blockNested" class="form-control">
+						<option value="not-nested"><?php print _("Stand-alone (not nested)"); ?></option>
+						<option value="nested"><?php print _("Nested in .container block"); ?></option>
+					</select>
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockContainerId" class="control-label"><?php print _("Container Id:"); ?></label>
+					<input id="blockContainerId" type="text" maxlength="128" value="" class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockContainerCssClass" class="control-label"><?php print _("Container Class:"); ?></label>
+					<input id="blockContainerCssClass" type="text" maxlength="128" value="" class="form-control">
+				</div>
 			
 			</div>
 			<!-- /.modal-body -->

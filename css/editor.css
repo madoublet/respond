@@ -34,8 +34,13 @@ section.main nav.editor-menu{
 	transition: .2s all ease;
 }
 
+	section.main nav.editor-menu .plugins{
+		background: url('../images/plug.png') no-repeat 11px 11px;
+		background-size: 17px 17px;
+	}
+
 .editor-actions{
-    margin: 0 145px 0 55px;
+    margin: 0 130px 0 55px;
     height: 50px;
     overflow: hidden;
     z-index: 1000;
@@ -45,14 +50,33 @@ section.main nav.editor-menu{
         width: 1804px;  /* 41 * 41 = 1681 */
     }
 
-body a.primary-action{
+body section.main nav a.primary-action{
     position: absolute;
     top: 0;
-    right: 0;
-    width: 110px !important;
-    font-size: 0.9em !important;
+    right: 50px;
+    width: 50px;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
+
+	body section.main nav a.primary-action.settings{
+	    right: 0;
+	}
+	
+	body section.main nav a.primary-action i{
+		box-sizing: border-box;
+		margin-right: 0;
+		width: 50px;
+		height: 40px;
+		margin: 5px 0;
+		padding: 0;
+		line-height: 40px;
+	}
+
+	body section.main nav a.primary-action.settings i{
+		border-left: 1px solid #ffb648;
+	}
 
 a.next, a.previous{
     position: absolute;
@@ -72,7 +96,7 @@ a.next, a.previous{
     
     a.next{
         top: 0;
-        right: 110px;
+        right: 100px;
     }
     
     a.previous{
@@ -91,7 +115,6 @@ a.next, a.previous{
 	padding: 0;
 	text-align: center;
 	line-height: 40px;
-	background-color: #ddd !important; 
 	color: #777;
 	font-size: 1.1em !important;
 }
@@ -714,10 +737,6 @@ div.date div{
 	vertical-align: top;
 }
 
-.block div.slideshow em.size{
-	display: none;
-}
-
 .block div.slideshow button{
 	vertical-align: top;
 	width: 87px;
@@ -774,9 +793,10 @@ div.date div{
 }
 
 .block div.slideshow span.image.edit span.caption{
-	left: -65px;
+	left: 0;
+	bottom: -2px;
 	background: #fff;
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid #f0f0f0;
 }
 
@@ -791,7 +811,7 @@ div.date div{
 
 .block div.slideshow span.image span.caption input:focus{
 	width: 220px;
-	font-size: 10px;
+	font-size: 13px;
 }
 
 .block div.slideshow span.editor-highlight{
@@ -832,7 +852,7 @@ div.date div{
 }
 
 /* handle hr */
-.block div.hr div{
+.block div.hr .line{
 	border: 0;
 	margin: 0 20px 20px 20px !important;
 	padding: 0 0 25px 0 !important;
@@ -912,7 +932,7 @@ div.date div{
         margin-bottom: 15px;
     }
     
-    .block .add-field, .editor .add-sku{
+    .block .add-field, .editor .add-sku, .editor .add-event{
     	display: block;
         margin: 10px 10px 5px 10px;
         padding: 10px 0;
@@ -923,11 +943,11 @@ div.date div{
         text-align: center;
     }
     
-    	.block .add-field i, .editor .add-sku i{
+    	.block .add-field i, .editor .add-sku i,  .editor .add-event i{
 	    	margin-right: 5px;
     	}
     
-    	.block .add-field:hover, .editor .add-sku:hover{
+    	.block .add-field:hover, .editor .add-sku:hover, .editor .add-event:hover{
 	    	border: 1px dashed #3299BB;
 	    	color: #3299BB;
 	    	text-decoration: none;
@@ -1033,6 +1053,74 @@ div.table tr.curr-row td{
 	height: 250px;
 }
 
+/* layoutDialog */
+.layouts button{
+	position: relative;
+	width: 165px;
+	height: 165px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	vertical-align: top;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 12px;
+}
+
+	.layouts button small{
+		position: absolute;
+		left: 0;
+		bottom: 5px;
+		width: 165px;
+		text-align: center;
+		color: #888;
+	}
+	
+	.layouts .cols{
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		display: block;
+		box-sizing: border-box;
+		width: 145px;
+		height: 125px;
+		border-right: none;
+	}
+	
+		.layouts .cols.wrap{
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			display: block;
+			box-sizing: border-box;
+			width: 145px;
+			height: 125px;
+			border: 2px solid #99B2B7;
+			padding: 2px 0 2px 2px;
+		}
+	
+		.layouts .cols span{
+			box-sizing: border-box;
+			display: block;
+			float: left;
+			height: 117px;
+			border-right: 2px solid #fff;
+			background-color: #E9E9E9;
+		}
+	
+	#layoutDialog .wrap{
+		color: #fff;
+		right: 20px;
+		background-color: #99B2B7;
+		display: inline-block;
+		padding: 5px 10px;
+		border-radius: 10px;
+		font-size: 12px;
+	}
+	
+		#layoutDialog .wrap code{
+			background-color: #E9E9E9;
+			color: #99B2B7;
+		}
 
 @media (min-width: 768px){
 

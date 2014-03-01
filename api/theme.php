@@ -105,11 +105,7 @@ class ThemeApplyResource extends Tonic\Resource {
     		Publish::PublishSite($site['SiteUniqId']);
             
             // return a json response
-            $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
-            $response->body = $json;
-
-            return $response;
+            return new Tonic\Response(Tonic\Response::OK);
         }
         else{
             // return an unauthorized exception (401)

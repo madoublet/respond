@@ -7,25 +7,23 @@
 	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
 
 <head>
 	
 <title><?php print _("Users"); ?>&mdash;<?php print $authUser->SiteName; ?></title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- include css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<?php include 'modules/css.php'; ?>
+<link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
 
 </head>
 
-<body data-currpage="users">
+<body data-currpage="users" data-sitefriendlyid="<?php print $authUser->SiteFriendlyId; ?>">
 
 <?php include 'modules/menu.php'; ?>
 
@@ -48,15 +46,16 @@
             <li class="static active"><a><?php print _("Users"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add User"); ?></span></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
     </nav>
 
-    <div class="list" data-bind="foreach: users">
+    <div class="list has-photo" data-bind="foreach: users">
     
         <div class="listItem" data-bind="attr: { 'data-id': userUniqId}">
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
                 <i class="fa fa-minus-circle fa-lg"></i>
             </a>
+            <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
     		<h2><a data-bind="text:fullName, click: $parent.showEditDialog"></a></h2>
             <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
     	</div>
@@ -72,6 +71,8 @@
 
 </section>
 <!-- /.main -->
+
+<?php include 'modules/dialogs/imagesDialog.php'; ?>
 
 <div class="modal fade" id="addEditDialog">
 
@@ -199,14 +200,8 @@
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<?php include 'modules/js.php'; ?>
+<script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/usersModel.js?v=<?php print VERSION; ?>"></script>
 

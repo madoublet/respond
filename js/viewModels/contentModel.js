@@ -39,6 +39,8 @@ var contentModel = {
     icons: ko.observableArray([]),
     iconsLoading: ko.observable(false),
     
+    fullUrl: ko.observable(''),
+    
     previewUrl: '',
 
 	init:function(){ // initializes the model
@@ -53,6 +55,7 @@ var contentModel = {
 		contentModel.updateContent();
 		contentModel.updatePage();
 		contentModel.updatePageTypes();
+		
 
 		ko.applyBindings(contentModel);  // apply bindings
 	},
@@ -71,7 +74,13 @@ var contentModel = {
 				contentModel.contentLoading(false);
                 
                 // setup editor
-    			$('#desc').respondEdit();
+    			var editor = $('#desc').get(0);
+    			
+    			// create editor
+    			new respond.Editor({
+	    			el: editor
+    			});
+    			
     			
                 // oh so pretty
                 prettyPrint();
@@ -133,13 +142,9 @@ var contentModel = {
 			dataType: 'json',
 			success: function(data){
 			
-				console.log(data[x]);
-
 				for(x in data){
 				
 					var category = Category.create(data[x]);
-					
-					console.log(category);
 					
 					contentModel.categories.push(category); // push a category to the model
 				}
@@ -327,7 +332,27 @@ var contentModel = {
 		var callout = $('#callout').val();
 		var layout = $('#layout').val();
 		var stylesheet = $('#stylesheet').val();
-
+		
+		// begin 
+		var beginDate = $('#beginDate').val();
+		var beginTime = $('#beginTime').val();
+		
+		var beginDateTime = beginDate + ' ' + beginTime;
+		
+		// end
+		var endDate = $('#endDate').val();
+		var endTime = $('#endTime').val();
+		
+		var endDateTime = endDate + ' ' + endTime;
+		
+		var timeZone = $('#pageSettingsDialog').attr('data-timezone');
+		
+		// location
+		var location = $('#location').val();
+		var latitude = $('#lat').val();
+		var longitude = $('#long').val();
+		
+		
 		var checks = $('input.rss:checked');
 		var rss = '';
       
@@ -350,7 +375,9 @@ var contentModel = {
 			url: 'api/page/'+contentModel.pageUniqId(),
 			type: 'POST',
 			data: {name:name, friendlyId:friendlyId, description:description, keywords:keywords, 
-				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet, categories:categories},
+				   callout:callout, rss:rss, layout:layout, stylesheet:stylesheet, categories:categories,
+				   beginDate: beginDateTime, endDate: endDateTime, timeZone: timeZone,
+				   location: location, latitude: latitude, longitude: longitude},
 			success: function(data){
 				message.showMessage('success', $('#msg-settings-saved').val());
 				contentModel.updateCategoriesForPage();
@@ -367,10 +394,12 @@ var contentModel = {
 	saveContent:function(i,e){ // saves the content for the page
 
 		message.showMessage('progress', $('#msg-saving').val());
-
-		var content = $('#desc').respondHtml();
-  
-		var image = $('#desc').respondGetPrimaryImage();
+		
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
+		var image = respond.Editor.GetPrimaryImage(editor);
         
         if(contentModel.previewUrl != ''){
             contentModel.hidePreview();
@@ -395,8 +424,11 @@ var contentModel = {
 
     	message.showMessage('progress', $('#msg-draft-saving').val());
 
-		var content = $('#desc').respondHtml();
-		var image = $('#desc').respondGetPrimaryImage();
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
+		var image = respond.Editor.GetPrimaryImage(editor);
         
         if(contentModel.previewUrl != ''){
             contentModel.hidePreview();
@@ -428,6 +460,16 @@ var contentModel = {
 			success: function(data){
 
 				var page = Page.create(data);
+				
+				// build URL
+				var domain = $('body').attr('data-domain');
+				var url = 'http://'+domain+'/'+data.Url;
+				
+				// set fullUrl
+				contentModel.fullUrl(url);
+				
+				// set the prefix for ids created with respond.Editor.js
+				respond.prefix = page.friendlyId() + '-';
 
 				contentModel.page(page);
 				
@@ -439,6 +481,15 @@ var contentModel = {
 
 				contentModel.toPagePrefix(prefix);
 				contentModel.updateCategoriesForPage();
+				
+				// setup fallback for html5 date
+				if (!Modernizr.inputtypes.date) {
+
+					$('input[type=date]').datepicker({
+					    dateFormat: 'yy-mm-dd'
+					});
+					
+				}
 
 			}
 		});
@@ -449,7 +500,10 @@ var contentModel = {
 	preview:function(){ 
 		message.showMessage('progress', $('#msg-saving-draft').val());
 
-		var content = $('#desc').respondHtml();
+		var editor = $('#desc');
+		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
 
 		$.ajax({
 			url: 'api/page/content/preview/'+contentModel.pageUniqId(),

@@ -2207,39 +2207,3 @@ msgstr "volitelné"
 #: test.php:55 test.php:57
 msgid "success"
 msgstr "úspěšný"
-
-#~ msgid "Shopping Cart"
-#~ msgstr "Nákupní košík"
-
-#~ msgid "Remove"
-#~ msgstr "Odstranit"
-
-#~ msgid "Subtotal:"
-#~ msgstr "Mezisoučet:"
-
-#~ msgid "Total Weight:"
-#~ msgstr "Celková váha:"
-
-#~ msgid "Shipping:"
-#~ msgstr "Přeprava:"
-
-#~ msgid "Tax:"
-#~ msgstr "Daň:"
-
-#~ msgid "Total:"
-#~ msgstr "Celkem:"
-
-#~ msgid "Checkout with Paypal"
-#~ msgstr "Platba pomocí PayPal"
-
-#~ msgid "Comments"
-#~ msgstr "Komentáře"
-
-#~ msgid "Home"
-#~ msgstr "Domů"
-
-#~ msgid "Back to Previous"
-#~ msgstr "Zpět"
-
-#~ msgid "Re-publish Site"
-#~ msgstr "Znovu publikovat stránku"

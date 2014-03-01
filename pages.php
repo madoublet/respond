@@ -7,7 +7,7 @@
 	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
 
 <head>
 	
@@ -17,16 +17,11 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- include css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<?php include 'modules/css.php'; ?>
 
 </head>
 
-<body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>">
+<body data-currpage="pages" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 	
 <?php include 'modules/menu.php'; ?>
 
@@ -83,7 +78,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Page"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Page"); ?></a>
     </nav>
     
     <div class="list-menu">
@@ -105,8 +100,8 @@
 				</ul>
 			</div>
 		
-    		<a title="Sort by Last Modified" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
-			<a title="Sort by Name"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
+    		<a title="<?php print _("Sort by Last Modified"); ?>" class="active" data-bind="click:sortDate"><i class="fa fa-sort-amount-desc"></i></a>
+			<a title="<?php print _("Sort by Name"); ?>"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
 			<a><i class="fa fa-cog" data-bind="click: showEditPageTypeDialog, visible: pageTypeUniqId()!=-1"></i></a>
 		</div>
     </div>
@@ -138,7 +133,7 @@
     </div>
     <!-- /.list -->
     
-    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> Loading...</p>
+    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> <?php print _("Loading..."); ?></p>
     
     <p data-bind="visible: pagesLoading()==false && pages().length < 1" class="list-none"><?php print _("No pages here. Click Add Page to get started."); ?></p>
       
@@ -241,15 +236,19 @@
 			
 			<div class="modal-body">
 			
-				<p>
+				<p data-bind="visible: pages().length == 0">
 					<?php print _("Confirm you want to remove:"); ?> <strong id="removePageTypeName">this page type</strong>
+				</p>
+				
+				<p data-bind="visible: pages().length > 0">
+					<?php print _("Please remove all pages first."); ?></strong>
 				</p>
 				
 			</div>
 			
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
-				<button class="primary-button" data-bind="click: removePageType"><?php print _("Remove Type"); ?></button>
+				<button class="primary-button" data-bind="click: removePageType, visible: pages().length == 0"><?php print _("Remove Type"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 			
@@ -404,14 +403,7 @@
 </body>
 
 <!-- include js -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/viewModels/pagesModel.js?v=<?php print VERSION; ?>" defer="defer"></script>
 

@@ -8,7 +8,7 @@ class Utilities
 		$domain = 'messages';
 	
 		putenv('LANG='.$language); 
-		setlocale(LC_ALL, $language);
+		setlocale(LC_ALL, $language.'.UTF-8',$language,"en");  // first we try UTF-8, if not, normal language code
 		
 		// set text domain
 		bindtextdomain($domain, $directory); 
@@ -138,6 +138,20 @@ class Utilities
 	    closedir($dir); 
 	} 
 	
+	// removes a directory and its files
+	public static function RemoveDirectory($dir) {
+     	
+     	$files = glob($dir.'/*'); // get all file names
+		foreach($files as $file){ // iterate files
+		  if(is_file($file))
+		    unlink($file); // delete file
+		}
+		
+		if (is_dir($dir)) {
+		    rmdir($dir);
+		}
+     	
+	}
 	
 	// saves specified content to a file
 	public static function SaveContent($dir, $filename, $content){
@@ -283,7 +297,7 @@ class Utilities
         $now = new DateTime("now", $timeZone);
         $offset = $timeZone->getOffset($now);
         
-        $rss = '<?xml version="1.0" encoding="ISO-8859-1"?>'.
+        $rss = '<?xml version="1.0" encoding="utf-8"?>'.
             '<rss version="2.0">'.
               '<channel>'.
               '<title>'.$site['Name'].' - '.$pageType['TypeP'].'</title>'.
@@ -601,10 +615,16 @@ class Utilities
 		$content = str_replace('{{email}}', $site['PrimaryEmail'], $content);
 		
 		// css
-		$stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css?t='.strtotime('now');
-		$css = '<link href="'.$stylesheet.'" type="text/css" rel="stylesheet" media="screen">'.PHP_EOL;
+		$css = '';
         
-        $content = str_replace('{{css}}', $css, $content);
+        $stylesheet = $rootloc.'css/'.$page['Stylesheet'].'.css';
+        
+        ob_start();
+        include $root.'sites/common/modules/css.php'; // loads the module
+        $css = ob_get_contents(); // get content from module
+        ob_end_clean();
+		
+		$content = str_replace('{{css}}', $css, $content);
         
         // css-bootstrap
         $css = '<link href="'.BOOTSTRAP_CSS.'" rel="stylesheet">'.PHP_EOL;
@@ -654,6 +674,10 @@ class Utilities
         $css = '<link href="'.BOOTSTRAP_UNITED_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-united}}', $css, $content);
         
+        // css-bootstrap-yeti
+        $css = '<link href="'.BOOTSTRAP_YETI_CSS.'" rel="stylesheet">'.PHP_EOL;
+        $content = str_replace('{{css-bootstrap-yeti}}', $css, $content);
+        
         // css-fontawesome
         $css = '<link href="'.FONTAWESOME_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-fontawesome}}', $css, $content);
@@ -665,21 +689,10 @@ class Utilities
         // js
         $js = '';
         
-        if($site['FacebookAppId']!=''){
-			$js .= '<meta property="fb:app_id" content="'.$site['FacebookAppId'].'">'.PHP_EOL;
-		}
-		$js .= '<script type="text/javascript" src="'.JQUERY_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.BOOTSTRAP_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.KNOCKOUT_JS.'"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.cookie.js"></script>'.PHP_EOL;
-		if(GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){
-			$js .= '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key='.GOOGLE_MAPS_API_KEY.'&sensor=false"></script>'.PHP_EOL;
-		}
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.respondMap-1.0.1.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/jquery.respondForm-1.0.1.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/messages.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/pageModel.js"></script>'.PHP_EOL;
-		$js .= '<script type="text/javascript" src="'.$rootloc.'js/prettify.js"></script>'.PHP_EOL;
+        ob_start();
+        include $root.'sites/common/modules/js.php'; // loads the module
+        $js = ob_get_contents(); // get content from module
+        ob_end_clean();
 		
 		$content = str_replace('{{js}}', $js, $content);
 		
@@ -959,39 +972,47 @@ class Utilities
                   
                     if($el->display == 'blog'){
                       
-                        $list = '<div id="'.$listid.'" class="respond-list" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
-                                .'<div class="content" data-bind="html:content"></div>'
-                                .'<div class="blog-meta">'
-                                .'<p>'
-                                .'<a data-bind="attr:{\'href\':url}">Permanent Link</a> '
-                                .'Last modified by <span data-bind="text:author"></span>'
-                                .' on <span data-bind="text:lastModifiedReadable" class="last-modified-date"></span>'
-                                .'</p>'
-                                .'</div>'
-                                .'</div>';  
-                                
-						if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">Older Posts</button></div>';
-						}
+                        $list = '';
+        
+				        ob_start();
+				        include $root.'sites/common/modules/list-blog.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
 						
-						
-                     
                     }
-                    else{
-                        $list = '<ul id="'.$listid.'" class="respond-list list-group" data-bind="foreach: '.$listid.'" data-display="'.$el->display.'" data-label="'.$el->label.'" data-pagetypeid="'.$el->type.'" data-length="'.$length.'" data-orderby="'.$orderby.'" data-category="'.$category.'">'
-                                .'<li class="list-group-item">'
-                                	.'<a class="pull-left thumbnail" data-bind="attr:{\'href\':url}, visible: hasImage">'
-                                	.'<img data-bind="attr: {\'src\': thumb}">'
-                                	.'</a>'
-                                	.'<h4><a data-bind="attr:{\'href\':url}, text:name"></a></h4>'
-									.'<small data-bind="visible: hasCallout, text: callout"></small>'
-									.'<p data-bind="text:desc"></p>'
-								.'</li>'
-                                .'</ul>';  
-                                
-                       if($pageresults == 'true'){
-							$list .= '<div class="page-results"><button id="pager-'.$listid.'" class="btn btn-default" data-id="'.$listid.'">More...</button></div>';
-						}
+                    else if($el->display == 'list'){
+                        $list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+                        
+                    }
+                    else if($el->display == 'thumbnails'){
+                        $list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-thumbnails.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+				        
+                    }
+                    else if($el->display == 'calendar'){
+                    	$list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-calendar.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
+                    }
+                    else if($el->display == 'map'){
+                    	$list = '';
+                        
+                        ob_start();
+				        include $root.'sites/common/modules/list-map.php'; // loads the module
+				        $list = ob_get_contents(); // get content from module
+				        ob_end_clean();
                     }
                     
                     $el->outertext = $list;
@@ -1033,21 +1054,24 @@ class Utilities
                 }
                 else if($name=='slideshow'){
                     $id = $el->id;
-                    $width = $el->width;
-                    $height = $el->height;
-                    $imgList = $el->innertext;
-                    ob_start();
-                    include $root.'sites/common/modules/slideshow.php'; // loads the module
-                    $content = ob_get_contents(); // holds the content
-                    ob_end_clean();
                     
-                    $el->outertext= $content;
-                }
-                else if($name=='gallery'){
-                    $id = $el->id;
+                    $display = 'slideshow';
+                    
+                    if(isset($el->display)){
+	                  $display = $el->display;  
+                    }
+                    
                     $imgList = $el->innertext;
+                    
                     ob_start();
-                    include $root.'sites/common/modules/gallery.php'; // loads the module
+                    
+                    if($display=='gallery'){
+                    	include $root.'sites/common/modules/gallery.php'; // loads the module
+                    }
+                    else{
+	                    include $root.'sites/common/modules/slideshow.php'; // loads the module
+                    }
+                    
                     $content = ob_get_contents(); // holds the content
                     ob_end_clean();
                     
@@ -1238,7 +1262,7 @@ class Utilities
     
     	// send an email
         $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
         $headers .= 'From: ' . $from . "\r\n" .
             		'Reply-To: ' . $from . "\r\n";
         

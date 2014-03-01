@@ -1,6 +1,7 @@
 var fieldDialog = {
 
 	dialog: null,
+	editor: null,
 	formId: -1,
 
 	init:function(){
@@ -33,7 +34,7 @@ var fieldDialog = {
 			var helperText = $('#fieldHelperText').val().trim();
 
 			var html = '<span class="field-container">' + 
-							editorDefaults.elementMenuNoConfig +
+							respond.defaults.elementMenuNoConfig +
 							'<div class="form-group" data-type="'+ fieldType + '"';
 
 			if(required=='yes'){
@@ -98,7 +99,7 @@ var fieldDialog = {
 
 			var formId = fieldDialog.formId;
 
-			var editor = $('#desc');
+			var editor = fieldDialog.editor;	
 
 			if($('div#'+formId+' span.field-container:last-child').get(0)){
 				$(editor).find('div#'+formId+' span.field-container:last-child').after(html);
@@ -107,16 +108,15 @@ var fieldDialog = {
 				$(editor).find('div#'+formId+' div.field-list').html(html);
 			}
 
-			$(editor).respondHandleEvents();
-
 			$('#fieldDialog').modal('hide');
 
 			return false;
 		});
 	},
 
-	show:function(formId){ // shows the dialog
+	show:function(editor, formId){ // shows the dialog
 	 
+	 	fieldDialog.editor = editor;
 		fieldDialog.formId = formId;
 
 	    $('#options').hide();

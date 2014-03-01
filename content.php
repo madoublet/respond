@@ -1,13 +1,13 @@
 <?php 
-  include 'app.php'; // import php files
-  
-  $authUser = new AuthUser(); // get auth user
-  $authUser->Authenticate('All');
-  
-  Utilities::SetLanguage($authUser->Language); // set language
+	include 'app.php'; // import php files
+	
+	$authUser = new AuthUser(); // get auth user
+	$authUser->Authenticate('All');
+	
+	Utilities::SetLanguage($authUser->Language); // set language
 ?>
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="<?php print str_replace('_', '-', $authUser->Language) ?>">
 
 <head>
   
@@ -17,25 +17,20 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- css -->
-<link href="<?php print FONT; ?>" rel="stylesheet" type="text/css">
-<link href="<?php print BOOTSTRAP_CSS; ?>" rel="stylesheet">
-<link type="text/css" href="css/app.css?v=<?php print VERSION; ?>" rel="stylesheet">
+<?php include 'modules/css.php'; ?>
 <link type="text/css" href="css/content.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/editor.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link type="text/css" href="css/messages.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dialog.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/list.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/prettify.css?v=<?php print VERSION; ?>" rel="stylesheet">
 <link type="text/css" href="css/dropzone.css?v=<?php print VERSION; ?>" rel="stylesheet">
-<link href="<?php print JQUERYUI_CSS; ?>" rel="stylesheet">
-<link href="<?php print FONTAWESOME_CSS; ?>" rel="stylesheet">
 
 <!-- head -->
 <script src="js/helper/head.min.js"></script>
 
 </head>
 
-<body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>">
+<body data-currpage="content" data-domain="<?php print $authUser->Domain; ?>" data-appurl="<?php print APP_URL; ?>" data-timezone="<?php print $authUser->TimeZone; ?>" data-offset="<?php print $authUser->Offset(); ?>">
 
 <?php include 'modules/menu.php'; ?>
 
@@ -70,6 +65,8 @@
         <button class="primary-button" type="button" data-bind="click: saveDraft"><?php print _("Save"); ?></button>
 	<?php } ?>
         <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()"><i class="fa fa-reply"></i> <?php print _("Return"); ?></button>
+    
+		<a class="alternate" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("View Live Page"); ?> <i class="fa fa-external-link"></i></a>
     </div>
     <!-- /#actions -->
     
@@ -123,34 +120,35 @@
 
 <?php include 'modules/dialogs/fontAwesomeDialog.php'; ?>
 
+<?php include 'modules/dialogs/layoutDialog.php'; ?>
+
+<?php include 'modules/dialogs/loadLayoutDialog.php'; ?>
+
 <div id='aviary-modal'></div>
 
 <div id="overlay"></div>
 
 </body>
 
-<!-- helper -->
-<script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
-<script type="text/javascript" src="<?php print JQUERYUI_JS; ?>"></script>
-<script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
-<script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
-<script type="text/javascript" src="js/helper/moment.min.js?v=<?php print VERSION; ?>"></script>
+<!-- js -->
+<?php include 'modules/js.php'; ?>
+
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
 
-<!-- plugins -->
-<script type="text/javascript" src="js/plugins/jquery.ui.touch-punch.min.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/plugins/jquery.respondEdit.js?v=<?php print VERSION; ?>"></script>
+<?php if(GOOGLE_MAPS_API_KEY != '' && GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){ ?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php print GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
+<?php } ?>
 
-<!-- app -->
-<script type="text/javascript" src="js/global.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="js/messages.js?v=<?php print VERSION; ?>"></script>
+<!-- plugins -->
+<script type="text/javascript" src="js/plugins/jquery.paste.js?v=<?php print VERSION; ?>"></script>
+
+<!-- respond.Editor -->
+<script type="text/javascript" src="js/respond.Editor.js?v=<?php print VERSION; ?>"></script>
 
 <!-- dialogs -->
-<script type="text/javascript" src="js/dialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/fontAwesomeDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/loadLayoutDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/pluginsDialog.js?v=<?php print VERSION; ?>"></script>
@@ -169,6 +167,7 @@
 <script type="text/javascript" src="js/dialogs/elementConfigDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/blockConfigDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/aviaryDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/layoutDialog.js?v=<?php print VERSION; ?>"></script>
 
 <!-- page -->
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>" defer="defer"></script>

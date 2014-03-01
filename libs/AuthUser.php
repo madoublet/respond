@@ -13,6 +13,8 @@ class AuthUser{
 	public $Name;
 	public $FirstName;
 	public $LastName;
+	public $HasPhotoUrl;
+	public $PhotoUrl;
 	
 	// site
 	public $SiteId;
@@ -38,12 +40,11 @@ class AuthUser{
 	public $Status;			// trialing, active, past_due, canceled, or unpaid
 	public $RenewalDate;
 	
-	function __construct(){
+	function __construct($redirect=true){
 		
 		session_start();
 		
-		if(isset($_SESSION['UserId']))
-		{
+		if(isset($_SESSION['UserId'])){
 			$this->UserId = $_SESSION['UserId'];
 			$this->UserUniqId = $_SESSION['UserUniqId'];
 			$this->Role = $_SESSION['Role'];
@@ -54,6 +55,8 @@ class AuthUser{
 			$this->Name = $_SESSION['Name'];
 			$this->FirstName = $_SESSION['FirstName'];
 			$this->LastName = $_SESSION['LastName'];
+			$this->HasPhotoUrl = $_SESSION['HasPhotoUrl'];
+			$this->PhotoUrl = $_SESSION['PhotoUrl'];
 			$this->SiteId = $_SESSION['SiteId'];
 			$this->SiteUniqId = $_SESSION['SiteUniqId'];
 			$this->SiteFriendlyId = $_SESSION['SiteFriendlyId'];
@@ -74,7 +77,9 @@ class AuthUser{
 			$this->RenewalDate = $_SESSION['RenewalDate'];
 			
 		}
-		else $this->Redirect();
+		else{
+			if ($redirect) $this->Redirect();
+		}
 	}
 	
 	private function Redirect(){
@@ -99,6 +104,13 @@ class AuthUser{
 			$isFirstLogin = 1;
 		}
         
+        // determine whether user has a photo
+        $hasPhotoUrl = true;
+        
+        if($user['PhotoUrl']==null || $user['PhotoUrl']==''){
+	        $hasPhotoUrl = false;
+        }
+        
         Site::SetLastLogin($site['SiteUniqId']);
 
 		$directory = 'sites/'.$site['FriendlyId'].'/';
@@ -113,6 +125,8 @@ class AuthUser{
 		$_SESSION['Name'] = $user['FirstName'].' '.$user['LastName'];
 		$_SESSION['FirstName'] = $user['FirstName'];
 		$_SESSION['LastName'] = $user['LastName'];
+		$_SESSION['HasPhotoUrl'] = $hasPhotoUrl;
+		$_SESSION['PhotoUrl'] = $user['PhotoUrl'];
 		$_SESSION['SiteId'] = $user['SiteId'];
 		$_SESSION['SiteUniqId'] = $site['SiteUniqId'];
 		$_SESSION['SiteFriendlyId'] = $site['FriendlyId'];
@@ -140,6 +154,30 @@ class AuthUser{
 
 	}
 	
+	// updates changes to the user
+	public function UpdateUser(){
+		
+		$user = User::GetByUserUniqId($this->UserUniqId);
+		
+		// determine whether user has a photo
+        $hasPhotoUrl = true;
+        
+        if($user['PhotoUrl']==null || $user['PhotoUrl']==''){
+	        $hasPhotoUrl = false;
+        }
+		
+		// update session
+		$_SESSION['Name'] = $user['FirstName'].' '.$user['LastName'];
+		$_SESSION['FirstName'] = $user['FirstName'];
+		$_SESSION['LastName'] = $user['LastName'];
+		$_SESSION['HasPhotoUrl'] = $hasPhotoUrl;
+		$_SESSION['PhotoUrl'] = $user['PhotoUrl'];
+		$_SESSION['Language'] = $user['Language'];  
+		
+		return;
+	}
+	
+	// updates the subscription for a user
 	public static function UpdateSubscription(){
 	
 		try{
@@ -166,7 +204,19 @@ class AuthUser{
 		}
 		
 	}
+	
+	// gets timezone offset in hours for a user
+	public function Offset(){
+		$zone = new DateTimeZone($this->TimeZone);
+		$now = new DateTime("now", $zone);
+		
+		$offset = $zone->getOffset($now);
+		$offset_hours = round(($offset)/3600); 
+	
+		return $offset_hours;
+	}
 
+	// authenticates a user based on role
 	public function Authenticate($auth){
 		
 		if($auth=='Admin'){

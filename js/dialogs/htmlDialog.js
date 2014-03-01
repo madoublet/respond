@@ -1,6 +1,7 @@
 // handles the html dialog
 var htmlDialog = {
 
+	editor: null,
 	desc: '',
 	type: 'html',
 	mode: 'add',
@@ -12,7 +13,7 @@ var htmlDialog = {
 	
 		$('#addHtml').click(function(){
 		
-			var editor = $('#desc');
+			var editor = htmlDialog.editor;
 			var uniqId = 'html'+ ($(editor).find('.html').length + 1);
 			var code = $('#Html').val();
 			var desc = jQuery.trim($('#HtmlDescription').val());
@@ -27,7 +28,7 @@ var htmlDialog = {
 			if(htmlDialog.mode=='add'){
 			
 				var html = '<div id="'+uniqId+'" class="html" data-desc="'+desc+'" data-type="'+type+'">' +
-						editorDefaults.elementMenuHtml +
+						respond.defaults.elementMenuHtml +
 						'<div class="title"><i class="fa fa-html5"></i>' + 
 						desc + 
 						'<i class="fa fa-angle-down"></i></div>' +
@@ -35,14 +36,14 @@ var htmlDialog = {
 						'<pre class="non-pretty">' + code + '</pre>' +
 						'</div>';
 				
-				$(editor).respondAppend(
+				respond.Editor.Append(editor, 
 					html
 				);
 			
 			}
 			else{
 				$('#'+htmlDialog.moduleId).attr('data-desc', desc);
-				$('#'+htmlDialog.moduleId).find('div').html('<i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i>');
+				$('#'+htmlDialog.moduleId).find('div.title').html('<i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i>');
 				$('#'+htmlDialog.moduleId).find('.non-pretty').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').html(code);
 				$('#'+htmlDialog.moduleId).find('.prettyprint').removeClass('prettyprinted');
@@ -59,8 +60,11 @@ var htmlDialog = {
 	},
 	
 	// shows the dialog
-	show:function(desc, type, mode, id){
+	show:function(editor, desc, type, mode, id){
 	
+		console.log(editor);
+	
+		htmlDialog.editor = editor;
 		htmlDialog.desc = desc;
 		htmlDialog.type = type;
 		htmlDialog.mode = mode;
