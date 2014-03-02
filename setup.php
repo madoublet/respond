@@ -49,6 +49,6 @@
 
 	// the brand of your app
     define('BRAND', 'Respond CMS');
-    define('COPY', 'Version '.VERSION.'.  Made by <a href="http://matthewsmith.com">Matthew Smith</a> in Manchester, MO');
+    define('COPY', '<a href="http://respondcms.com">Respond CMS</a> version '.VERSION.'.  Made by Matthew Smith in Manchester, MO');
 
 ?>
