@@ -2503,6 +2503,11 @@ respond.Editor.Build = function(el){
 	// set HTML
   	$(el).html(response); 
   	
+  	// enable tooltip
+  	if(!Modernizr.touch){ 
+  		$('#editor-menu a').tooltip({container: 'body', placement: 'bottom'});
+  	}
+  	
   	if(respond.debug == true){
 	  	console.log('[respond.Editor] before SetupMenuEvents');
   	}
