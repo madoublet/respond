@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `PageTypes` (
   `TypeP` varchar(100) NOT NULL,
   `Layout` varchar(50) DEFAULT NULL,
   `Stylesheet` varchar(50) DEFAULT NULL,
+  `IsSecure` INT NOT NULL DEFAULT '0',
   `SiteId` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `LastModifiedBy` int(11) NOT NULL,
