@@ -75,12 +75,16 @@ class Utilities
 		$directories = glob($rootPrefix.'locale/*' , GLOB_ONLYDIR);
 		$languages = array();
 		
-		foreach ($directories as &$value) {
-		    $language = str_replace($rootPrefix.'locale/', '', $value);
-		    $language = str_replace('_', '-', $language);
-		    $language = strtolower($language);
-		    
-		    array_push($languages, $language);
+		if(is_array($directories)){
+		
+			foreach ($directories as &$value) {
+			    $language = str_replace($rootPrefix.'locale/', '', $value);
+			    $language = str_replace('_', '-', $language);
+			    $language = strtolower($language);
+			    
+			    array_push($languages, $language);
+			}
+			
 		}
 		
 		return $languages;
@@ -376,12 +380,18 @@ class Utilities
         
         $pageType = null;
         $type = 'preview';
+        $isSecure = false;
         
         $pageurl = 'http://'.$site['Domain'];
         
         if($page['PageTypeId']!=-1){
 	        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 	        $pageurl .= '/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'];
+	        
+	        // set whether a page is secured based on page type
+	        if($pageType['IsSecure']==1){
+		        $isSecure = true;
+	        }
         }
         else{
 	        $pageurl .= '/'.$page['FriendlyId'];
@@ -780,8 +790,15 @@ class Utilities
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '$language="'.$site['Language'].'";'.PHP_EOL.
-            'include \''.$rootloc.'site.php\';'.PHP_EOL.
-            '?>';
+            'include \''.$rootloc.'site.php\';'.PHP_EOL;
+            
+        // authenticate page    
+        if($isSecure==true){
+	        $header .= '$authUser = new AuthUser(\''.$site['FriendlyId'].'\', $rootPrefix); // get auth user'.PHP_EOL;
+			$header .= '$authUser->Authenticate(\'Member\');'.PHP_EOL;
+        }
+        
+        $header .= '?>';
             
 		$api = APP_URL;
         
@@ -1027,6 +1044,18 @@ class Utilities
                     $featured = '<div id="'.$id.'" data-pageuniqid="'.$pageUniqId.'" data-pagename="'.$pageName.'" class="featured-content"></div>';  
                     
                     $el->outertext = $featured	;
+              
+                }
+                else if($name=='secure'){
+    
+                    if(isset($el->type)){
+                        $type = $el->type;
+                    }
+                    else{
+                        $type = 'login';
+                    }
+                    
+                    $el->outertext = '<?php include "'.$commonloc.'modules/'.$type.'.php"; ?>';
               
                 }
                 else if($name=='menu'){
