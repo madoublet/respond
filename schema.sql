@@ -123,7 +123,6 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `Token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`),
-  UNIQUE KEY `Email_2` (`Email`),
   KEY `OrgId` (`SiteId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 

@@ -11,12 +11,6 @@
 			<!-- /.modal-header -->
 
 			<div class="modal-body">
-
-				<div class="form-group">
-					<label for="fieldName" class="control-label"><?php print _("Field Name:"); ?></label>
-					<input id="fieldName" type="text" maxlength="128" value="" class="form-control">
-					<span class="help-block"><?php print _("e.g.: Phone Number, Name, etc."); ?></span>
-				</div>
 				
 				<div class="form-group">
 					<label for="fieldType" class="control-label"><?php print _("Field Type:"); ?></label>
@@ -27,6 +21,12 @@
 						<option value="checkboxlist"><?php print _("Checkbox List"); ?></option>
 						<option value="radiolist"><?php print _("Radio button List"); ?></option>
 				  	</select>
+				</div>
+
+				<div class="form-group">
+					<label for="fieldName" class="control-label"><?php print _("Field Name:"); ?></label>
+					<input id="fieldName" type="text" maxlength="128" value="" class="form-control">
+					<span class="help-block"><?php print _("e.g.: Phone Number, Name, etc."); ?></span>
 				</div>
 				
 				<div class="form-group">

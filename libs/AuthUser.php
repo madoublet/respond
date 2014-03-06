@@ -42,7 +42,9 @@ class AuthUser{
 	
 	function __construct($redirect=true){
 		
-		session_start();
+		if(!isset($_SESSION)){
+			session_start();
+		}
 		
 		if(isset($_SESSION['UserId'])){
 			$this->UserId = $_SESSION['UserId'];

@@ -463,6 +463,11 @@ a.next, a.previous{
 		background-color: #fbec5d;
 	}
 	
+	.block .secure .title i{
+		color: #fff;
+		background-color: #d37466;
+	}
+	
 	.block .list .title i{
 		color: #fff;
 		background-color: #AA65A9;

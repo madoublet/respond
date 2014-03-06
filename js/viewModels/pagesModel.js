@@ -279,6 +279,7 @@ var pagesModel = {
 		$('#typeFriendlyId').val('');
 		$('#layout').val('content');
 		$('#stylesheet').val('content');
+		$('#isSecure').val('0');
 
 		return false;
 	},
@@ -298,11 +299,13 @@ var pagesModel = {
 		var typeP = curr.attr('data-typep');
 		var layout = curr.attr('data-layout');
 		var stylesheet = curr.attr('data-stylesheet');
+		var isSecure = curr.attr('data-issecure');
 		
 		$('#typeS').val(typeS);
 		$('#typeP').val(typeP);
 		$('#layout').val(layout);
 		$('#stylesheet').val(stylesheet);
+		$('#isSecure').val(isSecure);
 
 		return false;
 	},
@@ -380,6 +383,7 @@ var pagesModel = {
         var typeP = $.trim($('#typeP').val());
         var layout = $.trim($('#layout').val());
         var stylesheet = $.trim($('#stylesheet').val());
+        var isSecure = $.trim($('#isSecure').val());
         
         if(typeFriendlyId == '' || typeS == '' || typeP == ''){
             message.showMessage('error', $('#msg-all-required').val());
@@ -392,7 +396,7 @@ var pagesModel = {
           url: 'api/pagetype/add',
           type: 'POST',
 		  dataType: 'json',
-          data: {friendlyId: typeFriendlyId, typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet},
+          data: {friendlyId: typeFriendlyId, typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet, isSecure: isSecure},
           success: function(data){
 
           	var pageType = PageType.create(data);
@@ -414,6 +418,7 @@ var pagesModel = {
         var typeP = $.trim($('#typeP').val());
         var layout = $.trim($('#layout').val());
         var stylesheet = $.trim($('#stylesheet').val());
+        var isSecure = $.trim($('#isSecure').val());
         
         if(typeFriendlyId == '' || typeS == '' || typeP == ''){
             message.showMessage('error', $('#msg-all-required').val());
@@ -426,7 +431,7 @@ var pagesModel = {
 			url: 'api/pagetype/edit',
 			type: 'POST',
 			dataType: 'json',
-			data: {pageTypeUniqId: pagesModel.pageTypeUniqId(), typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet},
+			data: {pageTypeUniqId: pagesModel.pageTypeUniqId(), typeS: typeS, typeP: typeP, layout: layout, stylesheet: stylesheet, isSecure: isSecure},
 			success: function(data){
 			
 				pagesModel.typeS(typeS);

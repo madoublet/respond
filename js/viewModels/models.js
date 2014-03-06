@@ -253,7 +253,7 @@ Category.create = function(data){
 }
 
 // models a pagetype
-function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, stylesheet, createdBy, lastModifiedBy, lastModifiedDate, created){
+function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, stylesheet, isSecure, createdBy, lastModifiedBy, lastModifiedDate, created){
 
 	var self = this;
 
@@ -264,13 +264,21 @@ function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, 
 	self.typeP = ko.observable(typeP);
 	self.layout = ko.observable(layout);
 	self.stylesheet = ko.observable(stylesheet);
+	self.isSecure = ko.observable(isSecure);
 	self.createdBy = ko.observable(createdBy);
 	self.lastModifiedBy = ko.observable(lastModifiedBy);
 	self.lastModifiedDate = ko.observable(lastModifiedDate);
 	self.created = ko.observable(created);
 
 	self.dir = ko.computed(function(){
-		return '/' + self.typeS().toLowerCase();
+	
+		if(self.isSecure()==1){
+			return '/' + self.typeS().toLowerCase() + '<span class="lock fa fa-lock"></span>';
+		}
+		else{
+			return '/' + self.typeS().toLowerCase();
+		}
+		
 	});
 
 }
@@ -279,7 +287,7 @@ function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, 
 PageType.create = function(data){
 
 	return new PageType(data['PageTypeId'], data['PageTypeUniqId'], data['FriendlyId'],
-						data['TypeS'], data['TypeP'], data['Layout'], data['Stylesheet'], data['CreatedBy'], data['LastModifiedBy'],
+						data['TypeS'], data['TypeP'], data['Layout'], data['Stylesheet'], data['IsSecure'], data['CreatedBy'], data['LastModifiedBy'],
 						data['LastModifiedDate'], data['Created']);
 }
 

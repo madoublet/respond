@@ -123,6 +123,15 @@ var pageModel = {
 	            weeks: 2
             });
 		}
+		
+		// setup login
+		var els = $('.respond-login');
+		
+		for(var x=0; x<els.length; x++){
+            var login = new respond.Login({
+	            el: els[x]
+            });
+		}
         
         // setup pretty print
         prettyPrint();

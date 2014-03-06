@@ -49,14 +49,20 @@
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
     </nav>
 
-    <div class="list has-photo" data-bind="foreach: users">
+    <div id="usersList" class="list has-photo" data-bind="foreach: users">
     
         <div class="listItem" data-bind="attr: { 'data-id': userUniqId}">
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
                 <i class="fa fa-minus-circle fa-lg"></i>
             </a>
             <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
-    		<h2><a data-bind="text:fullName, click: $parent.showEditDialog"></a></h2>
+    		<h2>
+    			<a data-bind="text:fullName, click: $parent.showEditDialog"></a>
+				<span class="role admin" data-bind="visible:role()=='Admin'"><?php print _("Administrator"); ?></span>
+				<span class="role contributor" data-bind="visible:role()=='Contributor'"><?php print _("Contributor"); ?></span>
+				<span class="role member" data-bind="visible:role()=='Member'"><?php print _("Member"); ?></span>
+    		</h2>
+    		<p><span class="email" data-bind="text:email"></span></p>
             <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
     	</div>
     	<!-- /.listItem -->
@@ -104,6 +110,7 @@
 					<select id="role" class="form-control">
 						<option value="Admin"><?php print _("Administrator"); ?></option>
 						<option value="Contributor"><?php print _("Contributor"); ?></option>
+						<option value="Member"><?php print _("Member"); ?></option>
 					</select>
 				</div>
 				

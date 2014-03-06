@@ -60,8 +60,15 @@ class Publish
 			mkdir($libs, 0755, true);	
 		}
 		
+		// copy utilities
 		$src = $root.'sites/common/libs/Utilities.php';
 		$dest = $libs.'/Utilities.php';
+		
+		copy($src, $dest);
+		
+		// copy AuthUser
+		$src = $root.'sites/common/libs/AuthUser.php';
+		$dest = $libs.'/AuthUser.php';
 		
 		copy($src, $dest);
 		

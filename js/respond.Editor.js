@@ -117,6 +117,7 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="form fa fa-check" title="'+t('addForm')+'" data-target="'+id+'"></a>' +
 				'<a class="html fa fa-html5" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
 				'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
+				'<a class="secure fa fa-lock" title="'+t('secure')+'" data-target="'+id+'"></a>' +
 				'<a class="plugins" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
 				'<a class="load fa fa-upload" title="'+t('load')+'" data-target="'+id+'"></a>' +
 				'<a class="layout fa fa-columns" title="'+t('layout')+'" data-target="'+id+'"></a>';
@@ -632,6 +633,20 @@ respond.Editor.ParseHTML = function(top){
 					  	response += chtml;  
 					}
 					
+					// parse SECURE MODULE
+					if(name=='secure'){
+					  	var id = $(node).attr('id');
+		                var type = $(node).attr('type');
+		                
+		                var text = window.t(type); // get type from translation
+		
+					  	chtml = '<div id="'+id+'" data-type="'+type+'" class="secure">' +
+					  		respond.defaults.elementMenuNoConfig +
+							' <div class="title"><i class="fa fa-lock"></i> '+text+' </div></div>';
+		
+					  	response += chtml;  
+					}
+					
 					// parse FILE MODULE
 					if(name=='file'){
 				  		var file = $(node).attr('file');
@@ -1073,6 +1088,19 @@ respond.Editor.SetupMenuEvents = function(){
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
 		slideshowDialog.show(editor, uniqId);
+		
+		return false;
+	});
+	
+	// create SECURE
+	$('.editor-menu a.secure').click(function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'secure';
+		var prefix = 'secure';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		secureDialog.show(editor, uniqId);
 		
 		return false;
 	});
@@ -2248,6 +2276,15 @@ respond.Editor.GetContent = function(el){
 				var pageName = $(divs[x]).attr('data-pagename');
 				
 				newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
+			}
+			
+			// generate SECURE
+			if($(divs[x]).hasClass('secure')){
+				var id = $(divs[x]).attr('id');
+				var type = $(divs[x]).attr('data-type');
+				  
+				
+				newhtml += '<module id="'+id+'" name="secure" type="'+type+'"></module>';
 			}
 		
 			// generate LIKE

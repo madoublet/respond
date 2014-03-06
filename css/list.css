@@ -435,3 +435,22 @@ div.listItem span.status{
 	font-size: 13px;
 	margin-top: 5px;
 }
+
+/* #usersList */
+#usersList .role{
+	display: inline-block;
+	background-color: #aaa;
+	border-radius: 20px;
+	padding: 2px 10px;
+	color: #fff;
+	font-size: 12px;
+	font-family: "Roboto", sans-serif;
+}
+
+	#usersList .role.admin{
+		background-color: #D25F37;
+	}
+	
+	#usersList .role.contributor{
+		background-color: #94D237;
+	}

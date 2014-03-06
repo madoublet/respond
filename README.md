@@ -7,45 +7,26 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-The current version is 2.8. Read about the updates here: http://respondcms.com/update/march-2014
+This is the development version for the April 2014 release (Respond 2.9).
 
-New in 2.8:
-- Dates (begin/end) and Spatial (address/lat/long) metadata for pages
-- Thumbnail, calendar and map display for lists
-- Gallery display for Image Groups
-- All generated content available in sites/common/modules/
-- Photos for user's profile
+New in 2.9:
+- Secure pagetypes (WIP)
+- Editor tooltips
+- SVG image support
 
 Bug fixes:
-- UTF-8 support for languages
-- Better unique element names
-- Language on site creation
+- Layout for small tablet responsive app
 
 Refactoring:
-- js/respond.Editor.js
-- sites/common/modules
-- sites/common/js/pageModel.js
-- sites/common/js/respond.Calendar.js
-- sites/common/js/respond.Featured.js
-- sites/common/js/respond.Form.js
-- sites/common/js/respond.List.js
-- sites/common/js/respond.Map.js
+- TBD
 
-How to update from 2.7:
-- Add Dates and Spatial columns
+How to update from 2.8:
+- Add IsSecure flag to PageTypes
 
 ```
-ALTER TABLE  `Pages` ADD  `BeginDate` DATETIME AFTER `Callout`;
-ALTER TABLE  `Pages` ADD  `EndDate` DATETIME AFTER `BeginDate`;
-ALTER TABLE  `Pages` ADD  `Location` VARCHAR(1024) AFTER `EndDate`;
-ALTER TABLE  `Pages` ADD  `LatLong` POINT AFTER `Location`;
+ALTER TABLE  `PageTypes` ADD `IsSecure` INT NOT NULL DEFAULT '0' AFTER `Stylesheet`;
 ```
 
-- Add Photo for profile photo
-```
-ALTER TABLE  `Users` ADD  `PhotoUrl` VARCHAR(512) AFTER `LastName`;
-```
-	  
 - Pull latest version
 - Re-publish sites
 

@@ -96,6 +96,10 @@
 
 <?php include 'modules/dialogs/blockConfigDialog.php'; ?>
 
+<?php include 'modules/dialogs/formDialog.php'; ?>
+
+<?php include 'modules/dialogs/secureDialog.php'; ?>
+
 <?php include 'modules/dialogs/fieldDialog.php'; ?>
 
 <?php include 'modules/dialogs/skuDialog.php'; ?>
@@ -162,6 +166,8 @@
 <script type="text/javascript" src="js/dialogs/featuredDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/linkDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/fieldDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/formDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/secureDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/skuDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/slideshowDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/elementConfigDialog.js?v=<?php print VERSION; ?>"></script>
