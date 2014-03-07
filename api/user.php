@@ -16,6 +16,11 @@ class UserLoginResource extends Tonic\Resource {
 
         $email = $request['email'];
         $password = $request['password'];
+        $site = null;
+        
+        if(isset($request['site'])){
+	        $site = $request['password'];
+        }
 
         // get the user from the credentials
         $user = User::GetByEmailPassword($email, $password);
@@ -24,12 +29,30 @@ class UserLoginResource extends Tonic\Resource {
             
             try{
             
-	            // create a session from the user
-	            AuthUser::Create($user);
-	
-				$params = array(
-					'start' => START_PAGE
-				);
+            	// if $site is null, login to the app, else login to the site
+	            if($site == null){
+		            AuthUser::Create($user);
+		
+					$params = array(
+						'start' => START_PAGE
+					);
+				}
+				else{
+					// make sure that the user is part of the site
+					$site = Site::GetByFriendlyId($site);
+					
+					if($site['SiteId'] == $user['SiteId']){
+						AuthUser::CreateForSite($user, $site);
+		
+						$params = array();
+					}
+					else{ // invalid login
+						$response = new Tonic\Response(Tonic\Response::BADREQUEST);
+						$response->body = 'Site mismatch';
+						return $response;	
+					}
+					
+				}
 				
 				// return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);

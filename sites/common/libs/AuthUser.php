@@ -14,7 +14,7 @@ class AuthUser{
 	public $HasPhotoUrl;
 	public $PhotoUrl;
 	
-	function __construct($site, $root_url){
+	function __construct($site, $root_url, $returnUrl){
 		
 		session_start();
 		
@@ -31,31 +31,15 @@ class AuthUser{
 			$this->PhotoUrl = $_SESSION[$site.'.PhotoUrl'];
 		}
 		else{
-			$this->Redirect($root_url);
+			$this->Redirect($root_url, $returnUrl);
 		}
 	}
 	
-	private function Redirect($root_url){
-	    header('location:'.$root_url.'login'); // redirect to the login page
+	// redirects failed login
+	private function Redirect($root_url, $returnUrl){
+	    header('location:'.$root_url.'login?r='.urlencode($returnUrl));
 	}
     
-    public static function Create($user){
-
-    	session_start();
-	
-		$_SESSION[$site.'.UserId'] = $user['UserId'];
-		$_SESSION[$site.'.UserUniqId'] = $user['UserUniqId']; 
-		$_SESSION[$site.'.Role'] = $user['Role'];   
-		$_SESSION[$site.'.Language'] = $user['Language'];  
-		$_SESSION[$site.'.Email'] = $user['Email'];
-		$_SESSION[$site.'.Name'] = $user['FirstName'].' '.$user['LastName'];
-		$_SESSION[$site.'.FirstName'] = $user['FirstName'];
-		$_SESSION[$site.'.LastName'] = $user['LastName'];
-		$_SESSION[$site.'.HasPhotoUrl'] = $hasPhotoUrl;
-		$_SESSION[$site.'.PhotoUrl'] = $user['PhotoUrl'];
-	
-	}
-	
 	// authenticates a user based on role
 	public function Authenticate($auth){
 		

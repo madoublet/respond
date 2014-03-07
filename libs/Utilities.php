@@ -412,6 +412,9 @@ class Utilities
             $path = '/'.strtolower($type).'/'.strtolower($page['FriendlyId']);
             $default_url = $path;
         }
+        else{
+	        $path = '/'.strtolower($page['FriendlyId']);
+        }
                   
         $siteId = $site['SiteId'];
         $timezone = $site['TimeZone'];
@@ -781,9 +784,12 @@ class Utilities
             $pageTypeUniqId = 'preview';
         }
         
+        $pageUrl = ltrim($path,'/');
+        
         // setup php header
         $header = '<?php '.PHP_EOL.
         	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
+        	'$pageUrl="'.$pageUrl.'";'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.
             '$siteFriendlyId="'.$site['FriendlyId'].'";'.PHP_EOL.
             '$pageUniqId="'.$page['PageUniqId'].'";'.PHP_EOL.
@@ -794,9 +800,9 @@ class Utilities
             
         // authenticate page    
         if($isSecure==true){
-	        $header .= '$authUser = new AuthUser(\''.$site['FriendlyId'].'\', $rootPrefix); // get auth user'.PHP_EOL;
+        	$header .= '$authUser = new AuthUser(\''.$site['FriendlyId'].'\', $rootPrefix, $pageUrl); // get auth user'.PHP_EOL;
 			$header .= '$authUser->Authenticate(\'Member\');'.PHP_EOL;
-        }
+		}
         
         $header .= '?>';
             
