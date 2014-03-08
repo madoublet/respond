@@ -57,12 +57,12 @@
 				<input id="listDescLength" type="number" value="250" class="form-control">
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group paging">
 				<label for="listLength"><?php print _("Page Size:"); ?></label>
 				<input id="listLength" type="number" value="10" class="form-control">
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group paging">
 				<label for="listPageResults"><?php print _("Page Results:"); ?></label>
 				<select id="listPageResults" class="form-control">
 					<option value="true"><?php print _("Yes"); ?></option>

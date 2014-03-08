@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.8.2');
+	define('VERSION', '2.8.3');
 
 	// debugging
 	define('DEBUG', true);
@@ -13,7 +13,7 @@
 	
 	// set default as UTC
 	date_default_timezone_set('UTC');
-
+	
     // include setup
     require_once 'setup.php';
     

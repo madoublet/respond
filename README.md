@@ -7,13 +7,14 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-This is the development branch for version 2.8.
+The current version is 2.8. Read about the updates here: http://respondcms.com/update/march-2014
 
 New in 2.8:
 - Dates (begin/end) and Spatial (address/lat/long) metadata for pages
 - Thumbnail, calendar and map display for lists
 - Gallery display for Image Groups
-- All generated content available in sites/common/modulels/
+- All generated content available in sites/common/modules/
+- Photos for user's profile
 
 Bug fixes:
 - UTF-8 support for languages
@@ -41,9 +42,12 @@ ALTER TABLE  `Pages` ADD  `LatLong` POINT AFTER `Location`;
 ```
 
 - Add Photo for profile photo
+```
 ALTER TABLE  `Users` ADD  `PhotoUrl` VARCHAR(512) AFTER `LastName`;
+```
 	  
 - Pull latest version
+- Re-publish sites
 
 
 

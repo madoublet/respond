@@ -73,6 +73,20 @@ var listDialog = {
 		
 			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
 		});
+		
+		// disable paging for calendars
+		$('#listDisplay').on('change', function(){
+			
+			var display = $('#listDisplay').val();
+			
+			if(display=='calendar'){
+				$(listDialog.dialog).find('.paging').hide();
+			} 
+			else{
+				$(listDialog.dialog).find('.paging').show();
+			}
+			
+		});
 	},
 
 	show:function(editor, mode, moduleId){ // shows the dialog
@@ -99,12 +113,16 @@ var listDialog = {
 			
 			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
 			
+			$('#listDisplay').val('list');
 			$('#listLength').val('10');   // set initial values
 			$('#listCategory').val('-1');
 			$('#listOrderBy').val('Name');
 			$('#listPageResults').val('false');
 			$('#listDescLength').val(250);
 			$('#listFeaturedOnly').val(0);
+			
+			// show paging by default
+			$(listDialog.dialog).find('.paging').show();
 			
 			listDialog.pageTypeUniqId = -1;
 			
@@ -143,6 +161,14 @@ var listDialog = {
 			$('#listOrderBy').val(orderby); 
 			$('#listPageResults').val(pageresults);
 			$('#listDescLength').val(desclength);
+			
+			// hide paging for calendars
+			if(display=='calendar'){
+				$(listDialog.dialog).find('.paging').hide();
+			} 
+			else{
+				$(listDialog.dialog).find('.paging').show();
+			}
 			
 			listDialog.pageTypeUniqId = type;
 			
