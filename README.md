@@ -13,6 +13,7 @@ New in 2.9:
 - Secure pagetypes (WIP)
 - Editor tooltips
 - SVG image support
+- Theme /resources support
 
 Bug fixes:
 - Layout for small tablet responsive app
