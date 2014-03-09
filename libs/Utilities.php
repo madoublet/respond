@@ -441,6 +441,7 @@ class Utilities
         $content = str_replace('{{site-url}}', '//'.$site['Domain'], $content);
         $content = str_replace('{{page-url}}', $pageurl, $content);
         $content = str_replace('{{logo}}', $rootloc.'files/'.$site['LogoUrl'], $content);
+        $content = str_replace('{{resources}}', $rootloc.'themes/'.$site['Theme'].'/resources/', $content);
         
         // replace with constants
         $content = str_replace('{{id}}', $page['FriendlyId'], $content);

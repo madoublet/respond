@@ -171,6 +171,13 @@ class Publish
 		if(!file_exists($styles_dir)){
 			mkdir($styles_dir, 0755, true);	
 		}
+		
+		// create directory for resources
+		$res_dir = $theme_dir.'/resources/';
+		
+		if(!file_exists($res_dir)){
+			mkdir($res_dir, 0755, true);	
+		}
 
 		// copy layouts
 		$layouts_src = $root.'themes/'.$theme.'/layouts/';
@@ -189,6 +196,12 @@ class Publish
 		$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
 
 		Utilities::CopyDirectory($files_src, $files_dest);
+		
+		// copy resources
+		$res_src = $root.'themes/'.$theme.'/resources/';
+		$res_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/resources/';
+
+		Utilities::CopyDirectory($res_src, $res_dest);
 	}
 	
 	// publishes common js
