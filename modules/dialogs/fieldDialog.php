@@ -49,6 +49,16 @@
 					<span class="help-block"><?php print _("e.g.: (314) 444-2343"); ?></span>
 				</div>
 				
+				<div class="form-group">
+					<label for="fieldPlaceholderText" class="control-label"><?php print _("Placeholder:"); ?></label>
+					<input id="fieldPlaceholderText" type="text" maxlength="256" value="" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="fieldCssClass" class="control-label"><?php print _("CSS Class:"); ?></label>
+					<input id="fieldCssClass" type="text" maxlength="256" value="" class="form-control">
+				</div>
+				
 				</div>
 				<!-- /.modal-body -->
 				

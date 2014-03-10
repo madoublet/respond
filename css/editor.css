@@ -273,18 +273,29 @@ a.next, a.previous{
 	font-family: "Roboto", sans-serif;
 }
 
-.block div.ul div[contentEditable=true]{
+.block div.ul div[contentEditable=true], .block div.ol div[contentEditable=true],{
 	border-top: none !important;
 	border-top: 1px dashed #fff !important;
 }
 
-.block div.ul:hover div[contentEditable=true]:first-child{
+.block div.ul:hover div[contentEditable=true]:first-child, .block div.ol:hover div[contentEditable=true]:first-child{
 	border-top: 1px dashed #ddd !important;
 }
 
 	.block div.ul div[contentEditable=true]{
 		background: url('../images/bullet.png') no-repeat 5px 13px;
 		padding-left: 25px !important;
+	}
+	
+	.block div.ol{
+		counter-reset: section;
+	}
+	 
+	.block div.ol div[contentEditable=true]:before{
+		counter-increment: section;
+		content: counter(section) '. ';
+		color: #ddd;
+		margin-right: 2px;
 	}
 	
 /* element menu */

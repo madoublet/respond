@@ -32,10 +32,20 @@ var fieldDialog = {
 			var id = id.replace(/ /g, '-');
 			var id = id.replace(/:/g, '');
 			var helperText = $('#fieldHelperText').val().trim();
+			var placeholder = $.trim($('#fieldPlaceholderText').val());
+			var cssClass = $.trim($('#fieldCssClass').val());
+			
+			if(cssClass != ''){
+				cssClass = ' ' + cssClass;
+			}
+			
+			if(placeholder != ''){
+				placeholder = ' placeholder="' + placeholder + '"';
+			}
 
 			var html = '<span class="field-container">' + 
 							respond.defaults.elementMenuNoConfig +
-							'<div class="form-group" data-type="'+ fieldType + '"';
+							'<div class="form-group' + cssClass + '" data-type="'+ fieldType + '"';
 
 			if(required=='yes'){
 				html += ' data-required="true"';
@@ -45,7 +55,7 @@ var fieldDialog = {
 			html += '>' + fieldName + '</label>';
 
 			if(fieldType=='text'){
-				html += '<input id="' + id + '" type="text" class="form-control">';
+				html += '<input id="' + id + '" type="text" class="form-control"'+placeholder+'>';
 			}
 
 			if(fieldType=='textarea'){
@@ -124,6 +134,8 @@ var fieldDialog = {
 	    $('#fieldType').val('');
 	    $('#fieldOptions').val('');
 	    $('#fieldHelperText').val('');
+	    $('#fieldPlaceholderText').val('');
+	    $('#fieldCssClass').val('');
 	  
 	    $('#fieldDialog').modal('show');
 

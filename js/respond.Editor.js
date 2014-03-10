@@ -104,7 +104,8 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="h3" title="'+t('addHeadline')+'" data-target="'+id+'">H3</a>' +
 				'<a class="p" title="'+t('addParagraph')+'" data-target="'+id+'">P</a>' +
 				'<a class="q fa fa-quote-left" title="'+t('addquote')+'" data-target="'+id+'"></a>' +
-				'<a class="ul fa fa-list" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="ul fa fa-list-ul" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="ol fa fa-list-ol" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
 				'<a class="table fa fa-table" title="'+t('addtable')+'" data-target="'+id+'"></a>' +
 				'<a class="hr fa fa-minus" title="'+t('addhr')+'" data-target="'+id+'"></a>' +
 				'<a class="img fa fa-picture-o" title="'+t('addimg')+'" data-target="'+id+'"></span>' +
@@ -255,6 +256,24 @@ respond.Editor.ParseHTML = function(top){
 					if(cssclass==undefined) cssclass='';
 				
 					response+= '<div id="'+id+'" class="ul" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+								respond.defaults.elementMenu;
+				
+					for(y=0; y<lis.length; y++){
+						response+= '<div class="content" contentEditable="true">' + $(lis[y]).html() + '</div>';
+					}
+				  
+					response+= '</div>';
+			  	}
+			  	
+			  	// parse OL
+			  	if(node.nodeName=='OL'){
+					var lis = $(node).children();
+					var id = $(node).attr('id');
+					if(id==undefined || id=='')id='ul-'+parseInt(new Date().getTime() / 1000);
+					cssclass = $(node).attr('class');
+					if(cssclass==undefined) cssclass='';
+				
+					response+= '<div id="'+id+'" class="ol" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 								respond.defaults.elementMenu;
 				
 					for(y=0; y<lis.length; y++){
@@ -1084,6 +1103,29 @@ respond.Editor.SetupMenuEvents = function(){
 		return false;
 	});
 	
+	// create OL
+	$('.editor-menu a.ol').click(function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'ol';
+		var prefix = 'ol';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		
+		alert(uniqId);
+		
+		respond.Editor.Append(editor, 
+		  '<div id="'+uniqId+'" class="ol" data-id="'+uniqId+'" data-cssclass="">' +
+		  respond.defaults.elementMenu + 
+		  '<div contentEditable="true"></div>' +
+		  '</div>');
+		
+		// setup paste filter
+		$('#'+uniqId+' [contentEditable=true]').paste();
+		
+		return false;
+	});
+	
 	// create HR
 	$('.editor-menu a.hr').click(function(){
 		var editor = $('#'+$(this).attr('data-target'));
@@ -1818,7 +1860,7 @@ respond.Editor.SetupPersistentEvents = function(el){
 		// ENTER KEY events
 		if(event.keyCode == '13'){
 		
-			if($(el).hasClass('ul')){
+			if($(el).hasClass('ul') || $(el).hasClass('ol')){
 				$(this).after(
 					'<div contentEditable="true"></div>'
 				);
@@ -1886,8 +1928,8 @@ respond.Editor.SetupPersistentEvents = function(el){
 						
 					}
 				
-					if($(el).hasClass('ul')){
-		  		
+					if($(el).hasClass('ul') || $(el).hasClass('ol')){
+					
 						var parent = $(this.parentNode);
 						var divs = $(this.parentNode).find('div');
 						
@@ -2172,6 +2214,25 @@ respond.Editor.GetContent = function(el){
 			  	}
 			  
 			  	newhtml += '</ul>';
+			}
+			
+			// generate OL
+			if($(divs[x]).hasClass('ol')){
+				var id = $(divs[x]).attr('data-id');
+			  	if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  	var cssclass = $(divs[x]).attr('data-cssclass');
+			  	if(cssclass==undefined || cssclass=='')cssclass = '';
+			  
+			  	var lis = $(divs[x]).find('[contentEditable=true]');
+			  	newhtml += '<ol id="'+id+'"';
+				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+			  	newhtml += '>';
+			  
+			  	for(var y=0; y<lis.length; y++){
+					newhtml += '<li>' + jQuery.trim($(lis[y]).html()) + '</li>';
+			  	}
+			  
+			  	newhtml += '</ol>';
 			}
 		
 			// generate H1
