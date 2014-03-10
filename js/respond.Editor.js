@@ -47,6 +47,10 @@ respond.defaults = {
 	elementMenuPlugin: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-plugin fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
 				'<a class="remove fa fa-minus-circle"></a></div>',
+				
+	elementMenuForm: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
+				'<div class="element-menu"><a class="config-form fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>',
 	
 	elementMenuHtml: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-html fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
@@ -662,8 +666,35 @@ respond.Editor.ParseHTML = function(top){
 					// parse FORM MODULE
 					if(name=='form'){
 						var id = $(node).attr('id');
-						response+= '<div id="'+id+'" class="form">' +
-							respond.defaults.elementMenuNoConfig + 
+						var type = $(node).attr('type');
+						var action = $(node).attr('action');
+						var successMessage = $(node).attr('success');
+						var errorMessage = $(node).attr('error');
+						var submitText = $(node).attr('submit');
+						
+						// set some defaults
+						if(type == '' || type == undefined){
+							type = 'default';
+						}
+						
+						if(action == undefined){
+							action = '';
+						}
+						
+						if(successMessage == undefined){
+							successMessage = '';
+						}
+						
+						if(errorMessage == undefined){
+							errorMessage = '';
+						}
+						
+						if(submitText == undefined){
+							submitText = '';
+						}
+						
+						response+= '<div id="'+id+'" class="form" data-type="'+type+'" data-action="'+action+'" data-success="'+successMessage+'"  data-error="'+errorMessage+'" data-submit="'+submitText+'">' +
+							respond.defaults.elementMenuForm + 
 							'<div class="field-list">';
 						
 						var fields = $(node).find('.form-group');
@@ -1181,7 +1212,7 @@ respond.Editor.SetupMenuEvents = function(){
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
 		respond.Editor.Append(editor, 
-			'<div id="'+uniqId+'" class="form">' +
+			'<div id="'+uniqId+'" class="form" data-type="default" data-action="" data-success="" data-error="" data-submit="">' +
 			respond.defaults.elementMenuNoConfig + 
 			'<div class="field-list"></div><a class="add-field"><i class="fa fa-check"></i> Add Field</a></div>'
 		);
@@ -1719,6 +1750,13 @@ respond.Editor.SetupPersistentEvents = function(el){
 		var id=$(this.parentNode.parentNode).attr('id');
 		var type=$(this.parentNode.parentNode).attr('data-type');
 		configPluginsDialog.show(id, type);
+		return false;
+	});
+	
+	// config form click
+	$(el).on('click', '.config-form', function(){
+		var id=$(this.parentNode.parentNode).attr('id');
+		formDialog.show(id);
 		return false;
 	});
 
@@ -2328,8 +2366,35 @@ respond.Editor.GetContent = function(el){
 			if($(divs[x]).hasClass('form')){
 		  		var id= $(divs[x]).attr('id');
 		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  
-		 		newhtml += '<module id="'+id+'" name="form">';
+		  		
+		  		var type = $(divs[x]).attr('data-type');
+				var action = $(divs[x]).attr('data-action');
+				var successMessage = $(divs[x]).attr('data-success');
+				var errorMessage = $(divs[x]).attr('data-error');
+				var submitText = $(divs[x]).attr('data-submit');
+				
+				// set some defaults
+				if(type == '' || type == undefined){
+					type = 'default';
+				}
+				
+				if(action == undefined){
+					action = '';
+				}
+				
+				if(successMessage == undefined){
+					successMessage = '';
+				}
+				
+				if(errorMessage == undefined){
+					errorMessage = '';
+				}
+				
+				if(submitText == undefined){
+					submitText = '';
+				}
+			
+		 		newhtml += '<module id="'+id+'" name="form" type="'+type+'" action="'+action+'" success="'+successMessage+'" error="'+errorMessage+'" submit="'+submitText+'">';
 		  
 		  		var fields = $(divs[x]).find('span.field-container');
 		  

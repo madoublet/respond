@@ -22,6 +22,8 @@ respond.Form = function(config){
 			context.process();
 		}
 		
+		return false;
+		
 	});
 	
 }

@@ -1,9 +1,31 @@
-<form role="form" class="respond-form">
+<form role="form"<?php if($type=='default'){ ?> class="respond-form"<?php } ?><?php if($action!=''){ ?> action="<?php print $action; ?>" type="post"<?php } ?>>
 	<?php 
-	print '<div class="alert alert-success"><?php print _("Form submitted successfully!"); ?></div>';
-	print '<div class="alert alert-danger"><?php print _("You are missing required fields."); ?></div>';
+	// handle success message
+	if($successMessage != ''){
+		print '<div class="alert alert-success"><?php print _("'.$successMessage.'"); ?></div>';
+	}
+	else{
+		print '<div class="alert alert-success"><?php print _("Form submitted successfully!"); ?></div>';
+	}
+	
+	// handle error message
+	if($errorMessage != ''){
+		print '<div class="alert alert-danger"><?php print _("'.$errorMessage.'"); ?></div>';
+	}
+	else{
+		print '<div class="alert alert-danger"><?php print _("You are missing required fields."); ?></div>';
+	}
+	
+	// set form
 	print html_entity_decode($form); 
-	print '<button type="button" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="icon-spinner icon-spin"></i></button>';
+	
+	// set button
+	if($submitText != ''){
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("'.$submitText.'"); ?> <i class="icon-spinner icon-spin"></i></button>';
+	}
+	else{
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="icon-spinner icon-spin"></i></button>';
+	}
 	?>
 </form>
 

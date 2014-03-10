@@ -1136,6 +1136,36 @@ class Utilities
                 }
                 else if($name=='form'){
                 
+                	$type = 'default';
+                
+                	if(isset($el->type)){
+	                	$type = $el->type;
+                	}
+                
+                	$action = '';
+                
+                	if(isset($el->action)){
+	                	$action = $el->action;
+                	}
+                	
+                	$successMessage = '';
+                
+                	if(isset($el->success)){
+	                	$successMessage = $el->success;
+                	}
+                	
+                	$errorMessage = '';
+                
+                	if(isset($el->error)){
+	                	$errorMessage = $el->error;
+                	}
+                	
+                	$submitText = '';
+                
+                	if(isset($el->submit)){
+	                	$submitText = $el->submit;
+                	}
+                
                 	// place gettext around labels
                 	foreach($el->find('label') as $el_label){
                 	
@@ -1155,9 +1185,7 @@ class Utilities
 						$el_block->innertext = Utilities::GenerateGettext($el_block->innertext);
 					}
                 
-                    $form = $el->innertext;
-                    $file = $el->file;
-                    $description = $el->description;
+                    $form = $el->innertext;	
                     ob_start();
                     include $root.'sites/common/modules/form.php'; // loads the module
                     $content = ob_get_contents(); // holds the content
