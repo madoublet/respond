@@ -51,6 +51,10 @@ respond.defaults = {
 	elementMenuForm: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-form fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
 				'<a class="remove fa fa-minus-circle"></a></div>',
+				
+	elementMenuField: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
+				'<div class="element-menu"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>',
 	
 	elementMenuHtml: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-html fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
@@ -721,7 +725,7 @@ respond.Editor.ParseHTML = function(top){
 						for(y=0; y<fields.length; y++){
 					  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
 						  	response += '<span class="field-container">' +
-						  					respond.defaults.elementMenuNoConfig +
+						  					respond.defaults.elementMenuField +
 						  					fhtml +
 						  					'</span>';
 						  	
@@ -1786,6 +1790,16 @@ respond.Editor.SetupPersistentEvents = function(el){
 		htmlDialog.show(editor, desc, type, 'edit', id);
 		return false;
 	});
+	
+	// config html click
+	$(el).on('click', '.config-field', function(){
+		var editor = $('#'+$(this).parents('.editor').attr('id'));
+		
+		var container = $(this).parents('.field-container').get(0);
+		
+		fieldDialog.edit(container);
+		return false;
+	});
 
 	// config plugin click
 	$(el).on('click', '.config-plugin', function(){
@@ -2462,7 +2476,7 @@ respond.Editor.GetContent = function(el){
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
 		  			
-		  			field = global.replaceAll(field, respond.defaults.elementMenuNoConfig, '');
+		  			field = global.replaceAll(field, respond.defaults.elementMenuField, '');
 		  			
 					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
 					

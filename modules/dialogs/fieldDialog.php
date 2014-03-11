@@ -6,7 +6,8 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3><?php print _("Add Field"); ?></h3>
+				<h3 class="add"><?php print _("Add Field"); ?></h3>
+				<h3 class="edit"><?php print _("Update Field"); ?></h3>
 			</div>
 			<!-- /.modal-header -->
 
@@ -24,9 +25,14 @@
 				</div>
 
 				<div class="form-group">
-					<label for="fieldName" class="control-label"><?php print _("Field Name:"); ?></label>
-					<input id="fieldName" type="text" maxlength="128" value="" class="form-control">
+					<label for="fieldLabel" class="control-label"><?php print _("Field Label:"); ?></label>
+					<input id="fieldLabel" type="text" maxlength="128" value="" class="form-control">
 					<span class="help-block"><?php print _("e.g.: Phone Number, Name, etc."); ?></span>
+				</div>
+				
+				<div class="form-group">
+					<label for="fieldName" class="control-label"><?php print _("ID/Name:"); ?></label>
+					<input id="fieldName" type="text" maxlength="128" value="" class="form-control">
 				</div>
 				
 				<div class="form-group">
@@ -64,7 +70,8 @@
 				
 				<div class="modal-footer">
 					<button type="button" class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
-					<button id="addField" type="button" class="primary-button"><?php print _("Add Field"); ?></button>
+					<button id="addField" type="button" class="add primary-button"><?php print _("Add Field"); ?></button>
+					<button id="updateField" type="button" class="edit primary-button"><?php print _("Update Field"); ?></button>
 				</div>  
 				<!-- /.modal-footer -->
 		
