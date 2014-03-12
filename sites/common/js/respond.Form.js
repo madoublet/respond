@@ -5,21 +5,19 @@ var respond = respond || {};
 
 respond.Form = function(config){
 
-	this.el = config.el;
+	// set context for event
+	var context = config.el;
 	
 	// set required fields
-	this.setRequired();
-	
-	// set context for event
-	var context = this;
+	respond.Form.SetRequired(context);
 	
 	// handle click of button
-	$(this.el).find('button').on('click', function(){
+	$(context).find('button').on('click', function(){
 		
-		var hasError = context.validate();
+		var hasError = respond.Form.Validate(context);
 		
 		if(hasError == false){
-			context.process();
+			respond.Form.Process(context);
 		}
 		
 		return false;
@@ -29,9 +27,9 @@ respond.Form = function(config){
 }
 
 // sets required fields for the form
-respond.Form.prototype.setRequired = function(){
+respond.Form.SetRequired = function(el){
    
-	var fields = $(this.el).find('div.form-group');
+	var fields = $(el).find('div.form-group');
 		
 	for(var x=0; x<fields.length; x++){
 		var req = $(fields[x]).attr('data-required');	
@@ -47,13 +45,13 @@ respond.Form.prototype.setRequired = function(){
 }
 
 // validates fields in the form
-respond.Form.prototype.validate = function(){
+respond.Form.Validate = function(el){
 	
 	var siteUniqId = $('body').attr('data-siteuniqid');
     var pageUniqId = $('body').attr('data-pageuniqid');
 	
 	// build body
-	var fields = $(this.el).find('div.form-group');
+	var fields = $(el).find('div.form-group');
 
 	var hasError = false;
 
@@ -137,7 +135,7 @@ respond.Form.prototype.validate = function(){
 	}
 	
 	if(hasError == true){
-		$(this.el).find('.alert-danger').show();
+		$(el).find('.alert-danger').show();
 	}
 
 	return hasError;
@@ -146,13 +144,13 @@ respond.Form.prototype.validate = function(){
 }
 
 // processes the form
-respond.Form.prototype.process = function(){
+respond.Form.Process = function(el){
 	
 	var siteUniqId = $('body').attr('data-siteuniqid');
 	var pageUniqId = $('body').attr('data-pageuniqid');
 	
 	// build body
-	var fields = $(this.el).find('div.form-group');
+	var fields = $(el).find('div.form-group');
 	
 	var body = '<table>';
 	var hasError = false;
@@ -206,7 +204,7 @@ respond.Form.prototype.process = function(){
 	
 	if(hasError == false){
 	
-        $(this.el).find('.icon-spinner').show();
+        $(el).find('.icon-spinner').show();
         
         var context = this;
         
@@ -237,7 +235,7 @@ respond.Form.prototype.process = function(){
 
 	}
 	else{
-		$(this.el).find('.alert-danger').show();
+		$(el).find('.alert-danger').show();
 	}
 	
 }

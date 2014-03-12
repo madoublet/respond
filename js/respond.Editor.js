@@ -1259,7 +1259,7 @@ respond.Editor.SetupMenuEvents = function(){
 		
 		respond.Editor.Append(editor, 
 			'<div id="'+uniqId+'" class="form" data-type="default" data-action="" data-success="" data-error="" data-submit="">' +
-			respond.defaults.elementMenuNoConfig + 
+			respond.defaults.elementMenuForm + 
 			'<div class="field-list"></div><a class="add-field"><i class="fa fa-check"></i> Add Field</a></div>'
 		);
 		
@@ -2476,13 +2476,8 @@ respond.Editor.GetContent = function(el){
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
 		  			
-		  			field = global.replaceAll(field, respond.defaults.elementMenuField, '');
+		  			field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
 		  			
-					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
-					
-					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v active"></a><div class="element-menu ui-sortable active"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
-					
-					field = global.replaceAll(field, ' ui-sortable', '');
 					newhtml += field;
 		  		}
 		  

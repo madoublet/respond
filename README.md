@@ -14,6 +14,7 @@ New in 2.9:
 - Editor tooltips
 - SVG image support
 - Theme /resources support
+- Form options: message text, custom actions, placholder text, custom field classes
 
 Bug fixes:
 - Layout for small tablet responsive app
