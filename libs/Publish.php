@@ -181,27 +181,39 @@ class Publish
 
 		// copy layouts
 		$layouts_src = $root.'themes/'.$theme.'/layouts/';
-		$layouts_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/layouts/';
+		
+		if(file_exists($layouts_src)){
+			$layouts_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/layouts/';
 
-		Utilities::CopyDirectory($layouts_src, $layouts_dest);
+			Utilities::CopyDirectory($layouts_src, $layouts_dest);
+		}
 		
 		// copy styles
 		$styles_src = $root.'themes/'.$theme.'/styles/';
-		$styles_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/styles/';
 		
-		Utilities::CopyDirectory($styles_src, $styles_dest);
+		if(file_exists($styles_src)){
+			$styles_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/styles/';
+		
+			Utilities::CopyDirectory($styles_src, $styles_dest);
+		}
 		
 		// copy files
 		$files_src = $root.'themes/'.$theme.'/files/';
-		$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
+		
+		if(file_exists($files_src)){
+			$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
 
-		Utilities::CopyDirectory($files_src, $files_dest);
+			Utilities::CopyDirectory($files_src, $files_dest);
+		}
 		
 		// copy resources
 		$res_src = $root.'themes/'.$theme.'/resources/';
-		$res_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/resources/';
-
-		Utilities::CopyDirectory($res_src, $res_dest);
+		
+		if(file_exists($res_src)){
+			$res_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/resources/';
+		
+			Utilities::CopyDirectory($res_src, $res_dest);
+		}
 	}
 	
 	// publishes common js
