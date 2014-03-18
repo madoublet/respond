@@ -1,6 +1,7 @@
 <?php
 	
 	include 'libs/Utilities.php'; // import utilities
+	include 'libs/AuthUser.php'; // import utilities
 	
 	session_start();
 

@@ -23,11 +23,12 @@ class PageTypeAddResource extends Tonic\Resource {
             $typeP = $request['typeP'];
             $layout = $request['layout'];
             $stylesheet = $request['stylesheet'];
+            $isSecure = $request['isSecure'];
             $siteId = $authUser->SiteId;
             $createdBy = $authUser->UserId;
             $lastModifiedBy = $authUser->UserId;
 
-            $pageType = PageType::Add($friendlyId, $typeS, $typeP, $layout, $stylesheet, $siteId, $createdBy, $lastModifiedBy);
+            $pageType = PageType::Add($friendlyId, $typeS, $typeP, $layout, $stylesheet, $isSecure, $siteId, $createdBy, $lastModifiedBy);
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -67,9 +68,10 @@ class PageTypeEditResource extends Tonic\Resource {
             $typeP = $request['typeP'];
             $layout = $request['layout'];
             $stylesheet = $request['stylesheet'];
+            $isSecure = $request['isSecure'];
             $lastModifiedBy = $authUser->UserId;
             
-            PageType::Edit($pageTypeUniqId, $typeS, $typeP, $layout, $stylesheet, $lastModifiedBy);
+            PageType::Edit($pageTypeUniqId, $typeS, $typeP, $layout, $stylesheet, $isSecure, $lastModifiedBy);
 
             // return a json response
             return new Tonic\Response(Tonic\Response::OK);

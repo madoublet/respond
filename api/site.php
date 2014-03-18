@@ -223,7 +223,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$filename = '../themes/'.DEFAULT_THEME.'/pages/home.html';
     		$layout = 'home';
     		$stylesheet = 'home';
-    				
+    		
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
     		}
@@ -240,7 +240,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$stylesheet = 'content';
     		
     		// add the general page type and create a list
-    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, $site['SiteId'], $userId, $userId);
+    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, 0, $site['SiteId'], $userId, $userId);
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
@@ -288,7 +288,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$stylesheet = 'content';
     		
     		// add the post page type
-    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, $site['SiteId'], $userId, $userId);
+    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, 0, $site['SiteId'], $userId, $userId);
     		
     				
     		if(file_exists($filename)){

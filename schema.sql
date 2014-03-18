@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `PageTypes` (
   `TypeP` varchar(100) NOT NULL,
   `Layout` varchar(50) DEFAULT NULL,
   `Stylesheet` varchar(50) DEFAULT NULL,
+  `IsSecure` INT NOT NULL DEFAULT '0',
   `SiteId` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `LastModifiedBy` int(11) NOT NULL,
@@ -123,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `Token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`),
-  UNIQUE KEY `Email_2` (`Email`),
   KEY `OrgId` (`SiteId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 

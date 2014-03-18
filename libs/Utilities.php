@@ -75,12 +75,16 @@ class Utilities
 		$directories = glob($rootPrefix.'locale/*' , GLOB_ONLYDIR);
 		$languages = array();
 		
-		foreach ($directories as &$value) {
-		    $language = str_replace($rootPrefix.'locale/', '', $value);
-		    $language = str_replace('_', '-', $language);
-		    $language = strtolower($language);
-		    
-		    array_push($languages, $language);
+		if(is_array($directories)){
+		
+			foreach ($directories as &$value) {
+			    $language = str_replace($rootPrefix.'locale/', '', $value);
+			    $language = str_replace('_', '-', $language);
+			    $language = strtolower($language);
+			    
+			    array_push($languages, $language);
+			}
+			
 		}
 		
 		return $languages;
@@ -376,12 +380,18 @@ class Utilities
         
         $pageType = null;
         $type = 'preview';
+        $isSecure = false;
         
         $pageurl = 'http://'.$site['Domain'];
         
         if($page['PageTypeId']!=-1){
 	        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 	        $pageurl .= '/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'];
+	        
+	        // set whether a page is secured based on page type
+	        if($pageType['IsSecure']==1){
+		        $isSecure = true;
+	        }
         }
         else{
 	        $pageurl .= '/'.$page['FriendlyId'];
@@ -401,6 +411,9 @@ class Utilities
             $commonloc = '../../common/';
             $path = '/'.strtolower($type).'/'.strtolower($page['FriendlyId']);
             $default_url = $path;
+        }
+        else{
+	        $path = '/'.strtolower($page['FriendlyId']);
         }
                   
         $siteId = $site['SiteId'];
@@ -428,6 +441,7 @@ class Utilities
         $content = str_replace('{{site-url}}', '//'.$site['Domain'], $content);
         $content = str_replace('{{page-url}}', $pageurl, $content);
         $content = str_replace('{{logo}}', $rootloc.'files/'.$site['LogoUrl'], $content);
+        $content = str_replace('{{resources}}', $rootloc.'themes/'.$site['Theme'].'/resources/', $content);
         
         // replace with constants
         $content = str_replace('{{id}}', $page['FriendlyId'], $content);
@@ -771,17 +785,27 @@ class Utilities
             $pageTypeUniqId = 'preview';
         }
         
+        $pageUrl = ltrim($path,'/');
+        
         // setup php header
         $header = '<?php '.PHP_EOL.
         	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
+        	'$pageUrl="'.$pageUrl.'";'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.
             '$siteFriendlyId="'.$site['FriendlyId'].'";'.PHP_EOL.
             '$pageUniqId="'.$page['PageUniqId'].'";'.PHP_EOL.
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '$language="'.$site['Language'].'";'.PHP_EOL.
-            'include \''.$rootloc.'site.php\';'.PHP_EOL.
-            '?>';
+            'include \''.$rootloc.'site.php\';'.PHP_EOL;
+            
+        // authenticate page    
+        if($isSecure==true){
+        	$header .= '$authUser = new AuthUser(\''.$site['FriendlyId'].'\', $rootPrefix, $pageUrl); // get auth user'.PHP_EOL;
+			$header .= '$authUser->Authenticate(\'Member\');'.PHP_EOL;
+		}
+        
+        $header .= '?>';
             
 		$api = APP_URL;
         
@@ -1029,6 +1053,18 @@ class Utilities
                     $el->outertext = $featured	;
               
                 }
+                else if($name=='secure'){
+    
+                    if(isset($el->type)){
+                        $type = $el->type;
+                    }
+                    else{
+                        $type = 'login';
+                    }
+                    
+                    $el->outertext = '<?php include "'.$commonloc.'modules/'.$type.'.php"; ?>';
+              
+                }
                 else if($name=='menu'){
     
                     if(isset($el->type)){
@@ -1100,6 +1136,36 @@ class Utilities
                 }
                 else if($name=='form'){
                 
+                	$type = 'default';
+                
+                	if(isset($el->type)){
+	                	$type = $el->type;
+                	}
+                
+                	$action = '';
+                
+                	if(isset($el->action)){
+	                	$action = $el->action;
+                	}
+                	
+                	$successMessage = '';
+                
+                	if(isset($el->success)){
+	                	$successMessage = $el->success;
+                	}
+                	
+                	$errorMessage = '';
+                
+                	if(isset($el->error)){
+	                	$errorMessage = $el->error;
+                	}
+                	
+                	$submitText = '';
+                
+                	if(isset($el->submit)){
+	                	$submitText = $el->submit;
+                	}
+                
                 	// place gettext around labels
                 	foreach($el->find('label') as $el_label){
                 	
@@ -1119,9 +1185,7 @@ class Utilities
 						$el_block->innertext = Utilities::GenerateGettext($el_block->innertext);
 					}
                 
-                    $form = $el->innertext;
-                    $file = $el->file;
-                    $description = $el->description;
+                    $form = $el->innertext;	
                     ob_start();
                     include $root.'sites/common/modules/form.php'; // loads the module
                     $content = ob_get_contents(); // holds the content

@@ -61,7 +61,8 @@
 		        <ul>
 		            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
 		        	<!--ko foreach: pageTypes -->
-		    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId()}"><a data-bind="text: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet}, click: $parent.switchPageType"></a> 
+		    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId(), 'is-secure': isSecure()==1}"><a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
+		    		</a> 
 		    		<?php if($authUser->Role=='Admin'){ ?>
 		    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i>
 		    		<?php } ?>
@@ -302,6 +303,14 @@
 				<div class="form-group">
 					<label for="stylesheet" class="control-label"><?php print _("Default Styles:"); ?></label>
 					<select id="stylesheet" data-bind="options: stylesheets, value: stylesheet" class="form-control"></select>
+				</div>
+				
+				<div class="form-group">
+					<label for="stylesheet" class="control-label"><?php print _("Requires Login:"); ?></label>
+					<select id="isSecure" class="form-control">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+					</select>
 				</div>
 			
 			</form>

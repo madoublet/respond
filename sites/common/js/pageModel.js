@@ -48,6 +48,14 @@ var pageModel = {
 		return temp;
 	},
     
+    // get qs parameters
+    getQueryString: function(name){
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	},
+    
     // gets page properties
     setupProperties: function(){
       
@@ -121,6 +129,15 @@ var pageModel = {
             var calendar = new respond.Calendar({
 	            el: els[x],
 	            weeks: 2
+            });
+		}
+		
+		// setup login
+		var els = $('.respond-login');
+		
+		for(var x=0; x<els.length; x++){
+            var login = new respond.Login({
+	            el: els[x]
             });
 		}
         

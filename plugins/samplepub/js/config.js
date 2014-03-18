@@ -16,8 +16,8 @@ plugin.samplepub = {
 		plugin.samplepub.pageUniqId = pageUniqId;
 		plugin.samplepub.pluginUniqId = pluginUniqId;
 
-		$('#samplepub-var1').val($('#'+plugin.samplepub.pluginUniqId).attr('data-var1'));
-		$('#samplepub-var2').val($('#'+plugin.samplepub.pluginUniqId).attr('data-var2'));
+		$('#samplepub-var1').val($('#'+plugin.samplepub.pluginUniqId).data('var1'));
+		$('#samplepub-var2').val($('#'+plugin.samplepub.pluginUniqId).data('var2'));
 
 	},
 
@@ -25,8 +25,8 @@ plugin.samplepub = {
 	update:function(el){
 		
 		// an easy way to pass data to your plugin is to set data-[var] attributes
-		$('#'+plugin.samplepub.pluginUniqId).attr('data-var1', $('#samplepub-var1').val());
-		$('#'+plugin.samplepub.pluginUniqId).attr('data-var2', $('#samplepub-var2').val());
+		$('#'+plugin.samplepub.pluginUniqId).data('var1', $('#samplepub-var1').val());
+		$('#'+plugin.samplepub.pluginUniqId).data('var2', $('#samplepub-var2').val());
 
 		// show a success message when you are done
 		message.showMessage('success', 'Plugin updated successfully');

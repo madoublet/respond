@@ -60,8 +60,15 @@ class Publish
 			mkdir($libs, 0755, true);	
 		}
 		
+		// copy utilities
 		$src = $root.'sites/common/libs/Utilities.php';
 		$dest = $libs.'/Utilities.php';
+		
+		copy($src, $dest);
+		
+		// copy AuthUser
+		$src = $root.'sites/common/libs/AuthUser.php';
+		$dest = $libs.'/AuthUser.php';
 		
 		copy($src, $dest);
 		
@@ -164,24 +171,49 @@ class Publish
 		if(!file_exists($styles_dir)){
 			mkdir($styles_dir, 0755, true);	
 		}
+		
+		// create directory for resources
+		$res_dir = $theme_dir.'/resources/';
+		
+		if(!file_exists($res_dir)){
+			mkdir($res_dir, 0755, true);	
+		}
 
 		// copy layouts
 		$layouts_src = $root.'themes/'.$theme.'/layouts/';
-		$layouts_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/layouts/';
+		
+		if(file_exists($layouts_src)){
+			$layouts_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/layouts/';
 
-		Utilities::CopyDirectory($layouts_src, $layouts_dest);
+			Utilities::CopyDirectory($layouts_src, $layouts_dest);
+		}
 		
 		// copy styles
 		$styles_src = $root.'themes/'.$theme.'/styles/';
-		$styles_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/styles/';
 		
-		Utilities::CopyDirectory($styles_src, $styles_dest);
+		if(file_exists($styles_src)){
+			$styles_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/styles/';
+		
+			Utilities::CopyDirectory($styles_src, $styles_dest);
+		}
 		
 		// copy files
 		$files_src = $root.'themes/'.$theme.'/files/';
-		$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
+		
+		if(file_exists($files_src)){
+			$files_dest = $root.'sites/'.$site['FriendlyId'].'/files/';
 
-		Utilities::CopyDirectory($files_src, $files_dest);
+			Utilities::CopyDirectory($files_src, $files_dest);
+		}
+		
+		// copy resources
+		$res_src = $root.'themes/'.$theme.'/resources/';
+		
+		if(file_exists($res_src)){
+			$res_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/resources/';
+		
+			Utilities::CopyDirectory($res_src, $res_dest);
+		}
 	}
 	
 	// publishes common js

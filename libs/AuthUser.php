@@ -42,7 +42,9 @@ class AuthUser{
 	
 	function __construct($redirect=true){
 		
-		session_start();
+		if(!isset($_SESSION)){
+			session_start();
+		}
 		
 		if(isset($_SESSION['UserId'])){
 			$this->UserId = $_SESSION['UserId'];
@@ -82,10 +84,12 @@ class AuthUser{
 		}
 	}
 	
+	// redirects failed login
 	private function Redirect(){
-	    header("location:index.php"); /* redirects to the login page */
+	    header("location:index"); /* redirects to the login page */
 	}
     
+    // creates the authuser for the app
     public static function Create($user){
 
     	session_start();
@@ -152,6 +156,31 @@ class AuthUser{
 			$_SESSION['RenewalDate'] = NULL;
 		}
 
+	}
+	
+	// creates an authuser for a site
+	public static function CreateForSite($user, $site){
+
+    	session_start();
+    	
+    	// determine whether user has a photo
+        $hasPhotoUrl = true;
+        
+        if($user['PhotoUrl']==null || $user['PhotoUrl']==''){
+	        $hasPhotoUrl = false;
+        }
+	
+		$_SESSION[$site.'.UserId'] = $user['UserId'];
+		$_SESSION[$site.'.UserUniqId'] = $user['UserUniqId']; 
+		$_SESSION[$site.'.Role'] = $user['Role'];   
+		$_SESSION[$site.'.Language'] = $user['Language'];  
+		$_SESSION[$site.'.Email'] = $user['Email'];
+		$_SESSION[$site.'.Name'] = $user['FirstName'].' '.$user['LastName'];
+		$_SESSION[$site.'.FirstName'] = $user['FirstName'];
+		$_SESSION[$site.'.LastName'] = $user['LastName'];
+		$_SESSION[$site.'.HasPhotoUrl'] = $hasPhotoUrl;
+		$_SESSION[$site.'.PhotoUrl'] = $user['PhotoUrl'];
+	
 	}
 	
 	// updates changes to the user

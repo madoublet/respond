@@ -12,7 +12,7 @@
         	$params["path"], $params["domain"],
         	$params["secure"], $params["httponly"]
     	);
-}
+	}
 
 	// destroy the session
 	session_destroy();

@@ -69,12 +69,15 @@ class Utilities
 		$directories = glob($rootPrefix.'locale/*' , GLOB_ONLYDIR);
 		$languages = array();
 		
-		foreach ($directories as &$value) {
-		    $language = str_replace($rootPrefix.'locale/', '', $value);
-		    $language = str_replace('_', '-', $language);
-		    $language = strtolower($language);
-		    
-		    array_push($languages, $language);
+		if(is_array($directories)){
+		
+			foreach ($directories as &$value) {
+			    $language = str_replace($rootPrefix.'locale/', '', $value);
+			    $language = str_replace('_', '-', $language);
+			    $language = strtolower($language);
+			    
+			    array_push($languages, $language);
+			}
 		}
 		
 		return $languages;

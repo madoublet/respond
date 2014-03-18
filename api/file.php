@@ -26,7 +26,7 @@ class ImageListAllResource extends Tonic\Resource {
 
             $arr = array();
             
-            $image_exts = array('gif', 'png', 'jpg');
+            $image_exts = array('gif', 'png', 'jpg', 'svg');
             
             //print each file name
             foreach($files as $file){
@@ -51,7 +51,7 @@ class ImageListAllResource extends Tonic\Resource {
                 
                 if($is_thumb==false && $is_image==true){
                     
-                    list($width, $height, $type, $attr) = getimagesize($directory.$filename);
+                    list($width, $height, $type, $attr) = Image::getImageInfo($directory.$filename);
                     
                     $file = array(
                         'filename' => $filename,
@@ -129,7 +129,7 @@ class FilePostResource extends Tonic\Resource {
             $directory = '../sites/'.$site['FriendlyId'].'/files/';
             
             // save image
-            if($ext=='png' || $ext=='jpg' || $ext=='gif'){ // upload image
+            if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
             
     			$size=Image::SaveImageWithThumb($directory, $filename, $file);
     			
@@ -138,7 +138,7 @@ class FilePostResource extends Tonic\Resource {
     			
     			// try to get width and height
     			try{
-    				list($width, $height, $type, $attr) = getimagesize($directory.$filename); // get width and height
+    				list($width, $height, $type, $attr) = Image::getImageInfo($directory.$filename); // get width and height
                 }
                 catch(Exception $e){}
                 
@@ -213,7 +213,7 @@ class FileListAllResource extends Tonic\Resource {
 
             $arr = array();
             
-            $image_exts = array('gif', 'png', 'jpg');
+            $image_exts = array('gif', 'png', 'jpg', 'svg');
             
             //print each file name
             foreach($files as $file){
@@ -242,7 +242,7 @@ class FileListAllResource extends Tonic\Resource {
                     $height = 0;
                     
                     try{
-                    	list($width, $height, $type, $attr) = getimagesize($directory.$filename);
+                    	list($width, $height, $type, $attr) = Image::getImageInfo($directory.$filename);
                     }
 					catch(Exception $e){}
 					
@@ -330,7 +330,5 @@ class FileRemoveResource extends Tonic\Resource {
     }
     
 }
-
-
 
 ?>

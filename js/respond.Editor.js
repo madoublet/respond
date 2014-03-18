@@ -47,6 +47,14 @@ respond.defaults = {
 	elementMenuPlugin: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-plugin fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
 				'<a class="remove fa fa-minus-circle"></a></div>',
+				
+	elementMenuForm: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
+				'<div class="element-menu"><a class="config-form fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>',
+				
+	elementMenuField: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
+				'<div class="element-menu"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
+				'<a class="remove fa fa-minus-circle"></a></div>',
 	
 	elementMenuHtml: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 				'<div class="element-menu"><a class="config-html fa fa-cog"></a><a class="move fa fa-arrows"></a>' +
@@ -100,7 +108,8 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="h3" title="'+t('addHeadline')+'" data-target="'+id+'">H3</a>' +
 				'<a class="p" title="'+t('addParagraph')+'" data-target="'+id+'">P</a>' +
 				'<a class="q fa fa-quote-left" title="'+t('addquote')+'" data-target="'+id+'"></a>' +
-				'<a class="ul fa fa-list" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="ul fa fa-list-ul" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="ol fa fa-list-ol" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
 				'<a class="table fa fa-table" title="'+t('addtable')+'" data-target="'+id+'"></a>' +
 				'<a class="hr fa fa-minus" title="'+t('addhr')+'" data-target="'+id+'"></a>' +
 				'<a class="img fa fa-picture-o" title="'+t('addimg')+'" data-target="'+id+'"></span>' +
@@ -117,6 +126,7 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="form fa fa-check" title="'+t('addForm')+'" data-target="'+id+'"></a>' +
 				'<a class="html fa fa-html5" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
 				'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
+				'<a class="secure fa fa-lock" title="'+t('secure')+'" data-target="'+id+'"></a>' +
 				'<a class="plugins" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
 				'<a class="load fa fa-upload" title="'+t('load')+'" data-target="'+id+'"></a>' +
 				'<a class="layout fa fa-columns" title="'+t('layout')+'" data-target="'+id+'"></a>';
@@ -250,6 +260,24 @@ respond.Editor.ParseHTML = function(top){
 					if(cssclass==undefined) cssclass='';
 				
 					response+= '<div id="'+id+'" class="ul" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
+								respond.defaults.elementMenu;
+				
+					for(y=0; y<lis.length; y++){
+						response+= '<div class="content" contentEditable="true">' + $(lis[y]).html() + '</div>';
+					}
+				  
+					response+= '</div>';
+			  	}
+			  	
+			  	// parse OL
+			  	if(node.nodeName=='OL'){
+					var lis = $(node).children();
+					var id = $(node).attr('id');
+					if(id==undefined || id=='')id='ul-'+parseInt(new Date().getTime() / 1000);
+					cssclass = $(node).attr('class');
+					if(cssclass==undefined) cssclass='';
+				
+					response+= '<div id="'+id+'" class="ol" data-id="'+id+'" data-cssclass="'+cssclass+'">' +
 								respond.defaults.elementMenu;
 				
 					for(y=0; y<lis.length; y++){
@@ -632,6 +660,20 @@ respond.Editor.ParseHTML = function(top){
 					  	response += chtml;  
 					}
 					
+					// parse SECURE MODULE
+					if(name=='secure'){
+					  	var id = $(node).attr('id');
+		                var type = $(node).attr('type');
+		                
+		                var text = window.t(type); // get type from translation
+		
+					  	chtml = '<div id="'+id+'" data-type="'+type+'" class="secure">' +
+					  		respond.defaults.elementMenuNoConfig +
+							' <div class="title"><i class="fa fa-lock"></i> '+text+' </div></div>';
+		
+					  	response += chtml;  
+					}
+					
 					// parse FILE MODULE
 					if(name=='file'){
 				  		var file = $(node).attr('file');
@@ -647,8 +689,35 @@ respond.Editor.ParseHTML = function(top){
 					// parse FORM MODULE
 					if(name=='form'){
 						var id = $(node).attr('id');
-						response+= '<div id="'+id+'" class="form">' +
-							respond.defaults.elementMenuNoConfig + 
+						var type = $(node).attr('type');
+						var action = $(node).attr('action');
+						var successMessage = $(node).attr('success');
+						var errorMessage = $(node).attr('error');
+						var submitText = $(node).attr('submit');
+						
+						// set some defaults
+						if(type == '' || type == undefined){
+							type = 'default';
+						}
+						
+						if(action == undefined){
+							action = '';
+						}
+						
+						if(successMessage == undefined){
+							successMessage = '';
+						}
+						
+						if(errorMessage == undefined){
+							errorMessage = '';
+						}
+						
+						if(submitText == undefined){
+							submitText = '';
+						}
+						
+						response+= '<div id="'+id+'" class="form" data-type="'+type+'" data-action="'+action+'" data-success="'+successMessage+'"  data-error="'+errorMessage+'" data-submit="'+submitText+'">' +
+							respond.defaults.elementMenuForm + 
 							'<div class="field-list">';
 						
 						var fields = $(node).find('.form-group');
@@ -656,7 +725,7 @@ respond.Editor.ParseHTML = function(top){
 						for(y=0; y<fields.length; y++){
 					  		fhtml = $('<div>').append($(fields[y]).clone()).remove().html();
 						  	response += '<span class="field-container">' +
-						  					respond.defaults.elementMenuNoConfig +
+						  					respond.defaults.elementMenuField +
 						  					fhtml +
 						  					'</span>';
 						  	
@@ -1038,6 +1107,29 @@ respond.Editor.SetupMenuEvents = function(){
 		return false;
 	});
 	
+	// create OL
+	$('.editor-menu a.ol').click(function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'ol';
+		var prefix = 'ol';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		
+		alert(uniqId);
+		
+		respond.Editor.Append(editor, 
+		  '<div id="'+uniqId+'" class="ol" data-id="'+uniqId+'" data-cssclass="">' +
+		  respond.defaults.elementMenu + 
+		  '<div contentEditable="true"></div>' +
+		  '</div>');
+		
+		// setup paste filter
+		$('#'+uniqId+' [contentEditable=true]').paste();
+		
+		return false;
+	});
+	
 	// create HR
 	$('.editor-menu a.hr').click(function(){
 		var editor = $('#'+$(this).attr('data-target'));
@@ -1073,6 +1165,19 @@ respond.Editor.SetupMenuEvents = function(){
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
 		slideshowDialog.show(editor, uniqId);
+		
+		return false;
+	});
+	
+	// create SECURE
+	$('.editor-menu a.secure').click(function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'secure';
+		var prefix = 'secure';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		secureDialog.show(editor, uniqId);
 		
 		return false;
 	});
@@ -1153,8 +1258,8 @@ respond.Editor.SetupMenuEvents = function(){
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
 		respond.Editor.Append(editor, 
-			'<div id="'+uniqId+'" class="form">' +
-			respond.defaults.elementMenuNoConfig + 
+			'<div id="'+uniqId+'" class="form" data-type="default" data-action="" data-success="" data-error="" data-submit="">' +
+			respond.defaults.elementMenuForm + 
 			'<div class="field-list"></div><a class="add-field"><i class="fa fa-check"></i> Add Field</a></div>'
 		);
 		
@@ -1685,12 +1790,29 @@ respond.Editor.SetupPersistentEvents = function(el){
 		htmlDialog.show(editor, desc, type, 'edit', id);
 		return false;
 	});
+	
+	// config html click
+	$(el).on('click', '.config-field', function(){
+		var editor = $('#'+$(this).parents('.editor').attr('id'));
+		
+		var container = $(this).parents('.field-container').get(0);
+		
+		fieldDialog.edit(container);
+		return false;
+	});
 
 	// config plugin click
 	$(el).on('click', '.config-plugin', function(){
 		var id=$(this.parentNode.parentNode).attr('id');
 		var type=$(this.parentNode.parentNode).attr('data-type');
 		configPluginsDialog.show(id, type);
+		return false;
+	});
+	
+	// config form click
+	$(el).on('click', '.config-form', function(){
+		var id=$(this.parentNode.parentNode).attr('id');
+		formDialog.show(id);
 		return false;
 	});
 
@@ -1752,7 +1874,7 @@ respond.Editor.SetupPersistentEvents = function(el){
 		// ENTER KEY events
 		if(event.keyCode == '13'){
 		
-			if($(el).hasClass('ul')){
+			if($(el).hasClass('ul') || $(el).hasClass('ol')){
 				$(this).after(
 					'<div contentEditable="true"></div>'
 				);
@@ -1820,8 +1942,8 @@ respond.Editor.SetupPersistentEvents = function(el){
 						
 					}
 				
-					if($(el).hasClass('ul')){
-		  		
+					if($(el).hasClass('ul') || $(el).hasClass('ol')){
+					
 						var parent = $(this.parentNode);
 						var divs = $(this.parentNode).find('div');
 						
@@ -2107,6 +2229,25 @@ respond.Editor.GetContent = function(el){
 			  
 			  	newhtml += '</ul>';
 			}
+			
+			// generate OL
+			if($(divs[x]).hasClass('ol')){
+				var id = $(divs[x]).attr('data-id');
+			  	if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+			  	var cssclass = $(divs[x]).attr('data-cssclass');
+			  	if(cssclass==undefined || cssclass=='')cssclass = '';
+			  
+			  	var lis = $(divs[x]).find('[contentEditable=true]');
+			  	newhtml += '<ol id="'+id+'"';
+				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+			  	newhtml += '>';
+			  
+			  	for(var y=0; y<lis.length; y++){
+					newhtml += '<li>' + jQuery.trim($(lis[y]).html()) + '</li>';
+			  	}
+			  
+			  	newhtml += '</ol>';
+			}
 		
 			// generate H1
 			if($(divs[x]).hasClass('h1')){
@@ -2249,6 +2390,15 @@ respond.Editor.GetContent = function(el){
 				
 				newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
 			}
+			
+			// generate SECURE
+			if($(divs[x]).hasClass('secure')){
+				var id = $(divs[x]).attr('id');
+				var type = $(divs[x]).attr('data-type');
+				  
+				
+				newhtml += '<module id="'+id+'" name="secure" type="'+type+'"></module>';
+			}
 		
 			// generate LIKE
 			if($(divs[x]).hasClass('like')){
@@ -2291,21 +2441,50 @@ respond.Editor.GetContent = function(el){
 			if($(divs[x]).hasClass('form')){
 		  		var id= $(divs[x]).attr('id');
 		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
-		  
-		 		newhtml += '<module id="'+id+'" name="form">';
+		  		
+		  		var type = $(divs[x]).attr('data-type');
+				var action = $(divs[x]).attr('data-action');
+				var successMessage = $(divs[x]).attr('data-success');
+				var errorMessage = $(divs[x]).attr('data-error');
+				var submitText = $(divs[x]).attr('data-submit');
+				
+				// set some defaults
+				if(type == '' || type == undefined){
+					type = 'default';
+				}
+				
+				if(action == undefined){
+					action = '';
+				}
+				
+				if(successMessage == undefined){
+					successMessage = '';
+				}
+				
+				if(errorMessage == undefined){
+					errorMessage = '';
+				}
+				
+				if(submitText == undefined){
+					submitText = '';
+				}
+			
+		 		newhtml += '<module id="'+id+'" name="form" type="'+type+'" action="'+action+'" success="'+successMessage+'" error="'+errorMessage+'" submit="'+submitText+'">';
 		  
 		  		var fields = $(divs[x]).find('span.field-container');
 		  
 		  		for(var y=0; y<fields.length; y++){
 		  			field = $(fields[y]).html();
 		  			
-		  			field = global.replaceAll(field, respond.defaults.elementMenuNoConfig, '');
+		  			// remove closed menu
+		  			field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
 		  			
-					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu ui-sortable"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
-					
-					field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v active"></a><div class="element-menu ui-sortable active"><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
-					
-					field = global.replaceAll(field, ' ui-sortable', '');
+		  			// remove open menu
+		  			field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v active"></a><div class="element-menu ui-sortable active"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
+		  			
+		  			// remove ui-sortable
+		  			field = global.replaceAll(field, 'ui-sortable', '');
+		  			
 					newhtml += field;
 		  		}
 		  
@@ -2502,6 +2681,11 @@ respond.Editor.Build = function(el){
 	
 	// set HTML
   	$(el).html(response); 
+  	
+  	// enable tooltip
+  	if(!Modernizr.touch){ 
+  		$('#editor-menu a').tooltip({container: 'body', placement: 'bottom'});
+  	}
   	
   	if(respond.debug == true){
 	  	console.log('[respond.Editor] before SetupMenuEvents');
