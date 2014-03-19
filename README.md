@@ -10,7 +10,9 @@ View our documentation at: http://respondcms.com/page/documentation
 This is the development version for the April 2014 release (Respond 2.9).
 
 New in 2.9:
-- Secure pagetypes (WIP)
+- Site search
+- Secure pagetypes
+- Simple theme improvements
 - Editor tooltips
 - SVG image support
 - Theme /resources support
