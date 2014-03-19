@@ -81,6 +81,23 @@ var settingsModel = {
 	        $('.'+calc).show();
 	    
         });
+        
+        $('#language').hide();
+        
+        $('body').on('change', '#language-select', function(){
+	        
+	        var language = $(this).val();
+	        
+	        if(language == ''){
+		       $('#language').removeClass('hidden');
+	        }
+	        else{
+		       $('#language').addClass('hidden');
+	        }
+	        
+	        $('#language').val(language);
+	    
+        });
 
 		ko.applyBindings(settingsModel);  // apply bindings
 	},
@@ -116,10 +133,18 @@ var settingsModel = {
 		                $(froms[x]).text(tier.from); 
 		                $(tos[x]).val(tier.to);
 		                $(rates[x]).val(tier.rate); 
-		                
-		                
+		  
 	                }
 	                
+                }
+                
+                // setup language
+                $('#language-select').val(settingsModel.site().language());
+                $('#language').val(settingsModel.site().language());
+                
+                // show custom
+                if($('#language-select').val() == ''){
+	                $('#language').removeClass('hidden');
                 }
 			}
 		});

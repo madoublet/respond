@@ -10,7 +10,7 @@ respond.Featured = function(config){
 	var pageUniqId = $(this.el).attr('data-pageuniqid');
 		
 	$.ajax({
-		url:  pageModel.apiEndpoint + '/api/page/published/featured',
+		url:  pageModel.apiEndpoint + 'api/page/published/featured',
 		type: 'POST',
 		context: this,
 		data: {siteUniqId: pageModel.siteUniqId(), pageUniqId: pageUniqId, prefix: pageModel.prefix(), language: pageModel.language},

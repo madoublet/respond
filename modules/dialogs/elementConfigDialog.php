@@ -23,7 +23,7 @@
 				</div>
 				
 				<!-- image options -->
-				<div id="imageOrientation" class="form-group image-config">
+				<div class="form-group image-config">
 					<label for="elementCssClass"><?php print _("Image Orientation:"); ?></label>
 					<select id="imagePosition" class="form-control">
 						<option value="left"><?php print _("Left of the text"); ?></option>
@@ -32,7 +32,7 @@
 					</select>
 				</div>
 				
-				<div id="imageLink" class="form-group image-config">
+				<div class="form-group image-config">
 				  <label for="elementCssClass" class="control-label"><?php print _("Image Link:"); ?></label>
 				  <input id="imageLink" type="text" maxlength="512" value="" placeholder="http://" class="form-control">
 				</div>

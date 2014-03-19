@@ -16,5 +16,6 @@
 <script type="text/javascript" src="<?php print $rootloc; ?>js/respond.Featured.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="<?php print $rootloc; ?>js/respond.Login.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="<?php print $rootloc; ?>js/respond.Registration.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="<?php print $rootloc; ?>js/respond.Search.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="<?php print $rootloc; ?>js/pageModel.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="<?php print $rootloc; ?>js/prettify.js"></script>

@@ -10,12 +10,18 @@ var pageModel = {
     pageUniqId: ko.observable(''),
     pageFriendlyId: ko.observable(''),
     pageTypeUniqId: ko.observable(''),
-    menu: ko.observableArray([]),
+    results: ko.observableArray([]),
     
     init:function(){
     
     	// get the api and language
-    	pageModel.apiEndpoint = $('body').attr('data-api');
+    	pageModel.apiEndpoint = '';
+    	
+    	if($('body').attr('data-pagetypeuniqid') != '-1'){
+	    	pageModel.apiEndpoint = '../';
+	    	pageModel.prefix('../');
+    	}
+    	
     	var language = $('html').attr('lang');
     	
     	if(language != ''){
@@ -28,6 +34,7 @@ var pageModel = {
     	// setup the controls
         pageModel.setupProperties();
 		pageModel.setupControls();
+		pageModel.setupLanguageControls();
 	   
         // apply bindings
         ko.applyBindings(pageModel, $('#content').get(0));
@@ -67,10 +74,6 @@ var pageModel = {
       pageModel.pageFriendlyId(body.attr('data-pagefriendlyid'));
       pageModel.pageTypeUniqId(body.attr('data-pageTypeUniqId'));
       
-      if(pageModel.pageTypeUniqId()!='-1'){
-          pageModel.prefix('../');
-      }
-      
     },
     
     // sets up controls for the page
@@ -86,6 +89,17 @@ var pageModel = {
 		    
 		    // create list
             var list = new respond.List({
+            	el: els[x]
+			});                
+		}
+		
+		// setup search
+    	var els = $('.respond-search');
+		
+		for(var x=0; x<els.length; x++){
+		
+		    // create search
+            var search = new respond.Search({
             	el: els[x]
 			});                
 		}
@@ -140,12 +154,51 @@ var pageModel = {
 	            el: els[x]
             });
 		}
+		
+		// setup registration
+		var els = $('.respond-registration');
+		
+		for(var x=0; x<els.length; x++){
+            var login = new respond.Registration({
+	            el: els[x]
+            });
+		}
         
         // setup pretty print
         prettyPrint();
         
         // setup fancy box
         $('.gallery-image').fancybox();
+    },
+    
+    // handles language controls
+    setupLanguageControls:function(){
+	    
+	    var language = $('html').attr('lang');
+	    
+	    // set the current language
+	    $('.respond-select-language').val(language);
+	    
+	    // handle the on change for the language
+	    $('.respond-select-language').on('change', function(){
+		    
+		    // new language
+		    var language = $(this).val();
+		    var friendlyId = $('body').attr('data-sitefriendlyid');
+		    	
+		    $.ajax({
+				url:  pageModel.apiEndpoint + '/api/site/change/language',
+				type: 'POST',
+				context: this,
+				data: {language: language, friendlyId: friendlyId},
+				success: function(data){
+					location.reload(true); // refresh page to get new language
+				}
+			});
+		    
+	    });
+	    
+	    
     }
 }
 

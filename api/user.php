@@ -16,11 +16,7 @@ class UserLoginResource extends Tonic\Resource {
 
         $email = $request['email'];
         $password = $request['password'];
-        $site = null;
-        
-        if(isset($request['site'])){
-	        $site = $request['password'];
-        }
+ 
 
         // get the user from the credentials
         $user = User::GetByEmailPassword($email, $password);
@@ -29,30 +25,12 @@ class UserLoginResource extends Tonic\Resource {
             
             try{
             
-            	// if $site is null, login to the app, else login to the site
-	            if($site == null){
-		            AuthUser::Create($user);
+            	AuthUser::Create($user);
 		
-					$params = array(
-						'start' => START_PAGE
-					);
-				}
-				else{
-					// make sure that the user is part of the site
-					$site = Site::GetByFriendlyId($site);
-					
-					if($site['SiteId'] == $user['SiteId']){
-						AuthUser::CreateForSite($user, $site);
-		
-						$params = array();
-					}
-					else{ // invalid login
-						$response = new Tonic\Response(Tonic\Response::BADREQUEST);
-						$response->body = 'Site mismatch';
-						return $response;	
-					}
-					
-				}
+				$params = array(
+					'start' => START_PAGE
+				);
+				
 				
 				// return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);
@@ -192,8 +170,9 @@ class UserAddResource extends Tonic\Resource {
             $lastName = $request['lastName'];
             $role = $request['role'];
             $language = $request['language'];
+            $isActive = $request['isActive'];
 
-            $user = User::Add($email, $password, $firstName, $lastName, $role, $language, $authUser->SiteId);
+            $user = User::Add($email, $password, $firstName, $lastName, $role, $language, $isActive, $authUser->SiteId);
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -329,10 +308,11 @@ class UserResource extends Tonic\Resource {
             $firstName = $request['firstName'];
             $lastName = $request['lastName'];
             $language = $request['language'];
+            $isActive = $request['isActive'];
 
 			if(isset($request['role'])){
             	$role = $request['role'];
-				User::Edit($userUniqId, $email, $password, $firstName, $lastName, $role, $language);
+				User::Edit($userUniqId, $email, $password, $firstName, $lastName, $role, $language, $isActive);
 			}
 			else{
 				$role = $request['role'];

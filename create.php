@@ -42,10 +42,10 @@
 	
 	<fieldset>
 	
-		<p><?php print _("Enter your site name, login, password, and timezone to create your site."); ?></p>
+		<h2><span>1.</span> <?php print _("Create Site"); ?></h2>
 
-		<div class="form-group divider">
-			<label for="name"><?php print _("Site Name:"); ?></label>
+		<div class="form-group">
+			<label for="name"><?php print _("Name:"); ?></label>
 			<input id="name" type="text" value="" class="form-control input-lg">
 			<p class="site-name">
 				<?php print APP_URL; ?>/sites/<span id="tempUrl" class="temp">your-site</span> 
@@ -55,36 +55,185 @@
 			<i id="site-invalid" class="invalid fa fa-times"></i>
 			<input id="friendlyId" type="hidden" value="">
 		</div>
-
-		<div class="form-group">
-			<label for="email"><?php print _("Email:"); ?></label>
-			<input id="email" type="text" value="" class="form-control input-lg">
-			<i id="validate-email" class="validating fa fa-spinner fa-spin"></i>
-			<i id="email-valid" class="valid fa fa-check"></i>
-			<i id="email-invalid" class="invalid fa fa-times"></i>
-		</div>
+		
 		
 		<div class="form-group">
-			<label for="password"><?php print _("Password:"); ?></label>
-			<input id="password" type="password" class="form-control input-lg">
-		</div>
-
-		<div class="form-group divider">
-			<label for="password"><?php print _("Re-type Password:"); ?></label>
-			<input id="retype" type="password" placeholder="" class="form-control input-lg">
+			<label for="language" class="control-label"><?php print _("Default Language:"); ?></label>
+			<div>
+				<select id="language-select" class="form-control">
+					<option value="">Other</option> 
+					<option value="aa">Afar (aa)</option> 
+					<option value="ab">Abkhazian (ab)</option> 
+					<option value="af">Afrikaans (af)</option> 
+					<option value="am">Amharic (am)</option> 
+					<option value="ar">Arabic (ar)</option> 
+					<option value="as">Assamese (as)</option> 
+					<option value="ay">Aymara (ay)</option> 
+					<option value="az">Azerbaijani (az)</option> 
+					<option value="ba">Bashkir (ba)</option> 
+					<option value="be">Byelorussian (be)</option> 
+					<option value="bg">Bulgarian (bg)</option> 
+					<option value="bh">Bihari (bh)</option> 
+					<option value="bi">Bislama (bi)</option> 
+					<option value="bn">Bengali/Bangla (bn)</option> 
+					<option value="bo">Tibetan (bo)</option> 
+					<option value="br">Breton (br)</option> 
+					<option value="ca">Catalan (ca)</option> 
+					<option value="co">Corsican (co)</option> 
+					<option value="cs">Czech (cs)</option>  
+					<option value="cs-cs">Czech (cs-cs)</option> 
+					<option value="cy">Welsh (cy)</option> 
+					<option value="da">Danish (da)</option> 
+					<option value="da-dk">Danish (da-dk)</option> 
+					<option value="de">German (de)</option>
+					<option value="de-at">German (de-at)</option>  
+					<option value="de-ch">German (de-ch)</option> 
+					<option value="de-de">German (de-de)</option> 
+					<option value="dz">Bhutani (dz)</option> 
+					<option value="el">Greek (el)</option> 
+					<option value="el-gr">Greek (el-gr)</option> 
+					<option value="en">English (en)</option>
+					<option value="en-au">English (en-au)</option>
+					<option value="en-gb">English (en-gb)</option>
+					<option value="en-us" selected="selected">English (en-us)</option>
+					<option value="en-za">English (en-za)</option>
+					<option value="eo">Esperanto (eo)</option> 
+					<option value="es">Spanish (es)</option> 
+					<option value="es-ar">Spanish (es-ar)</option>
+					<option value="es-cl">Spanish (es-cl)</option>
+					<option value="es-es">Spanish (es-es)</option>
+					<option value="es-mx">Spanish (es-mx)</option>
+					<option value="es-419">Spanish (es-419)</option>
+					<option value="et">Estonian (et)</option> 
+					<option value="eu">Basque (eu)</option> 
+					<option value="fa">Persian (fa)</option> 
+					<option value="fi">Finnish (fi)</option> 
+					<option value="fi-fi">Finnish (fi-fi)</option> 
+					<option value="fj">Fiji (fj)</option> 
+					<option value="fo">Faeroese (fo)</option> 
+					<option value="fr">French (fr)</option>
+					<option value="fr-be">French (fr-be)</option> 
+					<option value="fr-fr">French (fr-fr)</option> 
+					<option value="fy">Frisian (fy)</option> 
+					<option value="ga">Irish (ga)</option> 
+					<option value="gd">Scots/Gaelic (gd)</option> 
+					<option value="gl">Galician (gl)</option> 
+					<option value="gn">Guarani (gn)</option> 
+					<option value="gu">Gujarati (gu)</option> 
+					<option value="ha">Hausa (ha)</option> 
+					<option value="hi">Hindi (hi)</option> 
+					<option value="hr">Croatian (hr)</option> 
+					<option value="hu">Hungarian (hu)</option> 
+					<option value="hu-hu">Hungarian (hu-hu)</option> 
+					<option value="hy">Armenian (hy)</option> 
+					<option value="ia">Interlingua (ia)</option> 
+					<option value="ie">Interlingue (ie)</option> 
+					<option value="ik">Inupiak (ik)</option> 
+					<option value="in">Indonesian (in)</option> 
+					<option value="is">Icelandic (is)</option> 
+					<option value="it">Italian (it)</option>  
+					<option value="it-it">Italian (it-it)</option> 
+					<option value="iw">Hebrew (iw)</option> 
+					<option value="ja">Japanese (ja)</option> 
+					<option value="ji">Yiddish (ji)</option> 
+					<option value="jw">Javanese (jw)</option> 
+					<option value="ka">Georgian (ka)</option> 
+					<option value="kk">Kazakh (kk)</option> 
+					<option value="kl">Greenlandic (kl)</option> 
+					<option value="km">Cambodian (km)</option> 
+					<option value="kn">Kannada (kn)</option> 
+					<option value="ko">Korean (ko)</option> 
+					<option value="ko-kr">Korean (ko-kr)</option> 
+					<option value="ks">Kashmiri (ks)</option> 
+					<option value="ku">Kurdish (ku)</option> 
+					<option value="ky">Kirghiz (ky)</option> 
+					<option value="la">Latin (la)</option> 
+					<option value="ln">Lingala (ln)</option> 
+					<option value="lo">Laothian (lo)</option> 
+					<option value="lt">Lithuanian (lt)</option> 
+					<option value="lv">Latvian/Lettish (lv)</option> 
+					<option value="mg">Malagasy (mg)</option> 
+					<option value="mi">Maori (mi)</option> 
+					<option value="mk">Macedonian (mk)</option> 
+					<option value="ml">Malayalam (ml)</option> 
+					<option value="mn">Mongolian (mn)</option> 
+					<option value="mo">Moldavian (mo)</option> 
+					<option value="mr">Marathi (mr)</option> 
+					<option value="ms">Malay (ms)</option> 
+					<option value="mt">Maltese (mt)</option> 
+					<option value="my">Burmese (my)</option> 
+					<option value="na">Nauru (na)</option> 
+					<option value="ne">Nepali (ne)</option> 
+					<option value="nl">Dutch (nl)</option>
+					<option value="nl-be">Dutch (nl-be)</option>
+					<option value="nl-nl">Dutch (nl-nl)</option>  
+					<option value="no">Norwegian (no)</option> 
+					<option value="oc">Occitan (oc)</option> 
+					<option value="om">(Afan)/Oromoor/Oriya (om)</option> 
+					<option value="pa">Punjabi (pa)</option> 
+					<option value="pl">Polish (pl)</option> 
+					<option value="pl-pl">Polish (pl-pl)</option> 
+					<option value="ps">Pashto/Pushto (ps)</option> 
+					<option value="pt">Portuguese (pt)</option> 
+					<option value="pt-br">Portuguese (pt-br)</option> 
+					<option value="pt-pt">Portuguese (pt-pt)</option> 
+					<option value="qu">Quechua (qu)</option> 
+					<option value="rm">Rhaeto-Romance (rm)</option> 
+					<option value="rn">Kirundi (rn)</option> 
+					<option value="ro">Romanian (ro)</option> 
+					<option value="ro-ro">Romanian (ro-ro)</option> 
+					<option value="ru">Russian (ru)</option> 
+					<option value="ru-ru">Russian (ru-ru)</option> 
+					<option value="rw">Kinyarwanda (rw)</option> 
+					<option value="sa">Sanskrit (sa)</option> 
+					<option value="sd">Sindhi (sd)</option> 
+					<option value="sg">Sangro (sg)</option> 
+					<option value="sh">Serbo-Croatian (sh)</option> 
+					<option value="si">Singhalese (si)</option> 
+					<option value="sk">Slovak (sk)</option> 
+					<option value="sl">Slovenian (sl)</option> 
+					<option value="sm">Samoan (sm)</option> 
+					<option value="sn">Shona (sn)</option> 
+					<option value="so">Somali (so)</option> 
+					<option value="sq">Albanian (sq)</option> 
+					<option value="sr">Serbian (sr)</option> 
+					<option value="ss">Siswati (ss)</option> 
+					<option value="st">Sesotho (st)</option> 
+					<option value="su">Sundanese (su)</option> 
+					<option value="sv">Swedish (sv)</option>  
+					<option value="sv-se">Swedish (sv-se)</option> 
+					<option value="sw">Swahili (sw)</option> 
+					<option value="ta">Tamil (ta)</option> 
+					<option value="te">Tegulu (te)</option> 
+					<option value="tg">Tajik (tg)</option> 
+					<option value="th">Thai (th)</option> 
+					<option value="ti">Tigrinya (ti)</option> 
+					<option value="tk">Turkmen (tk)</option> 
+					<option value="tl">Tagalog (tl)</option> 
+					<option value="tn">Setswana (tn)</option> 
+					<option value="to">Tonga (to)</option> 
+					<option value="tr">Turkish (tr)</option> 
+					<option value="ts">Tsonga (ts)</option> 
+					<option value="tt">Tatar (tt)</option> 
+					<option value="tw">Twi (tw)</option> 
+					<option value="uk">Ukrainian (uk)</option> 
+					<option value="ur">Urdu (ur)</option> 
+					<option value="uz">Uzbek (uz)</option> 
+					<option value="vi">Vietnamese (vi)</option> 
+					<option value="vo">Volapuk (vo)</option> 
+					<option value="wo">Wolof (wo)</option> 
+					<option value="xh">Xhosa (xh)</option> 
+					<option value="yo">Yoruba (yo)</option> 
+					<option value="zh">Chinese (zh)</option> 
+					<option value="zh-cn">Chinese (zh-cn)</option>
+					<option value="zh-tw">Chinese (zh-tw)</option>
+					<option value="zu">Zulu (zu)</option>
+				</select>
+				<input id="language" type="text" class="form-control form-stacked-bottom hidden" placeholder="us-us" value="en-us">
+			</div>
 		</div>
 		
-		<div class="form-group">
-			<label for="language"><?php print _("Language:"); ?></label>
-			<select id="language" class="form-control" data-bind="
-			    options: languages,
-			    optionsText: 'text',
-			    optionsValue: 'code'">
-				    <option value="en">English</option>
-			    </select>
-		</div>
-		
-		<div class="form-group divider">
+		<div class="form-group advanced">
 			<label for="timeZone"><?php print _("Timezone:"); ?></label>
 			<select id="timeZone" data-bind="value: timeZone" class="form-control">
 					<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -179,14 +328,47 @@
 <option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
 				</select>
 		</div>
+		
+		<h2><span>2.</span> <?php print _("Create Login"); ?></h2>
+		
+		<div class="form-group">
+			<label for="email"><?php print _("Email:"); ?></label>
+			<input id="email" type="text" value="" class="form-control input-lg">
+			<i id="validate-email" class="validating fa fa-spinner fa-spin"></i>
+			<i id="email-valid" class="valid fa fa-check"></i>
+			<i id="email-invalid" class="invalid fa fa-times"></i>
+		</div>
+		
+		<div class="form-group">
+			<label for="password"><?php print _("Password:"); ?></label>
+			<input id="password" type="password" class="form-control input-lg">
+		</div>
 
+		<div class="form-group">
+			<label for="password"><?php print _("Re-type Password:"); ?></label>
+			<input id="retype" type="password" placeholder="" class="form-control input-lg">
+		</div>
+		
+		
+		<div class="form-group advanced">
+			<label for="userLanguage"><?php print _("Language:"); ?></label>
+			<select id="userLanguage" class="form-control" data-bind="
+			    options: languages,
+			    optionsText: 'text',
+			    optionsValue: 'code'">
+				    <option value="en">English</option>
+			    </select>
+		</div>
+		
+		<div class="divider"></div>
+	
 		<div class="form-group">
 			<label for="passcode"><?php print _("Passcode:"); ?></label>
 			<input id="passcode" type="text" class="form-control input-lg">
 		</div>
 
 		<span class="actions">
-			<button type="button" class="primary-button" data-bind="click: create"><?php print _("Create Site"); ?></button>
+			<button type="button" class="primary-button" data-bind="click: create"><?php print _("Create Site"); ?> <i class="fa fa-angle-right fa-white"></i></button>
 		</span>
 
 	</fieldset>

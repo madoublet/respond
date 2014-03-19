@@ -122,6 +122,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `SiteId` int(11) NOT NULL,
   `Created` datetime NOT NULL,
   `Token` varchar(255) DEFAULT NULL,
+  `IsActive` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`),
   KEY `OrgId` (`SiteId`)
@@ -145,6 +146,23 @@ CREATE TABLE IF NOT EXISTS `Category_Page_Rel` (
   `CategoryId` int(11) NOT NULL,
   `PageId` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `SearchIndex` (
+  `PageUniqId` varchar(50) NOT NULL,
+  `SiteUniqId` varchar(50) NOT NULL,
+  `Language` varchar(10) DEFAULT NULL,
+  `Url` varchar(255) DEFAULT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Image` varchar(256) DEFAULT NULL,
+  `IsSecure` INT NOT NULL DEFAULT '0',
+  `h1s` text,
+  `h2s` text,
+  `h3s` text,
+  `Description` text,
+  `Content` text,
+  FULLTEXT INDEX(Name, H1s, H2s, H3s, Description, Content)
+  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
 
 ALTER TABLE `Category_Page_Rel`
   ADD CONSTRAINT `Category_Page_Rel_ibfk_1` FOREIGN KEY (`CategoryId`) REFERENCES `Categories` (`CategoryId`) ON DELETE CASCADE ON UPDATE CASCADE;

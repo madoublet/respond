@@ -206,16 +206,14 @@ respond.Form.Process = function(el){
 	
         $(el).find('.icon-spinner').show();
         
-        var context = this;
-        
         // post to API
         $.ajax({
-            url: pageModel.apiEndpoint+'/api/form',
+            url: pageModel.apiEndpoint+'api/form',
 			type: 'POST',
 			data: {siteUniqId: siteUniqId, pageUniqId: pageUniqId, body: body},
 			success: function(data){
-                
-                $(context.el).find('.error').removeClass('error');
+			
+                $(el).find('.error').removeClass('error');
     			
 				$('div.formgroup input').val('');
 				$('div.formgroup textarea').val('');
@@ -224,12 +222,12 @@ respond.Form.Process = function(el){
 				$('div.formgroup input[type=checkbox]').attr('checked', false);
 				
 				
-				$(context.el).find('input').val('');
-				$(context.el).find('select').val('');
-				$(context.el).find('textarea').val('');
-				$(context.el).find('.alert-danger').hide();
-				$(context.el).find('.alert-success').show();
-				$(context.el).find('.icon-spinner').hide();
+				$(el).find('input').val('');
+				$(el).find('select').val('');
+				$(el).find('textarea').val('');
+				$(el).find('.alert-danger').hide();
+				$(el).find('.alert-success').show();
+				$(el).find('.icon-spinner').hide();
 			}
         });
 

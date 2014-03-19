@@ -323,9 +323,7 @@ class PageContentResource extends Tonic\Resource {
             	Page::SetIsActive($page['PageUniqId'], 1);
                 $url = Publish::PublishPage($page['PageUniqId'], false, true);
                 
-                if($image!=''){
-                    Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);
-                }
+                Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);
             }
 
             $response = new Tonic\Response(Tonic\Response::OK);

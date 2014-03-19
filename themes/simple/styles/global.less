@@ -1,19 +1,69 @@
+/* import global styles */
+@import url("search.css");
+@import url("calendar.css");
+@import url("cart.css");
+
+h1, h2, h3, p, blockquote{
+	margin-bottom: 25px;
+}
+
+p, blockquote{
+	line-height: 25px;
+}
+
 header{
-	margin: 10px 10px 20px 10px;
+	margin: 10px 10px 25px 10px;
+}
+
+.jumbotron{
+  	margin: 0 0 25px 0;
+}
+
+.jumbotron p{
+	line-height: 40px;
+  	color: #777;
 }
 
 footer{
-	margin: 40px 10px 10px 10px;
+  	border-top: 2px solid #f0f0f0;
+	margin: 25px 0 0 0;
+  	padding: 25px 10px 25px 10px;
 }
 
     footer div{
-        text-align: right;
+        text-align: left;
     }
 
-	header .logo img{
-		height: 75px;
-  		margin-left: 20px;
+	footer p{
+		margin-bottom: 5px;
 	}
+
+	footer .menu{
+		text-align: center;
+	}
+
+	footer p.social i{
+		display: inline-block;
+  		width: 40px;
+  		height: 40px;
+  		line-height: 40px;
+  		text-align: center;
+  		border: 1px solid #ddd;
+  		border-radius: 50%;
+  		font-size: 16px;
+  		margin: 0 10px 0 0;
+  		
+	}
+
+footer .menu{
+	margin-top: 20px;
+}
+
+footer .menu li{
+	list-style: none;
+  	display: inline-block;
+  	margin: 0 10px;
+}
 
 /* list */
 .list-group-item img{
@@ -88,6 +138,19 @@ div.r-image img{
 		color: #b94a48;
 	}
 
+.navbar-brand{
+	max-height: 50px;
+  	margin: 0;
+  	padding: 0;
+}
+
+.navbar-brand img{
+	max-height: 50px;
+  	margin: 0;
+  	padding: 0;
+}
+
+
 /* map */
 div.map-container{
   	position: relative;
@@ -97,6 +160,7 @@ div.map-container{
   	height: 250px;
   	border: 1px solid #f0f0f0;
   	overflow: hidden;
+  	border-radius: 5px;
 }
 
 	div.map p span{

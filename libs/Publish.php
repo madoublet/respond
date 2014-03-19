@@ -72,6 +72,20 @@ class Publish
 		
 		copy($src, $dest);
 		
+		// create directory for api
+		$api_dir = $root.'sites/'.$site['FriendlyId'].'/api';
+		
+		if(!file_exists($api_dir)){
+			mkdir($api_dir, 0755, true);	
+		}
+		
+		// copy api
+		$api_src = $root.'sites/common/api/';
+		
+		if(file_exists($api_src)){
+			Utilities::CopyDirectory($api_src, $api_dir);
+		}
+		
 		// deny access to draft
 		$dir = $root.'sites/'.$site['FriendlyId'].'/fragments/draft/';
 		Publish::CreateDeny($dir);
@@ -446,11 +460,46 @@ class Publish
         $preview = false;
 		
 		// run the content through the parser
-		$content = Utilities::ParseHTML($site, $page, $content, $preview, $root);
+		$html = Utilities::ParseHTML($site, $page, $content, $preview, $root);
 		
 		// create fragment
 		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.php';
-		file_put_contents($fragment, $content); // save to file
+		file_put_contents($fragment, $html); // save to file
+	}
+	
+	// creates a search index for the page
+	public static function BuildSearchIndex($site, $page, $root = '../'){
+		
+		// get content from published fragment
+		$content = '';
+		$fragment = $root.'sites/'.$site['FriendlyId'].'/fragments/publish/'.$page['PageUniqId'].'.html';
+    
+        if(file_exists($fragment)){
+          $content = file_get_contents($fragment);
+        }
+        
+        // remove existing index
+        SearchIndex::Remove($page['PageUniqId']);
+        
+        // build the search index for the page in the default language
+        $isDefaultLanguage = true;
+        Utilities::BuildSearchIndex($site, $page, $site['Language'], $isDefaultLanguage, $content, $root);
+		
+		// get a list of other languages
+		$rootPrefix = $root.'sites/'.$site['FriendlyId'].'/';
+		
+		// build index for non-default languages
+		$languages = Utilities::GetSupportedLanguages($rootPrefix);
+		$isDefaultLanguage = false;
+		
+		foreach($languages as $language){
+		
+			if($language != $site['Language']){
+				Utilities::BuildSearchIndex($site, $page, $language, $isDefaultLanguage, $content, $root);
+			}
+		
+		}
+		
 	}
 
 	// publishes a page
@@ -514,12 +563,15 @@ class Publish
             else{
 			    $s_dest = $dest.$path;
             }
-        
+            
 			// save the content to the published file
 			Utilities::SaveContent($s_dest, $file, $html);
             
             // publish a rendered fragment
             Publish::PublishRender($site, $page, $root);
+            
+            // build the search index for the page
+            Publish::BuildSearchIndex($site, $page, $root);
             
             return $s_dest.$file;
 		}

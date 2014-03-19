@@ -26,7 +26,7 @@ respond.Login = function(config){
 		$(context).find('.alert-danger').hide();
 		
 		$.ajax({
-			url: pageModel.apiEndpoint + '/api/user/login',
+			url: pageModel.apiEndpoint + 'api/user/login',
 			type: 'POST',
 			data: {email: email, password: password, site: site},
 			success: function(data){

@@ -157,32 +157,7 @@ class AuthUser{
 		}
 
 	}
-	
-	// creates an authuser for a site
-	public static function CreateForSite($user, $site){
 
-    	session_start();
-    	
-    	// determine whether user has a photo
-        $hasPhotoUrl = true;
-        
-        if($user['PhotoUrl']==null || $user['PhotoUrl']==''){
-	        $hasPhotoUrl = false;
-        }
-	
-		$_SESSION[$site.'.UserId'] = $user['UserId'];
-		$_SESSION[$site.'.UserUniqId'] = $user['UserUniqId']; 
-		$_SESSION[$site.'.Role'] = $user['Role'];   
-		$_SESSION[$site.'.Language'] = $user['Language'];  
-		$_SESSION[$site.'.Email'] = $user['Email'];
-		$_SESSION[$site.'.Name'] = $user['FirstName'].' '.$user['LastName'];
-		$_SESSION[$site.'.FirstName'] = $user['FirstName'];
-		$_SESSION[$site.'.LastName'] = $user['LastName'];
-		$_SESSION[$site.'.HasPhotoUrl'] = $hasPhotoUrl;
-		$_SESSION[$site.'.PhotoUrl'] = $user['PhotoUrl'];
-	
-	}
-	
 	// updates changes to the user
 	public function UpdateUser(){
 		

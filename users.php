@@ -58,9 +58,9 @@
             <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
     		<h2>
     			<a data-bind="text:fullName, click: $parent.showEditDialog"></a>
-				<span class="role admin" data-bind="visible:role()=='Admin'"><?php print _("Administrator"); ?></span>
-				<span class="role contributor" data-bind="visible:role()=='Contributor'"><?php print _("Contributor"); ?></span>
-				<span class="role member" data-bind="visible:role()=='Member'"><?php print _("Member"); ?></span>
+				<span class="role admin" data-bind="visible:role()=='Admin'"><?php print _("Administrator"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
+				<span class="role contributor" data-bind="visible:role()=='Contributor'"><?php print _("Contributor"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
+				<span class="role member" data-bind="visible:role()=='Member'"><?php print _("Member"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span>
     		</h2>
     		<p><span class="email" data-bind="text:email"></span></p>
             <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
@@ -121,6 +121,14 @@
 					    optionsText: 'text',
 					    optionsValue: 'code'">
 					    <option value="en">English</option>
+				    </select>
+				</div>
+				
+				<div class="form-group">
+					<label for="isActive"><?php print _("Active:"); ?></label>
+					<select id="isActive" class="form-control">
+					    <option value="1">Yes</option>
+					    <option value="0">No</option>
 				    </select>
 				</div>
 				

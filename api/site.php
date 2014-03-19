@@ -128,6 +128,38 @@ class SiteValidateEmailResource extends Tonic\Resource {
 
 
 /**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /site/change/language
+ */
+class SiteChangeLanguageResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+
+        // parse request
+        parse_str($this->request->data, $request);
+
+		session_start();
+
+        $friendlyId = $request['friendlyId'];
+        $language = $request['language'];
+        
+        $_SESSION[$friendlyId.'.Language'] = $language;
+        
+        
+        // return a json response
+        $response = new Tonic\Response(Tonic\Response::OK);
+        $response->contentType = 'text/html';
+        $response->body = $friendlyId.'.Language='.$language;
+
+        return $response;
+    }
+}
+
+
+/**
  * A protected API call to retrieve the current site
  * @uri /site/create
  */
@@ -146,12 +178,23 @@ class SiteCreateResource extends Tonic\Resource {
         $timeZone = $request['timeZone'];
         $email = '';
         $password = '';
-        $language = 'en'; // language for the app
+        $language = 'en-us'; // language for the app
         $userId = -1;
+        
+        // set language if set
+        if(isset($request['language'])){
+	        $language = $request['language'];
+        }
         
         // check for email and password
         if(isset($request['email'])){
-       		$language = $request['language'];
+        	
+        	$userLanguage = 'en-us';
+        
+       		if(isset($request['userLanguage'])){
+		        $userLanguage = $request['userLanguage'];
+	        }
+	        
 	        $email = $request['email'];
 	        $password = $request['password'];
         }
@@ -193,11 +236,13 @@ class SiteCreateResource extends Tonic\Resource {
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone, DEFAULT_LANGUAGE); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone, $language); // add the site
             
             // add the admin
             if($email != ''){
-            	$user = User::Add($email, $password, $firstName, $lastName, 'Admin', $language, $site['SiteId']);
+            	$isActive = 1; // admins by default are active
+            
+            	$user = User::Add($email, $password, $firstName, $lastName, 'Admin', $userLanguage, $isActive, $site['SiteId']);
             	$userId = $user['UserId'];
             }
             

@@ -102,6 +102,7 @@ var usersModel = {
         $('#lastName').val('');
         $('#role').val('Admin');
         $('#language').val('en');
+        $('#isActive').val('1');
         $('#email').val('');
         $('#password').val('');
         $('#retype').val('');
@@ -123,6 +124,7 @@ var usersModel = {
         $('#role').val(o.role());
         $('#language').val(o.language());
         $('#email').val(o.email());
+        $('#isActive').val(o.isActive());
         $('#password').val('temppassword');
         $('#retype').val('temppassword');
 
@@ -138,9 +140,11 @@ var usersModel = {
         var lastName = jQuery.trim($('#lastName').val());
         var role = $('#role').val();
         var language = $('#language').val();
+        var isActive = $('#isActive').val();
         var email = jQuery.trim($('#email').val());
         var password = jQuery.trim($('#password').val());
         var retype = jQuery.trim($('#retype').val());
+        var isActive = $('#isActive').val();
         
         if(firstName=='' || lastName=='' || email=='' || password==''){
             message.showMessage('error', $('#msg-all-required').val());
@@ -158,7 +162,7 @@ var usersModel = {
         $.ajax({
           url: 'api/user/add',
           type: 'POST',
-          data: {firstName: firstName, lastName: lastName, role: role, language: language, email: email, password: password},
+          data: {firstName: firstName, lastName: lastName, role: role, language: language, isActive: isActive, email: email, password: password},
 		  dataType: 'json',
           success: function(data){
 
@@ -181,6 +185,7 @@ var usersModel = {
         var lastName = jQuery.trim($('#lastName').val());
         var role = $('#role').val();
         var language = $('#language').val();
+        var isActive = $('#isActive').val();
         var email = jQuery.trim($('#email').val());
         var password = jQuery.trim($('#password').val());
         var retype = jQuery.trim($('#retype').val());
@@ -203,7 +208,7 @@ var usersModel = {
         $.ajax({
           url: 'api/user/' + userUniqId,
           type: 'POST',
-          data: {firstName: firstName, lastName: lastName, role: role, language: language, email: email, password: password},
+          data: {firstName: firstName, lastName: lastName, role: role, language: language, isActive: isActive, email: email, password: password},
           success: function(data){
 
             // update the model
@@ -212,6 +217,7 @@ var usersModel = {
             usersModel.toBeEdited.role(role);
             usersModel.toBeEdited.language(language);
             usersModel.toBeEdited.email(email);
+            usersModel.toBeEdited.isActive(isActive);
             usersModel.toBeEdited.password('temppassword');
             
             message.showMessage('success', $('#msg-updated').val());

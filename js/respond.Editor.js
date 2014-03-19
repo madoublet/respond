@@ -1115,9 +1115,6 @@ respond.Editor.SetupMenuEvents = function(){
 		
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
-		
-		alert(uniqId);
-		
 		respond.Editor.Append(editor, 
 		  '<div id="'+uniqId+'" class="ol" data-id="'+uniqId+'" data-cssclass="">' +
 		  respond.defaults.elementMenu + 
@@ -1918,6 +1915,8 @@ respond.Editor.SetupPersistentEvents = function(el){
 			
 				$(this.parentNode.nextSibling).find('div').focus();
 			}
+			
+			$('[contentEditable=true]').paste();
 		
 			event.preventDefault();
 			return false;
@@ -2063,8 +2062,11 @@ respond.Editor.GetPrimaryImage = function(el){
 		}
 	}
 	
-	return image;
+	if(image.substr(0,2)=='t-'){
+		image = image.substr(2);
+	}
 	
+	return image;
 }
 
 // gets the content from the editor
