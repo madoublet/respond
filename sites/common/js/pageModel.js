@@ -187,7 +187,7 @@ var pageModel = {
 		    var friendlyId = $('body').attr('data-sitefriendlyid');
 		    	
 		    $.ajax({
-				url:  pageModel.apiEndpoint + '/api/site/change/language',
+				url:  pageModel.apiEndpoint + 'api/site/change/language',
 				type: 'POST',
 				context: this,
 				data: {language: language, friendlyId: friendlyId},
