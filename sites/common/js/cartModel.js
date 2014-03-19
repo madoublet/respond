@@ -66,33 +66,51 @@ var cartModel = {
     
     init:function(){
     	
-    	cartModel.payPalId = $('#cart').attr('data-paypalid');
-    	cartModel.currency = $('#cart').attr('data-currency');
-    	cartModel.weightUnit = $('#cart').attr('data-weightunit');
-    	cartModel.calculation = $('#cart').attr('data-shippingcalculation');  	
-		cartModel.flatRate = Number($('#cart').attr('data-shippingrate'));
-		cartModel.tiers = $('#cart').attr('data-shippingtiers');
+    	var payPalId = $('#cart').attr('data-paypalid');
+    	var currency = $('#cart').attr('data-currency');
+    	var weightUnit = $('#cart').attr('data-weightunit');
+    	var calculation = $('#cart').attr('data-shippingcalculation');  	
+		var flatRate = Number($('#cart').attr('data-shippingrate'));
+		var tiers = $('#cart').attr('data-shippingtiers');
+		var taxRate = $('#cart').attr('data-taxrate');
 	
-		// validate flatrate
-		if(isNaN(cartModel.flatRate)){
-			cartModel.flatRate = 0;
+		// validate payPalId
+		if(payPalId != '' && payPalId != undefined){
+			cartModel.payPalId = payPalId;
 		}
 		
-		// parse tiers if not empty
-		if(cartModel.tiers != ''){
+		// validate currency
+		if(currency != '' && currency != undefined){
+			cartModel.currency = currency;
+		}
+		
+		// validate weightUnit
+		if(weightUnit != '' && weightUnit != undefined){
+			cartModel.weightUnit = weightUnit;
+		}
+		
+		// validate calculation
+		if(calculation != '' && calculation != undefined){
+			cartModel.calculation = weightUnit;
+		}
+	
+		// validate flatrate
+		if(isNaN(flatRate) && flatRate != undefined){
+			cartModel.flatRate = flatRate;
+		}
+		
+		// validate and parse tiers
+		if(cartModel.tiers != '' && cartModel.tiers != undefined){
 	    	cartModel.tiers = JSON.parse(decodeURI(tiers));
 	    }
-	    else{
-		    cartModel.tiers = [];
-	    }
     	
-    	// get taxrate
-    	var taxRate = Number($('#cart').attr('data-taxrate').replace(/[^0-9\.]+/g, ''));
-    	
-    	if(!isNaN(taxRate)){
+    	// validate and parse taxrate
+    	if(!isNaN(taxRate) && taxRate != undefined){
+    		taxRate = Number(taxRate.replace(/[^0-9\.]+/g, ''));
     		cartModel.taxRate = taxRate;
     	}
     	
+    	// set return url
     	var url = 'http://' + $('body').attr('data-domain') + '/';
     	cartModel.returnUrl = url;
     	

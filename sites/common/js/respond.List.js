@@ -119,18 +119,17 @@ respond.List.BuildParams = function(el){
 				language: pageModel.language, 
 				prefix: pageModel.prefix()
 				};
-
-	
+				
 	// set URL based on display
-	var url = pageModel.apiEndpoint + '/api/page/published/list';
+	var url = pageModel.apiEndpoint + 'api/page/published/list';
 	
 	if(params.display == 'blog'){
-        url = pageModel.apiEndpoint + '/api/page/published/blog';
+        url = pageModel.apiEndpoint + 'api/page/published/blog';
     }
     
     if(params.display == 'calendar'){
 	    
-	    url = '/api/page/published/calendar';
+	    url = pageModel.apiEndpoint + 'api/page/published/calendar';
 	    
 	    // set begin equal to today
 	    var today = moment().startOf('day');
@@ -145,7 +144,7 @@ respond.List.BuildParams = function(el){
     
     // set the url
     params.url = url;
-    
+
 	return params;
     
 }

@@ -738,6 +738,11 @@ body .read-only{
 		body .form-group .loading i{
 			margin-right: 5px;
 		}
+		
+	body .form-stacked-bottom{
+		margin-top: 10px;
+	}
+	
 
 span.help-block{
 	color: #888;

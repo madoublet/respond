@@ -3,31 +3,40 @@
 class Utilities
 {
 	// sets a language for the app
-	public static function SetLanguage($language, $rootPrefix){
+	public static function SetLanguage($language, $directory = 'locale'){
+	
+		// convert language to PHP format, if needed (e.g. en-gb -> en_GB)
+		if(strpos($language, '-') !== FALSE){
+			$arr = explode('-', $language);
+			$language = strtolower($arr[0]).'_'.strtoupper($arr[1]);
+		}
+	
+		$domain = 'messages';
+	
 		putenv('LANG='.$language); 
-		setlocale(LC_ALL, $language);
+		setlocale(LC_ALL, $language.'.UTF-8', $language, 'en');  // first we try UTF-8, if not, normal language code
 		
 		// set text domain
-		$domain = 'messages';
-		bindtextdomain($domain, $rootPrefix.'locale'); 
+		bindtextdomain($domain, $directory); 
 		bind_textdomain_codeset($domain, 'UTF-8');
 		
 		textdomain($domain);
 	}
 	
 	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
-	public static function GetPreferredLanguage($available_languages) { 
+	public static function GetPreferredLanguage($available_languages, $default_language) { 
     	
     	// if $http_accept_language was left out, read it from the HTTP-Header 
 	    $http_accept_language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : ''; 
-
+	    
+	    print_r($http_accept_language.'<br>');
 
 	    preg_match_all("/([[:alpha:]]{1,8})(-([[:alpha:]|-]{1,8}))?" . 
 	                   "(\s*;\s*q\s*=\s*(1\.0{0,3}|0\.\d{0,3}))?\s*(,|$)/i", 
 	                   $http_accept_language, $hits, PREG_SET_ORDER); 
 	
-	    // default language (in case of no hits) is the first in the array 
-	    $bestlang = $available_languages[0]; 
+	    // default language as set by site
+	    $bestlang = $default_language; 
 	    $bestqval = 0; 
 	
 	    foreach ($hits as $arr) { 
@@ -53,12 +62,6 @@ class Utilities
 	        } 
 	    } 
 	    
-	    // convert to dir format (e.g. en-us -> en_US)
-	    if(strlen($bestlang) > 2){ 
-			$arr = explode('-', $bestlang);
-			$bestlang = strtolower($arr[0]).'_'.strtoupper($arr[1]);
-		}
-		
 		// returns the bestlang
 	    return $bestlang;   
 	} 

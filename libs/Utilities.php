@@ -5,10 +5,16 @@ class Utilities
 	// sets a language for the app
 	public static function SetLanguage($language, $directory = 'locale'){
 	
+		// convert language to PHP format, if needed (e.g. en-gb -> en_GB)
+		if(strpos($language, '-') !== FALSE){
+			$arr = explode('-', $language);
+			$language = strtolower($arr[0]).'_'.strtoupper($arr[1]);
+		}
+	
 		$domain = 'messages';
 	
 		putenv('LANG='.$language); 
-		setlocale(LC_ALL, $language.'.UTF-8',$language,"en");  // first we try UTF-8, if not, normal language code
+		setlocale(LC_ALL, $language.'.UTF-8', $language, 'en');  // first we try UTF-8, if not, normal language code
 		
 		// set text domain
 		bindtextdomain($domain, $directory); 
@@ -58,13 +64,7 @@ class Utilities
 	            $bestqval = $qvalue*0.9; 
 	        } 
 	    } 
-	    
-	    // convert to dir format (e.g. en-us -> en_US)
-	    if(strlen($bestlang) > 2){ 
-			$arr = explode('-', $bestlang);
-			$bestlang = strtolower($arr[0]).'_'.strtoupper($arr[1]);
-		}
-		
+
 		// returns the bestlang
 	    return $bestlang;    
 	} 
@@ -436,7 +436,12 @@ class Utilities
             }
         }
     
+		// translations
+		$content = str_replace('{{t}}', '<?php print _("', $content);
+		$content = str_replace('{{/t}}', '"); ?>', $content);
+    
         // global constants
+        $content = str_replace('{{root}}', $rootloc, $content);
         $content = str_replace('{{site}}', $site['Name'], $content);
         $content = str_replace('{{site-url}}', '//'.$site['Domain'], $content);
         $content = str_replace('{{page-url}}', $pageurl, $content);
@@ -466,12 +471,18 @@ class Utilities
 		// get the author
 		$user = User::GetByUserId($page['LastModifiedBy']);
 		$author = '';
+		$photo = '';
 		
 		if($user!=null){
 			$author = $user['FirstName'].' '.$user['LastName'];
+			
+			if($user['PhotoUrl'] != NULL && $user['PhotoUrl']!= ''){
+				$photo = '<span class="photo" style="background-image: url('.$rootloc.'files/'.$user['PhotoUrl'].')"></span>';
+			}
 		}
 		
 		$content = str_replace('{{author}}', $author, $content);
+		$content = str_replace('{{photo}}', $photo, $content);
         
         // menus
         $delimiter = '#';
@@ -627,6 +638,34 @@ class Utilities
 		
 		$content = str_replace('{{cart}}', $cart, $content);
 		$content = str_replace('{{email}}', $site['PrimaryEmail'], $content);
+		
+		// search
+		$searchFile = $root.'sites/common/modules/search.php';
+		$search = '';
+		
+		if(file_exists($searchFile)){
+            $search = file_get_contents($searchFile);
+		}
+		
+		// custom scripts
+        $delimiter = '#';
+		$startTag = '{{search-';
+		$endTag = '}}';
+		$regex = $delimiter . preg_quote($startTag, $delimiter) 
+		                    . '(.*?)' 
+		                    . preg_quote($endTag, $delimiter) 
+		                    . $delimiter 
+		                    . 's';
+		
+		preg_match_all($regex, $content, $matches);
+		
+		foreach($matches[1] as &$value) {
+		    
+		    $search = str_replace('{{id}}', $value, $search);
+		    
+		    $content = str_replace('{{search-'.$value.'}}', $search, $content);
+		}
+		
 		
 		// css
 		$css = '';
@@ -884,35 +923,35 @@ class Utilities
 		}
 
 		// setup gettext blockquote, h1, h2, h3, p, td, th, li, meta tags for multi-lingual support
-		foreach($html->find('blockquote') as $el){
+		foreach($html->find('#content blockquote') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('h1') as $el){
+		foreach($html->find('#content h1') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('h2') as $el){
+		foreach($html->find('#content h2') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('h3') as $el){
+		foreach($html->find('#content h3') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('p') as $el){
+		foreach($html->find('#content p') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('td') as $el){
+		foreach($html->find('#content td') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('th') as $el){
+		foreach($html->find('#content th') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
-		foreach($html->find('li') as $el){
+		foreach($html->find('#content li') as $el){
 			$el->innertext = Utilities::GenerateGettext($el->innertext);
 		}
 		
@@ -1295,6 +1334,142 @@ class Utilities
         }
         
         return $html;
+    }
+    
+    // generate a search index for a language
+    public static function BuildSearchIndex($site, $page, $language, $isDefaultLanguage, $content, $root = '../'){
+    
+        $html = str_get_html($content, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+    
+		$url = $page['FriendlyId'];
+		$isSecure = 0;
+		$image = $page['Image'];
+        
+        if($page['PageTypeId']!=-1){
+	        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+	        $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
+	        
+	        if($pageType['IsSecure'] == 1){
+	        	$isSecure = 1;
+	        }
+        }
+        
+        if($isDefaultLanguage == false){
+	        // set language to the domain for the site
+        	$domain = $root.'sites/'.$site['FriendlyId'].'/locale';
+			
+			// set the language
+			Utilities::SetLanguage($language, $domain);
+        }
+        
+        $name = $page['Name'];
+        $text = '';
+        $h1s = '';
+        $h2s = '';
+        $h3s = '';
+        $description = $page['Description'];
+        
+        if($isDefaultLanguage == false){
+			$name = _($name);  // get translated version
+			$description = _($description);
+		}
+		
+		if($html == null){
+			return '';
+		}
+        
+		// setup gettext blockquote, h1, h2, h3, p, td, th, li, meta tags for multi-lingual support
+		foreach($html->find('blockquote') as $el){
+			if($isDefaultLanguage == false){
+				$text .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$text .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('h1') as $el){
+			if($isDefaultLanguage == false){
+				$h1s .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$h1s .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('h2') as $el){
+			if($isDefaultLanguage == false){
+				$h2s .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$h2s .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('h3') as $el){
+			if($isDefaultLanguage == false){
+				$h3s .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$h3s .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('p') as $el){
+			if($isDefaultLanguage == false){
+				$text .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$text .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('td') as $el){
+			if($isDefaultLanguage == false){
+				$text .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$text .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('th') as $el){
+			if($isDefaultLanguage == false){
+				$text .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$text .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('li') as $el){
+			if($isDefaultLanguage == false){
+				$text .= _($el->innertext).' ';  // get translated version
+			}
+			else{
+				$text .= $el->innertext.' ';
+			}
+		}
+		
+		foreach($html->find('meta[name=description]') as $el){
+			if($isDefaultLanguage == false){
+				$description = _($el->innertext);  // get translated version
+			}
+			else{
+				$description = $el->innertext;
+			}
+		}
+		
+		// strip any html
+		$h1s = strip_tags($h1s);
+		$h2s = strip_tags($h2s);
+		$h3s = strip_tags($h3s);
+		$description = strip_tags($description);
+		$text = strip_tags($text);
+		
+		// add to search index
+		SearchIndex::Add($page['PageUniqId'], $site['SiteUniqId'], $language, $url, $name, $image, $isSecure, $h1s, $h2s, $h3s, $description, $text);
+		
     }
     
     // send welcome email

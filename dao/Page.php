@@ -362,7 +362,7 @@ class Page{
             $activeClause = '';
 
         	if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     		
     		$next = $pageSize * $pageNo;
@@ -410,7 +410,7 @@ class Page{
             $activeClause = '';
 
         	if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     		
     		$next = $pageSize * $pageNo;
@@ -462,7 +462,7 @@ class Page{
             $activeClause = '';
 
         	if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     		
     		$next = $pageSize * $pageNo;
@@ -513,7 +513,7 @@ class Page{
             $activeClause = '';
 
         	if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     		
     		$next = $pageSize * $pageNo;
@@ -567,7 +567,7 @@ class Page{
             $activeClause = '';
 
         	if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     
         	$count = 0;
@@ -602,7 +602,7 @@ class Page{
             $activeClause = '';
 
             if($activeOnly==true){
-    			$activeClause = ' AND IsActive=1';
+    			$activeClause = ' AND Pages.IsActive=1';
     		}
     		
             $q = "SELECT Pages.PageId, Pages.PageUniqId, Pages.FriendlyId, Pages.Name, 

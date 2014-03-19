@@ -108,6 +108,22 @@ var createModel = {
 	        });
 			
 		});
+		
+		
+		$('body').on('change', '#language-select', function(){
+		
+	        var language = $(this).val();
+	        
+	        if(language == ''){
+		       $('#language').removeClass('hidden');
+	        }
+	        else{
+		       $('#language').addClass('hidden');
+	        }
+	        
+	        $('#language').val(language);
+	    
+        });
 
         
         createModel.updateLanguages();
@@ -124,8 +140,9 @@ var createModel = {
         var passcode = $('#passcode').val();
         var timeZone = $('#timeZone').val();
         var language = $('#language').val();
+        var userLanguage = $('#userLanguage').val();
         
-        if(name=='' || friendlyId=='' || email=='' || password=='' || retype==''){
+        if(name=='' || friendlyId=='' || email=='' || password=='' || retype=='' || language == ''){
 			message.showMessage('error', $('#msg-create-required').val());
 			return;
 		}
@@ -140,7 +157,7 @@ var createModel = {
         $.ajax({
           url: 'api/site/create',
           type: 'POST',
-          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone, language: language},
+          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone, language: language, userLanguage: userLanguage},
           success: function(data){
             message.showMessage('success', $('#msg-created-successfully').val());
             
