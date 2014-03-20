@@ -830,19 +830,16 @@ class Utilities
         $header = '<?php '.PHP_EOL.
         	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
         	'$pageUrl="'.$pageUrl.'";'.PHP_EOL.
+        	'$isSecure='.(($isSecure) ? 'true' : 'false').';'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.
             '$siteFriendlyId="'.$site['FriendlyId'].'";'.PHP_EOL.
             '$pageUniqId="'.$page['PageUniqId'].'";'.PHP_EOL.
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '$language="'.$site['Language'].'";'.PHP_EOL.
+            'include \''.$rootloc.'libs/Utilities.php\';'.PHP_EOL;
+            'include \''.$rootloc.'libs/SiteAuthUser.php\';'.PHP_EOL;
             'include \''.$rootloc.'site.php\';'.PHP_EOL;
-            
-        // authenticate page    
-        if($isSecure==true){
-        	$header .= '$authUser = new AuthUser(\''.$site['FriendlyId'].'\', $rootPrefix, $pageUrl); // get auth user'.PHP_EOL;
-			$header .= '$authUser->Authenticate(\'Member\');'.PHP_EOL;
-		}
         
         $header .= '?>';
             

@@ -1,13 +1,26 @@
 <?php
-	
-	include 'libs/Utilities.php'; // import utilities
-	include 'libs/AuthUser.php'; // import utilities
+
+	// debugging
+	define('DEBUG', false);
+
+	if(DEBUG){
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+	}
+	else{
+		error_reporting(E_ERROR | E_PARSE);
+	}
 	
 	session_start();
-
+	
+	// authenticate secure pages
+	if($isSecure == true){
+		$siteAuthUser = new SiteAuthUser($siteFriendlyId, $rootPrefix, $pageUrl); // get auth user
+		$siteAuthUser->Authenticate('Member');
+	}
+	
 	// get supported language
 	$supported = Utilities::GetSupportedLanguages($rootPrefix);
-	
 	
 	// check if multiple languages are supported
 	if(count($supported) > 1){

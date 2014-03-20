@@ -66,9 +66,9 @@ class Publish
 		
 		copy($src, $dest);
 		
-		// copy AuthUser
-		$src = $root.'sites/common/libs/AuthUser.php';
-		$dest = $libs.'/AuthUser.php';
+		// copy SiteAuthUser
+		$src = $root.'sites/common/libs/SiteAuthUser.php';
+		$dest = $libs.'/SiteAuthUser.php';
 		
 		copy($src, $dest);
 		

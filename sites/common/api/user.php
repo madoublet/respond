@@ -28,25 +28,7 @@ class UserLoginResource extends Tonic\Resource {
 	            $site = Site::GetByFriendlyId($friendlyId);
 				
 				if($site['SiteId'] == $user['SiteId']){
-					session_start();
-    	
-			    	// determine whether user has a photo
-			        $hasPhotoUrl = true;
-			        
-			        if($user['PhotoUrl']==null || $user['PhotoUrl']==''){
-				        $hasPhotoUrl = false;
-			        }
-				
-					$_SESSION[$friendlyId.'.UserId'] = $user['UserId'];
-					$_SESSION[$friendlyId.'.UserUniqId'] = $user['UserUniqId']; 
-					$_SESSION[$friendlyId.'.Role'] = $user['Role'];   
-					$_SESSION[$friendlyId.'.Language'] = $user['Language'];  
-					$_SESSION[$friendlyId.'.Email'] = $user['Email'];
-					$_SESSION[$friendlyId.'.Name'] = $user['FirstName'].' '.$user['LastName'];
-					$_SESSION[$friendlyId.'.FirstName'] = $user['FirstName'];
-					$_SESSION[$friendlyId.'.LastName'] = $user['LastName'];
-					$_SESSION[$friendlyId.'.HasPhotoUrl'] = $hasPhotoUrl;
-					$_SESSION[$friendlyId.'.PhotoUrl'] = $user['PhotoUrl'];
+					SiteAuthUser::Create($friendlyId, $user);
 	
 					$params = array();
 				}
