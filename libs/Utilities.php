@@ -573,6 +573,15 @@ class Utilities
 		    
 		}
 		
+		// welcome
+		$welcomeFile = $root.'sites/common/modules/welcome.php';
+		
+		if(file_exists($welcomeFile)){
+            $welcome = file_get_contents($welcomeFile);
+            
+            $content = str_replace('{{welcome}}', $welcome, $content);
+        }
+		
 		// snippets
         $delimiter = '#';
 		$startTag = '{{snippet-';
@@ -837,8 +846,8 @@ class Utilities
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '$language="'.$site['Language'].'";'.PHP_EOL.
-            'include \''.$rootloc.'libs/Utilities.php\';'.PHP_EOL;
-            'include \''.$rootloc.'libs/SiteAuthUser.php\';'.PHP_EOL;
+            'include \''.$rootloc.'libs/Utilities.php\';'.PHP_EOL.
+            'include \''.$rootloc.'libs/SiteAuthUser.php\';'.PHP_EOL.
             'include \''.$rootloc.'site.php\';'.PHP_EOL;
         
         $header .= '?>';

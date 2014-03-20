@@ -2533,6 +2533,9 @@ respond.Editor.GetContent = function(el){
 		  			// remove open menu
 		  			field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v active"></a><div class="element-menu ui-sortable active"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
 		  			
+		  			// remove newly created menu
+		  			field = global.replaceAll(field, '<a class="expand-menu fa fa-ellipsis-v"></a><div class="element-menu"><a class="config-field fa fa-cog"></a><a class="move fa fa-arrows"></a><a class="remove fa fa-minus-circle"></a></div>', '');
+		  			
 		  			// remove ui-sortable
 		  			field = global.replaceAll(field, 'ui-sortable', '');
 		  			

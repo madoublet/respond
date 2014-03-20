@@ -52,6 +52,12 @@ class Publish
 		
 		copy($src, $dest);
 		
+		// copy logout.php
+		$src = $root.'sites/common/logout.php';
+		$dest = $root.'sites/'.$site['FriendlyId'].'/logout.php';
+		
+		copy($src, $dest);
+		
 		// copy Utilities
 		$libs = $root.'sites/'.$site['FriendlyId'].'/libs';
 		

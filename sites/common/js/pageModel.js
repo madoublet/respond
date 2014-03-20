@@ -31,9 +31,14 @@ var pageModel = {
     	// set language for moment
     	moment.lang(pageModel.language);
     	
-    	// setup the controls
+    	// set the properties for the page
         pageModel.setupProperties();
-		pageModel.setupControls();
+    	
+    	// setup controls for the initial state of the page
+    	var el = $('body');
+		pageModel.setupControls(el);
+		
+		// setup language controls
 		pageModel.setupLanguageControls();
 	   
         // apply bindings
@@ -77,10 +82,10 @@ var pageModel = {
     },
     
     // sets up controls for the page
-    setupControls: function(){
+    setupControls: function(el){
     
     	// setup lists
-    	var els = $('.respond-list');
+    	var els = $(el).find('.respond-list');
 		
 		for(var x=0; x<els.length; x++){
 		
@@ -94,7 +99,7 @@ var pageModel = {
 		}
 		
 		// setup search
-    	var els = $('.respond-search');
+    	var els = $(el).find('.respond-search');
 		
 		for(var x=0; x<els.length; x++){
 		
@@ -105,7 +110,7 @@ var pageModel = {
 		}
 		
 		// setup featured
-		var els = $('.featured-content');
+		var els = $(el).find('.featured-content');
 		
 		for(x=0; x<els.length; x++){
 		
@@ -116,7 +121,7 @@ var pageModel = {
 		}
         
         // setup maps
-        var els = $('.respond-map');
+        var els = $(el).find('.respond-map');
     	
 		for(var x=0; x<els.length; x++){
 			var map = new respond.Map({
@@ -128,7 +133,7 @@ var pageModel = {
 		$('.carousel').carousel();
 		
 		// setup forms
-		var els = $('.respond-form');
+		var els = $(el).find('.respond-form');
 		
 		for(var x=0; x<els.length; x++){
             var form = new respond.Form({
@@ -137,7 +142,7 @@ var pageModel = {
 		}
 		
 		// setup calendars
-		var els = $('.respond-calendar');
+		var els = $(el).find('.respond-calendar');
 		
 		for(var x=0; x<els.length; x++){
             var calendar = new respond.Calendar({
@@ -147,7 +152,7 @@ var pageModel = {
 		}
 		
 		// setup login
-		var els = $('.respond-login');
+		var els = $(el).find('.respond-login');
 		
 		for(var x=0; x<els.length; x++){
             var login = new respond.Login({
@@ -156,7 +161,7 @@ var pageModel = {
 		}
 		
 		// setup registration
-		var els = $('.respond-registration');
+		var els = $(el).find('.respond-registration');
 		
 		for(var x=0; x<els.length; x++){
             var login = new respond.Registration({
@@ -168,7 +173,7 @@ var pageModel = {
         prettyPrint();
         
         // setup fancy box
-        $('.gallery-image').fancybox();
+        $(el).find('.gallery-image').fancybox();
     },
     
     // handles language controls

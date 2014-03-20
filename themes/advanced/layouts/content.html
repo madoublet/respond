@@ -1,0 +1,138 @@
+<!doctype html>
+
+<html lang="{{language}}">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{{site}} - {{name}}</title>
+<meta name="description" content="{{description}}">
+<meta name="keywords" content="{{keywords}}">
+<meta name="callout" content="{{callout}}">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+{{css-bootstrap}}
+{{css}}
+{{rss}}
+    
+</head>
+
+<body id="{{id}}">
+
+<section class="user-selections">
+	
+	{{welcome}}
+
+	<div class="language">
+		<select class="form-control respond-select-language">
+	      <option value="en-us">English</option>
+	      <option value="es-es">Spanish</option>
+	  	</select>
+	</div>
+
+</section>
+<!-- /.user-selections -->  
+
+<header role="banner">
+
+	<nav class="navbar navbar-default" role="navigation">
+	  
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+        
+        <a class="navbar-brand" href="{{site-url}}"><img src="{{logo}}"></a>
+	  </div>
+	  <!-- /.navbar-header -->
+	
+	  
+	  <div class="collapse navbar-collapse navbar-ex1-collapse">
+	    <ul class="nav navbar-nav navbar-right">
+			{{menu-primary}}
+          	{{search-menu}}
+          	<li><a class="cart-toggle"><i class="fa fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+	    </ul>
+        
+	  </div>
+	  <!-- /.navbar-collapse -->
+      
+	</nav>
+
+	{{cart}}
+
+</header>
+  
+<div id="content" class="container" role="main">
+    {{content}}
+</div>
+
+<footer role="contentinfo">
+  
+  <div class="container">
+
+		<div class="row">
+		
+          <div class="col-md-6">
+            
+            <h4>{{t}}Contact{{/t}}</h4>
+            
+            <p>
+              {{t}}Call us at (555) 555-5555 or reach out via the website:{{/t}} <a href="{{root}}page/contact">{{t}}Contact{{/t}}</a>
+            </p>
+            
+            <p class="social">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-google-plus"></i></a>
+              <a href="#"><i class="fa fa-envelope-o"></i></a>
+            </p>
+            
+          </div>
+          <!-- /.col-md-4 -->
+          
+          <div class="col-md-6">
+            
+            <h4>{{t}}About{{/t}}</h4>
+            
+            <p>
+              {{site}} {{t}}powered by{{/t}} <a href="http://respondcms.com">Respond</a>. {{t}}Respond is an open source, responsive content management system that you can use to build responsive sites.  The latest version features Bootstrap 3.0, Bootswatch themes, a complete REST API, and a beautiful UI.{{/t}}
+            </p>
+            
+          </div>
+			<!-- /.col-md-4 -->
+			
+		</div>
+		<!-- /.row -->
+    
+    	<div class="row">
+        
+          <div class="col-md-12 menu">
+              
+              <ul>
+                <li>{{t}}Menu:{{/t}}</li>
+                {{menu-primary}}
+              </ul>
+              
+          </div>
+          <!-- /.col-md-12 -->
+          
+    	</div>
+		
+  	</div>
+  	<!-- /.container -->
+  
+</footer>
+
+{{js}}
+{{js-cart}}
+{{analytics}}
+
+</body>
+
+</html>
