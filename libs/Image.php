@@ -5,10 +5,10 @@ class Image
 	public static function SaveImageWithThumb($dir, $filename, $image){
 		
 		// create thumb
-		$thumb = Image::ResizeWithCenterCrop($image, $dir, 't-'.$filename, 200, 200); 
+		$thumb = Image::ResizeWithCenterCrop($image, $dir, 't-'.$filename, THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT); 
 		
-		// create original (but limit to 1024x768)
-		$original = Image::Resize($image, $dir, $filename, 1024, 768); 
+		// create original (but limit to defined maxes)
+		$original = Image::Resize($image, $dir, $filename, IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT); 
 		
 		$size = ($thumb + $original)/1024; // get combined size
 		
