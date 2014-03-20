@@ -386,7 +386,7 @@ class Publish
 	    	$less = new lessc;
 
 	    	try{
-			  $less->checkedCompile($lessFile, $cssFile);
+			  $less->compileFile($lessFile, $cssFile);
 
 			  return true;
 			} 
