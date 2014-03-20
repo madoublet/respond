@@ -3,17 +3,20 @@ var featuredDialog = {
 
 	editor: null,
 	pageUniqId: -1,
+	url: '',
 	name: '',
 
 	init:function(){
 	
 		$('#selectFeaturedPage li').live('click', function(){
 			var pageUniqId = $(this).attr('data-pageuniqid');
+			var url = $(this).attr('data-url');
 			var name = $(this).attr('data-name');
 
 			featuredDialog.pageUniqId = pageUniqId;
+			featuredDialog.url = url;
 			featuredDialog.name = name;
-
+			
 			$('#selectFeaturedPage li').removeClass('selected');
 			$(this).addClass('selected');
 		});
@@ -32,7 +35,7 @@ var featuredDialog = {
 		
 			var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 			
-			var html = '<div id="'+uniqId+'" data-pageuniqid="'+featuredDialog.pageUniqId +
+			var html = '<div id="'+uniqId+'" data-url="'+featuredDialog.url +
 			'" data-pagename="'+featuredDialog.name+'" class="featured">' +
 			respond.defaults.elementMenuNoConfig + 
 			'<div class="title"><i class="fa fa-star"></i> ' + $('#msg-featured-content').val() + ' '+featuredDialog.name +

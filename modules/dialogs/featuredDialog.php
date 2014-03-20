@@ -19,7 +19,7 @@
 				<div class="form-block">
 					<div id="selectFeaturedPage" class="select select-lg">
 						<ul data-bind="foreach: pages">
-							<li data-bind="attr:{'data-pageuniqid': pageUniqId, 'data-name': name}, text:name"></li>
+							<li data-bind="attr:{'data-pageuniqid': pageUniqId, 'data-name': name, 'data-url': url}, text:name"></li>
 						</ul>
 						<p data-bind="visible: pagesLoading()" class="inline-status"><i class="fa fa-spinner fa fa-spin"></i> <?php print _("Loading..."); ?></p>
 					</div>    

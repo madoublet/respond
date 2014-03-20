@@ -1,7 +1,7 @@
 <div id="<?php print $listid; ?>" class="respond-list" data-bind="foreach: <?php print $listid; ?>" 
 	data-display="<?php print $el->display; ?>" 
 	data-label="<?php print $el->label; ?>" 
-	data-pagetypeid="<?php print $el->type; ?>" 
+	data-pagetypeid="<?php print $pageTypeUniqId; ?>" 
 	data-length="<?php print $length; ?>" 
 	data-orderby="<?php print $orderby; ?>" 
 	data-category="<?php print $category; ?>">

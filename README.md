@@ -25,6 +25,7 @@ Bug fixes:
 Refactoring:
 - Language bugs
 - Site API
+- Featured, List updates to support friendly names (facilitates easier themes, more portable sites)
 
 How to update from 2.8:
 - Add IsSecure flag to PageTypes

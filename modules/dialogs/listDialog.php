@@ -19,7 +19,7 @@
 			<div id="listPageTypeBlock" class="form-group">
 				<label for="listPageType"><?php print _("Page Type:"); ?></label>
 				<select id="listPageType" data-bind="foreach: pageTypes" class="form-control">
-					<option data-bind="value: pageTypeUniqId, text: typeP"></option>
+					<option data-bind="value: friendlyId, text: typeP"></option>
 				</select>
 			</div>
 			

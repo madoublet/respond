@@ -1019,74 +1019,105 @@ class Utilities
                     $el->outertext= $content;
                 }
                 else if($name=='list'){
+                
+                	$pageTypeUniqId = '';
               
-                    $type = $el->type;
-                    $label = $el->label;
-                    $isAjax = false;
-                    $pageNo = 1;
-                    $curr = 0;
-                    $listid = $el->id;
-                    $display = $el->display;
-                    $desclength = $el->desclength;
-                    $length = $el->length;
-                    $orderby = $el->orderby;
-                    $category = $el->category;
-                    $pageresults = $el->pageresults;
-                  
-                    if($el->display == 'blog'){
-                      
-                        $list = '';
-        
-				        ob_start();
-				        include $root.'sites/common/modules/list-blog.php'; // loads the module
-				        $list = ob_get_contents(); // get content from module
-				        ob_end_clean();
+					if(isset($el->type)){
+                    	$pageTypeUniqId = $el->type;
+                    }
+
+					// translate a friendlyId to a pageTypeUniqId
+					if(isset($el->pagetype)){
+						$friendlyId = $el->pagetype;
+					
+						$pageType = PageType::GetByFriendlyId($friendlyId, $site['SiteId']);
 						
+						$pageTypeUniqId = $pageType['PageTypeUniqId'];
+					}
+					
+					if($pageTypeUniqId != ''){
+	                    $label = $el->label;
+	                    $isAjax = false;
+	                    $pageNo = 1;
+	                    $curr = 0;
+	                    $listid = $el->id;
+	                    $display = $el->display;
+	                    $desclength = $el->desclength;
+	                    $length = $el->length;
+	                    $orderby = $el->orderby;
+	                    $category = $el->category;
+	                    $pageresults = $el->pageresults;
+	                  
+	                    if($el->display == 'blog'){
+	                      
+	                        $list = '';
+	        
+					        ob_start();
+					        include $root.'sites/common/modules/list-blog.php'; // loads the module
+					        $list = ob_get_contents(); // get content from module
+					        ob_end_clean();
+							
+	                    }
+	                    else if($el->display == 'list'){
+	                        $list = '';
+	                        
+	                        ob_start();
+					        include $root.'sites/common/modules/list.php'; // loads the module
+					        $list = ob_get_contents(); // get content from module
+					        ob_end_clean();
+	                        
+	                    }
+	                    else if($el->display == 'thumbnails'){
+	                        $list = '';
+	                        
+	                        ob_start();
+					        include $root.'sites/common/modules/list-thumbnails.php'; // loads the module
+					        $list = ob_get_contents(); // get content from module
+					        ob_end_clean();
+					        
+	                    }
+	                    else if($el->display == 'calendar'){
+	                    	$list = '';
+	                        
+	                        ob_start();
+					        include $root.'sites/common/modules/list-calendar.php'; // loads the module
+					        $list = ob_get_contents(); // get content from module
+					        ob_end_clean();
+	                    }
+	                    else if($el->display == 'map'){
+	                    	$list = '';
+	                        
+	                        ob_start();
+					        include $root.'sites/common/modules/list-map.php'; // loads the module
+					        $list = ob_get_contents(); // get content from module
+					        ob_end_clean();
+	                    }
+	                    
+	                    $el->outertext = $list;
                     }
-                    else if($el->display == 'list'){
-                        $list = '';
-                        
-                        ob_start();
-				        include $root.'sites/common/modules/list.php'; // loads the module
-				        $list = ob_get_contents(); // get content from module
-				        ob_end_clean();
-                        
-                    }
-                    else if($el->display == 'thumbnails'){
-                        $list = '';
-                        
-                        ob_start();
-				        include $root.'sites/common/modules/list-thumbnails.php'; // loads the module
-				        $list = ob_get_contents(); // get content from module
-				        ob_end_clean();
-				        
-                    }
-                    else if($el->display == 'calendar'){
-                    	$list = '';
-                        
-                        ob_start();
-				        include $root.'sites/common/modules/list-calendar.php'; // loads the module
-				        $list = ob_get_contents(); // get content from module
-				        ob_end_clean();
-                    }
-                    else if($el->display == 'map'){
-                    	$list = '';
-                        
-                        ob_start();
-				        include $root.'sites/common/modules/list-map.php'; // loads the module
-				        $list = ob_get_contents(); // get content from module
-				        ob_end_clean();
-                    }
-                    
-                    $el->outertext = $list;
               
                 }
                 else if($name=='featured'){
+                
 					
                     $id = $el->id;
                     $pageName = $el->pagename;
-                    $pageUniqId = $el->pageuniqid;
-                  
+                    
+                    $pageUniqId = '';
+              
+					if(isset($el->pageuniqid)){
+                    	$pageUniqId = $el->pageuniqid;
+                    }
+
+					// translate a friendlyId to a pageTypeUniqId
+					if(isset($el->url)){
+						$url = $el->url;
+					
+						$page = Page::GetByUrl($url, $site['SiteId']);
+						
+						$pageUniqId = $page['PageUniqId'];
+					}
+                    
                     $featured = '<div id="'.$id.'" data-pageuniqid="'.$pageUniqId.'" data-pagename="'.$pageName.'" class="featured-content"></div>';  
                     
                     $el->outertext = $featured	;

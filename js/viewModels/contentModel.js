@@ -186,6 +186,39 @@ var contentModel = {
 	},
 	
 	// updates the categories
+	updateCategoriesWithFriendlyId:function(friendlyId, callback){  // updates the categories array
+
+		contentModel.categories.removeAll();
+		contentModel.categoriesLoading(true);
+		
+		$.ajax({
+			url: 'api/category/list/all',
+			type: 'POST',
+			data: {friendlyId: friendlyId},
+			dataType: 'json',
+			success: function(data){
+			
+				console.log(data[x]);
+
+				for(x in data){
+				
+					var category = Category.create(data[x]);
+					
+					console.log(category);
+					
+					contentModel.categories.push(category); // push a category to the model
+				}
+
+				contentModel.categoriesLoading(false);
+				
+				callback();
+
+			}
+		});
+
+	},
+	
+	// updates the categories
 	updateCategoriesWithPageTypeUniqId:function(pageTypeUniqId, callback){  // updates the categories array
 
 		contentModel.categories.removeAll();
@@ -198,7 +231,7 @@ var contentModel = {
 			dataType: 'json',
 			success: function(data){
 			
-				console.log(data[x]);
+				console.log(data);
 
 				for(x in data){
 				

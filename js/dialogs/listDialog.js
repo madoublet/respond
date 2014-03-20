@@ -13,7 +13,7 @@ var listDialog = {
             
 			var editor = listDialog.editor;
 			
-			var pageTypeUniqId = $('#listPageType').val();
+			var friendlyId = $('#listPageType').val();
 			
 			var uniqId = 'list'+ ($(editor).find('.list').length + 1);
 			
@@ -21,12 +21,12 @@ var listDialog = {
 			var label = $('#listPageType option:selected').text();
 			label = label.toLowerCase();
 			
-			if(pageTypeUniqId==-1){
+			if(friendlyId=='-1'){
 				message.showMessage('error', $('#msg-select-list-error').val());
 				return;
 			}
 			
-			var html = '<div id="'+uniqId+'" data-display="'+display+'" data-type="'+pageTypeUniqId+'" class="list"' +
+			var html = '<div id="'+uniqId+'" data-display="'+display+'" data-pagetype="'+friendlyId+'" class="list"' +
 							' data-length="'+$('#listLength').val() + '"' +
 							' data-orderby="'+$('#listOrderBy').val() + '"' +
 							' data-category="'+$('#listCategory').val() + '"' +
@@ -50,7 +50,6 @@ var listDialog = {
 
 		$('#updateList').on('click', function(){
 		  
-			var pageTypeUniqId = listDialog.pageTypeUniqId;
 			var moduleId = listDialog.moduleId;
 			
 			var editor = listDialog.editor;
@@ -69,9 +68,9 @@ var listDialog = {
 			
 		// retrieves new categories for page type
 		$('#listPageType').on('change', function(){
-			var pageTypeUniqId = $(this).val();
+			var friendlyId = $(this).val();
 		
-			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
+			contentModel.updateCategoriesWithFriendlyId(friendlyId);
 		});
 		
 		// disable paging for calendars
@@ -109,9 +108,9 @@ var listDialog = {
 			
 			$("#listPageType")[0].selectedIndex = 0;
 			
-			var pageTypeUniqId = $("#listPageType").val();
+			var friendlyId = $("#listPageType").val();
 			
-			contentModel.updateCategoriesWithPageTypeUniqId(pageTypeUniqId);
+			contentModel.updateCategoriesWithFriendlyId(friendlyId);
 			
 			$('#listDisplay').val('list');
 			$('#listLength').val('10');   // set initial values
@@ -124,8 +123,6 @@ var listDialog = {
 			// show paging by default
 			$(listDialog.dialog).find('.paging').show();
 			
-			listDialog.pageTypeUniqId = -1;
-			
 			$('#listDialog').modal('show'); // show modal
 	    }
 	    else{
@@ -136,15 +133,24 @@ var listDialog = {
 			
 			var node = $('div#'+listDialog.moduleId+'.list');   // get reference to list
 			var display = $(node).attr('data-display');
+			
+			var pagetype = $(node).attr('data-pagetype');
 			var type = $(node).attr('data-type');
+			
 			var category = $(node).attr('data-category')
 			
 			function setCategory(){
 			  $('#listCategory').val(category);
 			}
 			
-			contentModel.updateCategoriesWithPageTypeUniqId(type, setCategory);
+			if(pagetype != '' && pagetype != undefined){
+				contentModel.updateCategoriesWithFriendlyId(pagetype, setCategory);
+			}
 			
+			if(type != '' && type != undefined){
+				contentModel.updateCategoriesWithPageTypeUniqId(type, setCategory);
+			}
+						
 			var label = $(node).attr('data-label');
 			var length = $(node).attr('data-length');
 			var orderby = $(node).attr('data-orderby');
@@ -169,8 +175,6 @@ var listDialog = {
 			else{
 				$(listDialog.dialog).find('.paging').show();
 			}
-			
-			listDialog.pageTypeUniqId = type;
 			
 			$('#listDialog').modal('show'); // show modal
 	    }

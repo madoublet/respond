@@ -617,7 +617,8 @@ respond.Editor.ParseHTML = function(top){
 		    		  	  id = 'list'+($(node).find('.list').length + 1);  
 					  	}
 		
-					  	var type = $(node).attr('type');
+					  	var pagetype = $(node).attr('pagetype');
+					  	var type = $(node).attr('type'); // legacy UniqId support
 					  	var label = $(node).attr('label');
 					  	var desclength = $(node).attr('desclength');
 					  	var length = $(node).attr('length');
@@ -631,7 +632,18 @@ respond.Editor.ParseHTML = function(top){
 						if(orderby==undefined)orderby='';
 						if(pageresults==undefined)pageresults='';
 						
-					  	chtml = '<div id="'+id+'" data-display="'+display+'" data-type="'+type+'" class="list"' +
+						// handles specify the list by pagetype (friendlyId) or type (uniqId -> legacy)
+						var typeAttr = '';
+						
+						if(pagetype != '' && pagetype != undefined){
+							typeAttr = 'data-pagetype="'+pagetype+'"';
+						}
+						
+						if(type != '' && type != undefined){
+							typeAttr = 'data-type="'+type+'"';
+						}
+						
+					  	chtml = '<div id="'+id+'" data-display="'+display+'" '+ typeAttr +' class="list"' +
 							' data-label="' + label + '"' +
 							' data-desclength="' + desclength + '"' +
 							' data-length="' + length + '" data-orderby="' + orderby + '" data-category="' + category  + '" data-pageresults="' + pageresults + '">' +
@@ -652,8 +664,20 @@ respond.Editor.ParseHTML = function(top){
 		
 					  	var pageName = $(node).attr('pagename');
 					  	var pageUniqId = $(node).attr('pageUniqId');
+					  	var url = $(node).attr('url');
+					  	
+					  	// handles by url and pageuniqid (legacy)
+					  	var typeAttr = '';
+					  	
+					  	if(pageUniqId != '' && pageUniqId != undefined){
+							typeAttr = 'data-pageuniqid="'+pageUniqId+'"';
+						}
 						
-					  	chtml = '<div id="'+id+'" data-pageuniqid="'+pageUniqId+'" data-pagename="'+pageName+'" class="featured">' +
+						if(url != '' && url != undefined){
+							typeAttr = 'data-url="'+url+'"';
+						}
+						
+					  	chtml = '<div id="'+id+'" '+ typeAttr +' data-pagename="'+pageName+'" class="featured">' +
 					  		respond.defaults.elementMenuNoConfig +
 							' <div class="title"><i class="fa fa-star"></i> Featured content: '+pageName+' </div></div>';
 		
@@ -2367,6 +2391,7 @@ respond.Editor.GetContent = function(el){
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
 				  
 				var display = $(divs[x]).attr('data-display');
+				var pagetype = $(divs[x]).attr('data-pagetype');
 				var type = $(divs[x]).attr('data-type');
 				var label = $(divs[x]).attr('data-label');
 	
@@ -2375,8 +2400,19 @@ respond.Editor.GetContent = function(el){
 				var orderby = $(divs[x]).attr('data-orderby');
 				var category = $(divs[x]).attr('data-category');
 				var pageresults = $(divs[x]).attr('data-pageresults');
-	
-				newhtml += '<module id="'+id+'" name="list" display="'+display+'" type="'+type+'" label="' + label + '"' +
+			
+				// handles specify the list by pagetype (friendlyId) or type (uniqId -> legacy)
+				var typeAttr = '';
+				
+				if(pagetype != '' && pagetype != undefined){
+					typeAttr = 'pagetype="'+pagetype+'"';
+				}
+				
+				if(type != '' && type != undefined){
+					typeAttr = 'type="'+type+'"';
+				}
+				
+				newhtml += '<module id="'+id+'" name="list" display="'+display+'" '+typeAttr+' label="' + label + '"' +
 					' desclength="'+desclength+'"' +
 					' length="'+length+'"' +
 					' orderby="'+orderby+'" category="'+category+'" pageresults="'+pageresults+'"' +
@@ -2388,9 +2424,22 @@ respond.Editor.GetContent = function(el){
 				var id = $(divs[x]).attr('id');
 				  
 				var pageUniqId = $(divs[x]).attr('data-pageuniqid');
+				var url = $(divs[x]).attr('data-url');
 				var pageName = $(divs[x]).attr('data-pagename');
 				
-				newhtml += '<module id="'+id+'" name="featured" pageuniqid="'+pageUniqId+'" pagename="'+pageName+'"></module>';
+				// handles by url or pageuniqid (legacy)
+				var typeAttr = '';
+				
+				if(pageUniqId != '' && pageUniqId != undefined){
+					typeAttr = 'pageuniqid="'+pageUniqId+'"';
+				}
+				
+				if(url != '' && url != undefined){
+					typeAttr = 'url="'+url+'"';
+				}
+				
+				
+				newhtml += '<module id="'+id+'" name="featured" '+typeAttr+' pagename="'+pageName+'"></module>';
 			}
 			
 			// generate SECURE
