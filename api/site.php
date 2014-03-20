@@ -354,7 +354,6 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
-    			$content = str_replace('{{pageTypeUniqId}}', $postPageType['PageTypeUniqId'], $content);
     		}
             
     		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);

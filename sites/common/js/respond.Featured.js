@@ -16,6 +16,9 @@ respond.Featured = function(config){
 		data: {siteUniqId: pageModel.siteUniqId(), pageUniqId: pageUniqId, prefix: pageModel.prefix(), language: pageModel.language},
 		success: function(data){
 			$(this.el).html(data);
+			
+			// update controls for the featured content
+			pageModel.setupControls(this.el);  
 		}
 	});
 	

@@ -301,6 +301,12 @@ respond.List.Update = function(params){
                 }
             }
             
+            // update controls for the blog
+            if(params.display == 'blog'){
+            	var el = $('#'+params.id);
+            	pageModel.setupControls(el);    
+            }
+           
             
 		}
 	});

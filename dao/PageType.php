@@ -230,7 +230,7 @@ class PageType{
             $q = "SELECT PageTypeId, PageTypeUniqId, FriendlyId,
             		TypeS, TypeP, Layout, Stylesheet, IsSecure,
         			SiteId, CreatedBy, LastModifiedBy, LastModifiedDate, Created
-        		 	FROM PageTypes WHERE FriendlyId = ? && SiteId = ?";
+        		 	FROM PageTypes WHERE FriendlyId = ? AND SiteId = ?";
                     
             $s = $db->prepare($q);
             $s->bindParam(1, $friendlyId);

@@ -66,6 +66,14 @@ class CategoryListResource extends Tonic\Resource {
 	        	$pageTypeId = $request['pageTypeId'];
         	}
         	
+        	if(isset($request['friendlyId'])){
+	        	$friendlyId = $request['friendlyId'];
+	        	
+	        	$pageType = PageType::GetByFriendlyId($friendlyId, $authUser->SiteId); // look up id
+        		
+        		$pageTypeId = $pageType['PageTypeId'];
+        	}
+        	
         	if(isset($request['pageTypeUniqId'])){
         		$pageType = PageType::GetByPageTypeUniqId($request['pageTypeUniqId']); // look up id
         		

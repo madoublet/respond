@@ -744,7 +744,7 @@ class Page{
 	}
 	
 	// gets a page for a specific $friendlyId and $siteId
-	public static function GetByFriendlyId($friendlyId, $siteId){
+	public static function GetByFriendlyId($friendlyId, $pageTypeId, $siteId){
 		
         try{
         
@@ -757,11 +757,12 @@ class Page{
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.CreatedBy, Pages.LastModifiedBy, Pages.LastModifiedDate,  
         			Pages.IsActive, Pages.Image, Pages.Created
-        		 	FROM Pages WHERE FriendlyId=? AND SiteId=?";
+        		 	FROM Pages WHERE FriendlyId=? AND PageTypeId=? AND SiteId=?";
                     
             $s = $db->prepare($q);
             $s->bindParam(1, $friendlyId);
-            $s->bindParam(2, $siteId);
+            $s->bindParam(2, $pageTypeId);
+            $s->bindParam(3, $siteId);
             
             $s->execute();
             
@@ -775,6 +776,28 @@ class Page{
             die('[Page::GetByFriendlyId] PDO Error: '.$e->getMessage());
         }
         
+	}
+	
+	public static function GetByUrl($url, $siteId){
+	
+		if(strpos($url, '/') !== false){ // get by
+			$arr = explode('/', $url);
+			
+			$pageTypeFriendlyId = $arr[0];
+			$pageFriendlyId = $arr[1];
+			
+			$pageType = PageType::GetByFriendlyId($pageTypeFriendlyId, $siteId);
+			$page = Page::GetByFriendlyId($pageFriendlyId, $pageType['PageTypeId'], $siteId);
+			
+			return $page;
+		}
+		else{
+			$page = Page::GetByFriendlyId($pageFriendlyId, -1, $siteId);
+			
+			return $page;
+		}
+	
+	
 	}
 	
 	// gets a page for a specific $pageId

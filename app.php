@@ -11,6 +11,12 @@
 		ini_set('display_errors', '1');
 	}
 	
+	// advanced configurations
+	define('IMAGE_MAX_WIDTH', 1024);
+	define('IMAGE_MAX_HEIGHT', 768);
+	define('THUMB_MAX_WIDTH', 200);
+	define('THUMB_MAX_HEIGHT', 200);
+	
 	// set default as UTC
 	date_default_timezone_set('UTC');
 	
