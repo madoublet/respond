@@ -145,15 +145,15 @@ a.next, a.previous{
 	padding-top: 50px;
 }
 
-	.block div.p.align-center div, .block div.h1.align-center div, .block div.h2.align-center div, .block div.h3.align-center div{
+	.block div.p.text-center div, .block div.h1.text-center div, .block div.h2.text-center div, .block div.h3.text-center div{
 		text-align: center;	
 	}
 	
-	.block div.p.align-left div, .block div.h1.align-left div, .block div.h2.align-left div, .block div.h3.align-left div{
+	.block div.p.text-left div, .block div.h1.text-left div, .block div.h2.text-left div, .block div.h3.text-left div{
 		text-align: left;	
 	}
 	
-	.block div.p.align-right div, .block div.h1.align-right div, .block div.h2.align-right div, .block div.h3.align-right div{
+	.block div.p.text-right div, .block div.h1.text-right div, .block div.h2.text-right div, .block div.h3.text-right div{
 		text-align: right;	
 	}
 
