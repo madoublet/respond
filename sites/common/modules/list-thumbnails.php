@@ -3,6 +3,7 @@
 	data-label="<?php print $el->label; ?>" 
 	data-pagetypeid="<?php print $pageTypeUniqId; ?>" 
 	data-length="<?php print $length; ?>" 
+	data-desclength="<?php print $desclength; ?>"
 	data-orderby="<?php print $orderby; ?>" 
 	data-category="<?php print $category; ?>">
         <span class="thumbnail">

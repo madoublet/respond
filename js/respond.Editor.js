@@ -171,14 +171,14 @@ respond.Editor.ParseHTML = function(top){
 					
 					var alignclass = '';
 					
-					if(cssclass.indexOf('align-left')!=-1){
-						alignclass = ' align-left';
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
 					}
-					else if(cssclass.indexOf('align-center')!=-1){
-						alignclass = ' align-center';
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
 					}
-					else if(cssclass.indexOf('align-right')!=-1){
-						alignclass = ' align-right';
+					else if(cssclass.indexOf('text-right')!=-1){
+						alignclass = ' text-right';
 					}
 					
 					var h = $(node).html();
@@ -296,14 +296,14 @@ respond.Editor.ParseHTML = function(top){
 					
 					var alignclass = '';
 					
-					if(cssclass.indexOf('align-left')!=-1){
-						alignclass = ' align-left';
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
 					}
-					else if(cssclass.indexOf('align-center')!=-1){
-						alignclass = ' align-center';
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
 					}
-					else if(cssclass.indexOf('align-right')!=-1){
-						alignclass = ' align-right';
+					else if(cssclass.indexOf('text-right')!=-1){
+						alignclass = ' text-right';
 					}
 				
 					response+= '<div id="'+id+'" class="h1'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
@@ -334,14 +334,14 @@ respond.Editor.ParseHTML = function(top){
 					
 					var alignclass = '';
 					
-					if(cssclass.indexOf('align-left')!=-1){
-						alignclass = ' align-left';
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
 					}
-					else if(cssclass.indexOf('align-center')!=-1){
-						alignclass = ' align-center';
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
 					}
-					else if(cssclass.indexOf('align-right')!=-1){
-						alignclass = ' align-right';
+					else if(cssclass.indexOf('text-right')!=-1){
+						alignclass = ' text-right';
 					}
 					
 					response+= '<div id="'+id+'" class="h2'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
@@ -359,14 +359,14 @@ respond.Editor.ParseHTML = function(top){
 					
 					var alignclass = '';
 					
-					if(cssclass.indexOf('align-left')!=-1){
-						alignclass = ' align-left';
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
 					}
-					else if(cssclass.indexOf('align-center')!=-1){
-						alignclass = ' align-center';
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
 					}
 					else if(cssclass.indexOf('align-right')!=-1){
-						alignclass = ' align-right';
+						alignclass = ' text-right';
 					}
 			  
 			  		response+= '<div id="'+id+'" class="h3'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
@@ -901,22 +901,22 @@ respond.Editor.SetupMenuEvents = function(){
 	// create ALIGNMENT
 	$('.editor-menu a.align-center, .editor-menu a.align-left, .editor-menu a.align-right').click(function(){
 	
-		var alignclass = 'align-'+$(this).attr('data-align');
+		var alignclass = 'text-'+$(this).attr('data-align');
 		
 		if($('*:focus').length>0){
 			var el = $('*:focus').parents('div.p, div.h1, div.h2, div.h3');
 			
 			var cssclass = el.attr('data-cssclass');
-			cssclass = global.replaceAll(cssclass, 'align-left', ''); // replace other alignments
-			cssclass = global.replaceAll(cssclass, 'align-right', '');
-			cssclass = global.replaceAll(cssclass, 'align-center', '');
+			cssclass = global.replaceAll(cssclass, 'text-left', ''); // replace other alignments
+			cssclass = global.replaceAll(cssclass, 'text-right', '');
+			cssclass = global.replaceAll(cssclass, 'text-center', '');
 			cssclass += ' '+alignclass;
 			cssclass = $.trim(cssclass);
 			
 			el.attr('data-cssclass', cssclass);
-			el.removeClass('align-left');
-			el.removeClass('align-right');
-			el.removeClass('align-center');
+			el.removeClass('text-left');
+			el.removeClass('text-right');
+			el.removeClass('text-center');
 			el.addClass(alignclass);
 		}
 		

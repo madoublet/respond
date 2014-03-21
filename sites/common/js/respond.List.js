@@ -113,6 +113,7 @@ respond.List.BuildParams = function(el){
 				display: $(el).attr('data-display'),
 				siteUniqId: pageModel.siteUniqId(), 
 				pageTypeUniqId: $(el).attr('data-pagetypeid'), 
+				descLength: $(el).attr('data-desclength'),
 				pageSize: $(el).attr('data-length'), 
 				orderBy: $(el).attr('data-orderby'), 
 				category: $(el).attr('data-category'),
@@ -202,11 +203,20 @@ respond.List.Update = function(params){
                 }
                 else if(params.display=='calendar'){
                 
+                	// set desc length
+                	var desc = data[x].Description;
+                	
+                	if(desc != ''){
+	                	if(desc.length > params.descLength){
+		                	desc = desc.substr(0, params.descLength) + '...';
+	                	}
+                	}
+                
                 	// push page to model
                 	pageModel[params.id].push({
                         'pageUniqId': data[x].PageUniqId,
                         'name': data[x].Name, 
-                        'desc': data[x].Description,
+                        'desc': desc,
                         'url': pageModel.prefix()+data[x].Url,
                         'hasImage': data[x].HasImage,
                         'image': pageModel.prefix()+data[x].Image,
@@ -246,13 +256,21 @@ respond.List.Update = function(params){
 						latitude = arr[0];
 						longitude = arr[1];
 					}
-                
+					
+					// set desc length
+                	var desc = data[x].Description;
+                	
+                	if(desc != ''){
+	                	if(desc.length > params.descLength){
+		                	desc = desc.substr(0, params.descLength) + '...';
+	                	}
+                	}
                 
                 	// push page to model
                     pageModel[params.id].push({
                         'pageUniqId': data[x].PageUniqId,
                         'name': data[x].Name, 
-                        'desc': data[x].Description,
+                        'desc': desc,
                         'url': pageModel.prefix()+data[x].Url,
                         'location': location,
                         'latitude': latitude,
@@ -283,11 +301,20 @@ respond.List.Update = function(params){
                 }
                 else{
                 
+                	// set desc length
+                	var desc = data[x].Description;
+                	
+                	if(desc != ''){
+	                	if(desc.length > params.descLength){
+		                	desc = desc.substr(0, params.descLength) + '...';
+	                	}
+                	}
+                	
                 	// push page to model
                     pageModel[params.id].push({
                         'pageUniqId': data[x].PageUniqId,
                         'name': data[x].Name, 
-                        'desc': data[x].Description,
+                        'desc': desc,
                         'url': pageModel.prefix()+data[x].Url,
                         'hasImage': data[x].HasImage,
                         'image': pageModel.prefix()+data[x].Image,
