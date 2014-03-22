@@ -1124,7 +1124,9 @@ class Utilities
 						$pageUniqId = $page['PageUniqId'];
 					}
                     
-                    $featured = '<div id="'.$id.'" data-pageuniqid="'.$pageUniqId.'" data-pagename="'.$pageName.'" class="featured-content"></div>';  
+                    $featured = '<div id="'.$id.'" data-pageuniqid="'.$pageUniqId.'" data-pagename="'.$pageName.'" class="featured-content">'.
+                    				'<p class="featured-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>'.
+									'</div>';  
                     
                     $el->outertext = $featured	;
               

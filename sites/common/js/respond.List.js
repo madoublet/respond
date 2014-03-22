@@ -13,6 +13,7 @@ respond.List = function(config){
 	
 	// create observable array
 	pageModel[params.id] = ko.observableArray([]);
+	pageModel[params.id + 'Loading'] = ko.observable(false); // set loading to true by default
 	
 	// update list
 	respond.List.Update(params);
@@ -153,6 +154,8 @@ respond.List.BuildParams = function(el){
 // updates the list based on params
 respond.List.Update = function(params){
      
+    pageModel[params.id + 'Loading'](true); 
+    
 	// get the list from the API
     $.ajax({
     	url: params.url,
@@ -327,6 +330,8 @@ respond.List.Update = function(params){
                         });
                 }
             }
+            
+            pageModel[params.id + 'Loading'](false);
             
             // update controls for the blog
             if(params.display == 'blog'){
