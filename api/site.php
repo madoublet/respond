@@ -271,6 +271,9 @@ class SiteCreateResource extends Tonic\Resource {
     		
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
     		
             $homePage = Page::Add('index', 'Home', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
@@ -289,6 +292,9 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
             
     		$aboutUs = Page::Add('about', 'About', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
@@ -304,6 +310,9 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
     		
             $contactUs = Page::Add('contact', 'Contact', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
@@ -319,6 +328,9 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
     		
             $pageNotFound = Page::Add('error', 'Page Not Found', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
@@ -338,6 +350,9 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
             
     		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $layout, $stylesheet, $postPageType['PageTypeId'], $site['SiteId'], $userId);
@@ -354,6 +369,9 @@ class SiteCreateResource extends Tonic\Resource {
     				
     		if(file_exists($filename)){
     			$content = file_get_contents($filename);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
     		}
             
     		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
