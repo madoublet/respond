@@ -1,4 +1,4 @@
-<?php	
+<?php
 	include 'app.php';
 	
 	// set language to preferred language (HTTP_ACCEPT_LANGUAGE)

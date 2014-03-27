@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, lastLogin, type, customerId, created, analyticssubdomain, analyticsmultidomain, analyticsdomain){
 
     var self = this;
 
@@ -11,6 +11,9 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
     self.logoUrl = ko.observable(logoUrl);
     self.theme = ko.observable(theme);
     self.analyticsId = ko.observable(analyticsId);
+    self.analyticssubdomain = ko.observable(analyticssubdomain);
+    self.analyticsmultidomain = ko.observable(analyticsmultidomain);
+    self.analyticsdomain = ko.observable(analyticsdomain);
     self.facebookAppId = ko.observable(facebookAppId);
     self.primaryEmail = ko.observable(primaryEmail);
     self.timeZone = ko.observable(timeZone);
@@ -32,7 +35,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created'],
+                    Number(data['AnalyticsSubdomain']), Number(data['AnalyticsMultidomain']), data['AnalyticsDomain']);
 }
 
 // models a user

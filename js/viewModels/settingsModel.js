@@ -190,6 +190,9 @@ var settingsModel = {
         var shippingCalculation = $('#shippingCalculation').val();
         var shippingRate = $('#shippingRate').val();
         var analyticsId = $('#analyticsId').val();
+        var analyticssubdomain = $('#analyticssubdomain').prop('checked') ? 1 : 0;
+        var analyticsmultidomain = $('#analyticsmultidomain').prop('checked') ? 1 : 0;
+        var analyticsdomain = $('#analyticsdomain').val();
         var facebookAppId = $('#facebookAppId').val();
         var taxRate = $('#taxRate').val();
         var payPalId = $('#payPalId').val();
@@ -242,7 +245,7 @@ var settingsModel = {
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
-			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, analyticsId: analyticsId, facebookAppId: facebookAppId},
+			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, analyticsId: analyticsId, facebookAppId: facebookAppId, analyticssubdomain: analyticssubdomain, analyticsmultidomain: analyticsmultidomain, analyticsdomain: analyticsdomain},
 			success: function(data){
     			message.showMessage('success', $('#msg-updated').val());
     			$('.list-menu').removeClass('hidden');

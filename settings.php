@@ -534,16 +534,28 @@
 					<input id="analyticsId" type="text" data-bind="value: analyticsId" class="form-control">
 					<span class="help-block"><?php print _("Google Analytics Web Property Id (adds analytics to all pages on your site)"); ?></span>
 				</div>
-			</div>	
-			
-				
+				<div style="margin-top: 16px;">
+					<label for="analyticssubdomain" class="control-label"><?php print _("Google Analytics SubDomain:"); ?></label>
+					<input id="analyticssubdomain" type="checkbox" data-bind="checked: analyticssubdomain">
+					<span class="help-block"><?php print _("Control SubDomains like: www.your_domain.com, apps.your_domain.com y store.your_domain.com."); ?></span>
+				</div>
+				<div style="margin-top: 16px;" data-bind="visible: analyticssubdomain">
+					<label for="analyticsdomain" class="control-label"><?php print _("Google Analytics Domain:"); ?></label>
+					<input id="analyticsdomain" type="text" data-bind="value: analyticsdomain, enable: analyticssubdomain" class="form-control">
+				</div>
+				<div style="margin-top: 16px;">
+					<label for="analyticsmultidomain" class="control-label"><?php print _("Google Analytics Multi-Domain:"); ?></label>
+					<input id="analyticsmultidomain" type="checkbox" data-bind="checked: analyticsmultidomain">
+					<span class="help-block"><?php print _("Control varios Top Level Domains like: your_domain.com, your_domain.org, your_domain.es "); ?></span>
+				</div>
+			</div>
 			
 			<div class="form-group">
 				<label for="sitemap" class="control-label"><?php print _("Sitemap:"); ?></label>
 				<div>
 					<span class="read-only" data-bind="text: $parent.siteMap"></span> <a data-bind="click: $parent.showVerificationDialog"><?php print _("Generate Verification File"); ?></a>
 				</div>
-			</div>	
+			</div>
 		
 		</div>	
 		<!-- /.section-analytics -->

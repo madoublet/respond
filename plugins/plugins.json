@@ -12,5 +12,13 @@
     "desc":"A simple sample that demonstates plugins rendered at run time.",
     "render":"runtime",
     "config":"true"
+  },
+  {
+    "type":"googleplus",
+    "name":"Google+ Like",
+    "desc":"Renders a Google+ +1 box.",
+    "render":"publish",
+    "config":"true"
   }
+  
 ]

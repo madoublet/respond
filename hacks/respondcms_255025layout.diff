@@ -1,0 +1,142 @@
+diff --git a/js/plugins/jquery.respondEdit.js b/js/plugins/jquery.respondEdit.js
+index 24475ca..0c2ca30 100644
+--- a/js/plugins/jquery.respondEdit.js
++++ b/js/plugins/jquery.respondEdit.js
+@@ -120,6 +120,7 @@ var editorDefaults = {
+ 					'<a class="cols37 fa fa-columns" title="'+t('cols37')+'"><small>30/70</small></a>' +
+ 					'<a class="cols333 fa fa-columns" title="'+t('cols333')+'"><small>3/3/3</small></a>' +
+ 					'<a class="cols425 fa fa-columns" title="'+t('cols425')+'"><small>4*25</small></a>' +
++					'<a class="cols255025 fa fa-columns" title="'+t('cols255025')+'"><small>25/50/25</small></a>' +
+ 					'</div></div>' +
+ 					'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
+ 					'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
+@@ -1341,6 +1342,37 @@ var editorDefaults = {
+ 			return false;
+ 		});
+ 		
++		// create COLS 25/50/25
++		$('.editor-menu a.cols255025').click(function(){
++			var editor = $('#desc').get(0);
++			var length = $(editor).find('.block').length + 1;
++			var uniqId = 'block-'+ length;
++			
++			var html = '<div id="'+uniqId+'" class="block row">' +
++							'<div class="col col-md-3 sortable">' +
++							'</div>' +
++							'<div class="col col-md-6 sortable">' +
++							'</div>' +
++							'<div class="col col-md-3 sortable">' +
++							'</div>' +
++							'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
++							editorDefaults.blockMenu + '</span></div>'; 
++			
++			$(editor).append(
++				html
++			);
++			
++			$('.block-actions').show();
++			
++			// reset currnode (new content should be added to the end)
++			currnode = null;
++			
++			// re-init sortable
++			$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
++			
++			return false;
++		});
++		
+ 		// create SINGLE COL
+ 		$('.editor-menu a.single').click(function(){
+ 			var editor = $('#desc').get(0);
+diff --git a/js/respond.Editor.js b/js/respond.Editor.js
+index 9dc6995..5eb8f98 100644
+--- a/js/respond.Editor.js
++++ b/js/respond.Editor.js
+@@ -137,7 +137,8 @@ respond.Editor.BuildMenu = function(el){
+ 					'<a class="cols73 fa fa-columns" title="'+t('cols73')+'" data-target="'+id+'"><small>70/30</small></a>' +
+ 					'<a class="cols37 fa fa-columns" title="'+t('cols37')+'" data-target="'+id+'"><small>30/70</small></a>' +
+ 					'<a class="cols333 fa fa-columns" title="'+t('cols333')+'" data-target="'+id+'"><small>3/3/3</small></a>' +
+-					'<a class="cols425 fa fa-columns" title="'+t('cols425')+'" data-target="'+id+'"><small>4*25</small></a>';
++					'<a class="cols425 fa fa-columns" title="'+t('cols425')+'" data-target="'+id+'"><small>4*25</small></a>' +
++					'<a class="cols255025 fa fa-columns" title="'+t('cols255025')+'" data-target="'+id+'"><small>25/50/25</small></a>';
+ 	}
+ 	
+ 	menu += '</div></div>' +
+@@ -1518,6 +1519,39 @@ respond.Editor.SetupMenuEvents = function(){
+ 		return false;
+ 	});
+ 	
++	// create COLS 25/50/25
++	$('.cols255025').click(function(){
++		var editor = $('#'+$(this).attr('data-target'));
++		var className = 'block';
++		var prefix = 'block';
++		
++		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
++		
++		var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
++						'<div class="col col-md-3 sortable">' +
++						'</div>' +
++						'<div class="col col-md-6 sortable">' +
++						'</div>' +
++						'<div class="col col-md-3 sortable">' +
++						'</div>' +
++						'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
++						respond.defaults.blockMenu + '</span></div>'; 
++		
++		$(editor).append(
++			html
++		);
++		
++		$('.block-actions').show();
++		
++		// reset respond.currnode (new content should be added to the end)
++		respond.currnode = null;
++		
++		// re-init sortable
++		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
++		
++		return false;
++	});
++
+ 	// create SINGLE COL
+ 	$('.single').click(function(){
+ 		var editor = $('#'+$(this).attr('data-target'));
+diff --git a/js/translations.php b/js/translations.php
+index baa9b46..e3f960a 100644
+--- a/js/translations.php
++++ b/js/translations.php
+@@ -61,7 +61,8 @@ var i18njsstrings = {
+ 	'cols73':"<?php echo _("Add a 70/30 Column Layout"); ?>",
+ 	'cols37':"<?php echo _("Add a 30/70 Column Layout"); ?>",
+ 	'cols333':"<?php echo _("Add a 33/33/33 Column Layout"); ?>",
+-	'cols425':"<?php echo _("Add a 25/25/25/25 Column Layout"); ?>"
++	'cols425':"<?php echo _("Add a 25/25/25/25 Column Layout"); ?>",
++	'cols255025':"<?php echo _("Add a 25/50/25 Column Layout"); ?>"
+ }
+ 
+ function t(text) {
+diff --git a/modules/dialogs/layoutDialog.php b/modules/dialogs/layoutDialog.php
+index ffa0a2e..ff44d7b 100644
+--- a/modules/dialogs/layoutDialog.php
++++ b/modules/dialogs/layoutDialog.php
+@@ -74,7 +74,18 @@
+ 			<small>25% / 25% / 25% / 25%</small>
+ 		</button>
+ 
+-  </div>
++		<button class="cols255025">
++		
++			<span class="cols">
++				<span style="width: 25%"></span>
++				<span style="width: 50%"></span>
++				<span style="width: 25%"></span>
++			</span>
++		
++			<small>25% / 50% / 25%</small>
++		</button>
++
++</div>
+   <!-- /.immersive-body -->
+   
+ </div>
