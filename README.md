@@ -7,7 +7,7 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-This is the development version for the April 2014 release (Respond 2.9).
+Respond 2.9 was released April 2014.
 
 New in 2.9:
 - Site search
@@ -60,7 +60,7 @@ ALTER TABLE  `Users` ADD `IsActive` INT NOT NULL DEFAULT '1' AFTER `Token`;
 ```
 
 - Pull latest version
-- Re-publish sites
+- Re-publish your sites
 
 
 
