@@ -5,6 +5,8 @@ var imagesDialog = {
     moduleId: null,
 
     init:function(){
+    
+    	Dropzone.autoDiscover = false;
         
         // setup dropzone
         $("#drop").dropzone({ 
