@@ -1,5 +1,9 @@
 <?php
 	
+	if(!isset($_SESSION)){
+		session_start();
+	}
+	
 	$logoutUrl = 'index';
 
 	$_SESSION = array();

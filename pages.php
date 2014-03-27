@@ -134,7 +134,7 @@
     </div>
     <!-- /.list -->
     
-    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="icon-spinner icon-spin"></i> <?php print _("Loading..."); ?></p>
+    <p data-bind="visible: pagesLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>
     
     <p data-bind="visible: pagesLoading()==false && pages().length < 1" class="list-none"><?php print _("No pages here. Click Add Page to get started."); ?></p>
       

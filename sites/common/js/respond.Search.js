@@ -48,13 +48,22 @@ respond.Search = function(config){
 						hasImage = ' has-image';
 					}
 				
+					// set desc length
+                	var desc = data[x].Description;
+                	
+                	if(desc != ''){
+	                	if(desc.length > 75){
+		                	desc = desc.substr(0, 75) + '...';
+	                	}
+                	}
+					
 				
 					results += '<li class="results'+hasImage+'">' +
 				      	'<a href="'+ pageModel.prefix() + data[x]['Url'] + '">' +
 				      		imageUrl + 
 					      	'<h4>' + data[x]['Name'] + '</h4>' +
 					      	'<small>' + data[x]['Url'] + '</small>' +
-					      	'<p>' + data[x]['Description'] + '</p>' +
+					      	'<p>' + desc + '</p>' +
 				      	'</a>' +
 				      '</li>';
 				}

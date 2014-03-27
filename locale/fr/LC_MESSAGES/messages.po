@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Respond CMS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-03-07 16:33+0100\n"
+"PO-Revision-Date: 2014-03-21 06:54+0100\n"
 "Last-Translator: Piks-L <contact@piks-l.com>\n"
 "Language-Team: PIKS-L contact@piks-l.com <contact@piks-l.com>\n"
 "Language: fr_FR\n"
@@ -392,7 +392,7 @@ msgstr "Etes-vous sûr de vouloir vous désabonner?"
 
 #: pageSettingsDialog.php:20
 msgid "Basic"
-msgstr "De base"
+msgstr "Basique"
 
 #: pageSettingsDialog.php:63
 msgid "Begin Date:"
@@ -643,7 +643,7 @@ msgstr "Langage par défaut : "
 
 #: pages.php:299 pages.php:298
 msgid "Default Layout:"
-msgstr "Layout par défaut : "
+msgstr "Mise en page par défaut : "
 
 #: branding.php:59 branding.php:54
 msgid "Default Logo:"
@@ -709,7 +709,7 @@ msgstr "Email envoyé"
 #: create.php:60 forgot.php:52 index.php:44 profile.php:81 users.php:120
 #: forgot.php:47 index.php:41 profile.php:117 users.php:121
 msgid "Email:"
-msgstr "Email :"
+msgstr "Adresse mail :"
 
 #: pageSettingsDialog.php:73
 msgid "End Date:"
@@ -785,7 +785,7 @@ msgstr "Nom du fichier : "
 
 #: files.php:14 files.php:45 files.php:41 menu.php:36
 msgid "Files"
-msgstr "Fichiers :"
+msgstr "Fichiers"
 
 #: listDialog.php:43 listDialog.php:46
 msgid "Filter By Category:"
@@ -942,23 +942,23 @@ msgstr "Latitude :"
 
 #: layout.php:14 menu.php:50
 msgid "Layout"
-msgstr "Layout"
+msgstr "Mise en page"
 
 #: layout.php:35 layout.php:31
 msgid "Layout saved"
-msgstr "Layout enregistré"
+msgstr "Mise en page enregistré"
 
 #: layout.php:38 layout.php:34
 msgid "Layout successfully added"
-msgstr "Layout ajouter avec succès"
+msgstr "Mise en page ajouter avec succès"
 
 #: layout.php:40 layout.php:36
 msgid "Layout successfully removed"
-msgstr "Layout supprimer avec succès"
+msgstr "Mise en page supprimer avec succès"
 
 #: pageSettingsDialog.php:65 pageSettingsDialog.php:122
 msgid "Layout:"
-msgstr "Layout :"
+msgstr "Mise en page :"
 
 #: elementConfigDialog.php:29
 msgid "Left of the text"

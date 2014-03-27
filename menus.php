@@ -271,27 +271,38 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal hide" id="deleteMenuTypeDialog">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3><?php print _("Remove Menu Type"); ?></h3>
-  </div>
-  <!-- /.modal-header -->
+<div class="modal fade" id="deleteMenuTypeDialog">
 
-  <div class="modal-body">
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
 
-	<p>
-		<?php print _("Are you sure that you want to delete"); ?> <strong id="removeName">this menu type</strong>?
-	</p>
-
-  </div>
-  <!-- /.modal-body -->
-
-  <div class="modal-footer">
-    <button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
-    <button class="primary-button" data-bind="click: removeMenuType"><?php print _("Remove Menu Type"); ?></button>
-  </div>
-  <!-- /.modal-footer -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3><?php print _("Remove Menu Type"); ?></h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p>
+					<?php print _("Are you sure that you want to delete"); ?> <strong id="removeName">this menu type</strong>?
+				</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeMenuType"><?php print _("Remove Menu Type"); ?></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
 
 </div>
 <!-- /.modal -->

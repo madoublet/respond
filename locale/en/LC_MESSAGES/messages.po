@@ -58,8 +58,16 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: create.php:197 create.php:200
+#: create.php:197 create.php:200 create.php:382
 msgid "Account created! To get started, click on your login link below."
+msgstr ""
+
+#: formDialog.php:29
+msgid "Action:"
+msgstr ""
+
+#: users.php:128
+msgid "Active:"
 msgstr ""
 
 #: translations.php:33
@@ -67,7 +75,7 @@ msgid "Add Block Quote"
 msgstr ""
 
 #: pages.php:104 pages.php:338 pages.php:356 pages.php:99 pages.php:337
-#: pages.php:355
+#: pages.php:355 pages.php:100 pages.php:346 pages.php:364
 msgid "Add Category"
 msgstr ""
 
@@ -91,7 +99,7 @@ msgstr ""
 msgid "Add Featured Content"
 msgstr ""
 
-#: fieldDialog.php:9 fieldDialog.php:57
+#: fieldDialog.php:9 fieldDialog.php:57 fieldDialog.php:73
 msgid "Add Field"
 msgstr ""
 
@@ -139,6 +147,10 @@ msgstr ""
 msgid "Add List"
 msgstr ""
 
+#: secureDialog.php:35
+msgid "Add Login or Registration"
+msgstr ""
+
 #: menus.php:66 menus.php:118 menus.php:179 menus.php:62 menus.php:114
 #: menus.php:175
 msgid "Add Menu Item"
@@ -148,12 +160,12 @@ msgstr ""
 msgid "Add Menu Type"
 msgstr ""
 
-#: translations.php:55
+#: translations.php:55 translations.php:58
 msgid "Add New Columnar Layout"
 msgstr ""
 
 #: pages.php:86 pages.php:156 pages.php:186 pages.php:81 pages.php:151
-#: pages.php:181
+#: pages.php:181 pages.php:82 pages.php:152 pages.php:182
 msgid "Add Page"
 msgstr ""
 
@@ -203,32 +215,32 @@ msgstr ""
 msgid "Add Table"
 msgstr ""
 
-#: pages.php:316 pages.php:315
+#: pages.php:316 pages.php:315 pages.php:324
 msgid "Add Type"
 msgstr ""
 
 #: users.php:51 users.php:84 users.php:141 users.php:49 users.php:85
-#: users.php:142
+#: users.php:142 users.php:91 users.php:157
 msgid "Add User"
 msgstr ""
 
-#: translations.php:61
+#: translations.php:61 translations.php:64
 msgid "Add a 25/25/25/25 Column Layout"
 msgstr ""
 
-#: translations.php:59
+#: translations.php:59 translations.php:62
 msgid "Add a 30/70 Column Layout"
 msgstr ""
 
-#: translations.php:60
+#: translations.php:60 translations.php:63
 msgid "Add a 33/33/33 Column Layout"
 msgstr ""
 
-#: translations.php:56
+#: translations.php:56 translations.php:59
 msgid "Add a 50/50 Column Layout"
 msgstr ""
 
-#: translations.php:58
+#: translations.php:58 translations.php:61
 msgid "Add a 70/30 Column Layout"
 msgstr ""
 
@@ -240,7 +252,7 @@ msgstr ""
 msgid "Add a Form"
 msgstr ""
 
-#: translations.php:57
+#: translations.php:57 translations.php:60
 msgid "Add a Full Column Layout"
 msgstr ""
 
@@ -266,6 +278,10 @@ msgstr ""
 
 #: translations.php:44
 msgid "Add a list of pages"
+msgstr ""
+
+#: translations.php:55
+msgid "Add a login or registration form"
 msgstr ""
 
 #: translations.php:43
@@ -308,7 +324,7 @@ msgstr ""
 msgid "Adds a reference to the selected RSS feeds in the head of the page"
 msgstr ""
 
-#: users.php:104 users.php:105
+#: users.php:104 users.php:105 users.php:61 users.php:111
 msgid "Administrator"
 msgstr ""
 
@@ -333,7 +349,7 @@ msgid "Align text to the right"
 msgstr ""
 
 #: listDialog.php:45 pages.php:96 pages.php:99 pages.php:91 pages.php:94
-#: listDialog.php:48
+#: listDialog.php:48 pages.php:92 pages.php:95
 msgid "All Categories"
 msgstr ""
 
@@ -346,11 +362,11 @@ msgstr ""
 msgid "All fields required"
 msgstr ""
 
-#: settings.php:493 settings.php:489
+#: settings.php:493 settings.php:489 settings.php:522
 msgid "Allows you to moderate comments on your site, create here:"
 msgstr ""
 
-#: profile.php:84 users.php:122 profile.php:119 users.php:123
+#: profile.php:84 users.php:122 profile.php:119 users.php:123 users.php:138
 msgid "Also used as the login"
 msgstr ""
 
@@ -375,7 +391,7 @@ msgstr ""
 msgid "Applying..."
 msgstr ""
 
-#: menus.php:288 menus.php:284
+#: menus.php:288 menus.php:284 menus.php:289
 msgid "Are you sure that you want to delete"
 msgstr ""
 
@@ -421,7 +437,7 @@ msgstr ""
 msgid "Bold Text (select text first)"
 msgstr ""
 
-#: create.php:216 create.php:215
+#: create.php:216 create.php:215 create.php:397
 msgid "Bookmark these links for easy access."
 msgstr ""
 
@@ -433,15 +449,15 @@ msgstr ""
 msgid "Branding successfully updated"
 msgstr ""
 
-#: settings.php:385 settings.php:381
+#: settings.php:385 settings.php:381 settings.php:414
 msgid "By Order Amount"
 msgstr ""
 
-#: settings.php:386 settings.php:382
+#: settings.php:386 settings.php:382 settings.php:415
 msgid "By Weight"
 msgstr ""
 
-#: elementConfigDialog.php:21 menus.php:132 menus.php:128
+#: elementConfigDialog.php:21 menus.php:132 menus.php:128 fieldDialog.php:64
 msgid "CSS Class:"
 msgstr ""
 
@@ -466,7 +482,7 @@ msgid "Card Code (CVC):"
 msgstr ""
 
 #: pageSettingsDialog.php:58 pages.php:177 pages.php:172
-#: pageSettingsDialog.php:115
+#: pageSettingsDialog.php:115 pages.php:173
 msgid "Categories:"
 msgstr ""
 
@@ -487,7 +503,7 @@ msgstr ""
 msgid "Change Plan"
 msgstr ""
 
-#: fieldDialog.php:27
+#: fieldDialog.php:27 fieldDialog.php:22
 msgid "Checkbox List"
 msgstr ""
 
@@ -510,7 +526,10 @@ msgstr ""
 #: scripts.php:141 settings.php:558 snippets.php:102 snippets.php:141
 #: styles.php:100 styles.php:139 theme.php:83 theme.php:122 users.php:141
 #: users.php:181 blockConfigDialog.php:47 listDialog.php:77
-#: pageSettingsDialog.php:142 slideshowDialog.php:27
+#: pageSettingsDialog.php:142 slideshowDialog.php:27 menus.php:296
+#: pages.php:181 pages.php:213 pages.php:323 pages.php:363 pages.php:397
+#: settings.php:591 users.php:156 users.php:196 fieldDialog.php:72
+#: formDialog.php:52 secureDialog.php:34
 msgid "Close"
 msgstr ""
 
@@ -535,7 +554,7 @@ msgid "Confirm that you want to delete:"
 msgstr ""
 
 #: menus.php:210 pages.php:212 styles.php:136 menus.php:206 pages.php:207
-#: styles.php:132
+#: styles.php:132 pages.php:208
 msgid "Confirm that you want to remove:"
 msgstr ""
 
@@ -548,7 +567,7 @@ msgid "Confirm you want to delete:"
 msgstr ""
 
 #: pages.php:245 pages.php:383 users.php:173 pages.php:240 pages.php:382
-#: users.php:174
+#: users.php:174 pages.php:241 pages.php:391 users.php:189
 msgid "Confirm you want to remove:"
 msgstr ""
 
@@ -572,11 +591,15 @@ msgstr ""
 msgid "Content successfully saved"
 msgstr ""
 
-#: users.php:105 users.php:106
+#: users.php:105 users.php:106 users.php:62 users.php:112
 msgid "Contributor"
 msgstr ""
 
-#: create.php:15 create.php:186 create.php:189
+#: create.php:332
+msgid "Create Login"
+msgstr ""
+
+#: create.php:15 create.php:186 create.php:189 create.php:45 create.php:371
 msgid "Create Site"
 msgstr ""
 
@@ -584,7 +607,7 @@ msgstr ""
 msgid "Create your widget at:"
 msgstr ""
 
-#: users.php:61 users.php:60
+#: users.php:61 users.php:60 users.php:66
 msgid "Created"
 msgstr ""
 
@@ -609,7 +632,12 @@ msgid "Currency"
 msgstr ""
 
 #: plans.php:127 settings.php:350 plans.php:123 settings.php:346
+#: settings.php:379
 msgid "Currency:"
+msgstr ""
+
+#: formDialog.php:19
+msgid "Custom"
 msgstr ""
 
 #: linkDialog.php:29 menus.php:164 menus.php:160
@@ -628,7 +656,11 @@ msgstr ""
 msgid "Date Created (newest first)"
 msgstr ""
 
-#: settings.php:195 settings.php:191
+#: formDialog.php:18
+msgid "Default (handled by Respond)"
+msgstr ""
+
+#: settings.php:195 settings.php:191 create.php:61
 msgid "Default Language:"
 msgstr ""
 
@@ -649,7 +681,7 @@ msgid "Description Length:"
 msgstr ""
 
 #: htmlDialog.php:21 pageSettingsDialog.php:33 skuDialog.php:21 pages.php:172
-#: pages.php:167 pageSettingsDialog.php:43
+#: pages.php:167 pageSettingsDialog.php:43 pages.php:168
 msgid "Description:"
 msgstr ""
 
@@ -665,7 +697,7 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: pages.php:126 pages.php:121
+#: pages.php:126 pages.php:121 pages.php:122
 msgid "Draft"
 msgstr ""
 
@@ -685,7 +717,7 @@ msgstr ""
 msgid "Drag file here to replace selected file"
 msgstr ""
 
-#: fieldDialog.php:26
+#: fieldDialog.php:26 fieldDialog.php:21
 msgid "Dropdown List"
 msgstr ""
 
@@ -698,7 +730,8 @@ msgid "Email sent"
 msgstr ""
 
 #: create.php:60 forgot.php:52 index.php:44 profile.php:81 users.php:120
-#: forgot.php:47 index.php:41 profile.php:117 users.php:121
+#: forgot.php:47 index.php:41 profile.php:117 users.php:121 create.php:335
+#: users.php:136
 msgid "Email:"
 msgstr ""
 
@@ -723,6 +756,10 @@ msgid ""
 "Enter your site name, login, password, and timezone to create your site."
 msgstr ""
 
+#: formDialog.php:39
+msgid "Error Message:"
+msgstr ""
+
 #: pageSettingsDialog.php:21
 msgid "Event"
 msgstr ""
@@ -740,7 +777,7 @@ msgstr ""
 msgid "Expires:"
 msgstr ""
 
-#: settings.php:490 settings.php:486
+#: settings.php:490 settings.php:486 settings.php:519
 msgid "Facebook App ID:"
 msgstr ""
 
@@ -752,15 +789,19 @@ msgstr ""
 msgid "Featured content:"
 msgstr ""
 
+#: fieldDialog.php:28
+msgid "Field Label:"
+msgstr ""
+
 #: fieldDialog.php:16
 msgid "Field Name:"
 msgstr ""
 
-#: fieldDialog.php:22
+#: fieldDialog.php:22 fieldDialog.php:17
 msgid "Field Type:"
 msgstr ""
 
-#: settings.php:553 settings.php:549
+#: settings.php:553 settings.php:549 settings.php:582
 msgid "File Contents:"
 msgstr ""
 
@@ -768,7 +809,7 @@ msgstr ""
 msgid "File Description"
 msgstr ""
 
-#: settings.php:547 settings.php:543
+#: settings.php:547 settings.php:543 settings.php:576
 msgid "File Name:"
 msgstr ""
 
@@ -780,11 +821,11 @@ msgstr ""
 msgid "Filter By Category:"
 msgstr ""
 
-#: profile.php:54 users.php:92 profile.php:96 users.php:93
+#: profile.php:54 users.php:92 profile.php:96 users.php:93 users.php:99
 msgid "First Name:"
 msgstr ""
 
-#: settings.php:384 settings.php:380
+#: settings.php:384 settings.php:380 settings.php:413
 msgid "Flat Rate"
 msgstr ""
 
@@ -804,11 +845,27 @@ msgstr ""
 msgid "Forgot your Password?"
 msgstr ""
 
+#: formDialog.php:9
+msgid "Form Configuration"
+msgstr ""
+
+#: formDialog.php:24
+msgid "Form ID:"
+msgstr ""
+
+#: formDialog.php:16
+msgid "Form Type:"
+msgstr ""
+
+#: formDialog.php:35
+msgid "Form submitted successfully!"
+msgstr ""
+
 #: settings.php:92 settings.php:88
 msgid "Forms submitted on your site will be sent to this email address"
 msgstr ""
 
-#: settings.php:383 settings.php:379
+#: settings.php:383 settings.php:379 settings.php:412
 msgid "Free"
 msgstr ""
 
@@ -817,7 +874,7 @@ msgid "Friendly Id:"
 msgstr ""
 
 #: pages.php:166 pages.php:293 pages.php:348 pages.php:161 pages.php:292
-#: pages.php:347
+#: pages.php:347 pages.php:162 pages.php:356
 msgid "Friendly URL:"
 msgstr ""
 
@@ -830,7 +887,8 @@ msgid "Gallery"
 msgstr ""
 
 #: settings.php:515 settings.php:540 settings.php:563 settings.php:511
-#: settings.php:536 settings.php:559
+#: settings.php:536 settings.php:559 settings.php:544 settings.php:569
+#: settings.php:592
 msgid "Generate Verification File"
 msgstr ""
 
@@ -842,11 +900,11 @@ msgstr ""
 msgid "Gettext is installed"
 msgstr ""
 
-#: settings.php:503 settings.php:499
+#: settings.php:503 settings.php:499 settings.php:532
 msgid "Google Analytics ID:"
 msgstr ""
 
-#: settings.php:506 settings.php:502
+#: settings.php:506 settings.php:502 settings.php:535
 msgid ""
 "Google Analytics Web Property Id (adds analytics to all pages on your site)"
 msgstr ""
@@ -863,8 +921,12 @@ msgstr ""
 msgid "HTML:"
 msgstr ""
 
-#: fieldDialog.php:47
+#: fieldDialog.php:47 fieldDialog.php:53
 msgid "Helper Text:"
+msgstr ""
+
+#: fieldDialog.php:34
+msgid "ID/Name:"
 msgstr ""
 
 #: plans.php:60 plans.php:56
@@ -912,15 +974,15 @@ msgid "Label:"
 msgstr ""
 
 #: create.php:75 profile.php:68 users.php:110 create.php:78 profile.php:106
-#: users.php:111
+#: users.php:111 create.php:354 users.php:118
 msgid "Language:"
 msgstr ""
 
-#: profile.php:61 users.php:97 profile.php:101 users.php:98
+#: profile.php:61 users.php:97 profile.php:101 users.php:98 users.php:104
 msgid "Last Name:"
 msgstr ""
 
-#: pages.php:128 pages.php:123
+#: pages.php:128 pages.php:123 pages.php:124
 msgid "Last updated"
 msgstr ""
 
@@ -976,7 +1038,8 @@ msgstr ""
 #: linkDialog.php:24 loadLayoutDialog.php:22 pageSettingsDialog.php:67
 #: pageSettingsDialog.php:74 pluginsDialog.php:27 files.php:78 menus.php:100
 #: users.php:68 files.php:74 menus.php:96 pages.php:136 users.php:67
-#: pageSettingsDialog.php:124 pageSettingsDialog.php:131
+#: pageSettingsDialog.php:124 pageSettingsDialog.php:131 pages.php:137
+#: users.php:73
 msgid "Loading..."
 msgstr ""
 
@@ -988,12 +1051,16 @@ msgstr ""
 msgid "Location:"
 msgstr ""
 
-#: index.php:15 index.php:54 index.php:51 undefined.php:15
+#: index.php:15 index.php:54 index.php:51 undefined.php:15 translations.php:56
 msgid "Login"
 msgstr ""
 
-#: create.php:202 create.php:205
+#: create.php:202 create.php:205 create.php:387
 msgid "Login here to update your site:"
+msgstr ""
+
+#: secureDialog.php:9
+msgid "Login or Registration"
 msgstr ""
 
 #: index.php:32 index.php:29 undefined.php:29
@@ -1050,6 +1117,10 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
+#: users.php:63 users.php:113
+msgid "Member"
+msgstr ""
+
 #: menu.php:65
 msgid "Menu"
 msgstr ""
@@ -1062,7 +1133,7 @@ msgstr ""
 msgid "Month"
 msgstr ""
 
-#: profile.php:92 users.php:128 profile.php:125 users.php:129
+#: profile.php:92 users.php:128 profile.php:125 users.php:129 users.php:144
 msgid "More than 5 characters, 1 letter and 1 special character"
 msgstr ""
 
@@ -1090,6 +1161,7 @@ msgstr ""
 #: pages.php:343 plans.php:106 scripts.php:97 snippets.php:97 styles.php:95
 #: layout.php:89 menus.php:243 pages.php:156 pages.php:342 plans.php:102
 #: scripts.php:93 snippets.php:93 styles.php:91 pageSettingsDialog.php:32
+#: create.php:48 pages.php:157 pages.php:351
 msgid "Name:"
 msgstr ""
 
@@ -1109,7 +1181,7 @@ msgstr ""
 msgid "New card added"
 msgstr ""
 
-#: fieldDialog.php:36 listDialog.php:66 listDialog.php:69
+#: fieldDialog.php:36 listDialog.php:66 listDialog.php:69 fieldDialog.php:42
 msgid "No"
 msgstr ""
 
@@ -1121,12 +1193,12 @@ msgstr ""
 msgid "No menu items here. Click Add Menu Item to get started."
 msgstr ""
 
-#: pages.php:143 pages.php:138
+#: pages.php:143 pages.php:138 pages.php:139
 msgid "No pages here. Click Add Page to get started."
 msgstr ""
 
 #: pageSettingsDialog.php:29 pages.php:168 pages.php:163
-#: pageSettingsDialog.php:39
+#: pageSettingsDialog.php:39 pages.php:164
 msgid "No spaces, no special characters, dashes allowed."
 msgstr ""
 
@@ -1134,19 +1206,23 @@ msgstr ""
 msgid "No text"
 msgstr ""
 
-#: users.php:70 users.php:69
+#: users.php:70 users.php:69 users.php:75
 msgid "No users here. Click Add User to get started."
+msgstr ""
+
+#: users.php:61 users.php:62 users.php:63
+msgid "Not Active"
 msgstr ""
 
 #: skuDialog.php:36
 msgid "Not Shipped"
 msgstr ""
 
-#: settings.php:368 settings.php:364
+#: settings.php:368 settings.php:364 settings.php:397
 msgid "Optionally used to calculate shipping costs"
 msgstr ""
 
-#: fieldDialog.php:41
+#: fieldDialog.php:41 fieldDialog.php:47
 msgid "Options:"
 msgstr ""
 
@@ -1202,7 +1278,7 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: admin.php:206 create.php:181 admin.php:202 create.php:184
+#: admin.php:206 create.php:181 admin.php:202 create.php:184 create.php:366
 msgid "Passcode:"
 msgstr ""
 
@@ -1212,6 +1288,7 @@ msgstr ""
 
 #: create.php:65 forgot.php:70 index.php:49 profile.php:89 users.php:126
 #: create.php:68 forgot.php:65 index.php:46 profile.php:123 users.php:127
+#: create.php:343 users.php:142
 msgid "Password:"
 msgstr ""
 
@@ -1219,7 +1296,7 @@ msgstr ""
 msgid "Paste your code in the textarea above."
 msgstr ""
 
-#: settings.php:343 settings.php:339
+#: settings.php:343 settings.php:339 settings.php:372
 msgid "PayPal ID:"
 msgstr ""
 
@@ -1237,6 +1314,10 @@ msgstr ""
 
 #: settings.php:59
 msgid "Payments"
+msgstr ""
+
+#: fieldDialog.php:59
+msgid "Placeholder:"
 msgstr ""
 
 #: admin.php:66 admin.php:62
@@ -1259,7 +1340,7 @@ msgstr ""
 msgid "Plans"
 msgstr ""
 
-#: pages.php:244
+#: pages.php:244 pages.php:245
 msgid "Please remove all pages first."
 msgstr ""
 
@@ -1307,7 +1388,7 @@ msgstr ""
 msgid "RSS:"
 msgstr ""
 
-#: fieldDialog.php:28
+#: fieldDialog.php:28 fieldDialog.php:23
 msgid "Radio button List"
 msgstr ""
 
@@ -1316,15 +1397,19 @@ msgid "Re-publish now"
 msgstr ""
 
 #: create.php:70 profile.php:97 users.php:132 create.php:73 profile.php:129
-#: users.php:133
+#: users.php:133 create.php:348 users.php:148
 msgid "Re-type Password:"
 msgstr ""
 
-#: pages.php:390 pages.php:389
+#: translations.php:57
+msgid "Registration"
+msgstr ""
+
+#: pages.php:390 pages.php:389 pages.php:398
 msgid "Remove Category"
 msgstr ""
 
-#: pages.php:377 pages.php:376
+#: pages.php:377 pages.php:376 pages.php:385
 msgid "Remove Cateogry"
 msgstr ""
 
@@ -1340,15 +1425,17 @@ msgstr ""
 msgid "Remove Menu Item"
 msgstr ""
 
-#: menus.php:281 menus.php:296 menus.php:277 menus.php:292
+#: menus.php:281 menus.php:296 menus.php:277 menus.php:292 menus.php:282
+#: menus.php:297
 msgid "Remove Menu Type"
 msgstr ""
 
-#: pages.php:207 pages.php:218 pages.php:202 pages.php:213
+#: pages.php:207 pages.php:218 pages.php:202 pages.php:213 pages.php:203
+#: pages.php:214
 msgid "Remove Page"
 msgstr ""
 
-#: pages.php:239 pages.php:234
+#: pages.php:239 pages.php:234 pages.php:235
 msgid "Remove Page Type"
 msgstr ""
 
@@ -1368,7 +1455,7 @@ msgstr ""
 msgid "Remove Type"
 msgstr ""
 
-#: users.php:166 users.php:181 users.php:167 users.php:182
+#: users.php:166 users.php:181 users.php:167 users.php:182 users.php:197
 msgid "Remove User"
 msgstr ""
 
@@ -1390,8 +1477,12 @@ msgstr ""
 msgid "Republish"
 msgstr ""
 
-#: fieldDialog.php:33
+#: fieldDialog.php:33 fieldDialog.php:39
 msgid "Required:"
+msgstr ""
+
+#: pages.php:309
+msgid "Requires Login:"
 msgstr ""
 
 #: theme.php:56 theme.php:112 theme.php:127 theme.php:52 theme.php:108
@@ -1423,7 +1514,7 @@ msgstr ""
 msgid "Right of the text"
 msgstr ""
 
-#: users.php:102 users.php:103
+#: users.php:102 users.php:103 users.php:109
 msgid "Role:"
 msgstr ""
 
@@ -1434,6 +1525,7 @@ msgstr ""
 #: content.php:70 layout.php:72 profile.php:107 scripts.php:76
 #: settings.php:526 snippets.php:76 styles.php:74 content.php:65 layout.php:68
 #: scripts.php:72 settings.php:522 snippets.php:72 styles.php:70
+#: settings.php:555
 msgid "Save"
 msgstr ""
 
@@ -1514,7 +1606,7 @@ msgstr ""
 msgid "Sending..."
 msgstr ""
 
-#: fieldDialog.php:43
+#: fieldDialog.php:43 fieldDialog.php:49
 msgid "Separate each option with a comma"
 msgstr ""
 
@@ -1535,11 +1627,11 @@ msgstr ""
 msgid "Shipped"
 msgstr ""
 
-#: settings.php:380 settings.php:376
+#: settings.php:380 settings.php:376 settings.php:409
 msgid "Shipping Calculation:"
 msgstr ""
 
-#: settings.php:392 settings.php:388
+#: settings.php:392 settings.php:388 settings.php:421
 msgid "Shipping Rate:"
 msgstr ""
 
@@ -1576,7 +1668,7 @@ msgstr ""
 msgid "Site created successfully"
 msgstr ""
 
-#: settings.php:513 settings.php:509
+#: settings.php:513 settings.php:509 settings.php:542
 msgid "Sitemap:"
 msgstr ""
 
@@ -1612,11 +1704,11 @@ msgstr ""
 msgid "Social"
 msgstr ""
 
-#: pages.php:103
+#: pages.php:103 pages.php:104
 msgid "Sort by Last Modified"
 msgstr ""
 
-#: pages.php:104
+#: pages.php:104 pages.php:105
 msgid "Sort by Name"
 msgstr ""
 
@@ -1660,6 +1752,14 @@ msgstr ""
 msgid "Stylesheets"
 msgstr ""
 
+#: formDialog.php:45
+msgid "Submit"
+msgstr ""
+
+#: formDialog.php:44
+msgid "Submit Button Text:"
+msgstr ""
+
 #: account.php:82 account.php:295 account.php:343 account.php:80
 #: account.php:293 account.php:341 account.php:7
 msgid "Subscribe"
@@ -1667,6 +1767,10 @@ msgstr ""
 
 #: translations.php:22
 msgid "Subscript Text (select text first)"
+msgstr ""
+
+#: formDialog.php:34
+msgid "Success Message:"
 msgstr ""
 
 #: translations.php:23
@@ -1701,7 +1805,7 @@ msgstr ""
 msgid "Target Width:"
 msgstr ""
 
-#: settings.php:373 settings.php:369
+#: settings.php:373 settings.php:369 settings.php:402
 msgid "Tax Rate:"
 msgstr ""
 
@@ -1709,11 +1813,11 @@ msgstr ""
 msgid "Test Installation"
 msgstr ""
 
-#: fieldDialog.php:25
+#: fieldDialog.php:25 fieldDialog.php:20
 msgid "Text Area"
 msgstr ""
 
-#: fieldDialog.php:24
+#: fieldDialog.php:24 fieldDialog.php:19
 msgid "Text Box"
 msgstr ""
 
@@ -1909,7 +2013,7 @@ msgstr ""
 msgid "Time Zone:"
 msgstr ""
 
-#: admin.php:110 create.php:85 admin.php:106 create.php:88
+#: admin.php:110 create.php:85 admin.php:106 create.php:88 create.php:237
 msgid "Timezone:"
 msgstr ""
 
@@ -1961,6 +2065,14 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+#: fieldDialog.php:10 fieldDialog.php:74
+msgid "Update Field"
+msgstr ""
+
+#: formDialog.php:53
+msgid "Update Form"
+msgstr ""
+
 #: listDialog.php:13 listDialog.php:76 listDialog.php:79
 msgid "Update List"
 msgstr ""
@@ -1998,12 +2110,12 @@ msgstr ""
 msgid "Update Successful"
 msgstr ""
 
-#: pages.php:317 pages.php:316
+#: pages.php:317 pages.php:316 pages.php:325
 msgid "Update Type"
 msgstr ""
 
 #: users.php:85 users.php:142 profile.php:89 profile.php:138 users.php:86
-#: users.php:143
+#: users.php:143 users.php:92 users.php:158
 msgid "Update User"
 msgstr ""
 
@@ -2076,7 +2188,7 @@ msgstr ""
 msgid "Week"
 msgstr ""
 
-#: settings.php:362 settings.php:358
+#: settings.php:362 settings.php:358 settings.php:391
 msgid "Weight Unit:"
 msgstr ""
 
@@ -2092,11 +2204,15 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
-#: fieldDialog.php:35 listDialog.php:65 listDialog.php:68
+#: fieldDialog.php:35 listDialog.php:65 listDialog.php:68 fieldDialog.php:41
 msgid "Yes"
 msgstr ""
 
-#: create.php:209 create.php:210
+#: formDialog.php:40
+msgid "You are missing required fields."
+msgstr ""
+
+#: create.php:209 create.php:210 create.php:392
 msgid "You can already view your site here:"
 msgstr ""
 
@@ -2146,7 +2262,7 @@ msgstr ""
 msgid "Your trial will expire in %s days."
 msgstr ""
 
-#: pages.php:128 pages.php:123
+#: pages.php:128 pages.php:123 pages.php:124
 msgid "by"
 msgstr ""
 
@@ -2159,7 +2275,7 @@ msgid ""
 "e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
 msgstr ""
 
-#: fieldDialog.php:49
+#: fieldDialog.php:49 fieldDialog.php:55
 msgid "e.g.: (314) 444-2343"
 msgstr ""
 
@@ -2171,7 +2287,7 @@ msgstr ""
 msgid "e.g.: Pages, Blogs, Products, etc."
 msgstr ""
 
-#: fieldDialog.php:18
+#: fieldDialog.php:18 fieldDialog.php:30
 msgid "e.g.: Phone Number, Name, etc."
 msgstr ""
 
