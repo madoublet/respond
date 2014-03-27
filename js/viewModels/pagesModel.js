@@ -27,6 +27,10 @@ var pagesModel = {
     categoryUniqId: ko.observable('-1'),
 
 	toBeRemoved:null,
+	
+	systemReserved:['api','css','data','files','fragments','js','libs','plugins','themes'],
+	typeReserved:[],
+	pageReserved:[],
 
 	init:function(){ // initializes the model
 	
@@ -56,7 +60,42 @@ var pagesModel = {
     	$('#name').keyup(function(){
     		var keyed = $(this).val().toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'').replace(/\s/g, '-');
 			keyed = keyed.substring(0,25);
+			
+			// for root pages, check against system names and page type names already created
+			if(pagesModel.pageTypeUniqId() == '-1'){
+			
+				if($.inArray(keyed, pagesModel.systemReserved) != -1){
+					keyed = keyed + '1';
+				}
+				
+				if($.inArray(keyed, pagesModel.typeReserved) != -1){
+					keyed = keyed + '1';
+				}
+				
+			}
+			
+			// for non-root pages, check against other pages
+			if($.inArray(keyed, pagesModel.pageReserved) != -1){
+				keyed = keyed + '1';
+			}
+			
 			$('#friendlyId').val(keyed);
+		});
+		
+		$('#typeS').keyup(function(){
+    		var keyed = $(this).val().toLowerCase().replace(/[^a-zA-Z 0-9]+/g,'').replace(/\s/g, '-');
+			keyed = keyed.substring(0,25);
+			
+			// check typeS against system reserved words and other page types
+			if($.inArray(keyed, pagesModel.systemReserved) != -1){
+				keyed = keyed + '1';
+			}
+			
+			if($.inArray(keyed, pagesModel.typeReserved) != -1){
+				keyed = keyed + '1';
+			}
+			
+			$('#typeFriendlyId').val(keyed);
 		});
 
 		ko.applyBindings(pagesModel);  // apply bindings
@@ -76,7 +115,12 @@ var pagesModel = {
 			dataType: 'json',
 			success: function(data){
 
+				pagesModel.typeReserved = [];
+
 				for(x in data){
+				
+					// push page type reserved
+					pagesModel.typeReserved.push(data[x]['FriendlyId']);
 
 					var pageType = PageType.create(data[x]);
 					
@@ -123,8 +167,12 @@ var pagesModel = {
 			data: data,
 			dataType: 'json',
 			success: function(data){
+			
+				pagesModel.pageReserved = [];
 
 				for(x in data){
+				
+					pagesModel.pageReserved.push(data[x]['FriendlyId']);
 				
 					var page = Page.create(data[x]);
 					page.hasDraft = ko.observable(data[x]['HasDraft']);
