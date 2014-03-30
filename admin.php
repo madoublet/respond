@@ -31,6 +31,9 @@
 <input id="msg-added" value="<?php print _("Site added successfully"); ?>" type="hidden">
 <input id="msg-switching" value="<?php print _("Switching..."); ?>" type="hidden">
 <input id="msg-switched" value="<?php print _("Switch successful"); ?>" type="hidden">
+<input id="msg-removing" value="<?php print _("Removing..."); ?>" type="hidden">
+<input id="msg-removed" value="<?php print _("Site removed successfully"); ?>" type="hidden">
+<input id="msg-remove-error" value="<?php print _("There was a problem removing the site"); ?>" type="hidden">
 
 <section class="main">
 
@@ -42,42 +45,39 @@
             <li><a href="plans"><?php print _("Plans"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Site"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Site"); ?></a>
         
     </nav>
 
     <div class="container">
 	    <table id="siteList" class="table table-striped table-bordered">
-        	<col width="15%">
-    		<col width="25%">
-    		<col width="10%">
-    		<col width="10%">
-    		<col width="10%">
     		<thead>
     			<tr>
     			<th><?php print _("Site"); ?></th>
-    			<th><?php print _("URL"); ?></th>
     			<th><?php print _("Type"); ?></th>
     			<th><?php print _("Status"); ?></th>
     			<th><?php print _("Plan"); ?></th>
     			<th><?php print _("Customer"); ?></th>
     			<th><?php print _("Renewal Date"); ?></th>
-    			<th class="switch"><?php print _("Switch"); ?></th>
+    			<th class="switch action"><?php print _("Switch"); ?></th>
+    			<th class="remove action"><?php print _("Remove"); ?></th>
     			</tr>
     		</thead>
     		<tbody data-bind="foreach:sites">
-                <tr>
-                    <td data-bind="text:name"></td>
-                    <td data-bind="text:domain"></td>
+                <tr data-bind="css:{'active': (siteId=='<?php print $authUser->SiteId; ?>')}">
+                    <td><span data-bind="text:name"></span><br><small data-bind="text:domain"></small></td>
                     <td data-bind="text:type"></td>
                     <td data-bind="text:status"></td>
                     <td data-bind="text:planId"></td>
                     <td data-bind="text:customerId"></td>
                     <td data-bind="text:renewalReadable"></td>
-                    <td><a data-bind="click: $parent.switchSite"><i class="fa fa-exchange fa-lg"></i></a></td>
+                    <td class="action"><a class="switch" data-bind="click: $parent.switchSite"><i class="fa fa-exchange"></i></a></td>
+                    <td class="action"><a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="fa fa-minus-circle"></i></a></td>
                 </tr>
     		</tbody>
     	</table>
+    	
+    	<p data-bind="visible: sitesLoading()" class="table-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>
 	</div>
 
 </section>
@@ -209,6 +209,38 @@
 			<div class="modal-footer">
 				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
 				<button class="primary-button add" data-bind="click: addSite"><?php print _("Add Site"); ?></button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="deleteDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3><?php print _("Remove Site"); ?></h3>
+			</div>
+			<div class="modal-body">
+			
+			<p>
+				<?php print _("Confirm that you want to remove:"); ?> <strong id="removeName">this page</strong>
+			</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
+				<button class="primary-button" data-bind="click: removeSite"><?php print _("Remove Site"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 			

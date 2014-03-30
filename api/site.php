@@ -482,6 +482,61 @@ class SitePublishResource extends Tonic\Resource {
     }
 }
 
+/**
+ * A protected API call to view, edit, and delete a site
+ * @uri /site/remove
+ */
+class SiteRemoveResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function remove() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+			if($authUser->IsSuperAdmin == 1){
+	            parse_str($this->request->data, $request); // parse request
+	
+	            $siteUniqId = $request['siteUniqId'];
+	            
+	            $site = Site::GetBySiteUniqId($siteUniqId);
+	            
+	            $directory = '../sites/'.$site['FriendlyId'];
+	            
+	            // Get the directory name
+				$oldname = '../sites/'.$site['FriendlyId'];
+				
+				// Replace any special chars with your choice
+				$newname = '../sites/'.$site['FriendlyId'].'-removed';
+				
+				if(file_exists($oldname)){
+					// Renames the directory
+					rename($oldname, $newname);
+				}
+	
+				// remove site from DB
+				Site::Remove($siteUniqId);
+	
+	            return new Tonic\Response(Tonic\Response::OK);
+            }
+            else{ // unauthorized access
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+        
+        } 
+        else{ // unauthorized access
+			return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+        return new Tonic\Response(Tonic\Response::NOTIMPLEMENTED);
+    }
+
+}
+
 
 /**
  * A protected API call to view, edit, and delete a site

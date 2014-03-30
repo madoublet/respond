@@ -142,21 +142,6 @@ class Utilities
 	    closedir($dir); 
 	} 
 	
-	// removes a directory and its files
-	public static function RemoveDirectory($dir) {
-     	
-     	$files = glob($dir.'/*'); // get all file names
-		foreach($files as $file){ // iterate files
-		  if(is_file($file))
-		    unlink($file); // delete file
-		}
-		
-		if (is_dir($dir)) {
-		    rmdir($dir);
-		}
-     	
-	}
-	
 	// saves specified content to a file
 	public static function SaveContent($dir, $filename, $content){
 		$full = $dir.$filename;

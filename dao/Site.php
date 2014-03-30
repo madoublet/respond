@@ -312,6 +312,26 @@ class Site{
         }   
 	}
 	
+	// removes a site
+	public static function Remove($siteUniqId){
+		
+        try{
+            
+            $db = DB::get();
+            
+            $q = "DELETE FROM Sites WHERE SiteUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::Remove] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
 	// Gets a site for a specific domain name
 	public static function GetByDomain($domain){
 		 

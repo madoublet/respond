@@ -880,13 +880,33 @@ div.select em{
 	padding: 0;
 }
 
-table.table tr.active td{
-	background-color: #fbec5d !important;
+/* table */
+.table tr.active td{
+	background-color: #FDFCCE !important;
 }
 
-table.table tr.active a.switch{
+.table tr.active a.switch{
  	display: none;
 }
+
+.table .action{
+	text-align: center;
+}
+
+.table .action i{
+	font-size: 17px;
+}
+
+.table .action .remove i{
+	color: #B11623;
+}
+
+.table-loading{
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
 
 /* dropdown */
 body .btn-group.open .dropdown-toggle{
