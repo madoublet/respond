@@ -19,7 +19,20 @@ jQuery.fn.swap = function(b){
 	return this; 
 };
 
-//$.ui.draggable.prototype.destroy = function (ul, item) { };
+function setupSortable(){
+	$('.sortable').sortable({
+			handle:'.move', 
+			connectWith: '.sortable', 
+			placeholder: 'editor-highlight', 
+			opacity:'0.6', 
+			tolerance: 'pointer',
+			receive: function(event, ui) {
+	           if($(ui.item).is('a')){
+		           $('#editor-container').find('a.ui-draggable').replaceWith('<div id="editor-placeholder" class="editor-highlight"></div');
+	           }
+	        }
+		});
+}
 
 // set debug
 respond.debug = false;
@@ -1428,7 +1441,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1459,7 +1472,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1490,7 +1503,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1523,7 +1536,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1558,7 +1571,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1584,7 +1597,7 @@ respond.Editor.SetupMenuEvents = function(){
 		respond.currnode = null;
 		
 		// re-init sortable
-		$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+		setupSortable();
 		
 		return false;
 	});
@@ -1616,19 +1629,7 @@ respond.Editor.SetupPersistentEvents = function(el){
 	var context = $(el);
 	
 	// make blocks sortable
-	$('.sortable').sortable({
-		handle:'.move', 
-		connectWith: '.sortable', 
-		placeholder: 'editor-highlight', 
-		opacity:'0.6', 
-		tolerance: 'pointer',
-		receive: function(event, ui) {
-           if($(ui.item).is('a')){
-	           $('#editor-container').find('a.ui-draggable').replaceWith('<div id="editor-placeholder" class="editor-highlight"></div');
-           }
-        }
-		});
-	
+	setupSortable();
 	
 	// set respond.currnode when div is focused
 	$(el).on('focusin', '.sortable div', function(){
@@ -2042,7 +2043,18 @@ respond.Editor.Append = function(el, html){
 	
 	// if dragged placeholder exists
 	if($('#editor-placeholder').length > 0){
-		$('#editor-placeholder').replaceWith(html);
+		var node = $('#editor-placeholder');
+		
+		var temp = $(node).after(html).get(0);
+		
+		var added = $(temp).next();
+		
+		$('[contentEditable=true], input, textarea').blur();
+		$(added).find('[contentEditable=true], input, textarea').get(0).focus();
+		
+		$(node).remove();
+		
+		respond.currnode = $(added);
 	}
 	else{
 		var blocks = $(el).find('div.block');
@@ -2056,7 +2068,7 @@ respond.Editor.Append = function(el, html){
 			var added = $(temp).next();
 			
 			$('[contentEditable=true], input, textarea').blur();
-			$(added).find('[contentEditable=true], input, textarea').focus();
+			$(added).find('[contentEditable=true], input, textarea').get(0).focus();
 			
 			respond.currnode = $(added);
 		
