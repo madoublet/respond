@@ -2050,7 +2050,7 @@ respond.Editor.Append = function(el, html){
 		var added = $(temp).next();
 		
 		$('[contentEditable=true], input, textarea').blur();
-		$(added).find('[contentEditable=true], input, textarea').get(0).focus();
+		$(added).find('[contentEditable=true], input, textarea').first().focus();
 		
 		$(node).remove();
 		
@@ -2068,7 +2068,7 @@ respond.Editor.Append = function(el, html){
 			var added = $(temp).next();
 			
 			$('[contentEditable=true], input, textarea').blur();
-			$(added).find('[contentEditable=true], input, textarea').get(0).focus();
+			$(added).find('[contentEditable=true], input, textarea').first().focus();
 			
 			respond.currnode = $(added);
 		
