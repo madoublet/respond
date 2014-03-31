@@ -7,59 +7,20 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-Respond 2.9 was released April 2014.
+This is the dev branch for Respond 2.10 (May 2014)
 
-New in 2.9:
-- Site search
-- Secure pagetypes
-- Simple theme improvements
-- Editor tooltips
-- SVG image support
-- Theme /resources support
-- Form options: message text, custom actions, placholder text, custom field classes
-- Language switch
+New in 2.10:
+- Drag-and-Drop new elements into the editor
+- Improved site administration (delete site)
 
 Bug fixes:
-- Layout for small tablet responsive app
+- TBD
 
 Refactoring:
-- Language bugs
-- Site API
-- Featured, List updates to support friendly names (facilitates easier themes, more portable sites)
+- TBD
 
-How to update from 2.8:
-- Add IsSecure flag to PageTypes
-
-```
-ALTER TABLE  `PageTypes` ADD `IsSecure` INT NOT NULL DEFAULT '0' AFTER `Stylesheet`;
-```
-
-- Add SearchIndex table for searching
-
-```
-CREATE TABLE IF NOT EXISTS `SearchIndex` (
-  `PageUniqId` varchar(50) NOT NULL,
-  `SiteUniqId` varchar(50) NOT NULL,
-  `Language` varchar(10) DEFAULT NULL,
-  `Url` varchar(255) DEFAULT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Image` varchar(256) DEFAULT NULL,
-  `IsSecure` INT NOT NULL DEFAULT '0',
-  `h1s` text,
-  `h2s` text,
-  `h3s` text,
-  `Description` text,
-  `Content` text,
-  FULLTEXT INDEX(Name, H1s, H2s, H3s, Description, Content)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-```
-  
-- Add IsActive to Users  
-```
-ALTER TABLE  `Users` ADD `IsActive` INT NOT NULL DEFAULT '1' AFTER `Token`;
-```
-
-- Pull latest version
+How to update from 2.9:
+- Backup your DB and sites
 - Re-publish your sites
 
 
