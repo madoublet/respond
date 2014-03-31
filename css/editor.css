@@ -138,6 +138,10 @@ a.next, a.previous{
 	border-radius: 50%;
 }	
 
+	.editor-actions a.active{
+		background-color: #fff;
+	}
+
 	body>.draggable{
 		background-color: #3299BB;
 		color: #fff;

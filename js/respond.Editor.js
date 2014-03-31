@@ -1634,6 +1634,18 @@ respond.Editor.SetupPersistentEvents = function(el){
 	// set respond.currnode when div is focused
 	$(el).on('focusin', '.sortable div', function(){
 		respond.currnode = this;
+		
+		var className = $(this).prop('class').trim();
+		
+		if(className != ''){
+			$('.editor-actions .'+className).addClass('active');
+		}
+		
+		console.log('.editor-actions .'+className);
+	});
+	
+	$(el).on('focusout', '.sortable div', function(){
+		$('.editor-actions a').removeClass('active');
 	});
 	
 	// handle remove-block
