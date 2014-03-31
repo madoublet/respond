@@ -19,6 +19,8 @@ jQuery.fn.swap = function(b){
 	return this; 
 };
 
+//$.ui.draggable.prototype.destroy = function (ul, item) { };
+
 // set debug
 respond.debug = false;
 
@@ -89,7 +91,6 @@ respond.Editor.BuildMenu = function(el){
 	
 	// create menu
 	var menu =  '<nav class="editor-menu">' +
-                '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
                 '<div class="editor-actions"><div>' +
 				'<a class="bold fa fa-bold" title="'+t('bold_text')+'" data-target="'+id+'"></a>' +
 				'<a class="italic fa fa-italic" title="'+t('italic_text')+'" data-target="'+id+'"></a>' +
@@ -102,32 +103,35 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="align-right fa fa-align-right" title="'+t('align-right_text')+'" data-align="right" data-target="'+id+'"></a>' +
 				'<a class="link fa fa-link" title="'+t('addLink')+'" data-target="'+id+'"></a>' +
 				'<a class="code fa fa-code" title="'+t('addCode')+'" data-target="'+id+'"></a>' +
-        		'<a class="icon fa fa-flag" title="'+t('iconfa')+'" data-target="'+id+'"></a>' + // WIP, coming soon
-				'<a class="h1" title="'+t('addHeadline')+'" data-target="'+id+'">H1</a>' +
-				'<a class="h2" title="'+t('addHeadline')+'" data-target="'+id+'">H2</a>' +
-				'<a class="h3" title="'+t('addHeadline')+'" data-target="'+id+'">H3</a>' +
-				'<a class="p" title="'+t('addParagraph')+'" data-target="'+id+'">P</a>' +
-				'<a class="q fa fa-quote-left" title="'+t('addquote')+'" data-target="'+id+'"></a>' +
-				'<a class="ul fa fa-list-ul" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
-				'<a class="ol fa fa-list-ol" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
-				'<a class="table fa fa-table" title="'+t('addtable')+'" data-target="'+id+'"></a>' +
-				'<a class="hr fa fa-minus" title="'+t('addhr')+'" data-target="'+id+'"></a>' +
-				'<a class="img fa fa-picture-o" title="'+t('addimg')+'" data-target="'+id+'"></span>' +
-				'<a class="slideshow  fa fa-film" title="'+t('addslideshow')+'" data-target="'+id+'"></a>' +
-				'<a class="map  fa fa-map-marker" title="'+t('addmap')+'" data-target="'+id+'"></a>' +
-				'<a class="twitter fa fa-twitter" title="'+t('addtwitter')+'" data-target="'+id+'"></a>' +
-				'<a class="like fa fa-facebook" title="'+t('addfacebook')+'" data-target="'+id+'"></a>' +
-				'<a class="comments fa fa-comments" title="'+t('fa-comments')+'" data-target="'+id+'"></a>' +
-				'<a class="youtube fa fa-video-camera" title="'+t('youtube')+'" data-target="'+id+'"></span>' +
-				'<a class="list fa fa-bars" title="'+t('list_pages')+'" data-target="'+id+'"></span>' +
-                '<a class="featured fa fa-star" title="'+t('featured')+'" data-target="'+id+'"></a>' +
-				'<a class="file fa fa-file-o" title="'+t('addFile')+'" data-target="'+id+'"></a>' +
-				'<a class="shelf fa fa-tags" title="'+t('addSKUs')+'" data-target="'+id+'"></a>' +
-				'<a class="form fa fa-check" title="'+t('addForm')+'" data-target="'+id+'"></a>' +
-				'<a class="html fa fa-html5" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
-				'<a class="syntax fa fa-terminal" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
-				'<a class="secure fa fa-lock" title="'+t('secure')+'" data-target="'+id+'"></a>' +
-				'<a class="plugins" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
+        		'<a class="icon fa fa-flag" title="'+t('iconfa')+'" data-target="'+id+'"></a>' +
+				'<a class="br" title="'+t('addBr')+'" data-target="'+id+'">BR</a>' +
+				'<span class="sep"></span>' +
+				'<a class="h1 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H1</a>' +
+				'<a class="h2 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H2</a>' +
+				'<a class="h3 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H3</a>' +
+				'<a class="p draggable" title="'+t('addParagraph')+'" data-target="'+id+'">P</a>' +
+				'<a class="q fa fa-quote-left draggable" title="'+t('addquote')+'" data-target="'+id+'"></a>' +
+				'<a class="ul fa fa-list-ul draggable" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="ol fa fa-list-ol draggable" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
+				'<a class="table fa fa-table draggable" title="'+t('addtable')+'" data-target="'+id+'"></a>' +
+				'<a class="hr fa fa-minus draggable" title="'+t('addhr')+'" data-target="'+id+'"></a>' +
+				'<a class="img fa fa-picture-o draggable" title="'+t('addimg')+'" data-target="'+id+'"></span>' +
+				'<a class="slideshow  fa fa-film draggable" title="'+t('addslideshow')+'" data-target="'+id+'"></a>' +
+				'<a class="map  fa fa-map-marker draggable" title="'+t('addmap')+'" data-target="'+id+'"></a>' +
+				'<a class="twitter fa fa-twitter draggable" title="'+t('addtwitter')+'" data-target="'+id+'"></a>' +
+				'<a class="like fa fa-facebook draggable" title="'+t('addfacebook')+'" data-target="'+id+'"></a>' +
+				'<a class="comments fa fa-comments draggable" title="'+t('fa-comments')+'" data-target="'+id+'"></a>' +
+				'<a class="youtube fa fa-video-camera draggable" title="'+t('youtube')+'" data-target="'+id+'"></span>' +
+				'<a class="list fa fa-bars draggable" title="'+t('list_pages')+'" data-target="'+id+'"></span>' +
+                '<a class="featured fa fa-star draggable" title="'+t('featured')+'" data-target="'+id+'"></a>' +
+				'<a class="file fa fa-file-o draggable" title="'+t('addFile')+'" data-target="'+id+'"></a>' +
+				'<a class="shelf fa fa-tags draggable" title="'+t('addSKUs')+'" data-target="'+id+'"></a>' +
+				'<a class="form fa fa-check draggable" title="'+t('addForm')+'" data-target="'+id+'"></a>' +
+				'<a class="html fa fa-html5 draggable" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
+				'<a class="syntax fa fa-terminal draggable" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
+				'<a class="secure fa fa-lock draggable" title="'+t('secure')+'" data-target="'+id+'"></a>' +
+				'<a class="plugins draggable" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
+				'<span class="sep"></span>' +
 				'<a class="load fa fa-upload" title="'+t('load')+'" data-target="'+id+'"></a>' +
 				'<a class="layout fa fa-columns" title="'+t('layout')+'" data-target="'+id+'"></a>';
 	
@@ -141,6 +145,7 @@ respond.Editor.BuildMenu = function(el){
 	}
 	
 	menu += '</div></div>' +
+                '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
 				'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 				'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
 				'<a class="primary-action alt preview" title="'+t('preview')+'"><i class="fa fa-play-circle"></i></a>' +
@@ -860,6 +865,19 @@ respond.Editor.ParseHTML = function(top){
 
 // sets up the menu events
 respond.Editor.SetupMenuEvents = function(){
+
+	// set up draggable
+	$('.editor-menu a.draggable').draggable({
+      connectToSortable: '.sortable',
+      helper: 'clone',
+      refert: 'true',
+      appendTo: 'body'
+    });
+    
+    // cleanup placeholder
+	$('[data-dismiss]').on('click', function(){
+    	$('#editor-placeholder').remove();
+	});
 	
 	// create BOLD
 	$('.editor-menu a.bold').click(function(){
@@ -897,6 +915,11 @@ respond.Editor.SetupMenuEvents = function(){
 		return false;
 	});
 	
+	// create LINEBREAK
+	$('.editor-menu a.br').click(function(){
+		document.execCommand('InsertHTML', false, '<br>');
+		return false;
+	});
 	
 	// create ALIGNMENT
 	$('.editor-menu a.align-center, .editor-menu a.align-left, .editor-menu a.align-right').click(function(){
@@ -951,7 +974,7 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 
 	// create SYNTAX
-	$('.editor-menu a.syntax').click(function(){
+	$('.editor-menu a.syntax').on('click dragstop', function(){
 
 		var editor = $('#'+$(this).attr('data-target'));
 
@@ -979,13 +1002,13 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 
 	// create PLUGINS
-	$('.editor-menu a.plugins').click(function(){
+	$('.editor-menu a.plugins').on('click dragstop', function(){
 	
 		var editor = $('#'+$(this).attr('data-target'));
 	  
 		pluginsDialog.show(editor); 
 		
-		return false;
+		return true;
 	});
  
 	// update PAGE SETTINGS
@@ -997,7 +1020,7 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 
 	// create P
-	$('.editor-menu a.p').click(function(){
+	$('.editor-menu a.p').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'p';
 		var prefix = 'paragraph';
@@ -1014,11 +1037,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 
 	 // create TABLE
-	$('.editor-menu a.table').click(function(){
+	$('.editor-menu a.table').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'table';
 		var prefix = 'table';
@@ -1044,11 +1067,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create BLOCKQUOTE
-	$('.editor-menu a.q').click(function(){
+	$('.editor-menu a.q').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'q';
 		var prefix = 'quote';
@@ -1065,20 +1088,20 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create HTML BLOCK
-	$('.editor-menu a.html').click(function(){
+	$('.editor-menu a.html').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		
 		htmlDialog.show(editor, 'HTML block', 'html', 'add', -1);
 		
-		return false;
+		return true;
 	});
 	
 	// create YOUTUBE
-	$('.editor-menu a.youtube').click(function(){
+	$('.editor-menu a.youtube').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'youtube';
 		var prefix = 'youtube';
@@ -1090,7 +1113,7 @@ respond.Editor.SetupMenuEvents = function(){
 			respond.defaults.elementMenuNoConfig + 
 			'<textarea placeholder="Paste HTML embed code here"></textarea></div>');
 		
-		return false;
+		return true;
 	});
 	
 	// import LAYOUT
@@ -1112,7 +1135,7 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 	
 	// create UL
-	$('.editor-menu a.ul').click(function(){
+	$('.editor-menu a.ul').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'ul';
 		var prefix = 'ul';
@@ -1128,11 +1151,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create OL
-	$('.editor-menu a.ol').click(function(){
+	$('.editor-menu a.ol').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'ol';
 		var prefix = 'ol';
@@ -1148,11 +1171,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create HR
-	$('.editor-menu a.hr').click(function(){
+	$('.editor-menu a.hr').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'hr';
 		var prefix = 'hr';
@@ -1165,20 +1188,20 @@ respond.Editor.SetupMenuEvents = function(){
 			 '<div class="line"></div>' +
 			 '</div>');
 		
-		return false;
+		return true;
 	});
 	
 	// create IMAGE
-	$('.editor-menu a.img').click(function(){
+	$('.editor-menu a.img').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 	  
 		imagesDialog.show(editor, 'image', -1);
 		
-		return false;
+		return true;
 	});
 	
 	// create SLIDESHOW
-	$('.editor-menu a.slideshow').click(function(){
+	$('.editor-menu a.slideshow').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'slideshow';
 		var prefix = 'imagegroup';
@@ -1187,11 +1210,11 @@ respond.Editor.SetupMenuEvents = function(){
 		
 		slideshowDialog.show(editor, uniqId);
 		
-		return false;
+		return true;
 	});
 	
 	// create SECURE
-	$('.editor-menu a.secure').click(function(){
+	$('.editor-menu a.secure').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'secure';
 		var prefix = 'secure';
@@ -1200,11 +1223,11 @@ respond.Editor.SetupMenuEvents = function(){
 		
 		secureDialog.show(editor, uniqId);
 		
-		return false;
+		return true;
 	});
 
 	// create MAP
-	$('.editor-menu a.map').click(function(){
+	$('.editor-menu a.map').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'map';
 		var prefix = 'map';
@@ -1217,18 +1240,18 @@ respond.Editor.SetupMenuEvents = function(){
 			'<div><i class="in-textbox fa fa-map-marker"></i><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div></div>'
 		);
 		
-		return false;
+		return true;
 	});
 	
 	// create TWITTER
-	$('.editor-menu a.twitter').click(function(){
+	$('.editor-menu a.twitter').on('click dragstop', function(){
 		htmlDialog.show('Twitter Widget', 'twitter', 'add', -1);
 		
-		return false;
+		return true;
 	});
 	
 	// create LIKE
-	$('.editor-menu a.like').click(function(){
+	$('.editor-menu a.like').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'like';
 		var prefix = 'like';
@@ -1241,11 +1264,11 @@ respond.Editor.SetupMenuEvents = function(){
 			'<div class="title"><i class="fa fa-facebook"></i> Facebook Like</div></div>'
 			);
 		
-		return false;
+		return true;
 	});
 
 	// create COMMENTS
-	$('.editor-menu a.comments').click(function(){
+	$('.editor-menu a.comments').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'comments';
 		var prefix = 'comments';
@@ -1258,20 +1281,20 @@ respond.Editor.SetupMenuEvents = function(){
 			'<div class="title"><i class="fa fa-facebook"></i> Facebook Comments</div></div>'
 			);
 		
-		return false;
+		return true;
 	});
 	
 	// create FILES
-	$('.editor-menu a.file').click(function(){
+	$('.editor-menu a.file').on('click dragstop', function(){
 	
 		var editor = $('#'+$(this).attr('data-target'));
 	
 		filesDialog.show(editor);
-		return false;
+		return true;
 	});
 	
 	// create FORM
-	$('.editor-menu a.form').click(function(){
+	$('.editor-menu a.form').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'form';
 		var prefix = 'form';
@@ -1287,11 +1310,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// set up sorting on form elements
 		$('.form div').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
 		
-		return false;
+		return true;
 	});
 	
 	// create SHELF
-	$('.editor-menu a.shelf').click(function(){
+	$('.editor-menu a.shelf').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'shelf';
 		var prefix = 'shelf';
@@ -1308,11 +1331,12 @@ respond.Editor.SetupMenuEvents = function(){
 		// set up sorting on shelf items
 		$('.shelf-items').sortable({handle: '.move', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
 		
-		return false;
+		return true;
 	});
 	
 	// create H1
-	$('.editor-menu a.h1').click(function(){
+	$('.editor-menu a.h1').on('click dragstop', function(){
+	
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'h1';
 		var prefix = 'h1';
@@ -1328,11 +1352,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create H2
-	$('.editor-menu a.h2').click(function(){
+	$('.editor-menu a.h2').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'h2';
 		var prefix = 'h2';
@@ -1348,11 +1372,11 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create H3
-	$('.editor-menu a.h3').click(function(){
+	$('.editor-menu a.h3').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 		var className = 'h3';
 		var prefix = 'h3';
@@ -1368,7 +1392,7 @@ respond.Editor.SetupMenuEvents = function(){
 		// setup paste filter
 		$('#'+uniqId+' [contentEditable=true]').paste();
 		
-		return false;
+		return true;
 	});
 	
 	// create PREVIEW
@@ -1566,7 +1590,7 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 	
 	// create LIST
-	$('.editor-menu a.list').click(function(){
+	$('.editor-menu a.list').on('click dragstop', function(){
 		var editor = $('#'+$(this).attr('data-target'));
 	
 		listDialog.show(editor, 'add', -1);
@@ -1574,12 +1598,12 @@ respond.Editor.SetupMenuEvents = function(){
 	});
 	
 	// create FEATURED
-	$('.editor-menu a.featured').click(function(){
+	$('.editor-menu a.featured').on('click dragstop', function(){
 	
 		var editor = $('#'+$(this).attr('data-target'));
 	
 		featuredDialog.show(editor);
-		return false;
+		return true;
 	});
 
 		
@@ -1591,8 +1615,19 @@ respond.Editor.SetupPersistentEvents = function(el){
 	// setup context
 	var context = $(el);
 	
-	// make blocks sortable 
-	$('.sortable').sortable({handle:'.move', connectWith: '.sortable', placeholder: 'editor-highlight', opacity:'0.6', tolerance: 'pointer'});
+	// make blocks sortable
+	$('.sortable').sortable({
+		handle:'.move', 
+		connectWith: '.sortable', 
+		placeholder: 'editor-highlight', 
+		opacity:'0.6', 
+		tolerance: 'pointer',
+		receive: function(event, ui) {
+           if($(ui.item).is('a')){
+	           $('#editor-container').find('a.ui-draggable').replaceWith('<div id="editor-placeholder" class="editor-highlight"></div');
+           }
+        }
+		});
 	
 	
 	// set respond.currnode when div is focused
@@ -2005,34 +2040,40 @@ respond.Editor.Append = function(el, html){
 		el = el.get(0);
 	}
 	
-	var blocks = $(el).find('div.block');
-	var length = blocks.length;
-	
-	// appends it toe currnode (if set) or the last block if not set
-	if(respond.currnode){
-	
-		var temp = $(respond.currnode).after(html).get(0);
-		
-		var added = $(temp).next();
-		
-		$('[contentEditable=true], input, textarea').blur();
-		$(added).find('[contentEditable=true], input, textarea').focus();
-		
-		respond.currnode = $(added);
-	
+	// if dragged placeholder exists
+	if($('#editor-placeholder').length > 0){
+		$('#editor-placeholder').replaceWith(html);
 	}
-	else if(length>0){  
-		var curr = blocks[length-1]; // get last block
+	else{
+		var blocks = $(el).find('div.block');
+		var length = blocks.length;
 		
-		var cols = $(curr).find('div.col');
+		// appends it toe currnode (if set) or the last block if not set
+		if(respond.currnode){
 		
-		if(cols.length>0){
-			curr = $(cols[0]);
-			respond.currnode = $(html).appendTo(curr);
+			var temp = $(respond.currnode).after(html).get(0);
+			
+			var added = $(temp).next();
+			
+			$('[contentEditable=true], input, textarea').blur();
+			$(added).find('[contentEditable=true], input, textarea').focus();
+			
+			respond.currnode = $(added);
+		
 		}
-		
-		// arrh! focus!
-		$(curr).find('[contentEditable=true], input, textarea').focus();
+		else if(length>0){  
+			var curr = blocks[length-1]; // get last block
+			
+			var cols = $(curr).find('div.col');
+			
+			if(cols.length>0){
+				curr = $(cols[0]);
+				respond.currnode = $(html).appendTo(curr);
+			}
+			
+			// arrh! focus!
+			$(curr).find('[contentEditable=true], input, textarea').focus();
+		}
 	}
 
 }

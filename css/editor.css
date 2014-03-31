@@ -2,6 +2,7 @@
     border: 1px solid #fbec5d !important;
     background: #fbec5d !important;
     min-height: 50px;
+    display: block;
 } 
 
 .editor{
@@ -41,13 +42,16 @@ section.main nav.editor-menu{
 
 .editor-actions{
     margin: 0 130px 0 55px;
+    padding: 0;
     height: 50px;
-    overflow: hidden;
     z-index: 1000;
 }
 
     .editor-actions div{
         width: 1804px;  /* 41 * 41 = 1681 */
+        height: 50px;
+        margin: 0;
+        padding: 0;
     }
 
 body section.main nav a.primary-action{
@@ -104,11 +108,23 @@ a.next, a.previous{
         left: 50px;
         display: none;
     }
-    
-.editor-actions a{
-	display: block;
+
+.editor-actions span.sep{
+	display: inline-block;
 	position: relative;
-	float: left;
+	width: 1px; 
+	height: 20px;
+	font-size: 15px;
+	text-align: center;
+	line-height: 40px;
+	margin: 15px 4px 15px 5px;
+	color: #ccc;
+	border-right: 1px solid #ddd;
+}
+	
+.editor-actions a, .draggable{
+	display: inline-block;
+	position: relative;
 	width: 40px; 
 	height: 40px;
 	margin: 5px 1px 5px 0;
@@ -117,7 +133,20 @@ a.next, a.previous{
 	line-height: 40px;
 	color: #777;
 	font-size: 1.1em !important;
-}
+	vertical-align: top;
+	background-color: #E9E9E9;
+	border-radius: 50%;
+}	
+
+	body>.draggable{
+		background-color: #3299BB;
+		color: #fff;
+		z-index: 100000;
+	}
+
+	.editor-actions a.draggable{
+		cursor: move;
+	}
 
     .editor-actions a:hover{
         background-color: #fff !important;
