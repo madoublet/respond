@@ -410,87 +410,90 @@ respond.Editor.ParseHTML = function(top){
 					var className = $(node).attr('class');
 					var p_classname = $(node).attr('class'); // parsed classname
 	
-					if(className.indexOf('l-image')!=-1){
-						className = ' left';
-						p_classname =  global.replaceAll(p_classname, 'l-image', '');
-					}
-					else if(className.indexOf('r-image')!=-1){
-						className = ' right';
-						p_classname =  global.replaceAll(p_classname, 'r-image', '');
-					}
-					else if(className.indexOf('o-image')!=-1){
-						className = '';
-						p_classname =  global.replaceAll(p_classname, 'o-image', '');
-					}
+					// check for non-formed divs
+					if(className != undefined){
+						if(className.indexOf('l-image')!=-1){
+							className = ' left';
+							p_classname =  global.replaceAll(p_classname, 'l-image', '');
+						}
+						else if(className.indexOf('r-image')!=-1){
+							className = ' right';
+							p_classname =  global.replaceAll(p_classname, 'r-image', '');
+						}
+						else if(className.indexOf('o-image')!=-1){
+							className = '';
+							p_classname =  global.replaceAll(p_classname, 'o-image', '');
+						}
+						
+						// trim any whitespace
+						p_classname = $.trim(p_classname);
+						
+						var rel = $(node).find('a').attr('rel');
+						
+						if(rel==undefined || rel==''){
+							rel='';
+						}
+		
+						var src = $(node).find('img').attr('src');
+						var href = $(node).find('a').attr('href');
+						var i_id = $(node).find('img').attr('id');
+						var html = $(node).find('p').html();
 					
-					// trim any whitespace
-					p_classname = $.trim(p_classname);
+						// set constraints
+						var width = $(node).attr('data-width');
+						var height = $(node).attr('data-height');
+						var constraints = '';
 					
-					var rel = $(node).find('a').attr('rel');
+						if(width!=''&&height!=''){
+					  		if(!isNaN(width)&&!isNaN(height)){ // set constraints
+								constraints = ' data-width="'+width+'" data-height="'+height+'"';
+							}
+						}
 					
-					if(rel==undefined || rel==''){
-						rel='';
-					}
-	
-					var src = $(node).find('img').attr('src');
-					var href = $(node).find('a').attr('href');
-					var i_id = $(node).find('img').attr('id');
-					var html = $(node).find('p').html();
-				
-					// set constraints
-					var width = $(node).attr('data-width');
-					var height = $(node).attr('data-height');
-					var constraints = '';
-				
-					if(width!=''&&height!=''){
-				  		if(!isNaN(width)&&!isNaN(height)){ // set constraints
-							constraints = ' data-width="'+width+'" data-height="'+height+'"';
+						var id = $(node).attr('id');
+			  
+						if(id==undefined || id==''){
+							id='i-'+parseInt(new Date().getTime() / 1000);
 						}
-					}
-				
-					var id = $(node).attr('id');
-		  
-					if(id==undefined || id==''){
-						id='i-'+parseInt(new Date().getTime() / 1000);
-					}
-		  
-				  	if(className==' left'){
-						response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
-										' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
-										respond.defaults.elementMenu;
-										
-						if(href==undefined){
-					  		response+='<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
-						}
-						else{
-					  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
-						}
-						response +='<div class="content" contentEditable="true">' + 
-										html + '</div></div>';
-				  	}
-				  	else if(className==' right'){
-						response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
-										' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
-										respond.defaults.elementMenu;
-						response+='<div class="content" contentEditable="true">' + html + '</div>';
-						if(href==undefined){
-					  		response+='<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
-						}
-						else{
-					  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
-						}
-						response+='</div>';
-				  	}
-				  	else{
-						response+= '<div id="'+id+'" class="i"'+constraints+' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
-										respond.defaults.elementMenu;
-						if(href==undefined){
-					  		response+= '<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
-						}
-						else{
-					  		response+= '<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
-						}
-						response+= '</div>';
+			  
+					  	if(className==' left'){
+							response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
+											' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
+											respond.defaults.elementMenu;
+											
+							if(href==undefined){
+						  		response+='<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
+							}
+							else{
+						  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
+							}
+							response +='<div class="content" contentEditable="true">' + 
+											html + '</div></div>';
+					  	}
+					  	else if(className==' right'){
+							response+= '<div id="'+id+'" class="i' + className + '"'+constraints+
+											' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
+											respond.defaults.elementMenu;
+							response+='<div class="content" contentEditable="true">' + html + '</div>';
+							if(href==undefined){
+						  		response+='<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
+							}
+							else{
+						  		response+='<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
+							}
+							response+='</div>';
+					  	}
+					  	else{
+							response+= '<div id="'+id+'" class="i"'+constraints+' data-id="'+id+'" data-cssclass="'+p_classname+'">' +
+											respond.defaults.elementMenu;
+							if(href==undefined){
+						  		response+= '<div class="img"><img id="'+i_id+'" src="' + src + '"></div>';
+							}
+							else{
+						  		response+= '<div class="img hasUrl"><img id="'+i_id+'" src="' + src + '" data-url="' + href + '"></div>';
+							}
+							response+= '</div>';
+					  	}
 				  	}
 				}
 	
