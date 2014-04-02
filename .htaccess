@@ -1,6 +1,6 @@
 Options -Multiviews
 Options -Indexes
-Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 
 RewriteEngine on 
 

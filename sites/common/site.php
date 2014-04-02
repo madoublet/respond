@@ -1,5 +1,7 @@
 <?php
 
+    include 'setup.php';
+
 	// debugging
 	define('DEBUG', false);
 

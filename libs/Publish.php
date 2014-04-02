@@ -51,8 +51,12 @@ class Publish
 		$dest = $root.'sites/'.$site['FriendlyId'].'/site.php';
 		
 		copy($src, $dest);
-		
-		// copy logout.php
+
+        // create setup
+        $dest = $root.'sites/'.$site['FriendlyId'].'/setup.php';
+        file_put_contents($dest, "<?php\n    define('RESPOND_DIR', '".RESPOND_DIR."')\n?>");
+
+        // copy logout.php
 		$src = $root.'sites/common/logout.php';
 		$dest = $root.'sites/'.$site['FriendlyId'].'/logout.php';
 		
