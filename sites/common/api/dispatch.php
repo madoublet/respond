@@ -8,6 +8,11 @@
 	require_once 'page.php';
 	require_once 'user.php';
 	require_once 'form.php';
+    
+    // load custom endpoints    
+    foreach (glob("custom/*.php") as $filename) {
+        include_once $filename;
+    }
         
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];
