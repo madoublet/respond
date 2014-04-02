@@ -1,5 +1,6 @@
 <?php
 
+    include '../setup.php';
     include RESPOND_DIR.'/app.php';
 
     require_once RESPOND_DIR.'/api/lib/Tonic/Autoloader.php';
