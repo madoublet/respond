@@ -1,8 +1,8 @@
-<?php 
+<?php
 
-	include '../../../app.php';
+    include RESPOND_DIR.'/app.php';
 
-	require_once '../../../api/lib/Tonic/Autoloader.php';
+    require_once RESPOND_DIR.'/api/lib/Tonic/Autoloader.php';
 	require_once '../libs/SiteAuthUser.php';
 	require_once 'site.php';
 	require_once 'page.php';
