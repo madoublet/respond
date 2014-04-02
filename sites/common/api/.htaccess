@@ -1,5 +1,5 @@
 Options -Multiviews
-Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !dispatch\.php$
