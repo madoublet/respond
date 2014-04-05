@@ -907,6 +907,28 @@ div.select em{
     font-size: 12px;
 }
 
+section.main .table table{
+	margin-top: 0;
+	width: 100%;
+}
+
+	section.main .table table td:first-child{
+		padding-left: 0;
+	}
+	
+	section.main .table table td:last-child{
+		padding-right: 0;
+	}
+
+	section.main .table table tr:first-child td{
+		border-top: 0;
+		padding-top: 0;
+	}
+	
+	section.main .table table tfoot tr td{
+		border: none;
+	}
+	
 
 /* dropdown */
 body .btn-group.open .dropdown-toggle{

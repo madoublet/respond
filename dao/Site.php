@@ -63,7 +63,7 @@ class Site{
 	
 	
 	// edits the site information
-	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId){
+	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox){
 
 		try{
             
@@ -83,7 +83,8 @@ class Site{
         			ShippingRate = ?,
         			ShippingTiers = ?,
         			TaxRate = ?,
-        			PayPalId = ?
+        			PayPalId = ?,
+        			PayPalUseSandbox = ?
         			WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
@@ -101,7 +102,8 @@ class Site{
             $s->bindParam(12, $shippingTiers);
             $s->bindParam(13, $taxRate);
             $s->bindParam(14, $payPalId);
-            $s->bindParam(15, $siteUniqId);
+            $s->bindParam(15, $payPalUseSandbox);
+            $s->bindParam(16, $siteUniqId);
             
             $s->execute();
             
@@ -261,7 +263,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created 
 							FROM Sites ORDER BY Name ASC";
@@ -342,7 +345,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE Domain = ?";
@@ -374,7 +378,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE CustomerId = ?";
@@ -406,7 +411,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE FriendlyId = ?";
@@ -438,7 +444,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE SiteUniqId = ?";
@@ -470,7 +477,8 @@ class Site{
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
-							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, PayPalId,
+							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
+							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
 							Created
 							FROM Sites WHERE Siteid = ?";

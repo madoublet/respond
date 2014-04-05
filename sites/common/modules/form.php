@@ -1,4 +1,4 @@
-<form role="form"<?php if($type=='default'){ ?> class="respond-form"<?php } ?><?php if($action!=''){ ?> action="<?php print $action; ?>" type="post"<?php } ?>>
+<form id="<?php print $formId; ?>" role="form"<?php if($type=='default'){ ?> class="respond-form"<?php } ?><?php if($action!=''){ ?> action="<?php print $action; ?>" type="post"<?php } ?>>
 	<?php 
 	// handle success message
 	if($successMessage != ''){

@@ -35,6 +35,7 @@
 				    <select id="sku-shippingType" class="form-control">
 				    	<option value="not shipped"><?php print _("Not Shipped"); ?></option>
 				    	<option value="shipped"><?php print _("Shipped"); ?></option>
+				    	<option value="download"><?php print _("Download"); ?></option>
 				    </select>
 				</div>
 				

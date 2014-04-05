@@ -193,6 +193,7 @@ var settingsModel = {
         var facebookAppId = $('#facebookAppId').val();
         var taxRate = $('#taxRate').val();
         var payPalId = $('#payPalId').val();
+        var payPalUseSandbox = $('#payPalUseSandbox').val();
         
         var shippingTiers = '';
         
@@ -242,7 +243,7 @@ var settingsModel = {
         $.ajax({
             url: 'api/site/' + o.siteUniqId(),
 			type: 'POST',
-			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, analyticsId: analyticsId, facebookAppId: facebookAppId},
+			data: {name: name, domain: domain, primaryEmail: primaryEmail, timeZone: timeZone, language: language, currency: currency, weightUnit: weightUnit, shippingCalculation: shippingCalculation, shippingRate: shippingRate, shippingTiers: shippingTiers, taxRate: taxRate, payPalId: payPalId, payPalUseSandbox: payPalUseSandbox, analyticsId: analyticsId, facebookAppId: facebookAppId},
 			success: function(data){
     			message.showMessage('success', $('#msg-updated').val());
     			$('.list-menu').removeClass('hidden');

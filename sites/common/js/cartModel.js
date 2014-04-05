@@ -54,6 +54,7 @@ var CartItem = function(description, sku, price, shippingType, weight, quantity)
 var cartModel = {
    
    	payPalId: '',
+   	useSandbox: false,
    	currency: 'USD',
    	weightUnit: 'kgs',
    	taxRate: 0,
@@ -67,6 +68,7 @@ var cartModel = {
     init:function(){
     	
     	var payPalId = $('#cart').attr('data-paypalid');
+    	var useSandbox = $('#cart').attr('data-usesandbox');
     	var currency = $('#cart').attr('data-currency');
     	var weightUnit = $('#cart').attr('data-weightunit');
     	var calculation = $('#cart').attr('data-shippingcalculation');  	
@@ -77,6 +79,11 @@ var cartModel = {
 		// validate payPalId
 		if(payPalId != '' && payPalId != undefined){
 			cartModel.payPalId = payPalId;
+		}
+	
+		// set use sandbox
+		if(useSandbox == '1'){
+			cartModel.useSandbox = true;
 		}
 		
 		// validate currency
@@ -91,11 +98,11 @@ var cartModel = {
 		
 		// validate calculation
 		if(calculation != '' && calculation != undefined){
-			cartModel.calculation = weightUnit;
+			cartModel.calculation = calculation;
 		}
 	
 		// validate flatrate
-		if(isNaN(flatRate) && flatRate != undefined){
+		if(!isNaN(flatRate) && flatRate != undefined){
 			cartModel.flatRate = flatRate;
 		}
 		
@@ -293,9 +300,10 @@ var cartModel = {
 			'business':			email,
 			'rm':				'0',
 			'charset':			'utf-8',
-			'return':			cartModel.returnUrl + 'thankyou?p=paypal',
-			'cancel_return':	cartModel.returnUrl + 'cancel?p=paypal',
-			'notify_url':		cartModel.returnUrl + 'notify?p=paypal'
+			'return':			cartModel.returnUrl + 'thank-you#clear-cart',
+			'cancel_return':	cartModel.returnUrl + 'cancel',
+			'notify_url':		cartModel.returnUrl + 'api/transaction/paypal',
+			'custom':			$('body').attr('data-siteuniqid')
 		};
 		
 		var noshipping = 1;
@@ -310,7 +318,7 @@ var cartModel = {
 			data['item_name_'+c] = item.description();
 			data['quantity_'+c] = item.quantity();
 			data['amount_'+c] = item.price().toFixed(2);
-			data['item_number_'+c] = item.sku();
+			data['item_number_'+c] = item.sku() + '-' + item.shippingType().toUpperCase();
 			
 			if(item.shippingType() == 'shipped'){
 				noshipping = 2;
@@ -323,8 +331,13 @@ var cartModel = {
 		data['handling_cart'] = cartModel.shipping().toFixed(2);
 		data['tax_cart'] = cartModel.tax().toFixed(2);
 		
-		//var url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; // sandbox
-		var url = 'https://www.paypal.com/cgi-bin/webscr'; // live
+		// live url
+		var url = 'https://www.paypal.com/cgi-bin/webscr';
+		
+		// set to sandbox if specified
+		if(cartModel.useSandbox){
+			url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+		}
 		
 		// create form with data values
 		var form = $('<form id="paypal-form" action="' + url + '" method="POST"></form');
@@ -446,6 +459,7 @@ cartModel.shipping = ko.computed(function() {
 	var calculation = cartModel.calculation;	
 	var flatRate = cartModel.flatRate;
 	var tiers = cartModel.tiers;
+
 
     if(calculation == 'free'){
 	    return 0;

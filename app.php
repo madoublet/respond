@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.9.1');
+	define('VERSION', '2.10.1');
 
 	// debugging
 	define('DEBUG', true);
@@ -63,6 +63,7 @@
 	require_once 'dao/MenuItem.php';
 	require_once 'dao/Category.php';
 	require_once 'dao/SearchIndex.php';
+	require_once 'dao/Transaction.php';
 	
 	// include external libs
     require_once 'libs/stripe/lib/Stripe.php';

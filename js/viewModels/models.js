@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, payPalUseSandbox, payPalLogoUrl, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -22,6 +22,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
     self.shippingTiers = ko.observable(shippingTiers);
     self.taxRate = ko.observable(taxRate);
     self.payPalId = ko.observable(payPalId);
+    self.payPalUseSandbox = ko.observable(payPalUseSandbox);
+    self.payPalLogoUrl = ko.observable(payPalLogoUrl);
     self.lastLogin = ko.observable(lastLogin);
     self.type = ko.observable(type);
     self.customerId = ko.observable(customerId);
@@ -32,7 +34,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['PayPalUseSandbox'], data['PayPalLogoUrl'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 
 // models a user
@@ -360,4 +362,121 @@ function Theme(id, name, desc){
 Theme.create = function(data){
 
 	return new Theme(data['id'], data['name'], data['desc']);
+}
+
+
+// models a transaction
+function Transaction(transactionUniqId, siteId, processor, processorTransactionId, processorStatus, 
+            		email, payerId, name, shipping, fee, tax, total, currency, items, data, created){
+
+    var self = this;
+
+	self.transactionUniqId = ko.observable(transactionUniqId);
+	self.siteId = ko.observable(siteId);
+	self.processor = ko.observable(processor);
+	self.processorTransactionId = ko.observable(processorTransactionId);
+	self.processorStatus = ko.observable(processorStatus);
+    self.email = ko.observable(email);
+    self.payerId = ko.observable(payerId);
+    self.name = ko.observable(name);
+    self.shipping = ko.observable(shipping);
+    self.fee = ko.observable(fee);
+    self.tax = ko.observable(tax);
+    self.total = ko.observable(total);
+    self.currency = ko.observable(currency);
+    self.items = ko.observable(items);
+    self.data = ko.observable(data);
+    self.created = ko.observable(created);
+    
+    self.shippingReadable = ko.computed(function(){ 
+	    
+	    var r = self.shipping() + ' ' + self.currency();
+	    if(self.currency()=='USD'){
+		    r = '$'+r;
+	    }
+	    return r;
+	    
+    });
+    
+    self.feeReadable = ko.computed(function(){ 
+	    
+	    var r = self.fee() + ' ' + self.currency();
+	    if(self.currency()=='USD'){
+		    r = '$'+r;
+	    }
+	    return r;
+	    
+    });
+    
+    self.taxReadable = ko.computed(function(){ 
+	    
+	    var r = self.tax() + ' ' + self.currency();
+	    if(self.currency()=='USD'){
+		    r = '$'+r;
+	    }
+		return r;
+	    
+    });
+    
+    self.totalReadable = ko.computed(function(){ 
+	    
+	    var r = self.total() + ' ' + self.currency();
+	    if(self.currency()=='USD'){
+		    r = '$'+r;
+	    }
+	    return r;
+	    
+    });
+    
+    self.invoice = ko.computed(function(){
+	
+		var items = JSON.parse(self.items());
+		
+		var table = '<table>';
+		
+		for(x=0; x<items.length; x++){
+			var p = items[x]['Price'] + ' ' + self.currency();
+			if(self.currency()=='USD'){
+		    	p = '$'+p;
+			}
+			var t = items[x]['Total'] + ' ' + self.currency();
+			if(self.currency()=='USD'){
+		    	t = '$'+t;
+			}
+		
+			table += '<tr><td>'+items[x]['Name']+'<br><small>'+items[x]['SKU']+'</small></td>' +
+				'<td class="number">'+items[x]['Quantity']+'</td>'+'<td class="number">'+p+'</td>' +
+				'<td class="number">'+t+'</td></tr>';
+				
+		}
+		
+		table += '<tfoot>';
+		
+		if(self.shipping()===0){
+			table += '<tr><td class="number" colspan="3">' + $('#msg-shipping').val() + '</td><td class="number">' + self.shippingReadable() + '</td></tr>';
+		}
+		
+		table += '<tr><td class="number" colspan="3">' + $('#msg-fee').val() + '</td><td class="number">' + self.feeReadable()  + '</td></tr>';
+		
+		if(self.tax()===0){
+			table += '<tr><td class="number" colspan="3">' + $('#msg-tax').val() + '</td><td class="number">' + self.taxReadable()  + '</td></tr>';
+		}
+		
+		table += '<tr><td class="number" colspan="3">' + $('#msg-total').val() + '</td><td class="number"><b>' + self.totalReadable()  + '</b></td></tr></tfoot>';
+		
+		table += '</table>';
+		
+		return table;
+		
+	});
+
+}
+
+// creates a transaction based on data returned from the API
+Transaction.create = function(data){
+
+	return new Transaction(data['TransactionUniqId'], data['SiteId'], data['Processor'], 	
+		data['ProcessorTransactionId'], 
+		data['ProcessorStatus'], data['Email'], data['PayerId'], data['Name'], data['Shipping'], data['Fee'], 
+		data['Tax'], data['Total'], data['Currency'], data['Items'], data['Data'], data['Created']);
 }

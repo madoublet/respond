@@ -28,7 +28,7 @@ var pagesModel = {
 
 	toBeRemoved:null,
 	
-	systemReserved:['api','css','data','files','fragments','js','libs','plugins','themes'],
+	systemReserved:['api','css','data','files','fragments','js','libs','plugins','themes', 'emails'],
 	typeReserved:[],
 	pageReserved:[],
 

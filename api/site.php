@@ -632,8 +632,9 @@ class SiteResource extends Tonic\Resource {
             $shippingTiers = $request['shippingTiers'];
             $taxRate = $request['taxRate'];
             $payPalId = $request['payPalId'];
+            $payPalUseSandbox = $request['payPalUseSandbox'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox);
 
             return new Tonic\Response(Tonic\Response::OK);
         

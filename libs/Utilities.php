@@ -622,6 +622,7 @@ class Utilities
             
             // fill in the blanks
             $cart = str_replace('{{payPalId}}', $site['PayPalId'], $cart);
+            $cart = str_replace('{{payPalUseSandbox}}', $site['PayPalUseSandbox'], $cart);
             $cart = str_replace('{{currency}}', $site['Currency'], $cart);
             $cart = str_replace('{{weightUnit}}', $site['WeightUnit'], $cart);
             $cart = str_replace('{{taxRate}}', $site['TaxRate'], $cart);
@@ -1199,8 +1200,14 @@ class Utilities
                 }
                 else if($name=='form'){
                 
-                	$type = 'default';
+                	$formId = 'form-0';
+					
+					if(isset($el->id)){
+	                	$formId = $el->id;
+                	}
                 
+					$type = 'default';
+					
                 	if(isset($el->type)){
 	                	$type = $el->type;
                 	}

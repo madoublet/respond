@@ -374,6 +374,16 @@
 					<input id="payPalId" type="text"  data-bind="value: payPalId" class="form-control">
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="payPalId" class="control-label"><?php print _("Use PayPal Sandbox (for testing):"); ?></label>
+				<div>
+					<select id="payPalUseSandbox" data-bind="value:payPalUseSandbox" class="form-control">
+						<option value="1">Yes</option>
+				    	<option value="0">No</option>
+					</select>
+				</div>
+			</div>
 		
 			<div class="form-group">
 				<label for="currency" class="control-label"><?php print _("Currency:"); ?></label>
