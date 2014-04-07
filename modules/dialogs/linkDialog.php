@@ -12,11 +12,11 @@
 	
 			<div class="modal-body">
 			
-			<div class="form-group">
+			<div class="form-group no-border">
 				<label class="radio"><input id="existing" type="radio" class="radio" name="content" checked> <?php print _("Existing Page"); ?></label>
 			</div>  
 		
-			<div class="form-group">
+			<div class="form-group no-border">
 				<div id="pageUrl" class="select small">
 					<ul data-bind="foreach: pages">
 						<li data-bind="attr:{'data-pageid': pageId, 'data-url': $parent.toPagePrefix() + url()}, text:name"></li>
@@ -25,11 +25,11 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group no-border">
 				<label class="radio"><input id="customUrl" type="radio" name="content" class="radio"> <?php print _("Custom URL"); ?></label>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group no-border">
 				<input id="linkUrl" type="text" class="form-control">
 			</div>
 			
