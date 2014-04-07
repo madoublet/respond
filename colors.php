@@ -27,6 +27,7 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
+<input id="msg-loading" value="<?php print _("Loading..."); ?>" type="hidden">
 <input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Styles updated successfully"); ?>" type="hidden">
 <input id="msg-updating-error" value="<?php print _("There was a problem saving the style file, please try again"); ?>" type="hidden">
