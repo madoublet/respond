@@ -2833,5 +2833,8 @@ respond.Editor.Refresh = function(el){
 	
 	// set HTML
   	$(el).html(response);
+  	
+  	// re-init sortable
+	setupSortable();
 
 }
