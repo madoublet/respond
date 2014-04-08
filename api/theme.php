@@ -65,7 +65,7 @@ class ThemeResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = $json;
 
             return $response;
@@ -244,7 +244,7 @@ class ThemePagesListResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($arr);
 
             return $response;

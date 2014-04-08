@@ -62,7 +62,7 @@ class PageAddResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($page);
 
             return $response;
@@ -101,7 +101,7 @@ class PageResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($page);
 
             return $response;
@@ -583,7 +583,7 @@ class PageListAll extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($pages);
 
             return $response;
@@ -725,7 +725,7 @@ class PageListSortedResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($pages);
 
             return $response;
@@ -817,7 +817,7 @@ class PageListFriendlyResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($pages);
 
             return $response;
@@ -969,7 +969,7 @@ class PageListResource extends Tonic\Resource {
 
         // return a json response
         $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'applicaton/json';
+        $response->contentType = 'application/json';
         $response->body = json_encode($pages);
 
         return $response;
@@ -1133,7 +1133,7 @@ class PageBlogResource extends Tonic\Resource {
 
         // return a json response
         $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'applicaton/json';
+        $response->contentType = 'application/json';
         $response->body = json_encode($pages);
 
         return $response;
@@ -1288,7 +1288,7 @@ class PageCalendarResource extends Tonic\Resource {
 
         // return a json response
         $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'applicaton/json';
+        $response->contentType = 'application/json';
         $response->body = json_encode($pages);
 
         return $response;
@@ -1393,7 +1393,7 @@ class PageTotalResource extends Tonic\Resource {
         
         // return a json response
         $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'applicaton/json';
+        $response->contentType = 'application/json';
         $response->body = $json;
 
         return $response;

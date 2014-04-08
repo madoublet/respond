@@ -44,7 +44,7 @@ class PlanAddResource extends Tonic\Resource {
 		           
 		            // return a json response
 		            $response = new Tonic\Response(Tonic\Response::OK);
-		            $response->contentType = 'applicaton/json';
+		            $response->contentType = 'application/json';
 		            $response->body = json_encode($plan);
 		
 		            return $response;
@@ -175,7 +175,7 @@ class PlanListResource extends Tonic\Resource {
 				
 				// return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = json_encode($plans);
 	
 	            return $response;
@@ -248,7 +248,7 @@ class PlanGetResource extends Tonic\Resource {
 
 	            // return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = json_encode($plan);
 	
 	            return $response;

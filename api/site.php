@@ -444,7 +444,7 @@ class SiteCurrentResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($site);
 
             return $response;
@@ -596,7 +596,7 @@ class SiteResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($site);
 
             return $response;
@@ -703,7 +703,7 @@ class SiteListAllResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($list);
 
             return $response;
@@ -806,7 +806,7 @@ class SiteListExtendedResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($sites);
 
             return $response;

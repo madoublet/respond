@@ -34,7 +34,7 @@ class UserLoginResource extends Tonic\Resource {
 				
 				// return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = json_encode($params);
 			
 			}
@@ -176,7 +176,7 @@ class UserAddResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($user);
 
             return $response;
@@ -209,7 +209,7 @@ class UserCurrentResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($user);
 
             return $response;
@@ -249,7 +249,7 @@ class UserPhotoResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
 
             return $response;
         
@@ -281,7 +281,7 @@ class UserResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($user);
 
             return $response;
@@ -373,7 +373,7 @@ class UserListAll extends Tonic\Resource {
       
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($list);
 
             return $response;

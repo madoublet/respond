@@ -29,7 +29,7 @@ class CategoryAddResource extends Tonic\Resource {
          
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($category);
 
             return $response;
@@ -86,14 +86,14 @@ class CategoryListResource extends Tonic\Resource {
 	            
 	            // return a json response
 	            $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = json_encode($list);
 	
 	            return $response;
             }
             else{ // return an empty response (e.g. root has not categories)
 	            $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = '[]';
 	
 	            return $response;
@@ -131,7 +131,7 @@ class CategoryListPageResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($list);
 
             return $response;
