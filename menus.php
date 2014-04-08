@@ -26,6 +26,8 @@
 <?php include 'modules/menu.php'; ?>
 
 <!-- messages -->
+<input id="msg-label-required" value="<?php print _("A label is required"); ?>" type="hidden">
+<input id="msg-all-required" value="<?php print _("All fields are required"); ?>" type="hidden">
 <input id="msg-adding" value="<?php print _("Adding..."); ?>" type="hidden">
 <input id="msg-added" value="<?php print _("The menu item was added successfully"); ?>" type="hidden">
 <input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
@@ -141,11 +143,11 @@
 				
 				<div class="add">
 			    
-					<div class="form-group">
+					<div class="form-group no-border">
 						<label class="radio"><input id="existing" type="radio" name="content" checked> <?php print _("Existing Page"); ?></label>
 					</div>	
 					
-					<div class="form-group">
+					<div class="form-group no-border">
 						<div id="selectPage" class="select">
 		                	<ul data-bind="foreach: pages">
 			                  <li data-bind="attr:{'data-pageid': pageId, 'data-url': url}">
@@ -156,7 +158,7 @@
 						</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group no-border">
 						<label class="radio"><input id="customUrl" type="radio" name="content"> <?php print _("Custom URL"); ?></label>
 					</div>
 					

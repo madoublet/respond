@@ -175,7 +175,7 @@ var menusModel = {
         
         var dialog = $('#addEditDialog');
         
-        var name = $('#name').val();
+        var name = $('#name').val().trim();
         var cssClass = $('#cssClass').val();
         var type = menusModel.type();
         var url = $('#url').val();
@@ -196,6 +196,11 @@ var menusModel = {
                 pageId = selected.first().data('pageid');
             }
 		}
+		
+		if(name == ''){
+	        message.showMessage('error', $('#msg-label-required').val());
+	        return;
+        }
     
         message.showMessage('progress', $('#msg-adding').val());
 
@@ -224,19 +229,17 @@ var menusModel = {
     editMenuItem: function(o, e){
         
         var dialog = $('#addEditDialog');
-        
-        var name = $('#name').val();
-        var cssClass = $('#cssClass').val();
-        var type = menusModel.type();
-        var url = $('#url').val();
-        var existingUrl = $('#existingUrl').val();
-           
 
         var menuItemUniqId = menusModel.toBeEdited.menuItemUniqId();
    
         var name = $('#name').val();
         var cssClass = $('#cssClass').val();
         var url = $('#editUrl').val();
+        
+        if(name == ''){
+	        message.showMessage('error', $('#msg-label-required').val());
+	        return;
+        }
         
         message.showMessage('progress', $('#msg-updating').val());
 
@@ -384,8 +387,13 @@ var menusModel = {
     
     addMenuType:function(o, e){
         
-        var name = $('#menuTypeName').val();
-        var friendlyId = $('#menuTypeFriendlyId').val();
+        var name = $('#menuTypeName').val().trim();
+        var friendlyId = $('#menuTypeFriendlyId').val().trim();
+        
+        if(name == '' || friendlyId == ''){
+	        message.showMessage('error', $('#msg-all-required').val());
+	        return;
+        }
         
         $.ajax({
           url: 'api/menutype/add',
