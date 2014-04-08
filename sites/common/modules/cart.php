@@ -1,6 +1,7 @@
 <section id="cart" class="panel panel-default" 
 	data-paypalid="{{payPalId}}"
 	data-usesandbox="{{payPalUseSandbox}}"
+	data-logo="{{payPalLogoUrl}}"
 	data-currency="{{currency}}"
 	data-weightunit="{{weightUnit}}"
 	data-taxrate="{{taxRate}}"

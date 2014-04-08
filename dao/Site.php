@@ -159,6 +159,75 @@ class Site{
         
 	}
 	
+	// edits the icon
+    public static function EditIcon($siteUniqId, $iconUrl){
+
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Sites SET 
+                    IconUrl= ?
+                    WHERE SiteUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $iconUrl);
+            $s->bindParam(2, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::EditIcon] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
+	// edits the icon bg
+    public static function EditIconBg($siteUniqId, $iconBg){
+
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Sites SET 
+                    IconBg= ?
+                    WHERE SiteUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $iconBg);
+            $s->bindParam(2, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::EditIconBg] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
+	// edits the PayPalLogoUrl
+    public static function EditPayPalLogoUrl($siteUniqId, $payPalLogoUrl){
+
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Sites SET 
+                    PayPalLogoUrl= ?
+                    WHERE SiteUniqId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $payPalLogoUrl);
+            $s->bindParam(2, $siteUniqId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::EditPayPalLogoUrl] PDO Error: '.$e->getMessage());
+        }
+        
+	}
+	
 	// determines whether a friendlyId is unique
 	public static function IsFriendlyIdUnique($friendlyId){
 
@@ -260,7 +329,7 @@ class Site{
         try{
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -342,7 +411,7 @@ class Site{
         
     		$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -375,7 +444,7 @@ class Site{
         
     		$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -408,7 +477,7 @@ class Site{
         
         	$db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -441,7 +510,7 @@ class Site{
         
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
     						AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -474,7 +543,7 @@ class Site{
         
             $db = DB::get();
             
-            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, Theme,
+            $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
         					AnalyticsId, FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 

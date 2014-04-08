@@ -433,6 +433,26 @@ class Utilities
         $content = str_replace('{{logo}}', $rootloc.'files/'.$site['LogoUrl'], $content);
         $content = str_replace('{{resources}}', $rootloc.'themes/'.$site['Theme'].'/resources/', $content);
         
+        // icons
+        $relative_icon_url = $rootloc.'files/'.$site['IconUrl'];
+        $abs_icon_url = 'http://'.$site['Domain'].'/files/'.$site['IconUrl'];
+        
+        // icon urls
+        $content = str_replace('{{icon}}', $relative_icon_url, $content);
+        $content = str_replace('{{icon-abs}}', $abs_icon_url, $content);
+        
+        // favicon
+        $content = str_replace('{{favicon}}', '<link rel="icon" href="'.$relative_icon_url.'">', $content);
+        
+        // tile
+        $tile_html = '<meta name="msapplication-TileColor" content="'.$site['IconBg'].'">'.PHP_EOL.
+        			 '<meta name="msapplication-TileImage" content="'.$relative_icon_url.'">';
+        			 
+        $content = str_replace('{{tileicon}}', $tile_html, $content);
+        
+        // touch icon
+        $content = str_replace('{{touchicon}}', '<link rel="apple-touch-icon" href="'.$relative_icon_url.'">', $content);
+        
         // replace with constants
         $content = str_replace('{{id}}', $page['FriendlyId'], $content);
         $content = str_replace('{{type}}', $type, $content);
@@ -620,8 +640,15 @@ class Utilities
 		if(file_exists($cartFile)){
             $cart = file_get_contents($cartFile);
             
+            $payPalLogoUrl = '';
+            
+            if($site['PayPalLogoUrl'] != NULL && $site['PayPalLogoUrl'] != ''){
+            	$payPalLogoUrl = 'http://'.$site['Domain'].'/files/'.$site['PayPalLogoUrl'];
+            }
+            
             // fill in the blanks
             $cart = str_replace('{{payPalId}}', $site['PayPalId'], $cart);
+            $cart = str_replace('{{payPalLogoUrl}}', $payPalLogoUrl, $cart);
             $cart = str_replace('{{payPalUseSandbox}}', $site['PayPalUseSandbox'], $cart);
             $cart = str_replace('{{currency}}', $site['Currency'], $cart);
             $cart = str_replace('{{weightUnit}}', $site['WeightUnit'], $cart);

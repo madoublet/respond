@@ -650,14 +650,14 @@ class SiteResource extends Tonic\Resource {
 
 /**
  * A protected API call to view, edit, and delete a site
- * @uri /site/logo/{siteUniqId}
+ * @uri /site/branding/image
  */
-class SiteLogoResource extends Tonic\Resource {
+class SiteBrandingResource extends Tonic\Resource {
 
     /**
      * @method POST
      */
-    function update($siteUniqId) {
+    function update() {
 
         // get an authuser
         $authUser = new AuthUser();
@@ -666,10 +666,62 @@ class SiteLogoResource extends Tonic\Resource {
 
             parse_str($this->request->data, $request); // parse request
 
-            $logoUrl = $request['logoUrl'];
+            $url = $request['url'];
+            $type = $request['type'];
 
-            Site::EditLogo($siteUniqId, $logoUrl);
+			if($type == 'logo'){
+            	Site::EditLogo($authUser->SiteUniqId, $url);
+            }
+            else if($type == 'icon'){
+	            Site::EditIcon($authUser->SiteUniqId, $url);
+	            
+	            // create the icon
+	            $source = '../sites/'.$authUser->SiteFriendlyId.'/files/'.$url;
+				$destination = '../sites/'.$authUser->SiteFriendlyId.'/favicon.ico';
+				
+				if(file_exists($source)){
+					$ico_lib = new PHP_ICO($source, array( array( 32, 32 ), array( 64, 64 ) ) );
+					$ico_lib->save_ico( $destination );
+				}
+            }
+            else if($type == 'paypal'){
+	            Site::EditPayPalLogoUrl($authUser->SiteUniqId, $url);
+            }
 
+            return new Tonic\Response(Tonic\Response::OK);
+        
+        } else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+        return new Tonic\Response(Tonic\Response::NOTIMPLEMENTED);
+    }
+
+}
+
+/**
+ * A protected API call to view, edit, and delete a site
+ * @uri /site/branding/icon/background
+ */
+class SiteBrandingIconBackgroundResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function update() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            parse_str($this->request->data, $request); // parse request
+
+            $color = $request['color'];
+
+			Site::EditIconBg($authUser->SiteUniqId, $color);
+                        
             return new Tonic\Response(Tonic\Response::OK);
         
         } else{ // unauthorized access

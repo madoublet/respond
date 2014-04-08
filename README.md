@@ -15,6 +15,8 @@ New in 2.10:
 - Digital download support
 - Drag-and-Drop new elements into the editor
 - Improved site administration (delete site)
+- Load theme page from Load Layout widget
+- PayPal Logo and Favicon / Touch / Tile logo support
 
 Bug fixes:
 - TBD
@@ -56,6 +58,8 @@ ALTER TABLE `Transactions`
 ```
 ALTER TABLE  `Sites` ADD `PayPalUseSandbox` INT NOT NULL DEFAULT '0' AFTER `PayPalId`;
 ALTER TABLE  `Sites` ADD `PayPalLogoUrl` VARCHAR(512) NULL AFTER `PaypalUseSandbox`;
+ALTER TABLE  `Sites` ADD `IconUrl` VARCHAR(512) NULL AFTER `LogoUrl`;
+ALTER TABLE  `Sites` ADD `IconBg` VARCHAR(10) DEFAULT '#FFFFFF' AFTER `IconUrl`;
 ```
 
 - Re-publish your sites

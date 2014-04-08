@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, payPalUseSandbox, payPalLogoUrl, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, iconUrl, iconBg, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, payPalUseSandbox, payPalLogoUrl, lastLogin, type, customerId, created){
 
     var self = this;
 
@@ -9,6 +9,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
     self.domain = ko.observable(domain);
     self.name = ko.observable(name);
     self.logoUrl = ko.observable(logoUrl);
+    self.iconUrl = ko.observable(iconUrl);
+    self.iconBg = ko.observable(iconBg);
     self.theme = ko.observable(theme);
     self.analyticsId = ko.observable(analyticsId);
     self.facebookAppId = ko.observable(facebookAppId);
@@ -33,7 +35,7 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, theme, anal
 // creates a site based on data returned from the API
 Site.create = function(data){
 
-	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['Theme'],
+	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['IconUrl'], data['IconBg'], data['Theme'],
                     data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['PayPalUseSandbox'], data['PayPalLogoUrl'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
 }
 

@@ -1120,7 +1120,48 @@ body .CodeMirror{
 		border-color: #3299BB;
 	}
 	
+#branding-page .placeholder{
+	display: inline-block;
+	background-color: #f0f0f0;
+	max-width: 502px;
+	border: 1px solid #fff !important;
+	cursor: pointer;
+}
+
+	#branding-page .placeholder img{
+		border: 2px solid #fff;
+	}
+
+	#branding-page .placeholder{
+		border: none;
+	}
+
+	#branding-page .placeholder:hover{
+		border: 1px dashed #3299BB !important;
+	}
+
+	#branding-page .form-group{
+		margin-bottom: 50px;
+	}
+
+	#branding-page .placeholder.paypal, #branding-page .placeholder.paypal img{
+		max-width: 150px;
+	}
 	
+	#branding-page .placeholder.touch, #branding-page .placeholder.touch img{
+		max-width: 200px;
+	}
+	
+	#branding-page .form-group small{
+		display: block;
+		margin-top: 10px;
+		color: #888;
+	}
+	
+	#branding-page input#iconBg{
+		max-width: 200px;
+	}
+
 
 /* Large desktop */
 @media (min-width: 1200px) { }

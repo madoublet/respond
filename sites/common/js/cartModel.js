@@ -54,6 +54,7 @@ var CartItem = function(description, sku, price, shippingType, weight, quantity)
 var cartModel = {
    
    	payPalId: '',
+   	logo: '',
    	useSandbox: false,
    	currency: 'USD',
    	weightUnit: 'kgs',
@@ -68,6 +69,7 @@ var cartModel = {
     init:function(){
     	
     	var payPalId = $('#cart').attr('data-paypalid');
+    	var logo = $('#cart').attr('data-logo');
     	var useSandbox = $('#cart').attr('data-usesandbox');
     	var currency = $('#cart').attr('data-currency');
     	var weightUnit = $('#cart').attr('data-weightunit');
@@ -79,6 +81,11 @@ var cartModel = {
 		// validate payPalId
 		if(payPalId != '' && payPalId != undefined){
 			cartModel.payPalId = payPalId;
+		}
+	
+		// validate logo
+		if(logo != '' && logo != undefined){
+			cartModel.logo = logo;
 		}
 	
 		// set use sandbox
@@ -307,6 +314,11 @@ var cartModel = {
 		};
 		
 		var noshipping = 1;
+		
+		// set logo
+		if(cartModel.logo != ''){
+			data['image_url'] = cartModel.logo;
+		}
 	
 		// add cart items
 		for (x=0; x<cartModel.items().length; x++){

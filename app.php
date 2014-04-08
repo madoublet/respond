@@ -70,6 +70,7 @@
 	require_once 'libs/simple_html_dom.php';
 	require_once "libs/lessc.inc.php";
 	require_once 'libs/PasswordHash.php';
+	require_once 'libs/class-php-ico.php';
 	
 	// include libs
 	require_once 'libs/Utilities.php';
