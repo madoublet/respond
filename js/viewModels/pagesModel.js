@@ -31,6 +31,8 @@ var pagesModel = {
 	systemReserved:['api','css','data','files','fragments','js','libs','plugins','themes', 'emails'],
 	typeReserved:[],
 	pageReserved:[],
+	
+	currentXHR: null,
 
 	init:function(){ // initializes the model
 	
@@ -148,7 +150,10 @@ var pagesModel = {
 
 	// updates the pages
 	updatePages:function(){  // updates the page arr
-
+		//if there is a current request, then cancel it
+		if(pagesModel.pagesLoading() && pagesModel.currentXhr){
+			pagesModel.currentXhr.abort();
+		}
 		pagesModel.pages.removeAll();
 		pagesModel.pagesLoading(true);
         
@@ -161,7 +166,7 @@ var pagesModel = {
 	        data = {friendlyId: pagesModel.friendlyId(), sort: sort, categoryUniqId: pagesModel.categoryUniqId()};
         }
         
-		$.ajax({
+		pagesModel.currentXhr = $.ajax({
 			url: 'api/page/list/sorted',
 			type: 'POST',
 			data: data,
@@ -182,6 +187,7 @@ var pagesModel = {
 				}
 
 				pagesModel.pagesLoading(false);
+				pagesModel.currentXhr = null; //wipe the xhr object now that the request is over
 
 			}
 		});
