@@ -87,6 +87,8 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `Domain` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `LogoUrl` varchar(512) DEFAULT NULL,
+  `IconUrl` VARCHAR(512) DEFAULT NULL,
+  `IconBg` VARCHAR(10) DEFAULT '#FFFFFF',
   `Theme` varchar(50) DEFAULT NULL,
   `AnalyticsId` varchar(50) DEFAULT NULL,
   `FacebookAppId` varchar(255) DEFAULT NULL,
