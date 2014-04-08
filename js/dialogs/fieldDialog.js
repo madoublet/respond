@@ -66,15 +66,15 @@ var fieldDialog = {
 			html += '>' + fieldLabel + '</label>';
 
 			if(fieldType=='text'){
-				html += '<input id="' + id + '" type="text" class="form-control"'+placeholder+'>';
+				html += '<input id="' + id + '" name="' + id + '" type="text" class="form-control"'+placeholder+'>';
 			}
 
 			if(fieldType=='textarea'){
-				html += '<textarea id="' + id + '" class="form-control"></textarea>\n';
+				html += '<textarea id="' + id + '" name="' + id + '" class="form-control"></textarea>\n';
 			}
 
 			if(fieldType=='select'){
-				html += '  <select id="' + id + '" class="form-control">\n';
+				html += '  <select id="' + id + '" name="' + id + '" class="form-control">\n';
 
 				var arr = options.split(',');
 
@@ -91,7 +91,7 @@ var fieldDialog = {
 				var arr = options.split(',');
 
 				for(x=0; x<arr.length; x++){
-		  			html += '<label class="checkbox"><input type="checkbox" value="' + $.trim(arr[x]) + '">' + $.trim(arr[x]) + '</label>';
+		  			html += '<label class="checkbox"><input name="' + id + '" type="checkbox" value="' + $.trim(arr[x]) + '">' + $.trim(arr[x]) + '</label>';
 				}
 
 				html += '</span>';
@@ -103,7 +103,7 @@ var fieldDialog = {
 				var arr = options.split(',');
 
 				for(x=0; x<arr.length; x++){
-		  			html += '<label class="radio"><input type="radio" value="' + $.trim(arr[x]) + '" name="' + id + '">' + $.trim(arr[x]) + '</label>';
+		  			html += '<label class="radio"><input name="' + id + '" type="radio" value="' + $.trim(arr[x]) + '" name="' + id + '">' + $.trim(arr[x]) + '</label>';
 				}
 
 				html += '</span>';
