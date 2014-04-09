@@ -9,7 +9,7 @@ var colorsModel = {
 	toBeRemoved: null,
 
 	init:function(){ // initializes the model
-	colorsModel.updateFiles();
+		colorsModel.updateFiles();
 
 		ko.applyBindings(colorsModel);  // apply bindings
 	},
@@ -119,6 +119,8 @@ var colorsModel = {
 
 		message.showMessage('progress', $('#msg-updating').val());
 
+		var failed = false;
+		
 		//for each file from which we pulled colors
 		$('#variable-def h2').each(function(){
 			var file = null;
@@ -160,16 +162,24 @@ var colorsModel = {
 				$.ajax({
 					url: 'api/stylesheet/update',
 					type: 'POST',
+					async: false,
 					data: {name: file.name, content: file.content},
-					success: function(data){
-						message.showMessage('success', $('#msg-updated').val());
-					},
 					error: function(data){
-						message.showMessage('error', $('#msg-updating-error').val());
+						failed = true;
 					}
 				});
 			}
 		});
+		
+		if(failed){
+			message.showMessage('error', $('#msg-updating-error').val());
+		}else{ //all of the stylesheets posted successfully
+			//show the success message
+			message.showMessage('success', $('#msg-updated').val());
+			
+			//reload the items
+			colorsModel.updateFiles();
+		}
 
 	},
 	
