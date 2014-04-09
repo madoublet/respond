@@ -176,7 +176,7 @@ class ThemePageContentResource extends Tonic\Resource {
     			$content = file_get_contents($location);
     			
     			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
+    			$content = str_replace('{{site-dir}}', 'sites/'.$authUser->SiteFriendlyId, $content);
     		}
     		else{
 	    		return new Tonic\Response(Tonic\Response::BADREQUEST, $location.' not found');
