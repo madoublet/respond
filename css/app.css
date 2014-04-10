@@ -18,7 +18,7 @@ body{
 	font-family: "Roboto", sans-serif;
 }
 
-	body p, body label, body li, body input, body select{
+	body p, body label, body li, body input, body select, body div{
 		font-family: "Roboto", sans-serif;
 	}
 
@@ -983,6 +983,10 @@ body .CodeMirror{
     height: 550px;
     margin: 0;
 }
+
+	body .CodeMirror div{
+		font-family: 'Inconsolata', 'Courier', sans-serif;
+	}
 
 .codemirror-block{
 	margin: 20px 20px 10px 20px;

@@ -189,37 +189,104 @@ div.map-container{
 		font-size: 1em;
 	}
 
-/* user selections: language + welcome */
-.user-selections{
+/* user settings: language + welcome */
+.settings{
 	display: block;
-  	margin: 0;
-  	padding: 10px 10px 0 0;
-    text-align: right;
+	background-color: #777;
+	text-align: right;
+	height: 50px;
+  	line-height: 50px;
+	padding: 0 10px;
+	color: #ccc;
+	margin-top: -50px;
+  	font-size: 13px;
+	transition: .35s all ease;
 }
 
-  .user-selections .welcome-message{
-  	  display: inline-block;
-  	  padding-right: 10px;
-      font-size: 13px;
-  }
+	.settings .welcome-message a{
+		display: inline-block;
+		margin-left: 5px;
+	}
 
-  .language{
-      display: inline-block;
-  }
-  
-  .language label{
-      color: #888;
-      font-weight: normal;
-      font-size: 13px;
-      margin-right: 5px;
-  }
-  
-  .language select{
-      display: inline-block;
-      width: 75px;
-      font-size: 12px;
-      height: 25px;
-  }
+	.show-settings .settings{
+		margin-top: 0;
+	}
+
+	.settings a{
+		color: #fff;
+	}
+	
+	.settings .language{
+		display: inline-block;
+		margin-left: 10px;
+	}
+	
+	.settings .language label{
+		color: #888;
+		font-weight: normal;
+		font-size: 13px;
+		margin-right: 5px;
+	}
+	
+	.settings .language select{
+		display: inline-block;
+		width: 75px;
+		font-size: 12px;
+		height: 25px;
+	}
+	
+	.settings ul.respond-select-language{
+		display: inline-block;
+  		margin: 0 0 0 15px;
+  		padding: 0;
+	}
+	
+	.settings ul.respond-select-language li{
+		display: inline-block;
+		margin: 0 0 0 5px;
+	}
+
+	.settings ul.respond-select-language li a{
+		display: inline-block;
+		cursor: pointer;
+	}
+
+.settings-toggle{
+  	position: relative;
+	display: inline-block;
+  	width: 40px;
+  	height: 40px;
+  	line-height: 40px;
+  	text-align: center;
+  	border: 1px solid #ddd;
+  	border-radius: 50%;
+  	font-size: 16px;
+  	margin: 4px 10px 0 10px;
+  	background-color: #fff;
+  	cursor: pointer;
+}
+
+	body .settings-toggle:hover{
+	  	border: 1px solid #428bca;
+	  	background-color: #fff !important;
+	}
+	
+	.settings-toggle i{
+		position: absolute;
+	  	top: 12px;
+	  	left: 12px;
+	  	font-size: 15px;
+	  	color: #428bca;
+	}	
+	
+	body.show-settings .settings-toggle, body.show-settings .settings-toggle:hover{
+	  	border: 1px solid #428bca;
+		background-color: #428bca !important;
+	}
+	
+		.show-settings .settings-toggle i{
+			color: #fff;
+		}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

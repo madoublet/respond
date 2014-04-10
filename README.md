@@ -17,12 +17,15 @@ New in 2.10:
 - Improved site administration (delete site)
 - Load theme page from Load Layout widget
 - PayPal Logo and Favicon / Touch / Tile logo support
+- Choose whether you want your images resized (app.php)
+- Cleaner Advanced theme (settings slide down menu)
+- Theme logos, improved theme layout
 
 Bug fixes:
-- TBD
+- Resize image bug
 
 Refactoring:
-- TBD
+- None
 
 How to update from 2.9:
 - Backup your DB and sites

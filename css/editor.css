@@ -285,25 +285,21 @@ a.next, a.previous{
 .block div.h1 div{
 	font-size: 30px;
 	font-weight: bold;
-	font-family: "Roboto Condensed", sans-serif;
 }
 
 .block div.h2 div{
 	font-size: 25px;
 	font-weight: bold;
-	font-family: "Roboto Condensed", sans-serif;
 }
 
 .block div.h3 div{
 	font-size: 20px;
 	font-weight: bold;
-	font-family: "Roboto Condensed", sans-serif;
 }
 
 .block div.p div, .block div[contentEditable=true]{
 	font-size: 15px;
 	line-height: 25px;
-	font-family: "Roboto", sans-serif;
 }
 
 .block div.ul div[contentEditable=true], .block div.ol div[contentEditable=true],{

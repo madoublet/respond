@@ -131,7 +131,7 @@ class FilePostResource extends Tonic\Resource {
             // save image
             if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
             
-    			$size=Image::SaveImageWithThumb($directory, $filename, $file);
+    			$size = Image::SaveImageWithThumb($directory, $filename, $file);
     			
     			$width = 0;
     			$height = 0;
