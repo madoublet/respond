@@ -797,6 +797,8 @@ class Utilities
 			$analytics = '<script type="text/javascript">'.PHP_EOL.
 				'var _gaq = _gaq || [];'.PHP_EOL.
 				'_gaq.push([\'_setAccount\', \''.$site['AnalyticsId'].'\']);'.PHP_EOL.
+				(empty($site['AnalyticsSubdomain']) ? '' : "_gaq.push(['_setDomainName', '".$site['AnalyticsDomain']."']);".PHP_EOL).
+				(empty($site['AnalyticsMultidomain']) ? '' : "_gaq.push(['_setAllowLinker', true]);".PHP_EOL).
 				'_gaq.push([\'_trackPageview\']);'.PHP_EOL.
 				'(function() {'.PHP_EOL.
 				'var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;'.PHP_EOL.
