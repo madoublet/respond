@@ -1001,7 +1001,7 @@ body .CodeMirror{
 	margin: 20px 20px 0 20px;
 	padding: 0;
 	height: 35px;
-	max-width: 450px;
+	max-width: 550px;
 }
 
 	.modal .segmented-control{
@@ -1018,7 +1018,7 @@ body .CodeMirror{
 		float: left;
 		height: 35px;
 		padding: 0;
-		width: 25%;	
+		width: 20%;	
 	}
 	
 		.segmented-control.count-2 li{

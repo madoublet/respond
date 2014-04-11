@@ -113,6 +113,11 @@ var fieldDialog = {
 				html += '<span class="help-block">' + helperText + '</span>';
 			}
 
+			if (fieldType=='recaptcha') {
+				var html = respond.defaults.elementMenuField +
+				'<div id="recaptcha" class="form-group' + cssClass + '" data-type="'+ fieldType + '">{{reCaptcha}}';
+			}
+
 			html += '</div>';
 
 			// add a new container to the editor

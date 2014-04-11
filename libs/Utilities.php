@@ -1298,8 +1298,13 @@ class Utilities
                 	foreach($el->find('.help-block') as $el_block){
 						$el_block->innertext = Utilities::GenerateGettext($el_block->innertext);
 					}
-                
-                    $form = $el->innertext;	
+
+					if (strpos($el->innertext, '{{reCaptcha}}')>0) {
+						$replace = '<?php require_once(\''.$root.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['formPublicId'].'");?>';
+						$el->innertext = str_replace('{{reCaptcha}}', $replace, $el->innertext);
+					}
+
+                    $form = $el->innertext;
                     ob_start();
                     include $root.'sites/common/modules/form.php'; // loads the module
                     $content = ob_get_contents(); // holds the content
