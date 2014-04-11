@@ -13,9 +13,9 @@ var imagesDialog = {
             url: "api/file/post",
             clickable: true,
             success: function(file, response){
-                var image = jQuery.parseJSON(response);
+                var image = response;
                 
-                var filename = image.filename;
+                var filename = response.filename;
     
                 var match = ko.utils.arrayFirst(contentModel.images(), function (item) {
                                 return item.filename === filename; 
