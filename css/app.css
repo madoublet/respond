@@ -425,12 +425,6 @@ section.main{
     overflow-y: scroll;
     z-index: 1;
     box-sizing: border-box;
-    /*
-    -webkit-transition: .2s all ease;
-    -moz-transition: .2s all ease;
-	-o-transition: .2s all ease;    
-	-ms-transition: .2s all ease;
-	transition: .2s all ease;*/
 }
 
 	section.main .alert{
@@ -1192,6 +1186,19 @@ body .CodeMirror{
     
     body.show-nav section{
         width: 0%;
+    }
+    
+    #actions .alternate{
+	    display: none;
+    }
+    
+    #actions button{
+	    background: none;
+	    border: none;
+	    box-shadow: none;
+		color: #3299BB;
+		margin: 0 10px 0 10px !important;
+		padding: 0;
     }
 
 }
