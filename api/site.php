@@ -621,6 +621,9 @@ class SiteResource extends Tonic\Resource {
             $domain = $request['domain'];
             $name = $request['name'];
             $analyticsId = $request['analyticsId'];
+            $analyticssubdomain = $request['analyticssubdomain'];
+            $analyticsmultidomain = $request['analyticsmultidomain'];
+            $analyticsdomain = $request['analyticsdomain'];
             $facebookAppId = $request['facebookAppId'];
             $primaryEmail = $request['primaryEmail'];
             $timeZone = $request['timeZone'];
@@ -634,7 +637,7 @@ class SiteResource extends Tonic\Resource {
             $payPalId = $request['payPalId'];
             $payPalUseSandbox = $request['payPalUseSandbox'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox, $analyticssubdomain, $analyticsmultidomain, $analyticsdomain);
 
             return new Tonic\Response(Tonic\Response::OK);
         

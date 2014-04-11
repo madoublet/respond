@@ -63,7 +63,7 @@ class Site{
 	
 	
 	// edits the site information
-	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox){
+	public static function Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox, $analyticssubdomain, $analyticsmultidomain, $analyticsdomain){
 
 		try{
             
@@ -84,7 +84,10 @@ class Site{
         			ShippingTiers = ?,
         			TaxRate = ?,
         			PayPalId = ?,
-        			PayPalUseSandbox = ?
+        			PayPalUseSandbox = ?,
+            		AnalyticsSubdomain=?,
+            		AnalyticsMultidomain=?,
+            		AnalyticsDomain=?
         			WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
@@ -103,7 +106,15 @@ class Site{
             $s->bindParam(13, $taxRate);
             $s->bindParam(14, $payPalId);
             $s->bindParam(15, $payPalUseSandbox);
-            $s->bindParam(16, $siteUniqId);
+            $analyticsdomain = trim($analyticsdomain);
+            if (empty($analyticsdomain)) {
+            	$analyticssubdomain = $analyticsmultidomain = 0;
+            }
+            $analyticssubdomain = ($analyticsmultidomain ? '1' : $analyticssubdomain);  // if multi-domain > subdomain must be active
+            $s->bindParam(16, $analyticssubdomain);
+            $s->bindParam(17, $analyticsmultidomain);
+            $s->bindParam(18, $analyticsdomain);
+            $s->bindParam(19, $siteUniqId);
             
             $s->execute();
             
@@ -335,7 +346,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created 
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites ORDER BY Name ASC";
                     
             $s = $db->prepare($q);
@@ -417,7 +428,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites WHERE Domain = ?";
                     
             $s = $db->prepare($q);
@@ -450,7 +461,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites WHERE CustomerId = ?";
                     
             $s = $db->prepare($q);
@@ -483,7 +494,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites WHERE FriendlyId = ?";
                     
             $s = $db->prepare($q);
@@ -516,7 +527,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites WHERE SiteUniqId = ?";
                     
             $s = $db->prepare($q);
@@ -549,7 +560,7 @@ class Site{
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created
+							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
 							FROM Sites WHERE Siteid = ?";
                     
             $s = $db->prepare($q);

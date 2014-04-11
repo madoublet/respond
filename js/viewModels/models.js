@@ -1,5 +1,5 @@
 // models a site
-function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, iconUrl, iconBg, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, payPalUseSandbox, payPalLogoUrl, lastLogin, type, customerId, created){
+function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, iconUrl, iconBg, theme, analyticsId, facebookAppId, primaryEmail, timeZone, language, currency, weightUnit, shippingCalculation, shippingRate, shippingTiers, taxRate, payPalId, payPalUseSandbox, payPalLogoUrl, lastLogin, type, customerId, created, analyticssubdomain, analyticsmultidomain, analyticsdomain){
 
     var self = this;
 
@@ -13,6 +13,9 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, iconUrl, ic
     self.iconBg = ko.observable(iconBg);
     self.theme = ko.observable(theme);
     self.analyticsId = ko.observable(analyticsId);
+    self.analyticssubdomain = ko.observable(analyticssubdomain);
+    self.analyticsmultidomain = ko.observable(analyticsmultidomain);
+    self.analyticsdomain = ko.observable(analyticsdomain);
     self.facebookAppId = ko.observable(facebookAppId);
     self.primaryEmail = ko.observable(primaryEmail);
     self.timeZone = ko.observable(timeZone);
@@ -36,7 +39,8 @@ function Site(siteId, siteUniqId, friendlyId, domain, name, logoUrl, iconUrl, ic
 Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['IconUrl'], data['IconBg'], data['Theme'],
-                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['PayPalUseSandbox'], data['PayPalLogoUrl'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created']);
+                    data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['PayPalUseSandbox'], data['PayPalLogoUrl'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created'],
+                    Number(data['AnalyticsSubdomain']), Number(data['AnalyticsMultidomain']), data['AnalyticsDomain']);
 }
 
 // models a user
