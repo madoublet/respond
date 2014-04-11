@@ -146,6 +146,7 @@ var cartModel = {
 		$('.cart-toggle').on('click', function(){
 			
 			$('#cart').toggleClass('active');
+			$('body').toggleClass('show-cart');
 			
 		});
 	

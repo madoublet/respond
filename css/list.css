@@ -503,6 +503,22 @@ div.listItem span.status{
 			background-color: #fff;
 			color: #555;
 		}
+		
+	.image-item .active-button{
+		display: none;
+	}
+	
+	.image-item .inactive-button{
+		display: block;
+	}
+	
+	.image-item.active .active-button{
+		display: block;
+	}
+	
+	.image-item.active .inactive-button{
+		display: none;
+	}
 
 /* #usersList */
 #usersList .role{

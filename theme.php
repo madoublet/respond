@@ -44,13 +44,13 @@
 
     <div id="themesList" class="image-list" data-bind="foreach: themes">
     
-        <div class="image-item">
+        <div class="image-item" data-bind="css:{active: ($parent.theme()==id())}">
             <h2 data-bind="text: name"></h2>
             
             <img data-bind="attr:{'src': 'themes/'+id()+'/logo.png'}">
             
-            <div class="secondary" data-bind="click: $parent.showApplyDialog, visible: ($parent.theme()!=id())"><?php print _("Apply Theme"); ?></div>
-    		<div data-bind="click: $parent.showResetDialog, visible: ($parent.theme()==id())"><?php print _("Reset Theme"); ?></div>
+            <div class="secondary inactive-button" data-bind="click: $parent.showApplyDialog"><?php print _("Apply Theme"); ?></div>
+    		<div class="active-button" data-bind="click: $parent.showResetDialog"><?php print _("Reset Theme"); ?></div>
         </div>
     
     </div>

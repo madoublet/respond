@@ -1,4 +1,4 @@
-// methods for the advanced theme
+// methods for the advanced Respond features
 var advanced = {
     
     init:function(){
