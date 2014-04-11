@@ -137,7 +137,7 @@ var listDialog = {
 			var pagetype = $(node).attr('data-pagetype');
 			var type = $(node).attr('data-type');
 			
-			var category = $(node).attr('data-category')
+			var category = $(node).attr('data-category');
 			
 			function setCategory(){
 			  $('#listCategory').val(category);

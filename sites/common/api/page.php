@@ -34,7 +34,7 @@ class PageListResource extends Tonic\Resource {
 		}
 
 		// set order
-        if($orderBy=='Created'){
+        if($orderBy=='Created' or $orderBy=='BeginDate'){
             $orderBy = $orderBy.' DESC';
         }
         else{
