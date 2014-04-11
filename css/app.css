@@ -259,6 +259,7 @@ header{
 	min-width: 35px;
 	z-index: 2;
 	height: 100%;
+	overflow: scroll;
 	border-right: 5px solid #3299bb;
     -webkit-transition: .2s all ease;
 	-moz-transition: .2s all ease;
@@ -424,11 +425,12 @@ section.main{
     overflow-y: scroll;
     z-index: 1;
     box-sizing: border-box;
+    /*
     -webkit-transition: .2s all ease;
     -moz-transition: .2s all ease;
 	-o-transition: .2s all ease;    
 	-ms-transition: .2s all ease;
-	transition: .2s all ease;
+	transition: .2s all ease;*/
 }
 
 	section.main .alert{
