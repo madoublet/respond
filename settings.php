@@ -544,20 +544,30 @@
 					<input id="analyticsId" type="text" data-bind="value: analyticsId" class="form-control">
 					<span class="help-block"><?php print _("Google Analytics Web Property Id (adds analytics to all pages on your site)"); ?></span>
 				</div>
-				<div style="margin-top: 16px;">
-					<label for="analyticssubdomain" class="control-label"><?php print _("Google Analytics SubDomain:"); ?></label>
+			</div>
+			
+			<div class="form-group">
+				<label for="analyticssubdomain" class="checkbox">
 					<input id="analyticssubdomain" type="checkbox" data-bind="checked: analyticssubdomain">
-					<span class="help-block"><?php print _("Control SubDomains like: www.your_domain.com, apps.your_domain.com y store.your_domain.com."); ?></span>
-				</div>
-				<div style="margin-top: 16px;" data-bind="visible: analyticssubdomain">
-					<label for="analyticsdomain" class="control-label"><?php print _("Google Analytics Domain:"); ?></label>
+					<?php print _("Google Analytics Sub-Domain"); ?>
+				</label>
+				<span class="help-block"><?php print _("Control Sub-domains; e.g. www.your_domain.com, apps.your_domain.com, and store.your_domain.com."); ?></span>
+			</div>
+			
+			<div class="form-group" data-bind="visible: analyticssubdomain">
+				<label for="analyticsdomain" class="control-label"><?php print _("Google Analytics Domain:"); ?></label>
+				<div>
 					<input id="analyticsdomain" type="text" data-bind="value: analyticsdomain, enable: analyticssubdomain" class="form-control">
 				</div>
-				<div style="margin-top: 16px;">
-					<label for="analyticsmultidomain" class="control-label"><?php print _("Google Analytics Multi-Domain:"); ?></label>
-					<input id="analyticsmultidomain" type="checkbox" data-bind="checked: analyticsmultidomain">
-					<span class="help-block"><?php print _("Control varios Top Level Domains like: your_domain.com, your_domain.org, your_domain.es "); ?></span>
-				</div>
+			</div>
+			
+			<div class="form-group">
+					<label for="analyticsmultidomain" class="checkbox">
+						<input id="analyticsmultidomain" type="checkbox" data-bind="checked: analyticsmultidomain">
+						<?php print _("Google Analytics Multi-Domain"); ?>
+					</label>
+					
+					<span class="help-block"><?php print _("Control Top Level Domains, e.g. your_domain.com, your_domain.org, your_domain.es "); ?></span>
 			</div>
 			
 			<div class="form-group">

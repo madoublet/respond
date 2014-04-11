@@ -341,12 +341,13 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, FacebookAppId, PrimaryEmail,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+    						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites ORDER BY Name ASC";
                     
             $s = $db->prepare($q);
@@ -423,12 +424,13 @@ class Site{
     		$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, FacebookAppId, PrimaryEmail,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+    						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites WHERE Domain = ?";
                     
             $s = $db->prepare($q);
@@ -456,12 +458,13 @@ class Site{
     		$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, FacebookAppId, PrimaryEmail,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+    						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites WHERE CustomerId = ?";
                     
             $s = $db->prepare($q);
@@ -489,12 +492,13 @@ class Site{
         	$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, FacebookAppId, PrimaryEmail,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+    						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites WHERE FriendlyId = ?";
                     
             $s = $db->prepare($q);
@@ -522,12 +526,13 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, FacebookAppId, PrimaryEmail,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+    						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites WHERE SiteUniqId = ?";
                     
             $s = $db->prepare($q);
@@ -555,12 +560,13 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-        					AnalyticsId, FacebookAppId, PrimaryEmail,
+        					AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain,
+        					FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox, PayPalLogoUrl,
 							LastLogin, Type, CustomerId, 
-							Created, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain
+							Created
 							FROM Sites WHERE Siteid = ?";
                     
             $s = $db->prepare($q);

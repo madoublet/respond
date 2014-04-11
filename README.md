@@ -63,9 +63,9 @@ ALTER TABLE  `Sites` ADD `PayPalUseSandbox` INT NOT NULL DEFAULT '0' AFTER `PayP
 ALTER TABLE  `Sites` ADD `PayPalLogoUrl` VARCHAR(512) NULL AFTER `PaypalUseSandbox`;
 ALTER TABLE  `Sites` ADD `IconUrl` VARCHAR(512) NULL AFTER `LogoUrl`;
 ALTER TABLE  `Sites` ADD `IconBg` VARCHAR(10) DEFAULT '#FFFFFF' AFTER `IconUrl`;
-ALTER TABLE `Sites` ADD `AnalyticsSubdomain` TINYINT NOT NULL DEFAULT '0';
-ALTER TABLE `Sites` ADD `AnalyticsMultidomain` TINYINT NOT NULL DEFAULT '0';
-ALTER TABLE `Sites` ADD `AnalyticsDomain` VARCHAR(240) NULL;
+ALTER TABLE `Sites` ADD `AnalyticsSubdomain` TINYINT NOT NULL DEFAULT '0' AFTER `AnalyticsId`;
+ALTER TABLE `Sites` ADD `AnalyticsMultidomain` TINYINT NOT NULL DEFAULT '0' AFTER `AnalyticsSubdomain`;
+ALTER TABLE `Sites` ADD `AnalyticsDomain` VARCHAR(240) NULL AFTER `AnalyticsMultidomain`;
 ```
 
 - Re-publish your sites
