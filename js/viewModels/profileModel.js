@@ -13,6 +13,8 @@ var profileModel = {
     	profileModel.updateLanguages();
         profileModel.updateProfile();
         
+        Dropzone.autoDiscover = false;
+        
         $("#drop").dropzone({ 
             url: "api/file/post",
             success: function(file, response){

@@ -19,6 +19,8 @@ var usersModel = {
 		usersModel.updateLanguages();
 		usersModel.updateUsers();	
 		
+		Dropzone.autoDiscover = false;
+		
 		$("#drop").dropzone({ 
             url: "api/file/post",
             success: function(file, response){
