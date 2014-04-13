@@ -1300,7 +1300,7 @@ class Utilities
 					}
 
 					if (strpos($el->innertext, '{{reCaptcha}}')>0) {
-						$replace = '<?php require_once(\''.$root.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['formPublicId'].'");?>';
+						$replace = '<?php require_once(\''.$root.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['FormPublicId'].'");?>';
 						$el->innertext = str_replace('{{reCaptcha}}', $replace, $el->innertext);
 					}
 

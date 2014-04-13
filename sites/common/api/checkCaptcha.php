@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
 /**
  * A public method to check reCaptcha field on form submissions to Respond
  * @uri /checkCaptcha
@@ -24,7 +21,7 @@ class CheckCaptchaResource extends Tonic\Resource {
 
     	require_once('../libs/recaptchalib.php');
     	$site = Site::GetBySiteUniqId($siteUniqId);
-    	$resp = recaptcha_check_answer ($site['formPrivateId'],
+    	$resp = recaptcha_check_answer ($site['FormPrivateId'],
     			$_SERVER["REMOTE_ADDR"],
     			$recaptcha_challenge_field,
     			$recaptcha_response_field);
