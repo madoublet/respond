@@ -21,10 +21,10 @@
 	
 	// set button
 	if($submitText != ''){
-		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("'.$submitText.'"); ?> <i class="icon-spinner icon-spin"></i></button>';
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("'.$submitText.'"); ?> <i class="fa fa-spinner fa-spin icon-spinner"></i></button>';
 	}
 	else{
-		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="icon-spinner icon-spin"></i></button>';
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="fa fa-spinner fa-spin icon-spinner"></i></button>';
 	}
 	?>
 </form>

@@ -868,6 +868,7 @@ class Utilities
         // setup php header
         $header = '<?php '.PHP_EOL.
         	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
+        	'$formPublicId="'.$site['FormPublicId'].'";'.PHP_EOL.
         	'$pageUrl="'.$pageUrl.'";'.PHP_EOL.
         	'$isSecure='.(($isSecure) ? 'true' : 'false').';'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.

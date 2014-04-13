@@ -4,6 +4,7 @@
 	<div class="alert registration-error alert-danger"><?php print _("There was a problem registering. Please try again."); ?></div>
 	<div class="alert registration-retype-error alert-danger"><?php print _("The password must match the retype field"); ?></div>
 	<div class="alert registration-required-error alert-danger"><?php print _("All fields are required"); ?></div>
+	<div class="alert captcha-error alert-danger"><?php print _("Captcha value incorrect. Please try again."); ?></div>
 
 	<div class="form-group">
 		<label class="control-label"><?php print _("First Name:"); ?></label>
@@ -30,8 +31,15 @@
 		<input type="password" autocomplete="off" class="retype form-control">
 	</div>
 	
+	<?php if($formPublicId != '' && $formPublicId != NULL){ ?>
+	<div class="form-group captcha">
+		<?php require_once($rootloc.'libs/recaptchalib.php'); echo recaptcha_get_html($formPublicId); ?>
+	</div>
+	<?php } ?>
+	
 	<span class="actions">
-		<button class="btn btn-default" type="submit"><?php print _("Register"); ?> <i class="fa fa-angle-right fa-white"></i></button>
+		<button class="btn btn-default" type="submit"><?php print _("Register"); ?> 		
+		<i class="fa fa-spinner fa-spin icon-spinner"></i>
 	</span>
 	
 </fieldset>

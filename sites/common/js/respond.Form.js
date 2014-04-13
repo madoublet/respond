@@ -8,6 +8,9 @@ respond.Form = function(config){
 	// set context for event
 	var context = config.el;
 	
+	// hide spinner by default
+	$(context).find('.icon-spinner').hide();
+	
 	// set required fields
 	respond.Form.SetRequired(context);
 	
