@@ -9,6 +9,7 @@
 	require_once 'page.php';
 	require_once 'user.php';
 	require_once 'form.php';
+	require_once 'checkCaptcha.php';
 	require_once 'transaction.php';
         
     // set REQUEST_URI as the default $uri

@@ -17,7 +17,30 @@ respond.Form = function(config){
 		var hasError = respond.Form.Validate(context);
 		
 		if(hasError == false){
-			respond.Form.Process(context);
+			if (respond.Form.hasCaptcha(context)) {
+				$('#recaptcha').removeClass('alert alert-danger');
+				$(context).find('.icon-spinner').show();
+				var siteUniqId = $('body').attr('data-siteuniqid');
+				var pageUniqId = $('body').attr('data-pageuniqid');
+				$.when($.ajax({
+					url: pageModel.apiEndpoint+'api/checkCaptcha',
+					type: 'POST',
+					data: {siteUniqId: siteUniqId, pageUniqId: pageUniqId,
+						recaptcha_challenge_field: $('#recaptcha_challenge_field').val(),
+						recaptcha_response_field: $('#recaptcha_response_field').val()}
+				})).then(function (data, textStatus, jqXHR) {
+					$(context).find('.icon-spinner').hide();
+					if (data=='OK') {
+						respond.Form.Process(context);
+					} else {
+						$(context).find('.alert-danger').show();
+						$('#recaptcha').addClass('alert alert-danger').show();
+					}
+					Recaptcha.reload();
+				});
+			} else {
+				respond.Form.Process(context);
+			}
 		}
 		
 		return false;
@@ -44,6 +67,18 @@ respond.Form.SetRequired = function(el){
    
 }
 
+// check if the current form has a reCaptcha field
+respond.Form.hasCaptcha = function(el) {
+	var hasCaptcha = false;
+	var fields = $(el).find('div.form-group');
+	var x=0;
+	while (x<fields.length && !hasCaptcha) {
+		hasCaptcha = ($(fields[x]).attr('data-type')=='recaptcha');
+		x++;
+	}
+	return hasCaptcha;
+}
+
 // validates fields in the form
 respond.Form.Validate = function(el){
 	
@@ -57,7 +92,7 @@ respond.Form.Validate = function(el){
 
 	for(var x=0; x<fields.length; x++){
 		var label = $(fields[x]).find('label').html();
-		var label = label.replace('* ', '');
+		var label = (!label ? '' : label.replace('* ', ''));
 		var text = '';
 		
 		var type = $(fields[x]).attr('data-type');
@@ -157,10 +192,13 @@ respond.Form.Process = function(el){
 
 	for(var x=0; x<fields.length; x++){
 		var label = $(fields[x]).find('label').html();
-		var label = label.replace('* ', '');
+		var label = (!label ? '' : label.replace('* ', ''));
 		var text = '';
 		
 		var type = $(fields[x]).attr('data-type');
+		
+		if(type=='recaptcha') continue; // do not add recaptcha field to email
+
 		var required = false;
 		var req = $(fields[x]).attr('data-required');
 		if(req){

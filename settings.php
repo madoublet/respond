@@ -59,6 +59,7 @@
 		<li data-navigate="payments"><a><?php print _("Payments"); ?></a></li>
 		<li data-navigate="social"><a><?php print _("Social"); ?></a></li>
 		<li data-navigate="analytics"><a><?php print _("Analytics"); ?></a></li>
+		<li data-navigate=formscaptcha><a><?php print _("Forms"); ?></a></li>
 	</ul>
 	<!-- /.segmented-control -->
 	
@@ -579,6 +580,26 @@
 		
 		</div>	
 		<!-- /.section-analytics -->
+		
+		<div class="section-formscaptcha hidden">
+			
+			<div class="form-group">
+				<label for="formPublicId" class="control-label"><?php print _("reCaptcha Public ID:"); ?></label>
+				<div>
+					<input id="formPublicId" type="text" data-bind="value: formPublicId" class="form-control">
+					<span class="help-block"><?php print _("Allows you to put a reCaptcha field on your forms, create here:"); ?> <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="formPrivateId" class="control-label"><?php print _("reCaptcha Private ID:"); ?></label>
+				<div>
+					<input id="formPrivateId" type="text" data-bind="value: formPrivateId" class="form-control">
+					<span class="help-block"><?php print _("Allows you to validate a reCaptcha field from your forms, create here:"); ?> <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
+				</div>
+			</div>
+			
+		</div>	
+		<!-- /.section-social -->
 		
     </form>
     <!-- /.form-horizontal -->
