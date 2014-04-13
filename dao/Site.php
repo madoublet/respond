@@ -88,8 +88,8 @@ class Site{
             		AnalyticsSubdomain=?,
             		AnalyticsMultidomain=?,
             		AnalyticsDomain=?,
-            		formPublicId=?,
-            		formPrivateId=?
+            		FormPublicId=?,
+            		FormPrivateId=?
         			WHERE SiteUniqId = ?";
      
             $s = $db->prepare($q);
@@ -345,7 +345,7 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
     						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -428,7 +428,7 @@ class Site{
     		$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
     						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -462,7 +462,7 @@ class Site{
     		$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
     						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -496,7 +496,7 @@ class Site{
         	$db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
     						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -530,7 +530,7 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+    						AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
     						FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
@@ -564,7 +564,7 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, SiteUniqId, FriendlyId, Domain, Name, LogoUrl, IconUrl, IconBg, Theme,
-        					AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, formPublicId, formPrivateId,
+        					AnalyticsId, AnalyticsSubdomain, AnalyticsMultidomain, AnalyticsDomain, FormPublicId, FormPrivateId,
         					FacebookAppId, PrimaryEmail,
 							TimeZone, Language, Currency, WeightUnit, 
 							ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 

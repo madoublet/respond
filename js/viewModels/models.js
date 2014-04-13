@@ -42,7 +42,7 @@ Site.create = function(data){
 
 	return new Site(data['SiteId'], data['SiteUniqId'], data['FriendlyId'], data['Domain'], data['Name'], data['LogoUrl'], data['IconUrl'], data['IconBg'], data['Theme'],
                     data['AnalyticsId'], data['FacebookAppId'], data['PrimaryEmail'], data['TimeZone'], data['Language'], data['Currency'], data['WeightUnit'], data['ShippingCalculation'], data['ShippingRate'], data['ShippingTiers'], data['TaxRate'], data['PayPalId'], data['PayPalUseSandbox'], data['PayPalLogoUrl'], data['LastLogin'], data['Type'], data['CustomerId'], data['Created'],
-                    Number(data['AnalyticsSubdomain']), Number(data['AnalyticsMultidomain']), data['AnalyticsDomain'], data['formPublicId'], data['formPrivateId']);
+                    Number(data['AnalyticsSubdomain']), Number(data['AnalyticsMultidomain']), data['AnalyticsDomain'], data['FormPublicId'], data['FormPrivateId']);
 }
 
 // models a user
