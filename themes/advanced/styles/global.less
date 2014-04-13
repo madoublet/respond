@@ -70,7 +70,7 @@ footer .menu li{
 }
 
 /* list */
-.list-group-item img{
+.list-group-item img, .list-group-item .thumbnail img{
 	width: 75px;
 }
 
@@ -189,6 +189,12 @@ div.map-container{
 		font-size: 1em;
 	}
 
+  div.map-marker-content img{
+      max-width: 50px;
+      margin-right: 10px;
+  	  float: left;
+  }
+
 /* settings: language + welcome */
 .settings{
 	display: block;
@@ -287,6 +293,18 @@ div.map-container{
 		.show-settings .settings-toggle i{
 			color: #fff;
 		}
+
+/* login, registration look and feel */
+.respond-login, .respond-registration{
+	border: 1px solid #ddd;
+  	border-radius: 20px;
+  	padding: 25px;
+  	max-width: 500px;
+}
+
+  .respond-login button, .respond-registration button{
+      margin-top: 15px;
+  }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

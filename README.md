@@ -21,6 +21,7 @@ New in 2.10:
 - Cleaner Advanced theme (settings slide down menu)
 - Theme logos, improved theme layout
 - Captcha support for site forms, site registration
+- Image thumb in map for lists
 
 Bug fixes:
 - Resize image bug

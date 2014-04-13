@@ -62,10 +62,12 @@ respond.Map.CreatePoint = function(mapId, latitude, longitude, content){
     });
     
     // create marker
+    var marktext = $("<div/>").html(content).text();
+    
     var marker = new google.maps.Marker({
         position: coords,
         map: respond.maps[mapId].reference,
-        title: content
+        title: marktext
     });
     
     // push marker to array

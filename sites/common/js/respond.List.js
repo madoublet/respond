@@ -292,9 +292,14 @@ respond.List.Update = function(params){
 					if(latitude != null && longitude != null){
 						var mapId = 'list-map-' + params.id;
 						
-						var content = '<div class="content">' +
-										'<h4><a href="' + pageModel.prefix()+data[x].Url + '">' + data[x].Name + '</a></h4>' +
-										'<h5>' + location + '</h5>' +
+						var content = '<div class="map-marker-content content">' +
+										'<h4><a href="' + pageModel.prefix()+data[x].Url + '">' + data[x].Name + '</a></h4>';
+						
+						if(data[x].HasImage == true){
+							content +=	'<img src="' + pageModel.prefix()+data[x].Thumb + '">';
+						}				
+										
+						content +=	'<h5>' + location + '</h5>' +
 										'<p>' + data[x].Description + '</p>' +
 										'</div>';
 						
