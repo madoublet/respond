@@ -20,6 +20,7 @@ New in 2.10:
 - Choose whether you want your images resized (app.php)
 - Cleaner Advanced theme (settings slide down menu)
 - Theme logos, improved theme layout
+- Captcha support for site forms, site registration
 
 Bug fixes:
 - Resize image bug
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `Transactions` (
 ALTER TABLE `Transactions`
   ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`SiteId`) REFERENCES `Sites` (`SiteId`) ON DELETE CASCADE ON UPDATE CASCADE;
 ```
-- Add additional PayPal options to the Site
+- Update Sites table
 ```
 ALTER TABLE  `Sites` ADD `PayPalUseSandbox` INT NOT NULL DEFAULT '0' AFTER `PayPalId`;
 ALTER TABLE  `Sites` ADD `PayPalLogoUrl` VARCHAR(512) NULL AFTER `PaypalUseSandbox`;
