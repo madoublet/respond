@@ -22,17 +22,17 @@ var usersModel = {
 		$("#drop").dropzone({ 
             url: "api/file/post",
             success: function(file, response){
-                var image = jQuery.parseJSON(response);
+                var image = response;
                 
-                var filename = image.filename;
+                var filename = response.filename;
     
-                var match = ko.utils.arrayFirst(brandingModel.images(), function (item) {
+                var match = ko.utils.arrayFirst(usersModel.images(), function (item) {
                                 return item.filename === filename; 
                             });
                                 
                 if (!match) {
-                    brandingModel.images.push(image); 
-                    brandingModel.newimages.push(image); 
+                    usersModel.images.push(image); 
+                    usersModel.newimages.push(image); 
                 }
             }
             

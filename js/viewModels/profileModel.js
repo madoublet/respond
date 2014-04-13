@@ -13,6 +13,25 @@ var profileModel = {
     	profileModel.updateLanguages();
         profileModel.updateProfile();
         
+        $("#drop").dropzone({ 
+            url: "api/file/post",
+            success: function(file, response){
+                var image = response;
+                
+                var filename = response.filename;
+    
+                var match = ko.utils.arrayFirst(profileModel.images(), function (item) {
+                                return item.filename === filename; 
+                            });
+                                
+                if (!match) {
+                    profileModel.images.push(image); 
+                    profileModel.newimages.push(image); 
+                }
+            }
+            
+        })
+        
         ko.applyBindings(profileModel);  // apply bindings
 	},
     
