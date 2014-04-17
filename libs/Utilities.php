@@ -477,6 +477,10 @@ class Utilities
         $content = str_replace('{{keywords}}', $page['Keywords'], $content);
         $content = str_replace('{{callout}}', $page['Callout'], $content);
         
+        // facebook
+        $content = str_replace('{{facebook-appid}}', $site['FacebookAppId'], $content);
+        $content = str_replace('{{facebook-meta-appid}}', '<meta property="fb:app_id" content="'.$site['FacebookAppId'].'">', $content);
+        
         // replace with php
         $content = str_replace('{{language}}', '<?php print $language; ?>', $content);
         

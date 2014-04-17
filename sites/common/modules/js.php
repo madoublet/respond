@@ -1,6 +1,3 @@
-<?php if($site['FacebookAppId']!=''){ ?>
-<meta property="fb:app_id" content="<?php print $site['FacebookAppId']; ?>">
-<?php } ?>
 <script type="text/javascript" src="<?php print JQUERY_JS; ?>"></script>
 <script type="text/javascript" src="<?php print BOOTSTRAP_JS; ?>"></script>
 <script type="text/javascript" src="<?php print KNOCKOUT_JS; ?>"></script>
