@@ -284,10 +284,10 @@ function PageType(pageTypeId, pageTypeUniqId, friendlyId, typeS, typeP, layout, 
 	self.dir = ko.computed(function(){
 	
 		if(self.isSecure()==1){
-			return '/' + self.typeS().toLowerCase() + '<span class="lock fa fa-lock"></span>';
+			return '/' + self.friendlyId().toLowerCase() + '<span class="lock fa fa-lock"></span>';
 		}
 		else{
-			return '/' + self.typeS().toLowerCase();
+			return '/' + self.friendlyId().toLowerCase();
 		}
 		
 	});

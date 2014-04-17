@@ -1982,8 +1982,13 @@ respond.Editor.SetupPersistentEvents = function(el){
 				}
 			}
 			else{
+				var className = 'p';
+				var prefix = 'paragraph';
+		
+				var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+			
 				$(el).after(
-					'<div class="p">' +
+					'<div id="'+uniqId+'" class="p">' +
 					respond.defaults.elementMenu + 
 					'<div contentEditable="true"></div></div>'
 					);
