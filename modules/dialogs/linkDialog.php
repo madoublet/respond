@@ -29,8 +29,13 @@
 				<label class="radio"><input id="customUrl" type="radio" name="content" class="radio"> <?php print _("Custom URL"); ?></label>
 			</div>
 			
-			<div class="form-group no-border">
+			<div class="form-group">
 				<input id="linkUrl" type="text" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkCssClass"><?php print _("CSS Class:"); ?></label>
+				<input id="linkCssClass" type="text" maxlength="128" data-bind="" class="form-control">
 			</div>
 			
 			</div>
