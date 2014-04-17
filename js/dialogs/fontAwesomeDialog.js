@@ -22,7 +22,7 @@ var fontAwesomeDialog = {
 		global.restoreSelection(fontAwesomeDialog.selection);
 		
 		// set icon
-		var html = '<i class="'+icon+'"></i>';
+		var html = '<i class="'+icon+'">&nbsp;</i>';
 	
 		document.execCommand("insertHTML", false, html);
 
