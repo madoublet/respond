@@ -848,8 +848,7 @@ respond.Editor.ParseHTML = function(top){
 			}
 		  	
 		  	// replace row and block
-		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'block', ''));
-		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'row', ''));
+		  	cssclass = jQuery.trim(global.replaceAll(cssclass, 'block row', ''));
 
 			if(id==undefined || id=='')id='undefined';
 
