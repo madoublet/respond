@@ -217,7 +217,13 @@ var cartModel = {
 	
 	// updates cart from local storage
 	updateCart:function(){
-		
+	
+		// check for hash to clear cart
+		if(location.hash == '#clear-cart'){
+			localstorage.removeItem('respond-cart');
+		}
+        
+		// get cart from local storage
 		if(localStorage['respond-cart']){
 			
 			var str = localStorage['respond-cart'];
