@@ -7,6 +7,11 @@ var skuDialog = {
 	currency: 'USD', // default for now (will be set at site level)
 
 	init:function(){
+		var currency = $('#skuDialog').attr('data-currency');
+		// validate currency
+		if(currency != '' && currency != undefined){
+			skuDialog.currency = currency;
+		}
 
 		skuDialog.dialog = $('#skuDialog');
 		

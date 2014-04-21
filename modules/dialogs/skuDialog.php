@@ -1,4 +1,4 @@
-<div class="modal fade" id="skuDialog">
+<div class="modal fade" id="skuDialog" data-currency="<?php echo $authUser->Currency; ?>">
 
 	<div class="modal-dialog">
 	
