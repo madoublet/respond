@@ -15,6 +15,10 @@
 		{
 			"code": "cs_CZ",
 			"text": "Čeština"
+		},
+		{
+			"code": "fr",
+			"text": "French"
 		}
 	]
 }
