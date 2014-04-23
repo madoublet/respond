@@ -39,6 +39,7 @@
 				<select id="listOrderBy" class="form-control">
 					<option value="Name"><?php print _("Name"); ?></option>
 					<option value="Created"><?php print _("Date Created (newest first)"); ?></option>
+					<option value="BeginDate"><?php print _("Event Start Date (newest first)"); ?></option>
 				</select>
 			</div>
 			

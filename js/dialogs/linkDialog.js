@@ -40,12 +40,25 @@ var linkDialog = {
 				url = url.toLowerCase();
 				pageId = linkDialog.pageID;
 			}
+			
+			var cssClass = $('#linkCssClass').val().trim();
 
 			// restore selection
 			global.restoreSelection(linkDialog.selection);
 
-			// add link
-			document.execCommand("CreateLink", false, url);
+			// create link
+			var text = global.getSelectedText();
+			var html = '<a href="'+url+'"';
+			
+			// insert css class into link
+			if(cssClass != ''){
+				html += ' class="'+cssClass+'"';
+			}
+			
+			html += '>'+text+'</a>';
+			
+			// insert HTML
+			document.execCommand('InsertHTML', false, html);
 
 			$('#linkDialog').modal('hide');
 		});
@@ -59,6 +72,7 @@ var linkDialog = {
 		linkDialog.selection = global.saveSelection();
 
 	    $('#linkUrl').val('');
+	    $('#linkCssClass').val('');
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 

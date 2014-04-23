@@ -28,19 +28,20 @@ var formDialog = {
 		$('#updateForm').on('click', function(){
 
 			var id = $('#formId').val();
+			
 			var type = $('#formType').val();
 			var action = $('#formAction').val();
 			var successMessage = $('#formSuccessMessage').val();
 			var errorMessage = $('#formErrorMessage').val();
 			var submitText = $('#formSubmitText').val();
 			
-			$('#'+id).attr('data-type', type);
-			$('#'+id).attr('data-action', action);
-			$('#'+id).attr('data-success', successMessage);
-			$('#'+id).attr('data-error', errorMessage);
+			$('#'+formDialog.id).attr('data-type', type);
+			$('#'+formDialog.id).attr('data-action', action);
+			$('#'+formDialog.id).attr('data-success', successMessage);
+			$('#'+formDialog.id.id).attr('data-error', errorMessage);
 			$('#'+id).attr('data-submit', submitText);
 			
-			$('#'+id).attr('id', id);
+			$('#'+formDialog.id).prop('id', id);
 			
 			
 			$('#formDialog').modal('hide');

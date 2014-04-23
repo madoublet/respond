@@ -7,10 +7,26 @@ class Image
 		// create thumb
 		$thumb = Image::ResizeWithCenterCrop($image, $dir, 't-'.$filename, THUMB_MAX_WIDTH, THUMB_MAX_HEIGHT); 
 		
-		// create original (but limit to defined maxes)
-		$original = Image::Resize($image, $dir, $filename, IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT); 
+		if(IMAGE_AUTO_RESIZE == true){
+			$original = Image::Resize($image, $dir, $filename, IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT);
+			$size = ($thumb + $original)/1024; // get combined size 
+		}
+		else{
+			$full = $dir.$filename;
+			
+			// create a directory
+			if(!file_exists($dir)){
+				mkdir($dir, 0777, true);	
+			}
+			
+			// just copy the image
+			copy($image, $full);
+			
+			// get size
+			$size = filesize($full);
+		}
 		
-		$size = ($thumb + $original)/1024; // get combined size
+		
 		
 		return $size;
 	}
@@ -35,7 +51,7 @@ class Image
 		} 
 		else if($src_height > $max_height){
 			$target_w = $src_width * $max_height / $src_height; 
-			$target_h = $src_height; 
+			$target_h = $max_height; 
 		}
 		else{ 
 			$target_w = $src_width; 

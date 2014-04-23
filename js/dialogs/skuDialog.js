@@ -90,11 +90,11 @@ var skuDialog = {
 			
 			var shippingType = $('#sku-shippingType').val();
 			
-			if(shippingType == 'not shipped'){
-				$('.shipped').hide();
+			if(shippingType == 'shipped'){
+				$('.shipped').show();
 			}
 			else{
-				$('.shipped').show();
+				$('.shipped').hide();
 			}
 			
 		});
@@ -118,11 +118,11 @@ var skuDialog = {
 			var unit = $(item).find('.shelf-shipping').attr('data-unit');
 			
 			// set shipping
-			if(shippingType == 'not shipped'){
-				$('.shipped').hide();
+			if(shippingType == 'shipped'){
+				$('.shipped').show();
 			}
 			else{
-				$('.shipped').show();
+				$('.shipped').hide();
 			}
 			
 			// populate fields

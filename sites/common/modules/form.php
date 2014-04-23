@@ -1,4 +1,4 @@
-<form role="form"<?php if($type=='default'){ ?> class="respond-form"<?php } ?><?php if($action!=''){ ?> action="<?php print $action; ?>" type="post"<?php } ?>>
+<form id="<?php print $formId; ?>" role="form"<?php if($type=='default'){ ?> class="respond-form"<?php } ?><?php if($action!=''){ ?> action="<?php print $action; ?>" type="post"<?php } ?>>
 	<?php 
 	// handle success message
 	if($successMessage != ''){
@@ -21,10 +21,10 @@
 	
 	// set button
 	if($submitText != ''){
-		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("'.$submitText.'"); ?> <i class="icon-spinner icon-spin"></i></button>';
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("'.$submitText.'"); ?> <i class="fa fa-spinner fa-spin icon-spinner"></i></button>';
 	}
 	else{
-		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="icon-spinner icon-spin"></i></button>';
+		print '<button type="submit" class="btn btn-default btn-lg"><?php print _("Submit"); ?> <i class="fa fa-spinner fa-spin icon-spinner"></i></button>';
 	}
 	?>
 </form>

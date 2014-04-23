@@ -18,7 +18,7 @@ body{
 	font-family: "Roboto", sans-serif;
 }
 
-	body p, body label, body li, body input, body select{
+	body p, body label, body li, body input, body select, body div{
 		font-family: "Roboto", sans-serif;
 	}
 
@@ -238,6 +238,11 @@ body .modal-header{
 		padding-bottom: 15px;
 		margin-bottom: 10px;
 	}
+	
+		body .modal .form-group.no-border{
+			border-bottom: none;
+			padding-bottom: 0;
+		}
 
 		body .modal .form-group:last-child{
 			border-bottom: none;
@@ -254,6 +259,7 @@ header{
 	min-width: 35px;
 	z-index: 2;
 	height: 100%;
+	overflow: scroll;
 	border-right: 5px solid #3299bb;
     -webkit-transition: .2s all ease;
 	-moz-transition: .2s all ease;
@@ -419,11 +425,6 @@ section.main{
     overflow-y: scroll;
     z-index: 1;
     box-sizing: border-box;
-    -webkit-transition: .2s all ease;
-    -moz-transition: .2s all ease;
-	-o-transition: .2s all ease;    
-	-ms-transition: .2s all ease;
-	transition: .2s all ease;
 }
 
 	section.main .alert{
@@ -880,13 +881,55 @@ div.select em{
 	padding: 0;
 }
 
-table.table tr.active td{
-	background-color: #fbec5d !important;
+/* table */
+.table tr.active td{
+	background-color: #FDFCCE !important;
 }
 
-table.table tr.active a.switch{
+.table tr.active a.switch{
  	display: none;
 }
+
+.table .action{
+	text-align: center;
+}
+
+.table .action i{
+	font-size: 17px;
+}
+
+.table .action .remove i{
+	color: #B11623;
+}
+
+.table-loading{
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+section.main .table table{
+	margin-top: 0;
+	width: 100%;
+}
+
+	section.main .table table td:first-child{
+		padding-left: 0;
+	}
+	
+	section.main .table table td:last-child{
+		padding-right: 0;
+	}
+
+	section.main .table table tr:first-child td{
+		border-top: 0;
+		padding-top: 0;
+	}
+	
+	section.main .table table tfoot tr td{
+		border: none;
+	}
+	
 
 /* dropdown */
 body .btn-group.open .dropdown-toggle{
@@ -937,6 +980,10 @@ body .CodeMirror{
     margin: 0;
 }
 
+	body .CodeMirror div{
+		font-family: 'Inconsolata', 'Courier', sans-serif;
+	}
+
 .codemirror-block{
 	margin: 20px 20px 10px 20px;
 }
@@ -954,7 +1001,7 @@ body .CodeMirror{
 	margin: 20px 20px 0 20px;
 	padding: 0;
 	height: 35px;
-	max-width: 450px;
+	max-width: 550px;
 }
 
 	.modal .segmented-control{
@@ -964,24 +1011,35 @@ body .CodeMirror{
 	}
 
 	.segmented-control li{
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-		border-right: 1px solid #ccc;
+		border-top: 1px solid #3299bb;
+		border-bottom: 1px solid #3299bb;
+		border-right: 1px solid #3299bb;
 		display: block;
 		float: left;
 		height: 35px;
 		padding: 0;
-		width: 25%;	
+		width: 20%;	
 	}
 	
+		.segmented-control.count-2 li{
+			width: 50%;
+		}
+	
 		.segmented-control li:first-child{
-			border-left: 1px solid #ccc;
+			border-left: 1px solid #3299bb;
+			border-bottom-left-radius: 5px;
+			border-top-left-radius: 5px;
+		}
+		
+		.segmented-control li:last-child{
+			border-bottom-right-radius: 5px;
+			border-top-right-radius: 5px;
 		}
 	
 		.segmented-control li a{
 			display: block;
 			text-align: center;
-			color: #aaa;
+			color: #3299bb;
 			height: 35px;
 			line-height: 35px;
 			margin: 0;
@@ -989,7 +1047,7 @@ body .CodeMirror{
 		}
 	
 	.segmented-control .active{
-		background-color: #ccc;
+		background-color: #3299bb;
 	}
 	
 		.segmented-control .active a{
@@ -1062,7 +1120,48 @@ body .CodeMirror{
 		border-color: #3299BB;
 	}
 	
+#branding-page .placeholder{
+	display: inline-block;
+	background-color: #f0f0f0;
+	max-width: 502px;
+	border: 1px solid #fff !important;
+	cursor: pointer;
+}
+
+	#branding-page .placeholder img{
+		border: 2px solid #fff;
+	}
+
+	#branding-page .placeholder{
+		border: none;
+	}
+
+	#branding-page .placeholder:hover{
+		border: 1px dashed #3299BB !important;
+	}
+
+	#branding-page .form-group{
+		margin-bottom: 50px;
+	}
+
+	#branding-page .placeholder.paypal, #branding-page .placeholder.paypal img{
+		max-width: 150px;
+	}
 	
+	#branding-page .placeholder.touch, #branding-page .placeholder.touch img{
+		max-width: 200px;
+	}
+	
+	#branding-page .form-group small{
+		display: block;
+		margin-top: 10px;
+		color: #888;
+	}
+	
+	#branding-page input#iconBg{
+		max-width: 200px;
+	}
+
 
 /* Large desktop */
 @media (min-width: 1200px) { }
@@ -1087,6 +1186,19 @@ body .CodeMirror{
     
     body.show-nav section{
         width: 0%;
+    }
+    
+    #actions .alternate{
+	    display: none;
+    }
+    
+    #actions button{
+	    background: none;
+	    border: none;
+	    box-shadow: none;
+		color: #3299BB;
+		margin: 0 10px 0 10px !important;
+		padding: 0;
     }
 
 }

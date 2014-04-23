@@ -42,14 +42,15 @@
         
     </nav>
 
-    <div id="themesList" class="list" data-bind="foreach: themes">
+    <div id="themesList" class="image-list" data-bind="foreach: themes">
     
-        <div class="listItem">
+        <div class="image-item" data-bind="css:{active: ($parent.theme()==id())}">
             <h2 data-bind="text: name"></h2>
-            <p data-bind="text: desc"></p>
             
-            <button class="primary-button" data-bind="click: $parent.showApplyDialog, visible: ($parent.theme()!=id())"><?php print _("Apply Theme"); ?></button>
-    		<button class="secondary-button" data-bind="click: $parent.showResetDialog, visible: ($parent.theme()==id())"><?php print _("Reset Theme"); ?></button>
+            <img data-bind="attr:{'src': 'themes/'+id()+'/logo.png'}">
+            
+            <div class="secondary inactive-button" data-bind="click: $parent.showApplyDialog"><?php print _("Apply Theme"); ?></div>
+    		<div class="active-button" data-bind="click: $parent.showResetDialog"><?php print _("Reset Theme"); ?></div>
         </div>
     
     </div>

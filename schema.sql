@@ -87,8 +87,15 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `Domain` varchar(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `LogoUrl` varchar(512) DEFAULT NULL,
+  `IconUrl` VARCHAR(512) DEFAULT NULL,
+  `IconBg` VARCHAR(10) DEFAULT '#FFFFFF',
   `Theme` varchar(50) DEFAULT NULL,
   `AnalyticsId` varchar(50) DEFAULT NULL,
+  `AnalyticsSubdomain` TINYINT NOT NULL DEFAULT '0',
+  `AnalyticsMultidomain` TINYINT NOT NULL DEFAULT '0',
+  `AnalyticsDomain` VARCHAR(240) NULL,
+  `FormPrivateId` VARCHAR(240) NULL,
+  `FormPublicId` VARCHAR(240) NULL,
   `FacebookAppId` varchar(255) DEFAULT NULL,
   `PrimaryEmail` varchar(255) DEFAULT NULL,
   `TimeZone` varchar(100) DEFAULT NULL,
@@ -100,6 +107,8 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `ShippingTiers` TEXT,
   `TaxRate` DECIMAL(5, 5) NOT NULL DEFAULT '0',
   `PayPalId` VARCHAR(255),
+  `PayPalUseSandbox` INT NOT NULL DEFAULT '0',
+  `PayPalLogoUrl` VARCHAR(512) DEFAULT NULL,
   `LastLogin` datetime DEFAULT NULL,
   `Type` varchar(25) NOT NULL DEFAULT 'Non-Subscription',
   `CustomerId` varchar(256) DEFAULT NULL,
@@ -125,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `IsActive` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`),
-  KEY `OrgId` (`SiteId`)
+  KEY `SiteId` (`SiteId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 
 
@@ -162,6 +171,31 @@ CREATE TABLE IF NOT EXISTS `SearchIndex` (
   `Content` text,
   FULLTEXT INDEX(Name, H1s, H2s, H3s, Description, Content)
   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `Transactions` (
+  `TransactionId` int(11) NOT NULL AUTO_INCREMENT,
+  `TransactionUniqId` varchar(50) NOT NULL,
+  `SiteId` int(11) DEFAULT NULL,
+  `Processor` varchar(50) DEFAULT NULL,
+  `ProcessorTransactionId` varchar(256) DEFAULT NULL,
+  `ProcessorStatus` varchar(50) DEFAULT NULL,
+  `Email` varchar(255) NOT NULL,
+  `PayerId` varchar(256) DEFAULT NULL,
+  `Name` varchar(256) DEFAULT NULL,
+  `Shipping` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
+  `Fee` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
+  `Tax` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
+  `Total` DECIMAL(15,2) NOT NULL DEFAULT  '0.00',
+  `Currency` varchar(10) DEFAULT 'USD',
+  `Items` text,
+  `Data` text,
+  `Created` datetime NOT NULL,
+  PRIMARY KEY (`TransactionId`),
+  KEY `SiteId` (`SiteId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+ALTER TABLE `Transactions`
+  ADD CONSTRAINT `Transactions_ibfk_1` FOREIGN KEY (`SiteId`) REFERENCES `Sites` (`SiteId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 ALTER TABLE `Category_Page_Rel`

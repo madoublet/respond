@@ -65,7 +65,7 @@ class ThemeResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = $json;
 
             return $response;
@@ -123,7 +123,7 @@ class ThemeResetResource extends Tonic\Resource {
     /**
      * @method POST
      */
-    function resets($theme) {
+    function post($theme) {
 
         // get an authuser
         $authUser = new AuthUser();
@@ -148,6 +148,113 @@ class ThemeResetResource extends Tonic\Resource {
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
         }
     }
+}
+
+
+/**
+ * A protected API call to get content from a page
+ * @uri /theme/page/content
+ */
+class ThemePageContentResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+            
+            parse_str($this->request->data, $request); // parse request
+
+			$location = '../'.$request['location'];
+			$content = '';
+			
+			if(file_exists($location)){
+    			$content = file_get_contents($location);
+    			
+    			// fix images
+    			$content = str_replace('{{site-dir}}', 'sites/'.$authUser->SiteFriendlyId, $content);
+    		}
+    		else{
+	    		return new Tonic\Response(Tonic\Response::BADREQUEST, $location.' not found');
+    		}
+            
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'text/html';
+            $response->body = $content;
+            
+            return $response;
+        }
+        else{
+            // return an unauthorized exception (401)
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+}
+
+/**
+ * A protected API call to retrieve a list of pages for a theme
+ * @uri /theme/pages/list
+ */
+class ThemePagesListResource extends Tonic\Resource {
+
+    /**
+     * @method GET
+     */
+    function get() {
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+            
+            $arr = array();
+            
+            $site = Site::GetBySiteId($authUser->SiteId);
+
+            $directory = '../themes/'.$site['Theme'].'/pages/';
+            
+            //get files with a .html ext
+            $files = glob($directory . "*.html");
+
+            $arr = array();
+            
+            //print each file name
+            foreach($files as $file){
+                $f_arr = explode("/",$file);
+                $count = count($f_arr);
+                $filename = $f_arr[$count-1];
+                
+                $name = str_replace('-', ' ', $filename);
+                $name = str_replace('.html', '', $name);
+                $name = ucfirst($name);
+              
+                $file = array(
+                	'name' => $name,
+                    'fileName' => $filename,
+                    'location' => 'themes/'.$site['Theme'].'/pages/'.$filename
+                );
+                
+                array_push($arr, $file); 
+
+            }
+            
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'application/json';
+            $response->body = json_encode($arr);
+
+            return $response;
+        }
+        else{
+            // return an unauthorized exception (401)
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
+    
 }
 
 

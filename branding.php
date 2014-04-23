@@ -23,7 +23,7 @@
 
 </head>
 
-<body data-currpage="branding">
+<body id="branding-page" data-currpage="branding">
 
 <!-- messages -->
 <input id="msg-updating-branding" value="<?php print _("Updating..."); ?>" type="hidden">
@@ -42,7 +42,6 @@
 		    <li class="static active"><a href="branding"><?php print _("Branding"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showImagesDialog"><i class="fa fa-plus-circle"></i> <?php print _("Update Logo"); ?></a>
     </nav>
 
   <div class="row-fluid">
@@ -50,15 +49,47 @@
 	
 		<form class="form-horizontal">
 
-		<div class="form-group">
-			<label class="col-lg-2 control-label"><?php print _("Default Logo:"); ?></label>
-
-			<div class="col-lg-10">
-                <span id="logo">
-                    <img data-bind="attr:{'src': fullUrl, 'logo-url': logoUrl}" style="max-width: 500px">
-                </span>
+			<div class="form-group">
+				<label class="col-lg-2 control-label"><?php print _("Site:"); ?></label>
+	
+				<div class="col-lg-10">
+	                <span id="logo" class="placeholder" data-bind="click: showImagesDialog">
+	                    <img data-type="logo" data-bind="attr:{'src': fullLogoUrl, 'logo-url': logoUrl}">
+	                </span>
+				</div>
 			</div>
-		</div>
+			
+			<div class="form-group">
+				<label class="col-lg-2 control-label"><?php print _("PayPal:"); ?></label>
+	
+				<div class="col-lg-10">
+	                <span id="payPalLogo" class="placeholder paypal" data-bind="click: showImagesDialog">
+	                    <img data-type="paypal" data-bind="attr:{'src': fullPayPalLogoUrl, 'logo-url': payPalLogoUrl}">
+	                </span>
+	                <small><?php print _("PayPal recommends 150px x 50px"); ?></small>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-2 control-label"><?php print _("Touch / Tile / Favorite:"); ?></label>
+	
+				<div class="col-lg-10">
+	                <span id="favIcon" class="placeholder touch" data-bind="click: showImagesDialog">
+	                    <img data-type="icon" data-bind="attr:{'src': fullIconUrl, 'logo-url': iconUrl}">
+	                </span>
+	                <small>200px x 200px (<?php print _("PNG format, we will convert it to .ico)"); ?></small>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-lg-2 control-label"><?php print _("Tile Background:"); ?></label>
+	
+				<div class="col-lg-10">
+					<input id="iconBg" type="text" data-bind="value: iconBg" class="form-control inline">
+					<button class="btn btn-default" data-bind="click: updateIconBg"><?php print _("Update"); ?></button>
+	                <small><?php print _("The background color for a pinned Windows 8 tile"); ?></small>
+				</div>
+			</div>
 	
 		</form>
 		<!-- /.form-horizontal -->

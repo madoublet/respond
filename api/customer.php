@@ -215,7 +215,7 @@ class CustomerGetResource extends Tonic\Resource {
 				}
 	
 			    $response = new Tonic\Response(Tonic\Response::OK);
-	            $response->contentType = 'applicaton/json';
+	            $response->contentType = 'application/json';
 	            $response->body = json_encode($customer);
 	
 	            return $response;

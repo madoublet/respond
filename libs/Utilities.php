@@ -144,18 +144,18 @@ class Utilities
 	
 	// removes a directory and its files
 	public static function RemoveDirectory($dir) {
-     	
-     	$files = glob($dir.'/*'); // get all file names
-		foreach($files as $file){ // iterate files
-		  if(is_file($file))
-		    unlink($file); // delete file
-		}
-		
-		if (is_dir($dir)) {
-		    rmdir($dir);
-		}
-     	
-	}
+      	
+      	$files = glob($dir.'/*'); // get all file names
+ 		foreach($files as $file){ // iterate files
+ 		  if(is_file($file))
+ 		    unlink($file); // delete file
+ 		}
+ 		
+ 		if (is_dir($dir)) {
+ 		    rmdir($dir);
+ 		}
+      	
+ 	}
 	
 	// saves specified content to a file
 	public static function SaveContent($dir, $filename, $content){
@@ -448,6 +448,26 @@ class Utilities
         $content = str_replace('{{logo}}', $rootloc.'files/'.$site['LogoUrl'], $content);
         $content = str_replace('{{resources}}', $rootloc.'themes/'.$site['Theme'].'/resources/', $content);
         
+        // icons
+        $relative_icon_url = $rootloc.'files/'.$site['IconUrl'];
+        $abs_icon_url = 'http://'.$site['Domain'].'/files/'.$site['IconUrl'];
+        
+        // icon urls
+        $content = str_replace('{{icon}}', $relative_icon_url, $content);
+        $content = str_replace('{{icon-abs}}', $abs_icon_url, $content);
+        
+        // favicon
+        $content = str_replace('{{favicon}}', '<link rel="icon" href="'.$relative_icon_url.'">', $content);
+        
+        // tile
+        $tile_html = '<meta name="msapplication-TileColor" content="'.$site['IconBg'].'">'.PHP_EOL.
+        			 '<meta name="msapplication-TileImage" content="'.$relative_icon_url.'">';
+        			 
+        $content = str_replace('{{tileicon}}', $tile_html, $content);
+        
+        // touch icon
+        $content = str_replace('{{touchicon}}', '<link rel="apple-touch-icon" href="'.$relative_icon_url.'">', $content);
+        
         // replace with constants
         $content = str_replace('{{id}}', $page['FriendlyId'], $content);
         $content = str_replace('{{type}}', $type, $content);
@@ -456,6 +476,10 @@ class Utilities
         $content = str_replace('{{synopsis}}', substr(strip_tags(html_entity_decode($page['Description'])), 0, 200), $content);
         $content = str_replace('{{keywords}}', $page['Keywords'], $content);
         $content = str_replace('{{callout}}', $page['Callout'], $content);
+        
+        // facebook
+        $content = str_replace('{{facebook-appid}}', $site['FacebookAppId'], $content);
+        $content = str_replace('{{facebook-meta-appid}}', '<meta property="fb:app_id" content="'.$site['FacebookAppId'].'">', $content);
         
         // replace with php
         $content = str_replace('{{language}}', '<?php print $language; ?>', $content);
@@ -635,8 +659,16 @@ class Utilities
 		if(file_exists($cartFile)){
             $cart = file_get_contents($cartFile);
             
+            $payPalLogoUrl = '';
+            
+            if($site['PayPalLogoUrl'] != NULL && $site['PayPalLogoUrl'] != ''){
+            	$payPalLogoUrl = 'http://'.$site['Domain'].'/files/'.$site['PayPalLogoUrl'];
+            }
+            
             // fill in the blanks
             $cart = str_replace('{{payPalId}}', $site['PayPalId'], $cart);
+            $cart = str_replace('{{payPalLogoUrl}}', $payPalLogoUrl, $cart);
+            $cart = str_replace('{{payPalUseSandbox}}', $site['PayPalUseSandbox'], $cart);
             $cart = str_replace('{{currency}}', $site['Currency'], $cart);
             $cart = str_replace('{{weightUnit}}', $site['WeightUnit'], $cart);
             $cart = str_replace('{{taxRate}}', $site['TaxRate'], $cart);
@@ -769,6 +801,8 @@ class Utilities
 			$analytics = '<script type="text/javascript">'.PHP_EOL.
 				'var _gaq = _gaq || [];'.PHP_EOL.
 				'_gaq.push([\'_setAccount\', \''.$site['AnalyticsId'].'\']);'.PHP_EOL.
+				(empty($site['AnalyticsSubdomain']) ? '' : "_gaq.push(['_setDomainName', '".$site['AnalyticsDomain']."']);".PHP_EOL).
+				(empty($site['AnalyticsMultidomain']) ? '' : "_gaq.push(['_setAllowLinker', true]);".PHP_EOL).
 				'_gaq.push([\'_trackPageview\']);'.PHP_EOL.
 				'(function() {'.PHP_EOL.
 				'var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;'.PHP_EOL.
@@ -838,6 +872,7 @@ class Utilities
         // setup php header
         $header = '<?php '.PHP_EOL.
         	'$rootPrefix="'.$rootloc.'";'.PHP_EOL.
+        	'$formPublicId="'.$site['FormPublicId'].'";'.PHP_EOL.
         	'$pageUrl="'.$pageUrl.'";'.PHP_EOL.
         	'$isSecure='.(($isSecure) ? 'true' : 'false').';'.PHP_EOL.
             '$siteUniqId="'.$site['SiteUniqId'].'";'.PHP_EOL.
@@ -1214,8 +1249,14 @@ class Utilities
                 }
                 else if($name=='form'){
                 
-                	$type = 'default';
+                	$formId = 'form-0';
+					
+					if(isset($el->id)){
+	                	$formId = $el->id;
+                	}
                 
+					$type = 'default';
+					
                 	if(isset($el->type)){
 	                	$type = $el->type;
                 	}
@@ -1262,8 +1303,13 @@ class Utilities
                 	foreach($el->find('.help-block') as $el_block){
 						$el_block->innertext = Utilities::GenerateGettext($el_block->innertext);
 					}
-                
-                    $form = $el->innertext;	
+
+					if (strpos($el->innertext, '{{reCaptcha}}')>0) {
+						$replace = '<?php require_once(\''.$root.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['FormPublicId'].'");?>';
+						$el->innertext = str_replace('{{reCaptcha}}', $replace, $el->innertext);
+					}
+
+                    $form = $el->innertext;
                     ob_start();
                     include $root.'sites/common/modules/form.php'; // loads the module
                     $content = ob_get_contents(); // holds the content

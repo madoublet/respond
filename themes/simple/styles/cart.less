@@ -44,14 +44,17 @@
 
 /* cart */
 #cart{
-  	display: none;
-  	margin-bottom: 20px;
-  	margin-top: -200px;
+	height: 0;
+	overflow: hidden;
+  	margin-bottom: 0;
+	transition: opacity .2s ease-out;
+	opacity: 0;
+	z-index: 1;
 }
 
-	#cart.active{
-		display: block;
-	  	margin-top: 0;
+	.show-cart #cart{
+		height: auto;
+		opacity: 1;
 	}
 
 #cart label{

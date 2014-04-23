@@ -44,14 +44,23 @@
 
 /* cart */
 #cart{
-  	display: none;
-  	margin-bottom: 20px;
-  	margin-top: -200px;
+	height: 0;
+	overflow: hidden;
+  	margin: -20px 0 0 0;
+  	padding: 0;
+	transition: opacity .2s ease-out;
+	opacity: 1;
+	z-index: 1;
+	box-shadow: none;
+	border: none;
+	opacity: 0;
 }
 
-	#cart.active{
-		display: block;
-	  	margin-top: 0;
+	.show-cart #cart{
+		margin: 0;
+		height: auto;
+		opacity: 1;
+		border: 1px solid #ddd;
 	}
 
 #cart label{

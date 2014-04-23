@@ -33,6 +33,7 @@
 		<li class="menu-theme"><a href="<?php print $path_prefix; ?>theme"><i class="fa fa-desktop"></i> <?php print _("Theme"); ?></a></li>
     	<li class="menu-branding"><a href="<?php print $path_prefix; ?>branding"><i class="fa fa-certificate"></i> <?php print _("Branding"); ?></a></li>
 		<li class="menu-colors"><a href="<?php print $path_prefix; ?>colors"><i class="fa fa-magic"></i> <?php print _("Colors"); ?></a></li>
+    	<li class="menu-transactions"><a href="<?php print $path_prefix; ?>transactions"><i class="fa fa-money"></i> <?php print _("Transactions"); ?></a></li>
     <?php if($authUser->Role=='Admin'){ ?>	
     	<li class="menu-files"><a href="<?php print $path_prefix; ?>files"><i class="fa fa-folder-open"></i> <?php print _("Files"); ?></a></li>
     <?php } ?>	

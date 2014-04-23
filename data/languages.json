@@ -5,6 +5,10 @@
 			"text": "English"
 		},
 		{
+			"code": "cs_CZ",
+			"text": "Čeština"
+		},
+		{
 			"code": "de_DE",
 			"text": "Deutsch"
 		},
@@ -13,8 +17,12 @@
 			"text": "Spanish (es_ES)"
 		},
 		{
-			"code": "cs_CZ",
-			"text": "Čeština"
+			"code": "fr_FR",
+			"text": "French"
+		},
+		{
+			"code": "ru_RU",
+			"text": "Russian"
 		}
 	]
 }

@@ -2,11 +2,12 @@
 var loadLayoutDialog = {
 
 	pageUniqId: -1,
+	location: null,
 	editor: null,
 
 	init:function(){
 		
-		$('#selectPage li').live('click', function(){
+		$('#selectPage').on('click', 'li', function(){
 			var pageUniqId = $(this).attr('data-pageuniqid');
 
 			loadLayoutDialog.pageUniqId = pageUniqId;
@@ -14,8 +15,17 @@ var loadLayoutDialog = {
 			$('#selectPage li').removeClass('selected');
 			$(this).addClass('selected');
 		});
+		
+		$('#selectThemePage').on('click', 'li', function(){
+			var location = $(this).attr('data-location');
 
-		$('#loadLayout').click(function(){
+			loadLayoutDialog.location = location;
+
+			$('#selectThemePage li').removeClass('selected');
+			$(this).addClass('selected');
+		});
+
+		$('#loadLayout').on('click', function(){
 
 			if(loadLayoutDialog.pageUniqId==-1){
 				message.showMessage('error', $('#msg-select-layout-error').val());
@@ -38,18 +48,63 @@ var loadLayoutDialog = {
 			});
 
 		});
+		
+		$('#loadLayoutFromTheme').on('click', function(){
+
+			if(loadLayoutDialog.location==null){
+				message.showMessage('error', $('#msg-select-layout-error').val());
+				return;
+			}
+
+			$.ajax({
+				url: 'api/theme/page/content',
+				type: 'post',
+				data: {location: loadLayoutDialog.location},
+				success: function(data){
+					contentModel.content(data);
+					contentModel.contentLoading(false);
+					
+					// create editor
+	    			respond.Editor.Refresh(loadLayoutDialog.editor);
+
+					$('#loadLayoutDialog').modal('hide');
+				}
+			});
+
+		});
+		
+		$('#loadLayoutDialog .segmented-control li').on('click', function(){
+			$('#loadLayoutDialog .segmented-control li').removeClass('active');
+			$(this).addClass('active');
+			
+			var navigate = $(this).attr('data-navigate');
+			
+			$('.load-existing').hide();
+			$('.load-theme').hide()
+			$('.'+navigate).show();
+		});
 
 	},
 
 	// shows the slide show dialog
 	show:function(editor){
 		loadLayoutDialog.editor = editor;
+		
+		contentModel.updateThemePages();
 	
 		contentModel.updatePages(); // update pages for the dialog
 
 		$('#selectPage').show();
 		loadLayoutDialog.pageUniqId = -1;
+		loadLayoutDialog.location = null;
 		$('#loadLayoutDialog').modal('show');
+		
+		// init page
+		$('.load-existing').show();
+		$('.load-theme').hide();
+		
+		$('#loadLayoutDialog .segmented-control li').removeClass('active');
+		$('#loadLayoutDialog li:first-child').addClass('active');
 	}
 }
 

@@ -26,6 +26,7 @@ var i18njsstrings = {
 	'align-center_text':"<?php echo _("Align text to the center"); ?>",
 	'align-right_text':"<?php echo _("Align text to the right"); ?>",
 	'addLink':"<?php echo _("Add Link (select text first)"); ?>",
+	'addBr':"<?php echo _("Add <br> (place cursor before text to break)"); ?>",
 	'addCode':"<?php echo _("Add Code"); ?>",
 	'iconfa':"<?php echo _("Add Font Awesome icon"); ?>",
 	'addHeadline':"<?php echo _("Add Headline"); ?>",

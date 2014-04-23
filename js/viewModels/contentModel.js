@@ -19,6 +19,9 @@ var contentModel = {
     pages: ko.observableArray([]),
     pagesLoading: ko.observable(false),
     
+    themePages: ko.observableArray([]),
+	themePagesLoading: ko.observable(false),
+    
     plugins: ko.observableArray([]),
     pluginsLoading: ko.observable(false),
     
@@ -296,6 +299,37 @@ var contentModel = {
 				}
 
 				contentModel.pagesLoading(false);
+
+			}
+		});
+
+	},
+	
+	// updates the pages in the current theme
+	updateThemePages:function(){  // updates the page arr
+
+		contentModel.themePages.removeAll();
+		contentModel.themePagesLoading(true);
+        
+		$.ajax({
+			url: 'api/theme/pages/list',
+			type: 'GET',
+			dataType: 'json',
+			success: function(data){
+
+				for(x in data){
+				
+					var page = {
+						'name':data[x]['name'],
+						'fileName':data[x]['fileName'],
+						'location':data[x]['location']
+					}
+                    
+					contentModel.themePages.push(page); // push an event to the model
+
+				}
+
+				contentModel.themePagesLoading(false);
 
 			}
 		});

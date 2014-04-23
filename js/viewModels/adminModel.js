@@ -4,6 +4,8 @@ var adminModel = {
 	sites: ko.observableArray([]), // observables
 	sitesLoading: ko.observable(false),
 	
+	toBeRemoved:null,
+	
 	timeZone: ko.observable('America/Chicago'),
 
 	init:function(){ // initializes the model
@@ -36,6 +38,7 @@ var adminModel = {
 			success: function(data){
 
 				adminModel.sites(data); 
+				adminModel.sitesLoading(false);
 
 			}
 		});
@@ -46,11 +49,17 @@ var adminModel = {
         
         message.showMessage('progress', $('#msg-switching').val());
         
+        var target = e.target;
+        
         $.ajax({
     		url: 'api/site/switch',
 			type: 'POST',
 			data: {siteUniqId:o.siteUniqId},
 			success: function(data){
+			
+				
+				$(e.target).parents('.table').find('tr').removeClass('active');
+				$(e.target).parents('tr').addClass('active');
 
 		        message.showMessage('success', $('#msg-switched').val());
 			}
@@ -91,7 +100,42 @@ var adminModel = {
 			}
 		});
         
-    }
+    },
+    
+    // shows a dialog to remove a page
+	showRemoveDialog:function(o, e){
+		adminModel.toBeRemoved = o;
+
+		var id = o.siteUniqId;
+		var name = o.name;
+		
+		$('#removeName').html(name);  // show remove dialog
+		$('#deleteDialog').data('id', id);
+		$('#deleteDialog').modal('show');
+
+		return false;
+	},
+	
+	removeSite:function(o, e){
+		message.showMessage('progress',  $('#msg-removing').val());
+		
+		$.ajax({
+			url: 'api/site/remove',
+			type: 'POST',
+			data: {siteUniqId: adminModel.toBeRemoved.siteUniqId},
+			dataType: 'json',
+			success: function(data){
+				$('#deleteDialog').modal('hide');
+
+				message.showMessage('success',  $('#msg-removed').val());
+				
+				adminModel.updateSites();
+			},
+			error: function(data){
+				message.showMessage('error', $('#msg-remove-error').val());
+			}
+		});    
+	}
 }
 
 adminModel.init();

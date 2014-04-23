@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.9.1');
+	define('VERSION', '2.10.1');
 
 	// debugging
 	define('DEBUG', true);
@@ -12,8 +12,11 @@
 	}
 	
 	// advanced configurations
+	define('IMAGE_AUTO_RESIZE', true);
 	define('IMAGE_MAX_WIDTH', 1024);
 	define('IMAGE_MAX_HEIGHT', 768);
+	
+	// thumb width and height
 	define('THUMB_MAX_WIDTH', 200);
 	define('THUMB_MAX_HEIGHT', 200);
 	
@@ -24,7 +27,7 @@
     require_once 'setup.php';
     
 	// font and css libraries
-	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700');
+	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700|Inconsolata');
 	define('BOOTSTRAP_CSS', '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
 	define('BOOTSTRAP_AMELIA_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/amelia/bootstrap.min.css');
 	define('BOOTSTRAP_CERULEAN_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.0.0/cerulean/bootstrap.min.css');
@@ -63,12 +66,14 @@
 	require_once 'dao/MenuItem.php';
 	require_once 'dao/Category.php';
 	require_once 'dao/SearchIndex.php';
+	require_once 'dao/Transaction.php';
 	
 	// include external libs
     require_once 'libs/stripe/lib/Stripe.php';
 	require_once 'libs/simple_html_dom.php';
 	require_once "libs/lessc.inc.php";
 	require_once 'libs/PasswordHash.php';
+	require_once 'libs/class-php-ico.php';
 	
 	// include libs
 	require_once 'libs/Utilities.php';
