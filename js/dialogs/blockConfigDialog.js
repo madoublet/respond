@@ -12,7 +12,8 @@ var blockConfigDialog = {
 
 			var blockId = blockConfigDialog.blockId;
 
-			var id = $.trim($('#blockId').val());
+			var id = $('#blockId').val().trim().replace(/\s/g, '-');
+			
 			var cssClass = $.trim($('#blockCssClass').val());
 			var cssClass_readable = '.block.row';
 			var nested = $.trim($('#blockNested').val());
@@ -29,7 +30,7 @@ var blockConfigDialog = {
 				$('#'+blockId).attr('data-nested', nested);
 				$('#'+blockId).attr('data-containerid', containerId);
 				$('#'+blockId).attr('data-containercssclass', containerCssClass);
-				$('#'+id).find('.block-actions span').text('#'+id+' '+cssClass_readable);
+				$('#'+id).find('.block-actions span').text('#'+id+' '+cssClass_readable.trim().replace(/\s/g, '.'));
 			}
 
 			$('#blockConfigDialog').modal('hide');

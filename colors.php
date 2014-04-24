@@ -22,7 +22,7 @@
 
 </head>
 
-<body data-currpage="colors">
+<body id="colors-page" data-currpage="colors">
 	
 <?php include 'modules/menu.php'; ?>
 
@@ -37,26 +37,20 @@
     <nav>
         <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
         
-		<div class="fs-container full">
-    
-			<div class="fs">
-			
-			</div>
-			<!-- /.fs -->
-        
-        </div>
-        <!-- /.fs-container -->
+		 <ul>
+		    <li class="static"><a href="branding"><?php print _("Branding"); ?></a></li>
+		    <li class="static active"><a href="colors"><?php print _("Colors"); ?></a></li>
+        </ul>
 		
     </nav>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-md-12'>
-				<h1>Theme color chooser</h1>
-				<p>Use the list below to update the color definitions that are used for the theme of this site. For example, if under the global heading there is a line that lists <em>image-border-color</em> and <em>black</em>, but you want the borders around images to instead be green, either type that in the input field, or use the color picker to find the exact color that you want. Then simply click save. The theme for your site will immediately be updated and published.</p>
-				<div id='variable-def' ></div>
-			</div>
-		</div>
-	</div>
+	
+	<p data-bind="visible: filesLoading()" class="list-loading"><i class="fa fa-spinner fa-spin"></i> <?php print _("Loading..."); ?></p>
+	
+	<p data-bind="css: {'hidden': (showInstructions()==false)}" class="hidden list-instructions"><?php print _("No color variables (e.g. @background-color: #888;) available for your themes.  Learn m"); ?></p>
+
+	<form class="form-vertical">
+		<div id="variable-def"></div>
+	</form>
 
     <div class="actions">
         <button class="primary-button" data-bind="click: save"><?php print _("Save"); ?></button>

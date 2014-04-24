@@ -208,6 +208,10 @@ div#imageList div.listItem img{
     font-size: 12px;
 }
 
+.list-instructions{
+	margin: 20px;
+}
+
 /* begin actions */
 .listItem .remove{
 	position: absolute;

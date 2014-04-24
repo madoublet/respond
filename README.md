@@ -12,7 +12,7 @@ This is the dev branch for Respond 2.10 (May 2014)
 New in 2.10:
 - Paypal IPN support to track transactions
 - Receipt email for successful payments
-- Digital download support
+- Digital download support (beta)
 - Drag-and-Drop new elements into the editor
 - Improved site administration (delete site)
 - Load theme page from Load Layout widget
@@ -22,6 +22,10 @@ New in 2.10:
 - Theme logos, improved theme layout
 - Captcha support for site forms, site registration
 - Image thumb in map for lists
+- New Bootswatch theme support: Lumen, Superhero, Darkly
+- Bootstrap 3.1.1 update
+- Duplicate block in editor
+- Theme color picker in branding
 
 Bug fixes:
 - Resize image bug

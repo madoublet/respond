@@ -81,6 +81,7 @@ respond.defaults = {
 				
 	blockMenu: '<a class="expand-menu fa fa-ellipsis-v"></a>' +
 			'<div class="element-menu">' + 
+			'<a class="duplicate fa fa-copy"></a>' +
 			'<a class="up fa fa-chevron-up"></a><a class="down fa fa-chevron-down"></a>' +
 			'<a class="config-block fa fa-cog"></a>'+
 			'<a class="remove-block fa fa-minus-circle"></a></div>'
@@ -1935,6 +1936,72 @@ respond.Editor.SetupPersistentEvents = function(el){
 		return false;
 	});
 	
+	// handle duplicate
+	$(el).on('click', '.duplicate', function(){
+	
+		var curr = $(this.parentNode.parentNode.parentNode);
+		
+		var clone = curr.clone();
+		
+		//$(clone).insertAfter(curr);
+		var editor = $(context).get(0);
+		
+		// generate new block id
+		var blockid = respond.Editor.GenerateUniqId(editor, 'block', 'block');
+	
+		// set new blockid
+		$(clone).attr('id', blockid);
+		
+		// default
+		var cssClass = '';
+		
+		// set new readable
+		if($(clone).attr('data-cssclass') !== undefined && $(clone).attr('data-cssclass') !== null){
+			var cssClass = $(clone).attr('data-cssclass').trim().replace(/\s/g, '.');
+		}
+		
+		if(cssClass != ''){
+			cssClass = ' .block.row.'+cssClass;
+		}
+		else{
+			cssClass = ' .block.row';
+		}
+		
+		$(clone).find('.block-actions span').text('#'+blockid+cssClass);
+		
+		// find all blocks in clone
+		var blocks = $(clone).find('.col>div');
+		
+		// walkthough blocks
+		for(x=0; x<blocks.length; x++){
+			
+			var cssClass = $(blocks[x]).attr('class');
+			
+			// ensures a unique id for cloned elements
+			var offset = x;
+			
+			// generate a uniqid
+			var newid = respond.Editor.GenerateUniqId(editor, cssClass, cssClass, offset);
+			
+			// set new id
+			$(blocks[x]).attr('id', newid);
+			
+			//alert('id='+$(blocks[x]).attr('id'));
+			
+			var dataid = $(blocks[x]).attr('data-id');
+			
+			if (typeof dataid !== 'undefined' && dataid !== false) {
+			    $(blocks[x]).attr('data-id', newid);
+			}
+			
+		}
+		
+		// insert clone
+		$(clone).insertAfter(curr);
+		
+		return false;
+	});
+	
 	// handle key events
 	$(el).on('keydown', '[contentEditable=true]', function(){
 	
@@ -2754,14 +2821,19 @@ respond.Editor.GetContent = function(el){
 }
 
 // generates a unique id for elements 
-respond.Editor.GenerateUniqId = function(el, className, prefix){
+respond.Editor.GenerateUniqId = function(el, className, prefix, offset){
+
+	// set a default
+	if(offset === undefined || offset === null){
+		offset = 0;
+	}
 	
 	// get dom element
 	if(el.jquery){
 		el = el.get(0);
 	}
 	
-	var length = $(el).find('.p').length + 1;
+	var length = $(el).find('.'+className).length + 1 + offset;
 	var uniqId = respond.prefix+prefix +'-'+ length;
 	
 	// find a uniqId

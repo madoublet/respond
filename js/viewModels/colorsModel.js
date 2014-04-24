@@ -2,6 +2,8 @@
 var colorsModel = {
 
 	files: ko.observableArray([]),
+	filesLoading: ko.observable(false),
+	showInstructions: ko.observable(false),
 	content: ko.observable(''),
 	cm: null,
 
@@ -16,7 +18,8 @@ var colorsModel = {
     
 	updateFiles:function(){  // updates the page types arr
 
-		message.showMessage('progress', $('#msg-loading').val());
+		colorsModel.filesLoading(true);
+		colorsModel.showInstructions(false);
 		
 		//remove existing references
 		colorsModel.files.removeAll();
@@ -29,6 +32,9 @@ var colorsModel = {
 			data: {},
 			dataType: 'json',
 			success: function(data){
+			
+				colorsModel.filesLoading(false);
+			
 				//construct an object for each returned stylesheet
 				for(x in data){
 
@@ -68,20 +74,23 @@ var colorsModel = {
 				colorsModel.content(data);
 				
 				//set up a regex to identify LESS variable declarations
-				var pattern = /\s*@([a-zA-Z0-9_-]+)\s*=\s*(.*?);/g;
+				var pattern = /\s*@([a-zA-Z0-9_-]+)\s*:\s*(.*?);/g;
 				var match;
-				
+			
 				//if the stylesheet contains a match, and that match references a CSS color
 				if((match = pattern.exec(data)) && colorsModel.isValidCssColor(match[2])){
-					
+				
 					//add the stylesheet contents to an array
 					o.content = data;
 					o.matches = []; //create an array on this file to hold the list of variable declarations
 
+					var friendlyName = o.name.split('-').join(' '); // replace 
+					friendlyName = friendlyName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+
 					//add an H2 and a list on page for this file
-					$('#variable-def').append('<h2>' + o.name + '</h2><dl class="dl-horizontal"></dl>');
+					$('#variable-def').append('<h2 data-name="'+o.name+'">' + friendlyName + '</h2><section></section>');
 					
-					var lastUL = $('#variable-def dl:last-child');
+					var lastBlock = $('#variable-def section:last-child');
 					
 					//for each match in the file
 					do{
@@ -91,26 +100,47 @@ var colorsModel = {
 						//add an entry in the list with two inputs (one for text input and another for a color picker)
 						var name = o.name + '-' + match[1] + '-color_hex';
 						
-						lastUL.append(
-							'<dt>' + match[1] + '</dt> ' +
-							'<dd>' +
-								' <input type="text" name="' + name + '" id="' + name + '" value="' + match[2] + '" />'  +
-								' <input type="text" name="' + name + '_copy" id="' + name + '_copy" value="' + match[2] + '" />'  +
-							'</dd>');
+						var friendlyName = match[1].split('-').join(' '); // replace 
+						friendlyName = friendlyName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+						
+						lastBlock.append(
+							'<div class="form-group">' +
+							'<label data-name="'+match[1]+'">' + friendlyName + '</label> ' +
+							'<div>' +
+								' <input type="text" name="' + name + '" id="' + name + '" value="' + match[2] + '" class="form-control" />'  +
+								' <input type="text" name="' + name + '_copy" id="' + name + '_copy" value="' + match[2] + '" class="form-control" />'  +
+								'<span class="help-block">@'+ match[1] +'</span>' +
+							'</div></div>');
+							
 					}while((match = pattern.exec(data)) && colorsModel.isValidCssColor(match[2]));
 					
 					//bind color pickers
-					$('input[id*="color_hex_copy"]', lastUL).spectrum({
+					$('input[id*="color_hex_copy"]', lastBlock).spectrum({
 						showInput: true,
 						change: function(color){
 							$('#' + this.id.replace('_copy', '')).val('#' + color.toHex());
 						}
 					});
-					$('input[name*="color_hex"]', lastUL).change(function(){
+					
+					$('input[name*="color_hex"]', lastBlock).change(function(){
 						$('#' + this.id + '_copy').spectrum('set', '#' + this.value);
 					});
+					
+					
+					
 				}
+				else{
+					if($('input[name*="color_hex"]').length == 0){
+						colorsModel.showInstructions(true);
+					}
+					else{
+						colorsModel.showInstructions(false);
+					}
+				}
+				
             }
+            
+            
 		});
 
 	},
@@ -126,7 +156,7 @@ var colorsModel = {
 			var file = null;
 			var fileChanged = false;
 			
-			var filename = $(this).text();
+			var filename = $(this).attr('data-name');
 			
 			//get the element that matches
 			file = $.grep(colorsModel.files(), function(elementOfArray, indexInArray){
@@ -134,16 +164,16 @@ var colorsModel = {
 			})[0];
 			
 			//get the inputs for this file
-			$(this).next('dl').find('dd input[id$="color_hex"]').each(function(){
+			$(this).next('section').find('input[id$="color_hex"]').each(function(){
 				//construct what the new line in the file should be
 				var varName = '@' + this.id.replace(file.name + '-', '').replace('-color_hex', '');
 				var varValue = this.value;
-				var varReplacement = varName + ' = ' + varValue + ';';
+				var varReplacement = varName + ': ' + varValue + ';';
 				
 				//for each match, update the content to replace it
 				for(var j in file.matches){
 					//verify that the file we found still contains a reference to this declaration
-					if(new RegExp('\\s*' + varName + '\\s*=').test(file.matches[j])){
+					if(new RegExp('\\s*' + varName + '\\s*:').test(file.matches[j])){
 						
 						//TODO make this check cleaner
 						//if the new declaration does not match the old, replace it and mark the file as dirty

@@ -1161,6 +1161,29 @@ body .CodeMirror{
 	#branding-page input#iconBg{
 		max-width: 200px;
 	}
+	
+/* colors page */
+#colors-page .form-group{
+	position: relative;
+	
+}
+
+#colors-page form h2{
+	font-size: 22px;
+}
+
+#colors-page .form-group .sp-replacer{
+	float: right;
+	margin-top: -30px;
+	margin-right: 5px;
+	border: none;
+	background-color: #fff;
+}
+
+	#colors-page .form-group .sp-replacer .sp-dd{
+		color: #aaa;
+		font-size: 7px;
+	}
 
 
 /* Large desktop */

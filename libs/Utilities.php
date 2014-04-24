@@ -748,6 +748,10 @@ class Utilities
         $css = '<link href="'.BOOTSTRAP_JOURNAL_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-journal}}', $css, $content);
         
+        // css-bootstrap-lumen
+        $css = '<link href="'.BOOTSTRAP_LUMEN_CSS.'" rel="stylesheet">'.PHP_EOL;
+        $content = str_replace('{{css-bootstrap-lumen}}', $css, $content);
+        
         // css-bootstrap-readable
         $css = '<link href="'.BOOTSTRAP_READABLE_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-readable}}', $css, $content);
@@ -764,6 +768,10 @@ class Utilities
         $css = '<link href="'.BOOTSTRAP_SPACELAB_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-spacelab}}', $css, $content);
         
+        // css-bootstrap-superhero
+        $css = '<link href="'.BOOTSTRAP_SUPERHERO_CSS.'" rel="stylesheet">'.PHP_EOL;
+        $content = str_replace('{{css-bootstrap-superhero}}', $css, $content);
+        
         // css-bootstrap-united
         $css = '<link href="'.BOOTSTRAP_UNITED_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-united}}', $css, $content);
@@ -771,6 +779,10 @@ class Utilities
         // css-bootstrap-yeti
         $css = '<link href="'.BOOTSTRAP_YETI_CSS.'" rel="stylesheet">'.PHP_EOL;
         $content = str_replace('{{css-bootstrap-yeti}}', $css, $content);
+        
+        // css-bootstrap-yeti
+        $css = '<link href="'.BOOTSTRAP_DARKLY_CSS.'" rel="stylesheet">'.PHP_EOL;
+        $content = str_replace('{{css-bootstrap-darkly}}', $css, $content);
         
         // css-fontawesome
         $css = '<link href="'.FONTAWESOME_CSS.'" rel="stylesheet">'.PHP_EOL;

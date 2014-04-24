@@ -13,7 +13,7 @@ var elementConfigDialog = {
 		$('#updateElementConfig').click(function(){
 
 			var moduleId = elementConfigDialog.moduleId;
-			var id = jQuery.trim($('#elementId').val());
+			var id = $('#elementId').val().trim().replace(/\s/g, '-');
 			var cssClass = jQuery.trim($('#elementCssClass').val());
             var el = $('#'+moduleId);
 
