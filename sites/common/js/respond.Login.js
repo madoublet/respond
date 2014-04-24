@@ -32,13 +32,12 @@ respond.Login = function(config){
 			
 				$(context).find('.alert-success').show();
 			
-				/*
 				if(returnUrl != ''){
 					window.location = returnUrl; // redirect to pages
 				}
 				else{
 					window.location = 'index';
-				}*/
+				}
 				
 			},
 			error: function(xhr, errorText, thrownError){
