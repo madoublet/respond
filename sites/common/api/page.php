@@ -12,7 +12,7 @@ class PageListResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -155,7 +155,7 @@ class PageBlogResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -314,7 +314,7 @@ class PageCalendarResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -466,7 +466,8 @@ class PageFeaturedResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
+        
         $pageUniqId = $request['pageUniqId'];
         $prefix = $request['prefix'];
         
@@ -536,7 +537,7 @@ class PageTotalResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
 
         $site = Site::GetBySiteUniqId($siteUniqId);

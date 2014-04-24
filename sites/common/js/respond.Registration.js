@@ -23,7 +23,6 @@ respond.Registration = function(config){
 		var password = $(context).find('.password').val();
 		var retype = $(context).find('.retype').val();
     	var language = $('html').attr('lang');
-		var site = $('body').attr('data-sitefriendlyid');
 		
 		// reset errors
 		$(context).find('.registration-success').hide();
@@ -48,7 +47,7 @@ respond.Registration = function(config){
 			$.ajax({
 				url: pageModel.apiEndpoint + 'api/user/add',
 				type: 'POST',
-				data: {firstName: firstName, lastName: lastName, email: email, password: password, language: language, site: site},
+				data: {firstName: firstName, lastName: lastName, email: email, password: password, language: language},
 				success: function(data){
 				
 					$(content).find('input[type=text], input[type=password], input[type=email]').val('');

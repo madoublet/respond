@@ -112,7 +112,6 @@ respond.List.BuildParams = function(el){
 				id: $(el).attr('id'),
 				label: $(el).attr('data-label'),
 				display: $(el).attr('data-display'),
-				siteUniqId: pageModel.siteUniqId(), 
 				pageTypeUniqId: $(el).attr('data-pagetypeid'), 
 				descLength: $(el).attr('data-desclength'),
 				pageSize: $(el).attr('data-length'), 

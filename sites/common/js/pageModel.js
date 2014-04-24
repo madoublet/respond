@@ -189,13 +189,12 @@ var pageModel = {
 		    
 		    // new language
 		    var language = $(this).val();
-		    var friendlyId = $('body').attr('data-sitefriendlyid');
 		    	
 		    $.ajax({
 				url:  pageModel.apiEndpoint + 'api/site/change/language',
 				type: 'POST',
 				context: this,
-				data: {language: language, friendlyId: friendlyId},
+				data: {language: language},
 				success: function(data){
 					location.reload(true); // refresh page to get new language
 				}
@@ -215,7 +214,7 @@ var pageModel = {
 				url:  pageModel.apiEndpoint + 'api/site/change/language',
 				type: 'POST',
 				context: this,
-				data: {language: language, friendlyId: friendlyId},
+				data: {language: language},
 				success: function(data){
 					location.reload(true); // refresh page to get new language
 				}

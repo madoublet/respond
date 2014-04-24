@@ -14,7 +14,7 @@ class CheckCaptchaResource extends Tonic\Resource {
     	// parse request
     	parse_str($this->request->data, $request);
 
-    	$siteUniqId = $request['siteUniqId'];
+    	$siteUniqId = SITE_UNIQ_ID;
     	$pageUniqId = $request['pageUniqId'];
     	$recaptcha_challenge_field = $request['recaptcha_challenge_field'];
     	$recaptcha_response_field = $request['recaptcha_response_field'];

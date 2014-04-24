@@ -1,5 +1,9 @@
 <?php 
 
+	define('SITE_ID', '{{siteId}}');
+	define('SITE_UNIQ_ID', '{{siteUniqId}}');
+	define('SITE_FRIENDLY_ID', '{{siteFriendlyId}}');
+
 	include '../../../app.php';
 
 	require_once '../../../api/lib/Tonic/Autoloader.php';
@@ -11,6 +15,7 @@
 	require_once 'form.php';
 	require_once 'checkCaptcha.php';
 	require_once 'transaction.php';
+	require_once 'menu.php';
         
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];
@@ -28,6 +33,10 @@
 
 	$resource = $app->getResource($request);
 	$response = $resource->exec();
+	
+	// open up API
+	$response->accessControlAllowCredentials = true;
+    $response->accessControlAllowOrigin = $request->origin;
 	
 	$response->output();
 

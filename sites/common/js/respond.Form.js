@@ -251,7 +251,7 @@ respond.Form.Process = function(el){
         $.ajax({
             url: pageModel.apiEndpoint+'api/form',
 			type: 'POST',
-			data: {siteUniqId: siteUniqId, pageUniqId: pageUniqId, body: body},
+			data: {pageUniqId: pageUniqId, body: body},
 			success: function(data){
 			
                 $(el).find('.error').removeClass('error');

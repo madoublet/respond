@@ -86,6 +86,21 @@ class Publish
 			Utilities::CopyDirectory($api_src, $api_dir);
 		}
 		
+		$dispatch_file = $root.'sites/'.$site['FriendlyId'].'/api/dispatch.php';
+		
+		// update dispatch with site ids
+		if(file_exists($dispatch_file)){
+            $content = file_get_contents($dispatch_file);
+            
+            // replace {{placeholder}} with id
+            $content = str_replace('{{siteId}}', $site['SiteId'], $content);
+            $content = str_replace('{{siteUniqId}}', $site['SiteUniqId'], $content);
+            $content = str_replace('{{siteFriendlyId}}', $site['FriendlyId'], $content);
+            
+            // save file
+            file_put_contents($dispatch_file, $content);
+        }
+		
 		// copy emails directory
 		$emails_src = $root.'sites/common/emails/';
 		$emails_dir = $root.'sites/'.$site['FriendlyId'].'/emails';

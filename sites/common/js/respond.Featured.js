@@ -13,7 +13,7 @@ respond.Featured = function(config){
 		url:  pageModel.apiEndpoint + 'api/page/published/featured',
 		type: 'POST',
 		context: this,
-		data: {siteUniqId: pageModel.siteUniqId(), pageUniqId: pageUniqId, prefix: pageModel.prefix(), language: pageModel.language},
+		data: {pageUniqId: pageUniqId, prefix: pageModel.prefix(), language: pageModel.language},
 		success: function(data){
 			$(this.el).html(data);
 			
