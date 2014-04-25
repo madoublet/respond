@@ -767,6 +767,12 @@ div.date div{
 		font-size: 0.9em;
 		color: #aaa;
 	}
+	
+	.block .col-md-3 .shelf-group1,
+	.block .col-md-3 .shelf-group2,
+	.block .col-md-3 .shelf-group3{
+		width: 100%;
+	}
 
 /* slideshow */
 .block div.slideshow{
