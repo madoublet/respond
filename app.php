@@ -24,7 +24,12 @@
 	date_default_timezone_set('UTC');
 	
     // include setup
-    require_once 'setup.php';
+    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/setup.local.php')){
+    	include 'setup.local.php';
+    }
+    else{
+    	include 'setup.php';
+    }
     
 	// font library
 	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700|Inconsolata');
