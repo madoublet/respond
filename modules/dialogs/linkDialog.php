@@ -38,6 +38,16 @@
 				<input id="linkCssClass" type="text" maxlength="128" data-bind="" class="form-control">
 			</div>
 			
+			<div class="form-group">
+				<label for="linkTarget"><?php print _("Target:"); ?></label>
+				<input id="linkTarget" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkTitle"><?php print _("Title:"); ?></label>
+				<input id="linkTitle" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
 			</div>
 			<!-- /.modal-body -->
 			

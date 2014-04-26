@@ -42,7 +42,9 @@ var linkDialog = {
 			}
 			
 			var cssClass = $('#linkCssClass').val().trim();
-
+			var target = $('#linkTarget').val().trim();
+			var title = $('#linkTitle').val().trim();
+			
 			// restore selection
 			global.restoreSelection(linkDialog.selection);
 
@@ -53,6 +55,16 @@ var linkDialog = {
 			// insert css class into link
 			if(cssClass != ''){
 				html += ' class="'+cssClass+'"';
+			}
+			
+			// insert target into link
+			if(target != ''){
+				html += ' target="'+target+'"';
+			}
+			
+			// insert title into link
+			if(title != ''){
+				html += ' title="'+title+'"';
 			}
 			
 			html += '>'+text+'</a>';
@@ -73,6 +85,8 @@ var linkDialog = {
 
 	    $('#linkUrl').val('');
 	    $('#linkCssClass').val('');
+	    $('#linkTarget').val('');
+	    $('#linkTitle').val('');
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 
