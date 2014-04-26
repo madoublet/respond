@@ -349,6 +349,10 @@ class Utilities
           
           $pageType = PageType::GetByPageTypeId($row['PageTypeId']);
           
+		  if($pageType['IsSecure']==1){
+		  	continue;
+		  }
+          
           if($row['PageTypeId']==-1){
             
             $xml = $xml.'<url>'.
