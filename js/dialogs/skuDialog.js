@@ -12,6 +12,13 @@ var skuDialog = {
 		
 		$('#add-sku').click(function(){
 		
+			var currency = $('#skuDialog').attr('data-currency');
+			
+			// validate currency
+			if(currency != '' && currency != undefined){
+				skuDialog.currency = currency;
+			}
+		
 			var pageUniqId = contentModel.pageUniqId();
 			
 			var itemId = "shelf-item-" + $('.shelf-item').length;
