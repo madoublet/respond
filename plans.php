@@ -31,6 +31,7 @@
 <input id="msg-added" value="<?php print _("Plan added successfully"); ?>" type="hidden">
 <input id="msg-updating" value="<?php print _("Updating..."); ?>" type="hidden">
 <input id="msg-updated" value="<?php print _("Plan updated successfully"); ?>" type="hidden">
+<input id="msg-nopaymentmethod" value="<?php print _("No Payment Method Configured for Plans"); ?>" type="hidden">
 
 <section class="main">
 
@@ -41,12 +42,13 @@
             <li><a href="admin"><?php print _("Sites"); ?></a></li>
             <li class="static active"><a href="plans"><?php print _("Plans"); ?></a></li>
         </ul>
-        
+        <?php if (STRIPE_API_KEY!='') {?>
         <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Plan"); ?></a>
-        
+         <?php } ?>
     </nav>
 
     <div class="container">
+    <?php if (STRIPE_API_KEY!='') {?>
 	    <table  class="table table-striped table-bordered">
         	<col>
     		<col>
@@ -75,6 +77,9 @@
                 </tr>
     		</tbody>
     	</table>
+    	<?php } else { ?>
+    	<p><br/><?php echo _("No Payment Method Configured for Plans"); ?></p>
+    	<?php } ?>
 	</div>
 
 </section>
@@ -154,7 +159,8 @@
 <!-- include js -->
 <?php include 'modules/js.php'; ?>
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>"></script>
+<?php if (STRIPE_API_KEY!='') {?>
 <script type="text/javascript" src="js/viewModels/plansModel.js?v=<?php print VERSION; ?>"></script>
-
+<?php } ?>
 
 </html>

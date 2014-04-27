@@ -27,6 +27,9 @@ var plansModel = {
 
 				plansModel.plans(data);
 
+			},
+			error: function(data) {
+				jQuery('.container').html('<br/>'+data.responseText);
 			}
 		});
 
@@ -102,6 +105,10 @@ var plansModel = {
 
 				plansModel.updatePlans();
 				
+				$('#addEditDialog').modal('hide');
+			},
+			error: function (data) {
+				message.showMessage('error', $('#msg-nopaymentmethod').val());
 				$('#addEditDialog').modal('hide');
 			}
 		});
