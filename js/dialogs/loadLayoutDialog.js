@@ -73,6 +73,20 @@ var loadLayoutDialog = {
 
 		});
 		
+		$('#loadLayoutFromCode').on('click', function(){
+		
+			var data = $('#load-code').val();
+		
+			contentModel.content(data);
+			
+			// create editor
+			respond.Editor.Refresh(loadLayoutDialog.editor);
+
+			$('#loadLayoutDialog').modal('hide');
+			
+
+		});
+		
 		$('#loadLayoutDialog .segmented-control li').on('click', function(){
 			$('#loadLayoutDialog .segmented-control li').removeClass('active');
 			$(this).addClass('active');
@@ -80,7 +94,8 @@ var loadLayoutDialog = {
 			var navigate = $(this).attr('data-navigate');
 			
 			$('.load-existing').hide();
-			$('.load-theme').hide()
+			$('.load-theme').hide();
+			$('.load-code').hide();
 			$('.'+navigate).show();
 		});
 
@@ -99,9 +114,15 @@ var loadLayoutDialog = {
 		loadLayoutDialog.location = null;
 		$('#loadLayoutDialog').modal('show');
 		
+		// get the content and image from the editor
+		var content = respond.Editor.GetContent(editor);
+		
+		$('#load-code').val(style_html(content));
+		
 		// init page
 		$('.load-existing').show();
 		$('.load-theme').hide();
+		$('.load-code').hide();
 		
 		$('#loadLayoutDialog .segmented-control li').removeClass('active');
 		$('#loadLayoutDialog li:first-child').addClass('active');

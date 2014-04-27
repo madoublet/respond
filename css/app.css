@@ -1021,6 +1021,10 @@ body .CodeMirror{
 		width: 20%;	
 	}
 	
+		.segmented-control.count-3 li{
+			width: 33.3333333%;
+		}
+	
 		.segmented-control.count-2 li{
 			width: 50%;
 		}

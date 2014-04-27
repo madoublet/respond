@@ -140,6 +140,7 @@
 <script type="text/javascript" src="js/helper/flipsnap.min.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/helper/beautify-html.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
 
 <?php if(GOOGLE_MAPS_API_KEY != '' && GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){ ?>

@@ -13,9 +13,10 @@
 			</div>
 			<!-- /.modal-header -->
 			
-			<ul class="segmented-control count-2">
+			<ul class="segmented-control count-3">
 				<li class="active" data-navigate="load-existing"><a><?php print _("Existing Page"); ?></a></li>
 				<li data-navigate="load-theme"><a><?php print _("From Theme"); ?></a></li>
+				<li data-navigate="load-code"><a><?php print _("From Code"); ?></a></li>
 			</ul>
 			<!-- /.segmented-control -->
 
@@ -41,6 +42,11 @@
 			</div>
 			<!-- #load-theme -->
 			
+			<div class="load-code">
+				<textarea id="load-code" style="width: 100%;"></textarea>   
+			</div>
+			<!-- #load-code -->
+			
 			</div>
 			<!-- /.modal-body -->
 
@@ -48,6 +54,7 @@
 				<button class="secondary-button" data-dismiss="modal"><?php print _("Close"); ?></button>
 				<button id="loadLayout" class="load-existing primary-button" type="button"><?php print _("Load Layout"); ?></button>
 				<button id="loadLayoutFromTheme" class="load-theme primary-button" type="button"><?php print _("Load Layout"); ?></button>
+				<button id="loadLayoutFromCode" class="load-code primary-button" type="button"><?php print _("Load Layout"); ?></button>
 			</div>
 			<!-- /.modal-footer -->
 		
