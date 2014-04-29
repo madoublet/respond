@@ -484,3 +484,11 @@ div#selectLayout li em{
 	margin: 0;
 	padding: 0;
 }
+
+/* load layout dialog */
+#load-code{
+	border-radius: 10px;
+	border-color: #ccc;
+	width: 100%;
+	height: 350px;
+}

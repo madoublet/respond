@@ -12,11 +12,11 @@
 	
 			<div class="modal-body">
 			
-			<div class="form-group">
+			<div class="form-group no-border">
 				<label class="radio"><input id="existing" type="radio" class="radio" name="content" checked> <?php print _("Existing Page"); ?></label>
 			</div>  
 		
-			<div class="form-group">
+			<div class="form-group no-border">
 				<div id="pageUrl" class="select small">
 					<ul data-bind="foreach: pages">
 						<li data-bind="attr:{'data-pageid': pageId, 'data-url': $parent.toPagePrefix() + url()}, text:name"></li>
@@ -25,12 +25,27 @@
 				</div>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group no-border">
 				<label class="radio"><input id="customUrl" type="radio" name="content" class="radio"> <?php print _("Custom URL"); ?></label>
 			</div>
 			
 			<div class="form-group">
 				<input id="linkUrl" type="text" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkCssClass"><?php print _("CSS Class:"); ?></label>
+				<input id="linkCssClass" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkTarget"><?php print _("Target:"); ?></label>
+				<input id="linkTarget" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkTitle"><?php print _("Title:"); ?></label>
+				<input id="linkTitle" type="text" maxlength="128" data-bind="" class="form-control">
 			</div>
 			
 			</div>

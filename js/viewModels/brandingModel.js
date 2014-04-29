@@ -2,14 +2,25 @@
 var brandingModel = {
     
     siteUniqId: ko.observable(),
+    
     logoUrl: ko.observable(),
-    fullUrl: ko.observable(),
+    fullLogoUrl: ko.observable(),
+    
+    iconUrl: ko.observable(),
+    iconBg: ko.observable(),
+    fullIconUrl: ko.observable(),
+    
+    payPalLogoUrl: ko.observable(),
+    fullPayPalLogoUrl: ko.observable(),
+    
     filePrefix: ko.observable(),
     
     images: ko.observableArray([]),
     imagesLoading: ko.observable(false),
     
     newimages: ko.observableArray([]),
+    
+    type:'logo', // logo, paypal, icon
 
     init:function(){ // initializes the model
         brandingModel.updateSite();
@@ -45,44 +56,66 @@ var brandingModel = {
 			data: {},
 			success: function(data){
                 brandingModel.siteUniqId(data['SiteUniqId']);
+                
+                // get logo
                 brandingModel.logoUrl(data['LogoUrl']);
-                brandingModel.fullUrl('sites/'+data['FriendlyId']+'/files/'+data['LogoUrl']);
+                brandingModel.fullLogoUrl('sites/'+data['FriendlyId']+'/files/'+data['LogoUrl']);
+                
+                // get icon
+                brandingModel.iconUrl(data['IconUrl']);
+				brandingModel.iconBg(data['IconBg']);
+                
+                if(data['IconUrl'] != null){
+                	brandingModel.fullIconUrl('sites/'+data['FriendlyId']+'/files/'+data['IconUrl']);
+                }
+                else{
+	                brandingModel.fullIconUrl('');
+                }
+                
+                // get paypal
+                brandingModel.payPalLogoUrl(data['PayPalLogoUrl']);
+                
+                if(data['PayPalLogoUrl'] != null){
+                	brandingModel.fullPayPalLogoUrl('sites/'+data['FriendlyId']+'/files/'+data['PayPalLogoUrl']);
+                }
+                else{
+	                brandingModel.fullPayPalLogoUrl('');
+                }
+                
                 brandingModel.filePrefix('sites/'+data['FriendlyId']+'/files/');
 			}
 		});
 
 	},
     
-    applyBranding:function(o, e){
-        message.showMessage('progress', $('#msg-updating-branding').val());
-        
-        $.ajax({
-        	url: 'api/site/branding/',
-			type: 'POST',
-			data: {},
-			success: function(data){
-    			message.showMessage('success', $('#msg-branding-updated').val());
-			}
-		});
-    },
-    
     setImage:function(o, e){
   
-        var logoUrl = o.filename;
+        var url = o.filename;
+        var type = brandingModel.type;
         
         message.showMessage('progress', $('#msg-updating-logo').val());
         
 		$.ajax({
-			url: 'api/site/logo/'+brandingModel.siteUniqId(),
+			url: 'api/site/branding/image',
 			type: 'POST',
-			data: {logoUrl:logoUrl},
+			data: {url:url, type:type},
 			dataType: 'json',
 			success: function(data){
      
-                brandingModel.fullUrl(o.fullUrl);
-                brandingModel.logoUrl(o.filename);
+				if(type == 'logo'){
+                	brandingModel.fullLogoUrl(o.fullUrl);
+					brandingModel.logoUrl(o.filename);
+                }
+                else if(type == 'icon'){
+                	brandingModel.fullIconUrl(o.fullUrl);
+					brandingModel.iconUrl(o.filename);
+                }
+                if(type == 'paypal'){
+                	brandingModel.fullPayPalLogoUrl(o.fullUrl);
+					brandingModel.payPalLogoUrl(o.filename);
+                }
                 
-                message.showMessage('success', $('#msg-logo-updated').val());
+                message.showMessage('success', $('#msg-branding-updated').val());
                 
                 $('#imagesDialog').modal('hide');
 
@@ -91,13 +124,41 @@ var brandingModel = {
         
     },
     
-    showImagesDialog:function(){
+    updateIconBg:function(o, e){
+  
+        var color = $('#iconBg').val();
         
+        message.showMessage('progress', $('#msg-updating-logo').val());
+        
+		$.ajax({
+			url: 'api/site/branding/icon/background',
+			type: 'POST',
+			data: {color:color},
+			dataType: 'json',
+			success: function(data){
+               
+                message.showMessage('success', $('#msg-branding-updated').val());
+                
+                $('#imagesDialog').modal('hide');
+
+			}
+		});
+        
+    },
+    
+    showImagesDialog:function(o, e){
+    
         $('#imagesDialog').modal('show');
         
         brandingModel.images.removeAll();
     	brandingModel.imagesLoading(true);
-
+    	
+    	brandingModel.type = $(e.target).attr('data-type');
+    	
+    	if(brandingModel.type == null || brandingModel.type == ''){
+    		brandingModel.type = $(e.target).find('img').attr('data-type');
+    	}
+    	
 		$.ajax({
 			url: 'api/image/list/all',
 			type: 'GET',

@@ -13,6 +13,8 @@ var filesModel = {
 
     init:function(){ // initializes the model
         filesModel.updateFiles();
+        
+        Dropzone.autoDiscover = false;
 
         filesModel.dz = new Dropzone("#drop", { 
             url: "api/file/post",

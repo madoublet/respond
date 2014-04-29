@@ -58,38 +58,61 @@ class Publish
 		
 		copy($src, $dest);
 		
-		// copy Utilities
-		$libs = $root.'sites/'.$site['FriendlyId'].'/libs';
+		// copy libs
+		$libs_src = $root.'sites/common/libs/';
+		$libs_dir = $root.'sites/'.$site['FriendlyId'].'/libs';
 		
 		// create libs directory if it does not exist
-		if(!file_exists($libs)){
-			mkdir($libs, 0755, true);	
+		if(!file_exists($libs_dir)){
+			mkdir($libs_dir, 0755, true);	
 		}
 		
-		// copy utilities
-		$src = $root.'sites/common/libs/Utilities.php';
-		$dest = $libs.'/Utilities.php';
-		
-		copy($src, $dest);
-		
-		// copy SiteAuthUser
-		$src = $root.'sites/common/libs/SiteAuthUser.php';
-		$dest = $libs.'/SiteAuthUser.php';
-		
-		copy($src, $dest);
-		
+		// copy libs directory
+		if(file_exists($libs_dir)){
+			Utilities::CopyDirectory($libs_src, $libs_dir);
+		}
+				
 		// create directory for api
+		$api_src = $root.'sites/common/api/';
 		$api_dir = $root.'sites/'.$site['FriendlyId'].'/api';
 		
+		// create api directory
 		if(!file_exists($api_dir)){
 			mkdir($api_dir, 0755, true);	
 		}
 		
-		// copy api
-		$api_src = $root.'sites/common/api/';
-		
+		// copy api directory
 		if(file_exists($api_src)){
 			Utilities::CopyDirectory($api_src, $api_dir);
+		}
+		
+		$dispatch_file = $root.'sites/'.$site['FriendlyId'].'/api/dispatch.php';
+		
+		// update dispatch with site ids
+		if(file_exists($dispatch_file)){
+            $content = file_get_contents($dispatch_file);
+            
+            // replace {{placeholder}} with id
+            $content = str_replace('{{siteId}}', $site['SiteId'], $content);
+            $content = str_replace('{{siteUniqId}}', $site['SiteUniqId'], $content);
+            $content = str_replace('{{siteFriendlyId}}', $site['FriendlyId'], $content);
+            
+            // save file
+            file_put_contents($dispatch_file, $content);
+        }
+		
+		// copy emails directory
+		$emails_src = $root.'sites/common/emails/';
+		$emails_dir = $root.'sites/'.$site['FriendlyId'].'/emails';
+		
+		// create emails directory if it does not exist
+		if(!file_exists($emails_dir)){
+			mkdir($emails_dir, 0755, true);	
+		}
+		
+		// copy emails directory
+		if(file_exists($emails_dir)){
+			Utilities::CopyDirectory($emails_src, $emails_dir);
 		}
 		
 		// deny access to draft

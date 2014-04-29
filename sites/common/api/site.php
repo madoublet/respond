@@ -35,7 +35,7 @@ class SiteChangeLanguageResource extends Tonic\Resource {
 
 		session_start();
 
-        $friendlyId = $request['friendlyId'];
+        $friendlyId = SITE_FRIENDLY_ID;
         $language = $request['language'];
         
         $_SESSION[$friendlyId.'.Language'] = $language;
@@ -63,7 +63,7 @@ class SiteSearchResource extends Tonic\Resource {
         parse_str($this->request->data, $request); // parse request
         $term = $request['term'];
         $language = $request['language'];
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         
         $site = Site::GetBySiteUniqId($siteUniqId);
         

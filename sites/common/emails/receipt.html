@@ -1,0 +1,35 @@
+{{site-logo}}
+
+<h1>Thank you for your purchase</h1>
+
+<p>Thank you for your purchase from {{site}}. Below you will find a receipt of the items you purchased along with links to any digital goods you may have purchased.</p>
+
+<table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;" cellpadding="8">
+	<thead style="border-bottom: 1px solid #ddd;">
+		<tr style="background-color: #f8f8f8">
+			<td><b>Item</b></td>
+			<td align="right"><b>Price</b></td>
+			<td align="right"><b>Quantity</b></td>
+			<td align="right"><b>Total</b></td>
+		</tr>
+	</thead>
+	<tbody>
+		{{line-items}}
+	</tbody>
+	<tbody>
+		<tr>
+			<td colspan="3" align="right">Shipping</td>
+			<td align="right">{{shipping}}</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="right">Tax</td>
+			<td align="right">{{tax}}</td>
+		</tr>
+		<tr style="border-top: 1px solid #f0f0f0;">
+			<td colspan="3" align="right">Total</td>
+			<td align="right"><b>{{total}}</b></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Thank you.  Feel free to email us at any time at <a href="mailto:{{reply-to}}">{{reply-to}}</a> with any questions you may have regarding your purchase.</p>

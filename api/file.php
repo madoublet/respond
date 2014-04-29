@@ -70,7 +70,7 @@ class ImageListAllResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($arr);
 
             return $response;
@@ -131,7 +131,7 @@ class FilePostResource extends Tonic\Resource {
             // save image
             if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
             
-    			$size=Image::SaveImageWithThumb($directory, $filename, $file);
+    			$size = Image::SaveImageWithThumb($directory, $filename, $file);
     			
     			$width = 0;
     			$height = 0;
@@ -174,7 +174,7 @@ class FilePostResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($arr);
 
             return $response;
@@ -276,7 +276,7 @@ class FileListAllResource extends Tonic\Resource {
             
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($arr);
 
             return $response;

@@ -12,7 +12,7 @@ class PageListResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -34,7 +34,7 @@ class PageListResource extends Tonic\Resource {
 		}
 
 		// set order
-        if($orderBy=='Created'){
+        if($orderBy=='Created' or $orderBy=='BeginDate'){
             $orderBy = $orderBy.' DESC';
         }
         else{
@@ -108,7 +108,7 @@ class PageListResource extends Tonic\Resource {
             }
 
 			// build URL
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
@@ -155,7 +155,7 @@ class PageBlogResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -231,7 +231,7 @@ class PageBlogResource extends Tonic\Resource {
             $imageUrl = '';
             $mImageUrl = '';
             
-            $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
             // create a readable date
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
@@ -314,7 +314,7 @@ class PageCalendarResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
         $pageSize = $request['pageSize'];
         $orderBy = $request['orderBy'];
@@ -407,7 +407,7 @@ class PageCalendarResource extends Tonic\Resource {
 	            $photo = 'files/'.$row['PhotoUrl'];
             }
 
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
             // create a readable begin date
             $begin = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
@@ -466,7 +466,8 @@ class PageFeaturedResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
+        
         $pageUniqId = $request['pageUniqId'];
         $prefix = $request['prefix'];
         
@@ -536,7 +537,7 @@ class PageTotalResource extends Tonic\Resource {
     function get() {
 
         parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageTypeUniqId = $request['pageTypeUniqId'];
 
         $site = Site::GetBySiteUniqId($siteUniqId);

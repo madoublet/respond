@@ -191,10 +191,13 @@ class AuthUser{
 	
 			$customer = Stripe_Customer::retrieve($customerId);
 	
-			if($customer->subscription){
-				$_SESSION['Status'] = $customer->subscription->status;
-				$_SESSION['Plan'] = $customer->subscription->plan->id;
-				$_SESSION['RenewalDate'] = gmdate("Y-m-d H:i:s", intval($customer->subscription->current_period_end));
+			// get default subscription
+			if(isset($customer->subscriptions->data[0])){
+				$subscription = $customer->subscriptions->data[0];
+				
+				$_SESSION['Status'] = $subscription->status;
+				$_SESSION['Plan'] = $subscription->plan->id;
+				$_SESSION['RenewalDate'] = gmdate("Y-m-d H:i:s", intval($subscription->current_period_end));
 			}
 			else{
 				$_SESSION['Status'] = 'unsubscribed';

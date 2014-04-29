@@ -12,6 +12,13 @@ var skuDialog = {
 		
 		$('#add-sku').click(function(){
 		
+			var currency = $('#skuDialog').attr('data-currency');
+			
+			// validate currency
+			if(currency != '' && currency != undefined){
+				skuDialog.currency = currency;
+			}
+		
 			var pageUniqId = contentModel.pageUniqId();
 			
 			var itemId = "shelf-item-" + $('.shelf-item').length;
@@ -90,11 +97,11 @@ var skuDialog = {
 			
 			var shippingType = $('#sku-shippingType').val();
 			
-			if(shippingType == 'not shipped'){
-				$('.shipped').hide();
+			if(shippingType == 'shipped'){
+				$('.shipped').show();
 			}
 			else{
-				$('.shipped').show();
+				$('.shipped').hide();
 			}
 			
 		});
@@ -118,11 +125,11 @@ var skuDialog = {
 			var unit = $(item).find('.shelf-shipping').attr('data-unit');
 			
 			// set shipping
-			if(shippingType == 'not shipped'){
-				$('.shipped').hide();
+			if(shippingType == 'shipped'){
+				$('.shipped').show();
 			}
 			else{
-				$('.shipped').show();
+				$('.shipped').hide();
 			}
 			
 			// populate fields

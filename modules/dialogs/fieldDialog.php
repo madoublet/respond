@@ -21,6 +21,7 @@
 						<option value="select"><?php print _("Dropdown List"); ?></option>
 						<option value="checkboxlist"><?php print _("Checkbox List"); ?></option>
 						<option value="radiolist"><?php print _("Radio button List"); ?></option>
+						<option value="recaptcha"><?php print _("reCAPTCHA"); ?></option>
 				  	</select>
 				</div>
 

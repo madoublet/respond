@@ -20,7 +20,6 @@ respond.Search = function(config){
     	
     	var term = $(this).find('input[type=text]').val();
     	var language = $('html').attr('lang');
-    	var siteUniqId = $('body').attr('data-siteuniqid');
     	var url = pageModel.apiEndpoint + 'api/site/search';
     	
     	
@@ -33,7 +32,7 @@ respond.Search = function(config){
 			url: url,
 			type: 'POST',
 			dataType: 'JSON',
-			data: {term:term, language:language, siteUniqId:siteUniqId},
+			data: {term:term, language:language},
 			success: function(data){
 				
 				var results = '';

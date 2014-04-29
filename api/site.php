@@ -444,7 +444,7 @@ class SiteCurrentResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($site);
 
             return $response;
@@ -480,6 +480,61 @@ class SitePublishResource extends Tonic\Resource {
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
         }
     }
+}
+
+/**
+ * A protected API call to view, edit, and delete a site
+ * @uri /site/remove
+ */
+class SiteRemoveResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function remove() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+			if($authUser->IsSuperAdmin == 1){
+	            parse_str($this->request->data, $request); // parse request
+	
+	            $siteUniqId = $request['siteUniqId'];
+	            
+	            $site = Site::GetBySiteUniqId($siteUniqId);
+	            
+	            $directory = '../sites/'.$site['FriendlyId'];
+	            
+	            // Get the directory name
+				$oldname = '../sites/'.$site['FriendlyId'];
+				
+				// Replace any special chars with your choice
+				$newname = '../sites/'.$site['FriendlyId'].'-removed';
+				
+				if(file_exists($oldname)){
+					// Renames the directory
+					rename($oldname, $newname);
+				}
+	
+				// remove site from DB
+				Site::Remove($siteUniqId);
+	
+	            return new Tonic\Response(Tonic\Response::OK);
+            }
+            else{ // unauthorized access
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+        
+        } 
+        else{ // unauthorized access
+			return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+        return new Tonic\Response(Tonic\Response::NOTIMPLEMENTED);
+    }
+
 }
 
 
@@ -541,7 +596,7 @@ class SiteResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($site);
 
             return $response;
@@ -566,6 +621,9 @@ class SiteResource extends Tonic\Resource {
             $domain = $request['domain'];
             $name = $request['name'];
             $analyticsId = $request['analyticsId'];
+            $analyticssubdomain = $request['analyticssubdomain'];
+            $analyticsmultidomain = $request['analyticsmultidomain'];
+            $analyticsdomain = $request['analyticsdomain'];
             $facebookAppId = $request['facebookAppId'];
             $primaryEmail = $request['primaryEmail'];
             $timeZone = $request['timeZone'];
@@ -577,8 +635,11 @@ class SiteResource extends Tonic\Resource {
             $shippingTiers = $request['shippingTiers'];
             $taxRate = $request['taxRate'];
             $payPalId = $request['payPalId'];
+            $payPalUseSandbox = $request['payPalUseSandbox'];
+            $formPublicId = $request['formPublicId'];
+            $formPrivateId = $request['formPrivateId'];
 
-            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId);
+            Site::Edit($siteUniqId, $domain, $name, $analyticsId, $facebookAppId, $primaryEmail, $timeZone, $language, $currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox, $analyticssubdomain, $analyticsmultidomain, $analyticsdomain, $formPublicId, $formPrivateId);
 
             return new Tonic\Response(Tonic\Response::OK);
         
@@ -594,14 +655,14 @@ class SiteResource extends Tonic\Resource {
 
 /**
  * A protected API call to view, edit, and delete a site
- * @uri /site/logo/{siteUniqId}
+ * @uri /site/branding/image
  */
-class SiteLogoResource extends Tonic\Resource {
+class SiteBrandingResource extends Tonic\Resource {
 
     /**
      * @method POST
      */
-    function update($siteUniqId) {
+    function update() {
 
         // get an authuser
         $authUser = new AuthUser();
@@ -610,10 +671,62 @@ class SiteLogoResource extends Tonic\Resource {
 
             parse_str($this->request->data, $request); // parse request
 
-            $logoUrl = $request['logoUrl'];
+            $url = $request['url'];
+            $type = $request['type'];
 
-            Site::EditLogo($siteUniqId, $logoUrl);
+			if($type == 'logo'){
+            	Site::EditLogo($authUser->SiteUniqId, $url);
+            }
+            else if($type == 'icon'){
+	            Site::EditIcon($authUser->SiteUniqId, $url);
+	            
+	            // create the icon
+	            $source = '../sites/'.$authUser->SiteFriendlyId.'/files/'.$url;
+				$destination = '../sites/'.$authUser->SiteFriendlyId.'/favicon.ico';
+				
+				if(file_exists($source)){
+					$ico_lib = new PHP_ICO($source, array( array( 32, 32 ), array( 64, 64 ) ) );
+					$ico_lib->save_ico( $destination );
+				}
+            }
+            else if($type == 'paypal'){
+	            Site::EditPayPalLogoUrl($authUser->SiteUniqId, $url);
+            }
 
+            return new Tonic\Response(Tonic\Response::OK);
+        
+        } else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+        return new Tonic\Response(Tonic\Response::NOTIMPLEMENTED);
+    }
+
+}
+
+/**
+ * A protected API call to view, edit, and delete a site
+ * @uri /site/branding/icon/background
+ */
+class SiteBrandingIconBackgroundResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function update() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            parse_str($this->request->data, $request); // parse request
+
+            $color = $request['color'];
+
+			Site::EditIconBg($authUser->SiteUniqId, $color);
+                        
             return new Tonic\Response(Tonic\Response::OK);
         
         } else{ // unauthorized access
@@ -647,7 +760,7 @@ class SiteListAllResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($list);
 
             return $response;
@@ -750,7 +863,7 @@ class SiteListExtendedResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($sites);
 
             return $response;

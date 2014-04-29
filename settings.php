@@ -59,6 +59,7 @@
 		<li data-navigate="payments"><a><?php print _("Payments"); ?></a></li>
 		<li data-navigate="social"><a><?php print _("Social"); ?></a></li>
 		<li data-navigate="analytics"><a><?php print _("Analytics"); ?></a></li>
+		<li data-navigate=formscaptcha><a><?php print _("Forms"); ?></a></li>
 	</ul>
 	<!-- /.segmented-control -->
 	
@@ -374,6 +375,16 @@
 					<input id="payPalId" type="text"  data-bind="value: payPalId" class="form-control">
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label for="payPalId" class="control-label"><?php print _("Use PayPal Sandbox (for testing):"); ?></label>
+				<div>
+					<select id="payPalUseSandbox" data-bind="value:payPalUseSandbox" class="form-control">
+						<option value="1">Yes</option>
+				    	<option value="0">No</option>
+					</select>
+				</div>
+			</div>
 		
 			<div class="form-group">
 				<label for="currency" class="control-label"><?php print _("Currency:"); ?></label>
@@ -534,19 +545,61 @@
 					<input id="analyticsId" type="text" data-bind="value: analyticsId" class="form-control">
 					<span class="help-block"><?php print _("Google Analytics Web Property Id (adds analytics to all pages on your site)"); ?></span>
 				</div>
-			</div>	
+			</div>
 			
-				
+			<div class="form-group">
+				<label for="analyticssubdomain" class="checkbox">
+					<input id="analyticssubdomain" type="checkbox" data-bind="checked: analyticssubdomain">
+					<?php print _("Google Analytics Sub-Domain"); ?>
+				</label>
+				<span class="help-block"><?php print _("Control Sub-domains; e.g. www.your_domain.com, apps.your_domain.com, and store.your_domain.com."); ?></span>
+			</div>
+			
+			<div class="form-group" data-bind="visible: analyticssubdomain">
+				<label for="analyticsdomain" class="control-label"><?php print _("Google Analytics Domain:"); ?></label>
+				<div>
+					<input id="analyticsdomain" type="text" data-bind="value: analyticsdomain, enable: analyticssubdomain" class="form-control">
+				</div>
+			</div>
+			
+			<div class="form-group">
+					<label for="analyticsmultidomain" class="checkbox">
+						<input id="analyticsmultidomain" type="checkbox" data-bind="checked: analyticsmultidomain">
+						<?php print _("Google Analytics Multi-Domain"); ?>
+					</label>
+					
+					<span class="help-block"><?php print _("Control Top Level Domains, e.g. your_domain.com, your_domain.org, your_domain.es "); ?></span>
+			</div>
 			
 			<div class="form-group">
 				<label for="sitemap" class="control-label"><?php print _("Sitemap:"); ?></label>
 				<div>
 					<span class="read-only" data-bind="text: $parent.siteMap"></span> <a data-bind="click: $parent.showVerificationDialog"><?php print _("Generate Verification File"); ?></a>
 				</div>
-			</div>	
+			</div>
 		
 		</div>	
 		<!-- /.section-analytics -->
+		
+		<div class="section-formscaptcha hidden">
+			
+			<div class="form-group">
+				<label for="formPublicId" class="control-label"><?php print _("reCaptcha Public ID:"); ?></label>
+				<div>
+					<input id="formPublicId" type="text" data-bind="value: formPublicId" class="form-control">
+					<span class="help-block"><?php print _("Allows you to put a reCaptcha field on your forms, create here:"); ?> <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="formPrivateId" class="control-label"><?php print _("reCaptcha Private ID:"); ?></label>
+				<div>
+					<input id="formPrivateId" type="text" data-bind="value: formPrivateId" class="form-control">
+					<span class="help-block"><?php print _("Allows you to validate a reCaptcha field from your forms, create here:"); ?> <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
+				</div>
+			</div>
+			
+		</div>	
+		<!-- /.section-social -->
 		
     </form>
     <!-- /.form-horizontal -->

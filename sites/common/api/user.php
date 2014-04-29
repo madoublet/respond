@@ -15,7 +15,6 @@ class UserLoginResource extends Tonic\Resource {
 
         $email = $request['email'];
         $password = $request['password'];
-        $friendlyId = $request['site'];
         
         // get the user from the credentials
         $user = User::GetByEmailPassword($email, $password);
@@ -25,10 +24,10 @@ class UserLoginResource extends Tonic\Resource {
             try{
             
             	// if $site is null, login to the app, else login to the site
-	            $site = Site::GetByFriendlyId($friendlyId);
+	            $site = Site::GetBySiteUniqId(SITE_UNIQ_ID);
 				
 				if($site['SiteId'] == $user['SiteId']){
-					SiteAuthUser::Create($friendlyId, $user);
+					SiteAuthUser::Create(SITE_FRIENDLY_ID, $user);
 	
 					$params = array();
 				}
@@ -173,9 +172,8 @@ class UserAddResource extends Tonic\Resource {
         $role = 'Member';
         $isActive = 0;
         $language = $request['language'];
-        $friendlyId = $request['site'];
         
-        $site = Site::GetByFriendlyId($friendlyId);
+        $site = Site::GetBySiteUniqId(SITE_UNIQ_ID);
 
         $user = User::Add($email, $password, $firstName, $lastName, $role, $language, $isActive, $site['SiteId']);
 

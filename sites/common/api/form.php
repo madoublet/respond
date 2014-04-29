@@ -14,7 +14,7 @@ class FormResource extends Tonic\Resource {
         // parse request
         parse_str($this->request->data, $request);
 
-        $siteUniqId = $request['siteUniqId'];
+        $siteUniqId = SITE_UNIQ_ID;
         $pageUniqId = $request['pageUniqId'];
         $body = $request['body'];
     

@@ -32,7 +32,7 @@ class PageTypeAddResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($pageType);
 
             return $response;
@@ -144,7 +144,7 @@ class PageTypeListAllResource extends Tonic\Resource {
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'applicaton/json';
+            $response->contentType = 'application/json';
             $response->body = json_encode($list);
 
             return $response;

@@ -182,20 +182,39 @@ var pageModel = {
 	    var language = $('html').attr('lang');
 	    
 	    // set the current language
-	    $('.respond-select-language').val(language);
+	    $('select.respond-select-language').val(language);
 	    
 	    // handle the on change for the language
-	    $('.respond-select-language').on('change', function(){
+	    $('select.respond-select-language').on('change', function(){
 		    
 		    // new language
 		    var language = $(this).val();
+		    	
+		    $.ajax({
+				url:  pageModel.apiEndpoint + 'api/site/change/language',
+				type: 'POST',
+				context: this,
+				data: {language: language},
+				success: function(data){
+					location.reload(true); // refresh page to get new language
+				}
+			});
+		    
+	    });
+	    
+	    // handle a language list
+		$('ul.respond-select-language a').on('click', function(){
+		    
+		    // new language
+		    var language = $(this).attr('data-lang');
+		    
 		    var friendlyId = $('body').attr('data-sitefriendlyid');
 		    	
 		    $.ajax({
 				url:  pageModel.apiEndpoint + 'api/site/change/language',
 				type: 'POST',
 				context: this,
-				data: {language: language, friendlyId: friendlyId},
+				data: {language: language},
 				success: function(data){
 					location.reload(true); // refresh page to get new language
 				}

@@ -23,19 +23,18 @@
 
 <body>
 
-<section class="user-selections">
+<section class="settings">
 	
 	{{welcome}}
 
-	<div class="language">
-		<select class="form-control respond-select-language">
-	      <option value="en-us">English</option>
-	      <option value="es-es">Spanish</option>
-	  	</select>
-	</div>
+	<ul class="respond-select-language">
+		<li>{{t}}Language:{{/t}}</li>
+		<li><a data-lang="en-us">English</a></li>
+		<li><a data-lang="en-es">Español</a></li>
+	</ul>
 
 </section>
-<!-- /.user-selections -->  
+<!-- /.settings -->  
 
 <header role="banner">
 
@@ -59,6 +58,7 @@
 			{{menu-primary}}
           	{{search-menu}}
           	<li><a class="cart-toggle"><i class="fa fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+          	<li><a class="settings-toggle"><i class="fa fa-cog"></i></a></li>
 	    </ul>
         
 	  </div>
@@ -133,6 +133,8 @@
   
 {{js}}
 {{js-cart}}
+<script type="text/javascript" src="{{resources}}advanced.js"></script>
+
 {{analytics}}
 
 </body>

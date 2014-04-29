@@ -19,7 +19,6 @@ respond.Login = function(config){
 		
 		var email = $(context).find('.email').val();
 		var password = $(context).find('.password').val();
-		var site = $('body').attr('data-sitefriendlyid');
 		
 		// reset errors
 		$(context).find('.alert-success').hide();
@@ -28,7 +27,7 @@ respond.Login = function(config){
 		$.ajax({
 			url: pageModel.apiEndpoint + 'api/user/login',
 			type: 'POST',
-			data: {email: email, password: password, site: site},
+			data: {email: email, password: password},
 			success: function(data){
 			
 				$(context).find('.alert-success').show();

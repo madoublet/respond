@@ -88,6 +88,8 @@ var themeModel = {
         message.showMessage('progress', $('#msg-applying').val());
         var theme = themeModel.toBeApplied.id();
         
+        var el = e.target;
+        
         $.ajax({
         	url: 'api/theme/apply/' + theme,
 			type: 'POST',
@@ -95,6 +97,8 @@ var themeModel = {
 			success: function(data){
                 $('#applyDialog').modal('hide');
     			message.showMessage('success', $('#msg-applied').val());
+    			
+    			themeModel.theme(theme);
 			}
 		});
     }
