@@ -29,6 +29,7 @@ New in 2.10:
 
 Bug fixes:
 - Resize image bug
+- Stripe subscriptions update
 
 Refactoring:
 - None
