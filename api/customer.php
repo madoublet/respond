@@ -122,27 +122,31 @@ class CustomerGetResource extends Tonic\Resource {
 						$hasCard = true;
 					}
 					
-					if($customer->subscription){					
-						$status = $customer->subscription->status;
-						$plan = $customer->subscription->plan->id;
-						$name  = $customer->subscription->plan->name;
-						//$date = new DateTime( "2011-01-01 15:00:00", $UTC);
+					// get default subscription
+					if(isset($customer->subscriptions->data[0])){		
+					
+						$subscription = $customer->subscriptions->data[0];
+					
+						$status = $subscription->status;
+						$plan = $subscription->plan->id;
+						$name  = $subscription->plan->name;
 						
-						//$utc = new DateTimeZone('UTC');
+						// set sites timezone
 						$local = new DateTimeZone($site['TimeZone']);
 						
 						$date = new DateTime();
-						$date->setTimestamp($customer->subscription->current_period_end);
+						$date->setTimestamp($subscription->current_period_end);
 						$date->setTimezone($local);
 						
+						// crete a renewable readable date
 						$renewalReadable = $date->format('D, M d y h:i:s a');
 						
+						// get currency amount interval
+						$currency = $subscription->plan->currency;
+						$amount = $subscription->plan->amount;
+						$interval = $subscription->plan->interval;
 						
-						//$renewalReadable = date("Y-m-d H:i:s", intval($customer->subscription->current_period_end));
-						$currency = $customer->subscription->plan->currency;
-						$amount = $customer->subscription->plan->amount;
-						$interval = $customer->subscription->plan->interval;
-						
+						// create a readable version of the price
 						$readable = $amount.' / '.$interval.' '.$currency;
 									
 						if($currency = 'usd'){
@@ -154,7 +158,7 @@ class CustomerGetResource extends Tonic\Resource {
 							$status = 'trial';
 						}
 						
-						$end = $customer->subscription->current_period_end;
+						$end = $subscription->current_period_end;
 					}
 					else{
 						$status = 'unsubscribed';
@@ -263,10 +267,20 @@ class CustomerUnsubscribeResource extends Tonic\Resource {
 	            Stripe::setApiKey(STRIPE_API_KEY);
 	
 				$customer = Stripe_Customer::retrieve($site['CustomerId']);
-				$customer->cancelSubscription();
 				
-				// update the session
-	            AuthUser::UpdateSubscription();
+				// retrieve default subscription
+				if(isset($customer->subscriptions->data[0])){
+				
+					$subscription = $customer->subscriptions->data[0];
+						
+					// cancels a subscription	
+					if($subscription != NULL){	
+						$subscription->cancel();
+					}
+					
+					// update the session
+		            AuthUser::UpdateSubscription();
+	            }
 	            
 	            // return a json response
 	            return new Tonic\Response(Tonic\Response::OK); 
@@ -312,10 +326,22 @@ class CustomerPlanChangeResource extends Tonic\Resource {
 	            Stripe::setApiKey(STRIPE_API_KEY);
 	
 				$customer = Stripe_Customer::retrieve($site['CustomerId']);
-				$customer->updateSubscription(array("plan" => $plan, "prorate" => true));
 				
-	            // update the session
-	            AuthUser::UpdateSubscription();
+				// retrieve default subscription
+				if(isset($customer->subscriptions->data[0])){
+				
+					$subscription = $customer->subscriptions->data[0];
+				
+					// updates the subscription	
+					if($subscription != NULL){	
+						$subscription->plan = $plan;
+						$subscription->save();
+					}
+					
+		            // update the session
+		            AuthUser::UpdateSubscription();
+		            
+				}
 	        
 	            // return a json response
 	            return new Tonic\Response(Tonic\Response::OK); 

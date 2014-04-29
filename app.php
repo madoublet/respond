@@ -81,7 +81,7 @@
 	require_once 'dao/Transaction.php';
 	
 	// include external libs
-    require_once 'libs/stripe/lib/Stripe.php';
+    require_once 'libs/stripe-1.13.3/lib/Stripe.php';
 	require_once 'libs/simple_html_dom.php';
 	require_once "libs/lessc.inc.php";
 	require_once 'libs/PasswordHash.php';
