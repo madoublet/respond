@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Respond CMS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-04-22 11:32-0500\n"
+"PO-Revision-Date: 2014-04-28 23:16-0500\n"
 "Last-Translator: Spanti Nicola (RyDroid) <rydroid_trans@yahoo.fr>\n"
 "Language-Team: PIKS-L contact@piks-l.com <contact@piks-l.com>\n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: htmlDialog.php:18
 msgid ". Paste the HTML code below."
-msgstr ".Collez le code HTML ci-dessous."
+msgstr ". Collez le code HTML ci-dessous."
 
 #: layout.php:37
 #: layout.php:33
@@ -57,12 +57,12 @@ msgstr "APP_URL se trouve dans app.php"
 #: index.php:30
 #: undefined.php:30
 msgid "Access Denied"
-msgstr "Accés refusées"
+msgstr "Accés refusé"
 
 #: forgot.php:38
 #: forgot.php:35
 msgid "Access denied"
-msgstr "Accés refusées"
+msgstr "Accés refusé"
 
 #: account.php:14
 #: account.php:56
@@ -142,7 +142,7 @@ msgstr "Ajouter un titre"
 
 #: fontAwesomeDialog.php:30
 msgid "Add Icon"
-msgstr "Ajouter un icône"
+msgstr "Ajouter une icône"
 
 #: slideshowDialog.php:28
 msgid "Add Image Group"
@@ -231,7 +231,7 @@ msgstr "Ajouter une UGS"
 #: scripts.php:86
 #: scripts.php:103
 msgid "Add Script"
-msgstr "Ajouter un Script"
+msgstr "Ajouter un script"
 
 #: admin.php:49
 #: admin.php:98
@@ -276,7 +276,7 @@ msgstr "Ajouter un type"
 #: users.php:85
 #: users.php:142
 msgid "Add User"
-msgstr "Ajouter un Utilisateur"
+msgstr "Ajouter un utilisateur"
 
 #: translations.php:61
 msgid "Add a 25/25/25/25 Column Layout"
@@ -308,7 +308,7 @@ msgstr "Ajouter un formulaire"
 
 #: translations.php:57
 msgid "Add a Full Column Layout"
-msgstr "Ajouter une collones : 100"
+msgstr "Ajouter une collone : 100"
 
 #: translations.php:36
 msgid "Add a Horizontal Rule"
@@ -344,7 +344,7 @@ msgstr "Ajouter une image"
 
 #: htmlDialog.php:28
 msgid "Add your HTML, JS, or HTML here"
-msgstr "Ajouter içci votre HTML, JS ou CSS"
+msgstr "Ajouter içi votre HTML, JS ou CSS"
 
 #: translations.php:40
 msgid "Add your Twitter&reg; feed"
@@ -388,7 +388,7 @@ msgstr "Ajouté dans l'entête de la page, utilisé comme la description dans le
 #: styles.php:36
 #: users.php:33
 msgid "Adding..."
-msgstr "Chargement ..."
+msgstr "Ajout..."
 
 #: pageSettingsDialog.php:54
 msgid "Adds a reference to the selected RSS feeds in the head of the page"
@@ -405,7 +405,7 @@ msgstr "Avancées"
 
 #: menu.php:44
 msgid "Advanced Configurations"
-msgstr "Configurations Avancées"
+msgstr "Configurations avancées"
 
 #: translations.php:26
 msgid "Align text to the center"
@@ -466,7 +466,7 @@ msgstr "Montant"
 #: plans.php:112
 #: plans.php:108
 msgid "Amount (in cents):"
-msgstr "Montant (centimes)"
+msgstr "Montant (centimes) :"
 
 #: settings.php:61
 msgid "Analytics"
@@ -494,7 +494,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer"
 #: account.php:138
 #: account.php:136
 msgid "Are you sure that you want to unsubscribe?"
-msgstr "Êtes-vous sûr de vouloir vous désabonner?"
+msgstr "Êtes-vous sûr de vouloir vous désabonner ?"
 
 #: pageSettingsDialog.php:20
 msgid "Basic"
@@ -515,15 +515,15 @@ msgstr "Voici quelques tests pour aider à résoudre les problèmes courants de 
 
 #: blockConfigDialog.php:21
 msgid "Block Class:"
-msgstr "Class de l'élément"
+msgstr "Classe de l'élément :"
 
 #: blockConfigDialog.php:16
 msgid "Block Id:"
-msgstr "Id de l'élément"
+msgstr "Id de l'élément :"
 
 #: blockConfigDialog.php:26
 msgid "Block Nesting:"
-msgstr "Imbrication de l'élément"
+msgstr "Imbrication de l'élément :"
 
 #: listDialog.php:30
 msgid "Blog"
@@ -536,7 +536,7 @@ msgstr "Texte en gras (surligner le texte en premier)"
 #: create.php:216
 #: create.php:215
 msgid "Bookmark these links for easy access."
-msgstr "Ajouter ces lien en Marque-pages pour un accès rapide."
+msgstr "Ajouter ces lien en marque-pages pour un accès rapide."
 
 #: branding.php:14
 #: branding.php:47
@@ -558,7 +558,7 @@ msgstr "Par ordre de montant"
 #: settings.php:386
 #: settings.php:382
 msgid "By Weight"
-msgstr "Par -oids"
+msgstr "Par poids"
 
 #: elementConfigDialog.php:21
 #: menus.php:132
@@ -1111,7 +1111,7 @@ msgstr "URL personnelle"
 #: test.php:91
 #: test.php:93
 msgid "GD Library is installed"
-msgstr "GD Library est installé"
+msgstr "La librairie GD est installé"
 
 #: slideshowDialog.php:19
 msgid "Gallery"
@@ -1129,7 +1129,7 @@ msgstr "Générer un fichier de vérification"
 #: settings.php:37
 #: settings.php:33
 msgid "Generating..."
-msgstr "Chargement ..."
+msgstr "Génération..."
 
 #: test.php:225
 #: test.php:227
@@ -1284,12 +1284,13 @@ msgstr "Charger une Mise en page"
 #: content.php:79
 #: content.php:76
 msgid "Loading content..."
-msgstr "Chargement ..."
+msgstr "Chargement du contenu..."
 
 #: account.php:184
 #: account.php:182
+#, fuzzy
 msgid "Loading plans..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
 #: featuredDialog.php:24
 #: filesDialog.php:28
@@ -1309,7 +1310,7 @@ msgstr "Chargement ..."
 #: pageSettingsDialog.php:124
 #: pageSettingsDialog.php:131
 msgid "Loading..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
 #: pageSettingsDialog.php:22
 msgid "Location"
@@ -1600,7 +1601,7 @@ msgstr "Pages"
 #: admin.php:202
 #: create.php:184
 msgid "Passcode:"
-msgstr "Passe Code :"
+msgstr "Code d'accès :"
 
 #: forgot.php:37
 #: forgot.php:34
@@ -2059,7 +2060,7 @@ msgstr "Expédié"
 #: settings.php:380
 #: settings.php:376
 msgid "Shipping Calculation:"
-msgstr "Calcul des Frais de port :"
+msgstr "Calcul des frais de port :"
 
 #: settings.php:392
 #: settings.php:388
@@ -2186,7 +2187,7 @@ msgstr "Styles"
 #: styles.php:35
 #: styles.php:31
 msgid "Styles updated successfully"
-msgstr "Styles modifié avec succès"
+msgstr "Styles modifiés avec succès"
 
 #: styles.php:39
 #: styles.php:35
@@ -2237,8 +2238,9 @@ msgstr "Inter-changement effectué avec succés"
 
 #: admin.php:36
 #: admin.php:32
+#, fuzzy
 msgid "Switching..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
 #: elementConfigDialog.php:47
 msgid "Table Columns:"
@@ -2524,7 +2526,7 @@ msgstr "Version d'évalutation"
 #: plans.php:134
 #: plans.php:130
 msgid "Trial Days:"
-msgstr "Jour d'évalutation :"
+msgstr "Jours d'évalutation :"
 
 #: admin.php:64
 #: admin.php:60
@@ -2861,14 +2863,14 @@ msgstr "ex : Numéros de téléphone, Nom, etc."
 #: test.php:55
 #: test.php:57
 msgid "failure"
-msgstr "Échec"
+msgstr "échec"
 
 #: skuDialog.php:42
 msgid "optional"
-msgstr "Facultatif"
+msgstr "facultatif"
 
 #: test.php:55
 #: test.php:57
 msgid "success"
-msgstr "Succès"
+msgstr "succès"
 
