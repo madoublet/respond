@@ -20,11 +20,19 @@
 	define('THUMB_MAX_WIDTH', 200);
 	define('THUMB_MAX_HEIGHT', 200);
 	
+	// advanced SMTP settings (see https://github.com/Synchro/PHPMailer)
+	define('IS_SMTP', false);
+	define('SMTP_HOST', 'smtp.mailserver.com');
+	define('SMTP_AUTH', true);
+	define('SMTP_USERNAME', '');
+	define('SMTP_PASSWORD', '');
+	define('SMTP_SECURE', 'tls');
+	
 	// set default as UTC
 	date_default_timezone_set('UTC');
 	
-    // include setup
-    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/setup.local.php')){
+    // include optional local setup
+    if(file_exists(__DIR__.'/setup.local.php')){
     	include 'setup.local.php';
     }
     else{
@@ -81,6 +89,7 @@
 	require_once 'dao/Transaction.php';
 	
 	// include external libs
+    require_once 'libs/phpmailer/PHPMailerAutoload.php';
     require_once 'libs/stripe-1.13.3/lib/Stripe.php';
 	require_once 'libs/simple_html_dom.php';
 	require_once "libs/lessc.inc.php";

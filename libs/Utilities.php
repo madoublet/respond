@@ -24,10 +24,10 @@ class Utilities
 	}
 	
 	// determines the user's preferred language, ref: http://www.php.net/manual/en/function.http-negotiate-language.php
-	public static function GetPreferredLanguage($available_languages) { 
+	public static function GetPreferredLanguage($available_languages, $default_language = 'en') { 
 	
 		if(count($available_languages) == 0){
-			return 'en';
+			return $default_language;
 		}
     	
     	// if $http_accept_language was left out, read it from the HTTP-Header 
@@ -897,7 +897,7 @@ class Utilities
             '$pageFriendlyId="'.$page['FriendlyId'].'";'.PHP_EOL.
             '$pageTypeUniqId="'.$pageTypeUniqId.'";'.PHP_EOL.
             '$language="'.$site['Language'].'";'.PHP_EOL.
-            'include \''.$rootloc.'libs/Utilities.php\';'.PHP_EOL.
+            'include \'../../'.$rootloc.'libs/Utilities.php\';'.PHP_EOL.
             'include \''.$rootloc.'libs/SiteAuthUser.php\';'.PHP_EOL.
             'include \''.$rootloc.'site.php\';'.PHP_EOL;
         
@@ -1600,14 +1600,33 @@ class Utilities
 	// sends an email
     public static function SendEmail($to, $from, $subject, $content){
     
-    	// send an email
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $headers .= 'From: ' . $from . "\r\n" .
-            		'Reply-To: ' . $from . "\r\n";
-        
-        mail($to, $subject, html_entity_decode($content), $headers); // send email
+    	$mail = new PHPMailer;
+
+		// setup SMTP		
+		if(IS_SMTP == true){
+
+			$mail->isSMTP();                    // Set mailer to use SMTP
+			$mail->Host = SMTP_HOST;  			// Specify main and backup server
+			$mail->SMTPAuth = SMTP_AUTH;        // Enable SMTP authentication
+			$mail->Username = SMTP_USERNAME;    // SMTP username
+			$mail->Password = SMTP_PASSWORD;    // SMTP password
+			$mail->SMTPSecure = SMTP_SECURE;    // Enable encryption, 'ssl' also accepted
+		
+		}
+		
+		$mail->From = $from;
+		$mail->addAddress($to, '');
+		$mail->isHTML(true);
+		
+		$mail->Subject = $subject;
+		$mail->Body    = html_entity_decode($content);
     
+		if(!$mail->send()) {
+		   return true;
+		}
+		
+		return false;    
+		
     }
 
 }
