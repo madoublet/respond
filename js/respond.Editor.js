@@ -2362,8 +2362,8 @@ respond.Editor.GetContent = function(el){
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
 				
 				var h = jQuery.trim($(divs[x]).find('textarea').val());
-				
-				newhtml += '<module id="'+id+'" name="youtube"><div class="video-container">' + h + '</div></module>';
+				h = (h.indexOf('div class="video-container"')==-1 ? '<div class="video-container">' + h + '</div>' : h);
+				newhtml += '<module id="'+id+'" name="youtube">' + h + '</module>';
 			}
 			
 			// generate VIMEO
@@ -2372,8 +2372,8 @@ respond.Editor.GetContent = function(el){
 				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
 				
 				var h = jQuery.trim($(divs[x]).find('textarea').val());
-				
-				newhtml += '<module id="'+id+'" name="vimeo"><div class="video-container">' + h + '</div></module>';
+				h = (h.indexOf('div class="video-container"')==-1 ? '<div class="video-container">' + h + '</div>' : h);
+				newhtml += '<module id="'+id+'" name="vimeo">' + h + '</module>';
 			}
 		
 			// generate UL
