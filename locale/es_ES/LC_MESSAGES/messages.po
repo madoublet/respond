@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Respond CMS\n"
-"Report-Msgid-Bugs-To: JOE BORDES joe@tsolucio.com\n"
-"POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-02-28 15:48-0600\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-29 01:23+0200\n"
+"PO-Revision-Date: 2014-04-29 15:48-0600\n"
 "Last-Translator: JOE BORDES joe@tsolucio.com\n"
 "Language-Team: JPL TSolucio, S.L.\n"
 "Language: es_ES.utf8\n"
@@ -18,2894 +18,2785 @@ msgstr ""
 "X-Generator: Poedit 1.6.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: htmlDialog.php:18
-msgid ". Paste the HTML code below."
-msgstr ". Pega código HTML abajo."
-
-#: layout.php:37
-#: layout.php:33
-msgid "A name is required to add a layout"
-msgstr "Se requiere un nombre para añadir una disposición"
-
-#: scripts.php:37
-#: scripts.php:33
-msgid "A name is required to add a script"
-msgstr "Se requiere un nombre para añadir un script Javascript"
-
-#: snippets.php:37
-#: snippets.php:33
-msgid "A name is required to add a snippet"
-msgstr "Se requiere un nombre para añadir un script PHP"
-
-#: styles.php:37
-#: styles.php:33
-msgid "A name is required to add a stylesheet"
-msgstr "Se requiere un nombre para añadir una hoja de estilo"
-
-#: test.php:200
-#: test.php:202
-msgid "API is working"
-msgstr "API funcionando"
-
-#: test.php:159
-#: test.php:161
-msgid "APP_URL is set in app.php"
-msgstr "La variable APP_URL se define en app.php"
-
-#: index.php:33
-#: index.php:30
-#: undefined.php:30
-msgid "Access Denied"
-msgstr "Acceso Denegado"
-
-#: forgot.php:38
-#: forgot.php:35
-msgid "Access denied"
-msgstr "Acceso denegado"
-
-#: account.php:14
-#: account.php:56
-#: account.php:54
-#: menu.php:39
-msgid "Account"
-msgstr "Cuenta"
-
-#: create.php:197
-#: create.php:200
-msgid "Account created! To get started, click on your login link below."
-msgstr "Cuenta creada! Para empezar haz click en el enlace de acceso."
-
-#: translations.php:33
-msgid "Add Block Quote"
-msgstr "Añadir Cita"
-
-#: pages.php:104
-#: pages.php:338
-#: pages.php:356
-#: pages.php:99
-#: pages.php:337
-#: pages.php:355
-msgid "Add Category"
-msgstr "Añadir Categoría"
-
-#: translations.php:29
-msgid "Add Code"
-msgstr "Añadir Código"
-
-#: codeBlockDialog.php:9
-#: codeBlockDialog.php:26
-#: translations.php:50
-msgid "Add Code Block"
-msgstr "Añadir Bloque de Código"
-
-#: translations.php:41
-msgid "Add Facebook&reg; Like button"
-msgstr "Añadir Me Gusta de Facebook&reg;"
-
-#: translations.php:42
-msgid "Add Facebook&reg; comments"
-msgstr "Añadir Comentarios Facebook&reg;"
-
-#: featuredDialog.php:33
-#: translations.php:45
-msgid "Add Featured Content"
-msgstr "Añadir Contenido Destacado"
-
-#: fieldDialog.php:9
-#: fieldDialog.php:57
-msgid "Add Field"
-msgstr "Añadir Campo"
-
-#: filesDialog.php:13
-#: filesDialog.php:36
-msgid "Add File"
-msgstr "Añadir Fichero"
-
-#: fontAwesomeDialog.php:9
-msgid "Add Font Awesome Icon"
-msgstr "Añadir Icono Font Awesome"
-
-#: translations.php:30
-msgid "Add Font Awesome icon"
-msgstr "Añadir Icono Font Awesome"
-
-#: htmlDialog.php:12
-#: htmlDialog.php:36
-#: translations.php:49
-msgid "Add HTML"
-msgstr "Añadir HTML"
-
-#: translations.php:31
-msgid "Add Headline"
-msgstr "Añadir Cabecera"
-
-#: fontAwesomeDialog.php:30
-msgid "Add Icon"
-msgstr "Añadir Icono"
-
-#: slideshowDialog.php:28
-msgid "Add Image Group"
-msgstr "Añadir Imagen"
-
-#: layout.php:86
-#: layout.php:103
-#: layout.php:82
-#: layout.php:99
-msgid "Add Layout"
-msgstr "Añadir Disposición"
-
-#: linkDialog.php:9
-#: linkDialog.php:41
-msgid "Add Link"
-msgstr "Añadir Enlace"
-
-#: translations.php:28
-msgid "Add Link (select text first)"
-msgstr "Añadir Enlace (selecciona texto primero)"
-
-#: listDialog.php:12
-#: listDialog.php:75
-#: listDialog.php:78
-msgid "Add List"
-msgstr "Añadir Lista"
-
-#: menus.php:66
-#: menus.php:118
-#: menus.php:179
-#: menus.php:62
-#: menus.php:114
-#: menus.php:175
-msgid "Add Menu Item"
-msgstr "Añadir Entrada Menú"
-
-#: menus.php:240
-#: menus.php:262
-#: menus.php:236
-#: menus.php:258
-msgid "Add Menu Type"
-msgstr "Añadir Tipo Menú"
-
-#: translations.php:55
-msgid "Add New Columnar Layout"
-msgstr "Añadir Bloque Encolumnado"
-
-#: pages.php:86
-#: pages.php:156
-#: pages.php:186
-#: pages.php:81
-#: pages.php:151
-#: pages.php:181
-msgid "Add Page"
-msgstr "Añadir Página"
-
-#: pages.php:273
-#: pages.php:272
-msgid "Add Page Type"
-msgstr "Añadir Tipo Página"
-
-#: plans.php:49
-#: plans.php:95
-#: plans.php:142
-#: plans.php:45
-#: plans.php:91
-#: plans.php:138
-msgid "Add Plan"
-msgstr "Añadir Plan"
-
-#: pluginsDialog.php:36
-msgid "Add Plugin"
-msgstr "Añadir Componente"
-
-#: skuDialog.php:9
-#: skuDialog.php:54
-msgid "Add SKU"
-msgstr "Añadir Nº Referencia"
-
-#: translations.php:47
-msgid "Add SKUs"
-msgstr "Añadir Nº Registro"
-
-#: scripts.php:90
-#: scripts.php:107
-#: scripts.php:86
-#: scripts.php:103
-msgid "Add Script"
-msgstr "Añadir Script JS"
-
-#: admin.php:49
-#: admin.php:98
-#: admin.php:215
-#: admin.php:45
-#: admin.php:94
-#: admin.php:211
-msgid "Add Site"
-msgstr "Añadir Sitio"
-
-#: slideshowDialog.php:9
-msgid "Add Slideshow"
-msgstr "Añadir Presentación"
-
-#: snippets.php:90
-#: snippets.php:107
-#: snippets.php:86
-#: snippets.php:103
-msgid "Add Snippet"
-msgstr "Añadir Script PHP"
-
-#: styles.php:88
-#: styles.php:105
-#: styles.php:84
-#: styles.php:101
-msgid "Add Stylesheet"
-msgstr "Añadir Hoja Estilo"
-
-#: translations.php:35
-msgid "Add Table"
-msgstr "Añadir Tabla"
-
-#: pages.php:316
-#: pages.php:315
-msgid "Add Type"
-msgstr "Añadir Tipo"
-
-#: users.php:51
-#: users.php:84
-#: users.php:141
-#: users.php:49
-#: users.php:85
-#: users.php:142
-msgid "Add User"
-msgstr "Añadir Usuario"
-
-#: translations.php:61
-msgid "Add a 25/25/25/25 Column Layout"
-msgstr "Añadir Disposición 25/25/25/25"
-
-#: translations.php:59
-msgid "Add a 30/70 Column Layout"
-msgstr "Añadir Disposición 30/70"
-
-#: translations.php:60
-msgid "Add a 33/33/33 Column Layout"
-msgstr "Añadir Disposición 33/33/33"
-
-#: translations.php:56
-msgid "Add a 50/50 Column Layout"
-msgstr "Añadir Disposición 50/50"
-
-#: translations.php:58
-msgid "Add a 70/30 Column Layout"
-msgstr "Añadir Disposición 70/30"
-
-#: translations.php:46
-msgid "Add a File"
-msgstr "Añadir Fichero"
-
-#: translations.php:48
-msgid "Add a Form"
-msgstr "Añadir Formulario"
-
-#: translations.php:57
-msgid "Add a Full Column Layout"
-msgstr "Añadir Disposición 100%"
-
-#: translations.php:36
-msgid "Add a Horizontal Rule"
-msgstr "Añadir Línea Horizontal"
-
-#: translations.php:34
-msgid "Add a List"
-msgstr "Añadir Lista"
-
-#: translations.php:39
-msgid "Add a Map"
-msgstr "Añadir Mapa"
-
-#: translations.php:32
-msgid "Add a Paragraph"
-msgstr "Añadir Párrafo"
-
-#: translations.php:38
-msgid "Add a Slideshow"
-msgstr "Añadir Presentación"
-
-#: translations.php:44
-msgid "Add a list of pages"
-msgstr "Añadir Lista de Páginas"
-
-#: translations.php:43
-msgid "Add a video"
-msgstr "Añadir Vídeo"
-
-#: translations.php:37
-msgid "Add an Image"
-msgstr "Añadir Imagen"
-
-#: htmlDialog.php:28
-msgid "Add your HTML, JS, or HTML here"
-msgstr "Añade tu HTML, JS o PHP aquí"
-
-#: translations.php:40
-msgid "Add your Twitter&reg; feed"
-msgstr "Añadir Lectura Twitter&reg;"
-
-#: imagesDialog.php:5
-msgid ""
-"Add your content here or click the settings icon to change the image layout"
-msgstr "Añade tu contenido aquí o pulsa el icono de configuración para cambiar la "
-"disposición de la imagen"
-
-#: pageSettingsDialog.php:35
-msgid ""
-"Added to the head of the page, used as the description in search engines and "
-"for lists"
-msgstr "Añadido a la cabecera de la página, utilizado como descripción en "
-"buscadoresy para listas"
-
-#: account.php:41
-#: admin.php:34
-#: menus.php:33
-#: pages.php:35
-#: pages.php:41
-#: pages.php:51
-#: plans.php:34
-#: scripts.php:38
-#: scripts.php:40
-#: snippets.php:38
-#: snippets.php:40
-#: styles.php:38
-#: styles.php:40
-#: users.php:35
-#: account.php:39
-#: admin.php:30
-#: menus.php:29
-#: pages.php:30
-#: pages.php:36
-#: pages.php:46
-#: plans.php:30
-#: profile.php:33
-#: scripts.php:34
-#: scripts.php:36
-#: snippets.php:34
-#: snippets.php:36
-#: styles.php:34
-#: styles.php:36
-#: users.php:33
-msgid "Adding..."
-msgstr "Añadiendo..."
-
-#: pageSettingsDialog.php:54
-msgid "Adds a reference to the selected RSS feeds in the head of the page"
-msgstr "Añade una referencia al RSS seleccionado en la cabecera de la página"
-
-#: users.php:104
-#: users.php:105
-msgid "Administrator"
-msgstr "Administrador"
-
-#: pageSettingsDialog.php:23
-msgid "Advanced"
-msgstr "Avanzado"
-
-#: menu.php:44
-msgid "Advanced Configurations"
-msgstr "Configuraciones Avanzadas"
-
-#: translations.php:26
-msgid "Align text to the center"
-msgstr "Alinea al centro"
-
-#: translations.php:25
-msgid "Align text to the left"
-msgstr "Alinea a la izquierda"
-
-#: translations.php:27
-msgid "Align text to the right"
-msgstr "Alinea a la derecha"
-
-#: listDialog.php:45
-#: pages.php:96
-#: pages.php:99
-#: pages.php:91
-#: pages.php:94
-#: listDialog.php:48
-msgid "All Categories"
-msgstr "Todas las Categorías"
-
-#: create.php:32
-#: pages.php:40
-#: plans.php:33
-#: profile.php:35
-#: users.php:33
-#: create.php:29
-#: pages.php:35
-#: plans.php:29
-#: profile.php:31
-#: users.php:31
-msgid "All fields are required"
-msgstr "Todos los campos son obligatorios"
-
-#: admin.php:33
-#: admin.php:29
-msgid "All fields required"
-msgstr "Todos los campos son obligatorios"
-
-#: settings.php:493
-#: settings.php:489
-msgid "Allows you to moderate comments on your site, create here:"
-msgstr "Te permite moderar los comentarios del sitio, creala aquí:"
-
-#: profile.php:84
-#: users.php:122
-#: profile.php:119
-#: users.php:123
-msgid "Also used as the login"
-msgstr "También se utiliza como acceso"
-
-#: plans.php:62
-#: plans.php:58
-msgid "Amount"
-msgstr "Cantidad"
-
-#: plans.php:112
-#: plans.php:108
-msgid "Amount (in cents):"
-msgstr "Cantidad (en céntimos):"
-
-#: settings.php:61
-msgid "Analytics"
-msgstr "Estadísticas"
-
-#: theme.php:55
-#: theme.php:73
-#: theme.php:88
-#: theme.php:51
-#: theme.php:69
-#: theme.php:84
-msgid "Apply Theme"
-msgstr "Aplicar Tema"
-
-#: theme.php:35
-#: theme.php:31
-msgid "Applying..."
-msgstr "Aplicando..."
-
-#: menus.php:288
-#: menus.php:284
-msgid "Are you sure that you want to delete"
-msgstr "¿Estás seguro que quieres eliminar"
-
-#: account.php:138
-#: account.php:136
-msgid "Are you sure that you want to unsubscribe?"
-msgstr "¿Estás seguro que quieres darte de baja?"
-
-#: pageSettingsDialog.php:20
-msgid "Basic"
-msgstr "Básico"
-
-#: pageSettingsDialog.php:63
-msgid "Begin Date:"
-msgstr "Fecha Inicio:"
-
-#: pageSettingsDialog.php:68
-msgid "Begin Time:"
-msgstr "Hora Inicio"
-
-#: test.php:51
-#: test.php:53
-msgid ""
-"Below are some tests to help troubleshoot common problems with your "
-"installation."
-msgstr "Abajo hay algunas pruebas para ayudar a corregir errores comunes en tu "
-"instalación."
-
-#: blockConfigDialog.php:21
-msgid "Block Class:"
-msgstr "Clase del Bloque:"
-
-#: blockConfigDialog.php:16
-msgid "Block Id:"
-msgstr "Id del Bloque:"
-
-#: blockConfigDialog.php:26
-msgid "Block Nesting:"
-msgstr "Anidamiento de Bloque:"
-
-#: listDialog.php:30
-msgid "Blog"
-msgstr "Blog"
-
-#: translations.php:19
-msgid "Bold Text (select text first)"
-msgstr "Negrita (selecciona texto primero)"
-
-#: create.php:216
-#: create.php:215
-msgid "Bookmark these links for easy access."
-msgstr "Añade estos enlaces a marcadores para tenerlos a mano."
-
-#: branding.php:14
-#: branding.php:47
-#: branding.php:42
-#: menu.php:34
-msgid "Branding"
-msgstr "Marca y Logo"
-
-#: branding.php:35
-#: branding.php:30
-msgid "Branding successfully updated"
-msgstr "Marca y Logo actualizados"
-
-#: settings.php:385
-#: settings.php:381
-msgid "By Order Amount"
-msgstr "Por Tamaño Pedido"
-
-#: settings.php:386
-#: settings.php:382
-msgid "By Weight"
-msgstr "Por Peso"
-
-#: elementConfigDialog.php:21
-#: menus.php:132
-#: menus.php:128
-msgid "CSS Class:"
-msgstr "Clase CSS:"
-
-#: pageSettingsDialog.php:75
-#: pageSettingsDialog.php:132
-msgid "CSS used to render the page"
-msgstr "CSS utilizado para representar la página"
-
-#: test.php:144
-#: test.php:146
-msgid "CURL enabled"
-msgstr "CURL habilitado"
-
-#: listDialog.php:32
-msgid "Calendar"
-msgstr "Calendario"
-
-#: pageSettingsDialog.php:44
-#: pageSettingsDialog.php:53
-msgid "Callout:"
-msgstr "Texto Promocional:"
-
-#: account.php:255
-#: account.php:324
-#: account.php:253
-#: account.php:322
-msgid "Card Code (CVC):"
-msgstr "Código Tarjeta (CVC):"
-
-#: pageSettingsDialog.php:58
-#: pages.php:177
-#: pages.php:172
-#: pageSettingsDialog.php:115
-msgid "Categories:"
-msgstr "Categorías:"
-
-#: pages.php:52
-#: pages.php:47
-msgid "Category added successfully"
-msgstr "Categoría añadida correctamente"
-
-#: pages.php:54
-#: pages.php:49
-msgid "Category removed successfully"
-msgstr "Categoría eliminada correctamente"
-
-#: forgot.php:80
-#: forgot.php:75
-msgid "Change Password"
-msgstr "Cambiar Contraseña"
-
-#: account.php:90
-#: account.php:166
-#: account.php:192
-#: account.php:88
-#: account.php:164
-#: account.php:190
-msgid "Change Plan"
-msgstr "Cambiar Plan"
-
-#: fieldDialog.php:27
-msgid "Checkbox List"
-msgstr "Casilla Verificación"
-
-#: blockConfigDialog.php:29
-#: codeBlockDialog.php:25
-#: configPluginsDialog.php:19
-#: elementConfigDialog.php:56
-#: featuredDialog.php:32
-#: fieldDialog.php:56
-#: filesDialog.php:35
-#: fontAwesomeDialog.php:29
-#: htmlDialog.php:35
-#: linkDialog.php:40
-#: listDialog.php:74
-#: loadLayoutDialog.php:29
-#: pageSettingsDialog.php:82
-#: pluginsDialog.php:35
-#: skuDialog.php:53
-#: slideshowDialog.php:36
-#: account.php:144
-#: account.php:191
-#: account.php:273
-#: account.php:342
-#: admin.php:214
-#: files.php:111
-#: layout.php:102
-#: layout.php:141
-#: menus.php:178
-#: menus.php:215
-#: menus.php:261
-#: menus.php:295
-#: pages.php:185
-#: pages.php:217
-#: pages.php:251
-#: pages.php:315
-#: pages.php:355
-#: pages.php:389
-#: plans.php:141
-#: scripts.php:106
-#: scripts.php:145
-#: settings.php:562
-#: snippets.php:106
-#: snippets.php:145
-#: styles.php:104
-#: styles.php:143
-#: theme.php:87
-#: theme.php:126
-#: users.php:140
-#: users.php:180
-#: account.php:142
-#: account.php:189
-#: account.php:271
-#: account.php:340
-#: admin.php:210
-#: files.php:107
-#: layout.php:98
-#: layout.php:137
-#: menus.php:174
-#: menus.php:211
-#: menus.php:257
-#: menus.php:291
-#: pages.php:180
-#: pages.php:212
-#: pages.php:250
-#: pages.php:314
-#: pages.php:354
-#: pages.php:388
-#: plans.php:137
-#: profile.php:137
-#: scripts.php:102
-#: scripts.php:141
-#: settings.php:558
-#: snippets.php:102
-#: snippets.php:141
-#: styles.php:100
-#: styles.php:139
-#: theme.php:83
-#: theme.php:122
-#: users.php:141
-#: users.php:181
-#: blockConfigDialog.php:47
-#: listDialog.php:77
-#: pageSettingsDialog.php:142
-#: slideshowDialog.php:27
-msgid "Close"
-msgstr "Cerrar"
-
-#: menu.php:19
-msgid "Close Menu"
-msgstr "Cerrar Menú"
-
-#: codeBlockDialog.php:16
-msgid "Code:"
-msgstr "Código:"
-
-#: configPluginsDialog.php:9
-msgid "Configure Plugin"
-msgstr "Configurar Componente"
-
-#: layout.php:134
-#: layout.php:130
-msgid "Confirm that you want to delete"
-msgstr "Confirma que quieres eliminar"
-
-#: scripts.php:138
-#: snippets.php:138
-#: scripts.php:134
-#: snippets.php:134
-msgid "Confirm that you want to delete:"
-msgstr "Confirma que quieres eliminar:"
-
-#: menus.php:210
-#: pages.php:212
-#: styles.php:136
-#: menus.php:206
-#: pages.php:207
-#: styles.php:132
-msgid "Confirm that you want to remove:"
-msgstr "Confirma que quieres quitar:"
-
-#: theme.php:78
-#: theme.php:74
-msgid "Confirm you want to apply:"
-msgstr "Confirma que quieres aplicar:"
-
-#: files.php:100
-#: files.php:96
-msgid "Confirm you want to delete:"
-msgstr "Confirma que quieres eliminar"
-
-#: pages.php:245
-#: pages.php:383
-#: users.php:173
-#: pages.php:240
-#: pages.php:382
-#: users.php:174
-msgid "Confirm you want to remove:"
-msgstr "Confirma que quieres quitar:"
-
-#: theme.php:117
-#: theme.php:113
-msgid "Confirm you want to reset:"
-msgstr "Confirma que quieres reiniciar:"
-
-#: blockConfigDialog.php:39
-msgid "Container Class:"
-msgstr "Clase del Contenedor:"
-
-#: blockConfigDialog.php:34
-msgid "Container Id:"
-msgstr "Id Contenedor:"
-
-#: content.php:14
-msgid "Content"
-msgstr "Contenido"
-
-#: content.php:44
-#: content.php:39
-msgid "Content successfully saved"
-msgstr "Contenido guardado correctamente"
-
-#: users.php:105
-#: users.php:106
-msgid "Contributor"
-msgstr "Contribuidor"
-
-#: create.php:15
-#: create.php:186
-#: create.php:189
-msgid "Create Site"
-msgstr "Crea Sitio"
-
-#: htmlDialog.php:18
-msgid "Create your widget at:"
-msgstr "Crea tu widget en:"
-
-#: users.php:61
-#: users.php:60
-msgid "Created"
-msgstr "Creado"
-
-#: create.php:34
-#: create.php:31
-msgid "Creating..."
-msgstr "Creando..."
-
-#: account.php:250
-#: account.php:319
-#: account.php:248
-#: account.php:317
-msgid "Credit Card #:"
-msgstr "Nº Tarjeta Crédito:"
-
-#: account.php:40
-#: account.php:38
-msgid "Credit Card Update Successful"
-msgstr "Tarjeta de Crédito actualizada correctamente"
-
-#: account.php:43
-#: account.php:41
-msgid "Credit Card declined"
-msgstr "Tarjeta de Crédito rechazada"
-
-#: plans.php:64
-#: plans.php:60
-msgid "Currency"
-msgstr "Moneda"
-
-#: plans.php:127
-#: settings.php:350
-#: plans.php:123
-#: settings.php:346
-msgid "Currency:"
-msgstr "Moneda:"
-
-#: linkDialog.php:29
-#: menus.php:164
-#: menus.php:160
-msgid "Custom URL"
-msgstr "URL Personalizada"
-
-#: admin.php:67
-#: admin.php:63
-msgid "Customer"
-msgstr "Cliente"
-
-#: test.php:127
-#: test.php:129
-msgid "Database connection works"
-msgstr "Conexión a la base de datos funciona"
-
-#: listDialog.php:38
-#: listDialog.php:41
-msgid "Date Created (newest first)"
-msgstr "Fecha Creación (más reciente primero)"
-
-#: settings.php:195
-#: settings.php:191
-msgid "Default Language:"
-msgstr "Idioma por defecto:"
-
-#: pages.php:299
-#: pages.php:298
-msgid "Default Layout:"
-msgstr "Disposición por defecto:"
-
-#: branding.php:59
-#: branding.php:54
-msgid "Default Logo:"
-msgstr "Logo por defecto:"
-
-#: pages.php:304
-#: pages.php:303
-msgid "Default Styles:"
-msgstr "Estilos por defecto:"
-
-#: listDialog.php:53
-#: listDialog.php:56
-msgid "Description Length:"
-msgstr "Longitud Descripción:"
-
-#: htmlDialog.php:21
-#: pageSettingsDialog.php:33
-#: skuDialog.php:21
-#: pages.php:172
-#: pages.php:167
-#: pageSettingsDialog.php:43
-msgid "Description:"
-msgstr "Descripción:"
-
-#: listDialog.php:27
-#: slideshowDialog.php:16
-msgid "Display:"
-msgstr "Pantalla:"
-
-#: settings.php:81
-#: settings.php:77
-msgid "Domain:"
-msgstr "Dominio:"
-
-#: filesDialog.php:4
-msgid "Download"
-msgstr "Descarga"
-
-#: pages.php:126
-#: pages.php:121
-msgid "Draft"
-msgstr "Borrador"
-
-#: content.php:52
-#: content.php:47
-msgid "Draft saved, launching preview"
-msgstr "Borrador guardado, mostrando previsualización"
-
-#: content.php:47
-#: content.php:42
-msgid "Draft successfully saved"
-msgstr "Borrador guardado correctamente"
-
-#: imagesDialog.php:50
-#: files.php:35
-#: files.php:52
-#: files.php:31
-#: files.php:48
-msgid "Drag file here or click to upload"
-msgstr "Arrastra el fichero aquí o haz click para cargar"
-
-#: files.php:36
-#: files.php:32
-msgid "Drag file here to replace selected file"
-msgstr "Arrastra el fichero aquí para reemplazar fichero seleccionado"
-
-#: fieldDialog.php:26
-msgid "Dropdown List"
-msgstr "Lista Desplegable"
-
-#: elementConfigDialog.php:16
-msgid "Element Id:"
-msgstr "Id Elemento:"
-
-#: forgot.php:33
-#: forgot.php:30
-msgid "Email sent"
-msgstr "Email enviado"
-
-#: create.php:60
-#: forgot.php:52
-#: index.php:44
-#: profile.php:81
-#: users.php:120
-#: forgot.php:47
-#: index.php:41
-#: profile.php:117
-#: users.php:121
-msgid "Email:"
-msgstr "Email:"
-
-#: pageSettingsDialog.php:73
-msgid "End Date:"
-msgstr "Fecha Fin:"
-
-#: pageSettingsDialog.php:78
-msgid "End Time:"
-msgstr "Hora Fin:"
-
-#: imagesDialog.php:4
-#: imagesDialog.php:6
-msgid "Enter caption"
-msgstr "Introduzca subtítulo"
-
-#: account.php:246
-#: account.php:244
-msgid "Enter the details for your new credit card."
-msgstr "Introduce los detalles de tu tajeta de crédito."
-
-#: create.php:45
-msgid ""
-"Enter your site name, login, password, and timezone to create your site."
-msgstr "Introduce el nombre, el acceso, la contraseña y la zona horaria para crear "
-"tu sitio."
-
-#: pageSettingsDialog.php:21
-msgid "Event"
-msgstr "Evento"
-
-#: imagesDialog.php:32
-msgid "Existing Images"
-msgstr "Imágenes existentes"
-
-#: linkDialog.php:16
-#: menus.php:149
-#: menus.php:145
-msgid "Existing Page"
-msgstr "Página Existente"
-
-#: account.php:234
-#: account.php:260
-#: account.php:329
-#: account.php:232
-#: account.php:258
-#: account.php:327
-msgid "Expires:"
-msgstr "Caduca:"
-
-#: settings.php:490
-#: settings.php:486
-msgid "Facebook App ID:"
-msgstr "Facebook App ID:"
-
-#: featuredDialog.php:13
-msgid "Feature Content"
-msgstr "Contenido Destacado"
-
-#: featuredDialog.php:5
-msgid "Featured content:"
-msgstr "Contenido destacado:"
-
-#: fieldDialog.php:16
-msgid "Field Name:"
-msgstr "Nombre Campo:"
-
-#: fieldDialog.php:22
-msgid "Field Type:"
-msgstr "Tipo Campo:"
-
-#: settings.php:553
-#: settings.php:549
-msgid "File Contents:"
-msgstr "Contenigo Fichero:"
-
-#: filesDialog.php:5
-msgid "File Description"
-msgstr "Descripción Fichero"
-
-#: settings.php:547
-#: settings.php:543
-msgid "File Name:"
-msgstr "Nombre Fichero:"
-
-#: files.php:14
-#: files.php:45
-#: files.php:41
-#: menu.php:36
-msgid "Files"
-msgstr "Ficheros"
-
-#: listDialog.php:43
-#: listDialog.php:46
-msgid "Filter By Category:"
-msgstr "Filtrar por Categoría:"
-
-#: profile.php:54
-#: users.php:92
-#: profile.php:96
-#: users.php:93
-msgid "First Name:"
-msgstr "Nombre:"
-
-#: settings.php:384
-#: settings.php:380
-msgid "Flat Rate"
-msgstr "Tarifa Plana"
-
-#: menus.php:53
-#: menus.php:49
-msgid "Footer"
-msgstr "Pie de Página"
-
-#: test.php:258
-#: test.php:260
-msgid "For help troubleshooting your installation, visit:"
-msgstr "Para obtener ayuda configurando tu instalación visita:"
-
-#: forgot.php:15
-msgid "Forgot Password"
-msgstr "Olvidé mi contraseña"
-
-#: index.php:61
-#: index.php:58
-msgid "Forgot your Password?"
-msgstr "¿Olvidaste tu contraseña?"
-
-#: settings.php:92
-#: settings.php:88
-msgid "Forms submitted on your site will be sent to this email address"
-msgstr "Los formularios rellenados en tu sitio se mandarán a esta dirección de email"
-
-#: settings.php:383
-#: settings.php:379
-msgid "Free"
-msgstr "Gratis"
-
-#: menus.php:252
-#: menus.php:248
-msgid "Friendly Id:"
-msgstr "Id Amigable:"
-
-#: pages.php:166
-#: pages.php:293
-#: pages.php:348
-#: pages.php:161
-#: pages.php:292
-#: pages.php:347
-msgid "Friendly URL:"
-msgstr "URL Amigable:"
-
-#: test.php:91
-#: test.php:93
-msgid "GD Library is installed"
-msgstr "Librería GD instalada"
-
-#: slideshowDialog.php:19
-msgid "Gallery"
-msgstr "Galería"
-
-#: settings.php:515
-#: settings.php:540
-#: settings.php:563
-#: settings.php:511
-#: settings.php:536
-#: settings.php:559
-msgid "Generate Verification File"
-msgstr "Generar Fichero de Verificación"
-
-#: settings.php:37
-#: settings.php:33
-msgid "Generating..."
-msgstr "Generando..."
-
-#: test.php:225
-#: test.php:227
-msgid "Gettext is installed"
-msgstr "Gettext instalado"
-
-#: settings.php:503
-#: settings.php:499
-msgid "Google Analytics ID:"
-msgstr "Google Analytics ID:"
-
-#: settings.php:506
-#: settings.php:502
-msgid ""
-"Google Analytics Web Property Id (adds analytics to all pages on your site)"
-msgstr "Google Analytics Web Property Id (añade analytics a todas las páginas del "
-"sitio)"
-
-#: htmlDialog.php:4
-msgid "HTML block"
-msgstr "Bloque HTML"
-
-#: pageSettingsDialog.php:68
-#: pageSettingsDialog.php:125
-msgid "HTML used to render the page"
-msgstr "HTML utilizado para representar la página"
-
-#: htmlDialog.php:26
-msgid "HTML:"
-msgstr "HTML:"
-
-#: fieldDialog.php:47
-msgid "Helper Text:"
-msgstr "Texto de Ayuda:"
-
-#: plans.php:60
-#: plans.php:56
-msgid "Id"
-msgstr "Id"
-
-#: plans.php:101
-#: plans.php:97
-msgid "Id:"
-msgstr "Id:"
-
-#: slideshowDialog.php:9
-msgid "Image Group"
-msgstr "Grupo de Imagenes"
-
-#: elementConfigDialog.php:36
-msgid "Image Link:"
-msgstr "Enlace Imagen"
-
-#: elementConfigDialog.php:27
-msgid "Image Orientation:"
-msgstr "Orientación Imagen:"
-
-#: slideshowDialog.php:22
-#: slideshowDialog.php:28
-msgid "In Pixels"
-msgstr "En Pixels"
-
-#: plans.php:63
-#: plans.php:59
-msgid "Interval"
-msgstr "Intérvalo"
-
-#: plans.php:118
-#: plans.php:114
-msgid "Interval:"
-msgstr "Intérvalo:"
-
-#: translations.php:20
-msgid "Italicize Text (select text first)"
-msgstr "Itálica  (selecciona texto primero)"
-
-#: pageSettingsDialog.php:39
-#: pageSettingsDialog.php:48
-msgid "Keywords:"
-msgstr "Palabras Clave:"
-
-#: menus.php:127
-#: menus.php:123
-msgid "Label:"
-msgstr "Etiqueta:"
-
-#: create.php:75
-#: profile.php:68
-#: users.php:110
-#: create.php:78
-#: profile.php:106
-#: users.php:111
-msgid "Language:"
-msgstr "Idioma:"
-
-#: profile.php:61
-#: users.php:97
-#: profile.php:101
-#: users.php:98
-msgid "Last Name:"
-msgstr "Apellidos:"
-
-#: pages.php:128
-#: pages.php:123
-msgid "Last updated"
-msgstr "Ultima actualización"
-
-#: pageSettingsDialog.php:93
-msgid "Latitude:"
-msgstr "Latitud:"
-
-#: layout.php:14
-#: menu.php:50
-msgid "Layout"
-msgstr "Disposición"
-
-#: layout.php:35
-#: layout.php:31
-msgid "Layout saved"
-msgstr "Disposición guardada:"
-
-#: layout.php:38
-#: layout.php:34
-msgid "Layout successfully added"
-msgstr "Disposición añadida correctamente"
-
-#: layout.php:40
-#: layout.php:36
-msgid "Layout successfully removed"
-msgstr "Disposición eliminada correctamente"
-
-#: pageSettingsDialog.php:65
-#: pageSettingsDialog.php:122
-msgid "Layout:"
-msgstr "Disposición:"
-
-#: elementConfigDialog.php:29
-msgid "Left of the text"
-msgstr "A la izquierda del texto"
-
-#: listDialog.php:29
-msgid "List"
-msgstr "Lista"
-
-#: loadLayoutDialog.php:12
-#: translations.php:54
-msgid "Load Existing Page"
-msgstr "Cargar Página Existente"
-
-#: loadLayoutDialog.php:30
-msgid "Load Layout"
-msgstr "Cargar Disposición"
-
-#: content.php:79
-#: content.php:76
-msgid "Loading content..."
-msgstr "Cargando contenido..."
-
-#: account.php:184
-#: account.php:182
-msgid "Loading plans..."
-msgstr "Cargando planes..."
-
-#: featuredDialog.php:24
-#: filesDialog.php:28
-#: fontAwesomeDialog.php:22
-#: linkDialog.php:24
-#: loadLayoutDialog.php:22
-#: pageSettingsDialog.php:67
-#: pageSettingsDialog.php:74
-#: pluginsDialog.php:27
-#: files.php:78
-#: menus.php:100
-#: users.php:68
-#: files.php:74
-#: menus.php:96
-#: pages.php:136
-#: users.php:67
-#: pageSettingsDialog.php:124
-#: pageSettingsDialog.php:131
-msgid "Loading..."
-msgstr "Cargando..."
-
-#: pageSettingsDialog.php:22
-msgid "Location"
-msgstr "Ubicación"
-
-#: pageSettingsDialog.php:88
-msgid "Location:"
-msgstr "Ubicación:"
-
-#: index.php:15
-#: index.php:54
-#: index.php:51
 #: undefined.php:15
+#: index.php:15
+#: index.php:51
+#: sites/common/modules/login.php:18
+#: js/translations.php:57
 msgid "Login"
 msgstr "Acceso"
 
-#: create.php:202
-#: create.php:205
-msgid "Login here to update your site:"
-msgstr "Accede aquí para actualizar tu sitio:"
-
-#: index.php:32
-#: index.php:29
 #: undefined.php:29
+#: index.php:29
 msgid "Login..."
 msgstr "Acceso..."
 
-#: branding.php:37
-#: branding.php:32
-msgid "Logo successfully updated"
-msgstr "Logo actualizado correctamente"
+#: undefined.php:30
+#: index.php:30
+msgid "Access Denied"
+msgstr "Acceso Denegado"
 
-#: pageSettingsDialog.php:98
-msgid "Longitude:"
-msgstr "Longitud:"
-
-#: layout.php:95
-#: layout.php:91
-msgid "Lowercase, no space, leave the .html off"
-msgstr "En minúsculas, sin espacios y no pongas la extensión .html"
-
-#: styles.php:97
-#: styles.php:93
-msgid "Lowercase, no spaces, leave the .less off"
-msgstr "En minúsculas, sin espacios y no pongas la extensión .less"
-
-#: menus.php:254
-#: menus.php:250
-msgid "Lowercase, no spaces, must be unique"
-msgstr "En minúsculas, sin espacios, debe ser único"
-
-#: scripts.php:99
-#: scripts.php:95
+#: undefined.php:38
 msgid ""
-"Lowercase, no spaces, no special characters (., !, etc), leave the .js off"
-msgstr "En minúsculas, sin espacios, sin caracteres especiales (., !, etc) y no "
-"pongas la extensión .js"
-
-#: snippets.php:99
-#: snippets.php:95
-msgid ""
-"Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
-msgstr "En minúsculas, sin espacios, sin caracteres especiales (., !, etc) y no "
-"pongas la extensión .php"
-
-#: test.php:174
-#: test.php:176
-msgid "MOD_REWRITE is working"
-msgstr "MOD_REWRITE funcionando"
-
-#: test.php:239
-#: test.php:241
-msgid "Magic Quotes not automatically Escaping"
-msgstr "Magic Quotes no está funcionando automáticamente."
-
-#: account.php:8
-msgid "Manage Account"
-msgstr "Administrar Cuenta"
-
-#: menu.php:25
-msgid "Manage your Site"
-msgstr "Administra tus Sitios"
-
-#: listDialog.php:33
-msgid "Map"
-msgstr "Mapa"
-
-#: menu.php:65
-msgid "Menu"
-msgstr "Menú"
-
-#: menus.php:14
-#: menu.php:32
-msgid "Menus"
-msgstr "Menús"
-
-#: plans.php:121
-#: plans.php:117
-msgid "Month"
-msgstr "Mes"
-
-#: profile.php:92
-#: users.php:128
-#: profile.php:125
-#: users.php:129
-msgid "More than 5 characters, 1 letter and 1 special character"
-msgstr "Más de 5 caracteres, 1 letra y 1 caracter especial"
-
-#: pages.php:295
-#: pages.php:294
-msgid "Must be lowercase with no spaces."
-msgstr "Debe ser minúsculas y sin espacios."
-
-#: listDialog.php:37
-#: plans.php:61
-#: plans.php:57
-#: listDialog.php:40
-msgid "Name"
-msgstr "Nombre"
-
-#: pages.php:287
-#: pages.php:286
-msgid "Name (Plural):"
-msgstr "Nombre (plural):"
-
-#: pages.php:281
-#: pages.php:280
-msgid "Name (singular):"
-msgstr "Nombre (singular):"
-
-#: pages.php:34
-#: pages.php:29
-msgid "Name and Friendly URL are required"
-msgstr "Nombre y URL Amigable son obligatorios"
-
-#: pageSettingsDialog.php:22
-#: layout.php:93
-#: menus.php:247
-#: pages.php:161
-#: pages.php:343
-#: plans.php:106
-#: scripts.php:97
-#: snippets.php:97
-#: styles.php:95
-#: layout.php:89
-#: menus.php:243
-#: pages.php:156
-#: pages.php:342
-#: plans.php:102
-#: scripts.php:93
-#: snippets.php:93
-#: styles.php:91
-#: pageSettingsDialog.php:32
-msgid "Name:"
-msgstr "Nombre:"
-
-#: blockConfigDialog.php:29
-msgid "Nested in .container block"
-msgstr "Anidado dentro del bloque .container"
-
-#: account.php:272
-#: account.php:270
-msgid "New Card"
-msgstr "Nueva Tarjeta"
-
-#: imagesDialog.php:16
-msgid "New Images"
-msgstr "Nuevas Imágenes"
-
-#: account.php:42
-#: account.php:40
-msgid "New card added"
-msgstr "Nueva tarjeta añadida"
-
-#: fieldDialog.php:36
-#: listDialog.php:66
-#: listDialog.php:69
-msgid "No"
-msgstr "No"
-
-#: files.php:80
-#: files.php:76
-msgid "No files here. Click Upload File to get started."
-msgstr "No hay ficheros disponibles. Pulsa sobre Cargar Fichero para empezar."
-
-#: menus.php:102
-#: menus.php:98
-msgid "No menu items here. Click Add Menu Item to get started."
-msgstr "No hay entradas de menú. Pulsa sobre Añadir Entrada de Menú para empezar."
-
-#: pages.php:143
-#: pages.php:138
-msgid "No pages here. Click Add Page to get started."
-msgstr "No hay páginas disponibles. Pulsa sobre Añadir Página para empezar."
-
-#: pageSettingsDialog.php:29
-#: pages.php:168
-#: pages.php:163
-#: pageSettingsDialog.php:39
-msgid "No spaces, no special characters, dashes allowed."
-msgstr "No se permiten espacios, caracteres especiales ni guiones."
-
-#: elementConfigDialog.php:31
-msgid "No text"
-msgstr "Sin texto"
-
-#: users.php:70
-#: users.php:69
-msgid "No users here. Click Add User to get started."
-msgstr "No hay usuarios. Pulsa sobre Añadir Usuario para empezar."
-
-#: skuDialog.php:36
-msgid "Not Shipped"
-msgstr "Sin Envíos"
-
-#: settings.php:368
-#: settings.php:364
-msgid "Optionally used to calculate shipping costs"
-msgstr "Se utiliza opcionalmente para calcular costes de envío"
-
-#: fieldDialog.php:41
-msgid "Options:"
-msgstr "Opciones:"
-
-#: listDialog.php:35
-#: listDialog.php:38
-msgid "Order By:"
-msgstr "Ordenar Por:"
-
-#: test.php:61
-#: test.php:63
-msgid "PDO Enabled"
-msgstr "PDO Habilitado"
-
-#: test.php:106
-#: test.php:108
-msgid "PHP Version is greater than 5.3"
-msgstr "Versión de PHP mayor que 5.3"
-
-#: listDialog.php:63
-#: listDialog.php:66
-msgid "Page Results:"
-msgstr "Resultados Página:"
-
-#: pageSettingsDialog.php:15
-#: translations.php:52
-msgid "Page Settings"
-msgstr "Configuración Página"
-
-#: listDialog.php:58
-#: listDialog.php:61
-msgid "Page Size:"
-msgstr "Tamaño Página:"
-
-#: listDialog.php:20
-msgid "Page Type:"
-msgstr "Tipo Página:"
-
-#: pages.php:36
-#: pages.php:31
-msgid "Page added successfully"
-msgstr "Página añadida correctamente"
-
-#: pages.php:38
-#: pages.php:33
-msgid "Page removed successfully"
-msgstr "Página eliminada correctamente"
-
-#: pages.php:42
-#: pages.php:37
-msgid "Page type added successfully"
-msgstr "Tipo Página añadida correctamente"
-
-#: pages.php:46
-#: pages.php:41
-msgid "Page type removed successfully"
-msgstr "Tipo Página eliminada correctamente"
-
-#: pages.php:44
-#: pages.php:39
-msgid "Page type updated successfully"
-msgstr "Tipo Página actualizada correctamente"
-
-#: pages.php:14
-#: menu.php:31
-#: menu.php:68
-msgid "Pages"
-msgstr "Páginas"
-
-#: admin.php:206
-#: create.php:181
-#: admin.php:202
-#: create.php:184
-msgid "Passcode:"
-msgstr "Código de Paso:"
-
-#: forgot.php:37
-#: forgot.php:34
-msgid "Password successfully reset"
-msgstr "Contraseña reiniciada correctamente"
-
-#: create.php:65
-#: forgot.php:70
-#: index.php:49
-#: profile.php:89
-#: users.php:126
-#: create.php:68
-#: forgot.php:65
-#: index.php:46
-#: profile.php:123
-#: users.php:127
-msgid "Password:"
-msgstr "Contraseña:"
-
-#: codeBlockDialog.php:18
-msgid "Paste your code in the textarea above."
-msgstr "Pega tu código en el área de texto de arriba."
-
-#: settings.php:343
-#: settings.php:339
-msgid "PayPal ID:"
-msgstr "PayPal ID:"
-
-#: account.php:46
-#: account.php:44
-msgid "Paying..."
-msgstr "Pagando:"
-
-#: account.php:47
-#: account.php:45
-msgid "Payment successful"
-msgstr "Pago correcto:"
-
-#: account.php:101
-#: account.php:99
-msgid "Payment:"
-msgstr "Pago:"
-
-#: settings.php:59
-msgid "Payments"
-msgstr "Pagos"
-
-#: admin.php:66
-#: admin.php:62
-msgid "Plan"
-msgstr "Plan"
-
-#: plans.php:35
-#: plans.php:31
-msgid "Plan added successfully"
-msgstr "Plan añadido correctamente"
-
-#: plans.php:37
-#: plans.php:33
-msgid "Plan updated successfully"
-msgstr "Plan actualizado correctamente"
-
-#: account.php:86
-#: account.php:84
-msgid "Plan:"
-msgstr "Plan:"
-
-#: admin.php:46
-#: plans.php:14
-#: plans.php:46
-#: admin.php:42
-#: plans.php:42
-msgid "Plans"
-msgstr "Planes"
-
-#: pages.php:244
-msgid "Please remove all pages first."
-msgstr "Por favor, elimina todas las páginas primero."
-
-#: loadLayoutDialog.php:4
-msgid "Please select a layout"
-msgstr "Selecciona una disposición"
-
-#: featuredDialog.php:4
-msgid "Please select a page to feature"
-msgstr "Selecciona una página para destacar"
-
-#: pluginsDialog.php:4
-msgid "Please select a plugin"
-msgstr "Selecciona un componente"
-
-#: translations.php:51
-msgid "Plugins"
-msgstr "Complementos"
-
-#: translations.php:53
-msgid "Preview"
-msgstr "Previsualización"
-
-#: skuDialog.php:26
-msgid "Price:"
-msgstr "Precio:"
-
-#: menus.php:52
-#: menus.php:48
-msgid "Primary"
-msgstr "Primario"
-
-#: settings.php:89
-#: settings.php:85
-msgid "Primary Email:"
-msgstr "Email Primario:"
+"You have reached this page because of an error in your configuration.  "
+"Please review your configuration. To review installation instructions, visit:"
+msgstr "Ha llegado a esta página debido a un error en la configuración. Por favor "
+"revisa tu configuración. Para leer las instrucciones de instalación, visite "
+"el sitio:"
 
 #: profile.php:14
-#: profile.php:44
 #: profile.php:46
-#: menu.php:69
+#: modules/menu.php:70
 msgid "Profile"
 msgstr "Perfil"
 
-#: profile.php:33
-msgid "Profile updated successfully"
-msgstr "Perfil actualizado correctamente"
-
-#: pageSettingsDialog.php:50
-#: pageSettingsDialog.php:108
-msgid "RSS:"
-msgstr "RSS:"
-
-#: fieldDialog.php:28
-msgid "Radio button List"
-msgstr "Lista Botones de Radio"
-
-#: menus.php:72
-#: settings.php:56
-#: menus.php:68
-#: settings.php:52
-msgid "Re-publish now"
-msgstr "Publicar de nuevo ahora"
-
-#: create.php:70
-#: profile.php:97
-#: users.php:132
-#: create.php:73
-#: profile.php:129
-#: users.php:133
-msgid "Re-type Password:"
-msgstr "Repite Contraseña:"
-
-#: pages.php:390
-#: pages.php:389
-msgid "Remove Category"
-msgstr "Eliminar Categoría"
-
-#: pages.php:377
-#: pages.php:376
-msgid "Remove Cateogry"
-msgstr "Eliminar Categoría"
-
-#: files.php:93
-#: files.php:112
-#: files.php:89
-#: files.php:108
-msgid "Remove File"
-msgstr "Eliminar Fichero"
-
-#: layout.php:127
-#: layout.php:142
-#: layout.php:123
-#: layout.php:138
-msgid "Remove Layout"
-msgstr "Eliminar Disposición"
-
-#: menus.php:204
-#: menus.php:216
-#: menus.php:200
-#: menus.php:212
-msgid "Remove Menu Item"
-msgstr "Eliminar Entrada Menú"
-
-#: menus.php:281
-#: menus.php:296
-#: menus.php:277
-#: menus.php:292
-msgid "Remove Menu Type"
-msgstr "Eliminar Tipo Menú"
-
-#: pages.php:207
-#: pages.php:218
-#: pages.php:202
-#: pages.php:213
-msgid "Remove Page"
-msgstr "Eliminar Página"
-
-#: pages.php:239
-#: pages.php:234
-msgid "Remove Page Type"
-msgstr "Eliminar Tipo Página"
-
-#: scripts.php:131
-#: scripts.php:146
-#: scripts.php:127
-#: scripts.php:142
-msgid "Remove Script"
-msgstr "Eliminar Script JS"
-
-#: snippets.php:131
-#: snippets.php:146
-#: snippets.php:127
-#: snippets.php:142
-msgid "Remove Snippet"
-msgstr "Eliminar Script PHP"
-
-#: styles.php:129
-#: styles.php:144
-#: styles.php:125
-#: styles.php:140
-msgid "Remove Stylesheet"
-msgstr "Eliminar Hoja de Estilo"
-
-#: pages.php:252
-#: pages.php:251
-msgid "Remove Type"
-msgstr "Eliminar Tipo"
-
-#: users.php:166
-#: users.php:181
-#: users.php:167
-#: users.php:182
-msgid "Remove User"
-msgstr "Eliminar Usuario"
-
-#: pages.php:37
-#: pages.php:45
-#: pages.php:53
-#: scripts.php:41
-#: snippets.php:41
-#: styles.php:41
-#: users.php:39
-#: pages.php:32
-#: pages.php:40
-#: pages.php:48
-#: profile.php:37
-#: scripts.php:37
-#: snippets.php:37
-#: styles.php:37
-#: users.php:37
-msgid "Removing..."
-msgstr "Eliminando..."
-
-#: admin.php:68
-#: admin.php:64
-msgid "Renewal Date"
-msgstr "Fecha Renovación"
-
-#: account.php:95
-#: account.php:93
-msgid "Renewal Date:"
-msgstr "Fecha Renovación:"
-
-#: menu.php:45
-msgid "Republish"
-msgstr "Publicar de nuevo"
-
-#: fieldDialog.php:33
-msgid "Required:"
-msgstr "Obligatorio:"
-
-#: theme.php:56
-#: theme.php:112
-#: theme.php:127
-#: theme.php:52
-#: theme.php:108
-#: theme.php:123
-msgid "Reset Theme"
-msgstr "Reiniciar Tema"
-
-#: forgot.php:36
-#: theme.php:33
-#: forgot.php:33
-#: theme.php:29
-msgid "Resetting..."
-msgstr "Reiniciando..."
-
-#: content.php:72
-#: content.php:67
-msgid "Return"
-msgstr "Volver"
-
-#: content.php:85
-#: content.php:82
-msgid "Return to Editor"
-msgstr "Volver al Editor"
-
-#: forgot.php:87
-#: forgot.php:82
-msgid "Return to Login"
-msgstr "Volver a la Pantalla de Acceso"
-
-#: forgot.php:75
-#: forgot.php:70
-msgid "Retype Password:"
-msgstr "Repite la Contraseña:"
-
-#: elementConfigDialog.php:30
-msgid "Right of the text"
-msgstr "A la derecha del tecto"
-
-#: users.php:102
-#: users.php:103
-msgid "Role:"
-msgstr "Rol:"
-
-#: skuDialog.php:16
-msgid "SKU:"
-msgstr "Nº Referencia:"
-
-#: content.php:70
-#: layout.php:72
-#: profile.php:107
-#: scripts.php:76
-#: settings.php:526
-#: snippets.php:76
-#: styles.php:74
-#: content.php:65
-#: layout.php:68
-#: scripts.php:72
-#: settings.php:522
-#: snippets.php:72
-#: styles.php:70
-msgid "Save"
-msgstr "Guardar"
-
-#: content.php:83
-#: content.php:80
-msgid "Save Content"
-msgstr "Guardar Contenido"
-
-#: content.php:67
-#: content.php:62
-msgid "Save Draft"
-msgstr "Guardar Borrador"
-
-#: menus.php:104
-#: menus.php:100
-msgid "Save Order"
-msgstr "Guardar Pedido"
-
-#: content.php:66
-#: content.php:61
-msgid "Save and Publish"
-msgstr "Guardar y Publicar"
-
-#: content.php:43
-#: content.php:46
-#: content.php:49
-#: content.php:38
-#: content.php:41
-#: content.php:44
-msgid "Saving..."
-msgstr "Guardando..."
-
-#: scripts.php:39
-#: scripts.php:35
-msgid "Script successfully added"
-msgstr "Script JS añadido correctamente"
-
-#: scripts.php:42
-#: scripts.php:38
-msgid "Script successfully removed"
-msgstr "Script JS eliminado correctamente"
-
-#: scripts.php:14
-#: menu.php:53
-msgid "Scripts"
-msgstr "Scripts Javascript"
-
-#: scripts.php:35
-#: scripts.php:31
-msgid "Scripts updated successfully"
-msgstr "Script JS actualizado correctamente"
-
-#: layoutDialog.php:5
-msgid "Select Layout"
-msgstr "Selecciona Disposición"
-
-#: pluginsDialog.php:12
-msgid "Select Plugin"
-msgstr "Selecciona un Componente"
-
-#: account.php:34
-#: account.php:32
-msgid "Select a Plan"
-msgstr "Selecciona un Plan"
-
-#: account.php:303
-#: account.php:301
-msgid "Select a plan and enter your credit card information to subscribe."
-msgstr "Selecciona un plan e introduce tu tarjeta de crédito para subscribirte."
-
-#: imagesDialog.php:9
-msgid "Select or upload a new image"
-msgstr "Selecciona o carga una nueva imagen"
-
-#: slideshowDialog.php:16
-msgid "Select the target width and height for the images in the slideshow."
-msgstr "Selecciona el ancho y alto deseado para las imágenes de la presentación."
-
-#: account.php:172
-#: account.php:170
-msgid "Select your new plan from the list below."
-msgstr "Selecciona un nuevo plan de la lista siguiente."
-
-#: files.php:65
-#: files.php:61
-msgid "Selected"
-msgstr "Seleccionado"
-
-#: forgot.php:57
-#: forgot.php:52
-msgid "Send Email"
-msgstr "Enviar Email"
-
-#: forgot.php:32
-#: forgot.php:29
-msgid "Sending..."
-msgstr "Enviando..."
-
-#: fieldDialog.php:43
-msgid "Separate each option with a comma"
-msgstr "Separa cada opción con una coma"
-
-#: blockConfigDialog.php:9
-#: elementConfigDialog.php:9
-#: settings.php:14
-#: settings.php:47
-#: settings.php:43
-#: menu.php:54
-msgid "Settings"
-msgstr "Configuración"
-
-#: content.php:50
-#: content.php:45
-msgid "Settings successfully saved"
-msgstr "Configuración guardada correctamente"
-
-#: settings.php:34
-#: settings.php:30
-msgid "Settings updated successfully"
-msgstr "Configuración actualizada correctamente"
-
-#: skuDialog.php:37
-msgid "Shipped"
-msgstr "Con Envíos"
-
-#: settings.php:380
-#: settings.php:376
-msgid "Shipping Calculation:"
-msgstr "Cálculos Envío:"
-
-#: settings.php:392
-#: settings.php:388
-msgid "Shipping Rate:"
-msgstr "Tarifa Envío:"
-
-#: skuDialog.php:34
-msgid "Shipping Type:"
-msgstr "Tipo Envío:"
-
-#: pageSettingsDialog.php:46
-msgid "Shows below the page name in lists to call attention to the item"
-msgstr "Se muestra debajo del nombre de la página para llamar la atención sobre la "
-"misma"
-
-#: menu.php:18
-msgid "Sign Out"
-msgstr "Salir"
-
-#: admin.php:62
-#: admin.php:58
-#: settings.php:58
-msgid "Site"
-msgstr "Sitio"
-
-#: menu.php:57
-msgid "Site Admin"
-msgstr "Administrador"
-
-#: admin.php:103
-#: create.php:53
-#: settings.php:74
-#: admin.php:99
-#: create.php:48
-#: settings.php:70
-msgid "Site Name:"
-msgstr "Nombre Sitio:"
-
-#: admin.php:35
-#: admin.php:31
-msgid "Site added successfully"
-msgstr "Site añadido correctamente"
-
-#: create.php:35
-#: create.php:32
-msgid "Site created successfully"
-msgstr "Site creado correctamente"
-
-#: settings.php:513
-#: settings.php:509
-msgid "Sitemap:"
-msgstr "Mapa del Sitio:"
-
-#: admin.php:45
-#: plans.php:45
-#: admin.php:41
-#: plans.php:41
-msgid "Sites"
-msgstr "Sitios"
-
-#: test.php:76
-#: test.php:78
-msgid "Sites Directory is Writeable"
-msgstr "Directorio Sites es escribible"
-
-#: slideshowDialog.php:18
-msgid "Slideshow"
-msgstr "Presentación"
-
-#: snippets.php:39
-#: snippets.php:35
-msgid "Snippet successfully added"
-msgstr "Script PHP añadido correctamente"
-
-#: snippets.php:42
-#: snippets.php:38
-msgid "Snippet successfully removed"
-msgstr "Script PHP eliminado correctamente"
-
-#: snippets.php:14
-#: menu.php:51
-msgid "Snippets"
-msgstr "Scripts PHP"
-
-#: snippets.php:35
-#: snippets.php:31
-msgid "Snippets updated successfully"
-msgstr "Script PHP actualizado correctamente"
-
-#: settings.php:60
-msgid "Social"
-msgstr "Social"
-
-#: pages.php:103
-msgid "Sort by Last Modified"
-msgstr "Ordenar Fecha Modificación"
-
-#: pages.php:104
-msgid "Sort by Name"
-msgstr "Ordenar por Nombre"
-
-#: blockConfigDialog.php:28
-msgid "Stand-alone (not nested)"
-msgstr "Independiente (no anidado)"
-
-#: layoutDialog.php:13
-msgid "Standard Layouts"
-msgstr "Disposiciones Estándar"
-
-#: account.php:79
-#: admin.php:65
-#: account.php:77
-#: admin.php:61
-msgid "Status"
-msgstr "Estado"
-
-#: translations.php:21
-msgid "Strike Text (select text first)"
-msgstr "Tachado  (selecciona texto primero)"
-
-#: menu.php:52
-msgid "Styles"
-msgstr "Hojas de Estilo"
-
-#: styles.php:35
-#: styles.php:31
-msgid "Styles updated successfully"
-msgstr "Estilos actualizados correctamente"
-
-#: styles.php:39
-#: styles.php:35
-msgid "Stylesheet successfully added"
-msgstr "Hoja de Estilo añadida correctamente"
-
-#: styles.php:42
-#: styles.php:38
-msgid "Stylesheet successfully removed"
-msgstr "Hoja de Estilo eliminada correctamente"
-
-#: pageSettingsDialog.php:72
-#: pageSettingsDialog.php:129
-msgid "Stylesheet:"
-msgstr "Hoja de Estilo"
-
-#: styles.php:14
-msgid "Stylesheets"
-msgstr "Hojas de Estilo"
-
-#: account.php:82
-#: account.php:295
-#: account.php:343
-#: account.php:80
-#: account.php:293
-#: account.php:341
-#: account.php:7
-msgid "Subscribe"
-msgstr "Subscribirse"
-
-#: translations.php:22
-msgid "Subscript Text (select text first)"
-msgstr "Subíndice  (selecciona texto primero)"
-
-#: translations.php:23
-msgid "Superscript Text (select text first)"
-msgstr "Superíndice  (selecciona texto primero)"
-
-#: admin.php:69
-#: admin.php:65
-msgid "Switch"
-msgstr "Cambiar"
-
-#: admin.php:37
-#: admin.php:33
-msgid "Switch successful"
-msgstr "Cambio correcto"
-
-#: admin.php:36
-#: admin.php:32
-msgid "Switching..."
-msgstr "Cambiando..."
-
-#: elementConfigDialog.php:47
-msgid "Table Columns:"
-msgstr "Columnas de Tabla:"
-
-#: elementConfigDialog.php:42
-msgid "Table Rows:"
-msgstr "Filas de Tabla:"
-
-#: slideshowDialog.php:26
-msgid "Target Height:"
-msgstr "Altura Objetivo:"
-
-#: slideshowDialog.php:20
-msgid "Target Width:"
-msgstr "Ancho Objetivo:"
-
-#: settings.php:373
-#: settings.php:369
-msgid "Tax Rate:"
-msgstr "Impuesto:"
-
-#: test.php:27
-#: test.php:29
-msgid "Test Installation"
-msgstr "Verificar Instalación"
-
-#: fieldDialog.php:25
-msgid "Text Area"
-msgstr "Area de Texto"
-
-#: fieldDialog.php:24
-msgid "Text Box"
-msgstr "Caja de Texto"
-
-#: create.php:34
-msgid "The email or site name you provided is already used in the system"
-msgstr "El email o nombre de sitio web dado ya existe en el sistema."
-
-#: create.php:37
-msgid "The email you provided is already used in the system"
-msgstr "El email dado ya existe en el sistema."
-
-#: files.php:34
-#: files.php:30
-msgid "The extensions must match when editing an existing file"
-msgstr "Las extensiones deben coincidir cuando se edita un fichero existente"
-
-#: files.php:37
-#: files.php:33
-msgid "The file was removed successfully"
-msgstr "Se ha eliminado el fichero correctamente"
-
-#: menus.php:34
+#: profile.php:31
+#: create.php:29
+#: plans.php:29
 #: menus.php:30
-msgid "The menu item was added successfully"
-msgstr "Entrada de Menú añadida correctamente"
+#: users.php:31
+#: sites/common/modules/registration.php:6
+#: pages.php:35
+msgid "All fields are required"
+msgstr "Todos los campos son obligatorios"
 
-#: menus.php:38
-#: menus.php:34
-msgid "The menu item was removed successfully"
-msgstr "Entrada de Menú eliminada correctamente"
-
-#: menus.php:36
-#: menus.php:32
-msgid "The menu item was updated successfully"
-msgstr "Entrada de Menú actualizada correctamente"
-
-#: menus.php:39
-#: menus.php:35
-msgid "The menu type was added successfully"
-msgstr "Tipo de Menú añadido correctamente"
-
-#: menus.php:40
-#: menus.php:36
-msgid "The menu type was removed successfully"
-msgstr "Tipo de Menú eliminado correctamente"
-
-#: settings.php:36
-#: settings.php:32
-msgid "The name and content are required"
-msgstr "El nombre y contenido son obligatorios"
-
-#: menus.php:37
-#: menus.php:33
-msgid "The order was updated successfully"
-msgstr "El pedido se ha actualizado correctamente"
-
-#: pages.php:49
-#: pages.php:44
-msgid "The page was published successfully"
-msgstr "La página se ha publicado correctamente"
-
-#: pages.php:48
-#: pages.php:43
-msgid "The page was un-published successfully"
-msgstr "Publicación de la página anulada correctamente"
-
-#: create.php:36
-#: create.php:33
-msgid "The passcode is invalid"
-msgstr "Código de paso inválido"
-
-#: create.php:33
-#: create.php:30
-msgid "The password and retype fields must match"
-msgstr "La contraseña y la repetición deben coincidir"
-
-#: forgot.php:35
-#: forgot.php:32
-msgid "The password and retype must match"
-msgstr "La contraseña y la repetición deben coincidir"
-
-#: profile.php:36
-#: users.php:34
 #: profile.php:32
 #: users.php:32
+#: sites/common/modules/registration.php:5
 msgid "The password must match the retype field"
 msgstr "La contraseña y la repetición deben coincidir"
 
-#: menu.php:33
-msgid "Theme"
-msgstr "Tema"
-
-#: theme.php:36
-#: theme.php:32
-msgid "Theme successfully applied"
-msgstr "Tema aplicado correctamente"
-
-#: theme.php:34
-#: theme.php:30
-msgid "Theme successfully reset"
-msgstr "Tema reiniciado correctamente"
-
-#: theme.php:14
-#: theme.php:44
-#: theme.php:40
-msgid "Themes"
-msgstr "Temas"
-
-#: layout.php:39
-#: layout.php:35
-msgid "There was a problem adding the layout, please try again"
-msgstr "Se ha producido un error añadiendo la disposición"
-
-#: account.php:37
-#: account.php:35
-msgid "There was a problem changing the plan"
-msgstr "Se ha producido un error cambiando el plan"
-
-#: settings.php:39
-#: settings.php:35
-msgid "There was a problem generating the file, please try again"
-msgstr "Se ha producido un error generando el fichero"
-
-#: account.php:48
-#: account.php:46
-msgid "There was a problem paying for the subscription"
-msgstr "Se ha producido un error pagando la subscripción"
-
-#: pages.php:50
-#: pages.php:45
-msgid "There was a problem publishing/un-publishing the page"
-msgstr "Se ha producido un error al publicar o anular la publicación de la página"
-
-#: pages.php:55
-#: pages.php:50
-msgid "There was a problem removing the category"
-msgstr "Se ha producido un error eliminando la categoría"
-
-#: layout.php:41
-#: layout.php:37
-msgid "There was a problem removing the layout, please try again"
-msgstr "Se ha producido un error eliminando la disposición"
-
-#: pages.php:39
-#: pages.php:34
-msgid "There was a problem removing the page"
-msgstr "Se ha producido un error eliminando la página"
-
-#: pages.php:47
-#: pages.php:42
-msgid "There was a problem removing the page type"
-msgstr "Se ha producido un error eliminando el tipo de página"
-
-#: scripts.php:43
-#: scripts.php:39
-msgid "There was a problem removing the script file, please try again"
-msgstr "Se ha producido un error eliminando el fichero de script JS"
-
-#: snippets.php:43
-#: snippets.php:39
-msgid "There was a problem removing the snippet file, please try again"
-msgstr "Se ha producido un error eliminando el fichero de script PHP"
-
-#: styles.php:43
-#: styles.php:39
-msgid "There was a problem removing the stylesheet, please try again"
-msgstr "Se ha producido un error eliminando la hoja de estilo"
-
-#: content.php:45
-#: content.php:40
-msgid "There was a problem saving content, please try again"
-msgstr "Se ha producido un error guardando el contenido"
-
-#: content.php:51
-#: content.php:46
-msgid "There was a problem saving settings, please try again"
-msgstr "Se ha producido un error guardando la configuración"
-
-#: content.php:48
-#: content.php:43
-msgid "There was a problem saving the draft, please try again"
-msgstr "Se ha producido un error guardando el borrador"
-
-#: layout.php:36
-#: layout.php:32
-msgid "There was a problem saving the layout, please try again"
-msgstr "Se ha producido un error guardando la disposición"
-
+#: profile.php:33
+#: snippets.php:34
+#: snippets.php:36
+#: plans.php:30
+#: menus.php:31
+#: account.php:39
+#: users.php:33
+#: admin.php:30
+#: styles.php:34
+#: styles.php:36
+#: pages.php:30
+#: pages.php:36
+#: pages.php:46
+#: scripts.php:34
 #: scripts.php:36
-#: scripts.php:32
-msgid "There was a problem saving the script file, please try again"
-msgstr "Se ha producido un error guardando el fichero de script JS"
+msgid "Adding..."
+msgstr "Añadiendo..."
 
 #: profile.php:34
-#: settings.php:35
-#: settings.php:31
-msgid "There was a problem saving the settings, please try again"
-msgstr "Se ha producido un error guardando la configuración"
+#: users.php:34
+msgid "User successfully added"
+msgstr "Usuario añadido correctamente"
 
-#: snippets.php:36
-#: snippets.php:32
-msgid "There was a problem saving the snippet file, please try again"
-msgstr "Se ha producido un error guardando el script PHP"
+#: profile.php:35
+#: snippets.php:30
+#: settings.php:29
+#: plans.php:32
+#: layout.php:30
+#: menus.php:33
+#: account.php:33
+#: account.php:37
+#: branding.php:29
+#: branding.php:31
+#: colors.php:31
+#: modules/dialogs/pageSettingsDialog.php:7
+#: users.php:35
+#: styles.php:30
+#: pages.php:38
+#: scripts.php:30
+msgid "Updating..."
+msgstr "Actualizando..."
 
-#: styles.php:36
-#: styles.php:32
-msgid "There was a problem saving the style file, please try again"
-msgstr "Se ha producido un error guardando el fichero de hoja de estilo"
+#: profile.php:36
+#: users.php:36
+msgid "User successfully updated"
+msgstr "Usuario actualizado correctamente"
 
-#: account.php:44
-#: account.php:42
-msgid "There was a problem updating the card"
-msgstr "Se ha producido un error actualizando la tarjeta "
+#: profile.php:37
+#: snippets.php:37
+#: users.php:37
+#: admin.php:34
+#: styles.php:37
+#: pages.php:32
+#: pages.php:40
+#: pages.php:48
+#: transactions.php:29
+#: scripts.php:37
+msgid "Removing..."
+msgstr "Eliminando..."
 
-#: theme.php:82
-#: theme.php:78
-msgid ""
-"This will completely change the look and feel of your site and remove any "
-"custom changes you made to the layout and styles of the site."
-msgstr "Esto cambiará por completo la presentación de tu sitio y eliminará "
-"cualquiercambio personalizado que hayas hecho a la disposición y estilos del "
-"sitio."
-
-#: files.php:104
-#: files.php:100
-msgid "This will completely remove it from the system."
-msgstr "Esto lo eliminará completamente del sistema."
-
-#: theme.php:121
-#: theme.php:117
-msgid ""
-"This will override any custom changes you made to the Layout or Styles for "
-"the site."
-msgstr "Esto tomará preferencia sobre cualquier cambio personalizado que hayashecho "
-"en la Disposición o Estilo del sitio."
-
-#: listDialog.php:31
-msgid "Thumbnails"
-msgstr "Miniaturas"
-
-#: settings.php:97
-#: settings.php:93
-msgid "Time Zone:"
-msgstr "Zona Horaria:"
-
-#: admin.php:110
-#: create.php:85
-#: admin.php:106
-#: create.php:88
-msgid "Timezone:"
-msgstr "Zona Horaria:"
-
-#: plans.php:65
-#: plans.php:61
-msgid "Trial"
-msgstr "Prueba"
-
-#: plans.php:134
-#: plans.php:130
-msgid "Trial Days:"
-msgstr "Dias de Prueba:"
-
-#: admin.php:64
-#: admin.php:60
-msgid "Type"
-msgstr "Tipo"
-
-#: forgot.php:46
-#: forgot.php:44
-msgid ""
-"Type your email address and we will send you a link to reset your password."
-msgstr "Introduce tu email y te mandaremos un enlace para que cambies tu contraseña."
-
-#: account.php:72
-#: account.php:70
-msgid "Type:"
-msgstr "Tipo:"
-
-#: admin.php:63
-#: admin.php:59
-msgid "URL"
-msgstr "URL"
-
-#: pageSettingsDialog.php:27
-#: pageSettingsDialog.php:37
-msgid "URL:"
-msgstr "URL:"
-
-#: translations.php:24
-msgid "Underline Text (select text first)"
-msgstr "Subrayado (selecciona texto primero)"
-
-#: account.php:91
-#: account.php:132
-#: account.php:145
-#: account.php:89
-#: account.php:130
-#: account.php:143
-msgid "Unsubscribe"
-msgstr "Dar de baja"
-
-#: account.php:32
-#: account.php:30
-msgid "Unsubscribing..."
-msgstr "Dando de baja..."
-
-#: blockConfigDialog.php:30
-#: configPluginsDialog.php:20
-#: elementConfigDialog.php:57
-#: pageSettingsDialog.php:83
-#: blockConfigDialog.php:48
-#: pageSettingsDialog.php:143
-msgid "Update"
-msgstr "Actualizar"
-
-#: listDialog.php:13
-#: listDialog.php:76
-#: listDialog.php:79
-msgid "Update List"
-msgstr "Actualizar Lista"
-
-#: branding.php:50
-#: branding.php:45
-msgid "Update Logo"
-msgstr "Actualizar Logo"
-
-#: menus.php:119
-#: menus.php:180
-#: menus.php:115
-#: menus.php:176
-msgid "Update Menu Item"
-msgstr "Actualizar Entrada Menú"
-
-#: pages.php:274
-#: pages.php:273
-msgid "Update Page Type"
-msgstr "Actualizar Tipo Página"
-
-#: account.php:213
-#: account.php:274
-#: account.php:211
-#: account.php:272
-#: account.php:9
-msgid "Update Payment"
-msgstr "Actualizar Pago"
+#: profile.php:38
+#: users.php:38
+msgid "User successfully removed"
+msgstr "Usuario eliminado correctamente"
 
 #: profile.php:55
 #: users.php:58
 msgid "Update Photo"
 msgstr "Actualizar Foto"
 
-#: plans.php:96
-#: plans.php:143
-#: plans.php:92
-#: plans.php:139
-msgid "Update Plan"
-msgstr "Actualizar Plan"
-
-#: skuDialog.php:55
-msgid "Update SKU"
-msgstr "Actualizar Nº Referencia"
-
-#: account.php:36
-#: account.php:34
-msgid "Update Successful"
-msgstr "Actualización Correcta"
-
-#: pages.php:317
-#: pages.php:316
-msgid "Update Type"
-msgstr "Actualizar Tipo"
-
-#: users.php:85
-#: users.php:142
 #: profile.php:89
 #: profile.php:138
-#: users.php:86
-#: users.php:143
+#: users.php:92
+#: users.php:158
 msgid "Update User"
 msgstr "Actualizar Usuario"
 
-#: account.php:221
-#: account.php:219
-msgid ""
-"Update the expiration date for your card. If you want to add a new card, "
-"click the New Card button."
-msgstr "Actualiza la fecha de caducidad de tu tarjeta. Si quieres añadir una "
-"tajeta nueva, pulsa el botón de Tarjeta Nueva"
+#: profile.php:96
+#: users.php:99
+#: sites/common/modules/registration.php:10
+msgid "First Name:"
+msgstr "Nombre:"
 
-#: settings.php:55
+#: profile.php:101
+#: users.php:104
+#: sites/common/modules/registration.php:15
+msgid "Last Name:"
+msgstr "Apellidos:"
+
+#: profile.php:106
+#: create.php:354
+#: users.php:118
+msgid "Language:"
+msgstr "Idioma:"
+
+#: profile.php:117
+#: forgot.php:47
+#: create.php:335
+#: index.php:41
+#: users.php:136
+#: sites/common/modules/login.php:8
+#: sites/common/modules/registration.php:20
+msgid "Email:"
+msgstr "Email:"
+
+#: profile.php:119
+#: users.php:138
+msgid "Also used as the login"
+msgstr "También se utiliza como acceso"
+
+#: profile.php:123
+#: forgot.php:65
+#: create.php:343
+#: index.php:46
+#: users.php:142
+#: sites/common/modules/login.php:13
+#: sites/common/modules/registration.php:25
+msgid "Password:"
+msgstr "Contraseña:"
+
+#: profile.php:125
+#: users.php:144
+msgid "More than 5 characters, 1 letter and 1 special character"
+msgstr "Más de 5 caracteres, 1 letra y 1 caracter especial"
+
+#: profile.php:129
+#: create.php:348
+#: users.php:148
+msgid "Re-type Password:"
+msgstr "Repite Contraseña:"
+
+#: profile.php:137
+#: snippets.php:102
+#: snippets.php:141
+#: settings.php:644
+#: plans.php:142
+#: layout.php:98
+#: layout.php:137
+#: menus.php:176
+#: menus.php:213
+#: menus.php:259
+#: menus.php:298
+#: files.php:107
+#: account.php:142
+#: account.php:189
+#: account.php:271
+#: account.php:340
+#: theme.php:84
+#: theme.php:123
+#: modules/dialogs/configPluginsDialog.php:19
+#: modules/dialogs/secureDialog.php:34
+#: modules/dialogs/slideshowDialog.php:27
+#: modules/dialogs/featuredDialog.php:32
+#: modules/dialogs/fieldDialog.php:73
+#: modules/dialogs/blockConfigDialog.php:47
+#: modules/dialogs/fontAwesomeDialog.php:29
+#: modules/dialogs/skuDialog.php:54
+#: modules/dialogs/pluginsDialog.php:35
+#: modules/dialogs/loadLayoutDialog.php:54
+#: modules/dialogs/pageSettingsDialog.php:142
+#: modules/dialogs/formDialog.php:52
+#: modules/dialogs/listDialog.php:78
+#: modules/dialogs/elementConfigDialog.php:56
+#: modules/dialogs/htmlDialog.php:35
+#: modules/dialogs/filesDialog.php:35
+#: modules/dialogs/codeBlockDialog.php:25
+#: modules/dialogs/linkDialog.php:55
+#: users.php:156
+#: users.php:196
+#: admin.php:210
+#: admin.php:242
+#: styles.php:100
+#: styles.php:139
+#: pages.php:181
+#: pages.php:213
+#: pages.php:251
+#: pages.php:323
+#: pages.php:363
+#: pages.php:397
+#: scripts.php:102
+#: scripts.php:141
+msgid "Close"
+msgstr "Cerrar"
+
+#: snippets.php:14
+#: modules/menu.php:52
+msgid "Snippets"
+msgstr "Scripts PHP"
+
+#: snippets.php:31
+msgid "Snippets updated successfully"
+msgstr "Script PHP actualizado correctamente"
+
+#: snippets.php:32
+msgid "There was a problem saving the snippet file, please try again"
+msgstr "Se ha producido un error guardando el script PHP"
+
+#: snippets.php:33
+msgid "A name is required to add a snippet"
+msgstr "Se requiere un nombre para añadir un script PHP"
+
+#: snippets.php:35
+msgid "Snippet successfully added"
+msgstr "Script PHP añadido correctamente"
+
+#: snippets.php:38
+msgid "Snippet successfully removed"
+msgstr "Script PHP eliminado correctamente"
+
+#: snippets.php:39
+msgid "There was a problem removing the snippet file, please try again"
+msgstr "Se ha producido un error eliminando el fichero de script PHP"
+
+#: snippets.php:72
+#: content.php:65
+#: settings.php:608
+#: layout.php:68
+#: colors.php:56
+#: styles.php:70
+#: scripts.php:72
+msgid "Save"
+msgstr "Guardar"
+
+#: snippets.php:86
+#: snippets.php:103
+msgid "Add Snippet"
+msgstr "Añadir Script PHP"
+
+#: snippets.php:93
+#: create.php:48
+#: plans.php:107
+#: layout.php:89
+#: menus.php:245
+#: modules/dialogs/pageSettingsDialog.php:32
+#: styles.php:91
+#: pages.php:157
+#: pages.php:351
+#: scripts.php:93
+msgid "Name:"
+msgstr "Nombre:"
+
+#: snippets.php:95
+msgid ""
+"Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
+msgstr "En minúsculas, sin espacios, sin caracteres especiales (., !, etc) y no "
+"pongas la extensión .php"
+
+#: snippets.php:127
+#: snippets.php:142
+msgid "Remove Snippet"
+msgstr "Eliminar Script PHP"
+
+#: snippets.php:134
+#: scripts.php:134
+msgid "Confirm that you want to delete:"
+msgstr "Confirma que quieres eliminar:"
+
+#: forgot.php:15
+msgid "Forgot Password"
+msgstr "Olvidé mi contraseña"
+
+#: forgot.php:29
+msgid "Sending..."
+msgstr "Enviando..."
+
+#: forgot.php:30
+msgid "Email sent"
+msgstr "Email enviado"
+
+#: forgot.php:31
+msgid "We could not find your email in the system"
+msgstr "No se ha podido encontrar tu email en el sistema"
+
+#: forgot.php:32
+msgid "The password and retype must match"
+msgstr "La contraseña y la repetición deben coincidir"
+
+#: forgot.php:33
+#: theme.php:29
+msgid "Resetting..."
+msgstr "Reiniciando..."
+
+#: forgot.php:34
+msgid "Password successfully reset"
+msgstr "Contraseña reiniciada correctamente"
+
+#: forgot.php:35
+msgid "Access denied"
+msgstr "Acceso denegado"
+
+#: forgot.php:44
+msgid ""
+"Type your email address and we will send you a link to reset your password."
+msgstr "Introduce tu email y te mandaremos un enlace para que cambies tu contraseña."
+
+#: forgot.php:52
+msgid "Send Email"
+msgstr "Enviar Email"
+
+#: forgot.php:61
+msgid "Welcome back. Type a new password for your account."
+msgstr "Bienvenido de nuevo. Introduce una nueva contraseña para tu acceso."
+
+#: forgot.php:70
+#: sites/common/modules/registration.php:30
+msgid "Retype Password:"
+msgstr "Repite la Contraseña:"
+
+#: forgot.php:75
+msgid "Change Password"
+msgstr "Cambiar Contraseña"
+
+#: forgot.php:82
+msgid "Return to Login"
+msgstr "Volver a la Pantalla de Acceso"
+
+#: content.php:14
+msgid "Content"
+msgstr "Contenido"
+
+#: content.php:38
+#: content.php:41
+#: content.php:44
+msgid "Saving..."
+msgstr "Guardando..."
+
+#: content.php:39
+msgid "Content successfully saved"
+msgstr "Contenido guardado correctamente"
+
+#: content.php:40
+msgid "There was a problem saving content, please try again"
+msgstr "Se ha producido un error guardando el contenido"
+
+#: content.php:42
+msgid "Draft successfully saved"
+msgstr "Borrador guardado correctamente"
+
+#: content.php:43
+msgid "There was a problem saving the draft, please try again"
+msgstr "Se ha producido un error guardando el borrador"
+
+#: content.php:45
+msgid "Settings successfully saved"
+msgstr "Configuración guardada correctamente"
+
+#: content.php:46
+msgid "There was a problem saving settings, please try again"
+msgstr "Se ha producido un error guardando la configuración"
+
+#: content.php:47
+msgid "Draft saved, launching preview"
+msgstr "Borrador guardado, mostrando previsualización"
+
+#: content.php:61
+msgid "Save and Publish"
+msgstr "Guardar y Publicar"
+
+#: content.php:62
+msgid "Save Draft"
+msgstr "Guardar Borrador"
+
+#: content.php:67
+msgid "Return"
+msgstr "Volver"
+
+#: content.php:69
+msgid "View Live Page"
+msgstr "Ver en Sitio Web"
+
+#: content.php:76
+msgid "Loading content..."
+msgstr "Cargando contenido..."
+
+#: content.php:80
+msgid "Save Content"
+msgstr "Guardar Contenido"
+
+#: content.php:82
+msgid "Return to Editor"
+msgstr "Volver al Editor"
+
+#: settings.php:14
+#: settings.php:43
+#: modules/dialogs/blockConfigDialog.php:9
+#: modules/dialogs/elementConfigDialog.php:9
+#: modules/menu.php:55
+msgid "Settings"
+msgstr "Configuración"
+
+#: settings.php:30
+msgid "Settings updated successfully"
+msgstr "Configuración actualizada correctamente"
+
+#: settings.php:31
+msgid "There was a problem saving the settings, please try again"
+msgstr "Se ha producido un error guardando la configuración"
+
+#: settings.php:32
+msgid "The name and content are required"
+msgstr "El nombre y contenido son obligatorios"
+
+#: settings.php:33
+msgid "Generating..."
+msgstr "Generando..."
+
+#: settings.php:34
+msgid "Verification file successfully generated"
+msgstr "Fichero de Verificación generado correctamente"
+
+#: settings.php:35
+msgid "There was a problem generating the file, please try again"
+msgstr "Se ha producido un error generando el fichero"
+
 #: settings.php:51
 msgid ""
 "Updates to settings will not be reflected until the site is re-published."
 msgstr "Actualizaciones de configuración no se verán hasta que se publique de nuevo "
 "el sitio."
 
-#: menus.php:71
-#: menus.php:67
+#: settings.php:52
+#: menus.php:70
+msgid "Re-publish now"
+msgstr "Publicar de nuevo ahora"
+
+#: settings.php:58
+#: admin.php:56
+msgid "Site"
+msgstr "Sitio"
+
+#: settings.php:59
+msgid "Payments"
+msgstr "Pagos"
+
+#: settings.php:60
+msgid "Social"
+msgstr "Social"
+
+#: settings.php:61
+msgid "Analytics"
+msgstr "Estadísticas"
+
+#: settings.php:62
+msgid "Forms"
+msgstr "Formularios"
+
+#: settings.php:71
+#: admin.php:99
+msgid "Site Name:"
+msgstr "Nombre Sitio:"
+
+#: settings.php:78
+msgid "Domain:"
+msgstr "Dominio:"
+
+#: settings.php:81
+msgid ""
+"e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
+msgstr "e.g. domain.com, sub.domain.com (no pongas www, http://, ni / al final)"
+
+#: settings.php:86
+msgid "Primary Email:"
+msgstr "Email Primario:"
+
+#: settings.php:89
+msgid "Forms submitted on your site will be sent to this email address"
+msgstr "Los formularios rellenados en tu sitio se mandarán a esta dirección de email"
+
+#: settings.php:94
+msgid "Time Zone:"
+msgstr "Zona Horaria:"
+
+#: settings.php:192
+#: create.php:61
+msgid "Default Language:"
+msgstr "Idioma por defecto:"
+
+#: settings.php:373
+msgid "PayPal ID:"
+msgstr "PayPal ID:"
+
+#: settings.php:380
+msgid "Use PayPal Sandbox (for testing):"
+msgstr "Utiliza Entorno de pruebas de Paypal:"
+
+#: settings.php:390
+#: plans.php:128
+msgid "Currency:"
+msgstr "Moneda:"
+
+#: settings.php:402
+msgid "Weight Unit:"
+msgstr "Peso Unitario:"
+
+#: settings.php:408
+msgid "Optionally used to calculate shipping costs"
+msgstr "Se utiliza opcionalmente para calcular costes de envío"
+
+#: settings.php:413
+msgid "Tax Rate:"
+msgstr "Impuesto:"
+
+#: settings.php:420
+msgid "Shipping Calculation:"
+msgstr "Cálculos Envío:"
+
+#: settings.php:423
+msgid "Free"
+msgstr "Gratis"
+
+#: settings.php:424
+msgid "Flat Rate"
+msgstr "Tarifa Plana"
+
+#: settings.php:425
+msgid "By Order Amount"
+msgstr "Por Tamaño Pedido"
+
+#: settings.php:426
+msgid "By Weight"
+msgstr "Por Peso"
+
+#: settings.php:432
+msgid "Shipping Rate:"
+msgstr "Tarifa Envío:"
+
+#: settings.php:530
+msgid "Facebook App ID:"
+msgstr "Facebook App ID:"
+
+#: settings.php:533
+msgid "Allows you to moderate comments on your site, create here:"
+msgstr "Te permite moderar los comentarios del sitio, creala aquí:"
+
+#: settings.php:543
+msgid "Google Analytics ID:"
+msgstr "Google Analytics ID:"
+
+#: settings.php:546
+msgid ""
+"Google Analytics Web Property Id (adds analytics to all pages on your site)"
+msgstr "Google Analytics Web Property Id (añade analytics a todas las páginas del "
+"sitio)"
+
+#: settings.php:553
+#, fuzzy
+msgid "Google Analytics Sub-Domain"
+msgstr "Google Analytics ID:"
+
+#: settings.php:555
+msgid ""
+"Control Sub-domains; e.g. www.your_domain.com, apps.your_domain.com, and "
+"store.your_domain.com."
+msgstr "Controlar Sub-Dominios; e.g. www.your_domain.com, apps.your_domain.com, and "
+"store.your_domain.com."
+
+#: settings.php:559
+#, fuzzy
+msgid "Google Analytics Domain:"
+msgstr "Google Analytics ID:"
+
+#: settings.php:568
+#, fuzzy
+msgid "Google Analytics Multi-Domain"
+msgstr "Google Analytics ID:"
+
+#: settings.php:571
+msgid ""
+"Control Top Level Domains, e.g. your_domain.com, your_domain.org, "
+"your_domain.es "
+msgstr "Controlar Dominio, e.g. your_domain.com, your_domain.org, "
+"your_domain.es "
+
+#: settings.php:575
+msgid "Sitemap:"
+msgstr "Mapa del Sitio:"
+
+#: settings.php:577
+#: settings.php:622
+#: settings.php:645
+msgid "Generate Verification File"
+msgstr "Generar Fichero de Verificación"
+
+#: settings.php:587
+msgid "reCaptcha Public ID:"
+msgstr "ID Público reCaptcha:"
+
+#: settings.php:590
+#, fuzzy
+msgid "Allows you to put a reCaptcha field on your forms, create here:"
+msgstr "Te permite moderar los comentarios del sitio, creala aquí:"
+
+#: settings.php:594
+msgid "reCaptcha Private ID:"
+msgstr "ID Privado reCaptcha:"
+
+#: settings.php:597
+#, fuzzy
+msgid "Allows you to validate a reCaptcha field from your forms, create here:"
+msgstr "Te permite moderar los comentarios del sitio, creala aquí:"
+
+#: settings.php:629
+msgid "File Name:"
+msgstr "Nombre Fichero:"
+
+#: settings.php:635
+msgid "File Contents:"
+msgstr "Contenigo Fichero:"
+
+#: create.php:15
+#: create.php:45
+#: create.php:371
+msgid "Create Site"
+msgstr "Crea Sitio"
+
+#: create.php:30
+msgid "The password and retype fields must match"
+msgstr "La contraseña y la repetición deben coincidir"
+
+#: create.php:31
+msgid "Creating..."
+msgstr "Creando..."
+
+#: create.php:32
+msgid "Site created successfully"
+msgstr "Site creado correctamente"
+
+#: create.php:33
+msgid "The passcode is invalid"
+msgstr "Código de paso inválido"
+
+#: create.php:34
+msgid "The email or site name you provided is already used in the system"
+msgstr "El email o nombre de sitio web dado ya existe en el sistema."
+
+#: create.php:237
+#: admin.php:106
+msgid "Timezone:"
+msgstr "Zona Horaria:"
+
+#: create.php:332
+#, fuzzy
+msgid "Create Login"
+msgstr "Crea Sitio"
+
+#: create.php:366
+#: admin.php:202
+msgid "Passcode:"
+msgstr "Código de Paso:"
+
+#: create.php:382
+msgid "Account created! To get started, click on your login link below."
+msgstr "Cuenta creada! Para empezar haz click en el enlace de acceso."
+
+#: create.php:387
+msgid "Login here to update your site:"
+msgstr "Accede aquí para actualizar tu sitio:"
+
+#: create.php:392
+msgid "You can already view your site here:"
+msgstr "Ya puedes visualizar tu sitio aquí:"
+
+#: create.php:397
+msgid "Bookmark these links for easy access."
+msgstr "Añade estos enlaces a marcadores para tenerlos a mano."
+
+#: plans.php:14
+#: plans.php:43
+#: admin.php:45
+msgid "Plans"
+msgstr "Planes"
+
+#: plans.php:31
+msgid "Plan added successfully"
+msgstr "Plan añadido correctamente"
+
+#: plans.php:33
+msgid "Plan updated successfully"
+msgstr "Plan actualizado correctamente"
+
+#: plans.php:34
+#: plans.php:81
+msgid "No Payment Method Configured for Plans"
+msgstr "No hay ningún método de pago definido para los planes"
+
+#: plans.php:42
+#: admin.php:44
+msgid "Sites"
+msgstr "Sitios"
+
+#: plans.php:46
+#: plans.php:96
+#: plans.php:143
+msgid "Add Plan"
+msgstr "Añadir Plan"
+
+#: plans.php:58
+#: transactions.php:53
+msgid "Id"
+msgstr "Id"
+
+#: plans.php:59
+#: modules/dialogs/listDialog.php:40
+msgid "Name"
+msgstr "Nombre"
+
+#: plans.php:60
+msgid "Amount"
+msgstr "Cantidad"
+
+#: plans.php:61
+msgid "Interval"
+msgstr "Intérvalo"
+
+#: plans.php:62
+msgid "Currency"
+msgstr "Moneda"
+
+#: plans.php:63
+msgid "Trial"
+msgstr "Prueba"
+
+#: plans.php:97
+#: plans.php:144
+msgid "Update Plan"
+msgstr "Actualizar Plan"
+
+#: plans.php:102
+msgid "Id:"
+msgstr "Id:"
+
+#: plans.php:113
+msgid "Amount (in cents):"
+msgstr "Cantidad (en céntimos):"
+
+#: plans.php:115
+msgid "e.g. 2500 = $25.00"
+msgstr "e.g. 2500 = $25.00"
+
+#: plans.php:119
+msgid "Interval:"
+msgstr "Intérvalo:"
+
+#: plans.php:121
+msgid "Week"
+msgstr "Semana"
+
+#: plans.php:122
+msgid "Month"
+msgstr "Mes"
+
+#: plans.php:123
+msgid "Year"
+msgstr "Año"
+
+#: plans.php:135
+msgid "Trial Days:"
+msgstr "Dias de Prueba:"
+
+#: layout.php:14
+#: modules/menu.php:51
+msgid "Layout"
+msgstr "Disposición"
+
+#: layout.php:31
+msgid "Layout saved"
+msgstr "Disposición guardada:"
+
+#: layout.php:32
+msgid "There was a problem saving the layout, please try again"
+msgstr "Se ha producido un error guardando la disposición"
+
+#: layout.php:33
+msgid "A name is required to add a layout"
+msgstr "Se requiere un nombre para añadir una disposición"
+
+#: layout.php:34
+msgid "Layout successfully added"
+msgstr "Disposición añadida correctamente"
+
+#: layout.php:35
+msgid "There was a problem adding the layout, please try again"
+msgstr "Se ha producido un error añadiendo la disposición"
+
+#: layout.php:36
+msgid "Layout successfully removed"
+msgstr "Disposición eliminada correctamente"
+
+#: layout.php:37
+msgid "There was a problem removing the layout, please try again"
+msgstr "Se ha producido un error eliminando la disposición"
+
+#: layout.php:82
+#: layout.php:99
+msgid "Add Layout"
+msgstr "Añadir Disposición"
+
+#: layout.php:91
+msgid "Lowercase, no space, leave the .html off"
+msgstr "En minúsculas, sin espacios y no pongas la extensión .html"
+
+#: layout.php:123
+#: layout.php:138
+msgid "Remove Layout"
+msgstr "Eliminar Disposición"
+
+#: layout.php:130
+msgid "Confirm that you want to delete"
+msgstr "Confirma que quieres eliminar"
+
+#: menus.php:14
+#: modules/menu.php:32
+msgid "Menus"
+msgstr "Menús"
+
+#: menus.php:29
+#, fuzzy
+msgid "A label is required"
+msgstr "Todos los campos son obligatorios"
+
+#: menus.php:32
+msgid "The menu item was added successfully"
+msgstr "Entrada de Menú añadida correctamente"
+
+#: menus.php:34
+msgid "The menu item was updated successfully"
+msgstr "Entrada de Menú actualizada correctamente"
+
+#: menus.php:35
+msgid "The order was updated successfully"
+msgstr "El pedido se ha actualizado correctamente"
+
+#: menus.php:36
+msgid "The menu item was removed successfully"
+msgstr "Entrada de Menú eliminada correctamente"
+
+#: menus.php:37
+msgid "The menu type was added successfully"
+msgstr "Tipo de Menú añadido correctamente"
+
+#: menus.php:38
+msgid "The menu type was removed successfully"
+msgstr "Tipo de Menú eliminado correctamente"
+
+#: menus.php:50
+msgid "Primary"
+msgstr "Primario"
+
+#: menus.php:51
+msgid "Footer"
+msgstr "Pie de Página"
+
+#: menus.php:64
+#: menus.php:116
+#: menus.php:177
+msgid "Add Menu Item"
+msgstr "Añadir Entrada Menú"
+
+#: menus.php:69
 msgid ""
 "Updates to the menu will not be reflected until the site is re-published.."
 msgstr "Actualizaciones en el menú no se verán hasta que se publique de nuevo el "
 "sitio."
 
-#: pageSettingsDialog.php:7
-#: account.php:35
-#: account.php:39
-#: branding.php:34
-#: branding.php:36
-#: layout.php:34
-#: menus.php:35
-#: pages.php:43
-#: plans.php:36
-#: profile.php:32
-#: scripts.php:34
-#: settings.php:33
-#: snippets.php:34
-#: styles.php:34
-#: users.php:37
-#: account.php:33
-#: account.php:37
-#: branding.php:29
-#: branding.php:31
-#: layout.php:30
-#: menus.php:31
-#: pages.php:38
-#: plans.php:32
-#: profile.php:35
-#: scripts.php:30
-#: settings.php:29
-#: snippets.php:30
-#: styles.php:30
-#: users.php:35
-msgid "Updating..."
-msgstr "Actualizando..."
+#: menus.php:98
+#: files.php:74
+#: colors.php:30
+#: colors.php:47
+#: modules/dialogs/featuredDialog.php:24
+#: modules/dialogs/fontAwesomeDialog.php:22
+#: modules/dialogs/pluginsDialog.php:27
+#: modules/dialogs/loadLayoutDialog.php:30
+#: modules/dialogs/loadLayoutDialog.php:40
+#: modules/dialogs/pageSettingsDialog.php:124
+#: modules/dialogs/pageSettingsDialog.php:131
+#: modules/dialogs/filesDialog.php:28
+#: modules/dialogs/linkDialog.php:24
+#: users.php:73
+#: sites/common/modules/list-map.php:24
+#: sites/common/modules/list.php:19
+#: sites/common/modules/list-thumbnails.php:19
+#: sites/common/modules/list-blog.php:19
+#: sites/common/modules/list-calendar.php:22
+#: admin.php:80
+#: pages.php:137
+#: transactions.php:77
+msgid "Loading..."
+msgstr "Cargando..."
 
-#: menus.php:139
-#: menus.php:135
+#: menus.php:100
+msgid "No menu items here. Click Add Menu Item to get started."
+msgstr "No hay entradas de menú. Pulsa sobre Añadir Entrada de Menú para empezar."
+
+#: menus.php:102
+msgid "Save Order"
+msgstr "Guardar Pedido"
+
+#: menus.php:117
+#: menus.php:178
+msgid "Update Menu Item"
+msgstr "Actualizar Entrada Menú"
+
+#: menus.php:125
+msgid "Label:"
+msgstr "Etiqueta:"
+
+#: menus.php:130
+#: modules/dialogs/fieldDialog.php:65
+#: modules/dialogs/elementConfigDialog.php:21
+#: modules/dialogs/linkDialog.php:37
+msgid "CSS Class:"
+msgstr "Clase CSS:"
+
+#: menus.php:137
 msgid "Url:"
 msgstr "Url:"
 
-#: users.php:36
-#: profile.php:34
-#: users.php:34
-msgid "User successfully added"
-msgstr "Usuario añadido correctamente"
+#: menus.php:147
+#: modules/dialogs/loadLayoutDialog.php:17
+#: modules/dialogs/linkDialog.php:16
+msgid "Existing Page"
+msgstr "Página Existente"
 
-#: users.php:40
-#: profile.php:38
-#: users.php:38
-msgid "User successfully removed"
-msgstr "Usuario eliminado correctamente"
+#: menus.php:162
+#: modules/dialogs/linkDialog.php:29
+msgid "Custom URL"
+msgstr "URL Personalizada"
 
-#: users.php:38
-#: profile.php:36
-#: users.php:36
-msgid "User successfully updated"
-msgstr "Usuario actualizado correctamente"
+#: menus.php:202
+#: menus.php:214
+msgid "Remove Menu Item"
+msgstr "Eliminar Entrada Menú"
 
-#: users.php:14
-#: users.php:48
-#: users.php:46
-#: menu.php:38
-msgid "Users"
-msgstr "Usuarios"
+#: menus.php:208
+#: admin.php:237
+#: styles.php:132
+#: pages.php:208
+msgid "Confirm that you want to remove:"
+msgstr "Confirma que quieres quitar:"
 
-#: account.php:38
-#: account.php:45
+#: menus.php:238
+#: menus.php:260
+msgid "Add Menu Type"
+msgstr "Añadir Tipo Menú"
+
+#: menus.php:250
+msgid "Friendly Id:"
+msgstr "Id Amigable:"
+
+#: menus.php:252
+msgid "Lowercase, no spaces, must be unique"
+msgstr "En minúsculas, sin espacios, debe ser único"
+
+#: menus.php:284
+#: menus.php:299
+msgid "Remove Menu Type"
+msgstr "Eliminar Tipo Menú"
+
+#: menus.php:291
+msgid "Are you sure that you want to delete"
+msgstr "¿Estás seguro que quieres eliminar"
+
+#: files.php:14
+#: files.php:41
+#: modules/menu.php:37
+msgid "Files"
+msgstr "Ficheros"
+
+#: files.php:30
+msgid "The extensions must match when editing an existing file"
+msgstr "Las extensiones deben coincidir cuando se edita un fichero existente"
+
+#: files.php:31
+#: files.php:48
+#: modules/dialogs/imagesDialog.php:50
+msgid "Drag file here or click to upload"
+msgstr "Arrastra el fichero aquí o haz click para cargar"
+
+#: files.php:32
+msgid "Drag file here to replace selected file"
+msgstr "Arrastra el fichero aquí para reemplazar fichero seleccionado"
+
+#: files.php:33
+msgid "The file was removed successfully"
+msgstr "Se ha eliminado el fichero correctamente"
+
+#: files.php:61
+msgid "Selected"
+msgstr "Seleccionado"
+
+#: files.php:76
+msgid "No files here. Click Upload File to get started."
+msgstr "No hay ficheros disponibles. Pulsa sobre Cargar Fichero para empezar."
+
+#: files.php:89
+#: files.php:108
+msgid "Remove File"
+msgstr "Eliminar Fichero"
+
+#: files.php:96
+msgid "Confirm you want to delete:"
+msgstr "Confirma que quieres eliminar"
+
+#: files.php:100
+msgid "This will completely remove it from the system."
+msgstr "Esto lo eliminará completamente del sistema."
+
+#: index.php:58
+msgid "Forgot your Password?"
+msgstr "¿Olvidaste tu contraseña?"
+
+#: account.php:14
+#: account.php:54
+#: modules/menu.php:40
+msgid "Account"
+msgstr "Cuenta"
+
+#: account.php:30
+msgid "Unsubscribing..."
+msgstr "Dando de baja..."
+
+#: account.php:31
+msgid "You have successfully unsubscribed"
+msgstr "Te has dado de baja correctamente."
+
+#: account.php:32
+msgid "Select a Plan"
+msgstr "Selecciona un Plan"
+
+#: account.php:34
+msgid "Update Successful"
+msgstr "Actualización Correcta"
+
+#: account.php:35
+msgid "There was a problem changing the plan"
+msgstr "Se ha producido un error cambiando el plan"
+
 #: account.php:36
 #: account.php:43
 msgid "Validating..."
 msgstr "Validando..."
 
-#: settings.php:38
-#: settings.php:34
-msgid "Verification file successfully generated"
-msgstr "Fichero de Verificación generado correctamente"
+#: account.php:38
+msgid "Credit Card Update Successful"
+msgstr "Tarjeta de Crédito actualizada correctamente"
 
-#: content.php:69
-msgid "View Live Page"
-msgstr "Ver en Sitio Web"
+#: account.php:40
+msgid "New card added"
+msgstr "Nueva tarjeta añadida"
 
-#: menu.php:26
-msgid "View Site"
-msgstr "Ver Sitio"
+#: account.php:41
+msgid "Credit Card declined"
+msgstr "Tarjeta de Crédito rechazada"
 
-#: forgot.php:34
-#: forgot.php:31
-msgid "We could not find your email in the system"
-msgstr "No se ha podido encontrar tu email en el sistema"
+#: account.php:42
+msgid "There was a problem updating the card"
+msgstr "Se ha producido un error actualizando la tarjeta "
 
-#: plans.php:120
-#: plans.php:116
-msgid "Week"
-msgstr "Semana"
+#: account.php:44
+msgid "Paying..."
+msgstr "Pagando:"
 
-#: settings.php:362
-#: settings.php:358
-msgid "Weight Unit:"
-msgstr "Peso Unitario:"
+#: account.php:45
+msgid "Payment successful"
+msgstr "Pago correcto:"
 
-#: skuDialog.php:42
-msgid "Weight:"
-msgstr "Peso:"
+#: account.php:46
+msgid "There was a problem paying for the subscription"
+msgstr "Se ha producido un error pagando la subscripción"
 
-#: forgot.php:66
-#: forgot.php:61
-msgid "Welcome back. Type a new password for your account."
-msgstr "Bienvenido de nuevo. Introduce una nueva contraseña para tu acceso."
+#: account.php:70
+msgid "Type:"
+msgstr "Tipo:"
 
-#: plans.php:122
-#: plans.php:118
-msgid "Year"
-msgstr "Año"
+#: account.php:77
+#: admin.php:58
+msgid "Status"
+msgstr "Estado"
 
-#: fieldDialog.php:35
-#: listDialog.php:65
-#: listDialog.php:68
-msgid "Yes"
-msgstr "Sí"
+#: account.php:80
+#: account.php:293
+#: account.php:341
+#: modules/account.php:7
+msgid "Subscribe"
+msgstr "Subscribirse"
 
-#: create.php:209
-#: create.php:210
-msgid "You can already view your site here:"
-msgstr "Ya puedes visualizar tu sitio aquí:"
+#: account.php:84
+msgid "Plan:"
+msgstr "Plan:"
 
-#: undefined.php:38
+#: account.php:88
+#: account.php:164
+#: account.php:190
+msgid "Change Plan"
+msgstr "Cambiar Plan"
+
+#: account.php:89
+#: account.php:130
+#: account.php:143
+msgid "Unsubscribe"
+msgstr "Dar de baja"
+
+#: account.php:93
+msgid "Renewal Date:"
+msgstr "Fecha Renovación:"
+
+#: account.php:99
+msgid "Payment:"
+msgstr "Pago:"
+
+#: account.php:136
+msgid "Are you sure that you want to unsubscribe?"
+msgstr "¿Estás seguro que quieres darte de baja?"
+
+#: account.php:170
+msgid "Select your new plan from the list below."
+msgstr "Selecciona un nuevo plan de la lista siguiente."
+
+#: account.php:182
+msgid "Loading plans..."
+msgstr "Cargando planes..."
+
+#: account.php:211
+#: account.php:272
+#: modules/account.php:9
+msgid "Update Payment"
+msgstr "Actualizar Pago"
+
+#: account.php:219
 msgid ""
-"You have reached this page because of an error in your configuration.  "
-"Please review your configuration. To review installation instructions, visit:"
-msgstr "Ha llegado a esta página debido a un error en la configuración. "
-"Por favor revisa tu configuración. Para leer las instrucciones de instalación, visite el sitio:"
+"Update the expiration date for your card. If you want to add a new card, "
+"click the New Card button."
+msgstr "Actualiza la fecha de caducidad de tu tarjeta. Si quieres añadir una tajeta "
+"nueva, pulsa el botón de Tarjeta Nueva"
 
-#: account.php:33
-#: account.php:31
-msgid "You have successfully unsubscribed"
-msgstr "Te has dado de baja correctamente."
+#: account.php:232
+#: account.php:258
+#: account.php:327
+msgid "Expires:"
+msgstr "Caduca:"
 
-#: pageSettingsDialog.php:6
-msgid "You have successfully updated the page"
-msgstr "Has actualizado la página correctamente."
+#: account.php:244
+msgid "Enter the details for your new credit card."
+msgstr "Introduce los detalles de tu tajeta de crédito."
 
-#: pageSettingsDialog.php:4
-msgid "You must add a name"
-msgstr "Debes añadir un nombre"
+#: account.php:248
+#: account.php:317
+msgid "Credit Card #:"
+msgstr "Nº Tarjeta Crédito:"
 
-#: pageSettingsDialog.php:5
-msgid "You must select a friendly URL"
-msgstr "Debes seleccionar una URL amigable"
+#: account.php:253
+#: account.php:322
+msgid "Card Code (CVC):"
+msgstr "Código Tarjeta (CVC):"
 
-#: listDialog.php:4
-msgid "You must select a type of list"
-msgstr "Debes seleccionar un tipo de lista"
+#: account.php:270
+msgid "New Card"
+msgstr "Nueva Tarjeta"
 
-#: account.php:56
+#: account.php:301
+msgid "Select a plan and enter your credit card information to subscribe."
+msgstr "Selecciona un plan e introduce tu tarjeta de crédito para subscribirte."
+
+#: branding.php:14
+#: branding.php:42
+#: colors.php:41
+#: modules/menu.php:34
+msgid "Branding"
+msgstr "Marca y Logo"
+
+#: branding.php:30
+msgid "Branding successfully updated"
+msgstr "Marca y Logo actualizados"
+
+#: branding.php:32
+msgid "Logo successfully updated"
+msgstr "Logo actualizado correctamente"
+
+#: branding.php:43
+#: colors.php:42
+msgid "Colors"
+msgstr "Colores"
+
+#: branding.php:54
+#, fuzzy
+msgid "Site:"
+msgstr "Sitio"
+
+#: branding.php:64
+#, fuzzy
+msgid "PayPal:"
+msgstr "PayPal ID:"
+
+#: branding.php:70
+msgid "PayPal recommends 150px x 50px"
+msgstr "PayPal recomienda 150px x 50px"
+
+#: branding.php:75
+msgid "Touch / Tile / Favorite:"
+msgstr "Touch / Entramado / Favorito:"
+
+#: branding.php:81
+msgid "PNG format, we will convert it to .ico)"
+msgstr "Formato PNG, se convertirá a .ico)"
+
+#: branding.php:86
+msgid "Tile Background:"
+msgstr "Entramado de fondo:"
+
+#: branding.php:90
+#: modules/dialogs/configPluginsDialog.php:20
+#: modules/dialogs/blockConfigDialog.php:48
+#: modules/dialogs/pageSettingsDialog.php:143
+#: modules/dialogs/elementConfigDialog.php:57
+msgid "Update"
+msgstr "Actualizar"
+
+#: branding.php:91
+msgid "The background color for a pinned Windows 8 tile"
+msgstr "Color de fondo para un entramado fijo de Windows 8"
+
+#: theme.php:14
+#: theme.php:40
+msgid "Themes"
+msgstr "Temas"
+
+#: theme.php:30
+msgid "Theme successfully reset"
+msgstr "Tema reiniciado correctamente"
+
+#: theme.php:31
+msgid "Applying..."
+msgstr "Aplicando..."
+
+#: theme.php:32
+msgid "Theme successfully applied"
+msgstr "Tema aplicado correctamente"
+
+#: theme.php:52
+#: theme.php:70
+#: theme.php:85
+msgid "Apply Theme"
+msgstr "Aplicar Tema"
+
+#: theme.php:53
+#: theme.php:109
+#: theme.php:124
+msgid "Reset Theme"
+msgstr "Reiniciar Tema"
+
+#: theme.php:75
+msgid "Confirm you want to apply:"
+msgstr "Confirma que quieres aplicar:"
+
+#: theme.php:79
 msgid ""
-"Your plan has expired. Please update your method of payment to avoid "
-"disruption of service."
-msgstr "Su subscripción ha caducado. Por favor, actualice su método de pago para evitar "
-"la interrupción del servicio."
+"This will completely change the look and feel of your site and remove any "
+"custom changes you made to the layout and styles of the site."
+msgstr ""
+"Esto cambiará por completo la presentación de tu sitio y eliminará "
+"cualquier cambio personalizado que hayas hecho a la disposición y estilos del "
+"sitio."
 
-#: account.php:33
+#: theme.php:114
+msgid "Confirm you want to reset:"
+msgstr "Confirma que quieres reiniciar:"
+
+#: theme.php:118
+msgid ""
+"This will override any custom changes you made to the Layout or Styles for "
+"the site."
+msgstr "Esto tomará preferencia sobre cualquier cambio personalizado que hayashecho "
+"en la Disposición o Estilo del sitio."
+
+#: colors.php:14
+#, fuzzy
+msgid "Color Configuration"
+msgstr "Configuraciones Avanzadas"
+
+#: colors.php:32
+#: styles.php:31
+msgid "Styles updated successfully"
+msgstr "Estilos actualizados correctamente"
+
+#: colors.php:33
+#: styles.php:32
+msgid "There was a problem saving the style file, please try again"
+msgstr "Se ha producido un error guardando el fichero de hoja de estilo"
+
+#: colors.php:49
+msgid ""
+"No color variables (e.g. @background-color: #888;) available for your "
+"themes.  Learn m"
+msgstr "No hay variables de color (e.g. @background-color: #888;) en el tema elegido."
+
+#: modules/account.php:8
+msgid "Manage Account"
+msgstr "Administrar Cuenta"
+
+#: modules/account.php:33
 #, php-format
 msgid "Your plan will automatically renew in %s days."
 msgstr "Tu subscripción se renovará automáticamente dentro de %s días."
 
-#: account.php:64
-msgid "Your subscription has ended. View your account to re-subscribe."
-msgstr "Tu subscripción ha terminado. Accede a tu cuenta para renovar."
-
-#: account.php:41
-#: account.php:48
+#: modules/account.php:41
+#: modules/account.php:48
 #, php-format
 msgid "Your trial will expire in %s days."
 msgstr "Tu periodo de prueba expira en %s días."
 
-#: pages.php:128
-#: pages.php:123
-msgid "by"
-msgstr "por"
-
-#: plans.php:114
-#: plans.php:110
-msgid "e.g. 2500 = $25.00"
-msgstr "e.g. 2500 = $25.00"
-
-#: settings.php:84
-#: settings.php:80
+#: modules/account.php:56
 msgid ""
-"e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
-msgstr "e.g. domain.com, sub.domain.com (no pongas www, http://, ni / al final)"
+"Your plan has expired. Please update your method of payment to avoid "
+"disruption of service."
+msgstr "Su subscripción ha caducado. Por favor, actualice su método de pago para "
+"evitar la interrupción del servicio."
 
-#: fieldDialog.php:49
-msgid "e.g.: (314) 444-2343"
-msgstr "e.g.: (314) 444-2343"
+#: modules/account.php:64
+msgid "Your subscription has ended. View your account to re-subscribe."
+msgstr "Tu subscripción ha terminado. Accede a tu cuenta para renovar."
 
-#: pages.php:283
-#: pages.php:282
-msgid "e.g.: Page, Blog, Product, etc."
-msgstr "e.g.: Página, Blog, Producto, etc."
+#: modules/dialogs/configPluginsDialog.php:9
+msgid "Configure Plugin"
+msgstr "Configurar Componente"
 
-#: pages.php:289
-#: pages.php:288
-msgid "e.g.: Pages, Blogs, Products, etc."
-msgstr "e.g.: Páginas, Blogs, Productos, etc."
+#: modules/dialogs/secureDialog.php:9
+msgid "Login or Registration"
+msgstr "Acceso o Registro"
 
-#: fieldDialog.php:18
+#: modules/dialogs/secureDialog.php:35
+msgid "Add Login or Registration"
+msgstr "Añadir Acceso o Registro"
+
+#: modules/dialogs/slideshowDialog.php:9
+msgid "Image Group"
+msgstr "Grupo de Imagenes"
+
+#: modules/dialogs/slideshowDialog.php:16
+#: modules/dialogs/listDialog.php:27
+msgid "Display:"
+msgstr "Pantalla:"
+
+#: modules/dialogs/slideshowDialog.php:18
+msgid "Slideshow"
+msgstr "Presentación"
+
+#: modules/dialogs/slideshowDialog.php:19
+msgid "Gallery"
+msgstr "Galería"
+
+#: modules/dialogs/slideshowDialog.php:28
+msgid "Add Image Group"
+msgstr "Añadir Imagen"
+
+#: modules/dialogs/featuredDialog.php:4
+msgid "Please select a page to feature"
+msgstr "Selecciona una página para destacar"
+
+#: modules/dialogs/featuredDialog.php:5
+msgid "Featured content:"
+msgstr "Contenido destacado:"
+
+#: modules/dialogs/featuredDialog.php:13
+msgid "Feature Content"
+msgstr "Contenido Destacado"
+
+#: modules/dialogs/featuredDialog.php:33
+#: js/translations.php:46
+msgid "Add Featured Content"
+msgstr "Añadir Contenido Destacado"
+
+#: modules/dialogs/fieldDialog.php:9
+#: modules/dialogs/fieldDialog.php:74
+msgid "Add Field"
+msgstr "Añadir Campo"
+
+#: modules/dialogs/fieldDialog.php:10
+#: modules/dialogs/fieldDialog.php:75
+#, fuzzy
+msgid "Update Field"
+msgstr "Actualizar Lista"
+
+#: modules/dialogs/fieldDialog.php:17
+msgid "Field Type:"
+msgstr "Tipo Campo:"
+
+#: modules/dialogs/fieldDialog.php:19
+msgid "Text Box"
+msgstr "Caja de Texto"
+
+#: modules/dialogs/fieldDialog.php:20
+msgid "Text Area"
+msgstr "Area de Texto"
+
+#: modules/dialogs/fieldDialog.php:21
+msgid "Dropdown List"
+msgstr "Lista Desplegable"
+
+#: modules/dialogs/fieldDialog.php:22
+msgid "Checkbox List"
+msgstr "Casilla Verificación"
+
+#: modules/dialogs/fieldDialog.php:23
+msgid "Radio button List"
+msgstr "Lista Botones de Radio"
+
+#: modules/dialogs/fieldDialog.php:24
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+#: modules/dialogs/fieldDialog.php:29
+#, fuzzy
+msgid "Field Label:"
+msgstr "Nombre Campo:"
+
+#: modules/dialogs/fieldDialog.php:31
 msgid "e.g.: Phone Number, Name, etc."
 msgstr "e.g.: Número Teléfono, Nombre, etc."
 
-#: test.php:55
-#: test.php:57
-msgid "failure"
-msgstr "error"
+#: modules/dialogs/fieldDialog.php:35
+#, fuzzy
+msgid "ID/Name:"
+msgstr "Nombre:"
 
-#: skuDialog.php:42
+#: modules/dialogs/fieldDialog.php:40
+msgid "Required:"
+msgstr "Obligatorio:"
+
+#: modules/dialogs/fieldDialog.php:42
+#: modules/dialogs/listDialog.php:69
+msgid "Yes"
+msgstr "Sí"
+
+#: modules/dialogs/fieldDialog.php:43
+#: modules/dialogs/listDialog.php:70
+msgid "No"
+msgstr "No"
+
+#: modules/dialogs/fieldDialog.php:48
+msgid "Options:"
+msgstr "Opciones:"
+
+#: modules/dialogs/fieldDialog.php:50
+msgid "Separate each option with a comma"
+msgstr "Separa cada opción con una coma"
+
+#: modules/dialogs/fieldDialog.php:54
+msgid "Helper Text:"
+msgstr "Texto de Ayuda:"
+
+#: modules/dialogs/fieldDialog.php:56
+msgid "e.g.: (314) 444-2343"
+msgstr "e.g.: (314) 444-2343"
+
+#: modules/dialogs/fieldDialog.php:60
+msgid "Placeholder:"
+msgstr "Texto de ayuda:"
+
+#: modules/dialogs/layoutDialog.php:5
+msgid "Select Layout"
+msgstr "Selecciona Disposición"
+
+#: modules/dialogs/layoutDialog.php:13
+msgid "Standard Layouts"
+msgstr "Disposiciones Estándar"
+
+#: modules/dialogs/blockConfigDialog.php:16
+msgid "Block Id:"
+msgstr "Id del Bloque:"
+
+#: modules/dialogs/blockConfigDialog.php:21
+msgid "Block Class:"
+msgstr "Clase del Bloque:"
+
+#: modules/dialogs/blockConfigDialog.php:26
+msgid "Block Nesting:"
+msgstr "Anidamiento de Bloque:"
+
+#: modules/dialogs/blockConfigDialog.php:28
+msgid "Stand-alone (not nested)"
+msgstr "Independiente (no anidado)"
+
+#: modules/dialogs/blockConfigDialog.php:29
+msgid "Nested in .container block"
+msgstr "Anidado dentro del bloque .container"
+
+#: modules/dialogs/blockConfigDialog.php:34
+msgid "Container Id:"
+msgstr "Id Contenedor:"
+
+#: modules/dialogs/blockConfigDialog.php:39
+msgid "Container Class:"
+msgstr "Clase del Contenedor:"
+
+#: modules/dialogs/fontAwesomeDialog.php:9
+msgid "Add Font Awesome Icon"
+msgstr "Añadir Icono Font Awesome"
+
+#: modules/dialogs/fontAwesomeDialog.php:30
+msgid "Add Icon"
+msgstr "Añadir Icono"
+
+#: modules/dialogs/skuDialog.php:9
+#: modules/dialogs/skuDialog.php:55
+msgid "Add SKU"
+msgstr "Añadir Nº Referencia"
+
+#: modules/dialogs/skuDialog.php:16
+msgid "SKU:"
+msgstr "Nº Referencia:"
+
+#: modules/dialogs/skuDialog.php:21
+#: modules/dialogs/pageSettingsDialog.php:43
+#: modules/dialogs/htmlDialog.php:21
+#: pages.php:168
+msgid "Description:"
+msgstr "Descripción:"
+
+#: modules/dialogs/skuDialog.php:26
+msgid "Price:"
+msgstr "Precio:"
+
+#: modules/dialogs/skuDialog.php:34
+msgid "Shipping Type:"
+msgstr "Tipo Envío:"
+
+#: modules/dialogs/skuDialog.php:36
+msgid "Not Shipped"
+msgstr "Sin Envíos"
+
+#: modules/dialogs/skuDialog.php:37
+#: sites/common/modules/cart.php:23
+msgid "Shipped"
+msgstr "Con Envíos"
+
+#: modules/dialogs/skuDialog.php:38
+#: modules/dialogs/filesDialog.php:4
+msgid "Download"
+msgstr "Descarga"
+
+#: modules/dialogs/skuDialog.php:43
+msgid "Weight:"
+msgstr "Peso:"
+
+#: modules/dialogs/skuDialog.php:43
 msgid "optional"
 msgstr "opcional"
 
-#: test.php:55
-#: test.php:57
+#: modules/dialogs/skuDialog.php:56
+msgid "Update SKU"
+msgstr "Actualizar Nº Referencia"
+
+#: modules/dialogs/pluginsDialog.php:4
+msgid "Please select a plugin"
+msgstr "Selecciona un componente"
+
+#: modules/dialogs/pluginsDialog.php:12
+msgid "Select Plugin"
+msgstr "Selecciona un Componente"
+
+#: modules/dialogs/pluginsDialog.php:36
+msgid "Add Plugin"
+msgstr "Añadir Componente"
+
+#: modules/dialogs/loadLayoutDialog.php:4
+msgid "Please select a layout"
+msgstr "Selecciona una disposición"
+
+#: modules/dialogs/loadLayoutDialog.php:12
+#, fuzzy
+msgid "Load Page"
+msgstr "Cargar Página"
+
+#: modules/dialogs/loadLayoutDialog.php:18
+#, fuzzy
+msgid "From Theme"
+msgstr "Desde Tema"
+
+#: modules/dialogs/loadLayoutDialog.php:19
+msgid "From Code"
+msgstr "Desde Código"
+
+#: modules/dialogs/loadLayoutDialog.php:55
+#: modules/dialogs/loadLayoutDialog.php:56
+#: modules/dialogs/loadLayoutDialog.php:57
+msgid "Load Layout"
+msgstr "Cargar Disposición"
+
+#: modules/dialogs/pageSettingsDialog.php:4
+msgid "You must add a name"
+msgstr "Debes añadir un nombre"
+
+#: modules/dialogs/pageSettingsDialog.php:5
+msgid "You must select a friendly URL"
+msgstr "Debes seleccionar una URL amigable"
+
+#: modules/dialogs/pageSettingsDialog.php:6
+msgid "You have successfully updated the page"
+msgstr "Has actualizado la página correctamente."
+
+#: modules/dialogs/pageSettingsDialog.php:15
+#: js/translations.php:53
+msgid "Page Settings"
+msgstr "Configuración Página"
+
+#: modules/dialogs/pageSettingsDialog.php:20
+msgid "Basic"
+msgstr "Básico"
+
+#: modules/dialogs/pageSettingsDialog.php:21
+msgid "Event"
+msgstr "Evento"
+
+#: modules/dialogs/pageSettingsDialog.php:22
+msgid "Location"
+msgstr "Ubicación"
+
+#: modules/dialogs/pageSettingsDialog.php:23
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: modules/dialogs/pageSettingsDialog.php:37
+msgid "URL:"
+msgstr "URL:"
+
+#: modules/dialogs/pageSettingsDialog.php:39
+#: pages.php:164
+msgid "No spaces, no special characters, dashes allowed."
+msgstr "No se permiten espacios, caracteres especiales ni guiones."
+
+#: modules/dialogs/pageSettingsDialog.php:48
+msgid "Keywords:"
+msgstr "Palabras Clave:"
+
+#: modules/dialogs/pageSettingsDialog.php:53
+msgid "Callout:"
+msgstr "Texto Promocional:"
+
+#: modules/dialogs/pageSettingsDialog.php:63
+msgid "Begin Date:"
+msgstr "Fecha Inicio:"
+
+#: modules/dialogs/pageSettingsDialog.php:68
+msgid "Begin Time:"
+msgstr "Hora Inicio"
+
+#: modules/dialogs/pageSettingsDialog.php:73
+msgid "End Date:"
+msgstr "Fecha Fin:"
+
+#: modules/dialogs/pageSettingsDialog.php:78
+msgid "End Time:"
+msgstr "Hora Fin:"
+
+#: modules/dialogs/pageSettingsDialog.php:88
+msgid "Location:"
+msgstr "Ubicación:"
+
+#: modules/dialogs/pageSettingsDialog.php:93
+msgid "Latitude:"
+msgstr "Latitud:"
+
+#: modules/dialogs/pageSettingsDialog.php:98
+msgid "Longitude:"
+msgstr "Longitud:"
+
+#: modules/dialogs/pageSettingsDialog.php:108
+msgid "RSS:"
+msgstr "RSS:"
+
+#: modules/dialogs/pageSettingsDialog.php:115
+#: pages.php:173
+msgid "Categories:"
+msgstr "Categorías:"
+
+#: modules/dialogs/pageSettingsDialog.php:122
+msgid "Layout:"
+msgstr "Disposición:"
+
+#: modules/dialogs/pageSettingsDialog.php:125
+msgid "HTML used to render the page"
+msgstr "HTML utilizado para representar la página"
+
+#: modules/dialogs/pageSettingsDialog.php:129
+msgid "Stylesheet:"
+msgstr "Hoja de Estilo"
+
+#: modules/dialogs/pageSettingsDialog.php:132
+msgid "CSS used to render the page"
+msgstr "CSS utilizado para representar la página"
+
+#: modules/dialogs/formDialog.php:9
+#, fuzzy
+msgid "Form Configuration"
+msgstr "Configuraciones Avanzadas"
+
+#: modules/dialogs/formDialog.php:16
+#, fuzzy
+msgid "Form Type:"
+msgstr "Tipo Campo:"
+
+#: modules/dialogs/formDialog.php:18
+msgid "Default (handled by Respond)"
+msgstr "Por Defecto (lo gestiona Respond)"
+
+#: modules/dialogs/formDialog.php:19
+#, fuzzy
+msgid "Custom"
+msgstr "Cliente"
+
+#: modules/dialogs/formDialog.php:24
+msgid "Form ID:"
+msgstr "ID Formulario:"
+
+#: modules/dialogs/formDialog.php:29
+#, fuzzy
+msgid "Action:"
+msgstr "Ubicación:"
+
+#: modules/dialogs/formDialog.php:34
+msgid "Success Message:"
+msgstr "Mensaje Exito:"
+
+#: modules/dialogs/formDialog.php:35
+#, fuzzy
+msgid "Form submitted successfully!"
+msgstr "Plan actualizado correctamente"
+
+#: modules/dialogs/formDialog.php:39
+msgid "Error Message:"
+msgstr "Mensaje Error:"
+
+#: modules/dialogs/formDialog.php:40
+msgid "You are missing required fields."
+msgstr "Faltan campos obligatorios."
+
+#: modules/dialogs/formDialog.php:44
+msgid "Submit Button Text:"
+msgstr "Texto del botón de Enviar:"
+
+#: modules/dialogs/formDialog.php:45
+msgid "Submit"
+msgstr "Enviar"
+
+#: modules/dialogs/formDialog.php:53
+#, fuzzy
+msgid "Update Form"
+msgstr "Actualizar Logo"
+
+#: modules/dialogs/listDialog.php:4
+msgid "You must select a type of list"
+msgstr "Debes seleccionar un tipo de lista"
+
+#: modules/dialogs/listDialog.php:12
+#: modules/dialogs/listDialog.php:79
+msgid "Add List"
+msgstr "Añadir Lista"
+
+#: modules/dialogs/listDialog.php:13
+#: modules/dialogs/listDialog.php:80
+msgid "Update List"
+msgstr "Actualizar Lista"
+
+#: modules/dialogs/listDialog.php:20
+msgid "Page Type:"
+msgstr "Tipo Página:"
+
+#: modules/dialogs/listDialog.php:29
+msgid "List"
+msgstr "Lista"
+
+#: modules/dialogs/listDialog.php:30
+msgid "Blog"
+msgstr "Blog"
+
+#: modules/dialogs/listDialog.php:31
+msgid "Thumbnails"
+msgstr "Miniaturas"
+
+#: modules/dialogs/listDialog.php:32
+msgid "Calendar"
+msgstr "Calendario"
+
+#: modules/dialogs/listDialog.php:33
+msgid "Map"
+msgstr "Mapa"
+
+#: modules/dialogs/listDialog.php:38
+msgid "Order By:"
+msgstr "Ordenar Por:"
+
+#: modules/dialogs/listDialog.php:41
+msgid "Date Created (newest first)"
+msgstr "Fecha Creación (más reciente primero)"
+
+#: modules/dialogs/listDialog.php:42
+#, fuzzy
+msgid "Event Start Date (newest first)"
+msgstr "Fecha Creación (más reciente primero)"
+
+#: modules/dialogs/listDialog.php:47
+msgid "Filter By Category:"
+msgstr "Filtrar por Categoría:"
+
+#: modules/dialogs/listDialog.php:49
+#: pages.php:92
+#: pages.php:95
+msgid "All Categories"
+msgstr "Todas las Categorías"
+
+#: modules/dialogs/listDialog.php:57
+msgid "Description Length:"
+msgstr "Longitud Descripción:"
+
+#: modules/dialogs/listDialog.php:62
+msgid "Page Size:"
+msgstr "Tamaño Página:"
+
+#: modules/dialogs/listDialog.php:67
+msgid "Page Results:"
+msgstr "Resultados Página:"
+
+#: modules/dialogs/elementConfigDialog.php:16
+msgid "Element Id:"
+msgstr "Id Elemento:"
+
+#: modules/dialogs/elementConfigDialog.php:27
+msgid "Image Orientation:"
+msgstr "Orientación Imagen:"
+
+#: modules/dialogs/elementConfigDialog.php:29
+msgid "Left of the text"
+msgstr "A la izquierda del texto"
+
+#: modules/dialogs/elementConfigDialog.php:30
+msgid "Right of the text"
+msgstr "A la derecha del tecto"
+
+#: modules/dialogs/elementConfigDialog.php:31
+msgid "No text"
+msgstr "Sin texto"
+
+#: modules/dialogs/elementConfigDialog.php:36
+msgid "Image Link:"
+msgstr "Enlace Imagen"
+
+#: modules/dialogs/elementConfigDialog.php:42
+msgid "Table Rows:"
+msgstr "Filas de Tabla:"
+
+#: modules/dialogs/elementConfigDialog.php:47
+msgid "Table Columns:"
+msgstr "Columnas de Tabla:"
+
+#: modules/dialogs/htmlDialog.php:4
+msgid "HTML block"
+msgstr "Bloque HTML"
+
+#: modules/dialogs/htmlDialog.php:12
+#: modules/dialogs/htmlDialog.php:36
+#: js/translations.php:50
+msgid "Add HTML"
+msgstr "Añadir HTML"
+
+#: modules/dialogs/htmlDialog.php:18
+msgid "Create your widget at:"
+msgstr "Crea tu widget en:"
+
+#: modules/dialogs/htmlDialog.php:18
+msgid ". Paste the HTML code below."
+msgstr ". Pega código HTML abajo."
+
+#: modules/dialogs/htmlDialog.php:26
+msgid "HTML:"
+msgstr "HTML:"
+
+#: modules/dialogs/htmlDialog.php:28
+msgid "Add your HTML, JS, or HTML here"
+msgstr "Añade tu HTML, JS o PHP aquí"
+
+#: modules/dialogs/filesDialog.php:5
+msgid "File Description"
+msgstr "Descripción Fichero"
+
+#: modules/dialogs/filesDialog.php:13
+#: modules/dialogs/filesDialog.php:36
+msgid "Add File"
+msgstr "Añadir Fichero"
+
+#: modules/dialogs/codeBlockDialog.php:9
+#: modules/dialogs/codeBlockDialog.php:26
+#: js/translations.php:51
+msgid "Add Code Block"
+msgstr "Añadir Bloque de Código"
+
+#: modules/dialogs/codeBlockDialog.php:16
+msgid "Code:"
+msgstr "Código:"
+
+#: modules/dialogs/codeBlockDialog.php:18
+msgid "Paste your code in the textarea above."
+msgstr "Pega tu código en el área de texto de arriba."
+
+#: modules/dialogs/imagesDialog.php:4
+#: modules/dialogs/imagesDialog.php:6
+msgid "Enter caption"
+msgstr "Introduzca subtítulo"
+
+#: modules/dialogs/imagesDialog.php:5
+msgid ""
+"Add your content here or click the settings icon to change the image layout"
+msgstr "Añade tu contenido aquí o pulsa el icono de configuración para cambiar la "
+"disposición de la imagen"
+
+#: modules/dialogs/imagesDialog.php:9
+msgid "Select or upload a new image"
+msgstr "Selecciona o carga una nueva imagen"
+
+#: modules/dialogs/imagesDialog.php:16
+msgid "New Images"
+msgstr "Nuevas Imágenes"
+
+#: modules/dialogs/imagesDialog.php:32
+msgid "Existing Images"
+msgstr "Imágenes existentes"
+
+#: modules/dialogs/linkDialog.php:9
+#: modules/dialogs/linkDialog.php:56
+msgid "Add Link"
+msgstr "Añadir Enlace"
+
+#: modules/dialogs/linkDialog.php:42
+#, fuzzy
+msgid "Target:"
+msgstr "Ancho Objetivo:"
+
+#: modules/dialogs/linkDialog.php:47
+msgid "Title:"
+msgstr "Título:"
+
+#: modules/menu.php:18
+msgid "Sign Out"
+msgstr "Salir"
+
+#: modules/menu.php:19
+msgid "Close Menu"
+msgstr "Cerrar Menú"
+
+#: modules/menu.php:25
+msgid "Manage your Site"
+msgstr "Administra tus Sitios"
+
+#: modules/menu.php:26
+msgid "View Site"
+msgstr "Ver Sitio"
+
+#: modules/menu.php:31
+#: modules/menu.php:69
+#: pages.php:14
+msgid "Pages"
+msgstr "Páginas"
+
+#: modules/menu.php:33
+msgid "Theme"
+msgstr "Tema"
+
+#: modules/menu.php:35
+#: transactions.php:14
+#: transactions.php:43
+msgid "Transactions"
+msgstr "Transacciones"
+
+#: modules/menu.php:39
+#: users.php:14
+#: users.php:46
+msgid "Users"
+msgstr "Usuarios"
+
+#: modules/menu.php:45
+msgid "Advanced Configurations"
+msgstr "Configuración Avanzada"
+
+#: modules/menu.php:46
+msgid "Republish"
+msgstr "Publicar de nuevo"
+
+#: modules/menu.php:53
+msgid "Styles"
+msgstr "Hojas de Estilo"
+
+#: modules/menu.php:54
+#: scripts.php:14
+msgid "Scripts"
+msgstr "Scripts Javascript"
+
+#: modules/menu.php:58
+msgid "Site Admin"
+msgstr "Administrador"
+
+#: modules/menu.php:66
+msgid "Menu"
+msgstr "Menú"
+
+#: users.php:49
+#: users.php:91
+#: users.php:157
+msgid "Add User"
+msgstr "Añadir Usuario"
+
+#: users.php:61
+#: users.php:111
+msgid "Administrator"
+msgstr "Administrador"
+
+#: users.php:61
+#: users.php:62
+#: users.php:63
+msgid "Not Active"
+msgstr "Inactivo"
+
+#: users.php:62
+#: users.php:112
+msgid "Contributor"
+msgstr "Contribuidor"
+
+#: users.php:63
+#: users.php:113
+msgid "Member"
+msgstr "Miembro"
+
+#: users.php:66
+msgid "Created"
+msgstr "Creado"
+
+#: users.php:75
+msgid "No users here. Click Add User to get started."
+msgstr "No hay usuarios. Pulsa sobre Añadir Usuario para empezar."
+
+#: users.php:109
+msgid "Role:"
+msgstr "Rol:"
+
+#: users.php:128
+msgid "Active:"
+msgstr "Activo:"
+
+#: users.php:182
+#: users.php:197
+msgid "Remove User"
+msgstr "Eliminar Usuario"
+
+#: users.php:189
+#: pages.php:241
+#: pages.php:391
+msgid "Confirm you want to remove:"
+msgstr "Confirma que quieres quitar:"
+
+#: sites/common/modules/welcome.php:4
+msgid "Welcome"
+msgstr "Bienvenid@"
+
+#: sites/common/modules/welcome.php:5
+msgid "Logout"
+msgstr "Salir"
+
+#: sites/common/modules/welcome.php:10
+#, fuzzy
+msgid "Sign in"
+msgstr "Salir"
+
+#: sites/common/modules/cart.php:12
+#, fuzzy
+msgid "Shopping Cart"
+msgstr "Tarifa Envío:"
+
+#: sites/common/modules/cart.php:29
+#: admin.php:63
+#, fuzzy
+msgid "Remove"
+msgstr "Eliminar Fichero"
+
+#: sites/common/modules/cart.php:42
+msgid "Subtotal:"
+msgstr "Subtotal:"
+
+#: sites/common/modules/cart.php:47
+#, fuzzy
+msgid "Total Weight:"
+msgstr "Peso:"
+
+#: sites/common/modules/cart.php:52
+#, fuzzy
+msgid "Shipping:"
+msgstr "Tarifa Envío:"
+
+#: sites/common/modules/cart.php:57
+msgid "Tax:"
+msgstr "Impuesto:"
+
+#: sites/common/modules/cart.php:62
+msgid "Total:"
+msgstr "Total:"
+
+#: sites/common/modules/cart.php:70
+msgid "Checkout with Paypal"
+msgstr "Pagar con PayPal"
+
+#: sites/common/modules/comments.php:10
+#, fuzzy
+msgid "Comments"
+msgstr "Pagos"
+
+#: sites/common/modules/login.php:4
+#, fuzzy
+msgid "Login successful."
+msgstr "Cambio correcto"
+
+#: sites/common/modules/login.php:5
+msgid "Your username or password is invalid. Please try again."
+msgstr "El usuario o la contraseña son inválidas. Inténtalo de nuevo."
+
+#: sites/common/modules/search.php:9
+#, fuzzy
+msgid "Searching..."
+msgstr "Guardando..."
+
+#: sites/common/modules/search.php:10
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: sites/common/modules/registration.php:3
+msgid ""
+"Registration successful. The site administrator will contact you when you "
+"are approved."
+msgstr "Registro correcto. El administrador del sitio se pondrá en contacto contigo en breve."
+
+#: sites/common/modules/registration.php:4
+#, fuzzy
+msgid "There was a problem registering. Please try again."
+msgstr "Se ha producido un error guardando la configuración"
+
+#: sites/common/modules/registration.php:7
+#, fuzzy
+msgid "Captcha value incorrect. Please try again."
+msgstr "Se ha producido un error guardando el contenido"
+
+#: sites/common/modules/registration.php:41
+msgid "Register"
+msgstr "Registro"
+
+#: sites/common/modules/crumbs.php:2
+msgid "Home"
+msgstr "Inicio"
+
+#: sites/common/modules/crumbs.php:3
+msgid "Back to Previous"
+msgstr "Volver atrás"
+
+#: test.php:29
+msgid "Test Installation"
+msgstr "Verificar Instalación"
+
+#: test.php:54
+msgid ""
+"Below are some tests to help troubleshoot common problems with your "
+"installation."
+msgstr "Abajo hay algunas pruebas para ayudar a corregir errores comunes en tu "
+"instalación."
+
+#: test.php:58
 msgid "success"
 msgstr "éxito"
+
+#: test.php:58
+msgid "failure"
+msgstr "error"
+
+#: test.php:64
+msgid "PDO Enabled"
+msgstr "PDO Habilitado"
+
+#: test.php:79
+msgid "Sites Directory is Writeable"
+msgstr "Directorio Sites es escribible"
+
+#: test.php:94
+msgid "GD Library is installed"
+msgstr "Librería GD instalada"
+
+#: test.php:109
+msgid "PHP Version is greater than 5.3"
+msgstr "Versión de PHP mayor que 5.3"
+
+#: test.php:130
+msgid "Database connection works"
+msgstr "Conexión a la base de datos funciona"
+
+#: test.php:147
+msgid "CURL enabled"
+msgstr "CURL habilitado"
+
+#: test.php:162
+msgid "APP_URL is set in app.php"
+msgstr "La variable APP_URL se define en app.php"
+
+#: test.php:177
+msgid "MOD_REWRITE is working"
+msgstr "MOD_REWRITE funcionando"
+
+#: test.php:203
+msgid "API is working"
+msgstr "API funcionando"
+
+#: test.php:228
+msgid "Gettext is installed"
+msgstr "Gettext instalado"
+
+#: test.php:242
+msgid "Magic Quotes not automatically Escaping"
+msgstr "Magic Quotes no está funcionando automáticamente."
+
+#: test.php:261
+msgid "For help troubleshooting your installation, visit:"
+msgstr "Para obtener ayuda configurando tu instalación visita:"
+
+#: admin.php:29
+msgid "All fields required"
+msgstr "Todos los campos son obligatorios"
+
+#: admin.php:31
+msgid "Site added successfully"
+msgstr "Site añadido correctamente"
+
+#: admin.php:32
+msgid "Switching..."
+msgstr "Cambiando..."
+
+#: admin.php:33
+msgid "Switch successful"
+msgstr "Cambio correcto"
+
+#: admin.php:35
+#, fuzzy
+msgid "Site removed successfully"
+msgstr "Página eliminada correctamente"
+
+#: admin.php:36
+#, fuzzy
+msgid "There was a problem removing the site"
+msgstr "Se ha producido un error eliminando la página"
+
+#: admin.php:48
+#: admin.php:94
+#: admin.php:211
+msgid "Add Site"
+msgstr "Añadir Sitio"
+
+#: admin.php:57
+msgid "Type"
+msgstr "Tipo"
+
+#: admin.php:59
+msgid "Plan"
+msgstr "Plan"
+
+#: admin.php:60
+#: transactions.php:55
+msgid "Customer"
+msgstr "Cliente"
+
+#: admin.php:61
+msgid "Renewal Date"
+msgstr "Fecha Renovación"
+
+#: admin.php:62
+msgid "Switch"
+msgstr "Cambiar"
+
+#: admin.php:232
+#: admin.php:243
+#, fuzzy
+msgid "Remove Site"
+msgstr "Eliminar Script JS"
+
+#: styles.php:14
+msgid "Stylesheets"
+msgstr "Hojas de Estilo"
+
+#: styles.php:33
+msgid "A name is required to add a stylesheet"
+msgstr "Se requiere un nombre para añadir una hoja de estilo"
+
+#: styles.php:35
+msgid "Stylesheet successfully added"
+msgstr "Hoja de Estilo añadida correctamente"
+
+#: styles.php:38
+msgid "Stylesheet successfully removed"
+msgstr "Hoja de Estilo eliminada correctamente"
+
+#: styles.php:39
+msgid "There was a problem removing the stylesheet, please try again"
+msgstr "Se ha producido un error eliminando la hoja de estilo"
+
+#: styles.php:84
+#: styles.php:101
+msgid "Add Stylesheet"
+msgstr "Añadir Hoja Estilo"
+
+#: styles.php:93
+msgid "Lowercase, no spaces, leave the .less off"
+msgstr "En minúsculas, sin espacios y no pongas la extensión .less"
+
+#: styles.php:125
+#: styles.php:140
+msgid "Remove Stylesheet"
+msgstr "Eliminar Hoja de Estilo"
+
+#: pages.php:29
+msgid "Name and Friendly URL are required"
+msgstr "Nombre y URL Amigable son obligatorios"
+
+#: pages.php:31
+msgid "Page added successfully"
+msgstr "Página añadida correctamente"
+
+#: pages.php:33
+msgid "Page removed successfully"
+msgstr "Página eliminada correctamente"
+
+#: pages.php:34
+msgid "There was a problem removing the page"
+msgstr "Se ha producido un error eliminando la página"
+
+#: pages.php:37
+msgid "Page type added successfully"
+msgstr "Tipo Página añadida correctamente"
+
+#: pages.php:39
+msgid "Page type updated successfully"
+msgstr "Tipo Página actualizada correctamente"
+
+#: pages.php:41
+msgid "Page type removed successfully"
+msgstr "Tipo Página eliminada correctamente"
+
+#: pages.php:42
+msgid "There was a problem removing the page type"
+msgstr "Se ha producido un error eliminando el tipo de página"
+
+#: pages.php:43
+msgid "The page was un-published successfully"
+msgstr "Publicación de la página anulada correctamente"
+
+#: pages.php:44
+msgid "The page was published successfully"
+msgstr "La página se ha publicado correctamente"
+
+#: pages.php:45
+msgid "There was a problem publishing/un-publishing the page"
+msgstr "Se ha producido un error al publicar o anular la publicación de la página"
+
+#: pages.php:47
+msgid "Category added successfully"
+msgstr "Categoría añadida correctamente"
+
+#: pages.php:49
+msgid "Category removed successfully"
+msgstr "Categoría eliminada correctamente"
+
+#: pages.php:50
+msgid "There was a problem removing the category"
+msgstr "Se ha producido un error eliminando la categoría"
+
+#: pages.php:82
+#: pages.php:152
+#: pages.php:182
+msgid "Add Page"
+msgstr "Añadir Página"
+
+#: pages.php:100
+#: pages.php:346
+#: pages.php:364
+msgid "Add Category"
+msgstr "Añadir Categoría"
+
+#: pages.php:104
+msgid "Sort by Last Modified"
+msgstr "Ordenar Fecha Modificación"
+
+#: pages.php:105
+msgid "Sort by Name"
+msgstr "Ordenar por Nombre"
+
+#: pages.php:122
+msgid "Draft"
+msgstr "Borrador"
+
+#: pages.php:124
+msgid "Last updated"
+msgstr "Ultima actualización"
+
+#: pages.php:124
+msgid "by"
+msgstr "por"
+
+#: pages.php:139
+msgid "No pages here. Click Add Page to get started."
+msgstr "No hay páginas disponibles. Pulsa sobre Añadir Página para empezar."
+
+#: pages.php:162
+#: pages.php:293
+#: pages.php:356
+msgid "Friendly URL:"
+msgstr "URL Amigable:"
+
+#: pages.php:203
+#: pages.php:214
+msgid "Remove Page"
+msgstr "Eliminar Página"
+
+#: pages.php:235
+msgid "Remove Page Type"
+msgstr "Eliminar Tipo Página"
+
+#: pages.php:245
+msgid "Please remove all pages first."
+msgstr "Por favor, elimina todas las páginas primero."
+
+#: pages.php:252
+msgid "Remove Type"
+msgstr "Eliminar Tipo"
+
+#: pages.php:273
+msgid "Add Page Type"
+msgstr "Añadir Tipo Página"
+
+#: pages.php:274
+msgid "Update Page Type"
+msgstr "Actualizar Tipo Página"
+
+#: pages.php:281
+msgid "Name (singular):"
+msgstr "Nombre (singular):"
+
+#: pages.php:283
+msgid "e.g.: Page, Blog, Product, etc."
+msgstr "e.g.: Página, Blog, Producto, etc."
+
+#: pages.php:287
+msgid "Name (Plural):"
+msgstr "Nombre (plural):"
+
+#: pages.php:289
+msgid "e.g.: Pages, Blogs, Products, etc."
+msgstr "e.g.: Páginas, Blogs, Productos, etc."
+
+#: pages.php:295
+msgid "Must be lowercase with no spaces."
+msgstr "Debe ser minúsculas y sin espacios."
+
+#: pages.php:299
+msgid "Default Layout:"
+msgstr "Disposición por defecto:"
+
+#: pages.php:304
+msgid "Default Styles:"
+msgstr "Estilos por defecto:"
+
+#: pages.php:309
+#, fuzzy
+msgid "Requires Login:"
+msgstr "Obligatorio:"
+
+#: pages.php:324
+msgid "Add Type"
+msgstr "Añadir Tipo"
+
+#: pages.php:325
+msgid "Update Type"
+msgstr "Actualizar Tipo"
+
+#: pages.php:385
+msgid "Remove Cateogry"
+msgstr "Eliminar Categoría"
+
+#: pages.php:398
+msgid "Remove Category"
+msgstr "Eliminar Categoría"
+
+#: transactions.php:30
+#, fuzzy
+msgid "Transaction removed successfully"
+msgstr "Categoría eliminada correctamente"
+
+#: transactions.php:31
+#, fuzzy
+msgid "There was a problem removing the transaction"
+msgstr "Se ha producido un error eliminando la categoría"
+
+#: transactions.php:32
+#, fuzzy
+msgid "Shipping"
+msgstr "Tarifa Envío:"
+
+#: transactions.php:33
+#, fuzzy
+msgid "Fee"
+msgstr "Gratis"
+
+#: transactions.php:34
+msgid "Tax"
+msgstr "Impuesto"
+
+#: transactions.php:35
+msgid "Total"
+msgstr "Total"
+
+#: transactions.php:54
+msgid "Processor"
+msgstr "Procesador"
+
+#: transactions.php:56
+msgid "Invoice"
+msgstr "Factura"
+
+#: js/translations.php:19
+msgid "Bold Text (select text first)"
+msgstr "Negrita (selecciona texto primero)"
+
+#: js/translations.php:20
+msgid "Italicize Text (select text first)"
+msgstr "Itálica  (selecciona texto primero)"
+
+#: js/translations.php:21
+msgid "Strike Text (select text first)"
+msgstr "Tachado  (selecciona texto primero)"
+
+#: js/translations.php:22
+msgid "Subscript Text (select text first)"
+msgstr "Subíndice  (selecciona texto primero)"
+
+#: js/translations.php:23
+msgid "Superscript Text (select text first)"
+msgstr "Superíndice  (selecciona texto primero)"
+
+#: js/translations.php:24
+msgid "Underline Text (select text first)"
+msgstr "Subrayado (selecciona texto primero)"
+
+#: js/translations.php:25
+msgid "Align text to the left"
+msgstr "Alinea a la izquierda"
+
+#: js/translations.php:26
+msgid "Align text to the center"
+msgstr "Alinea al centro"
+
+#: js/translations.php:27
+msgid "Align text to the right"
+msgstr "Alinea a la derecha"
+
+#: js/translations.php:28
+msgid "Add Link (select text first)"
+msgstr "Añadir Enlace (selecciona texto primero)"
+
+#: js/translations.php:29
+msgid "Add <br> (place cursor before text to break)"
+msgstr "Añade <br> (pon el cursor antes del texto a separar)"
+
+#: js/translations.php:30
+msgid "Add Code"
+msgstr "Añadir Código"
+
+#: js/translations.php:31
+msgid "Add Font Awesome icon"
+msgstr "Añadir Icono Font Awesome"
+
+#: js/translations.php:32
+msgid "Add Headline"
+msgstr "Añadir Cabecera"
+
+#: js/translations.php:33
+msgid "Add a Paragraph"
+msgstr "Añadir Párrafo"
+
+#: js/translations.php:34
+msgid "Add Block Quote"
+msgstr "Añadir Cita"
+
+#: js/translations.php:35
+msgid "Add a List"
+msgstr "Añadir Lista"
+
+#: js/translations.php:36
+msgid "Add Table"
+msgstr "Añadir Tabla"
+
+#: js/translations.php:37
+msgid "Add a Horizontal Rule"
+msgstr "Añadir Línea Horizontal"
+
+#: js/translations.php:38
+msgid "Add an Image"
+msgstr "Añadir Imagen"
+
+#: js/translations.php:39
+msgid "Add a Slideshow"
+msgstr "Añadir Presentación"
+
+#: js/translations.php:40
+msgid "Add a Map"
+msgstr "Añadir Mapa"
+
+#: js/translations.php:41
+msgid "Add your Twitter&reg; feed"
+msgstr "Añadir Lectura Twitter&reg;"
+
+#: js/translations.php:42
+msgid "Add Facebook&reg; Like button"
+msgstr "Añadir Me Gusta de Facebook&reg;"
+
+#: js/translations.php:43
+msgid "Add Facebook&reg; comments"
+msgstr "Añadir Comentarios Facebook&reg;"
+
+#: js/translations.php:44
+msgid "Add a video"
+msgstr "Añadir Vídeo"
+
+#: js/translations.php:45
+msgid "Add a list of pages"
+msgstr "Añadir Lista de Páginas"
+
+#: js/translations.php:47
+msgid "Add a File"
+msgstr "Añadir Fichero"
+
+#: js/translations.php:48
+msgid "Add SKUs"
+msgstr "Añadir Nº Registro"
+
+#: js/translations.php:49
+msgid "Add a Form"
+msgstr "Añadir Formulario"
+
+#: js/translations.php:52
+msgid "Plugins"
+msgstr "Complementos"
+
+#: js/translations.php:54
+msgid "Preview"
+msgstr "Previsualización"
+
+#: js/translations.php:55
+msgid "Load Existing Page"
+msgstr "Cargar Página Existente"
+
+#: js/translations.php:56
+msgid "Add a login or registration form"
+msgstr "Añadir un formulario de Acceso o Registro"
+
+#: js/translations.php:58
+msgid "Registration"
+msgstr "Registro"
+
+#: js/translations.php:59
+msgid "Add New Columnar Layout"
+msgstr "Añadir Bloque Encolumnado"
+
+#: js/translations.php:60
+msgid "Add a 50/50 Column Layout"
+msgstr "Añadir Disposición 50/50"
+
+#: js/translations.php:61
+msgid "Add a Full Column Layout"
+msgstr "Añadir Disposición 100%"
+
+#: js/translations.php:62
+msgid "Add a 70/30 Column Layout"
+msgstr "Añadir Disposición 70/30"
+
+#: js/translations.php:63
+msgid "Add a 30/70 Column Layout"
+msgstr "Añadir Disposición 30/70"
+
+#: js/translations.php:64
+msgid "Add a 33/33/33 Column Layout"
+msgstr "Añadir Disposición 33/33/33"
+
+#: js/translations.php:65
+msgid "Add a 25/25/25/25 Column Layout"
+msgstr "Añadir Disposición 25/25/25/25"
+
+#: scripts.php:31
+msgid "Scripts updated successfully"
+msgstr "Script JS actualizado correctamente"
+
+#: scripts.php:32
+msgid "There was a problem saving the script file, please try again"
+msgstr "Se ha producido un error guardando el fichero de script JS"
+
+#: scripts.php:33
+msgid "A name is required to add a script"
+msgstr "Se requiere un nombre para añadir un script Javascript"
+
+#: scripts.php:35
+msgid "Script successfully added"
+msgstr "Script JS añadido correctamente"
+
+#: scripts.php:38
+msgid "Script successfully removed"
+msgstr "Script JS eliminado correctamente"
+
+#: scripts.php:39
+msgid "There was a problem removing the script file, please try again"
+msgstr "Se ha producido un error eliminando el fichero de script JS"
+
+#: scripts.php:86
+#: scripts.php:103
+msgid "Add Script"
+msgstr "Añadir Script JS"
+
+#: scripts.php:95
+msgid ""
+"Lowercase, no spaces, no special characters (., !, etc), leave the .js off"
+msgstr "En minúsculas, sin espacios, sin caracteres especiales (., !, etc) y no "
+"pongas la extensión .js"
+
+#: scripts.php:127
+#: scripts.php:142
+msgid "Remove Script"
+msgstr "Eliminar Script JS"
+
