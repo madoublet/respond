@@ -259,7 +259,7 @@ header{
 	min-width: 35px;
 	z-index: 2;
 	height: 100%;
-	overflow: auto
+	overflow: auto;
 	border-right: 5px solid #3299bb;
     -webkit-transition: .2s all ease;
 	-moz-transition: .2s all ease;
