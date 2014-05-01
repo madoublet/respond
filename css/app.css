@@ -1204,7 +1204,7 @@ body .CodeMirror{
 		width : 40%;
     }
 	.show-nav section.main {
-		width: 80%;
+		width: 60%;
 	}
 }
 /* Portrait tablet to landscape and desktop */
@@ -1215,7 +1215,7 @@ body .CodeMirror{
 		width : 40%;
     }
 	.show-nav section.main {
-		width: 80%;
+		width: 60%;
 	}   
 }
  
