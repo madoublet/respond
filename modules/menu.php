@@ -16,7 +16,7 @@
 	
 	<div class="sub-menu">
 		<a class="signout" href="<?php print $path_prefix; ?>logout" title="<?php print _("Sign Out"); ?>"><i class="fa fa-power-off"></i></a>
-		<a class="hide-menu" title="<?php print _("Close Menu"); ?>"><i class="fa fa-times"></i></a>
+		<a class="hide-menu visible-xs" title="<?php print _("Close Menu"); ?>"><i class="fa fa-times"></i></a>
 	</div>
 	<!-- /.sub-menu -->
 
