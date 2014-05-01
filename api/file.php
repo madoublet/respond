@@ -128,6 +128,13 @@ class FilePostResource extends Tonic\Resource {
             $thumbnail = 't-'.$filename;
             $directory = '../sites/'.$site['FriendlyId'].'/files/';
             
+            // allowed filetypes
+            $allowed = explode(',', ALLOWED_FILETYPES);
+         
+         	// trim and lowercase all items in the aray   
+			$allowed = array_map('trim', $allowed);
+			$allowed = array_map('strtolower', $allowed);
+        
             // save image
             if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
             
@@ -153,7 +160,7 @@ class FilePostResource extends Tonic\Resource {
                     );
                     
     		}
-    		else if($ext=='ico' || $ext=='css' || $ext=='js' || $ext=='pdf' || $ext=='doc' || $ext=='docx' || $ext=='zip'){ // upload file
+    		else if(in_array($ext, $allowed)){ // save file if it is allowed
 
     			// upload file
     			Utilities::SaveFile($directory, $filename, $file);

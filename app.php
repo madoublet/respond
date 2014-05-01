@@ -11,6 +11,9 @@
 		ini_set('display_errors', '1');
 	}
 	
+	// allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
+	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');
+	
 	// advanced configurations
 	define('IMAGE_AUTO_RESIZE', true);
 	define('IMAGE_MAX_WIDTH', 1024);
