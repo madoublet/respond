@@ -303,6 +303,7 @@ header{
         font-size: 1em;
         margin-left: 0;
 		border-radius: 50%;
+		float: left;
     }
     
          header .sub-menu a:hover{

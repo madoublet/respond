@@ -1,0 +1,2030 @@
+[33mcommit 7950880cef358e9afae8ccc5b519d0780a4a0224[m
+Author: puxian <yoann@antiheroes-collective.com>
+Date:   Thu May 1 17:17:20 2014 +0200
+
+    Best reading content once open admin menu
+    
+    For a better reading of the section.main and once the sidebar is open, I
+    propose to reduce the size of the section.main and the width of the
+    sidebar (header) by a %. Some line enough.
+
+[33mcommit a105ec1f335f4b668ed84527179bc44b709a9152[m
+Author: puxian <yoann@antiheroes-collective.com>
+Date:   Thu May 1 16:41:31 2014 +0200
+
+    Revert "Best reading content once open admin menu"
+    
+    This reverts commit 17759f4e95e1a43ce33aa3b883875932d562a281.
+
+[33mcommit 45c1d934627b8c1d7aaa0b48d9997695ff03d3e3[m
+Author: puxian <yoann@antiheroes-collective.com>
+Date:   Thu May 1 16:25:41 2014 +0200
+
+    Best reading content once open admin menu
+    
+    For a better reading of the section.main and once the sidebar is open, I
+    propose to reduce the size of the section.main and the width of the
+    sidebar (header) by a %. Some line enough.
+
+[33mcommit 49c7f0329bff342925b7c5e4860c7baf00b7cc8f[m
+Author: puxian <yoann@antiheroes-collective.com>
+Date:   Tue Apr 29 10:50:18 2014 +0200
+
+    French translate
+    
+    Fixed minor in French translation
+    Correction mineur de la traduction française
+
+[33mcommit 81aac2d6d8692406b97a9b755d6d3faa995943b6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu May 1 01:42:37 2014 +0000
+
+    add allowed file types to app.php
+
+[33mcommit c75c3e8eacf302332be0aca40f581e200c60b6ad[m
+Merge: 73ecaad 950956c
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 30 15:16:48 2014 -0500
+
+    Merge pull request #160 from joebordes/fix_159_responsive_video
+    
+    Fix #159 responsive video
+
+[33mcommit 950956c0ad3fc94f932c899ddb20eafed9755721[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Wed Apr 30 22:12:49 2014 +0200
+
+    fixes #159 and implements #133 correctly
+
+[33mcommit 73ecaad6dcf0d75a306f935d6ce7a1f47d3a94a5[m
+Merge: 9e35266 4f52815
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 30 11:56:46 2014 -0500
+
+    Merge pull request #158 from joebordes/es_ES2.10
+    
+    update es_ES translation
+
+[33mcommit 9e352663246727db8ecfeff8a370e6910f66cca5[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 30 03:07:16 2014 +0000
+
+    SMTP update, .locale fix, theme es-es bug
+
+[33mcommit 4f52815fa687bbf1c04cf239a2a23b8a3b0d4dda[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Tue Apr 29 23:24:48 2014 +0200
+
+    update es_ES translation
+
+[33mcommit a7cf9c97e04a76ef8b797ee9784fcf4b8ce9d6b0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 29 02:37:34 2014 +0000
+
+    update readme with subscriptions
+
+[33mcommit c68587fb20d1306782a45c5919c2ade110224b0d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 29 02:34:52 2014 +0000
+
+    Stripe subscriptions update
+
+[33mcommit e356d2bead7d816effa2defe430111dc8636662a[m
+Merge: 573ab5e caaa763
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 27 15:18:44 2014 -0500
+
+    Merge pull request #154 from joebordes/act_ok_on_no_plan
+    
+    act_ok_on_no_plan
+
+[33mcommit caaa763a3c284fbed8a4bc27ed37d5999fb4713a[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Sun Apr 27 17:32:42 2014 +0200
+
+    act_ok_on_no_plan
+
+[33mcommit 573ab5ee626bdede9e5212348d250c518d5f9eb8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 27 01:40:08 2014 +0000
+
+    layout dialog - add from code option
+
+[33mcommit 0e5b37903903ddd39114a6bf0530f9e6994a65e9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 26 18:57:36 2014 +0000
+
+    Rename setup.php to setup-dist.php (or setup.php.dist) to avoid git conflicts #127
+
+[33mcommit 9d76e48e01e945f750a3637e52332573ed4e544c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 26 18:13:11 2014 +0000
+
+    Add possibility to add a target for a link #147
+
+[33mcommit 59eb3a2b72a9e0c68f2103307dc72ee94cc9b5d9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 26 18:01:49 2014 +0000
+
+    Update head.min.js #70
+
+[33mcommit 69ca5254c0648a3f5676b5155ea2988f540306ca[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 26 17:55:39 2014 +0000
+
+    Use right currency in skuDialog #142
+
+[33mcommit 384c82d87d116a8fb9bcc0be2058ab7863fe40a7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 26 17:49:20 2014 +0000
+
+    pages marked as secure are no longer part of the generated sitemap.xml #153
+
+[33mcommit 3d172a2058f2c49e0c5c020a51f91ffbab424012[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 25 02:58:30 2014 +0000
+
+    version bump, minor css fix
+
+[33mcommit 0717cb5b5614f0f71b2df7a959e4455e2813a120[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 24 21:02:54 2014 +0000
+
+    add back in the redirect on login
+
+[33mcommit 49111cc2a016510271484d7c9adbc2b18c84b42d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 24 19:48:10 2014 +0000
+
+    Remove Site ID dependencies from site API
+
+[33mcommit e3053ce1502c68b6877141666ac1dbcd149b028b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 24 02:12:57 2014 +0000
+
+    Colors update, clone, bootstrap version update
+
+[33mcommit cb2d42daf85cd3df3c82613567181f814c37516f[m
+Merge: 5fbaa3e 8328343
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 23 13:54:23 2014 -0500
+
+    Merge pull request #146 from matthewdickinson/add_color_management_menu
+    
+    Add color management menu
+
+[33mcommit 83283430a27a645309b068d0eba25834ebcb1862[m
+Merge: 5ba71bc 5fbaa3e
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Wed Apr 23 14:09:49 2014 -0400
+
+    Merge branch 'respond2.10' of https://github.com/madoublet/Respond2 into add_color_management_menu
+    
+    Conflicts:
+    	modules/menu.php
+
+[33mcommit 5fbaa3e25938d3b7782e12ab7e64be66850a8855[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 20 18:37:45 2014 +0000
+
+    Implement clear-cart
+
+[33mcommit 4135873e1beeab3b685072707407fb3577f545a6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 19 01:19:53 2014 +0000
+
+    Bug Fix: 2.9: When adding a custom class to a columnar layout block, class names with hyphens are truncated #111
+
+[33mcommit b55583997d5c20a5126e1ffca24dd1cd0736ac70[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 17 02:34:36 2014 +0000
+
+    Bug Fix: Fontawesome icons not working in FireFox #100
+
+[33mcommit 320a64744e258f59a43da027353849960837fb48[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 17 02:28:20 2014 +0000
+
+    Add abllity to specify a class name on links from editor #128
+
+[33mcommit 90fc987d685ce42a1fa1aba9ae910068716ef61b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 17 01:55:43 2014 +0000
+
+    Mustache syntax for Facebook App Id
+
+[33mcommit d0b8d23b51038c8e0012397db6afcfc911ae9c1c[m
+Merge: 0d240b0 602a1df
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 16 19:23:31 2014 -0500
+
+    Merge pull request #133 from joebordes/responsive_video
+    
+    responsive video
+
+[33mcommit 0d240b03772575bb49e8434e5e4626aab026b7ac[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 17 00:20:53 2014 +0000
+
+    Bug fix: urls not using friendlyId
+
+[33mcommit 602a1df5234febd72065e1f513e2527882d39429[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Wed Apr 16 23:43:49 2014 +0200
+
+    responsive video
+
+[33mcommit fff02e2a38beee1b72aa9d16dbf7db91034254e0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 18:22:09 2014 +0000
+
+    Bug Fix: test.php missing URF8 header #121
+
+[33mcommit c5d84b3506b3934abb3aa5945e7ddb208ef596d4[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 18:18:33 2014 +0000
+
+    Bug Fix: Google Map hover marker text incorrect #123 + thumbnail support in marker
+
+[33mcommit 259a656649370cf95848f9c50f5035c67c6ebd39[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 17:47:18 2014 +0000
+
+    Bug Fix: Fix dropzone errors
+
+[33mcommit 1c6287621fec9ea11a1e120031db8d890e6452d3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 03:13:39 2014 +0000
+
+    Minor updates to README, Schema
+
+[33mcommit 63b931c9b575dd4202997d09be3ba0c56bce13ec[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 03:07:46 2014 +0000
+
+    Captcha support for registration
+
+[33mcommit 0de4eda0a78977ff310c94018588b351a77362c5[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 02:04:15 2014 +0000
+
+    Bug Fix: Edit profile photo upload error #125
+
+[33mcommit 9759fa4791609969d18de447478844643c1aa44f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 01:47:03 2014 +0000
+
+    Update checkCaptcha to uppercase Form
+
+[33mcommit 28b7e0dc58d4356953047a88942b95fd35f77563[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Apr 13 01:31:54 2014 +0000
+
+    capitalize FormPublicId, FormPublicId
+
+[33mcommit c83fd42898e4d7529ea0f969d17de9601cd129ff[m
+Merge: db8752e b129553
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 12 20:26:28 2014 -0500
+
+    Merge pull request #126 from joebordes/reCaptcha_support_forms
+    
+    reCaptcha support on forms
+
+[33mcommit b12955311c6a9bad631d5b3883b13e3dd0473bcc[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Sat Apr 12 00:53:14 2014 +0200
+
+    reCaptcha support on forms
+
+[33mcommit db8752e64d9e54360c6b63eb54a858363af792a7[m
+Merge: 91a7106 3b19c93
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 18:32:38 2014 +0000
+
+    merge
+
+[33mcommit 91a710665161796feb5c07827200bdabbe0ab1c6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 18:26:06 2014 +0000
+
+    Bug Fix: Edit profile photo upload error #125
+
+[33mcommit 3b19c9309e16be603508c6cebe2d32d9ff8d2d45[m
+Merge: c3b9f80 fb9f3e6
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 13:16:29 2014 -0500
+
+    Merge pull request #124 from joebordes/sort_by_event_start_date
+    
+    sort page list by event start date
+
+[33mcommit fb9f3e6bcf0902f3ce5f7107d4bba260a8d06f6f[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Fri Apr 11 16:12:45 2014 +0200
+
+    sort page list by event start date
+
+[33mcommit c3b9f805d543775edcab65385b49d927f493d2d1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 03:31:47 2014 +0000
+
+    Bug Fix: Responsive buttons for small screens
+
+[33mcommit fd8b010f2a619d7b360af8dc64b12c3d120885b8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 03:21:13 2014 +0000
+
+    Bug fix: reponsive fix for small screens
+
+[33mcommit ffbb869ceea8d9bf89952f948b1d2937845813b4[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 03:06:13 2014 +0000
+
+    Bug Fix: theme selection, default theme L&F updates
+
+[33mcommit c1e3d94cc18fb06c55144ee9e07b68050d83b0a5[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 11 03:04:41 2014 +0000
+
+    update analytics update L&F
+
+[33mcommit 66682c517a21ac81b0071632bb6caed424a7858e[m
+Merge: c66d83d 4c38c52
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 10 21:24:23 2014 -0500
+
+    Merge pull request #122 from joebordes/enhance_ganalytics2.10
+    
+    Google Analytics SubDomain Configuration Options
+
+[33mcommit 4c38c5218909f5b826bfc2954f99b5f5a6ab3f4d[m
+Author: Joe Bordes <joe@tsolucio.com>
+Date:   Thu Apr 10 23:44:15 2014 +0200
+
+    Google Analytics SubDomain Configuration Options
+
+[33mcommit c66d83d16cc0ef79e4cdd6a5c6517daccf044860[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Apr 10 02:25:08 2014 +0000
+
+    theme updates, bug fixes
+
+[33mcommit 5ba71bcb74686da73167a73982cdaeee77e0dd23[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Wed Apr 9 13:48:29 2014 -0400
+
+    Updated save process to reload the files on success of all changes
+
+[33mcommit 9f2bfd3bcfeffbfa3e282969bdcbcb9dd7a6bf2a[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Wed Apr 9 13:47:37 2014 -0400
+
+    Changed icon for color menu item
+
+[33mcommit 10a295f3177ea6e5a7de7da00ce45627b9b10938[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Apr 9 02:20:19 2014 +0000
+
+    Bug Fix: {site-dir} on import
+
+[33mcommit c18f9600ebb4ec4056420ad883d5f02c794067d0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 17:49:36 2014 +0000
+
+    add icons to schema
+
+[33mcommit 2322fe4de78486c2d80b300541302a740a2044c1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 17:38:46 2014 +0000
+
+    Bug Fix: Empty menu item name corrupts menubar look #102
+
+[33mcommit e4637c3c07a23db695ae507387115ea7c58b19aa[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 17:28:24 2014 +0000
+
+    Bug fix: Form fields Id/Name only sets id. #112
+
+[33mcommit e8c04056c63432c4aa191974bf2ab7d645a86925[m
+Merge: 2ebb237 bbd9298
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 12:13:36 2014 -0500
+
+    Merge pull request #115 from matthewdickinson/correct_api_contenttype_type
+    
+    Corrected typo in contentType declaration of api objects. (The contentTy...
+
+[33mcommit 2ebb23709f6eb08de6e69c6c623d04bed93784c8[m
+Merge: 9eb31f6 2eb9836
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 12:12:55 2014 -0500
+
+    Merge pull request #116 from matthewdickinson/pages-cancel_pending_requests
+    
+    Cancel pending requests on Pages
+
+[33mcommit 9eb31f626e280ec7b8c3e123c4e8e84ed4f8cad5[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 8 17:11:54 2014 +0000
+
+    update branding (favicon, touchicon, tileicon, paypal)
+
+[33mcommit 2eb983622860e4f8a3974b7d578f2352521cebdb[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Tue Apr 8 11:24:57 2014 -0400
+
+    Cancel pending requests on Pages
+    
+    If when switching page types, if the current request hadn't completed, the pages that were currently being loaded would end up displaying as if they were of the newly selected page type. This now cancels existing requests to prevent this from happening
+
+[33mcommit bbd9298f068735ae698c042f841429f34e69156e[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Tue Apr 8 10:41:42 2014 -0400
+
+    Corrected typo in contentType declaration of api objects. (The contentType being used was "applicaton/json", while the correct JSON MIME type is "application/json" [http://www.ietf.org/rfc/rfc4627.txt section 6]).
+
+[33mcommit 94d70e9ed0a2f38df742fc226c805c6305fd0b82[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Tue Apr 8 10:26:36 2014 -0400
+
+    Completed Color Management page.
+    
+    Updated styling of page. Updated model to ignore variable declarations that are not valid CSS colors. Also, added comments to the model to allow easier modification in the future.
+
+[33mcommit 2cdc74c3ca911e0840f1c4e652178bbdbb6f94c0[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Mon Apr 7 14:06:19 2014 -0400
+
+    Got both the load and saving of the stylesheets working
+
+[33mcommit dd055433adbd992ccb817df5eb1d93df8fd1e85b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Apr 7 03:28:02 2014 +0000
+
+    fix sortable for new layouts
+
+[33mcommit ca4b8527e2b14786d299f11185b39b26627daa83[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Apr 7 03:14:59 2014 +0000
+
+    load layout from theme
+
+[33mcommit c4f5e7d83cb26585d07deaf29f40a30ace1497aa[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Sat Apr 5 23:53:47 2014 -0400
+
+    Added basic retrieval of LESS variables (as defined in various files)
+
+[33mcommit 1c49d7643fdab1d60fe70a43380f24f98e776b30[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 5 18:46:37 2014 +0000
+
+    update readme
+
+[33mcommit 662a8f919291e06c262bc44f19ad7343af4c2db4[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Apr 5 18:39:39 2014 +0000
+
+    initial transactions (PayPal IPN) support
+
+[33mcommit 82e35c9b5e0489898306d203034edcb8b229ea77[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Apr 1 01:10:10 2014 +0000
+
+    fix parsing bug
+
+[33mcommit 8dc8a36902a0252e8a7368d9c55555d06e84ac27[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 15:18:52 2014 +0000
+
+    contextual highlighting
+
+[33mcommit fec79c4d4de76c94a49d1545bc7204b15469b876[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 04:05:50 2014 +0000
+
+    fix focus bug
+
+[33mcommit b59af931c41875f515d5359f11e98b5c8b90ec18[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 04:00:18 2014 +0000
+
+    fix re-order re-init
+
+[33mcommit 94584136a940f736b201a7ca6e7911cef1a39632[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 03:03:53 2014 +0000
+
+    Add Russian Translation
+
+[33mcommit 63c167f7cad289f116617a5f2e66f17fb996aefe[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 02:48:01 2014 +0000
+
+    update readme for 2.10 release
+
+[33mcommit 01a227ecb68ea581bc546029e991ca62c5f9b6ef[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 31 02:43:46 2014 +0000
+
+    drag-and-drop editor support, br
+
+[33mcommit ccdd3141124adc9af28800d728588a471dc1a03f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 30 16:35:39 2014 +0000
+
+    feature: delete sites from site admin
+
+[33mcommit 36f0108f013749fffc5c1fa2135fe2b12ae8e880[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 27 23:00:01 2014 +0000
+
+    update readme for release
+
+[33mcommit a2480ff9e088e9353738c9cce15a408d3b82e70a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 27 22:53:28 2014 +0000
+
+    basic id checking for pages, pagetypes
+
+[33mcommit 55e5c7ccbad86eb8e264d6f5bd07ddc600bb4c5c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 27 18:39:51 2014 +0000
+
+    #96: fix Dropzone already attached error
+
+[33mcommit 3266a6b71d1dfa6179b3d7aeb71b886e791774ed[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 27 18:32:13 2014 +0000
+
+    #97 fix google is not defined
+
+[33mcommit 6141578acbdf18fdfec443205a3a2024e74b3dc6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 27 15:01:28 2014 +0000
+
+    language updates
+
+[33mcommit 96ae3bfdd54c0d6e25ea024e78ccaa01abcc5233[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 26 01:11:41 2014 +0000
+
+    fix logout issues
+
+[33mcommit 054bfc6f7f3adfd1f42d9ddcb9d70b358b3f5683[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Mar 25 21:03:24 2014 +0000
+
+    fix menus bug, add support for {{site-dir}} for themes
+
+[33mcommit 39014cf2f184fb1d4c9f09b8d86f4b0406126970[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 22 17:39:57 2014 +0000
+
+    fix spinner on pages
+
+[33mcommit cf99f50faf1bb1e90ebc03cd70fcf76ff1584483[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 22 17:37:21 2014 +0000
+
+    add loading for featured widget and list widget
+
+[33mcommit 2e397e5ecdd8d36b2e6bf77c673e06157e9f7826[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 22 16:40:44 2014 +0000
+
+    add max-length for search display to fix long descriptions
+
+[33mcommit cd13d390fe888395c3c8205a9584d93055e70396[m
+Merge: 8227adb 2fbc796
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 22 11:24:08 2014 -0500
+
+    Merge pull request #91 from matthewdickinson/recompile_less_on_save
+    
+    Updated publish process to always recompile LESS files when re-publishin...
+
+[33mcommit 8227adb82bd09b773f993b345e8e7404aa5cf846[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Mar 21 01:46:44 2014 +0000
+
+    fix line number display
+
+[33mcommit b93328e3aa87d4728cb586d8261ac19797679980[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Mar 21 01:38:26 2014 +0000
+
+    text alignment, desc length fix
+
+[33mcommit 657091352895ba8684234f50c3513f6765c13f62[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 20 19:58:44 2014 +0000
+
+    Image Links not generated on images #89
+
+[33mcommit 18f22b6f58f7436ce7fe1f83e9c9e976ff018628[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 20 19:45:52 2014 +0000
+
+    add advanced themes, bug fixes, etc
+
+[33mcommit 2fbc796ab8e6223d5f640d6428d09f4398e17f98[m
+Author: Matthew Dickinson <matt@locallogicmedia.com>
+Date:   Thu Mar 20 10:54:10 2014 -0400
+
+    Updated publish process to always recompile LESS files when re-publishing CSS (to correctly handle variables, etc.)
+
+[33mcommit 0d348218168c1a014f5f52f9b27872a0249052a1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 20 12:57:02 2014 +0000
+
+    route site auth through SiteAuthUser
+
+[33mcommit 3c1668bd4523ce5542c69ddb45ea6ca1ffd5f358[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 20 01:19:23 2014 +0000
+
+    support for friendly ids for featured and list modules
+
+[33mcommit 948accdd4339bc08fa1bd102156082a9a83eb1a6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 19 12:35:14 2014 +0000
+
+    initial state error checking
+
+[33mcommit eb1ddc746768932c8a93e7ceb8321b69b1a48b6d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 19 03:55:57 2014 +0000
+
+    theme cart improvements
+
+[33mcommit a4c843fb184db9c65b9f8830d0170168c8f3dc4a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 19 02:29:01 2014 +0000
+
+    update README
+
+[33mcommit c609e5cd4727548c05520e347e4076e59ad4371e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 19 02:27:30 2014 +0000
+
+    fix api/ reference
+
+[33mcommit dc3b82cbc0361ea0a1218f2de77ccda6297676be[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 19 02:05:03 2014 +0000
+
+    feature: search, site api, login, featured
+
+[33mcommit 02637f5fbf8bca13f5abcd4fc4ede58ea8bee484[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 12 17:53:03 2014 +0000
+
+    Update plugin variable error #14
+
+[33mcommit a4e078b0f46c337554a571d911334184fb0c45d7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 12 17:46:49 2014 +0000
+
+    fix open form error
+
+[33mcommit e78b472b347c65a2a93ebee2017bf4c54a85fb4d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 12 03:14:40 2014 +0000
+
+    fix publish error
+
+[33mcommit 6cdf89793758572f98c13610d6238948693753be[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 12 02:00:51 2014 +0000
+
+    refactor respond.Form.js
+
+[33mcommit a4402ed1e401d7e3189fc1a879c696742cf389a9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Mar 11 17:54:20 2014 +0000
+
+    allowing editing of fields
+
+[33mcommit b060e13ef98dc17871444039d8dc15edb33963b2[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 10 22:59:45 2014 +0000
+
+    editor updates: ol, field placeholder, field class
+
+[33mcommit d0831b7fce6e1766811887cdb10ce740cb6cd6a3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Mar 10 02:11:35 2014 +0000
+
+    initial commit form customization options
+
+[33mcommit 73ad529aa6b0ee0df3f7ac13afc21c48c218f104[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 9 18:42:11 2014 +0000
+
+    update version number
+
+[33mcommit 5e1603bb70e6948d190011aa5618eea0450fbcfa[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 9 18:03:04 2014 +0000
+
+    support for theme resources
+
+[33mcommit 01cff8cca96dd2632f85b37955c993252469d76e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 8 18:26:46 2014 +0000
+
+    fix /create bug
+
+[33mcommit 4713050bfc27047c76fd5182ddc88513ea9687b3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 8 13:04:25 2014 +0000
+
+    Add fr language
+
+[33mcommit b4cd228518c49efc10b177c73bcde33cf6081905[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Mar 7 04:48:04 2014 +0000
+
+    site login
+
+[33mcommit 17361e284f14a6ac11eb384258c7b59be5f77e1b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 6 19:06:23 2014 +0000
+
+    udpate schema for secure pagetypes
+
+[33mcommit d38c9f12c65a07101bcd4b16a9b19f55527c5c59[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 6 19:03:20 2014 +0000
+
+    initial commit of secure page types
+
+[33mcommit 785b2a06be26d32051ca287ebab077f31c72b1b0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Mar 6 18:55:17 2014 +0000
+
+    fix invalid argument warning
+
+[33mcommit a8747c9abe09ab49281087efd0f50c9504b6fa43[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 5 03:04:42 2014 +0000
+
+    add tooltip: TBS tooltip on editor menu, non-touch only #69
+
+[33mcommit 8fe0ab455c74dfbb6671b38f646906e2833da92a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Mar 5 02:30:30 2014 +0000
+
+    SVG support, issue SVG graphics #63
+
+[33mcommit 7c9e2dacabeb1ff2f71a01d30aabc42ca5de84d9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 2 18:27:27 2014 +0000
+
+    update setup for release
+
+[33mcommit ccede396361e85faccc509584be4d5b6849ad1fd[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 2 18:26:54 2014 +0000
+
+    update readme for release
+
+[33mcommit 79783268234ab511c49aa82a3f8b78c609aa5a11[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 2 18:20:42 2014 +0000
+
+    update app.php for release
+
+[33mcommit 09751baf0ae437a15c6c2c3abbb91748a7df3cd2[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Mar 2 18:17:33 2014 +0000
+
+    update list dialog to disable paging for calendars
+
+[33mcommit 7922975c2891d01b85936a6b51536d38175ce4bf[m
+Merge: 15af917 dccfb2f
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Mar 1 09:05:03 2014 -0600
+
+    Merge pull request #65 from lipoja/master
+    
+    Czech translation for version 2.8
+
+[33mcommit dccfb2f52297b08f30b9c8f16f69113eb9f7f32c[m
+Author: Jan Lipovsky <janlipovsky@gmail.com>
+Date:   Sat Mar 1 15:20:38 2014 +0100
+
+    Removed typo in czech translation
+
+[33mcommit 88e76692a55a368df21a0332b2f64b41e929fc0c[m
+Author: Jan Lipovsky <janlipovsky@gmail.com>
+Date:   Sat Mar 1 14:53:58 2014 +0100
+
+    updated czech .mo file
+
+[33mcommit d7b4bdf8f4dae1aefcc2555dec411f65062638e9[m
+Merge: 19a32d3 15af917
+Author: Jan Lipovsky <janlipovsky@gmail.com>
+Date:   Sat Mar 1 14:40:25 2014 +0100
+
+    Respond 2.8 merge
+
+[33mcommit 19a32d31f91386e94b192a7b79986da126910b69[m
+Author: Jan Lipovsky <janlipovsky@gmail.com>
+Date:   Sat Mar 1 14:19:38 2014 +0100
+
+    Updated translation for Respond 2.8
+
+[33mcommit 15af917d2e67bfa9a881bb2310155c07fcb1c4b0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 28 18:31:55 2014 +0000
+
+    add es_ES translations
+
+[33mcommit 847935363f96a6d87a3cd78036ce6aab4e578d12[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 28 03:27:08 2014 +0000
+
+    locale updates for 2.8 release
+
+[33mcommit 2456fdfd8d9c7a7ded914ea564efad6ea45869c6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 28 03:03:40 2014 +0000
+
+    jQueryUI fallback for type=date
+
+[33mcommit 0842237ea362c8cd3596bcdfe5ccd8c37400df88[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 27 03:09:51 2014 +0000
+
+    user photo implementation
+
+[33mcommit 4a6361a46dd35dd255877babac3a7d487a144033[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Feb 26 03:29:30 2014 +0000
+
+    Duplicating Pages #60
+
+[33mcommit 56a0fe8e7dec303ee2174a825aab52fa03e0097b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Feb 26 03:07:45 2014 +0000
+
+    fix table <enter> and css classes for images
+
+[33mcommit 76e6373508e841d7b65e6c9c56b314ade884e16f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Feb 25 02:47:08 2014 +0000
+
+    bugfix: Right-hand flyout menu disappears after editing an HTML block #57
+
+[33mcommit 1e4275e5f9d00ccd8152584c9fb29b682d4f07ef[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 24 13:47:08 2014 +0000
+
+    add jquery.swap plugin
+
+[33mcommit 364493d4efb1320857d1d89afed6675ad5ff35fb[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 23 19:57:16 2014 +0000
+
+    add undefined
+
+[33mcommit b3761b677ac63c3fe510e51498b698ee8eeb0588[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 23 19:50:28 2014 +0000
+
+    fix {{language}} for single language sites
+
+[33mcommit 1e3e98fef16dd2f7997c8efeaf05765ec5e900ff[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 23 19:27:04 2014 +0000
+
+    change name to imagegroup
+
+[33mcommit 9cea33a14d9fef604d9034d32f29cfd922f9107d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 23 18:55:58 2014 +0000
+
+    gallery implementation
+
+[33mcommit 97cc39de14433b951ccaf310433638a13462ff96[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 22 19:43:05 2014 +0000
+
+    respond.Edit refactor / .container nesting
+
+[33mcommit c371b2743b1c5ccc8ea5910c42b00327bfb70821[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 20 04:39:51 2014 +0000
+
+    fix respondHandleEvents
+
+[33mcommit dc99658b68b5e7e50cb761e9f47bd57927b6afe3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 20 04:38:09 2014 +0000
+
+    fix paste on p
+
+[33mcommit b480ded835c944938f141928f5949837d8115a15[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 20 04:27:43 2014 +0000
+
+    Old icon class - CSS #53
+
+[33mcommit 6117f3c0c717e93952a99e7aff43578e61bb16cc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 20 04:20:24 2014 +0000
+
+    calendar paging
+
+[33mcommit 980e7a7a284d22d72233fbdbc0e8cfb17097dd46[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 16 17:37:38 2014 +0000
+
+    calendar look-and-feel
+
+[33mcommit f43874a0a4a4ce592c0d0ebd0fd5f37bbad486d9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 15 17:25:39 2014 +0000
+
+    languages for cal
+
+[33mcommit 087a0f32c3587273bc2cf96805ad4fff01db3d0e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 14 18:08:31 2014 +0000
+
+    map updates
+
+[33mcommit 8a3382efaace21f84ee70074a10fa7f96db474f9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 19:11:02 2014 +0000
+
+    list display map
+
+[33mcommit a8b4f6ea5d5cc1dda677992e10c7f4ce3c40e911[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 14:30:52 2014 +0000
+
+    fix removal of pages/pagetypes
+
+[33mcommit 60968a293ca67fc959e053d8ec2bad96f1f2b268[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 04:57:38 2014 +0000
+
+    fix UTF-8 issue
+
+[33mcommit 4659068122cb3afcea38c99db0050d81f9cb0ea3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 04:35:50 2014 +0000
+
+    refactor app, setup
+
+[33mcommit a84b427ed127f18e98fab8933055bb8a00c2567e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 03:53:41 2014 +0000
+
+    fix app sliding issue
+
+[33mcommit 09f768c4543faddda3c101d7cafba582c39a8579[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Feb 13 02:57:16 2014 +0000
+
+    fix google maps inclusion
+
+[33mcommit f2c29467c723c34a1b10a4a2ed135d1166ccc867[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Feb 12 04:19:04 2014 +0000
+
+    calendar updates, list updates, .htaccess updates
+
+[33mcommit ecd2642695d19cc16cfca25d6ac2b8e4c43303c1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 10 20:10:58 2014 +0000
+
+    List re-factor to support calendars
+
+[33mcommit 25b63462376ef56d788062c96a917ceea36d32e8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 10 15:24:00 2014 +0000
+
+    remove reference to dialog.js
+
+[33mcommit 6d7ea20498a950879628ea86fac1d134d9c8e618[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 10 15:23:41 2014 +0000
+
+    JS translations
+
+[33mcommit f3d0e852170df51f289b15c6332ea47b8bb0728c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 10 14:51:50 2014 +0000
+
+    common JS refactor
+
+[33mcommit e7c98b63acda4ae55e68e640c07b61f06d290c82[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 10 14:48:36 2014 +0000
+
+    various calendar fixes
+
+[33mcommit 78af6ba948b7745b2083cbb027535bf1f05e0c8e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 9 03:11:01 2014 +0000
+
+    add missing UTF-8 meta
+
+[33mcommit 928aea1c7ebd008b0259a13a84db714d49f747bf[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 9 03:03:12 2014 +0000
+
+    fix code re-org
+
+[33mcommit 52ce7b278939228b0b4a67f252a419937e8b623e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 9 02:57:30 2014 +0000
+
+    code organization, js/css, moment with langs
+
+[33mcommit 237fadbb2db18b14003578169d84253a93da0013[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 22:12:46 2014 +0000
+
+    Calendar lists (WIP)
+
+[33mcommit db8a02fde759e77413666531f66987d8fc28753d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 22:02:30 2014 +0000
+
+    return to index.php instead of top directory for when we are working in subdirectory #45
+
+[33mcommit 26e4583ba48eb88365302aeece5fe51020a9f102[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 22:00:11 2014 +0000
+
+    i18n: add to translation a few missing strings #44
+
+[33mcommit 391b949c9c9821ffb4c467a86ce7efef54c2f64a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 21:53:16 2014 +0000
+
+    remove layout, issue #42
+
+[33mcommit 9b577342da3a138b4b3e477d8805b259c4a1cc77[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 03:56:58 2014 +0000
+
+    add spacing below pager
+
+[33mcommit 67ca59e810c07a0ef602930dab1baec7047eb9f7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 03:56:28 2014 +0000
+
+    fix apply theme bug
+
+[33mcommit 326b7eef34b06d672e15520d051e9cb9c69d813c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 03:46:22 2014 +0000
+
+    thumbnail view
+
+[33mcommit 3bf52226d033999b24b32637c8577175c87ca08b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 8 03:44:56 2014 +0000
+
+    language updates
+
+[33mcommit 36fa38985a54914f380061212c0362c2756f64bf[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 7 04:56:31 2014 +0000
+
+    language updates
+
+[33mcommit 465303464e7dddcd3e71605f9dfb1d0f9a354f48[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 7 04:40:58 2014 +0000
+
+    update README
+
+[33mcommit 3f8e142724067f67d3b77848914bebd1dc30c74b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Feb 7 04:38:21 2014 +0000
+
+    page dates and spatial metadata
+
+[33mcommit f93fb7d5d60fdef9cd10afefaffa25ffcec6aa1c[m
+Merge: 117d7e9 6b3bc16
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Feb 3 11:41:29 2014 -0800
+
+    Merge pull request #34 from lipoja/master
+    
+    Czech translation
+
+[33mcommit 6b3bc167cad6f5b06de963e3426c57a76664927e[m
+Author: Jan Lipovsky <janlipovsky@gmail.com>
+Date:   Mon Feb 3 20:18:58 2014 +0100
+
+    Czech translation; added gettext in settings.php
+
+[33mcommit 117d7e9deeb8027c6d324bf76927e9423980ee9c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 13:35:54 2014 +0000
+
+    remove after
+
+[33mcommit 027bf4103ba06f54c5b5fab3761c2711757740d6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 13:34:10 2014 +0000
+
+    fix schema
+
+[33mcommit a70536f37831741d62541760d49f8259ebef1c1b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 05:09:19 2014 +0000
+
+    fix readme
+
+[33mcommit ca9f56370261e52f7d745a72f5f487f4eaca6f7f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 04:14:04 2014 +0000
+
+    update version number
+
+[33mcommit 5aa1512593b2cf51d179d616ec94f1b06336d23b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 02:54:15 2014 +0000
+
+    update schema to match README.md
+
+[33mcommit 2e7f0118ebc0582b2b416806a6ed159a73ac6abb[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Feb 2 02:50:47 2014 +0000
+
+    fix paypal integration
+
+[33mcommit cf828385a2e857b53e03773ea4f71bd3fad5a42b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 1 17:58:59 2014 +0000
+
+    add basic email validation
+
+[33mcommit 8716b1bb2ec80b1a03c1a5e7991e57a9902b0792[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Feb 1 17:52:03 2014 +0000
+
+    fix site creation validation, L&F updates
+
+[33mcommit 99f61af6d3a68475398df70f2be3b7a0e079ac75[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 31 13:29:45 2014 +0000
+
+    fix duplicate user/site issue
+
+[33mcommit d20551ad90c49d22a9064fdd4f7a95805cd9ef3b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 30 19:04:38 2014 +0000
+
+    fix translations
+
+[33mcommit b718f44edf53d65d6374ad9eeebe887a9427cb12[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 30 18:53:09 2014 +0000
+
+    update translations for 2.7
+
+[33mcommit 15a04f6a90bda2024557ed417adcface5e9f28a2[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 30 18:37:42 2014 +0000
+
+    simplify loading... names
+
+[33mcommit 10a8d4a60d2f58c7523c5365666b687c1884fa08[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 30 16:24:44 2014 +0000
+
+    fix publish bug, publish notifications
+
+[33mcommit 9bf6cecf2bc83fcac0c2e3a45b51111a8614fe21[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 29 19:03:45 2014 +0000
+
+    Cart updates: paypalid, tax, shipping
+
+[33mcommit c3637f31f6221a298732bb6b7351e5c80dc0341e[m
+Merge: 5c19809 7b991ef
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 29 03:08:48 2014 +0000
+
+    Merge branch 'respond2.7' of https://github.com/madoublet/Respond2 into respond2.7
+
+[33mcommit 5c19809906676578af71ff57c0585d3c53418b27[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 29 02:44:40 2014 +0000
+
+    Fix {{snippet-tag}}
+
+[33mcommit 7b991efaa64788d9cef415b4edf70245e5db8e7d[m
+Merge: d47cabe 9779e72
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Jan 26 20:28:43 2014 -0800
+
+    Merge pull request #29 from Jickelsen/patch-1
+    
+    Added missing semicolons
+
+[33mcommit d47cabe96aa2d090d78c90048324e98e3f1aba2c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jan 27 04:17:10 2014 +0000
+
+    fix relative URL bug, external link bug
+
+[33mcommit 7d423273e676f9506e5bf9a5a47e189df6c3d9bc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jan 27 03:50:34 2014 +0000
+
+    fix file loc display
+
+[33mcommit 6ba425e9f280028bcf7591c6d6ac6c28617de889[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jan 27 03:17:34 2014 +0000
+
+    fix slideshow, files issue
+
+[33mcommit 9779e72934bce7bf5dd7db93f1e9aee6b897ac52[m
+Author: Jickelsen <jickelsen@rakethopp.se>
+Date:   Sun Jan 26 14:26:52 2014 +0100
+
+    Added missing semicolons
+    
+    Added missing semicolons to Currency and WeightUnit ALTER TABLE queries
+
+[33mcommit 8365f919c568681f4268eee67339ea43fd67f29c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 25 18:44:31 2014 +0000
+
+    cart updates
+
+[33mcommit 87f1415b024a8c8cf2af52163f79dc30db5f9bdb[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 24 22:35:26 2014 +0000
+
+    fix featured display
+
+[33mcommit a0b77a64362d6d3fdfc816469122029c9cf52b0e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 24 22:34:39 2014 +0000
+
+    Fix external link issue
+
+[33mcommit 58073485ba03e26f36f005a8c68b7688231a7e6c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 24 12:58:29 2014 +0000
+
+    Fix featured issue
+
+[33mcommit 5b11c1d1aebdf665691f9aaf36d101450c8e2506[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 24 02:10:47 2014 +0000
+
+    add menu message
+
+[33mcommit c7f6c2507c71e9c728efbf28e0fa0d8ff4a85dda[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 23 19:26:31 2014 +0000
+
+    add cart.less to theme
+
+[33mcommit acbe5b8f543b437cd18ac60eeba407a6b80c24d2[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 23 18:59:34 2014 +0000
+
+    shopping cart/sku implementation
+
+[33mcommit 0d37d45b1a443054979fe17094ae9228200a1144[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 23 14:05:50 2014 +0000
+
+    add custom scripts tag
+
+[33mcommit 36eda50e8bc20f9e2b055bea36476a67f7412100[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 22 03:47:43 2014 +0000
+
+    column look and feel updates
+
+[33mcommit 0fd151a9edc3ad8d4591c26abf7d0267c4867593[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Jan 19 17:17:35 2014 +0000
+
+    update readme
+
+[33mcommit 55a1cd7bafca4d0128ffeada10155e5d0defd0ab[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Jan 19 17:14:58 2014 +0000
+
+    add support for nested menus
+
+[33mcommit 79fbf31dd67e2e3d9a1863f30f75e5299f07a9ca[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 18 17:18:14 2014 +0000
+
+    add code blocks
+
+[33mcommit 3e97bb55e7d2441259fa2e9c2314cb6ad6917709[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 18 17:15:01 2014 +0000
+
+    fix codeblock in readme
+
+[33mcommit 9f9681b19fdfff4a84270f9cf59d5f9de315aa28[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jan 17 03:30:18 2014 +0000
+
+    Add test for empty arrays
+
+[33mcommit 4d1c56f96504189d428475d447bd9569ca46a37d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 16 19:46:04 2014 +0000
+
+    Add categories implementation
+
+[33mcommit 9eb2af0c42b23a37fe08c15180cc1d9202bf2877[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jan 16 13:59:28 2014 +0000
+
+    add exception handling
+
+[33mcommit d76ebfc09303b03f84859e4a2d6de7e944aaeaff[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jan 13 03:40:20 2014 +0000
+
+    language updates
+
+[33mcommit 0f03b7165f5a249db6d21c1a61381357e7eb1dac[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Jan 12 16:36:54 2014 +0000
+
+    add de translation
+
+[33mcommit 301c4352215bdfbe1b0f6bdec4600dd7b8a4243e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 11 17:41:42 2014 +0000
+
+    remove mimetype
+
+[33mcommit 8b0135f5d12160b87cd0e840ef49f5702fa7b1c8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 11 16:52:48 2014 +0000
+
+    new files for snippets
+
+[33mcommit f917c1d13ebc1edd74ebf650e68290a25a9b6888[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 11 16:48:26 2014 +0000
+
+    implement snippets for 2.7
+
+[33mcommit 96078647e846d373e8ffe1b1373c532e3cd81626[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Jan 11 02:40:10 2014 +0000
+
+    auto create friendly id for page
+
+[33mcommit aeb2f7ca863f7da5775737c00e6a59b31b98af05[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 8 20:40:50 2014 +0000
+
+    Remove requirement for gettext on test
+
+[33mcommit 1c167c968c2f6c9d749365722fca08c179949b4a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 8 20:33:52 2014 +0000
+
+    update schema for 2.6
+
+[33mcommit 470580740187c97c942ddf1870363d5fc5cdc3cf[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 8 20:28:32 2014 +0000
+
+    add missing DEFAULT_LANGUAGE
+
+[33mcommit aacfc5378f04aca36446dfcaf080b9f1c1d0dc31[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jan 8 02:39:58 2014 +0000
+
+    add .mo file
+
+[33mcommit 38aab4321da3b2534989565d553802f572a7b3f1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:50:30 2014 +0000
+
+    fix typo
+
+[33mcommit 3e5c0ec19b748dda71c33fde36f1b74553d2ab43[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:47:44 2014 +0000
+
+    Update version
+
+[33mcommit 03542e2fb0291a9ecf638743d37b80e36d1704dd[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:43:51 2014 +0000
+
+    add instructions for 2.6 release
+
+[33mcommit c29eb18d460fb3594ad4c7fbd1d184067bf77eb8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:42:32 2014 +0000
+
+    add push instruction
+
+[33mcommit 2077ec99c2255a0fc9a4c975a06db82dcf74e5c5[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:41:31 2014 +0000
+
+    Fix SQL quotes
+
+[33mcommit 87c4f776f79df3130500b9c8c23d39b4bd5fd641[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 20:39:44 2014 +0000
+
+    update readme for 2.6
+
+[33mcommit 9c66210cb5d8e4f92c27eefe66b89b8ce7b196dc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jan 7 19:40:26 2014 +0000
+
+    staging changes for Respond 2.6
+
+[33mcommit 706a2ece4e1bd5dcbae704096b05a00a4a759dab[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Dec 12 21:58:42 2013 +0000
+
+    Fix mod_rewrite test error
+
+[33mcommit 937c368dc5049c2b3ccf33677c297f45fd1e8136[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Dec 12 21:10:22 2013 +0000
+
+    Fix mod_rewrite test to not rely on curl
+
+[33mcommit 765416d3a017c8c90a426a1bd1966a0f2d80b2ca[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Dec 12 20:58:15 2013 +0000
+
+    Remove un-needed reference to oath
+
+[33mcommit d8a9b936d5e10717a710a3d6730af24b6133de6b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Dec 10 18:28:18 2013 +0000
+
+    Fix site switching bug
+
+[33mcommit a46255e00e3ee3180cadb26760fe0f39a16e00cf[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Dec 10 04:13:34 2013 +0000
+
+    Fix form display bug
+
+[33mcommit fc4dae086ab997826000b15e430511e444bcad88[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Dec 8 17:02:34 2013 +0000
+
+    Respond 2.5 Updates
+
+[33mcommit d8d1021d9ccec238b27bc15d64ff4b0705580683[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Nov 27 16:33:10 2013 +0000
+
+    Fix image upload for sub-directory installs
+
+[33mcommit f68a046955ed07ca41ec41a9a0c5443ec9bf8f74[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Nov 27 16:16:54 2013 +0000
+
+    Fix preview for subdirectory installs
+
+[33mcommit fcba1f4cc06c0f42dcf23e9487828378b7ec41b3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Nov 27 16:04:19 2013 +0000
+
+    Remove ../ from API calls
+
+[33mcommit 91632c08d596847587a8e9b4a73a1b0b8da6959c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Nov 27 16:00:15 2013 +0000
+
+    Fix path prefix issue
+
+[33mcommit 47de84fbc1daa344753423d909ba20629ebc8854[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Nov 25 21:31:26 2013 +0000
+
+    Update Readme
+
+[33mcommit 7b474845addd76f9ad4334dcdf28d9954105dc0c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Nov 22 21:29:34 2013 +0000
+
+    Fix <enter> on tables
+
+[33mcommit 48980c5811f24be4e2da819a5384a72d0862fc12[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Nov 22 04:27:16 2013 +0000
+
+    Set defaults for pagetypes, bug fixes
+
+[33mcommit aa8807bc184f503dbfc07506e7482d5285ad6966[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 19 04:42:31 2013 +0000
+
+    Fix description on table
+
+[33mcommit bf95a3c6c1ef9a37ffa1d6a0ebfa247c57161880[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 19 04:20:00 2013 +0000
+
+    Enable editing of HTML
+
+[33mcommit 2bbeda4941a6963f5aa2f299eb8787cee7d5d100[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 19 04:14:51 2013 +0000
+
+    Fix table spacing
+
+[33mcommit 688dc6a2d380f5c2f6de25dd0c824b19cf275969[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 19 04:12:46 2013 +0000
+
+    Fix editor spacing
+
+[33mcommit f7013360ad88702378fe78277c898dba34e71c46[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Nov 18 04:33:18 2013 +0000
+
+    Add MIT license
+
+[33mcommit 0f9352bf0dddf1b69dbe0b9694b04f6f0416ffb0[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 17:01:01 2013 +0000
+
+    Add domain validation to settings
+
+[33mcommit 1fefe38dcacd66b51994371ff477b1af276b4c02[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 04:39:46 2013 +0000
+
+    Minor editor L&F updates
+
+[33mcommit bae34c4e17354ae33cd0bc10cbc2b5ac4899bd52[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 04:20:09 2013 +0000
+
+    Add missing dot
+
+[33mcommit a07c49a89dbbd161ec2b01669b73e5e3a498b94d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 04:16:16 2013 +0000
+
+    Fix domains bug
+
+[33mcommit a900e6d13ae4d78b738b8b4412648d000c071bc7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 04:09:35 2013 +0000
+
+    Simplify CORs
+
+[33mcommit 1c05373ea102dd0121003e44738eee2fe73821ec[m
+Merge: f6975fa c8b39c0
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 04:00:52 2013 +0000
+
+    Merge branch 'master' of https://github.com/madoublet/Respond2
+
+[33mcommit f6975fa75b2607c07538be08009024d8dfa5f562[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Nov 17 03:58:03 2013 +0000
+
+    Simplify CORS, HTML Look and Feel
+
+[33mcommit c8b39c0a19850df06009b42be54243e99daa3f68[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 12 12:37:15 2013 -0600
+
+    One more time...updating Google maps default API key
+
+[33mcommit f7af667e2c18baafd9646803cbdd985b325c3646[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 12 12:36:19 2013 -0600
+
+    Update Google Maps default key
+
+[33mcommit a0f7c8011e6e9714788ea03dd626cb3374e75b27[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 12 16:37:11 2013 +0000
+
+    Fix blog issue
+
+[33mcommit 9248e264ef19501933ef3ab25e9b8fff3ad2ddc7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Nov 12 14:06:15 2013 +0000
+
+    Fix table spacing
+
+[33mcommit 75330b7213b4185fe6d2a2c8b6ff5e98af6c7b38[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Nov 11 21:18:25 2013 +0000
+
+    update README
+
+[33mcommit d856a5275313f457b56791f7ef3aafab7063c90d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Nov 11 20:32:46 2013 +0000
+
+    Fix README
+
+[33mcommit 2a58407488519d25e2946e9117acbb4cf0ae3829[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Nov 11 20:30:36 2013 +0000
+
+    Respond 2.4 update
+
+[33mcommit f7f945c2ba559a51bd229c97a1c3ce038f0d3712[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Oct 30 17:56:43 2013 +0000
+
+    Fix list display
+
+[33mcommit a8cdb57838d253cf9bd73aac94b3f3017a9c8467[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Oct 29 08:31:59 2013 -0500
+
+    Fix typo
+
+[33mcommit 89b9a8c718d64f54a099f2e150518c6c4dcbaa8d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Oct 13 20:47:40 2013 +0000
+
+    Various bug and style fixes. Add 4*25 column to editor.
+
+[33mcommit 0a6c071345437d59d8387e79960556936f3df5cd[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Oct 13 11:05:00 2013 -0500
+
+    Create readme
+
+[33mcommit 34d10ecaec7121679180f49d81a48c005b277d18[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Oct 13 14:36:03 2013 +0000
+
+    Remove debug statements
+
+[33mcommit de13aecccf3d658a6fe6fcc77763d4351b35c523[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Oct 13 14:33:53 2013 +0000
+
+    Fix plugin publish
+
+[33mcommit ebb06a55ba958b254ab3a40aab6c8c2f5a1935b9[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Oct 13 01:39:35 2013 +0000
+
+    Change default permissions to 0755
+
+[33mcommit 10ed720932589ba81c521d3e7afd87a753df3870[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Oct 11 02:56:58 2013 +0000
+
+    Bug fixes post-release
+
+[33mcommit 2fadda2ce16f315ac6fd1edc968cdd72654d84f3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Oct 10 18:43:27 2013 +0000
+
+    Replace Generator with Utilities
+
+[33mcommit 9f88d96b3f216abb084170ac534cde3a0ffb162c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Oct 10 18:04:23 2013 +0000
+
+    Add FONT to setup.php
+
+[33mcommit 05b86ff97ae10a6d1ceabdd2023119026dad220b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Oct 9 22:59:20 2013 +0000
+
+    Fix initial table display
+
+[33mcommit afbd6b748408d1668c73177ebabc26fed02a0dfc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Oct 9 21:33:20 2013 +0000
+
+    Fix image display
+
+[33mcommit 177cb49eb640400348153f5f72d7de569b4328f1[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Oct 9 21:24:17 2013 +0000
+
+    Version 2.2 UI updates
+
+[33mcommit 3a04ff59cc280dee0fb9e81b8a85e61e71dd8eed[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Oct 9 21:21:27 2013 +0000
+
+    Fix date time stamp display issues
+
+[33mcommit ece7dc1cc21bea2f65807485182aa7ac92f28bfb[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Sep 16 01:18:06 2013 +0000
+
+    Fix link dialog bug
+
+[33mcommit 61cf8b9f583b9ea4e06bea57f53e927580def897[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Sep 15 19:32:31 2013 +0000
+
+    Fix create URL
+
+[33mcommit b033e6850344f1da6f4ad040d4be8eb5d30d40ba[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Sep 14 03:29:25 2013 +0000
+
+    Fix SQL error
+
+[33mcommit c83716a32366207b8febdc52fe2daeac5c08ac6e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sat Sep 14 02:01:22 2013 +0000
+
+    Bootstrap 3 upgrade, bug fixes, etc.
+
+[33mcommit 6fb41f81b6e41a5d9fcc70b5de0bcaf75d7206dc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Sun Aug 18 18:31:13 2013 +0000
+
+    Fix API test to check for Response
+
+[33mcommit 0ef950bfc04ad6d2230ebd8330a2b544e75fff28[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Aug 14 13:14:03 2013 +0000
+
+    Remove API constraint from apps
+
+[33mcommit e87e507ce533e452e678b8d379adf14e99a4f62b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Aug 14 01:34:37 2013 +0000
+
+    Remove app name from menu
+
+[33mcommit 293e34996dc667475db27e8f13f5fb96f4f3fc1c[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jul 31 03:14:44 2013 +0000
+
+    Fix featured module
+
+[33mcommit 34658adcf7d5202f06fd50f817d04c2a2f5b2401[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jul 29 04:03:36 2013 +0000
+
+    Fix Google maps error
+
+[33mcommit 438d2f700b2624516169f026246a07a5c20fa6ba[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jul 26 03:07:17 2013 +0000
+
+    Add thumb to pages
+
+[33mcommit 4b83b7a5e60d83434912ebe10be797b84069463d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jul 24 02:31:16 2013 +0000
+
+    Add installation tests
+
+[33mcommit 0defb873f477259a7a9d05cb42fea8a13d15af00[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jul 23 02:50:05 2013 +0000
+
+    Update back button text
+
+[33mcommit 1da39701bf814a80382bdfc90db8b85650bc9500[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jul 23 02:49:11 2013 +0000
+
+    Update look and feel of forms
+
+[33mcommit 2fa3ae9692f4a2ccb2a1ca2bd2b7ccef10ff6f71[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jul 23 02:06:08 2013 +0000
+
+    Fix preview bug
+
+[33mcommit 864cd8dc036de9af714b3b33d0dd2e0acbac4a10[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jul 18 14:27:55 2013 +0000
+
+    Fix strict standards error
+
+[33mcommit 1c2a2fee90cb9550c2d6583df3852825cfd0d0ba[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jun 26 03:04:39 2013 +0000
+
+    Add Font Awesome support
+
+[33mcommit fee5e1649b1e11251e8d9c1566dc451ca6feeacc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jun 25 01:30:23 2013 +0000
+
+    Various bug fixes - thanks Andrew Cull
+
+[33mcommit 60dd58e40707c267323581138fc9c46875fc7345[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jun 18 01:47:06 2013 +0000
+
+    Remove ./ from API calls
+
+[33mcommit 2c273598f51e31f831127e28d82a0d4311cb6a6d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jun 18 01:16:55 2013 +0000
+
+    Fix merge issues
+
+[33mcommit b479591e6482b511a4ac00867983436a4f4a729f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jun 17 19:52:37 2013 -0500
+
+    Update db
+
+[33mcommit 826bb7c131be28b09ca3eee740f39516fc0d5f5d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Mon Jun 17 20:52:19 2013 -0400
+
+    Update
+
+[33mcommit 592684bf3962b1f85b5e41545c9ec9180e43c19b[m
+Merge: 9c1ff82 427846e
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jun 18 00:50:27 2013 +0000
+
+    Fix deleted items
+
+[33mcommit 9c1ff828b252a95459c7e7c4264d3711b39eb28d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Tue Jun 18 00:42:50 2013 +0000
+
+    Add lib constants to app.php, various bug fixes
+
+[33mcommit 427846e4656d252f2b481e987cbbab65487cc838[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Jun 14 08:54:18 2013 -0500
+
+    Update plugins directory
+
+[33mcommit b8216f1180d1e588bb02b72e9dfc461ea393755e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 13 16:29:50 2013 -0400
+
+    Add Google Maps key
+
+[33mcommit 84daa9070542d9c81cff65de0844a3e5b1c57f20[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 13 20:27:54 2013 +0000
+
+    Add Google Mas, fix list issues
+
+[33mcommit 49f19067c070f1f08c9246c0f78a1eee3852aecc[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 15:55:27 2013 -0500
+
+    Update pageModel.js
+
+[33mcommit 87fed334f2a53ae913d79d94549b2f6709d61b6e[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 20:52:52 2013 +0000
+
+    Remove email from create
+
+[33mcommit d403439d8f5b9f2ee4ff621f5f2c151058d1416b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 20:49:57 2013 +0000
+
+    Update create process, initial view of site
+
+[33mcommit a5598e738497823c0f7abfdba5413eca79413238[m
+Merge: 2fca473 555dc19
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 14:56:50 2013 +0000
+
+    Merge branch 'master' of https://github.com/madoublet/Respond2
+
+[33mcommit 2fca4732a3b227251d3d333850afe8c68a5fa0b3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 14:56:21 2013 +0000
+
+    Adding API Endpoint to form
+
+[33mcommit 55c74ed020e02248f9d8102999550d356acfca7f[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 14:48:37 2013 +0000
+
+    Fixed hanging publish issue by making sure images directories existed
+
+[33mcommit 555dc19375b30567445e59d1d297b03ddda67b02[m
+Author: root <root@ip-10-122-98-140.ec2.internal>
+Date:   Thu Jun 6 14:38:46 2013 +0000
+
+    Fixed hanging publish issue by making sure images directories existed
+
+[33mcommit 32c9993c7dbbf49d06208361ef4bf8a05344b8d6[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 09:19:41 2013 -0500
+
+    Update CSS, JS
+
+[33mcommit 901b60f0f8bc39b5859e7b3901faaae0891bdfdd[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu Jun 6 09:10:04 2013 -0500
+
+    Add rendered page, fix publish
+
+[33mcommit 3132d51567526e8b63b3e4124054ebfcd1b4f89d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed Jun 5 13:56:58 2013 -0500
+
+    Remove reference to Files
+
+[33mcommit ad8866e38f0f9c9f00227506b569fe741ed4e3e7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu May 23 08:24:11 2013 -0500
+
+    Update layout and stylesheet service urls.
+
+[33mcommit 162c1a9b80a5573147de7ee0377b6ba17052eeb8[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Thu May 23 08:22:46 2013 -0500
+
+    Fix disappearing space issue
+
+[33mcommit 032c024e2a0a510e5c666d4284cb8fc94a040221[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed May 22 08:41:40 2013 -0500
+
+    Remove File
+
+[33mcommit f572329c5a6b26b19316904b5c0cba296125c83d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Wed May 22 08:32:01 2013 -0500
+
+    Update Schema
+
+[33mcommit adb18a3db114175573b92b4b116b80c0dd7f445d[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri May 17 15:11:02 2013 -0500
+
+    Remove misc
+
+[33mcommit 6892a03fc626069065f468eecbdee46db505fe9b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri May 17 14:30:43 2013 -0500
+
+    Add PDO support, switch to CDN hosted libraries, various bug fixes.
+
+[33mcommit 385d8bdb88471d793c17c7953970ddf8c75830c3[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 14:14:18 2013 -0500
+
+    Add updated API Endpoint
+
+[33mcommit 1d0baf9f0fea897c8bf5ffe5cad8e7742a80b53b[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 14:01:57 2013 -0500
+
+    Remove sites
+    
+    This has not been updated yet...will update in a future release.
+
+[33mcommit 0dcb38cf47068065cd4619be0bb76f438f05d30a[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 14:00:03 2013 -0500
+
+    Remove non-generic plugins
+
+[33mcommit 671670f1ceb7824de4773c8ec8bcbcbba1e073c7[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 13:59:04 2013 -0500
+
+    Remove non-generic plugins
+
+[33mcommit b454e10aa034c4f5ef7ad1fc861fb78fe8833581[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 13:57:06 2013 -0500
+
+    Adding SQL
+
+[33mcommit ddaff493aec7ce17b20560d02e9302a84ba10e92[m
+Author: Matthew Smith <matt@matthewsmith.com>
+Date:   Fri Apr 19 13:48:19 2013 -0500
+
+    Initial commit
+    
+    This is the initial commit of Respond2.
