@@ -28,6 +28,7 @@ section.main nav.editor-menu{
     top: 0;
     z-index: 1000;
     width: 100%;
+	right:0;
     -webkit-transition: .2s all ease;
     -moz-transition: .2s all ease;
     -o-transition: .2s all ease;    
@@ -39,6 +40,10 @@ section.main nav.editor-menu{
 		background: url('../images/plug.png') no-repeat 11px 11px;
 		background-size: 17px 17px;
 	}
+	
+.show-nav section.main nav.editor-menu {
+    width: 80%;
+}
 
 .editor-actions{
     margin: 0 130px 0 55px;
