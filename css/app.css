@@ -1211,6 +1211,10 @@ body .CodeMirror{
 	.show-nav section.main {
 		width: 60%;
 	}
+	
+	.show-nav section.main nav.editor-menu {
+		width: 60%;
+	}
 }
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) { 
@@ -1222,7 +1226,11 @@ body .CodeMirror{
 	
 	.show-nav section.main {
 		width: 60%;
-	}   
+	} 
+	
+	.show-nav section.main nav.editor-menu {
+		width: 60%;
+	}	
 }
  
 /* Landscape phone to portrait tablet */
