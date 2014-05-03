@@ -198,8 +198,8 @@ msgid "Re-type Password:"
 msgstr "Repite Contraseña:"
 
 #: profile.php:137
-#: snippets.php:102
-#: snippets.php:141
+#: snippets.php:105
+#: snippets.php:144
 #: settings.php:644
 #: plans.php:142
 #: layout.php:98
@@ -279,7 +279,22 @@ msgstr "Script PHP eliminado correctamente"
 msgid "There was a problem removing the snippet file, please try again"
 msgstr "Se ha producido un error eliminando el fichero de script PHP"
 
-#: snippets.php:72
+#: snippets.php:70
+msgid "Insert into layout using:"
+msgstr "Insertar en disposición utilizando:"
+
+#: snippets.php:70
+msgid "or"
+msgstr "o"
+
+#: snippets.php:71
+msgid ""
+"Adding -rt will run the file every time the page runs; without it, the "
+"snippet will run at publish time."
+msgstr "Añadiendo -rt ejecutará el código cada vez que se cargue la página; sin -rt, "
+"el script PHP solo se ejecutará al publicar la página."
+
+#: snippets.php:75
 #: content.php:65
 #: settings.php:608
 #: layout.php:68
@@ -289,12 +304,12 @@ msgstr "Se ha producido un error eliminando el fichero de script PHP"
 msgid "Save"
 msgstr "Guardar"
 
-#: snippets.php:86
-#: snippets.php:103
+#: snippets.php:89
+#: snippets.php:106
 msgid "Add Snippet"
 msgstr "Añadir Script PHP"
 
-#: snippets.php:93
+#: snippets.php:96
 #: create.php:48
 #: plans.php:107
 #: layout.php:89
@@ -307,18 +322,18 @@ msgstr "Añadir Script PHP"
 msgid "Name:"
 msgstr "Nombre:"
 
-#: snippets.php:95
+#: snippets.php:98
 msgid ""
 "Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
 msgstr "En minúsculas, sin espacios, sin caracteres especiales (., !, etc) y no "
 "pongas la extensión .php"
 
-#: snippets.php:127
-#: snippets.php:142
+#: snippets.php:130
+#: snippets.php:145
 msgid "Remove Snippet"
 msgstr "Eliminar Script PHP"
 
-#: snippets.php:134
+#: snippets.php:137
 #: scripts.php:134
 msgid "Confirm that you want to delete:"
 msgstr "Confirma que quieres eliminar:"
@@ -636,8 +651,7 @@ msgstr "Google Analytics ID:"
 msgid ""
 "Control Top Level Domains, e.g. your_domain.com, your_domain.org, "
 "your_domain.es "
-msgstr "Controlar Dominio, e.g. your_domain.com, your_domain.org, "
-"your_domain.es "
+msgstr "Controlar Dominio, e.g. your_domain.com, your_domain.org, your_domain.es "
 
 #: settings.php:575
 msgid "Sitemap:"
@@ -1324,10 +1338,8 @@ msgstr "Confirma que quieres aplicar:"
 msgid ""
 "This will completely change the look and feel of your site and remove any "
 "custom changes you made to the layout and styles of the site."
-msgstr ""
-"Esto cambiará por completo la presentación de tu sitio y eliminará "
-"cualquier cambio personalizado que hayas hecho a la disposición y estilos del "
-"sitio."
+msgstr "Esto cambiará por completo la presentación de tu sitio y eliminará cualquier "
+"cambio personalizado que hayas hecho a la disposición y estilos del sitio."
 
 #: theme.php:114
 msgid "Confirm you want to reset:"
