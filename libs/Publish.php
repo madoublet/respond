@@ -221,6 +221,13 @@ class Publish
 		if(!file_exists($res_dir)){
 			mkdir($res_dir, 0755, true);	
 		}
+		
+		// create directory for snippets
+		$snp_dir = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/';
+		
+		if(!file_exists($snp_dir)){
+			mkdir($snp_dir, 0755, true);	
+		}
 
 		// copy layouts
 		$layouts_src = $root.'themes/'.$theme.'/layouts/';
@@ -256,6 +263,15 @@ class Publish
 			$res_dest = $root.'sites/'.$site['FriendlyId'].'/themes/'.$theme.'/resources/';
 		
 			Utilities::CopyDirectory($res_src, $res_dest);
+		}
+		
+		// copy snippets
+		$snp_src = $root.'themes/'.$theme.'/snippets/';
+		
+		if(file_exists($snp_src)){
+			$snp_dest = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/';
+		
+			Utilities::CopyDirectory($snp_src, $snp_dest);
 		}
 	}
 	

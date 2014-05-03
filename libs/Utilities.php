@@ -624,15 +624,26 @@ class Utilities
 		
 		foreach($matches[1] as &$value) {
 		
-		    // get snippet
-		    $snippet = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/'.$value.'.php';
-		    $snippet_content = '';
+			if(substr($value, -3)==='-rt'){
+		
+				$value = substr($value, 0, -3);
+		
+				$snippet_content = '<?php include "'.$rootloc.'fragments/snippets/'.$value.'.php"; ?>';
+				
+				$content = str_replace('{{snippet-'.$value.'-rt}}', $snippet_content, $content);
+			}
+			else{
+			    // get snippet
+			    $snippet = $root.'sites/'.$site['FriendlyId'].'/fragments/snippets/'.$value.'.php';
+			    $snippet_content = '';
+			    
+			    if(file_exists($snippet)){
+		            $snippet_content = file_get_contents($snippet);
+		        }
+			    
+			    $content = str_replace('{{snippet-'.$value.'}}', $snippet_content, $content);
+		    }
 		    
-		    if(file_exists($snippet)){
-	            $snippet_content = file_get_contents($snippet);
-	        }
-		    
-		    $content = str_replace('{{snippet-'.$value.'}}', $snippet_content, $content);
 		}
 		
 		// custom scripts

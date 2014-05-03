@@ -66,7 +66,10 @@
     	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
 	</div>
 	
-	<p class="template-insert" data-bind="visible:hasFile">Insert into layout using <code>{{snippet-<span data-bind="text:name"></span>}}</code></p>
+	<p class="template-insert" data-bind="visible:hasFile">
+	<?php print _("Insert into layout using:"); ?> <code>{{snippet-<span data-bind="text:name"></span>}}</code> <?php print _("or"); ?> <code>{{snippet-<span data-bind="text:name"></span>-rt}}</code>
+	<?php print _("Adding -rt will run the file every time the page runs; without it, the snippet will run at publish time."); ?>
+	</p>
     
     <div class="actions">
         <button class="primary-button" data-bind="click: save"><?php print _("Save"); ?></button>

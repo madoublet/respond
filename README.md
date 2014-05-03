@@ -26,6 +26,7 @@ New in 2.10:
 - Bootstrap 3.1.1 update
 - Duplicate block in editor
 - Theme color picker in branding
+- Snippets in themes
 
 Bug fixes:
 - Resize image bug
