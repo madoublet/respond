@@ -7,7 +7,7 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-This is the dev branch for Respond 2.10 (May 2014)
+Respond 2.10 was released May 3, 2014
 
 New in 2.10:
 - Paypal IPN support to track transactions
