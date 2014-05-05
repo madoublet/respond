@@ -471,6 +471,19 @@ class PageFeaturedResource extends Tonic\Resource {
         $pageUniqId = $request['pageUniqId'];
         $prefix = $request['prefix'];
         
+        // handle reverse lookup
+        if(strpos($pageUniqId, 'lookup:') !== FALSE){
+	    	
+	    	$url = str_replace('lookup:', '', $pageUniqId);
+	    	
+	    	$page = Page::GetByUrl($url, SITE_ID);
+	    	
+	    	if($page != NULL){
+		    	$pageUniqId = $page['PageUniqId'];
+	    	}
+	    	    
+        }
+        
         // get language
         $language = 'en';
         
