@@ -1134,6 +1134,8 @@ body .CodeMirror{
 
 	#branding-page .placeholder img{
 		border: 2px solid #fff;
+		min-width: 50px;
+		min-height: 50px;
 	}
 
 	#branding-page .placeholder{

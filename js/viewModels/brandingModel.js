@@ -24,21 +24,22 @@ var brandingModel = {
 
     init:function(){ // initializes the model
         brandingModel.updateSite();
+        
+        Dropzone.autoDiscover = false;
 
         $("#drop").dropzone({ 
             url: "api/file/post",
             success: function(file, response){
-                var image = jQuery.parseJSON(response);
                 
-                var filename = image.filename;
+                var filename = response.filename;
     
                 var match = ko.utils.arrayFirst(brandingModel.images(), function (item) {
                                 return item.filename === filename; 
                             });
                                 
                 if (!match) {
-                    brandingModel.images.push(image); 
-                    brandingModel.newimages.push(image); 
+                    brandingModel.images.push(response); 
+                    brandingModel.newimages.push(response); 
                 }
             }
             
