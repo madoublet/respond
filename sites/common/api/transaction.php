@@ -233,7 +233,7 @@ class TransactionPaypalResource extends Tonic\Resource {
     		$file = '/emails/receipt.html';
     		
     		// send email from file
-    		Utilities::SendEmailFromFile($email, $site['PrimaryEmail'], $subject, $replace, $file);
+    		Utilities::SendEmailFromFile($email, $site['PrimaryEmail'], $site['Name'], $subject, $replace, $file);
 			
 			
 		} else {

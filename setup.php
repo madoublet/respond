@@ -37,6 +37,7 @@
     
     // set what emails should be sent out and a reply-to email address
 	define('REPLY_TO', '');
+	define('REPLY_TO_NAME', '');
 	define('SEND_WELCOME_EMAIL', false);
 	define('SEND_PAYMENT_SUCCESSFUL_EMAIL', false);
 	define('SEND_PAYMENT_FAILED_EMAIL', false);

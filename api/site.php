@@ -397,6 +397,7 @@ class SiteCreateResource extends Tonic\Resource {
     		
 	    		$to = $email;
 	    		$from = REPLY_TO;
+	    		$fromName = REPLY_TO_NAME;
 	    		$subject = BRAND.': Welcome to '.BRAND;
 	    		$file = 'emails/new-user.html';
 	    		
@@ -412,7 +413,7 @@ class SiteCreateResource extends Tonic\Resource {
 	    		);
 	    		
 	    		// send email from file
-	    		Utilities::SendEmailFromFile($to, $from, $subject, $replace, $file);
+	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
 	    	}
             
             return new Tonic\Response(Tonic\Response::OK);

@@ -52,8 +52,9 @@ class FormResource extends Tonic\Resource {
             // sends the email
             $to = $site['PrimaryEmail'];
             $from = $site['PrimaryEmail'];
+            $fromName = $site['Name'];
             
-            Utilities::SendEmail($to, $from, $subject, $content);
+            Utilities::SendEmail($to, $from, $fromName, $subject, $content);
             
             // return a successful response (200)
             return new Tonic\Response(Tonic\Response::OK);

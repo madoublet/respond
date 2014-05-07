@@ -38,6 +38,7 @@
 				
 		    		$to = $site['PrimaryEmail'];
 		    		$from = REPLY_TO;
+		    		$fromName = REPLY_TO_NAME;
 		    		$subject = BRAND.': Payment Successful';
 		    		$file = 'emails/invoice-payment-succeeded.html';
 		    		
@@ -52,7 +53,7 @@
 		    		);
 		    		
 		    		// send email from file
-		    		Utilities::SendEmailFromFile($to, $from, $subject, $replace, $file);
+		    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
 		    	}
 	    	
 	    	}

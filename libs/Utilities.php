@@ -1585,7 +1585,7 @@ class Utilities
     }
     
     // send welcome email
-    public static function SendEmailFromFile($to, $from, $subject, $replace, $file, $root='../'){
+    public static function SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file, $root='../'){
     
     
     	$full_file = $root.$file;
@@ -1601,7 +1601,7 @@ class Utilities
 			    
 			}
 			
-			Utilities::SendEmail($to, $from, $subject, $content);
+			Utilities::SendEmail($to, $from, $fromName, $subject, $content);
             
         }
 	    
@@ -1609,7 +1609,7 @@ class Utilities
     }
 
 	// sends an email
-    public static function SendEmail($to, $from, $subject, $content){
+    public static function SendEmail($to, $from, $fromName, $subject, $content){
     
     	$mail = new PHPMailer;
 
@@ -1626,6 +1626,7 @@ class Utilities
 		}
 		
 		$mail->From = $from;
+		$mail->FromName = $fromName;
 		$mail->addAddress($to, '');
 		$mail->isHTML(true);
 		
