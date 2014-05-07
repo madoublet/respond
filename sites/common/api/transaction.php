@@ -144,9 +144,13 @@ class TransactionPaypalResource extends Tonic\Resource {
 				
 					$arr_temp = explode('-', $request['item_number'.$x]);
 					
-					$item_sku = $arr_temp[0];
+					// shipping type is the last item of the array
+					$item_shipping_type = $arr_temp[count($arr_temp) - 1];
+					
+					// the sku is the last item less the type
+					$item_sku = str_replace('-'.$item_shipping_type, '', $request['item_number'.$x]);
 					$item_name = $request['item_name'.$x];
-					$item_shipping_type = $arr_temp[1];
+					
 					$item_quantity = $request['quantity'.$x];
 					$item_total = $request['mc_gross_'.$x];
 					$item_price = floatval($item_total) / intval($item_quantity);
