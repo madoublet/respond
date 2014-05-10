@@ -1,6 +1,9 @@
-Options +FollowSymLinks 
+Options -Multiviews
 Options -Indexes
-RewriteEngine On
+Options +FollowSymLinks
+
+# Some installations (e.g. Godaddy) require RewriteBase for domains
+# RewriteBase /
 
 ErrorDocument 400 /page/error
 ErrorDocument 401 /page/error
@@ -8,7 +11,12 @@ ErrorDocument 403 /page/error
 ErrorDocument 404 /page/error
 ErrorDocument 500 /page/error
 
-#ref: http://stackoverflow.com/questions/1698464/mod-rewrite-to-remove-php-but-still-serve-the-php-file
+# Redirect for API
+RewriteCond %{REQUEST_URI} !api\\dispatch\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/.* api/dispatch.php [L,QSA]
+
+# Remove PHP extension
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME}\.php -f 
 RewriteRule ^(.*)$ $1.php

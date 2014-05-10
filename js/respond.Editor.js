@@ -162,7 +162,6 @@ respond.Editor.BuildMenu = function(el){
                 '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
 				'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 				'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-				'<a class="primary-action alt preview" title="'+t('preview')+'"><i class="fa fa-play-circle"></i></a>' +
 				'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
 				'</nav>';
 				

@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.10.3');
+	define('VERSION', '2.11.1');
 
 	// debugging
 	define('DEBUG', true);

@@ -181,6 +181,13 @@ class SiteCreateResource extends Tonic\Resource {
         $language = 'en-us'; // language for the app
         $userId = -1;
         
+        $theme = DEFAULT_THEME;
+        
+        // set theme
+        if(isset($request['theme'])){
+	        $theme = $request['theme'];
+        }
+        
         // set language if set
         if(isset($request['language'])){
 	        $language = $request['language'];
@@ -236,7 +243,7 @@ class SiteCreateResource extends Tonic\Resource {
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone, $language); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $theme, $email, $timeZone, $language); // add the site
             
             // add the admin
             if($email != ''){
@@ -265,7 +272,7 @@ class SiteCreateResource extends Tonic\Resource {
             // create the home page
         	$description = '';
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/home.html';
+    		$filename = '../themes/'.$theme.'/pages/home.html';
     		$layout = 'home';
     		$stylesheet = 'home';
     		
@@ -283,7 +290,7 @@ class SiteCreateResource extends Tonic\Resource {
     		
     		// create the about page
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/about.html';
+    		$filename = '../themes/'.$theme.'/pages/about.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     		
@@ -304,7 +311,7 @@ class SiteCreateResource extends Tonic\Resource {
     			
     		// create the contact us page
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/contact.html';
+    		$filename = '../themes/'.$theme.'/pages/contact.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     				
@@ -322,7 +329,7 @@ class SiteCreateResource extends Tonic\Resource {
     			
     		// create the error page
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/error.html';
+    		$filename = '../themes/'.$theme.'/pages/error.html';
     		$layout = 'content';
     		$stylesheet = 'content';
     				
@@ -340,7 +347,7 @@ class SiteCreateResource extends Tonic\Resource {
 
     		// create a sample blog post
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/post.html';
+    		$filename = '../themes/'.$theme.'/pages/post.html';
     		$layout = 'post';
     		$stylesheet = 'content';
     		
@@ -363,7 +370,7 @@ class SiteCreateResource extends Tonic\Resource {
     		
     		// create a sample blog list page
     		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/blog.html';
+    		$filename = '../themes/'.$theme.'/pages/blog.html';
     		$layout = 'post';
     		$stylesheet = 'content';
     				
@@ -387,7 +394,7 @@ class SiteCreateResource extends Tonic\Resource {
     		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $userId, $userId);
     		
     		// publishes a theme for a site
-    		Publish::PublishTheme($site, DEFAULT_THEME);
+    		Publish::PublishTheme($site, $theme);
     		
     		// publish the site
     		Publish::PublishSite($site['SiteUniqId']);

@@ -46,14 +46,14 @@
             <li class="static active"><a><?php print _("Users"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
+        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add User"); ?>"><i class="fa fa-plus-circle"></i></span></a>
     </nav>
 
     <div id="usersList" class="list has-photo" data-bind="foreach: users">
     
         <div class="listItem" data-bind="attr: { 'data-id': userUniqId}">
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
-                <i class="fa fa-minus-circle fa-lg"></i>
+                <i class="fa fa-minus-circle"></i>
             </a>
             <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
     		<h2>

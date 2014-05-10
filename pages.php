@@ -64,12 +64,12 @@
 		    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId(), 'is-secure': isSecure()==1}"><a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
 		    		</a> 
 		    		<?php if($authUser->Role=='Admin'){ ?>
-		    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle fa-lg"></i>
+		    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Page Type"); ?>"></i>
 		    		<?php } ?>
 		    		</li>
 		    		<!--/ko -->
 		    		<?php if($authUser->Role=='Admin'){ ?>
-		            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddPageTypeDialog"></i></li>
+		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddPageTypeDialog" title="<?php print _("Add Page Type"); ?>"></i></li>
 		             <?php } ?>
 		        </ul>
 	        
@@ -79,7 +79,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Page"); ?></a>
+        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Page"); ?>"><i class="fa fa-plus-circle"></i></a>
     </nav>
     
     <div class="list-menu">
@@ -115,7 +115,7 @@
         
 			<?php if($authUser->Role=='Admin'){ ?>
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
-                <i class="not-published fa fa-minus-circle fa-lg"></i>
+                <i class="fa fa-minus-circle"></i>
             </a>
             <?php } ?>
             
@@ -124,8 +124,8 @@
     		<em><?php print _("Last updated"); ?> <span data-bind="text:friendlyDate"></span> <?php print _("by"); ?> <span data-bind="text:lastModifiedFullName"></span></em>
     		<?php if($authUser->Role=='Admin'){ ?>
     		<span class="status" data-bind="css: { 'published': isActive() == 1, 'not-published': isActive() == 0 }, click: $parent.toggleActive">
-    			<i class="not-published fa fa-circle-o fa-lg"></i>
-    			<i class="published fa fa-check-circle fa-lg"></i>
+    			<i class="not-published fa fa-circle-o"></i>
+    			<i class="published fa fa-check-circle"></i>
     		</span>
     		<?php } ?>
     	</div>

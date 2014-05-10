@@ -40,20 +40,34 @@ input.error{
 	border: 1px solid #A4110A;
 }
 
+body input.form-control[type=text], 
+body input.form-control[type=number], 
+body input.form-control[type=password], 
+body input.form-control[type=email],
+body select.form-control{
+	box-shadow: none !important;
+	background: none;
+	outline: none !important;
+	border: none !important;
+	border: 1px solid #ddd !important;
+	border-radius: 5px !important;
+	padding: 5px 10px !important;
+	height: 45px !important;
+    background-color: transparent;
+}
+
 .primary-button, .secondary-button, .tertiary-button{
     display: inline-block;
     background-color: #3299bb;
     border: 2px solid #3299bb;
-    border-radius: 20px;
+    border-radius: 25px;
     font-family: "Roboto Condensed", sans-serif;
     color: #fff;
     font-size: 1.15em;
     margin: 0;
+    padding: 0 20px;
+    cursor: pointer; 
     padding: 8px 20px;
-    cursor: pointer;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
 }
 
     .primary-button:hover{
@@ -73,7 +87,7 @@ input.error{
 .tertiary-button{
     background-color: #fff;
     color: #3299bb;
-    border-color: #888;
+    border-color: #ccc;
     color: #888;
 }
     .tertiary-button: hover{
@@ -461,7 +475,7 @@ section.main{
 
 /* nav */
 section.main nav{
-    background-color: #424242;
+    background-color: #666;
     height: 50px;
     margin: 0;
     padding: 0;
@@ -477,7 +491,7 @@ section.main nav{
         height: 50px;
         line-height: 50px;
         text-align: center;
-        background: #3299BB;
+        background: #3299bb;
     }
     
         section.main nav .show-menu:hover{
@@ -548,13 +562,18 @@ section.main nav{
         }
         
         section.main nav li.add{
-	     	padding: 0 0 0 10px;   
+	     	padding: 0;  
+	     	vertical-align: top;
+	     	line-height: normal;
         } 
         
         section.main nav li.add i{
             display: inline-block;
             color: #fff;
             cursor: pointer;
+            font-size: 18px;
+            padding-top: 17px;
+            margin: 0 10px;
         }
         
             section.main nav li.add i:hover{
@@ -562,29 +581,29 @@ section.main nav{
             }
     
     section.main nav li.active{
-        background: #E9E9E9;
-        border-bottom: 3px solid #FF9900;
+        background: #888;
         height: 50px;
-        line-height: 47px;
+        line-height: 50px;
     }
     
         section.main nav li.active a{
-            color: #373f4a;
+            color: #fff;
         }
         
         section.main nav li.active i{
             position: absolute;
-            top: 19px;
-            right: 3px;
+            top: 17px;
+            right: 5px;
             display: inline-block;
-            color: #aaa;
+            color: #ddd;
             cursor: pointer;
-            margin: 0;
+            margin: 0 ;
             padding: 0;
+            font-size: 18px;
         }
         
             section.main nav li.active i:hover{
-                color: #A4110A;
+                color: #fff;
             }
     
     section.main nav a.primary-action{
@@ -593,13 +612,12 @@ section.main nav{
         right: 0;
         top: 0;
         height: 50px;
-        line-height: 50px;
         font-size: 1em;
         background: #FF9900;
         padding: 0 5px;
         color: #fff;
         font-size: 14px;
-        width: 145px;
+        width: 50px;
         text-align: center;
     }
     
@@ -609,8 +627,8 @@ section.main nav{
         }
         
         section.main nav a.primary-action i{
-            margin-right: 5px;
-            font-size: 16px;
+            font-size: 18px;
+            padding-top: 17px;
         }
     
     section.main .actions{
@@ -620,14 +638,14 @@ section.main nav{
         bottom: 0;
         padding: 10px 20px;
         width: 100%;
-        background-color: #E9E9E9;
+        background-color: #fff;
         z-index: 1000;
     }
 
 	/* flipsnap */
 	.main nav .fs-container{
 		overflow: hidden;
-		margin: 0 145px 0 50px;
+		margin: 0 50px 0 50px;
 	}
 	
 		.main nav .fs-container.full{
@@ -645,7 +663,7 @@ section.main nav{
 		a.fs-next, a.fs-prev{
 		    position: absolute;
 		    color: #fff;
-		    background-color: #555;
+		    background-color: #777;
 		    height: 50px;
 		    line-height: 50px;
 		    z-index: 100;
@@ -659,7 +677,7 @@ section.main nav{
 		    
 		    a.fs-next{
 		        top: 0;
-		        right: 135px;
+		        right: 50px;
 		    }
 		    
 		    .main nav .fs-container.full a.fs-next{
@@ -774,7 +792,7 @@ div#actions{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
-	background: #f0f0f0;
+	background: #fff;
 	padding: 10px 0;
 	margin: 0;
 	border-top: 1px solid #d0d0d0;
@@ -783,14 +801,9 @@ div#actions{
 
 	div#actions .alternate{
 		position: absolute;
-		top: 23px;
+		top: 10px;
 		right: 20px;
 	}
-	
-		div#actions .alternate i{
-			color: #aaa;
-			margin-left: 5px;
-		}
 	
 	div#actions button:first-child, div#actions input:first-child, div#actions a:first-child{
 		margin-left: 20px;

@@ -215,12 +215,17 @@ div#imageList div.listItem img{
 /* begin actions */
 .listItem .remove{
 	position: absolute;
-	top: 20px;
+	top: 19px;
 	right: 12px;
 	display: inline-block !important;
 	width: 25px !important;
 	height: 25px !important;
 	color: #ccc;
+	line-height: 25px;
+}
+
+.listItem .remove i{
+	font-size: 20px;
 }
 
 .listItem .remove:hover{
@@ -296,10 +301,12 @@ div.listItem span.status{
 
 	div.listItem span.status i.published{
 		color: #7ec57e;
+		font-size: 20px;
 	}
 	
 	div.listItem span.status i.not-published{
 		color: #A4110A;
+		font-size: 20px;
 	}
 	
 	div.listItem span.status.published i.not-published{
@@ -328,7 +335,8 @@ div.listItem span.status{
 	.list-menu i{
 		margin-left: 5px;
 		color: #aaa;	
-		padding: 5px;
+		padding: 4px 5px 0 5px;
+		font-size: 16px;
 	}
 	
 	.list-menu .active i{
@@ -360,7 +368,8 @@ div.listItem span.status{
 	
 		.list-menu .categories .btn-default{
 			border: none;
-			padding: 2px 5px;
+			padding: 0 5px;
+			margin-top: -5px;
 			color: #aaa;
 			font-size: 12px;
 			text-transform: uppercase;
@@ -471,6 +480,7 @@ div.listItem span.status{
 		z-index: 2;
 		font-size: 14px;
 		color: #888;
+		text-transform: uppercase;
 	}
 	
 	.image-item img{
@@ -522,6 +532,12 @@ div.listItem span.status{
 	
 	.image-item.active .inactive-button{
 		display: none;
+	}
+	
+	.image-item.active h2{
+		background-color: #81b841;
+		color: #fff;
+		border-bottom: 1px solid #81b841;
 	}
 
 /* #usersList */

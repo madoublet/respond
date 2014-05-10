@@ -11,69 +11,58 @@ class ThemeResource extends Tonic\Resource {
      */
     function get() {
 
-        // get an authuser
-        $authUser = new AuthUser();
+        $json = '{';
+        $first = true;
+        
+        // open themes direcotry
+        if($handle = opendir('../themes')){
+        
+		    $blacklist = array('.', '..');
+		    
+		    // walk through directories
+		    while (false !== ($file = readdir($handle))) {
+		    
+		        if (!in_array($file, $blacklist)) {
+		            $dir = $file;
+		            
+		            //$json.='"yup":"'.$dir.'"';
+		            
+		            $config = '../themes/'.$dir.'/theme.json';
+		            
+		            if(file_exists($config)){
+		            
+		            	$theme_json = file_get_contents($config);
+		            	
+		            	// add commas for following json objects
+		            	if($first == false){
+			            	$json .= ',';
+		            	}
+		            	
+		            	// use the dir as the id
+		            	$theme_json = preg_replace('/{/', '{"id":"'.$dir.'",', $theme_json, 1);
+		            	
+						$json .= '"'.$dir.'":'.$theme_json;
+						
+						$first = false;
+		            }
+		            
+		            
+		        }
+		        
+		    }
+		    
+		    closedir($handle);
+		}
+        
+        $json .= '}';
+        
+        // return a json response
+        $response = new Tonic\Response(Tonic\Response::OK);
+        $response->contentType = 'application/json';
+        $response->body = $json;
 
-        if(isset($authUser->UserUniqId)){ // check if authorized
-            
-            //$json = file_get_contents('../templates/templates.json');
-            
-            $json = '{';
-            $first = true;
-            
-            // open themes direcotry
-            if($handle = opendir('../themes')){
-            
-			    $blacklist = array('.', '..');
-			    
-			    // walk through directories
-			    while (false !== ($file = readdir($handle))) {
-			    
-			        if (!in_array($file, $blacklist)) {
-			            $dir = $file;
-			            
-			            //$json.='"yup":"'.$dir.'"';
-			            
-			            $config = '../themes/'.$dir.'/theme.json';
-			            
-			            if(file_exists($config)){
-			            
-			            	$theme_json = file_get_contents($config);
-			            	
-			            	// add commas for following json objects
-			            	if($first == false){
-				            	$json .= ',';
-			            	}
-			            	
-			            	// use the dir as the id
-			            	$theme_json = preg_replace('/{/', '{"id":"'.$dir.'",', $theme_json, 1);
-			            	
-							$json .= '"'.$dir.'":'.$theme_json;
-							
-							$first = false;
-			            }
-			            
-			            
-			        }
-			        
-			    }
-			    
-			    closedir($handle);
-			}
-            
-            $json .= '}';
-            
-            // return a json response
-            $response = new Tonic\Response(Tonic\Response::OK);
-            $response->contentType = 'application/json';
-            $response->body = $json;
-
-            return $response;
-        }
-        else{
-            // return an unauthorized exception (401)
-            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
-        }
+        return $response;
+        
     }
 }
 

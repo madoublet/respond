@@ -32,31 +32,31 @@
 <!-- begin content -->
 <div class="content">
 
-    <h1><span class="brand"><?php print BRAND; ?></span></h1>
+    <h1><span class="brand"><img src="<?php print BRAND_LOGO; ?>" title="<?php print BRAND; ?>"></span></h1>
 
     <form>
 	<fieldset class="login">
 
 		<div class="form-group">
 			<label for="email" class="control-label"><?php print _("Email:"); ?></label>
-			<input id="email" type="email" autocomplete="off" class="form-control input-lg">
+			<input id="email" type="email" autocomplete="off" class="form-control input-lg" tabindex="1">
 		</div>
 		
 		<div class="form-group">
-			<label for="password" class="control-label"><?php print _("Password:"); ?></label>
-			<input id="password" type="Password" autocomplete="off" class="form-control input-lg">
+			<label for="password" class="control-label"><?php print _("Password:"); ?> <a class="forgot-link" href="forgot" tabindex="4"><?php print _("Forgot your Password?"); ?></a></label>
+			<input id="password" type="Password" autocomplete="off" class="form-control" tabindex="2">
 		</div>
 		
 		<span class="actions">
-			<button class="primary-button" type="submit" data-bind="click: login"><?php print _("Login"); ?> <i class="fa fa-angle-right fa-white"></i></button>
+			<button class="primary-button" type="submit" data-bind="click: login" tabindex="3"><?php print _("Login"); ?> <i class="fa fa-angle-right fa-white"></i></button>
 		</span>
 	</fieldset>
     </form>
 	<!-- /.login -->
     
     <p class="alternate">
-    	<a href="forgot"><?php print _("Forgot your Password?"); ?></a>
-	</p>
+   	 	<a href="create"><?php print _("Create a Site"); ?></a>
+    </p>
     
     <small><?php print COPY; ?></small>
 
