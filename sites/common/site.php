@@ -16,7 +16,7 @@
 	// authenticate secure pages
 	if($isSecure == true){
 		$siteAuthUser = new SiteAuthUser($siteFriendlyId, $rootPrefix, $pageUrl); // get auth user
-		$siteAuthUser->Authenticate('Member');
+		$siteAuthUser->Authenticate($pageTypeUniqId, $rootPrefix, $pageUrl);
 	}
 	
 	// get supported language

@@ -25,9 +25,20 @@ class UserLoginResource extends Tonic\Resource {
             
             	// if $site is null, login to the app, else login to the site
 	            $site = Site::GetBySiteUniqId(SITE_UNIQ_ID);
+	            
+	            // default canView
+	            $canView = '';
+	            
+	            // try to get a role by its name
+				$role = Role::GetByName($user['Role'], $user['SiteId']);
+		        
+		        // set canView permission 
+		        if($role!=null){
+		        	$canView = trim($role['CanView']);
+		        }
 				
 				if($site['SiteId'] == $user['SiteId']){
-					SiteAuthUser::Create(SITE_FRIENDLY_ID, $user);
+					SiteAuthUser::Create(SITE_FRIENDLY_ID, $user, $canView);
 	
 					$params = array();
 				}

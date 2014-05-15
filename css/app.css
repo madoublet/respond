@@ -261,6 +261,11 @@ body .modal-header{
 		body .modal .form-group:last-child{
 			border-bottom: none;
 		}
+		
+		body .modal .table td span.fa{
+			color: #aaa;
+			margin-left: 10px;
+		}
 
 
 header{
@@ -548,10 +553,14 @@ section.main nav{
             font-size: 1em;
             height: 50px;
             line-height: 50px;
-            padding: 0 30px 0 19px;
+            padding: 0 20px 0 20px;
             color: #fff;
             text-align: center;
         }
+        
+        	section.main nav li.has-action.active a{
+	        	padding-right: 30px;
+        	}
         
             section.main nav li.static a{
                 padding: 0 30px;   
@@ -790,10 +799,11 @@ p.inline-status{
 
 div#actions{
 	position: fixed;
+	box-sizing: border-box;
 	width: 100%;
 	bottom: 0;
 	background: #fff;
-	padding: 10px 0;
+	padding: 10px 20px;
 	margin: 0;
 	border-top: 1px solid #d0d0d0;
     z-index: 100;
@@ -801,12 +811,8 @@ div#actions{
 
 	div#actions .alternate{
 		position: absolute;
-		top: 10px;
+		top: 12px;
 		right: 20px;
-	}
-	
-	div#actions button:first-child, div#actions input:first-child, div#actions a:first-child{
-		margin-left: 20px;
 	}
 	
 	div#actions button, div#actions input, div#actions a{
@@ -1204,6 +1210,16 @@ body .CodeMirror{
 		font-size: 7px;
 	}
 
+#roles-page .table{
+	margin-top: 30px;
+}
+
+	#roles-page .table thead small{
+		display: block;
+		color: #aaa;
+		font-weight: normal;
+		text-transform: uppercase;
+	}
 
 /* Large desktop */
 @media (min-width: 1200px) { }

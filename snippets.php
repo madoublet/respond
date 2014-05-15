@@ -49,7 +49,7 @@
     
 		        <ul>
 		        <!-- ko foreach: snippets -->
-		            <li data-bind="attr:{'data-file': file}"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Snippet"); ?>"></i></li>
+		            <li class="has-action" data-bind="attr:{'data-file': file}"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Snippet"); ?>"></i></li>
 		        <!-- /ko -->    
 		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Snippet"); ?>"></i></li>
 		        </ul>

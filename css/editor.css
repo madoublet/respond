@@ -36,8 +36,8 @@ section.main nav.editor-menu{
 }
 
 	section.main nav.editor-menu .plugins{
-		background: url('../images/plug.png') no-repeat 11px 11px;
-		background-size: 17px 17px;
+		background: url('../images/plug.png') no-repeat 12px 11px;
+		background-size: 16px 16px;
 	}
 
 .editor-actions{

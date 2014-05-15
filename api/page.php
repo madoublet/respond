@@ -15,12 +15,17 @@ class PageAddResource extends Tonic\Resource {
         $authUser = new AuthUser();
 
         if(isset($authUser->UserUniqId)){ // check if authorized
-
+        
             parse_str($this->request->data, $request); // parse request
             
             // get the page type (if applicable)
             $pageTypeId = -1;
             $pageTypeUniqId = $request['pageTypeUniqId']; // get page type
+            
+			// check permissions
+			if(Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanCreate) == false){
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
             
             // default layout and stylesheet is content
             $layout = 'content';
@@ -85,19 +90,49 @@ class PageResource extends Tonic\Resource {
      * @method GET
      */
     function get($pageUniqId) {
+    
         // get an authuser
         $authUser = new AuthUser();
 
         if(isset($authUser->UserUniqId)){ // check if authorized
 
+			// get page
             $page = Page::GetByPageUniqId($pageUniqId);
             
+            // make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+            
+            // url
             $page['Url'] = $page['FriendlyId'];
             
+            // default permissions
+			$canEdit = false;
+			$canPublish = false;
+			$canRemove = false;
+
+			// get the page type            
             if($page['PageTypeId']!=-1){
 	            $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 	            $page['Url'] = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
+	            
+				// get permissions for the page
+	            $canEdit = Utilities::CanPerformAction($pageType['PageTypeUniqId'], $authUser->CanEdit);
+	            $canPublish = Utilities::CanPerformAction($pageType['PageTypeUniqId'], $authUser->CanPublish);
+	            $canRemove = Utilities::CanPerformAction($pageType['PageTypeUniqId'], $authUser->CanRemove);
+	        }
+            else{
+                // get permissions for the page
+	            $canEdit = Utilities::CanPerformAction('root', $authUser->CanEdit);
+	            $canPublish = Utilities::CanPerformAction('root', $authUser->CanPublish);
+	            $canRemove = Utilities::CanPerformAction('root', $authUser->CanRemove);
             }
+            
+            $page['CanEdit'] = $canEdit;
+            $page['CanPublish'] = $canPublish;
+            $page['CanRemove'] = $canRemove;
+
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -123,6 +158,7 @@ class PageResource extends Tonic\Resource {
 
             parse_str($this->request->data, $request); // parse request
 
+			// get request params
             $name = $request['name'];
             $friendlyId = $request['friendlyId'];
             $description = $request['description'];
@@ -137,7 +173,34 @@ class PageResource extends Tonic\Resource {
             $location = $request['location'];
             $latitude = $request['latitude'];
             $longitude = $request['longitude'];
-           
+            
+            // default is a root element
+            $pageTypeUniqId = -1;
+            
+            // get a reference to a page
+            $page = Page::GetByPageUniqId($pageUniqId);
+            
+            // make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+            
+            // get a pagetypeuniqid
+            if($page['PageTypeId']!=-1){
+	            $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+	            $pageTypeUniqId = $pageType['PageTypeUniqId'];
+	        }
+            
+            // get permissions (both publishers and editors can save settings)
+            $canEdit = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanEdit);
+            $canPublish = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanPublish);
+            
+            // check permissions
+			if($canEdit == false && $canPublish == false){
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
+            
+			// edits settings
             Page::EditSettings($pageUniqId, $name, $friendlyId, $description, $keywords, $callout, 
             	$beginDate, $endDate, $timeZone,
             	$location, $latitude, $longitude,
@@ -146,8 +209,7 @@ class PageResource extends Tonic\Resource {
             // add categories to the page (if set)
             if(isset($request['categories'])){
             
-            	$page = Page::GetByPageUniqId($pageUniqId);
-            
+            	// remove categories
             	Page::RemoveCategories($page['PageId']);
 	            
 	            $categories = $request['categories'];
@@ -188,7 +250,13 @@ class PageResource extends Tonic\Resource {
         	$site = Site::GetBySiteId($authUser->SiteId);
         	$page = Page::GetByPageUniqId($pageUniqId);
         	
-        	if($page['SiteId']==$site['SiteId']){ // make sure page is part of the site
+        	// make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+            
+        	// make sure page is part of the site
+        	if($page['SiteId']==$site['SiteId']){ 
         	
         		// get file location
         		$path = '../sites/'.$site['FriendlyId'].'/';
@@ -198,11 +266,22 @@ class PageResource extends Tonic\Resource {
         		$publish = $path .'fragments/publish/'.$page['PageUniqId'].'.html';
         		$render = $path .'fragments/render/'.$page['PageUniqId'].'.php';
         		
+        		// default is root
+        		$pageTypeUniqId = -1;
+        		
         		// determine if file is in sub-direcotry
 	        	if($page['PageTypeId']!=-1){
 			        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 			        $path = '../sites/'.$site['FriendlyId'].'/'.$pageType['FriendlyId'].'/';
+			        
+			        // set page type
+			        $pageTypeUniqId = $pageType['PageTypeUniqId'];
 		        }
+		        
+		        // check permissions
+				if(Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanRemove) == false){
+					return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+				}
 		        
 		        // set file
 		        $file = $path.$page['FriendlyId'].'.php';
@@ -261,9 +340,9 @@ class PageContentResource extends Tonic\Resource {
         $authUser = new AuthUser();
 
         if(isset($authUser->UserUniqId)){ // check if authorized
-
-            $site = Site::GetBySiteId($authUser->SiteId);
         
+            $site = Site::GetBySiteId($authUser->SiteId);
+         
 			$draft = '../sites/'.$site['FriendlyId'].'/fragments/draft/'.$pageUniqId.'.html';
             $publish = '../sites/'.$site['FriendlyId'].'/fragments/publish/'.$pageUniqId.'.html';
             
@@ -309,16 +388,40 @@ class PageContentResource extends Tonic\Resource {
             $status = $request['status']; // draft or publish
             $image = $request['image'];
 
+			// get page and site
             $page = Page::GetByPageUniqId($pageUniqId);
             $site = Site::GetBySiteId($authUser->SiteId);
+            
+            // default is root
+    		$pageTypeUniqId = -1;
+    		
+    		// determine if file is in sub-direcotry
+        	if($page['PageTypeId']!=-1){
+		        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+		        
+		        // set page type
+		        $pageTypeUniqId = $pageType['PageTypeUniqId'];
+	        }
 
+			// get permissions
+            $canEdit = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanEdit);
+            $canPublish = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanPublish);
+            
+            // check permissions
+			if($canEdit == false && $canPublish == false){
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
+
+			// publish fragment
             Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
             
             $url = '';
             
+            // edit timestamp
 			Page::EditTimestamp($page['PageUniqId'], $authUser->UserId);
 			
-            if($status=='publish'){
+			// publish if status is set to publish and the user can publish
+            if($status=='publish' && $canPublish == true){
             
             	Page::SetIsActive($page['PageUniqId'], 1);
                 $url = Publish::PublishPage($page['PageUniqId'], false, true);
@@ -326,6 +429,7 @@ class PageContentResource extends Tonic\Resource {
                 Page::EditImage($page['PageUniqId'], $image, $authUser->UserId);
             }
 
+			// return successful response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'text/html';
             $response->body = $url;
@@ -355,6 +459,7 @@ class PagePreviewRemoveResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
         
+        	// only can remove preview files from own site
             $site = Site::GetBySiteId($authUser->SiteId);
            
             if($site){
@@ -398,12 +503,37 @@ class PagePreviewSaveResource extends Tonic\Resource {
             $content = $request['content']; // get page type
             $status = 'draft';
 
+			// get page and site
             $page = Page::GetByPageUniqId($pageUniqId);
             $site = Site::GetBySiteId($authUser->SiteId);
             
-            Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
+            // make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
             
-            $url = Publish::PublishPage($page['PageUniqId'], true); // publish a preview page
+            // default is root
+    		$pageTypeUniqId = -1;
+    		
+    		// determine if file is in sub-direcotry
+        	if($page['PageTypeId']!=-1){
+		        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+		        
+		        // set page type
+		        $pageTypeUniqId = $pageType['PageTypeUniqId'];
+	        }
+            
+            // get permissions
+            $canEdit = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanEdit);
+            $canPublish = Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanPublish);
+            
+            // check permissions to save a draft
+			if($canEdit == true || $canPublish == true){
+				Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], $status, $content);
+			}
+           
+            // create a preview
+            $url = Publish::PublishPage($page['PageUniqId'], true);
             
             // strip leading '../' from string
             $url = str_replace('../', '', $url);
@@ -468,7 +598,32 @@ class PagePublishResource extends Tonic\Resource {
         $authUser = new AuthUser();
 
         if(isset($authUser->UserUniqId)){ // check if authorized
+        
+        	// get page
+        	$page = Page::GetByPageUniqId($pageUniqId);
+			
+			// make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
 
+			// default is root
+    		$pageTypeUniqId = -1;
+    		
+    		// determine if file is in sub-direcotry
+        	if($page['PageTypeId']!=-1){
+		        $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+		        
+		        // set page type
+		        $pageTypeUniqId = $pageType['PageTypeUniqId'];
+	        }
+	        
+	        // check permissions
+			if(Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanPublish) == false){
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
+
+			// set the page to active
             Page::SetIsActive($pageUniqId, 1);
 
             // publish the page
@@ -502,20 +657,39 @@ class PageUnPublishResource extends Tonic\Resource {
 
         if(isset($authUser->UserUniqId)){ // check if authorized
 
+			// get page
             $page = Page::GetByPageUniqId($pageUniqId);
-
-            Page::SetIsActive($pageUniqId, 0);
-
+            
+            // make sure the user is part of the site (or is a superadmin)
+            if($authUser->IsSuperAdmin == false && $authUser->SiteId != $page['SiteId']){
+	            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+            }
+            
             // delete page
             $site = Site::GetBySiteId($page['SiteId']);
             $filename = '../sites/'.$site['FriendlyId'].'/';
 
 
+			// default is root
+			$pageTypeUniqId = -1;
+
+			// get $pageTypeUniqId
             if($page['PageTypeId']!=-1){
                 $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
                 $filename .= strtolower($pageType['FriendlyId']).'/';
+                
+                $pageTypeUniqId = $pageType['PageTypeUniqId'];
             }
+            
+            // check permissions
+            if(Utilities::CanPerformAction($pageTypeUniqId, $authUser->CanPublish) == false){
+				return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+			}
 
+            // set active
+            Page::SetIsActive($pageUniqId, 0);
+            
+            // remove file
             $filename = $filename.$page['FriendlyId'].'.php';
             
             if(file_exists($filename)){
@@ -577,6 +751,11 @@ class PageListAll extends Tonic\Resource {
                 }
 
                 $row['Url'] = $url;
+                
+                // permissions are not applicable to this API call
+	            $row['CanEdit'] = '';
+	            $row['CanPublish'] = '';
+	            $row['CanRemove'] = '';
                     
                 $pages[$row['PageUniqId']] = $row;
             }
@@ -700,14 +879,56 @@ class PageListSortedResource extends Tonic\Resource {
 
                 $url = $page['FriendlyId'];
 
+				// default permissions
+				$canEdit = false;
+				$canPublish = false;
+				$canRemove = false;
+
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
                     $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    
+                    // set edit permissions
+					if($authUser->CanEdit=='All' || strpos($authUser->CanEdit, $pageType['PageTypeUniqId']) !== FALSE){
+						$canEdit = true;
+					}
+					
+					// set publish permissions
+					if($authUser->CanPublish=='All' || strpos($authUser->CanPublish, $pageType['PageTypeUniqId']) !== FALSE){
+						$canPublish = true;
+					}
+					
+					// set remove permissions
+					if($authUser->CanRemove=='All' || strpos($authUser->CanRemove, $pageType['PageTypeUniqId']) !== FALSE){
+						$canRemove = true;
+					}
+					
                 }
+                else{
+	                
+	                // set edit permissions
+					if($authUser->CanEdit=='All' || strpos($authUser->CanEdit, 'root') !== FALSE){
+						$canEdit = true;
+					}
+					
+					// set publish permissions
+					if($authUser->CanPublish=='All' || strpos($authUser->CanPublish, 'root') !== FALSE){
+						$canPublish = true;
+					}
+					
+					// set remove permissions
+					if($authUser->CanRemove=='All' || strpos($authUser->CanRemove, 'root') !== FALSE){
+						$canRemove = true;
+					}
+	                
+                }
+                
+                $page['CanEdit'] = $canEdit;
+                $page['CanPublish'] = $canPublish;
+                $page['CanRemove'] = $canRemove;
 
                 $page['Url'] = $url;
-                    
                 
                 // determine if the page has a draft
                 $draft = '../sites/'.$site['FriendlyId'].'/fragments/draft/'.$page['PageUniqId'].'.html';
@@ -799,7 +1020,8 @@ class PageListFriendlyResource extends Tonic\Resource {
                     }
                     
                 }
-
+                
+                // set thumb
                 $page['Thumb'] = $thumbUrl;
 
                 $url = $page['FriendlyId'];
@@ -810,11 +1032,18 @@ class PageListFriendlyResource extends Tonic\Resource {
                     $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
                 }
 
+				// set url
                 $page['Url'] = $url;
+                
+                // permissions are not applicable to this API call
+	            $page['CanEdit'] = '';
+	            $page['CanPublish'] = '';
+	            $page['CanRemove'] = '';
+
                     
                 $pages[$row['PageUniqId']] = $page;
             }
-
+            
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'application/json';
@@ -828,575 +1057,6 @@ class PageListFriendlyResource extends Tonic\Resource {
             return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
         }
 
-    }
-
-}
-
-
-/**
- * This is a public API call that shows you the list of pages for the specified parameters in a list format
- * @uri /page/published/list
- */
-class PageListResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function get() {
-
-        parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
-        $pageTypeUniqId = $request['pageTypeUniqId'];
-        $pageSize = $request['pageSize'];
-        $orderBy = $request['orderBy'];
-        $page = $request['page'];
-        $prefix = $request['prefix'];
-        
-        // get a categoryUniqId (if set)
-        $categoryUniqId = '-1';
-        
-        if(isset($request['category'])){
-        	$categoryUniqId = $request['category'];
-        }
-        
-        // get language
-        $language = 'en';
-        
-        if(isset($request['language'])){
-        	$language = $request['language'];
-		}
-
-		// set order
-        if($orderBy=='Created'){
-            $orderBy = $orderBy.' DESC';
-        }
-        else{
-            $orderBy = $orderBy.' ASC';
-        }
-
-        if($pageSize==''){
-            $pageSize = 10;
-        }
-
-        $site = Site::GetBySiteUniqId($siteUniqId);
-        $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
-
-
-		// set language to the domain for the site
-    	$domain = '../sites/'.$site['FriendlyId'].'/locale';
-		
-		Utilities::SetLanguage($language, $domain);
-
-		// set destination
-        $dest = 'sites/'.$site['FriendlyId'];
-        
-        // Get all pages
-        $hasCategory = false;
-        
-        // if category is set, try to get pages by Category
-        if($categoryUniqId != '-1'){
-	        $category = Category::GetByCategoryUniqId($categoryUniqId);
-	        
-	        if(isset($category['CategoryId'])){
-	        	$hasCategory = true;
-	        	$list = Page::GetPagesByCategory($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true);
-	        }
-        }
-        
-        // if the category did not work or is not set, just get a list by the other params
-        if($hasCategory == false){
-	        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
-        }
-        
-        $pages = array();
-        
-        foreach ($list as $row){
-
-            $page = Page::GetByPageId($row['PageId']);
-
-            $name = $row['FirstName'].' '.$row['LastName'];
-            
-            // get image url
-            $thumbUrl = '';
-            $imageUrl = '';
-            $hasImage = false;
-            
-            if($page['Image']!=''){
-                $hasImage = true;
-                $thumbUrl = 'files/t-'.$page['Image'];
-                $imageUrl = 'files/'.substr($page['Image'], 2);
-            }
-            
-            // check for callout
-            $hasCallout = false;
-            
-            if($page['Callout']!=''){
-                $hasCallout = true;
-            }
-
-			// get photo
-            $hasPhoto = false;
-            $photo = '';
-            
-            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
-	            $hasPhoto = true;
-	            $photo = 'files/'.$row['PhotoUrl'];
-            }
-
-			// build URL
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
-            
-            $item = array(
-                    'PageUniqId'  => $page['PageUniqId'],
-                    'Name' => _($page['Name']),	// get a translation for name, description, and callout
-                    'Description' => _($page['Description']),
-                    'Callout' => _($page['Callout']),
-                    'Location' => $page['Location'],
-                    'LatLong' => $page['LatLong'],
-                    'HasCallout' => $hasCallout,
-                    'Url' => $url,
-                    'Image' => $imageUrl,
-                    'Thumb' => $thumbUrl,
-                    'HasImage' => $hasImage,
-                    'LastModified' => $page['LastModifiedDate'],
-                    'Author' => $name,
-                    'HasPhoto' => $hasPhoto,
-                    'Photo' => $photo
-                );
-            
-            array_push($pages, $item);
-        }
-
-        // return a json response
-        $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'application/json';
-        $response->body = json_encode($pages);
-
-        return $response;
-
-        return new Tonic\Response(Tonic\Response::CREATED);
-    }
-
-}
-
-/**
- * This is a public API call that shows you the list of pages for the specified parameters in blog format
- * @uri /page/published/blog
- */
-class PageBlogResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function get() {
-
-        parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
-        $pageTypeUniqId = $request['pageTypeUniqId'];
-        $pageSize = $request['pageSize'];
-        $orderBy = $request['orderBy'];
-        $page = $request['page'];
-        $prefix = $request['prefix'];
-        
-        // get a categoryUniqId (if set)
-        $categoryUniqId = '-1';
-        
-        if(isset($request['category'])){
-        	$categoryUniqId = $request['category'];
-        }
-        
-        // get language
-        $language = 'en';
-        
-        if(isset($request['language'])){
-        	$language = $request['language'];
-		}
-
-        if($orderBy=='Created'){ // need to check these to prevent SQL injections
-            $orderBy = 'Pages.Created DESC';
-        }
-        else{
-            $orderBy = 'Pages.Name ASC';
-        }
-
-        if($pageSize==''){
-            $pageSize = 10;
-        }
-
-        $site = Site::GetBySiteUniqId($siteUniqId);
-        $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
-
-
-        $dest = 'sites/'.$site['FriendlyId'];
-        
-         // Get all pages
-        $hasCategory = false;
-        
-        // if category is set, try to get pages by Category
-        if($categoryUniqId != '-1'){
-	        $category = Category::GetByCategoryUniqId($categoryUniqId);
-	        
-	        if(isset($category['CategoryId'])){
-	        	$hasCategory = true;
-	        	$list = Page::GetPagesByCategory($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true);
-	        }
-        }
-        
-        // if the category did not work or is not set, just get a list by the other params
-        if($hasCategory == false){
-	        $list = Page::GetPages($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true);
-        }
-        
-        $pages = array();
-        
-        foreach ($list as $row){
-
-            $page = Page::GetByPageId($row['PageId']);
-
-			// get name
-            $name = $row['FirstName'].' '.$row['LastName'];
-            
-            // get photo
-            $hasPhoto = false;
-            $photo = '';
-            
-            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
-	            $hasPhoto = true;
-	            $photo = 'files/'.$row['PhotoUrl'];
-            }
-            
-            // get image url
-            $thumbUrl = '';
-            $imageUrl = '';
-            $mImageUrl = '';
-            
-            $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
-            
-            // create a readable date
-            $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
-            $local = new DateTimeZone($site['TimeZone']);
-			$date->setTimezone($local);
-			$readable = $date->format('D, M d y h:i a');
-			
-            $item = array(
-                    'PageUniqId'  => $page['PageUniqId'],
-                    'Name' => $page['Name'],
-                    'Description' => $page['Description'],
-                    'Callout' => $page['Callout'],
-                    'Url' => $url,
-                    'Image' => $imageUrl,
-                    'Thumb' => $thumbUrl,
-                    'LastModified' => $page['LastModifiedDate'],
-                    'LastModifiedReadable' => $readable,
-                    'Author' => $name,
-                    'HasPhoto' => $hasPhoto,
-                    'Photo' => $photo
-                );
-                
-            $fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$page['PageUniqId'].'.php';
-
-            if(file_exists($fragment)){
-            
-            	// set language to the domain for the site
-            	$domain = '../sites/'.$site['FriendlyId'].'/locale';
-				
-				Utilities::SetLanguage($language, $domain);
-				
-            	ob_start(); // start output buffer
-            	
-				textdomain($domain);
-
-			    include $fragment;
-			    $content = ob_get_contents(); // get contents of buffer
-			    
-			    ob_end_clean();
-			    
-                //$content = file_get_contents($fragment); #old
-            }
-            else{
-                $content = 'Not found';
-            }
-
-			// fix nested, relative URLs if displayed in the root
-			if($prefix == ''){
-				$content = str_replace('src="../', 'src="', $content);
-				$content = str_replace('href="../', 'href="', $content);	
-			}
-			
-			// update images with sites/[name] to a relative URL
-			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="'.$prefix, $content);
-			
-            $item['Content'] = $content;
-            
-            array_push($pages, $item);
-        }
-
-        // return a json response
-        $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'application/json';
-        $response->body = json_encode($pages);
-
-        return $response;
-    }
-
-}
-
-/**
- * This is a public API call that shows you the list of pages for the specified parameters in a list format
- * @uri /page/published/calendar
- */
-class PageCalendarResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function get() {
-
-        parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
-        $pageTypeUniqId = $request['pageTypeUniqId'];
-        $pageSize = $request['pageSize'];
-        $orderBy = $request['orderBy'];
-        $page = $request['page'];
-        $prefix = $request['prefix'];
-        
-        // get begin and end
-        $beginDate = $request['beginDate'];
-        $endDate = $request['endDate'];
-        
-        // get a categoryUniqId (if set)
-        $categoryUniqId = '-1';
-        
-        if(isset($request['category'])){
-        	$categoryUniqId = $request['category'];
-        }
-        
-        // get language
-        $language = 'en';
-        
-        if(isset($request['language'])){
-        	$language = $request['language'];
-		}
-
-		// set order
-        $orderBy = 'BeginDate ASC';
-
-        if($pageSize==''){
-            $pageSize = 10;
-        }
-
-        $site = Site::GetBySiteUniqId($siteUniqId);
-        $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
-
-		// set language to the domain for the site
-    	$domain = '../sites/'.$site['FriendlyId'].'/locale';
-		
-		Utilities::SetLanguage($language, $domain);
-
-		// set destination
-        $dest = 'sites/'.$site['FriendlyId'];
-        
-        // Get all pages
-        $hasCategory = false;
-        
-        // if category is set, try to get pages by Category
-        if($categoryUniqId != '-1'){
-	        $category = Category::GetByCategoryUniqId($categoryUniqId);
-	        
-	        if(isset($category['CategoryId'])){
-	        	$hasCategory = true;
-	        	$list = Page::GetPagesByCategoryForDates($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, $category['CategoryId'], true, $beginDate, $endDate);
-	        }
-        }
-        
-        // if the category did not work or is not set, just get a list by the other params
-        if($hasCategory == false){
-	        $list = Page::GetPagesForDates($site['SiteId'], $pageType['PageTypeId'], $pageSize, $page, $orderBy, true, $beginDate, $endDate);
-        }
-        
-        $pages = array();
-        
-        foreach ($list as $row){
-
-            $page = Page::GetByPageId($row['PageId']);
-
-            $name = $row['FirstName'].' '.$row['LastName'];
-            
-            // get image url
-            $thumbUrl = '';
-            $imageUrl = '';
-            $hasImage = false;
-            
-            if($page['Image']!=''){
-                $hasImage = true;
-                $thumbUrl = 'files/t-'.$page['Image'];
-                $imageUrl = 'files/'.substr($page['Image'], 2);
-            }
-            
-            // check for callout
-            $hasCallout = false;
-            
-            if($page['Callout']!=''){
-                $hasCallout = true;
-            }
-            
-            // get photo
-            $hasPhoto = false;
-            $photo = '';
-            
-            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
-	            $hasPhoto = true;
-	            $photo = 'files/'.$row['PhotoUrl'];
-            }
-
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
-            
-            // create a readable begin date
-            $begin = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
-            $local = new DateTimeZone($site['TimeZone']);
-			$begin->setTimezone($local);
-			$beginReadable = $begin->format('D, M d y h:i a');
-			
-			// create a readable end date
-            $end = DateTime::createFromFormat('Y-m-d H:i:s', $page['EndDate']);
-            $local = new DateTimeZone($site['TimeZone']);
-			$end->setTimezone($local);
-			$endReadable = $end->format('D, M d y h:i a');
-			
-            $item = array(
-                    'PageUniqId'  => $page['PageUniqId'],
-                    'Name' => _($page['Name']),	// get a translation for name, description, and callout
-                    'Description' => _($page['Description']),
-                    'Callout' => _($page['Callout']),
-                    'HasCallout' => $hasCallout,
-                    'Url' => $url,
-                    'Image' => $imageUrl,
-                    'Thumb' => $thumbUrl,
-                    'HasImage' => $hasImage,
-                    'BeginDate' => $begin->format('Y-m-d H:i:s'),
-                    'BeginDateReadable' => $beginReadable,
-                    'EndDate' => $end->format('Y-m-d H:i:s'),
-                    'EndDateReadable' => $endReadable,
-                    'LastModified' => $page['LastModifiedDate'],
-                    'Author' => $name,
-                    'HasPhoto' => $hasPhoto,
-                    'Photo' => $photo
-                );
-            
-            array_push($pages, $item);
-        }
-
-        // return a json response
-        $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'application/json';
-        $response->body = json_encode($pages);
-
-        return $response;
-    }
-
-}
-
-/**
- * This is a public API call that shows you the list of pages for the specified parameters in a list format
- * @uri /page/published/featured
- */
-class PageFeaturedResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function get() {
-
-        parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
-        $pageUniqId = $request['pageUniqId'];
-        $prefix = $request['prefix'];
-        
-        // get language
-        $language = 'en';
-        
-        if(isset($request['language'])){
-        	$language = $request['language'];
-		}
-        
-        $site = Site::GetBySiteUniqId($siteUniqId);
-        
-		// get fragment
-		$fragment = '../sites/'.$site['FriendlyId'].'/fragments/render/'.$pageUniqId.'.php';
-
-        if(file_exists($fragment)){
-        
-        	// set language to the domain for the site
-        	$domain = '../sites/'.$site['FriendlyId'].'/locale';
-			
-			Utilities::SetLanguage($language, $domain);
-			
-        	ob_start(); // start output buffer
-        	
-			textdomain($domain);
-
-		    include $fragment;
-		    $content = ob_get_contents(); // get contents of buffer
-		    
-		    ob_end_clean();
-		    
-		    // fix nested, relative URLs if displayed in the root
-			if($prefix == ''){
-				$content = str_replace('src="../', 'src="', $content);
-				$content = str_replace('href="../', 'href="', $content);	
-			}
-			
-			// update images with sites/[name] to a relative URL
-			$content = str_replace('src="sites/'.$site['FriendlyId'].'/', 'src="'.$prefix, $content);
-		    
-            // return html response
-	        $response = new Tonic\Response(Tonic\Response::OK);
-	        $response->contentType = 'text/html';
-	        $response->body = $content;
-	        
-	        return $response;
-        }
-        else{
-	       	return new Tonic\Response(Tonic\Response::NOTFOUND);
-        }
-        
-    }
-
-}
-
-
-
-/**
- * This is a public API call that shows the total # of published pages for your site
- * @uri /page/published/total
- */
-class PageTotalResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function get() {
-
-        parse_str($this->request->data, $request); // parse request
-        $siteUniqId = $request['siteUniqId'];
-        $pageTypeUniqId = $request['pageTypeUniqId'];
-
-        $site = Site::GetBySiteUniqId($siteUniqId);
-        $pageType = PageType::GetByPageTypeUniqId($pageTypeUniqId);
-
-        // Get all pages
-        $total = Page::GetPagesCount($site['SiteId'], $pageType['PageTypeId'], true);
-        
-        $json = '{"total":"'.$total.'"}';
-
-        header('Content-type: application/json');
-        
-        // return a json response
-        $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'application/json';
-        $response->body = $json;
-
-        return $response;
     }
 
 }

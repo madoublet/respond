@@ -1640,6 +1640,38 @@ class Utilities
 		return false;    
 		
     }
+    
+    // checks permissions, $canAction = $canView, $canEdit, $canPublish, $canRemove, $canCreate
+    public static function CanPerformAction($pageTypeUniqId, $canAction){
+    
+    	// trim
+    	$canAction = trim($canAction);
+	    
+	    // set -1 to root (if applicable)
+	    if($pageTypeUniqId === '-1' || $pageTypeUniqId === -1){
+		    $pageTypeUniqId = 'root';
+	    }
+	    
+	    // return false for blank
+	    if($canAction == ''){
+		    return false;
+	    }
+	    
+	    // return true if all
+	    if($canAction == 'All'){
+		    return true;
+	    }
+	    
+	    // check access list
+	    if(strpos($canAction, $pageTypeUniqId) !== FALSE){
+		    return true;
+	    }
+	    else{
+		    return false;
+	    }
+	    
+	    
+    }
 
 }
 	

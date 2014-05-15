@@ -49,7 +49,7 @@
     
 		        <ul>
 		        <!-- ko foreach: files -->
-		            <li data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Stylesheet"); ?>"></i></li>
+		            <li class="has-action" data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Stylesheet"); ?>"></i></li>
 		        <!-- /ko -->    
 		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Stylesheet"); ?>"></i></li>
 		        </ul>

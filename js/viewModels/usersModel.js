@@ -4,6 +4,9 @@ var usersModel = {
 	users: ko.observableArray([]),
 	usersLoading: ko.observable(true),
 	
+	roles: ko.observableArray([]),
+	rolesLoading: ko.observable(false),
+	
 	images: ko.observableArray([]),
     imagesLoading: ko.observable(false),
     
@@ -18,6 +21,7 @@ var usersModel = {
 	init:function(){ // initializes the model
 		usersModel.updateLanguages();
 		usersModel.updateUsers();	
+		usersModel.updateRoles();
 		
 		Dropzone.autoDiscover = false;
 		
@@ -64,6 +68,41 @@ var usersModel = {
 				}
 
 				usersModel.usersLoading(false);
+
+			}
+		});
+
+	},
+	
+	updateRoles:function(){
+
+		usersModel.roles.removeAll();
+		usersModel.rolesLoading(true);
+
+		$.ajax({
+			url: 'api/role/list',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+			
+				// set up the defaults
+				usersModel.roles.push({'id': 'Admin', 'name': $('#msg-admin').val()});
+				usersModel.roles.push({'id': 'Contributor', 'name': $('#msg-contributor').val()});
+				usersModel.roles.push({'id': 'Member', 'name': $('#msg-member').val()});
+			
+				for(x in data){
+				
+					var role = {
+        			    'id': data[x]['Name'],
+        			    'name': data[x]['Name']
+    				};
+                
+					usersModel.roles.push(role); 
+
+				}
+
+				usersModel.rolesLoading(false);
 
 			}
 		});

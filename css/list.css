@@ -93,9 +93,12 @@ div.listItem span.hook{
 	top: 20px;
 	left: 20px;
 	display: block;
-	width: 25px !important;
-	height: 25px !important;
-	background: #f0f0f0 url('../images/app-sprite.png') no-repeat -75px 0;
+	width: 25px;
+	height: 25px;
+	background: #f0f0f0;
+	line-height: 25px;
+	color: #aaa;
+	text-align: center;
 }
 
 div.listItem span.hook:hover{
@@ -217,9 +220,9 @@ div#imageList div.listItem img{
 	position: absolute;
 	top: 19px;
 	right: 12px;
-	display: inline-block !important;
-	width: 25px !important;
-	height: 25px !important;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
 	color: #ccc;
 	line-height: 25px;
 }

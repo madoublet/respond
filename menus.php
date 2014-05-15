@@ -50,7 +50,7 @@
 		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a><?php print _("Primary"); ?></a></li>
 		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a><?php print _("Footer"); ?></a></li>
 		    	<!-- ko foreach: menuTypes -->
-		    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle show-tooltip"  data-bind="click: $parent.showRemoveMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
+		    		<li class="has-action" data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle show-tooltip"  data-bind="click: $parent.showRemoveMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
 		    	<!-- /ko -->
 		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
 		        </ul>
@@ -76,7 +76,7 @@
     
         <div class="listItem sortable" data-bind="css: {'is-nested': isNested()==1}, attr:{'data-id':menuItemUniqId, 'data-isnested':isNested}">
             <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published fa fa-minus-circle"></i></a>
-            <span class="hook"></span>
+            <span class="hook fa fa-arrows-v"></span>
             <h2>
 	            <span class="nested-left" data-bind="click: $parent.toggleIsNested">
 	            	<i class="fa fa-angle-left arrow"></i> 

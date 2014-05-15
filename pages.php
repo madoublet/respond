@@ -49,6 +49,9 @@
 <input id="msg-category-removed" value="<?php print _("Category removed successfully"); ?>" type="hidden">
 <input id="msg-category-remove-error" value="<?php print _("There was a problem removing the category"); ?>" type="hidden">
 
+<input id="can-create" type="hidden" value="<?php print $authUser->CanCreate; ?>">
+<input id="can-remove" type="hidden" value="<?php print $authUser->CanRemove; ?>">
+
 <section class="main">
 
     <nav>
@@ -59,15 +62,28 @@
 			<div class="fs">
 			
 		        <ul>
-		            <li class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
+		        
+		        	<?php if($authUser->Access=='All' || strpos($authUser->Access, 'root') !== FALSE){ ?>
+		        
+		            <li id="root-item" class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
+		            
+		            <?php } ?>
+		            
 		        	<!--ko foreach: pageTypes -->
-		    		<li data-bind="css: {'active': friendlyId()==$parent.friendlyId(), 'is-secure': isSecure()==1}"><a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
-		    		</a> 
-		    		<?php if($authUser->Role=='Admin'){ ?>
-		    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Page Type"); ?>"></i>
-		    		<?php } ?>
+		    		<li 
+		    			<?php if($authUser->Role=='Admin'){ ?>class="has-action"<?php } ?>
+						data-bind="css: {'active': friendlyId()==$parent.friendlyId(), 'is-secure': isSecure()==1}">
+		    			
+		    			<a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
+						</a> 
+						
+			    		<?php if($authUser->Role=='Admin'){ ?>
+			    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Page Type"); ?>"></i>
+			    		<?php } ?>
+			    		
 		    		</li>
 		    		<!--/ko -->
+		    		
 		    		<?php if($authUser->Role=='Admin'){ ?>
 		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddPageTypeDialog" title="<?php print _("Add Page Type"); ?>"></i></li>
 		             <?php } ?>
@@ -79,7 +95,8 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Page"); ?>"><i class="fa fa-plus-circle"></i></a>
+        <a id="add-page" class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Page"); ?>"><i class="fa fa-plus-circle"></i></a>
+  
     </nav>
     
     <div class="list-menu">
@@ -113,21 +130,25 @@
         
             <span class="image" data-bind="if: thumb()!=''"><img height="75" width="75" data-bind="attr:{'src':thumb}"></span>
         
-			<?php if($authUser->Role=='Admin'){ ?>
-    		<a class="remove" data-bind="click: $parent.showRemoveDialog">
+	
+    		<a class="remove" data-bind="click: $parent.showRemoveDialog, visible: canRemove">
                 <i class="fa fa-minus-circle"></i>
             </a>
-            <?php } ?>
             
-    		<h2><a data-bind="text:name, attr: { 'href': editUrl }"></a> <span class="draft-tag" data-bind="visible:hasDraft"><?php print _("Draft"); ?></span></h2>
+    		<h2>
+    		<a data-bind="text:name, attr: { 'href': editUrl}, visible: (canEdit || canPublish)"></a>
+    		<span data-bind="text: name, visible: (!canEdit() && !canPublish())"></span>
+    		
+    		<span class="draft-tag" data-bind="visible:hasDraft"><?php print _("Draft"); ?></span></h2>
     		<p data-bind="text:description"></p>
     		<em><?php print _("Last updated"); ?> <span data-bind="text:friendlyDate"></span> <?php print _("by"); ?> <span data-bind="text:lastModifiedFullName"></span></em>
-    		<?php if($authUser->Role=='Admin'){ ?>
-    		<span class="status" data-bind="css: { 'published': isActive() == 1, 'not-published': isActive() == 0 }, click: $parent.toggleActive">
+    		
+
+    		<span class="status" data-bind="visible: canPublish, css: { 'published': isActive() == 1, 'not-published': isActive() == 0 }, click: $parent.toggleActive">
     			<i class="not-published fa fa-circle-o"></i>
     			<i class="published fa fa-check-circle"></i>
     		</span>
-    		<?php } ?>
+    		
     	</div>
     	<!-- /.listItem -->
     
