@@ -136,7 +136,7 @@
 				<div id="custom-name" class="form-group no-border">
 					<label for="name"><?php print _("Name:"); ?></label>
 					<input id="name" type="text" class="form-control">
-					<span class="help-block"><?php print _("Uppercase, no-spaces, e.g. Admin"); ?></span>
+					<span class="help-block"><?php print _("Uppercase first letter, e.g. Admin"); ?></span>
 				</div>
 				
 				<p id="default-message" class="alert alert-info">
