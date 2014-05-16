@@ -1641,6 +1641,16 @@ class Utilities
 		
     }
     
+    // searches an associative array for a value
+    public static function SearchForId($id, $param, $array){
+	   foreach ($array as $key => $val) {
+	       if ($val[$param] === $id) {
+	           return $key;
+	       }
+	   }
+	   return null;
+	}
+    
     // checks permissions, $canAction = $canView, $canEdit, $canPublish, $canRemove, $canCreate
     public static function CanPerformAction($pageTypeUniqId, $canAction){
     
