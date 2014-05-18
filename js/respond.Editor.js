@@ -649,11 +649,17 @@ respond.Editor.ParseHTML = function(top){
 						var type = $(node).attr('type');
 						if(type==undefined || type=='')desc='html';
 						
+						var code = $(node).html();
+						
+						// create pretty code for display
+						var prettyCode = global.replaceAll(code, '<', '&lt;');
+						prettyCode = global.replaceAll(prettyCode, '>', '&gt;');
+						
 						response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable"  data-desc="'+desc+'" data-type="'+type+'">'+
 							respond.defaults.elementMenuHtml +
 							'<div class="title"><i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i></div>' +
-							'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
-							'<pre class="non-pretty">' + $(node).html() + '</pre>' +
+							'<pre class="prettyprint linenums pre-scrollable">' + prettyCode + '</pre>' +
+							'<pre class="non-pretty">' + code + '</pre>' +
 							'</div>';
 					}
 					
@@ -2425,7 +2431,7 @@ respond.Editor.GetContent = function(el){
 				if(type==undefined || type=='')type='html';
 	
 				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
-	
+				
 				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'" type="'+type+'">' + h + '</module>';
 			}
 		

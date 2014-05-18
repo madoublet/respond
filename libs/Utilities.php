@@ -1255,10 +1255,7 @@ class Utilities
                 }
                 else if($name=='html'){
                 	$h = $el->innertext;
-                	
-                	$h = str_replace('&lt;', '<', $h);
-                	$h = str_replace('&gt;', '>', $h);
-                
+               
                     $el->outertext = $h;
                 }
                 else if($name=='youtube' || $name=='vimeo'){
