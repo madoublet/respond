@@ -612,7 +612,7 @@ respond.Editor.ParseHTML = function(top){
 					  	for(var y=0; y<imgs.length; y++){
 							var caption = $(imgs[y]).attr('title');
 							imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-							response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" class="form-control"></span><a class="remove-image fa fa-minus-circle"></a></span>';
+							response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" ></span><a class="remove-image fa fa-minus-circle"></a></span>';
 					  	}
 					
 					  	response += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button></div></div>';
