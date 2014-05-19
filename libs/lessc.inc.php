@@ -3765,4 +3765,3 @@ class lessc_formatter_lessjs extends lessc_formatter_classic {
 	public $selectorSeparator = ",";
 }
 ?>
-
