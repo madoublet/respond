@@ -220,7 +220,7 @@ var cartModel = {
 	
 		// check for hash to clear cart
 		if(location.hash == '#clear-cart'){
-			localstorage.removeItem('respond-cart');
+			localStorage.removeItem('respond-cart');
 		}
         
 		// get cart from local storage

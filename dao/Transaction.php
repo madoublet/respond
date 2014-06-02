@@ -25,9 +25,13 @@ class Transaction{
             $s->bindParam(6, $email);
             $s->bindParam(7, $payerId);
             $s->bindParam(8, $name);
+            $shipping = is_null($shipping) ? 0 : $shipping;
             $s->bindParam(9, $shipping);
+            $fee = is_null($fee) ? 0 : $fee;
             $s->bindParam(10, $fee);
+            $tax = is_null($tax) ? 0 : $tax;
             $s->bindParam(11, $tax);
+            $total = is_null($total) ? 0 : $total;
             $s->bindParam(12, $total);
             $s->bindParam(13, $currency);
             $s->bindParam(14, $items);
