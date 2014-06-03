@@ -17,6 +17,7 @@
 					<label for="fieldType" class="control-label"><?php print _("Field Type:"); ?></label>
 					<select id="fieldType" class="form-control">
 						<option value="text"><?php print _("Text Box"); ?></option>
+						<option value="hidden"><?php print _("Hidden"); ?></option>
 						<option value="textarea"><?php print _("Text Area"); ?></option>
 						<option value="select"><?php print _("Dropdown List"); ?></option>
 						<option value="checkboxlist"><?php print _("Checkbox List"); ?></option>
