@@ -17,6 +17,11 @@
 			"text": "Spanish (es_ES)"
 		},
 		{
+<<<<<<< HEAD
+			"code": "cs_CZ",
+			"text": "Čeština"
+		},
+		{
 			"code": "fr_FR",
 			"text": "French"
 		},

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Respond CMS\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 18:38+0000\n"
-"PO-Revision-Date: 2014-03-21 06:54+0100\n"
-"Last-Translator: Piks-L <contact@piks-l.com>\n"
+"PO-Revision-Date: 2014-04-28 23:16-0500\n"
+"Last-Translator: Spanti Nicola (RyDroid) <rydroid_trans@yahoo.fr>\n"
 "Language-Team: PIKS-L contact@piks-l.com <contact@piks-l.com>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -21,86 +21,106 @@ msgstr ""
 
 #: htmlDialog.php:18
 msgid ". Paste the HTML code below."
-msgstr ".Collez le code HTML ci-dessous."
+msgstr ". Collez le code HTML ci-dessous."
 
-#: layout.php:37 layout.php:33
+#: layout.php:37
+#: layout.php:33
 msgid "A name is required to add a layout"
-msgstr "Un nom est nécessaire afin d'ajouter une Mise en page"
+msgstr "Un nom est nécessaire afin d'ajouter une mise en page"
 
-#: scripts.php:37 scripts.php:33
+#: scripts.php:37
+#: scripts.php:33
 msgid "A name is required to add a script"
-msgstr "Un nom est nécessaire afin d'ajouter un Script"
+msgstr "Un nom est nécessaire afin d'ajouter un script"
 
-#: snippets.php:37 snippets.php:33
+#: snippets.php:37
+#: snippets.php:33
 msgid "A name is required to add a snippet"
-msgstr "Un nom est nécessaire afin d'ajouter un Snippet"
+msgstr "Un nom est nécessaire afin d'ajouter un snippet"
 
-#: styles.php:37 styles.php:33
+#: styles.php:37
+#: styles.php:33
 msgid "A name is required to add a stylesheet"
-msgstr "Un nom est nécessaire afin d'ajouter un Style"
+msgstr "Un nom est nécessaire afin d'ajouter un style"
 
-#: test.php:200 test.php:202
+#: test.php:200
+#: test.php:202
 msgid "API is working"
 msgstr "API en cours de travail"
 
-#: test.php:159 test.php:161
+#: test.php:159
+#: test.php:161
 msgid "APP_URL is set in app.php"
 msgstr "APP_URL se trouve dans app.php"
 
-#: index.php:33 index.php:30 undefined.php:30
+#: index.php:33
+#: index.php:30
+#: undefined.php:30
 msgid "Access Denied"
-msgstr "Accés refusées"
+msgstr "Accés refusé"
 
-#: forgot.php:38 forgot.php:35
+#: forgot.php:38
+#: forgot.php:35
 msgid "Access denied"
-msgstr "Accés refusées"
+msgstr "Accés refusé"
 
-#: account.php:14 account.php:56 account.php:54 menu.php:39
+#: account.php:14
+#: account.php:56
+#: account.php:54
+#: menu.php:39
 msgid "Account"
 msgstr "Compte"
 
-#: create.php:197 create.php:200
+#: create.php:197
+#: create.php:200
 msgid "Account created! To get started, click on your login link below."
-msgstr ""
-"Compte crée ! Pour commencer, veuillez cliquez sur lien de connexion ci-"
-"dessous."
+msgstr "Compte crée ! Pour commencer, veuillez cliquez sur lien de connexion ci-dessous."
 
 #: translations.php:33
 msgid "Add Block Quote"
-msgstr "Ajouter une Quote"
+msgstr "Ajouter une citation"
 
-#: pages.php:104 pages.php:338 pages.php:356 pages.php:99 pages.php:337
+#: pages.php:104
+#: pages.php:338
+#: pages.php:356
+#: pages.php:99
+#: pages.php:337
 #: pages.php:355
 msgid "Add Category"
-msgstr "Ajouter une Catégories"
+msgstr "Ajouter une catégorie"
 
 #: translations.php:29
 msgid "Add Code"
-msgstr "Ajouter un Code"
+msgstr "Ajouter du code"
 
-#: codeBlockDialog.php:9 codeBlockDialog.php:26 translations.php:50
+#: codeBlockDialog.php:9
+#: codeBlockDialog.php:26
+#: translations.php:50
 msgid "Add Code Block"
-msgstr "Ajouter un Bloc Code"
+msgstr "Ajouter un bloc de code"
 
 #: translations.php:41
 msgid "Add Facebook&reg; Like button"
-msgstr "Ajouter un boutton Facebook Like"
+msgstr "Ajouter un boutton Facebook \"J'aime\""
 
 #: translations.php:42
 msgid "Add Facebook&reg; comments"
 msgstr "Ajouter les commentaires Facebook"
 
-#: featuredDialog.php:33 translations.php:45
+#: featuredDialog.php:33
+#: translations.php:45
 msgid "Add Featured Content"
 msgstr "Ajouter du contenu associé"
 
-#: fieldDialog.php:9 fieldDialog.php:57
+#: fieldDialog.php:9
+#: fieldDialog.php:57
 msgid "Add Field"
-msgstr "Ajouter un Champs"
+msgstr "Ajouter un champ"
 
-#: filesDialog.php:13 filesDialog.php:36
+#: filesDialog.php:13
+#: filesDialog.php:36
 msgid "Add File"
-msgstr "Ajouter un Fichier"
+msgstr "Ajouter un fichier"
 
 #: fontAwesomeDialog.php:9
 msgid "Add Font Awesome Icon"
@@ -110,70 +130,95 @@ msgstr "Ajouter un icone Font Awesome"
 msgid "Add Font Awesome icon"
 msgstr "Ajouter un icone Font Awesome"
 
-#: htmlDialog.php:12 htmlDialog.php:36 translations.php:49
+#: htmlDialog.php:12
+#: htmlDialog.php:36
+#: translations.php:49
 msgid "Add HTML"
 msgstr "Ajouter du HTML"
 
 #: translations.php:31
 msgid "Add Headline"
-msgstr "Ajouter un Titre"
+msgstr "Ajouter un titre"
 
 #: fontAwesomeDialog.php:30
 msgid "Add Icon"
-msgstr "Ajouter un Icone"
+msgstr "Ajouter une icône"
 
 #: slideshowDialog.php:28
 msgid "Add Image Group"
-msgstr "Ajouter un groupe d'image"
+msgstr "Ajouter un groupe d'images"
 
-#: layout.php:86 layout.php:103 layout.php:82 layout.php:99
+#: layout.php:86
+#: layout.php:103
+#: layout.php:82
+#: layout.php:99
 msgid "Add Layout"
-msgstr "Ajouter une Mise en page"
+msgstr "Ajouter une mise en page"
 
-#: linkDialog.php:9 linkDialog.php:41
+#: linkDialog.php:9
+#: linkDialog.php:41
 msgid "Add Link"
-msgstr "Ajouter un Lien"
+msgstr "Ajouter un lien"
 
 #: translations.php:28
 msgid "Add Link (select text first)"
-msgstr "Ajouter un Lien (surligner le texte en premier)"
+msgstr "Ajouter un lien (d'abord surligner le texte)"
 
-#: listDialog.php:12 listDialog.php:75 listDialog.php:78
+#: listDialog.php:12
+#: listDialog.php:75
+#: listDialog.php:78
 msgid "Add List"
-msgstr "Ajouter une Liste"
+msgstr "Ajouter une liste"
 
-#: menus.php:66 menus.php:118 menus.php:179 menus.php:62 menus.php:114
+#: menus.php:66
+#: menus.php:118
+#: menus.php:179
+#: menus.php:62
+#: menus.php:114
 #: menus.php:175
 msgid "Add Menu Item"
-msgstr "Ajouter un élément du Menu"
+msgstr "Ajouter un élément de menu"
 
-#: menus.php:240 menus.php:262 menus.php:236 menus.php:258
+#: menus.php:240
+#: menus.php:262
+#: menus.php:236
+#: menus.php:258
 msgid "Add Menu Type"
-msgstr "Ajouter un type de Menu"
+msgstr "Ajouter un type de menu"
 
 #: translations.php:55
 msgid "Add New Columnar Layout"
-msgstr "Ajouter un nouveau Layout en collone"
+msgstr "Ajouter une nouvelle mise en page en collone"
 
-#: pages.php:86 pages.php:156 pages.php:186 pages.php:81 pages.php:151
+#: pages.php:86
+#: pages.php:156
+#: pages.php:186
+#: pages.php:81
+#: pages.php:151
 #: pages.php:181
 msgid "Add Page"
-msgstr "Ajouter une Page"
+msgstr "Ajouter une page"
 
-#: pages.php:273 pages.php:272
+#: pages.php:273
+#: pages.php:272
 msgid "Add Page Type"
-msgstr "Ajouter un type de Page"
+msgstr "Ajouter un type de page"
 
-#: plans.php:49 plans.php:95 plans.php:142 plans.php:45 plans.php:91
+#: plans.php:49
+#: plans.php:95
+#: plans.php:142
+#: plans.php:45
+#: plans.php:91
 #: plans.php:138
 msgid "Add Plan"
-msgstr "Ajouter un Plan"
+msgstr "Ajouter un plan"
 
 #: pluginsDialog.php:36
 msgid "Add Plugin"
-msgstr "Ajouter un Plugin"
+msgstr "Ajouter un plugin"
 
-#: skuDialog.php:9 skuDialog.php:54
+#: skuDialog.php:9
+#: skuDialog.php:54
 msgid "Add SKU"
 msgstr "Ajouter une UGS"
 
@@ -181,39 +226,57 @@ msgstr "Ajouter une UGS"
 msgid "Add SKUs"
 msgstr "Ajouter une UGS"
 
-#: scripts.php:90 scripts.php:107 scripts.php:86 scripts.php:103
+#: scripts.php:90
+#: scripts.php:107
+#: scripts.php:86
+#: scripts.php:103
 msgid "Add Script"
-msgstr "Ajouter un Script"
+msgstr "Ajouter un script"
 
-#: admin.php:49 admin.php:98 admin.php:215 admin.php:45 admin.php:94
+#: admin.php:49
+#: admin.php:98
+#: admin.php:215
+#: admin.php:45
+#: admin.php:94
 #: admin.php:211
 msgid "Add Site"
-msgstr "Ajouter un Site"
+msgstr "Ajouter un site"
 
 #: slideshowDialog.php:9
 msgid "Add Slideshow"
-msgstr "Ajouter un Diaporama"
+msgstr "Ajouter un diaporama"
 
-#: snippets.php:90 snippets.php:107 snippets.php:86 snippets.php:103
+#: snippets.php:90
+#: snippets.php:107
+#: snippets.php:86
+#: snippets.php:103
 msgid "Add Snippet"
-msgstr "Ajouter un Snippet"
+msgstr "Ajouter un snippet"
 
-#: styles.php:88 styles.php:105 styles.php:84 styles.php:101
+#: styles.php:88
+#: styles.php:105
+#: styles.php:84
+#: styles.php:101
 msgid "Add Stylesheet"
-msgstr "Ajouter un Style"
+msgstr "Ajouter un style"
 
 #: translations.php:35
 msgid "Add Table"
-msgstr "Ajouter une Table"
+msgstr "Ajouter un tableau"
 
-#: pages.php:316 pages.php:315
+#: pages.php:316
+#: pages.php:315
 msgid "Add Type"
-msgstr "Ajouter un Type"
+msgstr "Ajouter un type"
 
-#: users.php:51 users.php:84 users.php:141 users.php:49 users.php:85
+#: users.php:51
+#: users.php:84
+#: users.php:141
+#: users.php:49
+#: users.php:85
 #: users.php:142
 msgid "Add User"
-msgstr "Ajouter un Utilisateur"
+msgstr "Ajouter un utilisateur"
 
 #: translations.php:61
 msgid "Add a 25/25/25/25 Column Layout"
@@ -237,15 +300,15 @@ msgstr "Ajouter des collones : 70/30"
 
 #: translations.php:46
 msgid "Add a File"
-msgstr "Ajouter un Fichier"
+msgstr "Ajouter un fichier"
 
 #: translations.php:48
 msgid "Add a Form"
-msgstr "Ajouter un Formulaire"
+msgstr "Ajouter un formulaire"
 
 #: translations.php:57
 msgid "Add a Full Column Layout"
-msgstr "Ajouter une collones : 100"
+msgstr "Ajouter une collone : 100"
 
 #: translations.php:36
 msgid "Add a Horizontal Rule"
@@ -253,69 +316,86 @@ msgstr "Ajouter une ligne horizontale"
 
 #: translations.php:34
 msgid "Add a List"
-msgstr "Ajouter une Liste"
+msgstr "Ajouter une liste"
 
 #: translations.php:39
 msgid "Add a Map"
-msgstr "Ajouter une Map"
+msgstr "Ajouter une carte"
 
 #: translations.php:32
 msgid "Add a Paragraph"
-msgstr "Ajouter un Paragraphe"
+msgstr "Ajouter un paragraphe"
 
 #: translations.php:38
 msgid "Add a Slideshow"
-msgstr "Ajouter un Diaporama"
+msgstr "Ajouter un diaporama"
 
 #: translations.php:44
 msgid "Add a list of pages"
-msgstr "Ajouter une Liste de Page"
+msgstr "Ajouter une liste de pages"
 
 #: translations.php:43
 msgid "Add a video"
-msgstr "Ajouter une Vidéo"
+msgstr "Ajouter une vidéo"
 
 #: translations.php:37
 msgid "Add an Image"
-msgstr "Ajouter une Image"
+msgstr "Ajouter une image"
 
 #: htmlDialog.php:28
 msgid "Add your HTML, JS, or HTML here"
-msgstr "Ajouter votre HTML, JS ou CSS ici"
+msgstr "Ajouter içi votre HTML, JS ou CSS"
 
 #: translations.php:40
 msgid "Add your Twitter&reg; feed"
-msgstr "Ajouter votre Feed Twitter"
+msgstr "Ajouter votre flux Twitter"
 
 #: imagesDialog.php:5
-msgid ""
-"Add your content here or click the settings icon to change the image layout"
-msgstr ""
-"Ajouter votre contenu ici ou cliquez sur l'icône des paramètres pour "
-"modifier la mise en page de l'image"
+msgid "Add your content here or click the settings icon to change the image layout"
+msgstr "Ajouter votre contenu ici ou cliquez sur l'icône des paramètres pour modifier la mise en page de l'image"
 
 #: pageSettingsDialog.php:35
-msgid ""
-"Added to the head of the page, used as the description in search engines and "
-"for lists"
-msgstr ""
-"Ajouté dans l'entête de la page, utilisé comme la description dans les "
-"moteurs de recherche et des listes"
+msgid "Added to the head of the page, used as the description in search engines and for lists"
+msgstr "Ajouté dans l'entête de la page, utilisé comme la description dans les moteurs de recherche et des listes"
 
-#: account.php:41 admin.php:34 menus.php:33 pages.php:35 pages.php:41
-#: pages.php:51 plans.php:34 scripts.php:38 scripts.php:40 snippets.php:38
-#: snippets.php:40 styles.php:38 styles.php:40 users.php:35 account.php:39
-#: admin.php:30 menus.php:29 pages.php:30 pages.php:36 pages.php:46
-#: plans.php:30 profile.php:33 scripts.php:34 scripts.php:36 snippets.php:34
-#: snippets.php:36 styles.php:34 styles.php:36 users.php:33
+#: account.php:41
+#: admin.php:34
+#: menus.php:33
+#: pages.php:35
+#: pages.php:41
+#: pages.php:51
+#: plans.php:34
+#: scripts.php:38
+#: scripts.php:40
+#: snippets.php:38
+#: snippets.php:40
+#: styles.php:38
+#: styles.php:40
+#: users.php:35
+#: account.php:39
+#: admin.php:30
+#: menus.php:29
+#: pages.php:30
+#: pages.php:36
+#: pages.php:46
+#: plans.php:30
+#: profile.php:33
+#: scripts.php:34
+#: scripts.php:36
+#: snippets.php:34
+#: snippets.php:36
+#: styles.php:34
+#: styles.php:36
+#: users.php:33
 msgid "Adding..."
-msgstr "Chargement ..."
+msgstr "Ajout..."
 
 #: pageSettingsDialog.php:54
 msgid "Adds a reference to the selected RSS feeds in the head of the page"
 msgstr "Ajoute une référence au flux RSS sélectionné dans l'entête de la page."
 
-#: users.php:104 users.php:105
+#: users.php:104
+#: users.php:105
 msgid "Administrator"
 msgstr "Administrateur"
 
@@ -325,70 +405,96 @@ msgstr "Avancées"
 
 #: menu.php:44
 msgid "Advanced Configurations"
-msgstr "Configurations Avancées"
+msgstr "Configurations avancées"
 
 #: translations.php:26
 msgid "Align text to the center"
-msgstr "Aligner le texte au Centre"
+msgstr "Aligner le texte au centre"
 
 #: translations.php:25
 msgid "Align text to the left"
-msgstr "Aligner le texte a Gauche"
+msgstr "Aligner le texte à gauche"
 
 #: translations.php:27
 msgid "Align text to the right"
-msgstr "Aligner le texte a Droite"
+msgstr "Aligner le texte à droite"
 
-#: listDialog.php:45 pages.php:96 pages.php:99 pages.php:91 pages.php:94
+#: listDialog.php:45
+#: pages.php:96
+#: pages.php:99
+#: pages.php:91
+#: pages.php:94
 #: listDialog.php:48
 msgid "All Categories"
 msgstr "Toutes les catégories"
 
-#: create.php:32 pages.php:40 plans.php:33 profile.php:35 users.php:33
-#: create.php:29 pages.php:35 plans.php:29 profile.php:31 users.php:31
+#: create.php:32
+#: pages.php:40
+#: plans.php:33
+#: profile.php:35
+#: users.php:33
+#: create.php:29
+#: pages.php:35
+#: plans.php:29
+#: profile.php:31
+#: users.php:31
 msgid "All fields are required"
-msgstr "Tous les champs son requis"
+msgstr "Tous les champs sont requis"
 
-#: admin.php:33 admin.php:29
+#: admin.php:33
+#: admin.php:29
 msgid "All fields required"
-msgstr "Tous les champs son requis"
+msgstr "Tous les champs sont requis"
 
-#: settings.php:493 settings.php:489
+#: settings.php:493
+#: settings.php:489
 msgid "Allows you to moderate comments on your site, create here:"
 msgstr "Vous permet de modérer les commentaires sur votre site, créez ici :"
 
-#: profile.php:84 users.php:122 profile.php:119 users.php:123
+#: profile.php:84
+#: users.php:122
+#: profile.php:119
+#: users.php:123
 msgid "Also used as the login"
 msgstr "Également utilisé comme identifiant de connexion"
 
-#: plans.php:62 plans.php:58
+#: plans.php:62
+#: plans.php:58
 msgid "Amount"
 msgstr "Montant"
 
-#: plans.php:112 plans.php:108
+#: plans.php:112
+#: plans.php:108
 msgid "Amount (in cents):"
-msgstr "Montant (centimes)"
+msgstr "Montant (centimes) :"
 
 #: settings.php:61
 msgid "Analytics"
 msgstr "Analytics"
 
-#: theme.php:55 theme.php:73 theme.php:88 theme.php:51 theme.php:69
+#: theme.php:55
+#: theme.php:73
+#: theme.php:88
+#: theme.php:51
+#: theme.php:69
 #: theme.php:84
 msgid "Apply Theme"
-msgstr "Appliquer le Theme"
+msgstr "Appliquer le thème"
 
-#: theme.php:35 theme.php:31
+#: theme.php:35
+#: theme.php:31
 msgid "Applying..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
-#: menus.php:288 menus.php:284
+#: menus.php:288
+#: menus.php:284
 msgid "Are you sure that you want to delete"
-msgstr "Etes-vous sûr de vouloir supprimer"
+msgstr "Êtes-vous sûr de vouloir supprimer"
 
-#: account.php:138 account.php:136
+#: account.php:138
+#: account.php:136
 msgid "Are you sure that you want to unsubscribe?"
-msgstr "Etes-vous sûr de vouloir vous désabonner?"
+msgstr "Êtes-vous sûr de vouloir vous désabonner ?"
 
 #: pageSettingsDialog.php:20
 msgid "Basic"
@@ -402,25 +508,22 @@ msgstr "Date de début :"
 msgid "Begin Time:"
 msgstr "Heure de début :"
 
-#: test.php:51 test.php:53
-msgid ""
-"Below are some tests to help troubleshoot common problems with your "
-"installation."
-msgstr ""
-"Voici quelques tests pour aider à résoudre les problèmes courants de votre "
-"installation."
+#: test.php:51
+#: test.php:53
+msgid "Below are some tests to help troubleshoot common problems with your installation."
+msgstr "Voici quelques tests pour aider à résoudre les problèmes courants de votre installation."
 
 #: blockConfigDialog.php:21
 msgid "Block Class:"
-msgstr "Class de l'élément"
+msgstr "Classe de l'élément :"
 
 #: blockConfigDialog.php:16
 msgid "Block Id:"
-msgstr "Id de l'élément"
+msgstr "Id de l'élément :"
 
 #: blockConfigDialog.php:26
 msgid "Block Nesting:"
-msgstr "Imbrication de l'élément"
+msgstr "Imbrication de l'élément :"
 
 #: listDialog.php:30
 msgid "Blog"
@@ -428,37 +531,48 @@ msgstr "Blog"
 
 #: translations.php:19
 msgid "Bold Text (select text first)"
-msgstr "Texte en Gras (surligner le texte en premier)"
+msgstr "Texte en gras (surligner le texte en premier)"
 
-#: create.php:216 create.php:215
+#: create.php:216
+#: create.php:215
 msgid "Bookmark these links for easy access."
-msgstr "Ajouter ces lien en Marque-pages pour un accès rapide."
+msgstr "Ajouter ces lien en marque-pages pour un accès rapide."
 
-#: branding.php:14 branding.php:47 branding.php:42 menu.php:34
+#: branding.php:14
+#: branding.php:47
+#: branding.php:42
+#: menu.php:34
 msgid "Branding"
 msgstr "Marque"
 
-#: branding.php:35 branding.php:30
+#: branding.php:35
+#: branding.php:30
 msgid "Branding successfully updated"
 msgstr "Marque mise à jour avec succès"
 
-#: settings.php:385 settings.php:381
+#: settings.php:385
+#: settings.php:381
 msgid "By Order Amount"
-msgstr "Par Ordre de Montant"
+msgstr "Par ordre de montant"
 
-#: settings.php:386 settings.php:382
+#: settings.php:386
+#: settings.php:382
 msgid "By Weight"
-msgstr "Par Poids"
+msgstr "Par poids"
 
-#: elementConfigDialog.php:21 menus.php:132 menus.php:128
+#: elementConfigDialog.php:21
+#: menus.php:132
+#: menus.php:128
 msgid "CSS Class:"
 msgstr "Classe CSS :"
 
-#: pageSettingsDialog.php:75 pageSettingsDialog.php:132
+#: pageSettingsDialog.php:75
+#: pageSettingsDialog.php:132
 msgid "CSS used to render the page"
 msgstr "CSS utilisée pour afficher la page"
 
-#: test.php:144 test.php:146
+#: test.php:144
+#: test.php:146
 msgid "CURL enabled"
 msgstr "CURL activé"
 
@@ -466,60 +580,134 @@ msgstr "CURL activé"
 msgid "Calendar"
 msgstr "Calendrier"
 
-#: pageSettingsDialog.php:44 pageSettingsDialog.php:53
+#: pageSettingsDialog.php:44
+#: pageSettingsDialog.php:53
 msgid "Callout:"
 msgstr "Légende :"
 
-#: account.php:255 account.php:324 account.php:253 account.php:322
+#: account.php:255
+#: account.php:324
+#: account.php:253
+#: account.php:322
 msgid "Card Code (CVC):"
 msgstr "Cryptogramme (CVC) :"
 
-#: pageSettingsDialog.php:58 pages.php:177 pages.php:172
+#: pageSettingsDialog.php:58
+#: pages.php:177
+#: pages.php:172
 #: pageSettingsDialog.php:115
 msgid "Categories:"
 msgstr "Catégories :"
 
-#: pages.php:52 pages.php:47
+#: pages.php:52
+#: pages.php:47
 msgid "Category added successfully"
 msgstr "Catégories ajoutés avec succès"
 
-#: pages.php:54 pages.php:49
+#: pages.php:54
+#: pages.php:49
 msgid "Category removed successfully"
 msgstr "Catégorie déplacée avec succès"
 
-#: forgot.php:80 forgot.php:75
+#: forgot.php:80
+#: forgot.php:75
 msgid "Change Password"
-msgstr "Changer le Mot de passe"
+msgstr "Changer le mot de passe"
 
-#: account.php:90 account.php:166 account.php:192 account.php:88
-#: account.php:164 account.php:190
+#: account.php:90
+#: account.php:166
+#: account.php:192
+#: account.php:88
+#: account.php:164
+#: account.php:190
 msgid "Change Plan"
-msgstr "Changer le Plan"
+msgstr "Changer le plan"
 
 #: fieldDialog.php:27
 msgid "Checkbox List"
 msgstr "Liste de case à cocher"
 
-#: blockConfigDialog.php:29 codeBlockDialog.php:25 configPluginsDialog.php:19
-#: elementConfigDialog.php:56 featuredDialog.php:32 fieldDialog.php:56
-#: filesDialog.php:35 fontAwesomeDialog.php:29 htmlDialog.php:35
-#: linkDialog.php:40 listDialog.php:74 loadLayoutDialog.php:29
-#: pageSettingsDialog.php:82 pluginsDialog.php:35 skuDialog.php:53
-#: slideshowDialog.php:36 account.php:144 account.php:191 account.php:273
-#: account.php:342 admin.php:214 files.php:111 layout.php:102 layout.php:141
-#: menus.php:178 menus.php:215 menus.php:261 menus.php:295 pages.php:185
-#: pages.php:217 pages.php:251 pages.php:315 pages.php:355 pages.php:389
-#: plans.php:141 scripts.php:106 scripts.php:145 settings.php:562
-#: snippets.php:106 snippets.php:145 styles.php:104 styles.php:143
-#: theme.php:87 theme.php:126 users.php:140 users.php:180 account.php:142
-#: account.php:189 account.php:271 account.php:340 admin.php:210 files.php:107
-#: layout.php:98 layout.php:137 menus.php:174 menus.php:211 menus.php:257
-#: menus.php:291 pages.php:180 pages.php:212 pages.php:250 pages.php:314
-#: pages.php:354 pages.php:388 plans.php:137 profile.php:137 scripts.php:102
-#: scripts.php:141 settings.php:558 snippets.php:102 snippets.php:141
-#: styles.php:100 styles.php:139 theme.php:83 theme.php:122 users.php:141
-#: users.php:181 blockConfigDialog.php:47 listDialog.php:77
-#: pageSettingsDialog.php:142 slideshowDialog.php:27
+#: blockConfigDialog.php:29
+#: codeBlockDialog.php:25
+#: configPluginsDialog.php:19
+#: elementConfigDialog.php:56
+#: featuredDialog.php:32
+#: fieldDialog.php:56
+#: filesDialog.php:35
+#: fontAwesomeDialog.php:29
+#: htmlDialog.php:35
+#: linkDialog.php:40
+#: listDialog.php:74
+#: loadLayoutDialog.php:29
+#: pageSettingsDialog.php:82
+#: pluginsDialog.php:35
+#: skuDialog.php:53
+#: slideshowDialog.php:36
+#: account.php:144
+#: account.php:191
+#: account.php:273
+#: account.php:342
+#: admin.php:214
+#: files.php:111
+#: layout.php:102
+#: layout.php:141
+#: menus.php:178
+#: menus.php:215
+#: menus.php:261
+#: menus.php:295
+#: pages.php:185
+#: pages.php:217
+#: pages.php:251
+#: pages.php:315
+#: pages.php:355
+#: pages.php:389
+#: plans.php:141
+#: scripts.php:106
+#: scripts.php:145
+#: settings.php:562
+#: snippets.php:106
+#: snippets.php:145
+#: styles.php:104
+#: styles.php:143
+#: theme.php:87
+#: theme.php:126
+#: users.php:140
+#: users.php:180
+#: account.php:142
+#: account.php:189
+#: account.php:271
+#: account.php:340
+#: admin.php:210
+#: files.php:107
+#: layout.php:98
+#: layout.php:137
+#: menus.php:174
+#: menus.php:211
+#: menus.php:257
+#: menus.php:291
+#: pages.php:180
+#: pages.php:212
+#: pages.php:250
+#: pages.php:314
+#: pages.php:354
+#: pages.php:388
+#: plans.php:137
+#: profile.php:137
+#: scripts.php:102
+#: scripts.php:141
+#: settings.php:558
+#: snippets.php:102
+#: snippets.php:141
+#: styles.php:100
+#: styles.php:139
+#: theme.php:83
+#: theme.php:122
+#: users.php:141
+#: users.php:181
+#: blockConfigDialog.php:47
+#: listDialog.php:77
+#: pageSettingsDialog.php:142
+#: slideshowDialog.php:27
 msgid "Close"
 msgstr "Fermer"
 
@@ -533,41 +721,56 @@ msgstr "Code : "
 
 #: configPluginsDialog.php:9
 msgid "Configure Plugin"
-msgstr "Configurer le Plugin"
+msgstr "Configurer le plugin"
 
-#: layout.php:134 layout.php:130
+#: layout.php:134
+#: layout.php:130
 msgid "Confirm that you want to delete"
 msgstr "Confirmer la suppression "
 
-#: scripts.php:138 snippets.php:138 scripts.php:134 snippets.php:134
+#: scripts.php:138
+#: snippets.php:138
+#: scripts.php:134
+#: snippets.php:134
 msgid "Confirm that you want to delete:"
 msgstr "Confirmer la suppression de : "
 
-#: menus.php:210 pages.php:212 styles.php:136 menus.php:206 pages.php:207
+#: menus.php:210
+#: pages.php:212
+#: styles.php:136
+#: menus.php:206
+#: pages.php:207
 #: styles.php:132
 msgid "Confirm that you want to remove:"
 msgstr "Confirmer vous le déplacement de :"
 
-#: theme.php:78 theme.php:74
+#: theme.php:78
+#: theme.php:74
 msgid "Confirm you want to apply:"
 msgstr "Confirmer la modification de : "
 
-#: files.php:100 files.php:96
+#: files.php:100
+#: files.php:96
 msgid "Confirm you want to delete:"
 msgstr "Confirmer la suppression de :"
 
-#: pages.php:245 pages.php:383 users.php:173 pages.php:240 pages.php:382
+#: pages.php:245
+#: pages.php:383
+#: users.php:173
+#: pages.php:240
+#: pages.php:382
 #: users.php:174
 msgid "Confirm you want to remove:"
 msgstr "Confirmer le déplacement de :"
 
-#: theme.php:117 theme.php:113
+#: theme.php:117
+#: theme.php:113
 msgid "Confirm you want to reset:"
 msgstr "Confirmer l'annulation de "
 
 #: blockConfigDialog.php:39
 msgid "Container Class:"
-msgstr "Class du Container :"
+msgstr "Classe du conteneur :"
 
 #: blockConfigDialog.php:34
 msgid "Container Id:"
@@ -577,15 +780,19 @@ msgstr "ID du Container :"
 msgid "Content"
 msgstr "Contenu"
 
-#: content.php:44 content.php:39
+#: content.php:44
+#: content.php:39
 msgid "Content successfully saved"
 msgstr "Contenu enregistré avec succès"
 
-#: users.php:105 users.php:106
+#: users.php:105
+#: users.php:106
 msgid "Contributor"
 msgstr "Contributeur"
 
-#: create.php:15 create.php:186 create.php:189
+#: create.php:15
+#: create.php:186
+#: create.php:189
 msgid "Create Site"
 msgstr "Créer un site"
 
@@ -593,80 +800,107 @@ msgstr "Créer un site"
 msgid "Create your widget at:"
 msgstr "Créer votre widget "
 
-#: users.php:61 users.php:60
+#: users.php:61
+#: users.php:60
 msgid "Created"
 msgstr "Créer"
 
-#: create.php:34 create.php:31
+#: create.php:34
+#: create.php:31
 msgid "Creating..."
 msgstr "Chargement ..."
 
-#: account.php:250 account.php:319 account.php:248 account.php:317
+#: account.php:250
+#: account.php:319
+#: account.php:248
+#: account.php:317
 msgid "Credit Card #:"
-msgstr "Carte de Crédit # :"
+msgstr "Carte de crédit # :"
 
-#: account.php:40 account.php:38
+#: account.php:40
+#: account.php:38
 msgid "Credit Card Update Successful"
-msgstr "Carte de Crédit acceptée "
+msgstr "Carte de crédit acceptée "
 
-#: account.php:43 account.php:41
+#: account.php:43
+#: account.php:41
 msgid "Credit Card declined"
 msgstr "Carte de crédit refusée"
 
-#: plans.php:64 plans.php:60
+#: plans.php:64
+#: plans.php:60
 msgid "Currency"
 msgstr "Devise"
 
-#: plans.php:127 settings.php:350 plans.php:123 settings.php:346
+#: plans.php:127
+#: settings.php:350
+#: plans.php:123
+#: settings.php:346
 msgid "Currency:"
 msgstr "Devise :"
 
-#: linkDialog.php:29 menus.php:164 menus.php:160
+#: linkDialog.php:29
+#: menus.php:164
+#: menus.php:160
 msgid "Custom URL"
 msgstr "URL personnalisée"
 
-#: admin.php:67 admin.php:63
+#: admin.php:67
+#: admin.php:63
 msgid "Customer"
 msgstr "Client"
 
-#: test.php:127 test.php:129
+#: test.php:127
+#: test.php:129
 msgid "Database connection works"
 msgstr "Connection à la base de données en cours"
 
-#: listDialog.php:38 listDialog.php:41
+#: listDialog.php:38
+#: listDialog.php:41
 msgid "Date Created (newest first)"
 msgstr "Date de création (ordre décroissant)"
 
-#: settings.php:195 settings.php:191
+#: settings.php:195
+#: settings.php:191
 msgid "Default Language:"
 msgstr "Langage par défaut : "
 
-#: pages.php:299 pages.php:298
+#: pages.php:299
+#: pages.php:298
 msgid "Default Layout:"
 msgstr "Mise en page par défaut : "
 
-#: branding.php:59 branding.php:54
+#: branding.php:59
+#: branding.php:54
 msgid "Default Logo:"
 msgstr "Logo par défaut :"
 
-#: pages.php:304 pages.php:303
+#: pages.php:304
+#: pages.php:303
 msgid "Default Styles:"
 msgstr "Styles par défaut :"
 
-#: listDialog.php:53 listDialog.php:56
+#: listDialog.php:53
+#: listDialog.php:56
 msgid "Description Length:"
 msgstr "Taille de la description :"
 
-#: htmlDialog.php:21 pageSettingsDialog.php:33 skuDialog.php:21 pages.php:172
-#: pages.php:167 pageSettingsDialog.php:43
+#: htmlDialog.php:21
+#: pageSettingsDialog.php:33
+#: skuDialog.php:21
+#: pages.php:172
+#: pages.php:167
+#: pageSettingsDialog.php:43
 msgid "Description:"
 msgstr "Description :"
 
-#: listDialog.php:27 slideshowDialog.php:16
+#: listDialog.php:27
+#: slideshowDialog.php:16
 msgid "Display:"
 msgstr "Afficher :"
 
-#: settings.php:81 settings.php:77
+#: settings.php:81
+#: settings.php:77
 msgid "Domain:"
 msgstr "Nom de domaine : "
 
@@ -674,23 +908,31 @@ msgstr "Nom de domaine : "
 msgid "Download"
 msgstr "Téléchargement"
 
-#: pages.php:126 pages.php:121
+#: pages.php:126
+#: pages.php:121
 msgid "Draft"
 msgstr "Brouillon"
 
-#: content.php:52 content.php:47
+#: content.php:52
+#: content.php:47
 msgid "Draft saved, launching preview"
 msgstr "Brouillon enregistré, lancement de l'aperçu"
 
-#: content.php:47 content.php:42
+#: content.php:47
+#: content.php:42
 msgid "Draft successfully saved"
 msgstr "Brouillon enregistré avec succès"
 
-#: imagesDialog.php:50 files.php:35 files.php:52 files.php:31 files.php:48
+#: imagesDialog.php:50
+#: files.php:35
+#: files.php:52
+#: files.php:31
+#: files.php:48
 msgid "Drag file here or click to upload"
 msgstr "Déplacer un fichier ici ou cliquer pour l'envoyer"
 
-#: files.php:36 files.php:32
+#: files.php:36
+#: files.php:32
 msgid "Drag file here to replace selected file"
 msgstr "Déplacer un fichier ici pour remplacer l'élément selectionné"
 
@@ -702,12 +944,20 @@ msgstr "Dérouler la liste"
 msgid "Element Id:"
 msgstr "Id de l'élément :"
 
-#: forgot.php:33 forgot.php:30
+#: forgot.php:33
+#: forgot.php:30
 msgid "Email sent"
 msgstr "Email envoyé"
 
-#: create.php:60 forgot.php:52 index.php:44 profile.php:81 users.php:120
-#: forgot.php:47 index.php:41 profile.php:117 users.php:121
+#: create.php:60
+#: forgot.php:52
+#: index.php:44
+#: profile.php:81
+#: users.php:120
+#: forgot.php:47
+#: index.php:41
+#: profile.php:117
+#: users.php:121
 msgid "Email:"
 msgstr "Adresse mail :"
 
@@ -719,20 +969,19 @@ msgstr "Date de fin :"
 msgid "End Time:"
 msgstr "Heure de fin :"
 
-#: imagesDialog.php:4 imagesDialog.php:6
+#: imagesDialog.php:4
+#: imagesDialog.php:6
 msgid "Enter caption"
 msgstr "Entrer un annotation"
 
-#: account.php:246 account.php:244
+#: account.php:246
+#: account.php:244
 msgid "Enter the details for your new credit card."
 msgstr "Entrer les information de votre nouvelle carte de crédit"
 
 #: create.php:45
-msgid ""
-"Enter your site name, login, password, and timezone to create your site."
-msgstr ""
-"Entrer le nom de votre site, le mot de passe et le fuseau horaire pour créer "
-"votre site."
+msgid "Enter your site name, login, password, and timezone to create your site."
+msgstr "Entrer le nom de votre site, le mot de passe et le fuseau horaire pour créer votre site."
 
 #: pageSettingsDialog.php:21
 msgid "Event"
@@ -742,18 +991,25 @@ msgstr "Evénement "
 msgid "Existing Images"
 msgstr "Images existantes"
 
-#: linkDialog.php:16 menus.php:149 menus.php:145
+#: linkDialog.php:16
+#: menus.php:149
+#: menus.php:145
 msgid "Existing Page"
 msgstr "Page existante"
 
-#: account.php:234 account.php:260 account.php:329 account.php:232
-#: account.php:258 account.php:327
+#: account.php:234
+#: account.php:260
+#: account.php:329
+#: account.php:232
+#: account.php:258
+#: account.php:327
 msgid "Expires:"
 msgstr "Expiration :"
 
-#: settings.php:490 settings.php:486
+#: settings.php:490
+#: settings.php:486
 msgid "Facebook App ID:"
-msgstr "ID de l'App Facebook :"
+msgstr "ID de l'app Facebook :"
 
 #: featuredDialog.php:13
 msgid "Feature Content"
@@ -765,13 +1021,14 @@ msgstr "Associer le contenu de la page :"
 
 #: fieldDialog.php:16
 msgid "Field Name:"
-msgstr "Nom du champs :"
+msgstr "Nom du champ :"
 
 #: fieldDialog.php:22
 msgid "Field Type:"
-msgstr "Type de champs :"
+msgstr "Type de champ :"
 
-#: settings.php:553 settings.php:549
+#: settings.php:553
+#: settings.php:549
 msgid "File Contents:"
 msgstr "Contenu du champs :"
 
@@ -779,31 +1036,42 @@ msgstr "Contenu du champs :"
 msgid "File Description"
 msgstr "Description du fichier"
 
-#: settings.php:547 settings.php:543
+#: settings.php:547
+#: settings.php:543
 msgid "File Name:"
 msgstr "Nom du fichier : "
 
-#: files.php:14 files.php:45 files.php:41 menu.php:36
+#: files.php:14
+#: files.php:45
+#: files.php:41
+#: menu.php:36
 msgid "Files"
 msgstr "Fichiers"
 
-#: listDialog.php:43 listDialog.php:46
+#: listDialog.php:43
+#: listDialog.php:46
 msgid "Filter By Category:"
 msgstr "Filtrer par catégories :"
 
-#: profile.php:54 users.php:92 profile.php:96 users.php:93
+#: profile.php:54
+#: users.php:92
+#: profile.php:96
+#: users.php:93
 msgid "First Name:"
 msgstr "Prénom :"
 
-#: settings.php:384 settings.php:380
+#: settings.php:384
+#: settings.php:380
 msgid "Flat Rate"
 msgstr "Forfait "
 
-#: menus.php:53 menus.php:49
+#: menus.php:53
+#: menus.php:49
 msgid "Footer"
 msgstr "Pied de page"
 
-#: test.php:258 test.php:260
+#: test.php:258
+#: test.php:260
 msgid "For help troubleshooting your installation, visit:"
 msgstr "Pour obtenir de l'aide pour votre installation, visiter le site :"
 
@@ -811,63 +1079,79 @@ msgstr "Pour obtenir de l'aide pour votre installation, visiter le site :"
 msgid "Forgot Password"
 msgstr "Mot de passe oublié"
 
-#: index.php:61 index.php:58
+#: index.php:61
+#: index.php:58
 msgid "Forgot your Password?"
 msgstr "Mot de passe oublié ?"
 
-#: settings.php:92 settings.php:88
+#: settings.php:92
+#: settings.php:88
 msgid "Forms submitted on your site will be sent to this email address"
-msgstr ""
-"La réception des formulaires de votre site se fera sur cette adresse email"
+msgstr "La réception des formulaires de votre site se fera sur cette adresse email"
 
-#: settings.php:383 settings.php:379
+#: settings.php:383
+#: settings.php:379
 msgid "Free"
 msgstr "Gratuit"
 
-#: menus.php:252 menus.php:248
+#: menus.php:252
+#: menus.php:248
 msgid "Friendly Id:"
-msgstr "ID Personnelle"
+msgstr "ID personnelle"
 
-#: pages.php:166 pages.php:293 pages.php:348 pages.php:161 pages.php:292
+#: pages.php:166
+#: pages.php:293
+#: pages.php:348
+#: pages.php:161
+#: pages.php:292
 #: pages.php:347
 msgid "Friendly URL:"
-msgstr "URL Personnelle"
+msgstr "URL personnelle"
 
-#: test.php:91 test.php:93
+#: test.php:91
+#: test.php:93
 msgid "GD Library is installed"
-msgstr "GD Library est installé"
+msgstr "La librairie GD est installé"
 
 #: slideshowDialog.php:19
 msgid "Gallery"
 msgstr "Gallerie"
 
-#: settings.php:515 settings.php:540 settings.php:563 settings.php:511
-#: settings.php:536 settings.php:559
+#: settings.php:515
+#: settings.php:540
+#: settings.php:563
+#: settings.php:511
+#: settings.php:536
+#: settings.php:559
 msgid "Generate Verification File"
 msgstr "Générer un fichier de vérification"
 
-#: settings.php:37 settings.php:33
+#: settings.php:37
+#: settings.php:33
 msgid "Generating..."
-msgstr "Chargement ..."
+msgstr "Génération..."
 
-#: test.php:225 test.php:227
+#: test.php:225
+#: test.php:227
 msgid "Gettext is installed"
 msgstr "Gettext est installé"
 
-#: settings.php:503 settings.php:499
+#: settings.php:503
+#: settings.php:499
 msgid "Google Analytics ID:"
 msgstr "ID de votre Google Analyctics  :"
 
-#: settings.php:506 settings.php:502
-msgid ""
-"Google Analytics Web Property Id (adds analytics to all pages on your site)"
+#: settings.php:506
+#: settings.php:502
+msgid "Google Analytics Web Property Id (adds analytics to all pages on your site)"
 msgstr "Ajoute l'analyse de toutes les pages de votre site"
 
 #: htmlDialog.php:4
 msgid "HTML block"
 msgstr "Bloc HTML"
 
-#: pageSettingsDialog.php:68 pageSettingsDialog.php:125
+#: pageSettingsDialog.php:68
+#: pageSettingsDialog.php:125
 msgid "HTML used to render the page"
 msgstr "HTML utilisé pour afficher la page"
 
@@ -879,11 +1163,13 @@ msgstr "HTML :"
 msgid "Helper Text:"
 msgstr "Texte d'assistance :"
 
-#: plans.php:60 plans.php:56
+#: plans.php:60
+#: plans.php:56
 msgid "Id"
 msgstr "ID"
 
-#: plans.php:101 plans.php:97
+#: plans.php:101
+#: plans.php:97
 msgid "Id:"
 msgstr "ID :"
 
@@ -899,40 +1185,53 @@ msgstr "Lien de l'image :"
 msgid "Image Orientation:"
 msgstr "Orientation de l'image :"
 
-#: slideshowDialog.php:22 slideshowDialog.php:28
+#: slideshowDialog.php:22
+#: slideshowDialog.php:28
 msgid "In Pixels"
 msgstr "En pixel"
 
-#: plans.php:63 plans.php:59
+#: plans.php:63
+#: plans.php:59
 msgid "Interval"
 msgstr "Intervalle"
 
-#: plans.php:118 plans.php:114
+#: plans.php:118
+#: plans.php:114
 msgid "Interval:"
 msgstr "Intervalle :"
 
 #: translations.php:20
 msgid "Italicize Text (select text first)"
-msgstr "Texte en Italique (surligner le texte en premier)"
+msgstr "Texte en italique (surligner le texte en premier)"
 
-#: pageSettingsDialog.php:39 pageSettingsDialog.php:48
+#: pageSettingsDialog.php:39
+#: pageSettingsDialog.php:48
 msgid "Keywords:"
 msgstr "Mots-clés :"
 
-#: menus.php:127 menus.php:123
+#: menus.php:127
+#: menus.php:123
 msgid "Label:"
-msgstr "Etiquette :"
+msgstr "Étiquette :"
 
-#: create.php:75 profile.php:68 users.php:110 create.php:78 profile.php:106
+#: create.php:75
+#: profile.php:68
+#: users.php:110
+#: create.php:78
+#: profile.php:106
 #: users.php:111
 msgid "Language:"
 msgstr "Langage :"
 
-#: profile.php:61 users.php:97 profile.php:101 users.php:98
+#: profile.php:61
+#: users.php:97
+#: profile.php:101
+#: users.php:98
 msgid "Last Name:"
 msgstr "Nom :"
 
-#: pages.php:128 pages.php:123
+#: pages.php:128
+#: pages.php:123
 msgid "Last updated"
 msgstr "Dernière modification"
 
@@ -940,23 +1239,28 @@ msgstr "Dernière modification"
 msgid "Latitude:"
 msgstr "Latitude :"
 
-#: layout.php:14 menu.php:50
+#: layout.php:14
+#: menu.php:50
 msgid "Layout"
 msgstr "Mise en page"
 
-#: layout.php:35 layout.php:31
+#: layout.php:35
+#: layout.php:31
 msgid "Layout saved"
 msgstr "Mise en page enregistré"
 
-#: layout.php:38 layout.php:34
+#: layout.php:38
+#: layout.php:34
 msgid "Layout successfully added"
 msgstr "Mise en page ajouter avec succès"
 
-#: layout.php:40 layout.php:36
+#: layout.php:40
+#: layout.php:36
 msgid "Layout successfully removed"
 msgstr "Mise en page supprimer avec succès"
 
-#: pageSettingsDialog.php:65 pageSettingsDialog.php:122
+#: pageSettingsDialog.php:65
+#: pageSettingsDialog.php:122
 msgid "Layout:"
 msgstr "Mise en page :"
 
@@ -968,7 +1272,8 @@ msgstr "Gauche du texte"
 msgid "List"
 msgstr "Liste "
 
-#: loadLayoutDialog.php:12 translations.php:54
+#: loadLayoutDialog.php:12
+#: translations.php:54
 msgid "Load Existing Page"
 msgstr "Charger une page existante"
 
@@ -976,43 +1281,65 @@ msgstr "Charger une page existante"
 msgid "Load Layout"
 msgstr "Charger une Mise en page"
 
-#: content.php:79 content.php:76
+#: content.php:79
+#: content.php:76
 msgid "Loading content..."
-msgstr "Chargement ..."
+msgstr "Chargement du contenu..."
 
-#: account.php:184 account.php:182
+#: account.php:184
+#: account.php:182
+#, fuzzy
 msgid "Loading plans..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
-#: featuredDialog.php:24 filesDialog.php:28 fontAwesomeDialog.php:22
-#: linkDialog.php:24 loadLayoutDialog.php:22 pageSettingsDialog.php:67
-#: pageSettingsDialog.php:74 pluginsDialog.php:27 files.php:78 menus.php:100
-#: users.php:68 files.php:74 menus.php:96 pages.php:136 users.php:67
-#: pageSettingsDialog.php:124 pageSettingsDialog.php:131
+#: featuredDialog.php:24
+#: filesDialog.php:28
+#: fontAwesomeDialog.php:22
+#: linkDialog.php:24
+#: loadLayoutDialog.php:22
+#: pageSettingsDialog.php:67
+#: pageSettingsDialog.php:74
+#: pluginsDialog.php:27
+#: files.php:78
+#: menus.php:100
+#: users.php:68
+#: files.php:74
+#: menus.php:96
+#: pages.php:136
+#: users.php:67
+#: pageSettingsDialog.php:124
+#: pageSettingsDialog.php:131
 msgid "Loading..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
 #: pageSettingsDialog.php:22
 msgid "Location"
-msgstr "Location"
+msgstr "Lieu"
 
 #: pageSettingsDialog.php:88
 msgid "Location:"
-msgstr "Location :"
+msgstr "Lieu :"
 
-#: index.php:15 index.php:54 index.php:51 undefined.php:15
+#: index.php:15
+#: index.php:54
+#: index.php:51
+#: undefined.php:15
 msgid "Login"
 msgstr "Connexion"
 
-#: create.php:202 create.php:205
+#: create.php:202
+#: create.php:205
 msgid "Login here to update your site:"
 msgstr "Connecter vous pour modifier votre site"
 
-#: index.php:32 index.php:29 undefined.php:29
+#: index.php:32
+#: index.php:29
+#: undefined.php:29
 msgid "Login..."
-msgstr "Chargement ..."
+msgstr "Connexion..."
 
-#: branding.php:37 branding.php:32
+#: branding.php:37
+#: branding.php:32
 msgid "Logo successfully updated"
 msgstr "Logo modifié avec succès"
 
@@ -1020,92 +1347,119 @@ msgstr "Logo modifié avec succès"
 msgid "Longitude:"
 msgstr "Longitude :"
 
-#: layout.php:95 layout.php:91
+#: layout.php:95
+#: layout.php:91
 msgid "Lowercase, no space, leave the .html off"
 msgstr "Minuscule, pas d'espace, ne pas mettre l'extension .html"
 
-#: styles.php:97 styles.php:93
+#: styles.php:97
+#: styles.php:93
 msgid "Lowercase, no spaces, leave the .less off"
 msgstr "Minuscule, pas d'espace, ne pas mettre l'extension .less"
 
-#: menus.php:254 menus.php:250
+#: menus.php:254
+#: menus.php:250
 msgid "Lowercase, no spaces, must be unique"
 msgstr "Minuscule, pas d'espace, doit être unique"
 
-#: scripts.php:99 scripts.php:95
-msgid ""
-"Lowercase, no spaces, no special characters (., !, etc), leave the .js off"
-msgstr ""
-"Minuscule, pas d'espace, pas de caractères spécial (.,!:; etc), ne pas "
-"mettre l'extension .js"
+#: scripts.php:99
+#: scripts.php:95
+msgid "Lowercase, no spaces, no special characters (., !, etc), leave the .js off"
+msgstr "Minuscule, pas d'espace, pas de caractères spécial (.,!:; etc), ne pas mettre l'extension .js"
 
-#: snippets.php:99 snippets.php:95
-msgid ""
-"Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
-msgstr ""
-"Minuscule, pas d'espace, pas de caractères spécial (.,!:; etc), ne pas "
-"mettre l'extension .php"
+#: snippets.php:99
+#: snippets.php:95
+msgid "Lowercase, no spaces, no special characters (., !, etc), leave the .php off"
+msgstr "Minuscule, pas d'espace, pas de caractères spécial (.,!:; etc), ne pas mettre l'extension .php"
 
-#: test.php:174 test.php:176
+#: test.php:174
+#: test.php:176
 msgid "MOD_REWRITE is working"
 msgstr "MOD_REWRITE en cours"
 
-#: test.php:239 test.php:241
+#: test.php:239
+#: test.php:241
 msgid "Magic Quotes not automatically Escaping"
 msgstr "Magic Quotes ne fonctionne pas automatiquement"
 
 #: account.php:8
 msgid "Manage Account"
-msgstr "Gérer le Compte"
+msgstr "Gérer le compte"
 
 #: menu.php:25
 msgid "Manage your Site"
-msgstr "Gérer votre Site"
+msgstr "Gérer votre site"
 
 #: listDialog.php:33
 msgid "Map"
-msgstr "Map"
+msgstr "Carte"
 
 #: menu.php:65
 msgid "Menu"
 msgstr "Menu"
 
-#: menus.php:14 menu.php:32
+#: menus.php:14
+#: menu.php:32
 msgid "Menus"
 msgstr "Menus"
 
-#: plans.php:121 plans.php:117
+#: plans.php:121
+#: plans.php:117
 msgid "Month"
 msgstr "Mois"
 
-#: profile.php:92 users.php:128 profile.php:125 users.php:129
+#: profile.php:92
+#: users.php:128
+#: profile.php:125
+#: users.php:129
 msgid "More than 5 characters, 1 letter and 1 special character"
 msgstr "Plus de 5 caractères, 1 lettre et 1 caractère spécial"
 
-#: pages.php:295 pages.php:294
+#: pages.php:295
+#: pages.php:294
 msgid "Must be lowercase with no spaces."
 msgstr "Minuscules et sans espace."
 
-#: listDialog.php:37 plans.php:61 plans.php:57 listDialog.php:40
+#: listDialog.php:37
+#: plans.php:61
+#: plans.php:57
+#: listDialog.php:40
 msgid "Name"
 msgstr "Nom"
 
-#: pages.php:287 pages.php:286
+#: pages.php:287
+#: pages.php:286
 msgid "Name (Plural):"
-msgstr "Nom (Pluriel) :"
+msgstr "Nom (pluriel) :"
 
-#: pages.php:281 pages.php:280
+#: pages.php:281
+#: pages.php:280
 msgid "Name (singular):"
-msgstr "Nom (Singulier) :"
+msgstr "Nom (singulier) :"
 
-#: pages.php:34 pages.php:29
+#: pages.php:34
+#: pages.php:29
 msgid "Name and Friendly URL are required"
-msgstr "Nom et URL Personnelle requis"
+msgstr "Nom et URL personnelles requis"
 
-#: pageSettingsDialog.php:22 layout.php:93 menus.php:247 pages.php:161
-#: pages.php:343 plans.php:106 scripts.php:97 snippets.php:97 styles.php:95
-#: layout.php:89 menus.php:243 pages.php:156 pages.php:342 plans.php:102
-#: scripts.php:93 snippets.php:93 styles.php:91 pageSettingsDialog.php:32
+#: pageSettingsDialog.php:22
+#: layout.php:93
+#: menus.php:247
+#: pages.php:161
+#: pages.php:343
+#: plans.php:106
+#: scripts.php:97
+#: snippets.php:97
+#: styles.php:95
+#: layout.php:89
+#: menus.php:243
+#: pages.php:156
+#: pages.php:342
+#: plans.php:102
+#: scripts.php:93
+#: snippets.php:93
+#: styles.php:91
+#: pageSettingsDialog.php:32
 msgid "Name:"
 msgstr "Nom :"
 
@@ -1113,36 +1467,44 @@ msgstr "Nom :"
 msgid "Nested in .container block"
 msgstr "Imbriqué dans le Bloc .container"
 
-#: account.php:272 account.php:270
+#: account.php:272
+#: account.php:270
 msgid "New Card"
 msgstr "Nouvelle carte"
 
 #: imagesDialog.php:16
 msgid "New Images"
-msgstr "Nouvelle images"
+msgstr "Nouvelles images"
 
-#: account.php:42 account.php:40
+#: account.php:42
+#: account.php:40
 msgid "New card added"
 msgstr "Nouvelle carte ajouté"
 
-#: fieldDialog.php:36 listDialog.php:66 listDialog.php:69
+#: fieldDialog.php:36
+#: listDialog.php:66
+#: listDialog.php:69
 msgid "No"
 msgstr "Non"
 
-#: files.php:80 files.php:76
+#: files.php:80
+#: files.php:76
 msgid "No files here. Click Upload File to get started."
 msgstr "Aucun fichier ici. Cliquez sur Envoyer un fichier pour commencer."
 
-#: menus.php:102 menus.php:98
+#: menus.php:102
+#: menus.php:98
 msgid "No menu items here. Click Add Menu Item to get started."
-msgstr ""
-"Aucun éléments de menu ici. Cliquez sur Ajouter un éléments pour commencer."
+msgstr "Aucun éléments de menu ici. Cliquez sur Ajouter un éléments pour commencer."
 
-#: pages.php:143 pages.php:138
+#: pages.php:143
+#: pages.php:138
 msgid "No pages here. Click Add Page to get started."
 msgstr "Aucune page ici. Cliquez sur Ajouter une page pour commencer."
 
-#: pageSettingsDialog.php:29 pages.php:168 pages.php:163
+#: pageSettingsDialog.php:29
+#: pages.php:168
+#: pages.php:163
 #: pageSettingsDialog.php:39
 msgid "No spaces, no special characters, dashes allowed."
 msgstr "Pas d'espace, pas de caractères spécial (.,!:; etc), tirets autorisés."
@@ -1151,16 +1513,17 @@ msgstr "Pas d'espace, pas de caractères spécial (.,!:; etc), tirets autorisés
 msgid "No text"
 msgstr "Pas de texte"
 
-#: users.php:70 users.php:69
+#: users.php:70
+#: users.php:69
 msgid "No users here. Click Add User to get started."
-msgstr ""
-"Aucun utilisateur ici. Cliquez sur Ajouter un utilisateur pour commencer."
+msgstr "Aucun utilisateur ici. Cliquez sur Ajouter un utilisateur pour commencer."
 
 #: skuDialog.php:36
 msgid "Not Shipped"
 msgstr "Non éxpédié"
 
-#: settings.php:368 settings.php:364
+#: settings.php:368
+#: settings.php:364
 msgid "Optionally used to calculate shipping costs"
 msgstr "Calcule facultatif utilisée pour calculer les coûs d'expédition"
 
@@ -1168,27 +1531,33 @@ msgstr "Calcule facultatif utilisée pour calculer les coûs d'expédition"
 msgid "Options:"
 msgstr "Options :"
 
-#: listDialog.php:35 listDialog.php:38
+#: listDialog.php:35
+#: listDialog.php:38
 msgid "Order By:"
 msgstr "Trier par :"
 
-#: test.php:61 test.php:63
+#: test.php:61
+#: test.php:63
 msgid "PDO Enabled"
 msgstr "PDO activé"
 
-#: test.php:106 test.php:108
+#: test.php:106
+#: test.php:108
 msgid "PHP Version is greater than 5.3"
 msgstr "Votre version de PHP est supérieure à 5.3"
 
-#: listDialog.php:63 listDialog.php:66
+#: listDialog.php:63
+#: listDialog.php:66
 msgid "Page Results:"
 msgstr "Résultats de page :"
 
-#: pageSettingsDialog.php:15 translations.php:52
+#: pageSettingsDialog.php:15
+#: translations.php:52
 msgid "Page Settings"
 msgstr "Paramètres de la page"
 
-#: listDialog.php:58 listDialog.php:61
+#: listDialog.php:58
+#: listDialog.php:61
 msgid "Page Size:"
 msgstr "Taille de la page :"
 
@@ -1196,40 +1565,59 @@ msgstr "Taille de la page :"
 msgid "Page Type:"
 msgstr "Type de page :"
 
-#: pages.php:36 pages.php:31
+#: pages.php:36
+#: pages.php:31
 msgid "Page added successfully"
 msgstr "Page ajoutée avec succès"
 
-#: pages.php:38 pages.php:33
+#: pages.php:38
+#: pages.php:33
 msgid "Page removed successfully"
 msgstr "Page supprimé avec succès"
 
-#: pages.php:42 pages.php:37
+#: pages.php:42
+#: pages.php:37
 msgid "Page type added successfully"
 msgstr "Type de Page ajoutée avec succès"
 
-#: pages.php:46 pages.php:41
+#: pages.php:46
+#: pages.php:41
 msgid "Page type removed successfully"
 msgstr "Type de Page supprimé avec succès"
 
-#: pages.php:44 pages.php:39
+#: pages.php:44
+#: pages.php:39
 msgid "Page type updated successfully"
 msgstr "Type de Page modifié avec succès"
 
-#: pages.php:14 menu.php:31 menu.php:68
+#: pages.php:14
+#: menu.php:31
+#: menu.php:68
 msgid "Pages"
 msgstr "Pages"
 
-#: admin.php:206 create.php:181 admin.php:202 create.php:184
+#: admin.php:206
+#: create.php:181
+#: admin.php:202
+#: create.php:184
 msgid "Passcode:"
-msgstr "Passe Code :"
+msgstr "Code d'accès :"
 
-#: forgot.php:37 forgot.php:34
+#: forgot.php:37
+#: forgot.php:34
 msgid "Password successfully reset"
 msgstr "Mot de passe reset avec succès"
 
-#: create.php:65 forgot.php:70 index.php:49 profile.php:89 users.php:126
-#: create.php:68 forgot.php:65 index.php:46 profile.php:123 users.php:127
+#: create.php:65
+#: forgot.php:70
+#: index.php:49
+#: profile.php:89
+#: users.php:126
+#: create.php:68
+#: forgot.php:65
+#: index.php:46
+#: profile.php:123
+#: users.php:127
 msgid "Password:"
 msgstr "Mot de passe :"
 
@@ -1237,19 +1625,23 @@ msgstr "Mot de passe :"
 msgid "Paste your code in the textarea above."
 msgstr "Collez le code dans la zone de texte ci-dessus."
 
-#: settings.php:343 settings.php:339
+#: settings.php:343
+#: settings.php:339
 msgid "PayPal ID:"
-msgstr "PayPal ID :"
+msgstr "ID PayPal :"
 
-#: account.php:46 account.php:44
+#: account.php:46
+#: account.php:44
 msgid "Paying..."
-msgstr "Chargement ..."
+msgstr "Paiement..."
 
-#: account.php:47 account.php:45
+#: account.php:47
+#: account.php:45
 msgid "Payment successful"
 msgstr "Paiement réaliser avec succès"
 
-#: account.php:101 account.php:99
+#: account.php:101
+#: account.php:99
 msgid "Payment:"
 msgstr "Paiement :"
 
@@ -1257,23 +1649,31 @@ msgstr "Paiement :"
 msgid "Payments"
 msgstr "Paiements :"
 
-#: admin.php:66 admin.php:62
+#: admin.php:66
+#: admin.php:62
 msgid "Plan"
 msgstr "Plan"
 
-#: plans.php:35 plans.php:31
+#: plans.php:35
+#: plans.php:31
 msgid "Plan added successfully"
 msgstr "Plan ajoutée avec succès"
 
-#: plans.php:37 plans.php:33
+#: plans.php:37
+#: plans.php:33
 msgid "Plan updated successfully"
 msgstr "Plan modifié avec succès"
 
-#: account.php:86 account.php:84
+#: account.php:86
+#: account.php:84
 msgid "Plan:"
 msgstr "Plan :"
 
-#: admin.php:46 plans.php:14 plans.php:46 admin.php:42 plans.php:42
+#: admin.php:46
+#: plans.php:14
+#: plans.php:46
+#: admin.php:42
+#: plans.php:42
 msgid "Plans"
 msgstr "Plans"
 
@@ -1305,15 +1705,20 @@ msgstr "Apercu"
 msgid "Price:"
 msgstr "Prix :"
 
-#: menus.php:52 menus.php:48
+#: menus.php:52
+#: menus.php:48
 msgid "Primary"
 msgstr "Principal"
 
-#: settings.php:89 settings.php:85
+#: settings.php:89
+#: settings.php:85
 msgid "Primary Email:"
 msgstr "Email principal"
 
-#: profile.php:14 profile.php:44 profile.php:46 menu.php:69
+#: profile.php:14
+#: profile.php:44
+#: profile.php:46
+#: menu.php:69
 msgid "Profile"
 msgstr "Profil"
 
@@ -1321,7 +1726,8 @@ msgstr "Profil"
 msgid "Profile updated successfully"
 msgstr "Profil modifier avec succés"
 
-#: pageSettingsDialog.php:50 pageSettingsDialog.php:108
+#: pageSettingsDialog.php:50
+#: pageSettingsDialog.php:108
 msgid "RSS:"
 msgstr "RSS :"
 
@@ -1329,78 +1735,130 @@ msgstr "RSS :"
 msgid "Radio button List"
 msgstr "Liste de boutton radio"
 
-#: menus.php:72 settings.php:56 menus.php:68 settings.php:52
+#: menus.php:72
+#: settings.php:56
+#: menus.php:68
+#: settings.php:52
 msgid "Re-publish now"
 msgstr "Re-publier maintenant"
 
-#: create.php:70 profile.php:97 users.php:132 create.php:73 profile.php:129
+#: create.php:70
+#: profile.php:97
+#: users.php:132
+#: create.php:73
+#: profile.php:129
 #: users.php:133
 msgid "Re-type Password:"
 msgstr "Re-taper votre mot de passe:"
 
-#: pages.php:390 pages.php:389
+#: pages.php:390
+#: pages.php:389
 msgid "Remove Category"
-msgstr "Supprimer la Catégorie"
+msgstr "Supprimer la catégorie"
 
-#: pages.php:377 pages.php:376
+#: pages.php:377
+#: pages.php:376
 msgid "Remove Cateogry"
-msgstr "Supprimer la Catégorie"
+msgstr "Supprimer la catégorie"
 
-#: files.php:93 files.php:112 files.php:89 files.php:108
+#: files.php:93
+#: files.php:112
+#: files.php:89
+#: files.php:108
 msgid "Remove File"
-msgstr "Supprimer le Fichier "
+msgstr "Supprimer le fichier "
 
-#: layout.php:127 layout.php:142 layout.php:123 layout.php:138
+#: layout.php:127
+#: layout.php:142
+#: layout.php:123
+#: layout.php:138
 msgid "Remove Layout"
-msgstr "Supprimer la Mise en page"
+msgstr "Supprimer la mise en page"
 
-#: menus.php:204 menus.php:216 menus.php:200 menus.php:212
+#: menus.php:204
+#: menus.php:216
+#: menus.php:200
+#: menus.php:212
 msgid "Remove Menu Item"
-msgstr "Supprimer l'élément du Menu"
+msgstr "Supprimer l'élément du menu"
 
-#: menus.php:281 menus.php:296 menus.php:277 menus.php:292
+#: menus.php:281
+#: menus.php:296
+#: menus.php:277
+#: menus.php:292
 msgid "Remove Menu Type"
-msgstr "Supprimer le type de Menu"
+msgstr "Supprimer le type de menu"
 
-#: pages.php:207 pages.php:218 pages.php:202 pages.php:213
+#: pages.php:207
+#: pages.php:218
+#: pages.php:202
+#: pages.php:213
 msgid "Remove Page"
-msgstr "Supprimer la Page"
+msgstr "Supprimer la page"
 
-#: pages.php:239 pages.php:234
+#: pages.php:239
+#: pages.php:234
 msgid "Remove Page Type"
-msgstr "Supprimer le type de Page"
+msgstr "Supprimer le type de page"
 
-#: scripts.php:131 scripts.php:146 scripts.php:127 scripts.php:142
+#: scripts.php:131
+#: scripts.php:146
+#: scripts.php:127
+#: scripts.php:142
 msgid "Remove Script"
-msgstr "Supprimer le Script"
+msgstr "Supprimer le script"
 
-#: snippets.php:131 snippets.php:146 snippets.php:127 snippets.php:142
+#: snippets.php:131
+#: snippets.php:146
+#: snippets.php:127
+#: snippets.php:142
 msgid "Remove Snippet"
-msgstr "Supprimer le Snippet"
+msgstr "Supprimer le snippet"
 
-#: styles.php:129 styles.php:144 styles.php:125 styles.php:140
+#: styles.php:129
+#: styles.php:144
+#: styles.php:125
+#: styles.php:140
 msgid "Remove Stylesheet"
-msgstr "Supprimer le Style"
+msgstr "Supprimer le style"
 
-#: pages.php:252 pages.php:251
+#: pages.php:252
+#: pages.php:251
 msgid "Remove Type"
-msgstr "Supprimer le Type"
+msgstr "Supprimer le type"
 
-#: users.php:166 users.php:181 users.php:167 users.php:182
+#: users.php:166
+#: users.php:181
+#: users.php:167
+#: users.php:182
 msgid "Remove User"
 msgstr "Supprimer l'utilisateur"
 
-#: pages.php:37 pages.php:45 pages.php:53 scripts.php:41 snippets.php:41
-#: styles.php:41 users.php:39 pages.php:32 pages.php:40 pages.php:48
-#: profile.php:37 scripts.php:37 snippets.php:37 styles.php:37 users.php:37
+#: pages.php:37
+#: pages.php:45
+#: pages.php:53
+#: scripts.php:41
+#: snippets.php:41
+#: styles.php:41
+#: users.php:39
+#: pages.php:32
+#: pages.php:40
+#: pages.php:48
+#: profile.php:37
+#: scripts.php:37
+#: snippets.php:37
+#: styles.php:37
+#: users.php:37
 msgid "Removing..."
-msgstr "Chargement ..."
+msgstr "Suppression..."
 
-#: admin.php:68 admin.php:64
+#: admin.php:68
+#: admin.php:64
 msgid "Renewal Date"
 msgstr "Date de renouvellement"
 
-#: account.php:95 account.php:93
+#: account.php:95
+#: account.php:93
 msgid "Renewal Date:"
 msgstr "Date de renouvellement :"
 
@@ -1412,36 +1870,48 @@ msgstr "Re-publier"
 msgid "Required:"
 msgstr "Requis :"
 
-#: theme.php:56 theme.php:112 theme.php:127 theme.php:52 theme.php:108
+#: theme.php:56
+#: theme.php:112
+#: theme.php:127
+#: theme.php:52
+#: theme.php:108
 #: theme.php:123
 msgid "Reset Theme"
-msgstr "Réinitialiser le Thème"
+msgstr "Réinitialiser le thème"
 
-#: forgot.php:36 theme.php:33 forgot.php:33 theme.php:29
+#: forgot.php:36
+#: theme.php:33
+#: forgot.php:33
+#: theme.php:29
 msgid "Resetting..."
 msgstr "Chargement ..."
 
-#: content.php:72 content.php:67
+#: content.php:72
+#: content.php:67
 msgid "Return"
 msgstr "Retour"
 
-#: content.php:85 content.php:82
+#: content.php:85
+#: content.php:82
 msgid "Return to Editor"
-msgstr "Retourner sur l'Editeur"
+msgstr "Retourner sur l'éditeur"
 
-#: forgot.php:87 forgot.php:82
+#: forgot.php:87
+#: forgot.php:82
 msgid "Return to Login"
-msgstr "Retourner sur la Connexion"
+msgstr "Retourner sur la connexion"
 
-#: forgot.php:75 forgot.php:70
+#: forgot.php:75
+#: forgot.php:70
 msgid "Retype Password:"
-msgstr "Re-taper votre Mot de passe"
+msgstr "Re-taper votre mot de passe"
 
 #: elementConfigDialog.php:30
 msgid "Right of the text"
 msgstr "Droite du texte"
 
-#: users.php:102 users.php:103
+#: users.php:102
+#: users.php:103
 msgid "Role:"
 msgstr "Rôle :"
 
@@ -1449,105 +1919,137 @@ msgstr "Rôle :"
 msgid "SKU:"
 msgstr "UGS :"
 
-#: content.php:70 layout.php:72 profile.php:107 scripts.php:76
-#: settings.php:526 snippets.php:76 styles.php:74 content.php:65 layout.php:68
-#: scripts.php:72 settings.php:522 snippets.php:72 styles.php:70
+#: content.php:70
+#: layout.php:72
+#: profile.php:107
+#: scripts.php:76
+#: settings.php:526
+#: snippets.php:76
+#: styles.php:74
+#: content.php:65
+#: layout.php:68
+#: scripts.php:72
+#: settings.php:522
+#: snippets.php:72
+#: styles.php:70
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: content.php:83 content.php:80
+#: content.php:83
+#: content.php:80
 msgid "Save Content"
-msgstr "Sauvegarder le Contenue"
+msgstr "Sauvegarder le contenu"
 
-#: content.php:67 content.php:62
+#: content.php:67
+#: content.php:62
 msgid "Save Draft"
-msgstr "Sauvegarder le Brouillon"
+msgstr "Sauvegarder le brouillon"
 
-#: menus.php:104 menus.php:100
+#: menus.php:104
+#: menus.php:100
 msgid "Save Order"
-msgstr "Sauvegarder l'Ordre"
+msgstr "Sauvegarder l'ordre"
 
-#: content.php:66 content.php:61
+#: content.php:66
+#: content.php:61
 msgid "Save and Publish"
-msgstr "Sauvegarder et Publier"
+msgstr "Sauvegarder et publier"
 
-#: content.php:43 content.php:46 content.php:49 content.php:38 content.php:41
+#: content.php:43
+#: content.php:46
+#: content.php:49
+#: content.php:38
+#: content.php:41
 #: content.php:44
 msgid "Saving..."
-msgstr "Chargement ..."
+msgstr "Sauvegarde..."
 
-#: scripts.php:39 scripts.php:35
+#: scripts.php:39
+#: scripts.php:35
 msgid "Script successfully added"
 msgstr "Script ajouté avec succès"
 
-#: scripts.php:42 scripts.php:38
+#: scripts.php:42
+#: scripts.php:38
 msgid "Script successfully removed"
 msgstr "Script supprimé avec succès"
 
-#: scripts.php:14 menu.php:53
+#: scripts.php:14
+#: menu.php:53
 msgid "Scripts"
-msgstr "Script"
+msgstr "Scripts"
 
-#: scripts.php:35 scripts.php:31
+#: scripts.php:35
+#: scripts.php:31
 msgid "Scripts updated successfully"
 msgstr "Scripts correctement mis à jour"
 
 #: layoutDialog.php:5
 msgid "Select Layout"
-msgstr "Sélectionner une Mise en page"
+msgstr "Sélectionner une mise en page"
 
 #: pluginsDialog.php:12
 msgid "Select Plugin"
-msgstr "Selectionner un Plugin"
+msgstr "Selectionner un plugin"
 
-#: account.php:34 account.php:32
+#: account.php:34
+#: account.php:32
 msgid "Select a Plan"
-msgstr "Selectionner un Plan"
+msgstr "Selectionner un plan"
 
-#: account.php:303 account.php:301
+#: account.php:303
+#: account.php:301
 msgid "Select a plan and enter your credit card information to subscribe."
-msgstr ""
-"Sélectionner un Plan et entrez vos informations de Carte de Crédit pour vous "
-"inscrire."
+msgstr "Sélectionner un plan et entrez vos informations de carte de crédit pour vous inscrire."
 
 #: imagesDialog.php:9
 msgid "Select or upload a new image"
-msgstr "Selectionner ou Ajouter une nouvelle image"
+msgstr "Selectionner ou ajouter une nouvelle image"
 
 #: slideshowDialog.php:16
 msgid "Select the target width and height for the images in the slideshow."
 msgstr "Sélectionnez la largeur et la hauteur des images dans le diaporama."
 
-#: account.php:172 account.php:170
+#: account.php:172
+#: account.php:170
 msgid "Select your new plan from the list below."
 msgstr "Séléctionnez votre nouveau plan dans la liste ci-dessous."
 
-#: files.php:65 files.php:61
+#: files.php:65
+#: files.php:61
 msgid "Selected"
-msgstr "Sélectionner"
+msgstr "Sélectionné"
 
-#: forgot.php:57 forgot.php:52
+#: forgot.php:57
+#: forgot.php:52
 msgid "Send Email"
 msgstr "Envoyer un email"
 
-#: forgot.php:32 forgot.php:29
+#: forgot.php:32
+#: forgot.php:29
 msgid "Sending..."
-msgstr "Chargement ..."
+msgstr "Envoi..."
 
 #: fieldDialog.php:43
 msgid "Separate each option with a comma"
 msgstr "Séparer chaque option par une virgule"
 
-#: blockConfigDialog.php:9 elementConfigDialog.php:9 settings.php:14
-#: settings.php:47 settings.php:43 menu.php:54
+#: blockConfigDialog.php:9
+#: elementConfigDialog.php:9
+#: settings.php:14
+#: settings.php:47
+#: settings.php:43
+#: menu.php:54
 msgid "Settings"
 msgstr "Paramètres"
 
-#: content.php:50 content.php:45
+#: content.php:50
+#: content.php:45
 msgid "Settings successfully saved"
 msgstr "Paramètres sauvegardés avec succès"
 
-#: settings.php:34 settings.php:30
+#: settings.php:34
+#: settings.php:30
 msgid "Settings updated successfully"
 msgstr "Paramètres modifiés avec succès"
 
@@ -1555,11 +2057,13 @@ msgstr "Paramètres modifiés avec succès"
 msgid "Shipped"
 msgstr "Expédié"
 
-#: settings.php:380 settings.php:376
+#: settings.php:380
+#: settings.php:376
 msgid "Shipping Calculation:"
-msgstr "Calcul des Frais de port :"
+msgstr "Calcul des frais de port :"
 
-#: settings.php:392 settings.php:388
+#: settings.php:392
+#: settings.php:388
 msgid "Shipping Rate:"
 msgstr "Taux d'expédition :"
 
@@ -1575,7 +2079,9 @@ msgstr "Ci-dessous le nom de la page pour attirer l'attention"
 msgid "Sign Out"
 msgstr "Déconnexion"
 
-#: admin.php:62 admin.php:58 settings.php:58
+#: admin.php:62
+#: admin.php:58
+#: settings.php:58
 msgid "Site"
 msgstr "Site"
 
@@ -1583,28 +2089,39 @@ msgstr "Site"
 msgid "Site Admin"
 msgstr "Administrateur"
 
-#: admin.php:103 create.php:53 settings.php:74 admin.php:99 create.php:48
+#: admin.php:103
+#: create.php:53
+#: settings.php:74
+#: admin.php:99
+#: create.php:48
 #: settings.php:70
 msgid "Site Name:"
 msgstr "Nom du site :"
 
-#: admin.php:35 admin.php:31
+#: admin.php:35
+#: admin.php:31
 msgid "Site added successfully"
 msgstr "Site ajouté avec succès"
 
-#: create.php:35 create.php:32
+#: create.php:35
+#: create.php:32
 msgid "Site created successfully"
 msgstr "Site crée avec succès"
 
-#: settings.php:513 settings.php:509
+#: settings.php:513
+#: settings.php:509
 msgid "Sitemap:"
 msgstr "Sitemap :"
 
-#: admin.php:45 plans.php:45 admin.php:41 plans.php:41
+#: admin.php:45
+#: plans.php:45
+#: admin.php:41
+#: plans.php:41
 msgid "Sites"
 msgstr "Sites"
 
-#: test.php:76 test.php:78
+#: test.php:76
+#: test.php:78
 msgid "Sites Directory is Writeable"
 msgstr "Le répertoire du site est modifiable"
 
@@ -1612,19 +2129,23 @@ msgstr "Le répertoire du site est modifiable"
 msgid "Slideshow"
 msgstr "Diaporama"
 
-#: snippets.php:39 snippets.php:35
+#: snippets.php:39
+#: snippets.php:35
 msgid "Snippet successfully added"
 msgstr "Snippet ajouté avec succès"
 
-#: snippets.php:42 snippets.php:38
+#: snippets.php:42
+#: snippets.php:38
 msgid "Snippet successfully removed"
 msgstr "Snippet supprimé avec succès"
 
-#: snippets.php:14 menu.php:51
+#: snippets.php:14
+#: menu.php:51
 msgid "Snippets"
 msgstr "Snippets"
 
-#: snippets.php:35 snippets.php:31
+#: snippets.php:35
+#: snippets.php:31
 msgid "Snippets updated successfully"
 msgstr "Snippets modifié avec succès"
 
@@ -1634,23 +2155,26 @@ msgstr "Social"
 
 #: pages.php:103
 msgid "Sort by Last Modified"
-msgstr "Trier par Dernière mise à jour"
+msgstr "Trier par dernière mise à jour"
 
 #: pages.php:104
 msgid "Sort by Name"
-msgstr "Trier par Nom"
+msgstr "Trier par nom"
 
 #: blockConfigDialog.php:28
 msgid "Stand-alone (not nested)"
-msgstr "Stand-alone (Pas imbriquée)"
+msgstr "Stand-alone (pas imbriquée)"
 
 #: layoutDialog.php:13
 msgid "Standard Layouts"
 msgstr "Mise en page normal"
 
-#: account.php:79 admin.php:65 account.php:77 admin.php:61
+#: account.php:79
+#: admin.php:65
+#: account.php:77
+#: admin.php:61
 msgid "Status"
-msgstr "Status"
+msgstr "Statut"
 
 #: translations.php:21
 msgid "Strike Text (select text first)"
@@ -1660,19 +2184,23 @@ msgstr "Barrer le texte (surligner le texte en premier)"
 msgid "Styles"
 msgstr "Styles"
 
-#: styles.php:35 styles.php:31
+#: styles.php:35
+#: styles.php:31
 msgid "Styles updated successfully"
-msgstr "Styles modifié avec succès"
+msgstr "Styles modifiés avec succès"
 
-#: styles.php:39 styles.php:35
+#: styles.php:39
+#: styles.php:35
 msgid "Stylesheet successfully added"
 msgstr "Feuille de style modifié avec succès"
 
-#: styles.php:42 styles.php:38
+#: styles.php:42
+#: styles.php:38
 msgid "Stylesheet successfully removed"
 msgstr "Feuille de style supprimé avec succès"
 
-#: pageSettingsDialog.php:72 pageSettingsDialog.php:129
+#: pageSettingsDialog.php:72
+#: pageSettingsDialog.php:129
 msgid "Stylesheet:"
 msgstr "Feuille de style :"
 
@@ -1680,8 +2208,13 @@ msgstr "Feuille de style :"
 msgid "Stylesheets"
 msgstr "Feuilles de styles"
 
-#: account.php:82 account.php:295 account.php:343 account.php:80
-#: account.php:293 account.php:341 account.php:7
+#: account.php:82
+#: account.php:295
+#: account.php:343
+#: account.php:80
+#: account.php:293
+#: account.php:341
+#: account.php:7
 msgid "Subscribe"
 msgstr "S'abonner"
 
@@ -1693,17 +2226,21 @@ msgstr "Texte inférieur (surligner le texte en premier)"
 msgid "Superscript Text (select text first)"
 msgstr "Texte superieur (surligner le texte en premier)"
 
-#: admin.php:69 admin.php:65
+#: admin.php:69
+#: admin.php:65
 msgid "Switch"
 msgstr "Inter-changement"
 
-#: admin.php:37 admin.php:33
+#: admin.php:37
+#: admin.php:33
 msgid "Switch successful"
 msgstr "Inter-changement effectué avec succés"
 
-#: admin.php:36 admin.php:32
+#: admin.php:36
+#: admin.php:32
+#, fuzzy
 msgid "Switching..."
-msgstr "Chargement ..."
+msgstr "Chargement..."
 
 #: elementConfigDialog.php:47
 msgid "Table Columns:"
@@ -1721,11 +2258,13 @@ msgstr "Hauteur de cible :"
 msgid "Target Width:"
 msgstr "Largeur cible :"
 
-#: settings.php:373 settings.php:369
+#: settings.php:373
+#: settings.php:369
 msgid "Tax Rate:"
 msgstr "Taux d'imposition :"
 
-#: test.php:27 test.php:29
+#: test.php:27
+#: test.php:29
 msgid "Test Installation"
 msgstr "Essai d'installation"
 
@@ -1739,235 +2278,278 @@ msgstr "Boîte de texte"
 
 #: create.php:34
 msgid "The email or site name you provided is already used in the system"
-msgstr ""
-"Le nom du site ou l'adresse email que vous avez fourni est déjà utilisé dans "
-"le système"
+msgstr "Le nom du site ou l'adresse email que vous avez fourni est déjà utilisé dans le système"
 
 #: create.php:37
 msgid "The email you provided is already used in the system"
 msgstr "L'adresse email que vous avez fourni est déjà utilisé dans le système"
 
-#: files.php:34 files.php:30
+#: files.php:34
+#: files.php:30
 msgid "The extensions must match when editing an existing file"
-msgstr ""
-"Les extensions doivent correspondre lorsque vous modifiez un fichier existant"
+msgstr "Les extensions doivent correspondre lorsque vous modifiez un fichier existant"
 
-#: files.php:37 files.php:33
+#: files.php:37
+#: files.php:33
 msgid "The file was removed successfully"
 msgstr "Le fichier a été supprimé avec succès"
 
-#: menus.php:34 menus.php:30
+#: menus.php:34
+#: menus.php:30
 msgid "The menu item was added successfully"
 msgstr "Le menu a été ajouté avec succès"
 
-#: menus.php:38 menus.php:34
+#: menus.php:38
+#: menus.php:34
 msgid "The menu item was removed successfully"
 msgstr "Le menu a été supprimé avec succès"
 
-#: menus.php:36 menus.php:32
+#: menus.php:36
+#: menus.php:32
 msgid "The menu item was updated successfully"
 msgstr "Le menu a été mis à jour avec succès"
 
-#: menus.php:39 menus.php:35
+#: menus.php:39
+#: menus.php:35
 msgid "The menu type was added successfully"
 msgstr "Le type de menu a été ajouté avec succès"
 
-#: menus.php:40 menus.php:36
+#: menus.php:40
+#: menus.php:36
 msgid "The menu type was removed successfully"
 msgstr "Le type de menu a été supprimé avec succès"
 
-#: settings.php:36 settings.php:32
+#: settings.php:36
+#: settings.php:32
 msgid "The name and content are required"
 msgstr "Le nom et le contenu sont nécessaires"
 
-#: menus.php:37 menus.php:33
+#: menus.php:37
+#: menus.php:33
 msgid "The order was updated successfully"
 msgstr "L'ordre a été mis à jour avec succès"
 
-#: pages.php:49 pages.php:44
+#: pages.php:49
+#: pages.php:44
 msgid "The page was published successfully"
 msgstr "La page a été publié avec succès"
 
-#: pages.php:48 pages.php:43
+#: pages.php:48
+#: pages.php:43
 msgid "The page was un-published successfully"
 msgstr "La page a été retiré avec succès"
 
-#: create.php:36 create.php:33
+#: create.php:36
+#: create.php:33
 msgid "The passcode is invalid"
 msgstr "Le passe code est invalide"
 
-#: create.php:33 create.php:30
+#: create.php:33
+#: create.php:30
 msgid "The password and retype fields must match"
 msgstr "Les deux mot de passe doivent correspondre."
 
-#: forgot.php:35 forgot.php:32
+#: forgot.php:35
+#: forgot.php:32
 msgid "The password and retype must match"
 msgstr "Les deux mot de passe doivent correspondre."
 
-#: profile.php:36 users.php:34 profile.php:32 users.php:32
+#: profile.php:36
+#: users.php:34
+#: profile.php:32
+#: users.php:32
 msgid "The password must match the retype field"
 msgstr "Les deux mot de passe doivent correspondre."
 
 #: menu.php:33
 msgid "Theme"
-msgstr "Theme"
+msgstr "Thème"
 
-#: theme.php:36 theme.php:32
+#: theme.php:36
+#: theme.php:32
 msgid "Theme successfully applied"
-msgstr "Theme appliqué avec succés"
+msgstr "Thème appliqué avec succés"
 
-#: theme.php:34 theme.php:30
+#: theme.php:34
+#: theme.php:30
 msgid "Theme successfully reset"
-msgstr "Theme supprimé avec succés"
+msgstr "Thème supprimé avec succés"
 
-#: theme.php:14 theme.php:44 theme.php:40
+#: theme.php:14
+#: theme.php:44
+#: theme.php:40
 msgid "Themes"
-msgstr "Themes"
+msgstr "Thèmes"
 
-#: layout.php:39 layout.php:35
+#: layout.php:39
+#: layout.php:35
 msgid "There was a problem adding the layout, please try again"
-msgstr ""
-"Erreur lors de l'ajout de la mise en page, veuillez re-essayer a nouveau"
+msgstr "Erreur lors de l'ajout de la mise en page, veuillez re-essayer a nouveau"
 
-#: account.php:37 account.php:35
+#: account.php:37
+#: account.php:35
 msgid "There was a problem changing the plan"
 msgstr "Erreur lors du changement de plan"
 
-#: settings.php:39 settings.php:35
+#: settings.php:39
+#: settings.php:35
 msgid "There was a problem generating the file, please try again"
 msgstr "Erreur lors de la génération du fichier"
 
-#: account.php:48 account.php:46
+#: account.php:48
+#: account.php:46
 msgid "There was a problem paying for the subscription"
 msgstr "Erreur lors du paiement de l'abonnement"
 
-#: pages.php:50 pages.php:45
+#: pages.php:50
+#: pages.php:45
 msgid "There was a problem publishing/un-publishing the page"
-msgstr ""
-"Erreur lors de la publication, mise en brouillon ou suppression de la page"
+msgstr "Erreur lors de la publication, mise en brouillon ou suppression de la page"
 
-#: pages.php:55 pages.php:50
+#: pages.php:55
+#: pages.php:50
 msgid "There was a problem removing the category"
 msgstr "Erreur lors de la suppression de la catégorie"
 
-#: layout.php:41 layout.php:37
+#: layout.php:41
+#: layout.php:37
 msgid "There was a problem removing the layout, please try again"
 msgstr "Erreur lors de la suppression de la mise en page"
 
-#: pages.php:39 pages.php:34
+#: pages.php:39
+#: pages.php:34
 msgid "There was a problem removing the page"
 msgstr "Erreur lors de la suppression de la page"
 
-#: pages.php:47 pages.php:42
+#: pages.php:47
+#: pages.php:42
 msgid "There was a problem removing the page type"
 msgstr "Erreur lors de la suppression du type de page"
 
-#: scripts.php:43 scripts.php:39
+#: scripts.php:43
+#: scripts.php:39
 msgid "There was a problem removing the script file, please try again"
 msgstr "Erreur lors de la suppression du script"
 
-#: snippets.php:43 snippets.php:39
+#: snippets.php:43
+#: snippets.php:39
 msgid "There was a problem removing the snippet file, please try again"
 msgstr "Erreur lors de la suppression du snippet"
 
-#: styles.php:43 styles.php:39
+#: styles.php:43
+#: styles.php:39
 msgid "There was a problem removing the stylesheet, please try again"
 msgstr "Erreur lors de la suppression de la feuille de style "
 
-#: content.php:45 content.php:40
+#: content.php:45
+#: content.php:40
 msgid "There was a problem saving content, please try again"
 msgstr "Erreur lors de la sauvegarde du contenue"
 
-#: content.php:51 content.php:46
+#: content.php:51
+#: content.php:46
 msgid "There was a problem saving settings, please try again"
 msgstr "Erreur lors de la sauvegarde des configurations"
 
-#: content.php:48 content.php:43
+#: content.php:48
+#: content.php:43
 msgid "There was a problem saving the draft, please try again"
 msgstr "Erreur lors de la sauvegarde du brouillon"
 
-#: layout.php:36 layout.php:32
+#: layout.php:36
+#: layout.php:32
 msgid "There was a problem saving the layout, please try again"
 msgstr "Erreur lors de la sauvegarde de la mise en page"
 
-#: scripts.php:36 scripts.php:32
+#: scripts.php:36
+#: scripts.php:32
 msgid "There was a problem saving the script file, please try again"
 msgstr "Erreur lors de la sauvegarde du script"
 
-#: profile.php:34 settings.php:35 settings.php:31
+#: profile.php:34
+#: settings.php:35
+#: settings.php:31
 msgid "There was a problem saving the settings, please try again"
 msgstr "Erreur lors de la sauvegarde de la configutation"
 
-#: snippets.php:36 snippets.php:32
+#: snippets.php:36
+#: snippets.php:32
 msgid "There was a problem saving the snippet file, please try again"
 msgstr "Erreur lors de la sauvegarde du snippet"
 
-#: styles.php:36 styles.php:32
+#: styles.php:36
+#: styles.php:32
 msgid "There was a problem saving the style file, please try again"
 msgstr "Erreur lors de la sauvegarde du style"
 
-#: account.php:44 account.php:42
+#: account.php:44
+#: account.php:42
 msgid "There was a problem updating the card"
 msgstr "Erreur lors de la mise à jour de la carte"
 
-#: theme.php:82 theme.php:78
-msgid ""
-"This will completely change the look and feel of your site and remove any "
-"custom changes you made to the layout and styles of the site."
-msgstr ""
-"Change le look de votre site en supprimant toutes les modifications "
-"personnalisées apportées à la mise en page et au styles du site."
+#: theme.php:82
+#: theme.php:78
+msgid "This will completely change the look and feel of your site and remove any custom changes you made to the layout and styles of the site."
+msgstr "Change le look de votre site en supprimant toutes les modifications personnalisées apportées à la mise en page et au styles du site."
 
-#: files.php:104 files.php:100
+#: files.php:104
+#: files.php:100
 msgid "This will completely remove it from the system."
-msgstr "Supprime l'élément du systeme."
+msgstr "Supprime l'élément du système."
 
-#: theme.php:121 theme.php:117
-msgid ""
-"This will override any custom changes you made to the Layout or Styles for "
-"the site."
+#: theme.php:121
+#: theme.php:117
+msgid "This will override any custom changes you made to the Layout or Styles for the site."
 msgstr "Remplace les modifications personnalisées apportées au site."
 
 #: listDialog.php:31
 msgid "Thumbnails"
 msgstr "Vignettes"
 
-#: settings.php:97 settings.php:93
+#: settings.php:97
+#: settings.php:93
 msgid "Time Zone:"
 msgstr "Fuseau horaire :"
 
-#: admin.php:110 create.php:85 admin.php:106 create.php:88
+#: admin.php:110
+#: create.php:85
+#: admin.php:106
+#: create.php:88
 msgid "Timezone:"
 msgstr "Fuseau horaire :"
 
-#: plans.php:65 plans.php:61
+#: plans.php:65
+#: plans.php:61
 msgid "Trial"
 msgstr "Version d'évalutation"
 
-#: plans.php:134 plans.php:130
+#: plans.php:134
+#: plans.php:130
 msgid "Trial Days:"
-msgstr "Jour d'évalutation :"
+msgstr "Jours d'évalutation :"
 
-#: admin.php:64 admin.php:60
+#: admin.php:64
+#: admin.php:60
 msgid "Type"
 msgstr "Type"
 
-#: forgot.php:46 forgot.php:44
-msgid ""
-"Type your email address and we will send you a link to reset your password."
-msgstr ""
-"Tapez votre adresse email et nous vous enverrons un lien pour réinitialiser "
-"votre mot de passe."
+#: forgot.php:46
+#: forgot.php:44
+msgid "Type your email address and we will send you a link to reset your password."
+msgstr "Tapez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
 
-#: account.php:72 account.php:70
+#: account.php:72
+#: account.php:70
 msgid "Type:"
 msgstr "Type :"
 
-#: admin.php:63 admin.php:59
+#: admin.php:63
+#: admin.php:59
 msgid "URL"
 msgstr "URL"
 
-#: pageSettingsDialog.php:27 pageSettingsDialog.php:37
+#: pageSettingsDialog.php:27
+#: pageSettingsDialog.php:37
 msgid "URL:"
 msgstr "URL :"
 
@@ -1975,47 +2557,69 @@ msgstr "URL :"
 msgid "Underline Text (select text first)"
 msgstr "Souligner le texte (surligner le texte en premier)"
 
-#: account.php:91 account.php:132 account.php:145 account.php:89
-#: account.php:130 account.php:143
+#: account.php:91
+#: account.php:132
+#: account.php:145
+#: account.php:89
+#: account.php:130
+#: account.php:143
 msgid "Unsubscribe"
 msgstr "Se désabonner"
 
-#: account.php:32 account.php:30
+#: account.php:32
+#: account.php:30
 msgid "Unsubscribing..."
 msgstr "Chargement ..."
 
-#: blockConfigDialog.php:30 configPluginsDialog.php:20
-#: elementConfigDialog.php:57 pageSettingsDialog.php:83
-#: blockConfigDialog.php:48 pageSettingsDialog.php:143
+#: blockConfigDialog.php:30
+#: configPluginsDialog.php:20
+#: elementConfigDialog.php:57
+#: pageSettingsDialog.php:83
+#: blockConfigDialog.php:48
+#: pageSettingsDialog.php:143
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: listDialog.php:13 listDialog.php:76 listDialog.php:79
+#: listDialog.php:13
+#: listDialog.php:76
+#: listDialog.php:79
 msgid "Update List"
 msgstr "Mettre à jour la liste"
 
-#: branding.php:50 branding.php:45
+#: branding.php:50
+#: branding.php:45
 msgid "Update Logo"
 msgstr "Mettre à jour le logo"
 
-#: menus.php:119 menus.php:180 menus.php:115 menus.php:176
+#: menus.php:119
+#: menus.php:180
+#: menus.php:115
+#: menus.php:176
 msgid "Update Menu Item"
 msgstr "Mettre à jour l'élément du menu"
 
-#: pages.php:274 pages.php:273
+#: pages.php:274
+#: pages.php:273
 msgid "Update Page Type"
 msgstr "Mettre à jour le type de page"
 
-#: account.php:213 account.php:274 account.php:211 account.php:272
+#: account.php:213
+#: account.php:274
+#: account.php:211
+#: account.php:272
 #: account.php:9
 msgid "Update Payment"
 msgstr "Mettre à jour le paiement"
 
-#: profile.php:55 users.php:58
+#: profile.php:55
+#: users.php:58
 msgid "Update Photo"
 msgstr "Mettre à jour la photo"
 
-#: plans.php:96 plans.php:143 plans.php:92 plans.php:139
+#: plans.php:96
+#: plans.php:143
+#: plans.php:92
+#: plans.php:139
 msgid "Update Plan"
 msgstr "Mettre à jour le plan"
 
@@ -2023,75 +2627,111 @@ msgstr "Mettre à jour le plan"
 msgid "Update SKU"
 msgstr "Mettre à jour le UGS"
 
-#: account.php:36 account.php:34
+#: account.php:36
+#: account.php:34
 msgid "Update Successful"
 msgstr "Mise a jour avec succès"
 
-#: pages.php:317 pages.php:316
+#: pages.php:317
+#: pages.php:316
 msgid "Update Type"
 msgstr "Mettre à jour le type"
 
-#: users.php:85 users.php:142 profile.php:89 profile.php:138 users.php:86
+#: users.php:85
+#: users.php:142
+#: profile.php:89
+#: profile.php:138
+#: users.php:86
 #: users.php:143
 msgid "Update User"
 msgstr "Mettre à jour l'utilisateur"
 
-#: account.php:221 account.php:219
-msgid ""
-"Update the expiration date for your card. If you want to add a new card, "
-"click the New Card button."
-msgstr ""
-"Mettre à jour la date d'expiration de votre carte. Si vous souhaitez ajouter "
-"une nouvelle carte, cliquez sur le bouton Nouvelle carte."
+#: account.php:221
+#: account.php:219
+msgid "Update the expiration date for your card. If you want to add a new card, click the New Card button."
+msgstr "Mettre à jour la date d'expiration de votre carte. Si vous souhaitez ajouter une nouvelle carte, cliquez sur le bouton Nouvelle carte."
 
-#: settings.php:55 settings.php:51
-msgid ""
-"Updates to settings will not be reflected until the site is re-published."
-msgstr ""
-"La mises à jour des paramètres ne sera prises en compte que quand le site "
-"sera re-publié."
+#: settings.php:55
+#: settings.php:51
+msgid "Updates to settings will not be reflected until the site is re-published."
+msgstr "La mises à jour des paramètres ne sera prises en compte que quand le site sera re-publié."
 
-#: menus.php:71 menus.php:67
-msgid ""
-"Updates to the menu will not be reflected until the site is re-published.."
-msgstr ""
-"La mises à jour du menu ne sera prises en compte que quand le site sera re-"
-"publié."
+#: menus.php:71
+#: menus.php:67
+msgid "Updates to the menu will not be reflected until the site is re-published.."
+msgstr "La mises à jour du menu ne sera prises en compte que quand le site sera re-publié."
 
-#: pageSettingsDialog.php:7 account.php:35 account.php:39 branding.php:34
-#: branding.php:36 layout.php:34 menus.php:35 pages.php:43 plans.php:36
-#: profile.php:32 scripts.php:34 settings.php:33 snippets.php:34 styles.php:34
-#: users.php:37 account.php:33 account.php:37 branding.php:29 branding.php:31
-#: layout.php:30 menus.php:31 pages.php:38 plans.php:32 profile.php:35
-#: scripts.php:30 settings.php:29 snippets.php:30 styles.php:30 users.php:35
+#: pageSettingsDialog.php:7
+#: account.php:35
+#: account.php:39
+#: branding.php:34
+#: branding.php:36
+#: layout.php:34
+#: menus.php:35
+#: pages.php:43
+#: plans.php:36
+#: profile.php:32
+#: scripts.php:34
+#: settings.php:33
+#: snippets.php:34
+#: styles.php:34
+#: users.php:37
+#: account.php:33
+#: account.php:37
+#: branding.php:29
+#: branding.php:31
+#: layout.php:30
+#: menus.php:31
+#: pages.php:38
+#: plans.php:32
+#: profile.php:35
+#: scripts.php:30
+#: settings.php:29
+#: snippets.php:30
+#: styles.php:30
+#: users.php:35
 msgid "Updating..."
 msgstr "Chargement ..."
 
-#: menus.php:139 menus.php:135
+#: menus.php:139
+#: menus.php:135
 msgid "Url:"
 msgstr "URL :"
 
-#: users.php:36 profile.php:34 users.php:34
+#: users.php:36
+#: profile.php:34
+#: users.php:34
 msgid "User successfully added"
 msgstr "Utilisateur ajouté avec succès"
 
-#: users.php:40 profile.php:38 users.php:38
+#: users.php:40
+#: profile.php:38
+#: users.php:38
 msgid "User successfully removed"
 msgstr "Utilisateur supprimé avec succès"
 
-#: users.php:38 profile.php:36 users.php:36
+#: users.php:38
+#: profile.php:36
+#: users.php:36
 msgid "User successfully updated"
 msgstr "Utilisateur mis à jour avec succès"
 
-#: users.php:14 users.php:48 users.php:46 menu.php:38
+#: users.php:14
+#: users.php:48
+#: users.php:46
+#: menu.php:38
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: account.php:38 account.php:45 account.php:36 account.php:43
+#: account.php:38
+#: account.php:45
+#: account.php:36
+#: account.php:43
 msgid "Validating..."
-msgstr "Chargement ..."
+msgstr "Validation..."
 
-#: settings.php:38 settings.php:34
+#: settings.php:38
+#: settings.php:34
 msgid "Verification file successfully generated"
 msgstr "Dossier de vérification généré avec succès"
 
@@ -2103,15 +2743,18 @@ msgstr "Voir l'apercu de la page en direct"
 msgid "View Site"
 msgstr "Voir le site"
 
-#: forgot.php:34 forgot.php:31
+#: forgot.php:34
+#: forgot.php:31
 msgid "We could not find your email in the system"
 msgstr "Nous n'avons pas pu trouver votre email dans le système"
 
-#: plans.php:120 plans.php:116
+#: plans.php:120
+#: plans.php:116
 msgid "Week"
 msgstr "Semaine"
 
-#: settings.php:362 settings.php:358
+#: settings.php:362
+#: settings.php:358
 msgid "Weight Unit:"
 msgstr "Poids unitaire :"
 
@@ -2119,32 +2762,33 @@ msgstr "Poids unitaire :"
 msgid "Weight:"
 msgstr "Poids :"
 
-#: forgot.php:66 forgot.php:61
+#: forgot.php:66
+#: forgot.php:61
 msgid "Welcome back. Type a new password for your account."
 msgstr "Bienvenue à nouveau. Tapez un nouveau mot de passe pour votre compte."
 
-#: plans.php:122 plans.php:118
+#: plans.php:122
+#: plans.php:118
 msgid "Year"
 msgstr "Année"
 
-#: fieldDialog.php:35 listDialog.php:65 listDialog.php:68
+#: fieldDialog.php:35
+#: listDialog.php:65
+#: listDialog.php:68
 msgid "Yes"
 msgstr "Oui"
 
-#: create.php:209 create.php:210
+#: create.php:209
+#: create.php:210
 msgid "You can already view your site here:"
 msgstr "Vous pouvez déjà afficher votre site ici :"
 
 #: undefined.php:38
-msgid ""
-"You have reached this page because of an error in your configuration.  "
-"Please review your configuration. To review installation instructions, visit:"
-msgstr ""
-"Vous avez atteint cette page en raison d'une erreur dans votre "
-"configuration. S'il vous plaît vérifier votre configuration. Pour consulter "
-"les instructions d'installation, visiter :"
+msgid "You have reached this page because of an error in your configuration.  Please review your configuration. To review installation instructions, visit:"
+msgstr "Vous avez atteint cette page en raison d'une erreur dans votre configuration. S'il vous plaît vérifier votre configuration. Pour consulter les instructions d'installation, visiter :"
 
-#: account.php:33 account.php:31
+#: account.php:33
+#: account.php:31
 msgid "You have successfully unsubscribed"
 msgstr "Vous avez était désabonné avec succès"
 
@@ -2165,12 +2809,8 @@ msgid "You must select a type of list"
 msgstr "Vous devez sélectionner un type de liste"
 
 #: account.php:56
-msgid ""
-"Your plan has expired. Please update your method of payment to avoid "
-"disruption of service."
-msgstr ""
-"Votre plan a expiré. S'il vous plaît veuillez mettre à jour votre méthode de "
-"paiement pour éviter les interruptions de service."
+msgid "Your plan has expired. Please update your method of payment to avoid disruption of service."
+msgstr "Votre plan a expiré. S'il vous plaît veuillez mettre à jour votre méthode de paiement pour éviter les interruptions de service."
 
 #: account.php:33
 #, php-format
@@ -2179,38 +2819,40 @@ msgstr "Votre plan sera renouvelé automatiquement dans %s jours."
 
 #: account.php:64
 msgid "Your subscription has ended. View your account to re-subscribe."
-msgstr ""
-"Votre abonnement a pris fin. Accéder à votre compte pour vous ré-abonner."
+msgstr "Votre abonnement a pris fin. Accéder à votre compte pour vous ré-abonner."
 
-#: account.php:41 account.php:48
+#: account.php:41
+#: account.php:48
 #, php-format
 msgid "Your trial will expire in %s days."
 msgstr "Votre essai expirera dans %s jours."
 
-#: pages.php:128 pages.php:123
+#: pages.php:128
+#: pages.php:123
 msgid "by"
 msgstr "par"
 
-#: plans.php:114 plans.php:110
+#: plans.php:114
+#: plans.php:110
 msgid "e.g. 2500 = $25.00"
 msgstr "ex : 2500 = 25.00€"
 
-#: settings.php:84 settings.php:80
-msgid ""
-"e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
-msgstr ""
-"ex : votredomaine.com, sousdomaine.votredomaine.com ( Veuillez ne pas "
-"ajouter www, http:// ou finir par / )"
+#: settings.php:84
+#: settings.php:80
+msgid "e.g. domain.com, sub.domain.com (leave off www, http://, and trailing /)"
+msgstr "ex : votredomaine.com, sousdomaine.votredomaine.com ( Veuillez ne pas ajouter www, http:// ou finir par / )"
 
 #: fieldDialog.php:49
 msgid "e.g.: (314) 444-2343"
 msgstr "ex : (+33)5 00 00 00 00"
 
-#: pages.php:283 pages.php:282
+#: pages.php:283
+#: pages.php:282
 msgid "e.g.: Page, Blog, Product, etc."
 msgstr "ex : Image, Page, Produit, etc."
 
-#: pages.php:289 pages.php:288
+#: pages.php:289
+#: pages.php:288
 msgid "e.g.: Pages, Blogs, Products, etc."
 msgstr "ex : Images, Pages, Produits, etc."
 
@@ -2218,14 +2860,17 @@ msgstr "ex : Images, Pages, Produits, etc."
 msgid "e.g.: Phone Number, Name, etc."
 msgstr "ex : Numéros de téléphone, Nom, etc."
 
-#: test.php:55 test.php:57
+#: test.php:55
+#: test.php:57
 msgid "failure"
-msgstr "Echec"
+msgstr "échec"
 
 #: skuDialog.php:42
 msgid "optional"
-msgstr "Facultatif"
+msgstr "facultatif"
 
-#: test.php:55 test.php:57
+#: test.php:55
+#: test.php:57
 msgid "success"
-msgstr "Succès"
+msgstr "succès"
+
