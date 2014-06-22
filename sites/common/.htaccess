@@ -2,6 +2,8 @@ Options -Multiviews
 Options -Indexes
 Options +FollowSymLinks
 
+RewriteEngine on 
+
 # Some installations (e.g. Godaddy) require RewriteBase for domains
 # RewriteBase /
 
