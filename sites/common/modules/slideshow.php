@@ -6,6 +6,15 @@
 ?>
 
 <div id="<?php print $id; ?>" class="carousel slide">
+        <ol class="carousel-indicators">
+                <?php
+                        if($imgHtml){
+                                foreach($imgHtml->find('img') as $index=>$img) {
+                                        print '<li data-target="#'.$id.'" data-slide-to="'.$index.'" '.($index==0 ? 'class="active"' : '').'></li>';
+                                }
+                        }
+                ?>
+        </ol>
 	<div class="carousel-inner">
 		<?php 
 			if($imgHtml){
@@ -15,7 +24,7 @@
 				<img class="sliderImage" src="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>">
 				<?php if(empty($img->title)==false){?>
 				<div class="carousel-caption">
-                  <p><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
+                  <p style="margin-bottom: 0px;"><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
                 </div>
 				<?php } ?>
 			</div>
