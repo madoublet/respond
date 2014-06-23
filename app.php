@@ -16,7 +16,7 @@
 	
 	// advanced configurations
 	define('IMAGE_AUTO_RESIZE', true);
-	define('IMAGE_MAX_WIDTH', 1024);
+	define('IMAGE_MAX_WIDTH', 1140);
 	define('IMAGE_MAX_HEIGHT', 768);
 	
 	// thumb width and height
