@@ -176,11 +176,11 @@ class PageBlogResource extends Tonic\Resource {
         	$language = $request['language'];
 		}
 
-        if($orderBy=='Created'){ // need to check these to prevent SQL injections
-            $orderBy = 'Pages.Created DESC';
+        if($orderBy=='Created' or $orderBy=='BeginDate'){// need to check these to prevent SQL injections
+            $orderBy = $orderBy.' DESC';
         }
         else{
-            $orderBy = 'Pages.Name ASC';
+            $orderBy = $orderBy.' ASC';
         }
 
         if($pageSize==''){
