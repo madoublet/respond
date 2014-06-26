@@ -317,7 +317,7 @@ class Utilities
             $rss = $rss.'<item>'.
                    '<title>'.$row['Name'].'</title>'.
                    '<description><![CDATA['.$row['Description'].']]></description>'.
-                   '<link>http://'.$site['Domain'].'/'.strtolower($pageType['FriendlyId']).'/'.strtolower($row['FriendlyId']).'.html</link>'.
+                   '<link>http://'.$site['Domain'].'/'.strtolower($pageType['FriendlyId']).'/'.strtolower($row['FriendlyId']).'</link>'.
                    '<pubDate>'.date('D, d M Y H:i:s T', $u).'</pubDate>'.
                    '</item>';
         }
