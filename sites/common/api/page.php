@@ -176,11 +176,11 @@ class PageBlogResource extends Tonic\Resource {
         	$language = $request['language'];
 		}
 
-        if($orderBy=='Created'){ // need to check these to prevent SQL injections
-            $orderBy = 'Pages.Created DESC';
+        if($orderBy=='Created' or $orderBy=='BeginDate'){// need to check these to prevent SQL injections
+            $orderBy = $orderBy.' DESC';
         }
         else{
-            $orderBy = 'Pages.Name ASC';
+            $orderBy = $orderBy.' ASC';
         }
 
         if($pageSize==''){
@@ -233,11 +233,20 @@ class PageBlogResource extends Tonic\Resource {
             
             $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
+			$local = new DateTimeZone($site['TimeZone']);
             // create a readable date
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
-            $local = new DateTimeZone($site['TimeZone']);
 			$date->setTimezone($local);
 			$readable = $date->format('D, M d y h:i a');
+			
+			// create a readable event date
+			$readableEventBeginDate = $readable;
+			$eventBeginDate = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
+			if(eventBeginDate!=null)
+			{
+				$eventBeginDate->setTimezone($local);
+				$readableEventBeginDate = $eventBeginDate->format('D, M d y h:i a');
+			}
 			
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
@@ -249,6 +258,7 @@ class PageBlogResource extends Tonic\Resource {
                     'Thumb' => $thumbUrl,
                     'LastModified' => $page['LastModifiedDate'],
                     'LastModifiedReadable' => $readable,
+					'BeginDateReadable' => $readableEventBeginDate,
                     'Author' => $name,
                     'HasPhoto' => $hasPhoto,
                     'Photo' => $photo
