@@ -233,11 +233,16 @@ class PageBlogResource extends Tonic\Resource {
             
             $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
+			$local = new DateTimeZone($site['TimeZone']);
             // create a readable date
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
-            $local = new DateTimeZone($site['TimeZone']);
 			$date->setTimezone($local);
 			$readable = $date->format('D, M d y h:i a');
+			
+			// create a readable event date
+			$eventBeginDate = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
+			$eventBeginDate->setTimezone($local);
+			$readableEventBeginDate = $eventBeginDate->format('D, M d y h:i a');
 			
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
@@ -249,6 +254,7 @@ class PageBlogResource extends Tonic\Resource {
                     'Thumb' => $thumbUrl,
                     'LastModified' => $page['LastModifiedDate'],
                     'LastModifiedReadable' => $readable,
+					'BeginDateReadable' => $readableEventBeginDate,
                     'Author' => $name,
                     'HasPhoto' => $hasPhoto,
                     'Photo' => $photo
