@@ -498,10 +498,13 @@ class Utilities
 		
         // create a friendly event date
         $eventBeginDate = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
-		$eventBeginDate->setTimezone($local);
-		$readable = $eventBeginDate->format('D, M d y h:i a');
-		
-		$content = str_replace('{{event-begin-date}}', $readable, $content);		
+		if($eventBeginDate!=null)
+		{
+			$eventBeginDate->setTimezone($local);
+			$readable = $eventBeginDate->format('D, M d y h:i a');
+			
+			$content = str_replace('{{event-begin-date}}', $readable, $content);		
+		}
 		
 		// get the author
 		$user = User::GetByUserId($page['LastModifiedBy']);

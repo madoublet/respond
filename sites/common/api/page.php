@@ -240,9 +240,13 @@ class PageBlogResource extends Tonic\Resource {
 			$readable = $date->format('D, M d y h:i a');
 			
 			// create a readable event date
+			$readableEventBeginDate = $readable;
 			$eventBeginDate = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
-			$eventBeginDate->setTimezone($local);
-			$readableEventBeginDate = $eventBeginDate->format('D, M d y h:i a');
+			if(eventBeginDate!=null)
+			{
+				$eventBeginDate->setTimezone($local);
+				$readableEventBeginDate = $eventBeginDate->format('D, M d y h:i a');
+			}
 			
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],

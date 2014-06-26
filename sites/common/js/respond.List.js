@@ -197,6 +197,7 @@ respond.List.Update = function(params){
                         'content': content,
                         'url': data[x].Url,
                         'lastModifiedReadable': data[x].LastModifiedReadable,
+						'beginDateReadable': data[x].BeginDateReadable,
                         'lastModified': data[x].LastModified,
                         'author': data[x].Author,
                         'hasPhoto': data[x].HasPhoto,
