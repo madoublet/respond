@@ -16,6 +16,7 @@
 	require_once 'checkCaptcha.php';
 	require_once 'transaction.php';
 	require_once 'menu.php';
+	require_once 'rss.php';
         
     // set REQUEST_URI as the default $uri
     $uri = $_SERVER['REQUEST_URI'];
