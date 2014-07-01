@@ -513,7 +513,7 @@ class PageUnPublishResource extends Tonic\Resource {
 
             if($page['PageTypeId']!=-1){
                 $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
-                $filename .= strtolower($pageType['FriendlyId']).'/';
+                $filename .= $pageType['FriendlyId'].'/';
             }
 
             $filename = $filename.$page['FriendlyId'].'.php';
@@ -573,7 +573,7 @@ class PageListAll extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                 }
 
                 $row['Url'] = $url;
@@ -658,7 +658,7 @@ class PageListSortedResource extends Tonic\Resource {
             if($friendlyId!='root'){ // get pagetype
                 $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
                 $pageTypeId = $pageType['PageTypeId'];
-                $dir = strtolower($pageType['TypeS']).'/';
+                $dir = $pageType['FriendlyId'].'/';
             }
             
             // get site url
@@ -703,7 +703,7 @@ class PageListSortedResource extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                 }
 
                 $page['Url'] = $url;
@@ -767,7 +767,7 @@ class PageListFriendlyResource extends Tonic\Resource {
             if($friendlyId!='root'){ // get pagetype
                 $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
                 $pageTypeId = $pageType['PageTypeId'];
-                $dir = strtolower($pageType['TypeS']).'/';
+                $dir = $pageType['FriendlyId'].'/';
             }
             
             // get site url
@@ -807,7 +807,7 @@ class PageListFriendlyResource extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                 }
 
                 $page['Url'] = $url;
@@ -944,7 +944,7 @@ class PageListResource extends Tonic\Resource {
             }
 
 			// build URL
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
             
             $item = array(
                     'PageUniqId'  => $page['PageUniqId'],
@@ -1070,7 +1070,7 @@ class PageBlogResource extends Tonic\Resource {
             $imageUrl = '';
             $mImageUrl = '';
             
-            $url = 'http://'.$site['Domain'].'/'.strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = 'http://'.$site['Domain'].'/'.$pageType['FriendlyId'].'/'.$page['FriendlyId'];
             
             // create a readable date
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $page['LastModifiedDate']);
@@ -1249,7 +1249,7 @@ class PageCalendarResource extends Tonic\Resource {
 	            $photo = 'files/'.$row['PhotoUrl'];
             }
 
-            $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+            $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
             
             // create a readable begin date
             $begin = DateTime::createFromFormat('Y-m-d H:i:s', $page['BeginDate']);
