@@ -7,11 +7,12 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/page/documentation
 
-This is the dev branch for Respond 2.11 (June 2014)
+The current version is Respond 2.11
 
 New in 2.11:
 - UI tweaks
 - Improved on-boarding experience
+- Role based permissions
 
 Bug fixes:
 - TBD
@@ -22,8 +23,9 @@ Refactoring:
 How to update from 2.10:
 - Pull latest version
 - Re-publish your sites
+- Create Roles
 
-
+```
 CREATE TABLE IF NOT EXISTS `Roles` (
   `RoleId` int(11) NOT NULL AUTO_INCREMENT,
   `RoleUniqId` varchar(50) NOT NULL,	
@@ -40,5 +42,4 @@ CREATE TABLE IF NOT EXISTS `Roles` (
   
 ALTER TABLE `Roles`
   ADD CONSTRAINT `Roles_ibfk_1` FOREIGN KEY (`SiteId`) REFERENCES `Sites` (`SiteId`) ON DELETE CASCADE ON UPDATE CASCADE;
-  
-
+```
