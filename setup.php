@@ -50,6 +50,8 @@
 
 	// the brand of your app
     define('BRAND', 'Respond CMS');
+    define('BRAND_LOGO', 'images/respond-brand.png');
+    define('BRAND_ICON', 'images/respond-icon.png');
     define('COPY', '<a href="http://respondcms.com">Respond CMS</a> version '.VERSION.'.  Made by Matthew Smith in Manchester, MO');
 
 ?>

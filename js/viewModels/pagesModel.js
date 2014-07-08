@@ -2,6 +2,7 @@
 var pagesModel = {
 
 	hash: null,
+	canCreate: null,
 
 	url: ko.observable(''),
 	friendlyId: ko.observable('root'), // default is the root
@@ -49,6 +50,7 @@ var pagesModel = {
     	}
         
         pagesModel.hash = location.hash;
+        pagesModel.canCreate = $('#can-create').val();
         
         if(pagesModel.hash!=''){
         	pagesModel.hash = pagesModel.hash.substr(1);
@@ -111,7 +113,7 @@ var pagesModel = {
 		pagesModel.pagesLoading(true);
 
 		$.ajax({
-			url: 'api/pagetype/list/all',
+			url: 'api/pagetype/list/allowed',
 			type: 'GET',
 			data: {},
 			dataType: 'json',
@@ -119,6 +121,22 @@ var pagesModel = {
 
 				pagesModel.typeReserved = [];
 
+				// bool to toggle whether to load pages
+				var loadPages = true;
+
+				// find a default if there is not root or hash specified
+				if($('#root-item').length == 0 && pagesModel.hash==''){
+					
+					if(data.length > 0){
+						pagesModel.friendlyId(data[0]['FriendlyId']);
+					}
+					else{
+						loadPages = false; // do not load pages
+					}
+					
+				}
+				
+				// build model
 				for(x in data){
 				
 					// push page type reserved
@@ -138,8 +156,11 @@ var pagesModel = {
 
 				}
 
-				pagesModel.updatePages();
-				pagesModel.updateCategories();
+				// check to make sure there are pages ot load
+				if(loadPages){
+					pagesModel.updatePages();
+					pagesModel.updateCategories();
+				}
 				
 				global.setupFs();
 				
@@ -150,6 +171,7 @@ var pagesModel = {
 
 	// updates the pages
 	updatePages:function(){  // updates the page arr
+	
 		//if there is a current request, then cancel it
 		if(pagesModel.pagesLoading() && pagesModel.currentXhr){
 			pagesModel.currentXhr.abort();
@@ -166,6 +188,15 @@ var pagesModel = {
 	        data = {friendlyId: pagesModel.friendlyId(), sort: sort, categoryUniqId: pagesModel.categoryUniqId()};
         }
         
+        if(pagesModel.canCreate.indexOf(pagesModel.pageTypeUniqId())>-1 || pagesModel.canCreate == 'All'){
+			$('#add-page').show();
+			$('nav .fs-container').removeClass('full');
+		}
+		else{
+			$('#add-page').hide();
+			$('nav .fs-container').addClass('full');
+		}
+        
 		pagesModel.currentXhr = $.ajax({
 			url: 'api/page/list/sorted',
 			type: 'POST',
@@ -181,7 +212,7 @@ var pagesModel = {
 				
 					var page = Page.create(data[x]);
 					page.hasDraft = ko.observable(data[x]['HasDraft']);
-                    
+					
 					pagesModel.pages.push(page); // push an event to the model
 
 				}
@@ -273,7 +304,7 @@ var pagesModel = {
 		var typeP = curr.attr('data-typep');
 		var layout = curr.attr('data-layout');
 		var stylesheet = curr.attr('data-stylesheet');
-        
+		
         location.hash = friendlyId;
         
 		if(friendlyId=='root'){

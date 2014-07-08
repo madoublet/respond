@@ -173,7 +173,13 @@ var pageModel = {
         prettyPrint();
         
         // setup fancy box
-        $(el).find('.gallery-image').fancybox();
+        $(el).find('.gallery-image').fancybox({
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
     },
     
     // handles language controls

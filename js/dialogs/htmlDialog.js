@@ -23,7 +23,9 @@ var htmlDialog = {
 				desc = 'HTML block';
 			}
 			
-			code = global.replaceAll(code, '<', '&lt;');
+			// create pretty code for display
+			var prettyCode = global.replaceAll(code, '<', '&lt;');
+			prettyCode = global.replaceAll(prettyCode, '>', '&gt;');
 			
 			if(htmlDialog.mode=='add'){
 			
@@ -32,7 +34,7 @@ var htmlDialog = {
 						'<div class="title"><i class="fa fa-html5"></i>' + 
 						desc + 
 						'<i class="fa fa-angle-down"></i></div>' +
-						'<pre class="prettyprint linenums pre-scrollable">' + code + '</pre>' +
+						'<pre class="prettyprint linenums pre-scrollable">' + prettyCode + '</pre>' +
 						'<pre class="non-pretty">' + code + '</pre>' +
 						'</div>';
 				
@@ -78,8 +80,8 @@ var htmlDialog = {
 		if(mode=='edit'){
 			label = 'Update';
 			html = $('#'+id).find('.non-pretty').html();
-			html = global.replaceAll(html, '&lt;', '<');
-			html = global.replaceAll(html, '&gt;', '>');
+			//html = global.replaceAll(html, '&lt;', '<');
+			//html = global.replaceAll(html, '&gt;', '>');
 			
 		}
 		
@@ -94,7 +96,7 @@ var htmlDialog = {
 		}
 		
 		$('#HtmlDescription').val(desc);
-	
+		
 		$('#Html').val(html);
 		
 		$('#htmlDialog').modal('show');  // hide the dialog

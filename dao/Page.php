@@ -792,6 +792,8 @@ class Page{
 			return $page;
 		}
 		else{
+			$pageFriendlyId = $url;
+		
 			$page = Page::GetByFriendlyId($pageFriendlyId, -1, $siteId);
 			
 			return $page;

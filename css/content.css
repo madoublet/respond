@@ -1,5 +1,5 @@
 body{
-	background: #aaa;
+	background: #f0f0f0;
 }
 
 .inline-status{
@@ -491,4 +491,34 @@ div#selectLayout li em{
 	border-color: #ccc;
 	width: 100%;
 	height: 350px;
+}
+
+/* alternate buttons (live and preview) */
+.alternate{
+    border: 1px solid #ccc;
+    border-radius: 25px; 
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.alternate a{
+	display: inline-block;
+	margin: 0 !important;
+	padding: 0 10px;
+	height: 40px;
+	min-width: 70px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.alternate a:first-child{
+	border-right: 1px solid #ccc;
+	padding-left: 20px;
+}
+
+.alternate a:last-child{
+	padding-right: 20px;
 }

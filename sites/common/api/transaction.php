@@ -150,6 +150,8 @@ class TransactionPaypalResource extends Tonic\Resource {
 					// the sku is the last item less the type
 					$item_sku = str_replace('-'.$item_shipping_type, '', $request['item_number'.$x]);
 					$item_name = $request['item_name'.$x];
+					$item_sku = iconv("ISO-8859-1","UTF-8", $item_name);
+					$item_name = iconv("ISO-8859-1","UTF-8", $item_name);
 					
 					$item_quantity = $request['quantity'.$x];
 					$item_total = $request['mc_gross_'.$x];
@@ -160,7 +162,7 @@ class TransactionPaypalResource extends Tonic\Resource {
 	                    'Name'  => $item_name,
 	                    'ShippingType' => $item_shipping_type,
 	                    'Quantity' => $item_quantity,
-	                    'Price' => $item_total,
+	                    'Price' => $item_price,
 	                    'Total' => $item_total,
 	                );
 	                

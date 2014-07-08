@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.10.3');
+	define('VERSION', '2.11.3');
 
 	// debugging
 	define('DEBUG', true);
@@ -12,7 +12,7 @@
 	}
 	
 	// allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
-	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');
+	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip, mp4');
 	
 	// advanced configurations
 	define('IMAGE_AUTO_RESIZE', true);
@@ -46,29 +46,29 @@
 	define('FONT', 'http://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700|Inconsolata');
 	
 	// bootsrap css libraries
-	define('BOOTSTRAP_CSS', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
-	define('BOOTSTRAP_AMELIA_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/amelia/bootstrap.min.css');
-	define('BOOTSTRAP_CERULEAN_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css');
-	define('BOOTSTRAP_COSMO_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css');
-	define('BOOTSTRAP_CYBORG_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/cyborg/bootstrap.min.css');
-	define('BOOTSTRAP_FLATLY_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css');
-	define('BOOTSTRAP_JOURNAL_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/journal/bootstrap.min.css');
-	define('BOOTSTRAP_LUMEN_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/lumen/bootstrap.min.css');
-	define('BOOTSTRAP_READABLE_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css');
-	define('BOOTSTRAP_SIMPLEX_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/simplex/bootstrap.min.css');
-	define('BOOTSTRAP_SLATE_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css');
-	define('BOOTSTRAP_SPACELAB_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/spacelab/bootstrap.min.css');
-	define('BOOTSTRAP_SUPERHERO_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css');
-	define('BOOTSTRAP_UNITED_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css');
-	define('BOOTSTRAP_YETI_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/yeti/bootstrap.min.css');
-	define('BOOTSTRAP_DARKLY_CSS', '//netdna.bootstrapcdn.com/bootswatch/3.1.1/darkly/bootstrap.min.css');
+	define('BOOTSTRAP_CSS', '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
+	define('BOOTSTRAP_AMELIA_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css');
+	define('BOOTSTRAP_CERULEAN_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cerulean/bootstrap.min.css');
+	define('BOOTSTRAP_COSMO_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cosmo/bootstrap.min.css');
+	define('BOOTSTRAP_CYBORG_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cyborg/bootstrap.min.css');
+	define('BOOTSTRAP_DARKLY_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css');
+	define('BOOTSTRAP_FLATLY_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css');
+	define('BOOTSTRAP_JOURNAL_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/journal/bootstrap.min.css');
+	define('BOOTSTRAP_LUMEN_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/lumen/bootstrap.min.css');
+	define('BOOTSTRAP_READABLE_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/readable/bootstrap.min.css');
+	define('BOOTSTRAP_SIMPLEX_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/simplex/bootstrap.min.css');
+	define('BOOTSTRAP_SLATE_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css');
+	define('BOOTSTRAP_SPACELAB_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/spacelab/bootstrap.min.css');
+	define('BOOTSTRAP_SUPERHERO_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css');
+	define('BOOTSTRAP_UNITED_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css');
+	define('BOOTSTRAP_YETI_CSS', '//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css');
 	
 	// fancybox
 	define('FANCYBOX_CSS', '//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css');
 	
 	// js libraries
-	define('BOOTSTRAP_JS', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js');
-	define('FONTAWESOME_CSS', '//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css');
+	define('BOOTSTRAP_JS', '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js');
+	define('FONTAWESOME_CSS', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 	define('JQUERY_JS', '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
 	define('JQUERYUI_JS', '//code.jquery.com/ui/1.10.3/jquery-ui.js');
 	define('JQUERYUI_CSS', '//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css');
@@ -86,6 +86,7 @@
 	require_once 'dao/PageType.php';
 	require_once 'dao/MenuType.php';
 	require_once 'dao/Page.php';
+	require_once 'dao/Role.php';
 	require_once 'dao/MenuItem.php';
 	require_once 'dao/Category.php';
 	require_once 'dao/SearchIndex.php';

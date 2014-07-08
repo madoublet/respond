@@ -123,6 +123,8 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="h1 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H1</a>' +
 				'<a class="h2 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H2</a>' +
 				'<a class="h3 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H3</a>' +
+				'<a class="h4 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H4</a>' +
+				'<a class="h5 draggable" title="'+t('addHeadline')+'" data-target="'+id+'">H5</a>' +
 				'<a class="p draggable" title="'+t('addParagraph')+'" data-target="'+id+'">P</a>' +
 				'<a class="q fa fa-quote-left draggable" title="'+t('addquote')+'" data-target="'+id+'"></a>' +
 				'<a class="ul fa fa-list-ul draggable" title="'+t('addlist')+'" data-target="'+id+'"></a>' +
@@ -162,7 +164,6 @@ respond.Editor.BuildMenu = function(el){
                 '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
 				'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
 				'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-				'<a class="primary-action alt preview" title="'+t('preview')+'"><i class="fa fa-play-circle"></i></a>' +
 				'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
 				'</nav>';
 				
@@ -393,6 +394,56 @@ respond.Editor.ParseHTML = function(top){
 						'<div contentEditable="true">' + $(node).html() + '</div>' +
 						'</div>';
 			  	}
+			  	
+			  	// parse H4
+			  	if(node.nodeName=='H4'){
+			  		var id = $(node).attr('id');
+			  		if(id==undefined || id=='')id='h4-'+parseInt(new Date().getTime() / 1000);
+					cssclass = $(node).attr('class');
+					if(cssclass==undefined) cssclass='';
+					
+					var alignclass = '';
+					
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
+					}
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
+					}
+					else if(cssclass.indexOf('align-right')!=-1){
+						alignclass = ' text-right';
+					}
+			  
+			  		response+= '<div id="'+id+'" class="h4'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
+			  			respond.defaults.elementMenu +
+						'<div contentEditable="true">' + $(node).html() + '</div>' +
+						'</div>';
+			  	}
+			  	
+			  	// parse H5
+			  	if(node.nodeName=='H5'){
+			  		var id = $(node).attr('id');
+			  		if(id==undefined || id=='')id='h5-'+parseInt(new Date().getTime() / 1000);
+					cssclass = $(node).attr('class');
+					if(cssclass==undefined) cssclass='';
+					
+					var alignclass = '';
+					
+					if(cssclass.indexOf('text-left')!=-1){
+						alignclass = ' text-left';
+					}
+					else if(cssclass.indexOf('text-center')!=-1){
+						alignclass = ' text-center';
+					}
+					else if(cssclass.indexOf('align-right')!=-1){
+						alignclass = ' text-right';
+					}
+			  
+			  		response+= '<div id="'+id+'" class="h5'+alignclass+'" data-id="'+id+'" data-cssclass="'+cssclass+'">'+
+			  			respond.defaults.elementMenu +
+						'<div contentEditable="true">' + $(node).html() + '</div>' +
+						'</div>';
+			  	}
 	
 			  	// parse PRE
 			  	if(node.nodeName=='PRE'){
@@ -561,7 +612,7 @@ respond.Editor.ParseHTML = function(top){
 					  	for(var y=0; y<imgs.length; y++){
 							var caption = $(imgs[y]).attr('title');
 							imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-							response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" class="form-control"></span><a class="remove-image fa fa-minus-circle"></a></span>';
+							response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" ></span><a class="remove-image fa fa-minus-circle"></a></span>';
 					  	}
 					
 					  	response += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button></div></div>';
@@ -598,11 +649,17 @@ respond.Editor.ParseHTML = function(top){
 						var type = $(node).attr('type');
 						if(type==undefined || type=='')desc='html';
 						
+						var code = $(node).html();
+						
+						// create pretty code for display
+						var prettyCode = global.replaceAll(code, '<', '&lt;');
+						prettyCode = global.replaceAll(prettyCode, '>', '&gt;');
+						
 						response+= '<div id="'+id+'" class="html" data-id="'+id+'" data-cssclass="prettyprint linenums pre-scrollable"  data-desc="'+desc+'" data-type="'+type+'">'+
 							respond.defaults.elementMenuHtml +
 							'<div class="title"><i class="fa fa-html5"></i>'+desc+' <i class="fa fa-angle-down"></i></div>' +
-							'<pre class="prettyprint linenums pre-scrollable">' + $(node).html() + '</pre>' +
-							'<pre class="non-pretty">' + $(node).html() + '</pre>' +
+							'<pre class="prettyprint linenums pre-scrollable">' + prettyCode + '</pre>' +
+							'<pre class="non-pretty">' + code + '</pre>' +
 							'</div>';
 					}
 					
@@ -943,7 +1000,7 @@ respond.Editor.SetupMenuEvents = function(){
 		var alignclass = 'text-'+$(this).attr('data-align');
 		
 		if($('*:focus').length>0){
-			var el = $('*:focus').parents('div.p, div.h1, div.h2, div.h3');
+			var el = $('*:focus').parents('div.p, div.h1, div.h2, div.h3, div.h4, div.h5');
 			
 			var cssclass = el.attr('data-cssclass');
 			cssclass = global.replaceAll(cssclass, 'text-left', ''); // replace other alignments
@@ -1401,6 +1458,46 @@ respond.Editor.SetupMenuEvents = function(){
 		
 		respond.Editor.Append(editor, 
 		  '<div id="'+uniqId+'" class="h3" data-id="'+uniqId+'" data-cssclass="">'+
+			respond.defaults.elementMenu + 
+			'<div contentEditable="true"></div></div>'
+		);
+		
+		// setup paste filter
+		$('#'+uniqId+' [contentEditable=true]').paste();
+		
+		return true;
+	});
+	
+	// create H4
+	$('.editor-menu a.h4').on('click dragstop', function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'h4';
+		var prefix = 'h4';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		respond.Editor.Append(editor, 
+		  '<div id="'+uniqId+'" class="h4" data-id="'+uniqId+'" data-cssclass="">'+
+			respond.defaults.elementMenu + 
+			'<div contentEditable="true"></div></div>'
+		);
+		
+		// setup paste filter
+		$('#'+uniqId+' [contentEditable=true]').paste();
+		
+		return true;
+	});
+	
+	// create H5
+	$('.editor-menu a.h5').on('click dragstop', function(){
+		var editor = $('#'+$(this).attr('data-target'));
+		var className = 'h5';
+		var prefix = 'h5';
+		
+		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
+		
+		respond.Editor.Append(editor, 
+		  '<div id="'+uniqId+'" class="h5" data-id="'+uniqId+'" data-cssclass="">'+
 			respond.defaults.elementMenu + 
 			'<div contentEditable="true"></div></div>'
 		);
@@ -2334,7 +2431,7 @@ respond.Editor.GetContent = function(el){
 				if(type==undefined || type=='')type='html';
 	
 				var h = jQuery.trim($(divs[x]).find('pre.non-pretty').html());
-	
+				
 				newhtml += '<module id="'+id+'" name="html" desc="'+desc+'" type="'+type+'">' + h + '</module>';
 			}
 		
@@ -2451,6 +2548,32 @@ respond.Editor.GetContent = function(el){
 				newhtml += '<h3 id="'+id+'"';
 				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
 				newhtml += '>' + h + '</h3>';
+			}
+			
+			// generate H4
+			if($(divs[x]).hasClass('h4')){
+				var id = $(divs[x]).attr('data-id');
+				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				var cssclass = $(divs[x]).attr('data-cssclass');
+				if(cssclass==undefined || cssclass=='')cssclass = '';
+	
+				var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+				newhtml += '<h4 id="'+id+'"';
+				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+				newhtml += '>' + h + '</h3>';
+			}
+			
+			// generate H5
+			if($(divs[x]).hasClass('h5')){
+				var id = $(divs[x]).attr('data-id');
+				if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+				var cssclass = $(divs[x]).attr('data-cssclass');
+				if(cssclass==undefined || cssclass=='')cssclass = '';
+	
+				var h = jQuery.trim($(divs[x]).find('[contentEditable=true]').html());
+				newhtml += '<h5 id="'+id+'"';
+				if(cssclass!='')newhtml += ' class="'+cssclass+'"';
+				newhtml += '>' + h + '</h5>';
 			}
 	
 			// generate SYNTAX

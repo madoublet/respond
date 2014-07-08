@@ -22,7 +22,7 @@
 }
 
 section.main nav.editor-menu{
-    background: #E9E9E9;
+    background: #666;
     margin: 0;
     position: fixed !important;
     top: 0;
@@ -36,8 +36,8 @@ section.main nav.editor-menu{
 }
 
 	section.main nav.editor-menu .plugins{
-		background: url('../images/plug.png') no-repeat 11px 11px;
-		background-size: 17px 17px;
+		background: url('../images/plug.png') no-repeat 12px 11px;
+		background-size: 16px 16px;
 	}
 
 .editor-actions{
@@ -78,14 +78,10 @@ body section.main nav a.primary-action{
 		line-height: 40px;
 	}
 
-	body section.main nav a.primary-action.settings i{
-		border-left: 1px solid #ffb648;
-	}
-
 a.next, a.previous{
     position: absolute;
-    color: #888;
-    background-color: #fff;
+    color: #fff;
+    background-color: #888;
     opacity: 0.75;
     height: 50px;
     line-height: 50px;
@@ -100,7 +96,7 @@ a.next, a.previous{
     
     a.next{
         top: 0;
-        right: 100px;
+        right: 50px;
     }
     
     a.previous{
@@ -131,15 +127,15 @@ a.next, a.previous{
 	padding: 0;
 	text-align: center;
 	line-height: 40px;
-	color: #777;
+	color: #fff;
 	font-size: 1.1em !important;
 	vertical-align: top;
-	background-color: #E9E9E9;
+	background-color: #666;
 	border-radius: 50%;
 }	
 
 	.editor-actions a.active{
-		background-color: #fff;
+		background-color: #aaa;
 	}
 
 	body>.draggable{
@@ -153,7 +149,7 @@ a.next, a.previous{
 	}
 
     .editor-actions a:hover{
-        background-color: #fff !important;
+        background-color: #777 !important;
         text-decoration: none;
     }
     
@@ -653,9 +649,9 @@ a.next, a.previous{
 	margin: 0 0 0 0;
 	text-align: right;
 	color: #fff;
-	background-color: #888;
+	background-color: #bbb;
 	overflow: hidden;
-	border-bottom: 10px solid #aaa;
+	border-bottom: 10px solid #f0f0f0;
 }
 
 span.block-actions span{

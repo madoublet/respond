@@ -159,4 +159,62 @@ class PageTypeListAllResource extends Tonic\Resource {
 
 }
 
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /pagetype/list/allowed
+ */
+class PageTypeListAllowedResource extends Tonic\Resource {
+
+    /**
+     * @method GET
+     */
+    function get() {
+
+        // get an authuser
+        $authUser = new AuthUser();
+
+        if(isset($authUser->UserUniqId)){ // check if authorized
+
+            $siteId = $authUser->SiteId;
+
+            // get pagetype
+            $list = PageType::GetPageTypes($siteId);
+			
+			// allowed
+			$allowed = array();
+			
+			// return the entire list for all access
+			if($authUser->Access == 'All'){
+				$allowed = $list;
+			}
+			else{
+				foreach ($list as $row){
+				
+					$pageTypeUniqId = $row['PageTypeUniqId'];
+					
+					// check permissions
+					if(Utilities::CanPerformAction($pageTypeUniqId, $authUser->Access) !== false){
+						array_push($allowed, $row);
+					}
+				
+				}
+			}
+
+            // return a json response
+            $response = new Tonic\Response(Tonic\Response::OK);
+            $response->contentType = 'application/json';
+            $response->body = json_encode($allowed);
+
+            return $response;
+
+        }
+        else{ // unauthorized access
+
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+
+    }
+
+}
 ?>

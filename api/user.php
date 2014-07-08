@@ -20,13 +20,65 @@ class UserLoginResource extends Tonic\Resource {
 
         // get the user from the credentials
         $user = User::GetByEmailPassword($email, $password);
-
+        
+        // determine if the user is authorized
+        $is_auth = false;
+        
+        // permissions
+        $canEdit = '';
+        $canPublish = '';
+        $canRemove = '';
+        $canCreate = '';
+        
         if($user!=null){
+        
+	        if($user['Role'] == 'Admin'){
+		        $is_auth = true;
+		        $canEdit = 'All';
+		        $canPublish = 'All';
+		        $canRemove = 'All';
+		        $canCreate = 'All';
+	        }
+	        else if($user['Role'] == 'Contributor'){
+	        	$is_auth = true;
+	        	$canEdit = 'All';
+		        $canPublish = '';
+		        $canRemove = '';
+		        $canCreate = '';
+	        }
+	        else if($user['Role'] == 'Member'){
+	        	$is_auth = false;
+	        }
+	        else{
+		        
+		        // try to get a role by its name
+				$role = Role::GetByName($user['Role'], $user['SiteId']);
+		        
+		        if($role!=null){
+		        	$canEdit = trim($role['CanEdit']);
+					$canPublish = trim($role['CanPublish']);
+					$canRemove = trim($role['CanRemove']);
+					$canCreate = trim($role['CanCreate']);
+		        	
+		        	if($canEdit != '' && $canPublish != '' && $canRemove != ''){
+			        	$is_auth = true;
+		        	}
+		        }
+		        else{
+			        $is_auth = false;
+		        }
+		        
+	        }
+	        
+        }
+
+		// login if authorized
+        if($is_auth = true){
             
             try{
             
-            	AuthUser::Create($user);
-		
+            	AuthUser::Create($user, $canEdit, $canPublish, $canRemove, $canCreate);
+      	
 				$params = array(
 					'start' => START_PAGE
 				);

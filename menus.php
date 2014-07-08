@@ -50,9 +50,9 @@
 		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a><?php print _("Primary"); ?></a></li>
 		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a><?php print _("Footer"); ?></a></li>
 		    	<!-- ko foreach: menuTypes -->
-		    		<li data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle fa-lg"  data-bind="click: $parent.showRemoveMenuTypeDialog"></i></li>
+		    		<li class="has-action" data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle show-tooltip"  data-bind="click: $parent.showRemoveMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
 		    	<!-- /ko -->
-		            <li class="add"><i class="fa fa-plus-circle fa-lg" data-bind="click: showAddMenuTypeDialog"></i></li>
+		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
 		        </ul>
 		        
 			</div>
@@ -61,7 +61,7 @@
         </div>
         <!-- /.fs-container -->
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Menu Item"); ?></a>
+        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Menu Item"); ?>"><i class="fa fa-plus-circle"></i></a>
     </nav>
 
 	<div id="menu-republish-message" class="list-menu">
@@ -75,8 +75,8 @@
 	<div id="menuItemsList" class="list" data-bind="foreach: menuItems">
     
         <div class="listItem sortable" data-bind="css: {'is-nested': isNested()==1}, attr:{'data-id':menuItemUniqId, 'data-isnested':isNested}">
-            <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published fa fa-minus-circle fa-lg"></i></a>
-            <span class="hook"></span>
+            <a class="remove" data-bind="click: $parent.showRemoveDialog"><i class="not-published fa fa-minus-circle"></i></a>
+            <span class="hook fa fa-arrows-v"></span>
             <h2>
 	            <span class="nested-left" data-bind="click: $parent.toggleIsNested">
 	            	<i class="fa fa-angle-left arrow"></i> 

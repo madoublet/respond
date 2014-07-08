@@ -16,6 +16,13 @@ class AuthUser{
 	public $HasPhotoUrl;
 	public $PhotoUrl;
 	
+	// role-based priveleges (what can be accessed, edited, and published)
+	public $Access;
+	public $CanEdit;
+	public $CanPublish;
+	public $CanRemove;
+	public $CanCreate;
+	
 	// site
 	public $SiteId;
 	public $SiteUniqId;
@@ -77,6 +84,11 @@ class AuthUser{
 			$this->Plan = $_SESSION['Plan'];
 			$this->Status = $_SESSION['Status'];
 			$this->RenewalDate = $_SESSION['RenewalDate'];
+			$this->Access = $_SESSION['Access'];
+			$this->CanEdit = $_SESSION['CanEdit'];
+			$this->CanPublish = $_SESSION['CanPublish'];
+			$this->CanRemove = $_SESSION['CanRemove'];
+			$this->CanCreate = $_SESSION['CanCreate'];
 			
 		}
 		else{
@@ -90,7 +102,7 @@ class AuthUser{
 	}
     
     // creates the authuser for the app
-    public static function Create($user){
+    public static function Create($user, $canEdit, $canPublish, $canRemove, $canCreate){
 
     	session_start();
 
@@ -146,6 +158,19 @@ class AuthUser{
 		$_SESSION['TimeZone'] = $site['TimeZone'];
 		$_SESSION['Type'] = $site['Type'];
 		$_SESSION['CustomerId'] = $site['CustomerId'];
+		
+		// what can be edited and published
+		if($canEdit == 'All' || $canPublish == 'All' || $canRemove == 'All' || $canCreate == 'All'){
+			$_SESSION['Access'] = 'All';
+		}
+		else{
+			$_SESSION['Access'] = $canEdit.','.$canPublish.','.$canRemove.','.$canCreate;
+		}
+		
+		$_SESSION['CanEdit'] = $canEdit;
+		$_SESSION['CanPublish'] = $canPublish;
+		$_SESSION['CanRemove'] = $canRemove;
+		$_SESSION['CanCreate'] = $canCreate;
 		
 		if(strtoupper($site['Type']) == 'SUBSCRIPTION' && $site['CustomerId'] != NULL){
 			AuthUser::UpdateSubscription();

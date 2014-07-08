@@ -37,7 +37,7 @@
 <!-- begin content -->
 <div class="content">
 
-	<h1><?php print BRAND; ?></h1>
+	<h1><span class="brand"><img src="<?php print BRAND_LOGO; ?>" title="<?php print BRAND; ?>"></span></h1>
 	
 	<fieldset class="forgot" data-bind="visible:hasToken()==false">
 	

@@ -1265,10 +1265,7 @@ class Utilities
                 }
                 else if($name=='html'){
                 	$h = $el->innertext;
-                	
-                	$h = str_replace('&lt;', '<', $h);
-                	$h = str_replace('&gt;', '>', $h);
-                
+               
                     $el->outertext = $h;
                 }
                 else if($name=='youtube' || $name=='vimeo'){
@@ -1649,6 +1646,48 @@ class Utilities
 		
 		return false;    
 		
+    }
+    
+    // searches an associative array for a value
+    public static function SearchForId($id, $param, $array){
+	   foreach ($array as $key => $val) {
+	       if ($val[$param] === $id) {
+	           return $key;
+	       }
+	   }
+	   return null;
+	}
+    
+    // checks permissions, $canAction = $canView, $canEdit, $canPublish, $canRemove, $canCreate
+    public static function CanPerformAction($pageTypeUniqId, $canAction){
+    
+    	// trim
+    	$canAction = trim($canAction);
+	    
+	    // set -1 to root (if applicable)
+	    if($pageTypeUniqId === '-1' || $pageTypeUniqId === -1){
+		    $pageTypeUniqId = 'root';
+	    }
+	    
+	    // return false for blank
+	    if($canAction == ''){
+		    return false;
+	    }
+	    
+	    // return true if all
+	    if($canAction == 'All'){
+		    return true;
+	    }
+	    
+	    // check access list
+	    if(strpos($canAction, $pageTypeUniqId) !== FALSE){
+		    return true;
+	    }
+	    else{
+		    return false;
+	    }
+	    
+	    
     }
 
 }

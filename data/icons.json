@@ -1,3462 +1,4171 @@
 {
   "icons": [
     {
-      "id": "glass", 
-      "unicode": "f000", 
-      "name": "Glass", 
+      "name": "Glass",
+      "id": "glass",
+      "unicode": "f000",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "music", 
-      "unicode": "f001", 
-      "name": "Music", 
+      "name": "Music",
+      "id": "music",
+      "unicode": "f001",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "search", 
-      "unicode": "f002", 
-      "name": "Search", 
+      "name": "Search",
+      "id": "search",
+      "unicode": "f002",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "envelope-o", 
-      "unicode": "f003", 
-      "name": "Envelope Outlined", 
+      "name": "Envelope Outlined",
+      "id": "envelope-o",
+      "unicode": "f003",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "heart", 
-      "unicode": "f004", 
-      "name": "Heart", 
+      "name": "Heart",
+      "id": "heart",
+      "unicode": "f004",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "star", 
-      "unicode": "f005", 
-      "name": "Star", 
+      "name": "Star",
+      "id": "star",
+      "unicode": "f005",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "star-o", 
-      "unicode": "f006", 
-      "name": "Star Outlined", 
+      "name": "Star Outlined",
+      "id": "star-o",
+      "unicode": "f006",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "user", 
-      "unicode": "f007", 
-      "name": "User", 
+      "name": "User",
+      "id": "user",
+      "unicode": "f007",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "film", 
-      "unicode": "f008", 
-      "name": "Film", 
+      "name": "Film",
+      "id": "film",
+      "unicode": "f008",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "th-large", 
-      "unicode": "f009", 
-      "name": "th-large", 
+      "name": "th-large",
+      "id": "th-large",
+      "unicode": "f009",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "th", 
-      "unicode": "f00a", 
-      "name": "th", 
+      "name": "th",
+      "id": "th",
+      "unicode": "f00a",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "th-list", 
-      "unicode": "f00b", 
-      "name": "th-list", 
+      "name": "th-list",
+      "id": "th-list",
+      "unicode": "f00b",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "check", 
-      "unicode": "f00c", 
-      "name": "Check", 
+      "name": "Check",
+      "id": "check",
+      "unicode": "f00c",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "times", 
-      "unicode": "f00d", 
-      "name": "Times", 
+      "name": "Times",
+      "id": "times",
+      "unicode": "f00d",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "search-plus", 
-      "unicode": "f00e", 
-      "name": "Search Plus", 
+      "name": "Search Plus",
+      "id": "search-plus",
+      "unicode": "f00e",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "search-minus", 
-      "unicode": "f010", 
-      "name": "Search Minus", 
+      "name": "Search Minus",
+      "id": "search-minus",
+      "unicode": "f010",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "power-off", 
-      "unicode": "f011", 
-      "name": "Power Off", 
+      "name": "Power Off",
+      "id": "power-off",
+      "unicode": "f011",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "signal", 
-      "unicode": "f012", 
-      "name": "signal", 
+      "name": "signal",
+      "id": "signal",
+      "unicode": "f012",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "cog", 
-      "unicode": "f013", 
-      "created": 1.0, 
-      "id": "cog", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "cog",
+      "id": "cog",
+      "unicode": "f013",
+      "created": 1,
       "aliases": [
         "gear"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "Spinner Icons"
       ]
-    }, 
+    },
     {
-      "id": "trash-o", 
-      "unicode": "f014", 
-      "name": "Trash Outlined", 
+      "name": "Trash Outlined",
+      "id": "trash-o",
+      "unicode": "f014",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "home", 
-      "unicode": "f015", 
-      "name": "home", 
+      "name": "home",
+      "id": "home",
+      "unicode": "f015",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "file-o", 
-      "unicode": "f016", 
-      "name": "File Outlined", 
+      "name": "File Outlined",
+      "id": "file-o",
+      "unicode": "f016",
+      "created": 1,
       "categories": [
-        "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+        "Text Editor Icons",
+        "File Type Icons"
+      ]
+    },
     {
-      "id": "clock-o", 
-      "unicode": "f017", 
-      "name": "Clock Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "road", 
-      "unicode": "f018", 
-      "name": "road", 
+      "name": "Clock Outlined",
+      "id": "clock-o",
+      "unicode": "f017",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "download", 
-      "unicode": "f019", 
-      "name": "Download", 
+      "name": "road",
+      "id": "road",
+      "unicode": "f018",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-o-down", 
-      "unicode": "f01a", 
-      "name": "Arrow Circle Outlined Down", 
+      "name": "Download",
+      "id": "download",
+      "unicode": "f019",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Arrow Circle Outlined Down",
+      "id": "arrow-circle-o-down",
+      "unicode": "f01a",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-o-up", 
-      "unicode": "f01b", 
-      "name": "Arrow Circle Outlined Up", 
+      "name": "Arrow Circle Outlined Up",
+      "id": "arrow-circle-o-up",
+      "unicode": "f01b",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "inbox", 
-      "unicode": "f01c", 
-      "name": "inbox", 
+      "name": "inbox",
+      "id": "inbox",
+      "unicode": "f01c",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "play-circle-o", 
-      "unicode": "f01d", 
-      "name": "Play Circle Outlined", 
+      "name": "Play Circle Outlined",
+      "id": "play-circle-o",
+      "unicode": "f01d",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "Repeat", 
-      "unicode": "f01e", 
-      "created": 1.0, 
-      "id": "repeat", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
+      "name": "Repeat",
+      "id": "repeat",
+      "unicode": "f01e",
+      "created": 1,
       "aliases": [
         "rotate-right"
+      ],
+      "categories": [
+        "Text Editor Icons"
       ]
-    }, 
+    },
     {
-      "id": "refresh", 
-      "unicode": "f021", 
-      "name": "refresh", 
+      "name": "refresh",
+      "id": "refresh",
+      "unicode": "f021",
+      "created": 1,
       "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+        "Web Application Icons",
+        "Spinner Icons"
+      ]
+    },
     {
-      "id": "list-alt", 
-      "unicode": "f022", 
-      "name": "list-alt", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "lock", 
-      "unicode": "f023", 
-      "name": "lock", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "flag", 
-      "unicode": "f024", 
-      "name": "flag", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "headphones", 
-      "unicode": "f025", 
-      "name": "headphones", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "volume-off", 
-      "unicode": "f026", 
-      "name": "volume-off", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "volume-down", 
-      "unicode": "f027", 
-      "name": "volume-down", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "volume-up", 
-      "unicode": "f028", 
-      "name": "volume-up", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "qrcode", 
-      "unicode": "f029", 
-      "name": "qrcode", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "barcode", 
-      "unicode": "f02a", 
-      "name": "barcode", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "tag", 
-      "unicode": "f02b", 
-      "name": "tag", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "tags", 
-      "unicode": "f02c", 
-      "name": "tags", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "book", 
-      "unicode": "f02d", 
-      "name": "book", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "bookmark", 
-      "unicode": "f02e", 
-      "name": "bookmark", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "print", 
-      "unicode": "f02f", 
-      "name": "print", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "camera", 
-      "unicode": "f030", 
-      "name": "camera", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "font", 
-      "unicode": "f031", 
-      "name": "font", 
+      "name": "list-alt",
+      "id": "list-alt",
+      "unicode": "f022",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "bold", 
-      "unicode": "f032", 
-      "name": "bold", 
+      "name": "lock",
+      "id": "lock",
+      "unicode": "f023",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "flag",
+      "id": "flag",
+      "unicode": "f024",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "headphones",
+      "id": "headphones",
+      "unicode": "f025",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "volume-off",
+      "id": "volume-off",
+      "unicode": "f026",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "volume-down",
+      "id": "volume-down",
+      "unicode": "f027",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "volume-up",
+      "id": "volume-up",
+      "unicode": "f028",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "qrcode",
+      "id": "qrcode",
+      "unicode": "f029",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "barcode",
+      "id": "barcode",
+      "unicode": "f02a",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "tag",
+      "id": "tag",
+      "unicode": "f02b",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "tags",
+      "id": "tags",
+      "unicode": "f02c",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "book",
+      "id": "book",
+      "unicode": "f02d",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "bookmark",
+      "id": "bookmark",
+      "unicode": "f02e",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "print",
+      "id": "print",
+      "unicode": "f02f",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "camera",
+      "id": "camera",
+      "unicode": "f030",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "font",
+      "id": "font",
+      "unicode": "f031",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "italic", 
-      "unicode": "f033", 
-      "name": "italic", 
+      "name": "bold",
+      "id": "bold",
+      "unicode": "f032",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "text-height", 
-      "unicode": "f034", 
-      "name": "text-height", 
+      "name": "italic",
+      "id": "italic",
+      "unicode": "f033",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "text-width", 
-      "unicode": "f035", 
-      "name": "text-width", 
+      "name": "text-height",
+      "id": "text-height",
+      "unicode": "f034",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "align-left", 
-      "unicode": "f036", 
-      "name": "align-left", 
+      "name": "text-width",
+      "id": "text-width",
+      "unicode": "f035",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "align-center", 
-      "unicode": "f037", 
-      "name": "align-center", 
+      "name": "align-left",
+      "id": "align-left",
+      "unicode": "f036",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "align-right", 
-      "unicode": "f038", 
-      "name": "align-right", 
+      "name": "align-center",
+      "id": "align-center",
+      "unicode": "f037",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "align-justify", 
-      "unicode": "f039", 
-      "name": "align-justify", 
+      "name": "align-right",
+      "id": "align-right",
+      "unicode": "f038",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "list", 
-      "unicode": "f03a", 
-      "name": "list", 
+      "name": "align-justify",
+      "id": "align-justify",
+      "unicode": "f039",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "Outdent", 
-      "unicode": "f03b", 
-      "created": 1.0, 
-      "id": "outdent", 
+      "name": "list",
+      "id": "list",
+      "unicode": "f03a",
+      "created": 1,
       "categories": [
         "Text Editor Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Outdent",
+      "id": "outdent",
+      "unicode": "f03b",
+      "created": 1,
       "aliases": [
         "dedent"
-      ]
-    }, 
-    {
-      "id": "indent", 
-      "unicode": "f03c", 
-      "name": "Indent", 
+      ],
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "video-camera", 
-      "unicode": "f03d", 
-      "name": "Video Camera", 
+      "name": "Indent",
+      "id": "indent",
+      "unicode": "f03c",
+      "created": 1,
+      "categories": [
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "Video Camera",
+      "id": "video-camera",
+      "unicode": "f03d",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "picture-o", 
-      "unicode": "f03e", 
-      "name": "Picture Outlined", 
+      "name": "Picture Outlined",
+      "id": "picture-o",
+      "unicode": "f03e",
+      "created": 1,
+      "aliases": [
+        "photo",
+        "image"
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "pencil", 
-      "unicode": "f040", 
-      "name": "pencil", 
+      "name": "pencil",
+      "id": "pencil",
+      "unicode": "f040",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "map-marker", 
-      "unicode": "f041", 
-      "name": "map-marker", 
+      "name": "map-marker",
+      "id": "map-marker",
+      "unicode": "f041",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "adjust", 
-      "unicode": "f042", 
-      "name": "adjust", 
+      "name": "adjust",
+      "id": "adjust",
+      "unicode": "f042",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "tint", 
-      "unicode": "f043", 
-      "name": "tint", 
+      "name": "tint",
+      "id": "tint",
+      "unicode": "f043",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "Pencil Square Outlined", 
-      "unicode": "f044", 
-      "created": 1.0, 
-      "id": "pencil-square-o", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Pencil Square Outlined",
+      "id": "pencil-square-o",
+      "unicode": "f044",
+      "created": 1,
       "aliases": [
         "edit"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "share-square-o", 
-      "unicode": "f045", 
-      "name": "Share Square Outlined", 
+      "name": "Share Square Outlined",
+      "id": "share-square-o",
+      "unicode": "f045",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "check-square-o", 
-      "unicode": "f046", 
-      "name": "Check Square Outlined", 
+      "name": "Check Square Outlined",
+      "id": "check-square-o",
+      "unicode": "f046",
+      "created": 1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrows", 
-      "unicode": "f047", 
-      "name": "Arrows", 
+      "name": "Arrows",
+      "id": "arrows",
+      "unicode": "f047",
+      "created": 1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "step-backward", 
-      "unicode": "f048", 
-      "name": "step-backward", 
+      "name": "step-backward",
+      "id": "step-backward",
+      "unicode": "f048",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "fast-backward", 
-      "unicode": "f049", 
-      "name": "fast-backward", 
+      "name": "fast-backward",
+      "id": "fast-backward",
+      "unicode": "f049",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "backward", 
-      "unicode": "f04a", 
-      "name": "backward", 
+      "name": "backward",
+      "id": "backward",
+      "unicode": "f04a",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "play", 
-      "unicode": "f04b", 
-      "name": "play", 
+      "name": "play",
+      "id": "play",
+      "unicode": "f04b",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "pause", 
-      "unicode": "f04c", 
-      "name": "pause", 
+      "name": "pause",
+      "id": "pause",
+      "unicode": "f04c",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "stop", 
-      "unicode": "f04d", 
-      "name": "stop", 
+      "name": "stop",
+      "id": "stop",
+      "unicode": "f04d",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "forward", 
-      "unicode": "f04e", 
-      "name": "forward", 
+      "name": "forward",
+      "id": "forward",
+      "unicode": "f04e",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "fast-forward", 
-      "unicode": "f050", 
-      "name": "fast-forward", 
+      "name": "fast-forward",
+      "id": "fast-forward",
+      "unicode": "f050",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "step-forward", 
-      "unicode": "f051", 
-      "name": "step-forward", 
+      "name": "step-forward",
+      "id": "step-forward",
+      "unicode": "f051",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "eject", 
-      "unicode": "f052", 
-      "name": "eject", 
+      "name": "eject",
+      "id": "eject",
+      "unicode": "f052",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "chevron-left", 
-      "unicode": "f053", 
-      "name": "chevron-left", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "chevron-right", 
-      "unicode": "f054", 
-      "name": "chevron-right", 
+      "name": "chevron-left",
+      "id": "chevron-left",
+      "unicode": "f053",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "plus-circle", 
-      "unicode": "f055", 
-      "name": "Plus Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "minus-circle", 
-      "unicode": "f056", 
-      "name": "Minus Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "times-circle", 
-      "unicode": "f057", 
-      "name": "Times Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "check-circle", 
-      "unicode": "f058", 
-      "name": "Check Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "question-circle", 
-      "unicode": "f059", 
-      "name": "Question Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "info-circle", 
-      "unicode": "f05a", 
-      "name": "Info Circle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "crosshairs", 
-      "unicode": "f05b", 
-      "name": "Crosshairs", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "times-circle-o", 
-      "unicode": "f05c", 
-      "name": "Times Circle Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "check-circle-o", 
-      "unicode": "f05d", 
-      "name": "Check Circle Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "ban", 
-      "unicode": "f05e", 
-      "name": "ban", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "arrow-left", 
-      "unicode": "f060", 
-      "name": "arrow-left", 
+      "name": "chevron-right",
+      "id": "chevron-right",
+      "unicode": "f054",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-right", 
-      "unicode": "f061", 
-      "name": "arrow-right", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "arrow-up", 
-      "unicode": "f062", 
-      "name": "arrow-up", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "id": "arrow-down", 
-      "unicode": "f063", 
-      "name": "arrow-down", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
-    {
-      "name": "Share", 
-      "unicode": "f064", 
-      "created": 1.0, 
-      "id": "share", 
+      "name": "Plus Circle",
+      "id": "plus-circle",
+      "unicode": "f055",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Minus Circle",
+      "id": "minus-circle",
+      "unicode": "f056",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Times Circle",
+      "id": "times-circle",
+      "unicode": "f057",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Check Circle",
+      "id": "check-circle",
+      "unicode": "f058",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Question Circle",
+      "id": "question-circle",
+      "unicode": "f059",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Info Circle",
+      "id": "info-circle",
+      "unicode": "f05a",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Crosshairs",
+      "id": "crosshairs",
+      "unicode": "f05b",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Times Circle Outlined",
+      "id": "times-circle-o",
+      "unicode": "f05c",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Check Circle Outlined",
+      "id": "check-circle-o",
+      "unicode": "f05d",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "ban",
+      "id": "ban",
+      "unicode": "f05e",
+      "created": 1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "arrow-left",
+      "id": "arrow-left",
+      "unicode": "f060",
+      "created": 1,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "arrow-right",
+      "id": "arrow-right",
+      "unicode": "f061",
+      "created": 1,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "arrow-up",
+      "id": "arrow-up",
+      "unicode": "f062",
+      "created": 1,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "arrow-down",
+      "id": "arrow-down",
+      "unicode": "f063",
+      "created": 1,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Share",
+      "id": "share",
+      "unicode": "f064",
+      "created": 1,
       "aliases": [
         "mail-forward"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "expand", 
-      "unicode": "f065", 
-      "name": "Expand", 
+      "name": "Expand",
+      "id": "expand",
+      "unicode": "f065",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "compress", 
-      "unicode": "f066", 
-      "name": "Compress", 
+      "name": "Compress",
+      "id": "compress",
+      "unicode": "f066",
+      "created": 1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "plus", 
-      "unicode": "f067", 
-      "name": "plus", 
+      "name": "plus",
+      "id": "plus",
+      "unicode": "f067",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "minus", 
-      "unicode": "f068", 
-      "name": "minus", 
+      "name": "minus",
+      "id": "minus",
+      "unicode": "f068",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "asterisk", 
-      "unicode": "f069", 
-      "name": "asterisk", 
+      "name": "asterisk",
+      "id": "asterisk",
+      "unicode": "f069",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "exclamation-circle", 
-      "unicode": "f06a", 
-      "name": "Exclamation Circle", 
+      "name": "Exclamation Circle",
+      "id": "exclamation-circle",
+      "unicode": "f06a",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "gift", 
-      "unicode": "f06b", 
-      "name": "gift", 
+      "name": "gift",
+      "id": "gift",
+      "unicode": "f06b",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "leaf", 
-      "unicode": "f06c", 
-      "name": "leaf", 
+      "name": "leaf",
+      "id": "leaf",
+      "unicode": "f06c",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "fire", 
-      "unicode": "f06d", 
-      "name": "fire", 
+      "name": "fire",
+      "id": "fire",
+      "unicode": "f06d",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "eye", 
-      "unicode": "f06e", 
-      "name": "Eye", 
+      "name": "Eye",
+      "id": "eye",
+      "unicode": "f06e",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "eye-slash", 
-      "unicode": "f070", 
-      "name": "Eye Slash", 
+      "name": "Eye Slash",
+      "id": "eye-slash",
+      "unicode": "f070",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "Exclamation Triangle", 
-      "unicode": "f071", 
-      "created": 1.0, 
-      "id": "exclamation-triangle", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Exclamation Triangle",
+      "id": "exclamation-triangle",
+      "unicode": "f071",
+      "created": 1,
       "aliases": [
         "warning"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "plane", 
-      "unicode": "f072", 
-      "name": "plane", 
+      "name": "plane",
+      "id": "plane",
+      "unicode": "f072",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "calendar", 
-      "unicode": "f073", 
-      "name": "calendar", 
+      "name": "calendar",
+      "id": "calendar",
+      "unicode": "f073",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "random", 
-      "unicode": "f074", 
-      "name": "random", 
+      "name": "random",
+      "id": "random",
+      "unicode": "f074",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "comment", 
-      "unicode": "f075", 
-      "name": "comment", 
+      "name": "comment",
+      "id": "comment",
+      "unicode": "f075",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "magnet", 
-      "unicode": "f076", 
-      "name": "magnet", 
+      "name": "magnet",
+      "id": "magnet",
+      "unicode": "f076",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "chevron-up", 
-      "unicode": "f077", 
-      "name": "chevron-up", 
+      "name": "chevron-up",
+      "id": "chevron-up",
+      "unicode": "f077",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "chevron-down", 
-      "unicode": "f078", 
-      "name": "chevron-down", 
+      "name": "chevron-down",
+      "id": "chevron-down",
+      "unicode": "f078",
+      "created": 1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "retweet", 
-      "unicode": "f079", 
-      "name": "retweet", 
+      "name": "retweet",
+      "id": "retweet",
+      "unicode": "f079",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "shopping-cart", 
-      "unicode": "f07a", 
-      "name": "shopping-cart", 
+      "name": "shopping-cart",
+      "id": "shopping-cart",
+      "unicode": "f07a",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "folder", 
-      "unicode": "f07b", 
-      "name": "Folder", 
+      "name": "Folder",
+      "id": "folder",
+      "unicode": "f07b",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "folder-open", 
-      "unicode": "f07c", 
-      "name": "Folder Open", 
+      "name": "Folder Open",
+      "id": "folder-open",
+      "unicode": "f07c",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrows-v", 
-      "unicode": "f07d", 
-      "name": "Arrows Vertical", 
+      "name": "Arrows Vertical",
+      "id": "arrows-v",
+      "unicode": "f07d",
+      "created": 1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "arrows-h", 
-      "unicode": "f07e", 
-      "name": "Arrows Horizontal", 
+      "name": "Arrows Horizontal",
+      "id": "arrows-h",
+      "unicode": "f07e",
+      "created": 1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Directional Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "bar-chart-o", 
-      "unicode": "f080", 
-      "name": "Bar Chart Outlined", 
+      "name": "Bar Chart Outlined",
+      "id": "bar-chart-o",
+      "unicode": "f080",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "twitter-square", 
-      "unicode": "f081", 
-      "name": "Twitter Square", 
+      "name": "Twitter Square",
+      "id": "twitter-square",
+      "unicode": "f081",
+      "created": 1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "facebook-square", 
-      "unicode": "f082", 
-      "name": "Facebook Square", 
+      "name": "Facebook Square",
+      "id": "facebook-square",
+      "unicode": "f082",
+      "created": 1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "camera-retro", 
-      "unicode": "f083", 
-      "name": "camera-retro", 
+      "name": "camera-retro",
+      "id": "camera-retro",
+      "unicode": "f083",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "key", 
-      "unicode": "f084", 
-      "name": "key", 
+      "name": "key",
+      "id": "key",
+      "unicode": "f084",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "name": "cogs", 
-      "unicode": "f085", 
-      "created": 1.0, 
-      "id": "cogs", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "cogs",
+      "id": "cogs",
+      "unicode": "f085",
+      "created": 1,
       "aliases": [
         "gears"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "comments", 
-      "unicode": "f086", 
-      "name": "comments", 
+      "name": "comments",
+      "id": "comments",
+      "unicode": "f086",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "thumbs-o-up", 
-      "unicode": "f087", 
-      "name": "Thumbs Up Outlined", 
+      "name": "Thumbs Up Outlined",
+      "id": "thumbs-o-up",
+      "unicode": "f087",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "thumbs-o-down", 
-      "unicode": "f088", 
-      "name": "Thumbs Down Outlined", 
+      "name": "Thumbs Down Outlined",
+      "id": "thumbs-o-down",
+      "unicode": "f088",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "star-half", 
-      "unicode": "f089", 
-      "name": "star-half", 
+      "name": "star-half",
+      "id": "star-half",
+      "unicode": "f089",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "heart-o", 
-      "unicode": "f08a", 
-      "name": "Heart Outlined", 
+      "name": "Heart Outlined",
+      "id": "heart-o",
+      "unicode": "f08a",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "sign-out", 
-      "unicode": "f08b", 
-      "name": "Sign Out", 
+      "name": "Sign Out",
+      "id": "sign-out",
+      "unicode": "f08b",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "linkedin-square", 
-      "unicode": "f08c", 
-      "name": "LinkedIn Square", 
+      "name": "LinkedIn Square",
+      "id": "linkedin-square",
+      "unicode": "f08c",
+      "created": 1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "thumb-tack", 
-      "unicode": "f08d", 
-      "name": "Thumb Tack", 
+      "name": "Thumb Tack",
+      "id": "thumb-tack",
+      "unicode": "f08d",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "external-link", 
-      "unicode": "f08e", 
-      "name": "External Link", 
+      "name": "External Link",
+      "id": "external-link",
+      "unicode": "f08e",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "sign-in", 
-      "unicode": "f090", 
-      "name": "Sign In", 
+      "name": "Sign In",
+      "id": "sign-in",
+      "unicode": "f090",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "trophy", 
-      "unicode": "f091", 
-      "name": "trophy", 
+      "name": "trophy",
+      "id": "trophy",
+      "unicode": "f091",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "github-square", 
-      "unicode": "f092", 
-      "name": "GitHub Square", 
+      "name": "GitHub Square",
+      "id": "github-square",
+      "unicode": "f092",
+      "created": 1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "upload", 
-      "unicode": "f093", 
-      "name": "Upload", 
+      "name": "Upload",
+      "id": "upload",
+      "unicode": "f093",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "lemon-o", 
-      "unicode": "f094", 
-      "name": "Lemon Outlined", 
+      "name": "Lemon Outlined",
+      "id": "lemon-o",
+      "unicode": "f094",
+      "created": 1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 1.0
-    }, 
+      ]
+    },
     {
-      "id": "phone", 
-      "unicode": "f095", 
-      "name": "Phone", 
+      "name": "Phone",
+      "id": "phone",
+      "unicode": "f095",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "square-o", 
-      "unicode": "f096", 
-      "name": "Square Outlined", 
+      "name": "Square Outlined",
+      "id": "square-o",
+      "unicode": "f096",
+      "created": 2,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "bookmark-o", 
-      "unicode": "f097", 
-      "name": "Bookmark Outlined", 
+      "name": "Bookmark Outlined",
+      "id": "bookmark-o",
+      "unicode": "f097",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "phone-square", 
-      "unicode": "f098", 
-      "name": "Phone Square", 
+      "name": "Phone Square",
+      "id": "phone-square",
+      "unicode": "f098",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "twitter", 
-      "unicode": "f099", 
-      "name": "Twitter", 
+      "name": "Twitter",
+      "id": "twitter",
+      "unicode": "f099",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "facebook", 
-      "unicode": "f09a", 
-      "name": "Facebook", 
+      "name": "Facebook",
+      "id": "facebook",
+      "unicode": "f09a",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "github", 
-      "unicode": "f09b", 
-      "name": "GitHub", 
+      "name": "GitHub",
+      "id": "github",
+      "unicode": "f09b",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "unlock", 
-      "unicode": "f09c", 
-      "name": "unlock", 
+      "name": "unlock",
+      "id": "unlock",
+      "unicode": "f09c",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "credit-card", 
-      "unicode": "f09d", 
-      "name": "credit-card", 
+      "name": "credit-card",
+      "id": "credit-card",
+      "unicode": "f09d",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "rss", 
-      "unicode": "f09e", 
-      "name": "rss", 
+      "name": "rss",
+      "id": "rss",
+      "unicode": "f09e",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "hdd-o", 
-      "unicode": "f0a0", 
-      "name": "HDD", 
+      "name": "HDD",
+      "id": "hdd-o",
+      "unicode": "f0a0",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "bullhorn", 
-      "unicode": "f0a1", 
-      "name": "bullhorn", 
+      "name": "bullhorn",
+      "id": "bullhorn",
+      "unicode": "f0a1",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "bell", 
-      "unicode": "f0f3", 
-      "name": "bell", 
+      "name": "bell",
+      "id": "bell",
+      "unicode": "f0f3",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "certificate", 
-      "unicode": "f0a3", 
-      "name": "certificate", 
+      "name": "certificate",
+      "id": "certificate",
+      "unicode": "f0a3",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "hand-o-right", 
-      "unicode": "f0a4", 
-      "name": "Hand Outlined Right", 
+      "name": "Hand Outlined Right",
+      "id": "hand-o-right",
+      "unicode": "f0a4",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "hand-o-left", 
-      "unicode": "f0a5", 
-      "name": "Hand Outlined Left", 
+      "name": "Hand Outlined Left",
+      "id": "hand-o-left",
+      "unicode": "f0a5",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "hand-o-up", 
-      "unicode": "f0a6", 
-      "name": "Hand Outlined Up", 
+      "name": "Hand Outlined Up",
+      "id": "hand-o-up",
+      "unicode": "f0a6",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "hand-o-down", 
-      "unicode": "f0a7", 
-      "name": "Hand Outlined Down", 
+      "name": "Hand Outlined Down",
+      "id": "hand-o-down",
+      "unicode": "f0a7",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-left", 
-      "unicode": "f0a8", 
-      "name": "Arrow Circle Left", 
+      "name": "Arrow Circle Left",
+      "id": "arrow-circle-left",
+      "unicode": "f0a8",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-right", 
-      "unicode": "f0a9", 
-      "name": "Arrow Circle Right", 
+      "name": "Arrow Circle Right",
+      "id": "arrow-circle-right",
+      "unicode": "f0a9",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-up", 
-      "unicode": "f0aa", 
-      "name": "Arrow Circle Up", 
+      "name": "Arrow Circle Up",
+      "id": "arrow-circle-up",
+      "unicode": "f0aa",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "arrow-circle-down", 
-      "unicode": "f0ab", 
-      "name": "Arrow Circle Down", 
+      "name": "Arrow Circle Down",
+      "id": "arrow-circle-down",
+      "unicode": "f0ab",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "globe", 
-      "unicode": "f0ac", 
-      "name": "Globe", 
+      "name": "Globe",
+      "id": "globe",
+      "unicode": "f0ac",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "wrench", 
-      "unicode": "f0ad", 
-      "name": "Wrench", 
+      "name": "Wrench",
+      "id": "wrench",
+      "unicode": "f0ad",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "tasks", 
-      "unicode": "f0ae", 
-      "name": "Tasks", 
+      "name": "Tasks",
+      "id": "tasks",
+      "unicode": "f0ae",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "filter", 
-      "unicode": "f0b0", 
-      "name": "Filter", 
+      "name": "Filter",
+      "id": "filter",
+      "unicode": "f0b0",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "briefcase", 
-      "unicode": "f0b1", 
-      "name": "Briefcase", 
+      "name": "Briefcase",
+      "id": "briefcase",
+      "unicode": "f0b1",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "arrows-alt", 
-      "unicode": "f0b2", 
-      "name": "Arrows Alt", 
+      "name": "Arrows Alt",
+      "id": "arrows-alt",
+      "unicode": "f0b2",
+      "created": 2,
       "categories": [
-        "Video Player Icons", 
+        "Video Player Icons",
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Users", 
-      "unicode": "f0c0", 
-      "created": 2.0, 
-      "id": "users", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Users",
+      "id": "users",
+      "unicode": "f0c0",
+      "created": 2,
       "aliases": [
         "group"
-      ]
-    }, 
-    {
-      "name": "Link", 
-      "unicode": "f0c1", 
-      "created": 2.0, 
-      "id": "link", 
+      ],
       "categories": [
-        "Text Editor Icons"
-      ], 
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Link",
+      "id": "link",
+      "unicode": "f0c1",
+      "created": 2,
       "aliases": [
         "chain"
-      ]
-    }, 
-    {
-      "id": "cloud", 
-      "unicode": "f0c2", 
-      "name": "Cloud", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
-    {
-      "id": "flask", 
-      "unicode": "f0c3", 
-      "name": "Flask", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
-    {
-      "name": "Scissors", 
-      "unicode": "f0c4", 
-      "created": 2.0, 
-      "id": "scissors", 
+      ],
       "categories": [
         "Text Editor Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Cloud",
+      "id": "cloud",
+      "unicode": "f0c2",
+      "created": 2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Flask",
+      "id": "flask",
+      "unicode": "f0c3",
+      "created": 2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Scissors",
+      "id": "scissors",
+      "unicode": "f0c4",
+      "created": 2,
       "aliases": [
         "cut"
-      ]
-    }, 
-    {
-      "name": "Files Outlined", 
-      "unicode": "f0c5", 
-      "created": 2.0, 
-      "id": "files-o", 
+      ],
       "categories": [
         "Text Editor Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Files Outlined",
+      "id": "files-o",
+      "unicode": "f0c5",
+      "created": 2,
       "aliases": [
         "copy"
+      ],
+      "categories": [
+        "Text Editor Icons"
       ]
-    }, 
+    },
     {
-      "id": "paperclip", 
-      "unicode": "f0c6", 
-      "name": "Paperclip", 
+      "name": "Paperclip",
+      "id": "paperclip",
+      "unicode": "f0c6",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Floppy Outlined", 
-      "unicode": "f0c7", 
-      "created": 2.0, 
-      "id": "floppy-o", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
+      "name": "Floppy Outlined",
+      "id": "floppy-o",
+      "unicode": "f0c7",
+      "created": 2,
       "aliases": [
         "save"
+      ],
+      "categories": [
+        "Text Editor Icons"
       ]
-    }, 
+    },
     {
-      "id": "square", 
-      "unicode": "f0c8", 
-      "name": "Square", 
+      "name": "Square",
+      "id": "square",
+      "unicode": "f0c8",
+      "created": 2,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "bars", 
-      "unicode": "f0c9", 
-      "name": "Bars", 
+      "name": "Bars",
+      "id": "bars",
+      "unicode": "f0c9",
+      "created": 2,
+      "aliases": [
+        "navicon",
+        "reorder"
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "list-ul", 
-      "unicode": "f0ca", 
-      "name": "list-ul", 
+      "name": "list-ul",
+      "id": "list-ul",
+      "unicode": "f0ca",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "list-ol", 
-      "unicode": "f0cb", 
-      "name": "list-ol", 
+      "name": "list-ol",
+      "id": "list-ol",
+      "unicode": "f0cb",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "strikethrough", 
-      "unicode": "f0cc", 
-      "name": "Strikethrough", 
+      "name": "Strikethrough",
+      "id": "strikethrough",
+      "unicode": "f0cc",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "underline", 
-      "unicode": "f0cd", 
-      "name": "Underline", 
+      "name": "Underline",
+      "id": "underline",
+      "unicode": "f0cd",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "table", 
-      "unicode": "f0ce", 
-      "name": "table", 
+      "name": "table",
+      "id": "table",
+      "unicode": "f0ce",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "magic", 
-      "unicode": "f0d0", 
-      "name": "magic", 
+      "name": "magic",
+      "id": "magic",
+      "unicode": "f0d0",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "truck", 
-      "unicode": "f0d1", 
-      "name": "truck", 
+      "name": "truck",
+      "id": "truck",
+      "unicode": "f0d1",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "pinterest", 
-      "unicode": "f0d2", 
-      "name": "Pinterest", 
+      "name": "Pinterest",
+      "id": "pinterest",
+      "unicode": "f0d2",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "pinterest-square", 
-      "unicode": "f0d3", 
-      "name": "Pinterest Square", 
+      "name": "Pinterest Square",
+      "id": "pinterest-square",
+      "unicode": "f0d3",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "google-plus-square", 
-      "unicode": "f0d4", 
-      "name": "Google Plus Square", 
+      "name": "Google Plus Square",
+      "id": "google-plus-square",
+      "unicode": "f0d4",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "google-plus", 
-      "unicode": "f0d5", 
-      "name": "Google Plus", 
+      "name": "Google Plus",
+      "id": "google-plus",
+      "unicode": "f0d5",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "money", 
-      "unicode": "f0d6", 
-      "name": "Money", 
+      "name": "Money",
+      "id": "money",
+      "unicode": "f0d6",
+      "created": 2,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Currency Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "caret-down", 
-      "unicode": "f0d7", 
-      "name": "Caret Down", 
+      "name": "Caret Down",
+      "id": "caret-down",
+      "unicode": "f0d7",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "caret-up", 
-      "unicode": "f0d8", 
-      "name": "Caret Up", 
+      "name": "Caret Up",
+      "id": "caret-up",
+      "unicode": "f0d8",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "caret-left", 
-      "unicode": "f0d9", 
-      "name": "Caret Left", 
+      "name": "Caret Left",
+      "id": "caret-left",
+      "unicode": "f0d9",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "caret-right", 
-      "unicode": "f0da", 
-      "name": "Caret Right", 
+      "name": "Caret Right",
+      "id": "caret-right",
+      "unicode": "f0da",
+      "created": 2,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "columns", 
-      "unicode": "f0db", 
-      "name": "Columns", 
+      "name": "Columns",
+      "id": "columns",
+      "unicode": "f0db",
+      "created": 2,
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Sort", 
-      "unicode": "f0dc", 
-      "created": 2.0, 
-      "id": "sort", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Sort",
+      "id": "sort",
+      "unicode": "f0dc",
+      "created": 2,
       "aliases": [
         "unsorted"
-      ]
-    }, 
-    {
-      "name": "Sort Ascending", 
-      "unicode": "f0dd", 
-      "created": 2.0, 
-      "id": "sort-asc", 
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Sort Descending",
+      "id": "sort-desc",
+      "unicode": "f0dd",
+      "created": 2,
       "aliases": [
         "sort-down"
-      ]
-    }, 
-    {
-      "name": "Sort Descending", 
-      "unicode": "f0de", 
-      "created": 2.0, 
-      "id": "sort-desc", 
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Sort Ascending",
+      "id": "sort-asc",
+      "unicode": "f0de",
+      "created": 2,
       "aliases": [
         "sort-up"
-      ]
-    }, 
-    {
-      "id": "envelope", 
-      "unicode": "f0e0", 
-      "name": "Envelope", 
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "linkedin", 
-      "unicode": "f0e1", 
-      "name": "LinkedIn", 
+      "name": "Envelope",
+      "id": "envelope",
+      "unicode": "f0e0",
+      "created": 2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "LinkedIn",
+      "id": "linkedin",
+      "unicode": "f0e1",
+      "created": 2,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Undo", 
-      "unicode": "f0e2", 
-      "created": 2.0, 
-      "id": "undo", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
+      "name": "Undo",
+      "id": "undo",
+      "unicode": "f0e2",
+      "created": 2,
       "aliases": [
         "rotate-left"
-      ]
-    }, 
-    {
-      "name": "Gavel", 
-      "unicode": "f0e3", 
-      "created": 2.0, 
-      "id": "gavel", 
+      ],
       "categories": [
-        "Web Application Icons"
-      ], 
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "Gavel",
+      "id": "gavel",
+      "unicode": "f0e3",
+      "created": 2,
       "aliases": [
         "legal"
-      ]
-    }, 
-    {
-      "name": "Tachometer", 
-      "unicode": "f0e4", 
-      "created": 2.0, 
-      "id": "tachometer", 
+      ],
       "categories": [
         "Web Application Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Tachometer",
+      "id": "tachometer",
+      "unicode": "f0e4",
+      "created": 2,
       "aliases": [
         "dashboard"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "comment-o", 
-      "unicode": "f0e5", 
-      "name": "comment-o", 
+      "name": "comment-o",
+      "id": "comment-o",
+      "unicode": "f0e5",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "comments-o", 
-      "unicode": "f0e6", 
-      "name": "comments-o", 
+      "name": "comments-o",
+      "id": "comments-o",
+      "unicode": "f0e6",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Lightning Bolt", 
-      "unicode": "f0e7", 
-      "created": 2.0, 
-      "id": "bolt", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Lightning Bolt",
+      "id": "bolt",
+      "unicode": "f0e7",
+      "created": 2,
       "aliases": [
         "flash"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "sitemap", 
-      "unicode": "f0e8", 
-      "name": "Sitemap", 
+      "name": "Sitemap",
+      "id": "sitemap",
+      "unicode": "f0e8",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "id": "umbrella", 
-      "unicode": "f0e9", 
-      "name": "Umbrella", 
+      "name": "Umbrella",
+      "id": "umbrella",
+      "unicode": "f0e9",
+      "created": 2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 2.0
-    }, 
+      ]
+    },
     {
-      "name": "Clipboard", 
-      "unicode": "f0ea", 
-      "created": 2.0, 
-      "id": "clipboard", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
+      "name": "Clipboard",
+      "id": "clipboard",
+      "unicode": "f0ea",
+      "created": 2,
       "aliases": [
         "paste"
-      ]
-    }, 
-    {
-      "id": "lightbulb-o", 
-      "unicode": "f0eb", 
-      "name": "Lightbulb Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "exchange", 
-      "unicode": "f0ec", 
-      "name": "Exchange", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "cloud-download", 
-      "unicode": "f0ed", 
-      "name": "Cloud Download", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "cloud-upload", 
-      "unicode": "f0ee", 
-      "name": "Cloud Upload", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "user-md", 
-      "unicode": "f0f0", 
-      "name": "user-md", 
-      "categories": [
-        "Medical Icons"
-      ], 
-      "created": 2.0
-    }, 
-    {
-      "id": "stethoscope", 
-      "unicode": "f0f1", 
-      "name": "Stethoscope", 
-      "categories": [
-        "Medical Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "suitcase", 
-      "unicode": "f0f2", 
-      "name": "Suitcase", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "bell-o", 
-      "unicode": "f0a2", 
-      "name": "Bell Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "coffee", 
-      "unicode": "f0f4", 
-      "name": "Coffee", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "cutlery", 
-      "unicode": "f0f5", 
-      "name": "Cutlery", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "file-text-o", 
-      "unicode": "f0f6", 
-      "name": "File Text Outlined", 
+      ],
       "categories": [
         "Text Editor Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "building-o", 
-      "unicode": "f0f7", 
-      "name": "Building Outlined", 
+      "name": "Lightbulb Outlined",
+      "id": "lightbulb-o",
+      "unicode": "f0eb",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "hospital-o", 
-      "unicode": "f0f8", 
-      "name": "hospital Outlined", 
-      "categories": [
-        "Medical Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "ambulance", 
-      "unicode": "f0f9", 
-      "name": "ambulance", 
-      "categories": [
-        "Medical Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "medkit", 
-      "unicode": "f0fa", 
-      "name": "medkit", 
-      "categories": [
-        "Medical Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "fighter-jet", 
-      "unicode": "f0fb", 
-      "name": "fighter-jet", 
+      "name": "Exchange",
+      "id": "exchange",
+      "unicode": "f0ec",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "beer", 
-      "unicode": "f0fc", 
-      "name": "beer", 
+      "name": "Cloud Download",
+      "id": "cloud-download",
+      "unicode": "f0ed",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "h-square", 
-      "unicode": "f0fd", 
-      "name": "H Square", 
+      "name": "Cloud Upload",
+      "id": "cloud-upload",
+      "unicode": "f0ee",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "user-md",
+      "id": "user-md",
+      "unicode": "f0f0",
+      "created": 2,
       "categories": [
         "Medical Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "plus-square", 
-      "unicode": "f0fe", 
-      "name": "Plus Square", 
+      "name": "Stethoscope",
+      "id": "stethoscope",
+      "unicode": "f0f1",
+      "created": 3,
       "categories": [
-        "Medical Icons", 
-        "Web Application Icons", 
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "Suitcase",
+      "id": "suitcase",
+      "unicode": "f0f2",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Bell Outlined",
+      "id": "bell-o",
+      "unicode": "f0a2",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Coffee",
+      "id": "coffee",
+      "unicode": "f0f4",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Cutlery",
+      "id": "cutlery",
+      "unicode": "f0f5",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "File Text Outlined",
+      "id": "file-text-o",
+      "unicode": "f0f6",
+      "created": 3,
+      "categories": [
+        "Text Editor Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Building Outlined",
+      "id": "building-o",
+      "unicode": "f0f7",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "hospital Outlined",
+      "id": "hospital-o",
+      "unicode": "f0f8",
+      "created": 3,
+      "categories": [
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "ambulance",
+      "id": "ambulance",
+      "unicode": "f0f9",
+      "created": 3,
+      "categories": [
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "medkit",
+      "id": "medkit",
+      "unicode": "f0fa",
+      "created": 3,
+      "categories": [
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "fighter-jet",
+      "id": "fighter-jet",
+      "unicode": "f0fb",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "beer",
+      "id": "beer",
+      "unicode": "f0fc",
+      "created": 3,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "H Square",
+      "id": "h-square",
+      "unicode": "f0fd",
+      "created": 3,
+      "categories": [
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "Plus Square",
+      "id": "plus-square",
+      "unicode": "f0fe",
+      "created": 3,
+      "categories": [
+        "Medical Icons",
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-double-left", 
-      "unicode": "f100", 
-      "name": "Angle Double Left", 
+      "name": "Angle Double Left",
+      "id": "angle-double-left",
+      "unicode": "f100",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-double-right", 
-      "unicode": "f101", 
-      "name": "Angle Double Right", 
+      "name": "Angle Double Right",
+      "id": "angle-double-right",
+      "unicode": "f101",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-double-up", 
-      "unicode": "f102", 
-      "name": "Angle Double Up", 
+      "name": "Angle Double Up",
+      "id": "angle-double-up",
+      "unicode": "f102",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-double-down", 
-      "unicode": "f103", 
-      "name": "Angle Double Down", 
+      "name": "Angle Double Down",
+      "id": "angle-double-down",
+      "unicode": "f103",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-left", 
-      "unicode": "f104", 
-      "name": "angle-left", 
+      "name": "angle-left",
+      "id": "angle-left",
+      "unicode": "f104",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-right", 
-      "unicode": "f105", 
-      "name": "angle-right", 
+      "name": "angle-right",
+      "id": "angle-right",
+      "unicode": "f105",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-up", 
-      "unicode": "f106", 
-      "name": "angle-up", 
+      "name": "angle-up",
+      "id": "angle-up",
+      "unicode": "f106",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "angle-down", 
-      "unicode": "f107", 
-      "name": "angle-down", 
+      "name": "angle-down",
+      "id": "angle-down",
+      "unicode": "f107",
+      "created": 3,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "desktop", 
-      "unicode": "f108", 
-      "name": "Desktop", 
+      "name": "Desktop",
+      "id": "desktop",
+      "unicode": "f108",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "laptop", 
-      "unicode": "f109", 
-      "name": "Laptop", 
+      "name": "Laptop",
+      "id": "laptop",
+      "unicode": "f109",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "tablet", 
-      "unicode": "f10a", 
-      "name": "tablet", 
+      "name": "tablet",
+      "id": "tablet",
+      "unicode": "f10a",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "name": "Mobile Phone", 
-      "unicode": "f10b", 
-      "created": 3.0, 
-      "id": "mobile", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Mobile Phone",
+      "id": "mobile",
+      "unicode": "f10b",
+      "created": 3,
       "aliases": [
         "mobile-phone"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "circle-o", 
-      "unicode": "f10c", 
-      "name": "Circle Outlined", 
+      "name": "Circle Outlined",
+      "id": "circle-o",
+      "unicode": "f10c",
+      "created": 3,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "quote-left", 
-      "unicode": "f10d", 
-      "name": "quote-left", 
+      "name": "quote-left",
+      "id": "quote-left",
+      "unicode": "f10d",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "quote-right", 
-      "unicode": "f10e", 
-      "name": "quote-right", 
+      "name": "quote-right",
+      "id": "quote-right",
+      "unicode": "f10e",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "id": "spinner", 
-      "unicode": "f110", 
-      "name": "Spinner", 
+      "name": "Spinner",
+      "id": "spinner",
+      "unicode": "f110",
+      "created": 3,
       "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
+        "Web Application Icons",
+        "Spinner Icons"
+      ]
+    },
     {
-      "id": "circle", 
-      "unicode": "f111", 
-      "name": "Circle", 
+      "name": "Circle",
+      "id": "circle",
+      "unicode": "f111",
+      "created": 3,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.0
-    }, 
+      ]
+    },
     {
-      "name": "Reply", 
-      "unicode": "f112", 
-      "created": 3.0, 
-      "id": "reply", 
-      "categories": [
-        "Web Application Icons"
-      ], 
+      "name": "Reply",
+      "id": "reply",
+      "unicode": "f112",
+      "created": 3,
       "aliases": [
         "mail-reply"
+      ],
+      "categories": [
+        "Web Application Icons"
       ]
-    }, 
+    },
     {
-      "id": "github-alt", 
-      "unicode": "f113", 
-      "name": "GitHub Alt", 
+      "name": "GitHub Alt",
+      "id": "github-alt",
+      "unicode": "f113",
+      "created": 3,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "folder-o", 
-      "unicode": "f114", 
-      "name": "Folder Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "folder-open-o", 
-      "unicode": "f115", 
-      "name": "Folder Open Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.0
-    }, 
-    {
-      "id": "smile-o", 
-      "unicode": "f118", 
-      "name": "Smile Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "frown-o", 
-      "unicode": "f119", 
-      "name": "Frown Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "meh-o", 
-      "unicode": "f11a", 
-      "name": "Meh Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "gamepad", 
-      "unicode": "f11b", 
-      "name": "Gamepad", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "keyboard-o", 
-      "unicode": "f11c", 
-      "name": "Keyboard Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "flag-o", 
-      "unicode": "f11d", 
-      "name": "Flag Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "flag-checkered", 
-      "unicode": "f11e", 
-      "name": "flag-checkered", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "terminal", 
-      "unicode": "f120", 
-      "name": "Terminal", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "code", 
-      "unicode": "f121", 
-      "name": "Code", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "reply-all", 
-      "unicode": "f122", 
-      "name": "reply-all", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "mail-reply-all", 
-      "unicode": "f122", 
-      "name": "mail-reply-all", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "name": "Star Half Outlined", 
-      "unicode": "f123", 
-      "created": 3.1000000000000001, 
-      "id": "star-half-o", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "aliases": [
-        "star-half-empty", 
-        "star-half-full"
       ]
-    }, 
+    },
     {
-      "id": "location-arrow", 
-      "unicode": "f124", 
-      "name": "location-arrow", 
+      "name": "Folder Outlined",
+      "id": "folder-o",
+      "unicode": "f114",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "crop", 
-      "unicode": "f125", 
-      "name": "crop", 
+      "name": "Folder Open Outlined",
+      "id": "folder-open-o",
+      "unicode": "f115",
+      "created": 3,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "code-fork", 
-      "unicode": "f126", 
-      "name": "code-fork", 
+      "name": "Smile Outlined",
+      "id": "smile-o",
+      "unicode": "f118",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "name": "Chain Broken", 
-      "unicode": "f127", 
-      "created": 3.1000000000000001, 
-      "id": "chain-broken", 
+      "name": "Frown Outlined",
+      "id": "frown-o",
+      "unicode": "f119",
+      "created": 3.1,
       "categories": [
-        "Text Editor Icons"
-      ], 
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Meh Outlined",
+      "id": "meh-o",
+      "unicode": "f11a",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Gamepad",
+      "id": "gamepad",
+      "unicode": "f11b",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Keyboard Outlined",
+      "id": "keyboard-o",
+      "unicode": "f11c",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Flag Outlined",
+      "id": "flag-o",
+      "unicode": "f11d",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "flag-checkered",
+      "id": "flag-checkered",
+      "unicode": "f11e",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Terminal",
+      "id": "terminal",
+      "unicode": "f120",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Code",
+      "id": "code",
+      "unicode": "f121",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "reply-all",
+      "id": "reply-all",
+      "unicode": "f122",
+      "created": 3.1,
+      "aliases": [
+        "mail-reply-all"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Star Half Outlined",
+      "id": "star-half-o",
+      "unicode": "f123",
+      "created": 3.1,
+      "aliases": [
+        "star-half-empty",
+        "star-half-full"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "location-arrow",
+      "id": "location-arrow",
+      "unicode": "f124",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "crop",
+      "id": "crop",
+      "unicode": "f125",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "code-fork",
+      "id": "code-fork",
+      "unicode": "f126",
+      "created": 3.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Chain Broken",
+      "id": "chain-broken",
+      "unicode": "f127",
+      "created": 3.1,
       "aliases": [
         "unlink"
+      ],
+      "categories": [
+        "Text Editor Icons"
       ]
-    }, 
+    },
     {
-      "id": "question", 
-      "unicode": "f128", 
-      "name": "Question", 
+      "name": "Question",
+      "id": "question",
+      "unicode": "f128",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "info", 
-      "unicode": "f129", 
-      "name": "Info", 
+      "name": "Info",
+      "id": "info",
+      "unicode": "f129",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "exclamation", 
-      "unicode": "f12a", 
-      "name": "exclamation", 
+      "name": "exclamation",
+      "id": "exclamation",
+      "unicode": "f12a",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "superscript", 
-      "unicode": "f12b", 
-      "name": "superscript", 
+      "name": "superscript",
+      "id": "superscript",
+      "unicode": "f12b",
+      "created": 3.1,
+      "categories": [
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "subscript",
+      "id": "subscript",
+      "unicode": "f12c",
+      "created": 3.1,
+      "categories": [
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "eraser",
+      "id": "eraser",
+      "unicode": "f12d",
+      "created": 3.1,
+      "categories": [
+        "Text Editor Icons",
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Puzzle Piece",
+      "id": "puzzle-piece",
+      "unicode": "f12e",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "subscript", 
-      "unicode": "f12c", 
-      "name": "subscript", 
+      "name": "microphone",
+      "id": "microphone",
+      "unicode": "f130",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "eraser", 
-      "unicode": "f12d", 
-      "name": "eraser", 
-      "categories": [
-        "Text Editor Icons", 
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "puzzle-piece", 
-      "unicode": "f12e", 
-      "name": "Puzzle Piece", 
+      "name": "Microphone Slash",
+      "id": "microphone-slash",
+      "unicode": "f131",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "microphone", 
-      "unicode": "f130", 
-      "name": "microphone", 
+      "name": "shield",
+      "id": "shield",
+      "unicode": "f132",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "microphone-slash", 
-      "unicode": "f131", 
-      "name": "Microphone Slash", 
+      "name": "calendar-o",
+      "id": "calendar-o",
+      "unicode": "f133",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "shield", 
-      "unicode": "f132", 
-      "name": "shield", 
+      "name": "fire-extinguisher",
+      "id": "fire-extinguisher",
+      "unicode": "f134",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "calendar-o", 
-      "unicode": "f133", 
-      "name": "calendar-o", 
+      "name": "rocket",
+      "id": "rocket",
+      "unicode": "f135",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "fire-extinguisher", 
-      "unicode": "f134", 
-      "name": "fire-extinguisher", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "rocket", 
-      "unicode": "f135", 
-      "name": "rocket", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
-    {
-      "id": "maxcdn", 
-      "unicode": "f136", 
-      "name": "MaxCDN", 
+      "name": "MaxCDN",
+      "id": "maxcdn",
+      "unicode": "f136",
+      "created": 3.1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "chevron-circle-left", 
-      "unicode": "f137", 
-      "name": "Chevron Circle Left", 
+      "name": "Chevron Circle Left",
+      "id": "chevron-circle-left",
+      "unicode": "f137",
+      "created": 3.1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "chevron-circle-right", 
-      "unicode": "f138", 
-      "name": "Chevron Circle Right", 
+      "name": "Chevron Circle Right",
+      "id": "chevron-circle-right",
+      "unicode": "f138",
+      "created": 3.1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "chevron-circle-up", 
-      "unicode": "f139", 
-      "name": "Chevron Circle Up", 
+      "name": "Chevron Circle Up",
+      "id": "chevron-circle-up",
+      "unicode": "f139",
+      "created": 3.1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "chevron-circle-down", 
-      "unicode": "f13a", 
-      "name": "Chevron Circle Down", 
+      "name": "Chevron Circle Down",
+      "id": "chevron-circle-down",
+      "unicode": "f13a",
+      "created": 3.1,
       "categories": [
         "Directional Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "html5", 
-      "unicode": "f13b", 
-      "name": "HTML 5 Logo", 
+      "name": "HTML 5 Logo",
+      "id": "html5",
+      "unicode": "f13b",
+      "created": 3.1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "css3", 
-      "unicode": "f13c", 
-      "name": "CSS 3 Logo", 
+      "name": "CSS 3 Logo",
+      "id": "css3",
+      "unicode": "f13c",
+      "created": 3.1,
       "categories": [
         "Brand Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "anchor", 
-      "unicode": "f13d", 
-      "name": "Anchor", 
+      "name": "Anchor",
+      "id": "anchor",
+      "unicode": "f13d",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "unlock-alt", 
-      "unicode": "f13e", 
-      "name": "Unlock Alt", 
+      "name": "Unlock Alt",
+      "id": "unlock-alt",
+      "unicode": "f13e",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "bullseye", 
-      "unicode": "f140", 
-      "name": "Bullseye", 
+      "name": "Bullseye",
+      "id": "bullseye",
+      "unicode": "f140",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "ellipsis-h", 
-      "unicode": "f141", 
-      "name": "Ellipsis Horizontal", 
+      "name": "Ellipsis Horizontal",
+      "id": "ellipsis-h",
+      "unicode": "f141",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "ellipsis-v", 
-      "unicode": "f142", 
-      "name": "Ellipsis Vertical", 
+      "name": "Ellipsis Vertical",
+      "id": "ellipsis-v",
+      "unicode": "f142",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "rss-square", 
-      "unicode": "f143", 
-      "name": "RSS Square", 
+      "name": "RSS Square",
+      "id": "rss-square",
+      "unicode": "f143",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "play-circle", 
-      "unicode": "f144", 
-      "name": "Play Circle", 
+      "name": "Play Circle",
+      "id": "play-circle",
+      "unicode": "f144",
+      "created": 3.1,
       "categories": [
         "Video Player Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "ticket", 
-      "unicode": "f145", 
-      "name": "Ticket", 
+      "name": "Ticket",
+      "id": "ticket",
+      "unicode": "f145",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "minus-square", 
-      "unicode": "f146", 
-      "name": "Minus Square", 
+      "name": "Minus Square",
+      "id": "minus-square",
+      "unicode": "f146",
+      "created": 3.1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "minus-square-o", 
-      "unicode": "f147", 
-      "name": "Minus Square Outlined", 
+      "name": "Minus Square Outlined",
+      "id": "minus-square-o",
+      "unicode": "f147",
+      "created": 3.1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "level-up", 
-      "unicode": "f148", 
-      "name": "Level Up", 
+      "name": "Level Up",
+      "id": "level-up",
+      "unicode": "f148",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "level-down", 
-      "unicode": "f149", 
-      "name": "Level Down", 
+      "name": "Level Down",
+      "id": "level-down",
+      "unicode": "f149",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "check-square", 
-      "unicode": "f14a", 
-      "name": "Check Square", 
+      "name": "Check Square",
+      "id": "check-square",
+      "unicode": "f14a",
+      "created": 3.1,
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "pencil-square", 
-      "unicode": "f14b", 
-      "name": "Pencil Square", 
+      "name": "Pencil Square",
+      "id": "pencil-square",
+      "unicode": "f14b",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "external-link-square", 
-      "unicode": "f14c", 
-      "name": "External Link Square", 
+      "name": "External Link Square",
+      "id": "external-link-square",
+      "unicode": "f14c",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "share-square", 
-      "unicode": "f14d", 
-      "name": "Share Square", 
+      "name": "Share Square",
+      "id": "share-square",
+      "unicode": "f14d",
+      "created": 3.1,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.1000000000000001
-    }, 
+      ]
+    },
     {
-      "id": "compass", 
-      "unicode": "f14e", 
-      "name": "Compass", 
+      "name": "Compass",
+      "id": "compass",
+      "unicode": "f14e",
+      "created": 3.2,
       "categories": [
         "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
+      ]
+    },
     {
-      "name": "Caret Square Outlined Down", 
-      "unicode": "f150", 
-      "created": 3.2000000000000002, 
-      "id": "caret-square-o-down", 
-      "categories": [
-        "Web Application Icons", 
-        "Directional Icons"
-      ], 
+      "name": "Caret Square Outlined Down",
+      "id": "caret-square-o-down",
+      "unicode": "f150",
+      "created": 3.2,
       "aliases": [
         "toggle-down"
-      ]
-    }, 
-    {
-      "name": "Caret Square Outlined Up", 
-      "unicode": "f151", 
-      "created": 3.2000000000000002, 
-      "id": "caret-square-o-up", 
+      ],
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Directional Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Caret Square Outlined Up",
+      "id": "caret-square-o-up",
+      "unicode": "f151",
+      "created": 3.2,
       "aliases": [
         "toggle-up"
-      ]
-    }, 
-    {
-      "name": "Caret Square Outlined Right", 
-      "unicode": "f152", 
-      "created": 3.2000000000000002, 
-      "id": "caret-square-o-right", 
+      ],
       "categories": [
-        "Web Application Icons", 
+        "Web Application Icons",
         "Directional Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Caret Square Outlined Right",
+      "id": "caret-square-o-right",
+      "unicode": "f152",
+      "created": 3.2,
       "aliases": [
         "toggle-right"
-      ]
-    }, 
-    {
-      "name": "Euro (EUR)", 
-      "unicode": "f153", 
-      "created": 3.2000000000000002, 
-      "id": "eur", 
+      ],
       "categories": [
-        "Currency Icons"
-      ], 
+        "Web Application Icons",
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Euro (EUR)",
+      "id": "eur",
+      "unicode": "f153",
+      "created": 3.2,
       "aliases": [
         "euro"
+      ],
+      "categories": [
+        "Currency Icons"
       ]
-    }, 
+    },
     {
-      "id": "gbp", 
-      "unicode": "f154", 
-      "name": "GBP", 
+      "name": "GBP",
+      "id": "gbp",
+      "unicode": "f154",
+      "created": 3.2,
       "categories": [
         "Currency Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
+      ]
+    },
     {
-      "name": "US Dollar", 
-      "unicode": "f155", 
-      "created": 3.2000000000000002, 
-      "id": "usd", 
-      "categories": [
-        "Currency Icons"
-      ], 
+      "name": "US Dollar",
+      "id": "usd",
+      "unicode": "f155",
+      "created": 3.2,
       "aliases": [
         "dollar"
-      ]
-    }, 
-    {
-      "name": "Indian Rupee (INR)", 
-      "unicode": "f156", 
-      "created": 3.2000000000000002, 
-      "id": "inr", 
+      ],
       "categories": [
         "Currency Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Indian Rupee (INR)",
+      "id": "inr",
+      "unicode": "f156",
+      "created": 3.2,
       "aliases": [
         "rupee"
-      ]
-    }, 
-    {
-      "name": "Japanese Yen (JPY)", 
-      "unicode": "f157", 
-      "created": 3.2000000000000002, 
-      "id": "jpy", 
+      ],
       "categories": [
         "Currency Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Japanese Yen (JPY)",
+      "id": "jpy",
+      "unicode": "f157",
+      "created": 3.2,
       "aliases": [
-        "cny", 
-        "rmb", 
+        "cny",
+        "rmb",
         "yen"
-      ]
-    }, 
-    {
-      "name": "Russian Ruble (RUB)", 
-      "unicode": "f158", 
-      "created": 4.0, 
-      "id": "rub", 
+      ],
       "categories": [
         "Currency Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Russian Ruble (RUB)",
+      "id": "rub",
+      "unicode": "f158",
+      "created": 4,
       "aliases": [
-        "ruble", 
+        "ruble",
         "rouble"
-      ]
-    }, 
-    {
-      "name": "Korean Won (KRW)", 
-      "unicode": "f159", 
-      "created": 3.2000000000000002, 
-      "id": "krw", 
+      ],
       "categories": [
         "Currency Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Korean Won (KRW)",
+      "id": "krw",
+      "unicode": "f159",
+      "created": 3.2,
       "aliases": [
         "won"
-      ]
-    }, 
-    {
-      "name": "Bitcoin (BTC)", 
-      "unicode": "f15a", 
-      "created": 3.2000000000000002, 
-      "id": "btc", 
-      "categories": [
-        "Currency Icons", 
-        "Brand Icons"
-      ], 
-      "aliases": [
-        "bitcoin"
-      ]
-    }, 
-    {
-      "id": "file", 
-      "unicode": "f15b", 
-      "name": "File", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "file-text", 
-      "unicode": "f15c", 
-      "name": "File Text", 
-      "categories": [
-        "Text Editor Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-alpha-asc", 
-      "unicode": "f15d", 
-      "name": "Sort Alpha Ascending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-alpha-desc", 
-      "unicode": "f15e", 
-      "name": "Sort Alpha Descending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-amount-asc", 
-      "unicode": "f160", 
-      "name": "Sort Amount Ascending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-amount-desc", 
-      "unicode": "f161", 
-      "name": "Sort Amount Descending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-numeric-asc", 
-      "unicode": "f162", 
-      "name": "Sort Numeric Ascending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sort-numeric-desc", 
-      "unicode": "f163", 
-      "name": "Sort Numeric Descending", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "thumbs-up", 
-      "unicode": "f164", 
-      "name": "thumbs-up", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "thumbs-down", 
-      "unicode": "f165", 
-      "name": "thumbs-down", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "youtube-square", 
-      "unicode": "f166", 
-      "name": "YouTube Square", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "youtube", 
-      "unicode": "f167", 
-      "name": "YouTube", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "xing", 
-      "unicode": "f168", 
-      "name": "Xing", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "xing-square", 
-      "unicode": "f169", 
-      "name": "Xing Square", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "youtube-play", 
-      "unicode": "f16a", 
-      "name": "YouTube Play", 
-      "categories": [
-        "Brand Icons", 
-        "Video Player Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "dropbox", 
-      "unicode": "f16b", 
-      "name": "Dropbox", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "stack-overflow", 
-      "unicode": "f16c", 
-      "name": "Stack Overflow", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "instagram", 
-      "unicode": "f16d", 
-      "name": "Instagram", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "flickr", 
-      "unicode": "f16e", 
-      "name": "Flickr", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "adn", 
-      "unicode": "f170", 
-      "name": "App.net", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "bitbucket", 
-      "unicode": "f171", 
-      "name": "Bitbucket", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "bitbucket-square", 
-      "unicode": "f172", 
-      "name": "Bitbucket Square", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "tumblr", 
-      "unicode": "f173", 
-      "name": "Tumblr", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "tumblr-square", 
-      "unicode": "f174", 
-      "name": "Tumblr Square", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "long-arrow-down", 
-      "unicode": "f175", 
-      "name": "Long Arrow Down", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "long-arrow-up", 
-      "unicode": "f176", 
-      "name": "Long Arrow Up", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "long-arrow-left", 
-      "unicode": "f177", 
-      "name": "Long Arrow Left", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "long-arrow-right", 
-      "unicode": "f178", 
-      "name": "Long Arrow Right", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "apple", 
-      "unicode": "f179", 
-      "name": "Apple", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "windows", 
-      "unicode": "f17a", 
-      "name": "Windows", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "android", 
-      "unicode": "f17b", 
-      "name": "Android", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "linux", 
-      "unicode": "f17c", 
-      "name": "Linux", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "dribbble", 
-      "unicode": "f17d", 
-      "name": "Dribbble", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "skype", 
-      "unicode": "f17e", 
-      "name": "Skype", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "foursquare", 
-      "unicode": "f180", 
-      "name": "Foursquare", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "trello", 
-      "unicode": "f181", 
-      "name": "Trello", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "female", 
-      "unicode": "f182", 
-      "name": "Female", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "male", 
-      "unicode": "f183", 
-      "name": "Male", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "gittip", 
-      "unicode": "f184", 
-      "name": "Gittip", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "sun-o", 
-      "unicode": "f185", 
-      "name": "Sun Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "moon-o", 
-      "unicode": "f186", 
-      "name": "Moon Outlined", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "archive", 
-      "unicode": "f187", 
-      "name": "Archive", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "bug", 
-      "unicode": "f188", 
-      "name": "Bug", 
-      "categories": [
-        "Web Application Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "vk", 
-      "unicode": "f189", 
-      "name": "VK", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "weibo", 
-      "unicode": "f18a", 
-      "name": "Weibo", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "renren", 
-      "unicode": "f18b", 
-      "name": "Renren", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 3.2000000000000002
-    }, 
-    {
-      "id": "pagelines", 
-      "unicode": "f18c", 
-      "name": "Pagelines", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "id": "stack-exchange", 
-      "unicode": "f18d", 
-      "name": "Stack Exchange", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "id": "arrow-circle-o-right", 
-      "unicode": "f18e", 
-      "name": "Arrow Circle Outlined Right", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "id": "arrow-circle-o-left", 
-      "unicode": "f190", 
-      "name": "Arrow Circle Outlined Left", 
-      "categories": [
-        "Directional Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "name": "Caret Square Outlined Left", 
-      "unicode": "f191", 
-      "created": 4.0, 
-      "id": "caret-square-o-left", 
-      "categories": [
-        "Web Application Icons", 
-        "Directional Icons"
-      ], 
-      "aliases": [
-        "toggle-left"
-      ]
-    }, 
-    {
-      "id": "dot-circle-o", 
-      "unicode": "f192", 
-      "name": "Dot Circle O", 
-      "categories": [
-        "Web Application Icons", 
-        "Form Control Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "id": "wheelchair", 
-      "unicode": "f193", 
-      "name": "Wheelchair", 
-      "categories": [
-        "Web Application Icons", 
-        "Medical Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "id": "vimeo-square", 
-      "unicode": "f194", 
-      "name": "Vimeo Square", 
-      "categories": [
-        "Brand Icons"
-      ], 
-      "created": 4.0
-    }, 
-    {
-      "name": "Turkish Lira (TRY)", 
-      "unicode": "f195", 
-      "created": 4.0, 
-      "id": "try", 
+      ],
       "categories": [
         "Currency Icons"
-      ], 
+      ]
+    },
+    {
+      "name": "Bitcoin (BTC)",
+      "id": "btc",
+      "unicode": "f15a",
+      "created": 3.2,
+      "aliases": [
+        "bitcoin"
+      ],
+      "categories": [
+        "Currency Icons",
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "File",
+      "id": "file",
+      "unicode": "f15b",
+      "created": 3.2,
+      "categories": [
+        "Text Editor Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "File Text",
+      "id": "file-text",
+      "unicode": "f15c",
+      "created": 3.2,
+      "categories": [
+        "Text Editor Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Sort Alpha Ascending",
+      "id": "sort-alpha-asc",
+      "unicode": "f15d",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Sort Alpha Descending",
+      "id": "sort-alpha-desc",
+      "unicode": "f15e",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Sort Amount Ascending",
+      "id": "sort-amount-asc",
+      "unicode": "f160",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Sort Amount Descending",
+      "id": "sort-amount-desc",
+      "unicode": "f161",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Sort Numeric Ascending",
+      "id": "sort-numeric-asc",
+      "unicode": "f162",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Sort Numeric Descending",
+      "id": "sort-numeric-desc",
+      "unicode": "f163",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "thumbs-up",
+      "id": "thumbs-up",
+      "unicode": "f164",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "thumbs-down",
+      "id": "thumbs-down",
+      "unicode": "f165",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "YouTube Square",
+      "id": "youtube-square",
+      "unicode": "f166",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "YouTube",
+      "id": "youtube",
+      "unicode": "f167",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Xing",
+      "id": "xing",
+      "unicode": "f168",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Xing Square",
+      "id": "xing-square",
+      "unicode": "f169",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "YouTube Play",
+      "id": "youtube-play",
+      "unicode": "f16a",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons",
+        "Video Player Icons"
+      ]
+    },
+    {
+      "name": "Dropbox",
+      "id": "dropbox",
+      "unicode": "f16b",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Stack Overflow",
+      "id": "stack-overflow",
+      "unicode": "f16c",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Instagram",
+      "id": "instagram",
+      "unicode": "f16d",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Flickr",
+      "id": "flickr",
+      "unicode": "f16e",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "App.net",
+      "id": "adn",
+      "unicode": "f170",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Bitbucket",
+      "id": "bitbucket",
+      "unicode": "f171",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Bitbucket Square",
+      "id": "bitbucket-square",
+      "unicode": "f172",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Tumblr",
+      "id": "tumblr",
+      "unicode": "f173",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Tumblr Square",
+      "id": "tumblr-square",
+      "unicode": "f174",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Long Arrow Down",
+      "id": "long-arrow-down",
+      "unicode": "f175",
+      "created": 3.2,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Long Arrow Up",
+      "id": "long-arrow-up",
+      "unicode": "f176",
+      "created": 3.2,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Long Arrow Left",
+      "id": "long-arrow-left",
+      "unicode": "f177",
+      "created": 3.2,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Long Arrow Right",
+      "id": "long-arrow-right",
+      "unicode": "f178",
+      "created": 3.2,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Apple",
+      "id": "apple",
+      "unicode": "f179",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Windows",
+      "id": "windows",
+      "unicode": "f17a",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Android",
+      "id": "android",
+      "unicode": "f17b",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Linux",
+      "id": "linux",
+      "unicode": "f17c",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Dribbble",
+      "id": "dribbble",
+      "unicode": "f17d",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Skype",
+      "id": "skype",
+      "unicode": "f17e",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Foursquare",
+      "id": "foursquare",
+      "unicode": "f180",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Trello",
+      "id": "trello",
+      "unicode": "f181",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Female",
+      "id": "female",
+      "unicode": "f182",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Male",
+      "id": "male",
+      "unicode": "f183",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Gittip",
+      "id": "gittip",
+      "unicode": "f184",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Sun Outlined",
+      "id": "sun-o",
+      "unicode": "f185",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Moon Outlined",
+      "id": "moon-o",
+      "unicode": "f186",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Archive",
+      "id": "archive",
+      "unicode": "f187",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Bug",
+      "id": "bug",
+      "unicode": "f188",
+      "created": 3.2,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "VK",
+      "id": "vk",
+      "unicode": "f189",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Weibo",
+      "id": "weibo",
+      "unicode": "f18a",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Renren",
+      "id": "renren",
+      "unicode": "f18b",
+      "created": 3.2,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Pagelines",
+      "id": "pagelines",
+      "unicode": "f18c",
+      "created": 4,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Stack Exchange",
+      "id": "stack-exchange",
+      "unicode": "f18d",
+      "created": 4,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Arrow Circle Outlined Right",
+      "id": "arrow-circle-o-right",
+      "unicode": "f18e",
+      "created": 4,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Arrow Circle Outlined Left",
+      "id": "arrow-circle-o-left",
+      "unicode": "f190",
+      "created": 4,
+      "categories": [
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Caret Square Outlined Left",
+      "id": "caret-square-o-left",
+      "unicode": "f191",
+      "created": 4,
+      "aliases": [
+        "toggle-left"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "Directional Icons"
+      ]
+    },
+    {
+      "name": "Dot Circle O",
+      "id": "dot-circle-o",
+      "unicode": "f192",
+      "created": 4,
+      "categories": [
+        "Web Application Icons",
+        "Form Control Icons"
+      ]
+    },
+    {
+      "name": "Wheelchair",
+      "id": "wheelchair",
+      "unicode": "f193",
+      "created": 4,
+      "categories": [
+        "Web Application Icons",
+        "Medical Icons"
+      ]
+    },
+    {
+      "name": "Vimeo Square",
+      "id": "vimeo-square",
+      "unicode": "f194",
+      "created": 4,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Turkish Lira (TRY)",
+      "id": "try",
+      "unicode": "f195",
+      "created": 4,
       "aliases": [
         "turkish-lira"
-      ]
-    }, 
-    {
-      "id": "plus-square-o", 
-      "unicode": "f196", 
-      "name": "Plus Square Outlined", 
+      ],
       "categories": [
-        "Web Application Icons", 
+        "Currency Icons"
+      ]
+    },
+    {
+      "name": "Plus Square Outlined",
+      "id": "plus-square-o",
+      "unicode": "f196",
+      "created": 4,
+      "categories": [
+        "Web Application Icons",
         "Form Control Icons"
-      ], 
-      "created": 4.0
+      ]
+    },
+    {
+      "name": "Space Shuttle",
+      "id": "space-shuttle",
+      "unicode": "f197",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Slack Logo",
+      "id": "slack",
+      "unicode": "f198",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Envelope Square",
+      "id": "envelope-square",
+      "unicode": "f199",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Wordpress Logo",
+      "id": "wordpress",
+      "unicode": "f19a",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "OpenID",
+      "id": "openid",
+      "unicode": "f19b",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "University",
+      "id": "university",
+      "unicode": "f19c",
+      "created": 4.1,
+      "aliases": [
+        "institution",
+        "bank"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Graduation Cap",
+      "id": "graduation-cap",
+      "unicode": "f19d",
+      "created": 4.1,
+      "aliases": [
+        "mortar-board"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Yahoo Logo",
+      "id": "yahoo",
+      "unicode": "f19e",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Google Logo",
+      "id": "google",
+      "unicode": "f1a0",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "reddit Logo",
+      "id": "reddit",
+      "unicode": "f1a1",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "reddit Square",
+      "id": "reddit-square",
+      "unicode": "f1a2",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "StumbleUpon Circle",
+      "id": "stumbleupon-circle",
+      "unicode": "f1a3",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "StumbleUpon Logo",
+      "id": "stumbleupon",
+      "unicode": "f1a4",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Delicious Logo",
+      "id": "delicious",
+      "unicode": "f1a5",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Digg Logo",
+      "id": "digg",
+      "unicode": "f1a6",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Pied Piper Logo",
+      "id": "pied-piper",
+      "unicode": "f1a7",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ],
+      "aliases": [
+        "pied-piper-square"
+      ]
+    },
+    {
+      "name": "Pied Piper Alternate Logo",
+      "id": "pied-piper-alt",
+      "unicode": "f1a8",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Drupal Logo",
+      "id": "drupal",
+      "unicode": "f1a9",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Joomla Logo",
+      "id": "joomla",
+      "unicode": "f1aa",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Language",
+      "id": "language",
+      "unicode": "f1ab",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Fax",
+      "id": "fax",
+      "unicode": "f1ac",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Building",
+      "id": "building",
+      "unicode": "f1ad",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Child",
+      "id": "child",
+      "unicode": "f1ae",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Paw",
+      "id": "paw",
+      "unicode": "f1b0",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "spoon",
+      "id": "spoon",
+      "unicode": "f1b1",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Cube",
+      "id": "cube",
+      "unicode": "f1b2",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Cubes",
+      "id": "cubes",
+      "unicode": "f1b3",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Behance",
+      "id": "behance",
+      "unicode": "f1b4",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Behance Square",
+      "id": "behance-square",
+      "unicode": "f1b5",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Steam",
+      "id": "steam",
+      "unicode": "f1b6",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Steam Square",
+      "id": "steam-square",
+      "unicode": "f1b7",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Recycle",
+      "id": "recycle",
+      "unicode": "f1b8",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Car",
+      "id": "car",
+      "unicode": "f1b9",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ],
+      "aliases": [
+        "automobile"
+      ]
+    },
+    {
+      "name": "Taxi",
+      "id": "taxi",
+      "unicode": "f1ba",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ],
+      "aliases": [
+        "cab"
+      ]
+    },
+    {
+      "name": "Tree",
+      "id": "tree",
+      "unicode": "f1bb",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Spotify",
+      "id": "spotify",
+      "unicode": "f1bc",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "deviantART",
+      "id": "deviantart",
+      "unicode": "f1bd",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "SoundCloud",
+      "id": "soundcloud",
+      "unicode": "f1be",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Database",
+      "id": "database",
+      "unicode": "f1c0",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "PDF File Outlined",
+      "id": "file-pdf-o",
+      "unicode": "f1c1",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Word File Outlined",
+      "id": "file-word-o",
+      "unicode": "f1c2",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Excel File Outlined",
+      "id": "file-excel-o",
+      "unicode": "f1c3",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Powerpoint File Outlined",
+      "id": "file-powerpoint-o",
+      "unicode": "f1c4",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Image File Outlined",
+      "id": "file-image-o",
+      "unicode": "f1c5",
+      "created": 4.1,
+      "aliases": [
+        "file-photo-o",
+        "file-picture-o"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Archive File Outlined",
+      "id": "file-archive-o",
+      "unicode": "f1c6",
+      "created": 4.1,
+      "aliases": [
+        "file-zip-o"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Audio File Outlined",
+      "id": "file-audio-o",
+      "unicode": "f1c7",
+      "created": 4.1,
+      "aliases": [
+        "file-sound-o"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Video File Outlined",
+      "id": "file-video-o",
+      "unicode": "f1c8",
+      "created": 4.1,
+      "aliases": [
+        "file-movie-o"
+      ],
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Code File Outlined",
+      "id": "file-code-o",
+      "unicode": "f1c9",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "File Type Icons"
+      ]
+    },
+    {
+      "name": "Vine",
+      "id": "vine",
+      "unicode": "f1ca",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Codepen",
+      "id": "codepen",
+      "unicode": "f1cb",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "jsFiddle",
+      "id": "jsfiddle",
+      "unicode": "f1cc",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Life Ring",
+      "id": "life-ring",
+      "unicode": "f1cd",
+      "created": 4.1,
+      "aliases": [
+        "life-bouy",
+        "life-saver",
+        "support"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Circle Outlined Notched",
+      "id": "circle-o-notch",
+      "unicode": "f1ce",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "Spinner Icons"
+      ]
+    },
+    {
+      "name": "Rebel Alliance",
+      "id": "rebel",
+      "unicode": "f1d0",
+      "created": 4.1,
+      "aliases": [
+        "ra"
+      ],
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Galactic Empire",
+      "id": "empire",
+      "unicode": "f1d1",
+      "created": 4.1,
+      "aliases": [
+        "ge"
+      ],
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Git Square",
+      "id": "git-square",
+      "unicode": "f1d2",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Git",
+      "id": "git",
+      "unicode": "f1d3",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Hacker News",
+      "id": "hacker-news",
+      "unicode": "f1d4",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Tencent Weibo",
+      "id": "tencent-weibo",
+      "unicode": "f1d5",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "QQ",
+      "id": "qq",
+      "unicode": "f1d6",
+      "created": 4.1,
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Weixin (WeChat)",
+      "id": "weixin",
+      "unicode": "f1d7",
+      "created": 4.1,
+      "aliases": [
+        "wechat"
+      ],
+      "categories": [
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Paper Plane",
+      "id": "paper-plane",
+      "unicode": "f1d8",
+      "created": 4.1,
+      "aliases": [
+        "send"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Paper Plane Outlined",
+      "id": "paper-plane-o",
+      "unicode": "f1d9",
+      "created": 4.1,
+      "aliases": [
+        "send-o"
+      ],
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "History",
+      "id": "history",
+      "unicode": "f1da",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Circle Outlined Thin",
+      "id": "circle-thin",
+      "unicode": "f1db",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "header",
+      "id": "header",
+      "unicode": "f1dc",
+      "created": 4.1,
+      "categories": [
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "paragraph",
+      "id": "paragraph",
+      "unicode": "f1dd",
+      "created": 4.1,
+      "categories": [
+        "Text Editor Icons"
+      ]
+    },
+    {
+      "name": "Sliders",
+      "id": "sliders",
+      "unicode": "f1de",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
+    },
+    {
+      "name": "Share Alt",
+      "id": "share-alt",
+      "unicode": "f1e0",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Share Alt Square",
+      "id": "share-alt-square",
+      "unicode": "f1e1",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons",
+        "Brand Icons"
+      ]
+    },
+    {
+      "name": "Bomb",
+      "id": "bomb",
+      "unicode": "f1e2",
+      "created": 4.1,
+      "categories": [
+        "Web Application Icons"
+      ]
     }
   ]
 }

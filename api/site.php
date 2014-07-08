@@ -181,6 +181,13 @@ class SiteCreateResource extends Tonic\Resource {
         $language = 'en-us'; // language for the app
         $userId = -1;
         
+        $theme = DEFAULT_THEME;
+        
+        // set theme
+        if(isset($request['theme'])){
+	        $theme = $request['theme'];
+        }
+        
         // set language if set
         if(isset($request['language'])){
 	        $language = $request['language'];
@@ -236,7 +243,7 @@ class SiteCreateResource extends Tonic\Resource {
             }
             
             // add the site
-    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, DEFAULT_THEME, $email, $timeZone, $language); // add the site
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $theme, $email, $timeZone, $language); // add the site
             
             // add the admin
             if($email != ''){
@@ -261,133 +268,118 @@ class SiteCreateResource extends Tonic\Resource {
 	            
 	            Site::EditCustomer($site['SiteUniqId'], $customerId);
             }
+       
+            // read the defaults file
+            $default_json_file = '../themes/'.$theme.'/default.json';
             
-            // create the home page
-        	$description = '';
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/home.html';
-    		$layout = 'home';
-    		$stylesheet = 'home';
-    		
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
+            
+            // set $siteId
+            $siteId = $site['SiteId'];
+            
+            // check to make sure the defaults.json exists
+            if(file_exists($default_json_file)){
     			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
-    		}
-    		
-            $homePage = Page::Add('index', 'Home', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
-            Page::SetIsActive($homePage['PageUniqId'], 1);
-            
-    		Publish::PublishFragment($site['FriendlyId'], $homePage['PageUniqId'], 'publish', $content);
-    		
-    		// create the about page
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/about.html';
-    		$layout = 'content';
-    		$stylesheet = 'content';
-    		
-    		// add the general page type and create a list
-    		$pageType = PageType::Add('page', 'Page', 'Pages', $layout, $stylesheet, 0, $site['SiteId'], $userId, $userId);
+    			// get json from the file
+    			$json_text = file_get_contents($default_json_file);
+    			
+    			// decode json
+    			$json = json_decode($json_text, true);
+    			
+    			// pagetypes
+    			$pagetypes = array();
+    			
+    			// menu counts
+    			$primaryMenuCount = 0;
+    			$footerMenuCount = 0;
+    			
+    			// walk through defaults array
+    			foreach($json as &$value){
+    			
+    				// get values from array
+    				$url = $value['url'];
+    				$source = $value['source'];
+    				$name = $value['name'];
+    				$description = $value['description'];
+    				$layout = $value['layout'];
+    				$stylesheet = $value['stylesheet'];
+    				$primaryMenu = $value['primaryMenu'];
+    				$footerMenu = $value['footerMenu'];
     				
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
+    				if(strpos($url, '/') !== false){ // the url has a pagetype
+						$arr = explode('/', $url);
+						
+						// get friendly ids from $url
+						$pageTypeFriendlyId = $arr[0];
+						$pageFriendlyId = $arr[1];
+						
+						$pageTypeId = -1;
+						
+						$pageType = PageType::GetByFriendlyId($pageTypeFriendlyId, $siteId);
+						
+						// create a new pagetype
+						if($pageType == NULL){
+							$pageType = PageType::Add($pageTypeFriendlyId, 'Page', 'Pages', 
+												$layout, $stylesheet, 0, $siteId, $userId, $userId);
+						}
+						
+						// get newly minted page type
+						$pageTypeId = $pageType['PageTypeId'];
+						
+					
+					}
+					else{ // root, no pagetype
+						$pageFriendlyId = $url;
+						$pageTypeId = -1;
+					}
+					
+					// create a page
+					$page = Page::Add($pageFriendlyId, $name, $description, 
+											$layout, $stylesheet, $pageTypeId, $site['SiteId'], $userId);
+				
+					// set the page to active							
+					Page::SetIsActive($page['PageUniqId'], 1);
+					
+					// build the content file
+					$filename = '../themes/'.$theme.'/'.$source;
+					$content = '';
+					
+					// get the content for the page
+					if(file_exists($filename)){
+		    			$content = file_get_contents($filename);
+		    			
+		    			// fix images
+		    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
+		    		}
+            
+					// publish the fragment
+					Publish::PublishFragment($site['FriendlyId'], $page['PageUniqId'], 'publish', $content);
+					
+					// build the primary menu
+					if($primaryMenu == true){
+						MenuItem::Add($name, '', 'primary', $url, $page['PageId'], 
+										$primaryMenuCount, $site['SiteId'], $userId, $userId);
+										
+						$primaryMenuCount++;
+						
+					}
+					
+					// build the footer menu
+					if($footerMenu == true){
+						MenuItem::Add($name, '', 'footer', $url, $page['PageId'], 
+										$footerMenuCount, $site['SiteId'], $userId, $userId);
+										
+						$footerMenuCount++;
+					}
     			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
+    			}
+    			
+    		}
+    		else{
+	    		return new Tonic\Response(Tonic\Response::BADREQUEST);
     		}
             
-    		$aboutUs = Page::Add('about', 'About', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
-            Page::SetIsActive($aboutUs['PageUniqId'], 1);
-    		
-    		Publish::PublishFragment($site['FriendlyId'], $aboutUs['PageUniqId'], 'publish', $content);
-    			
-    		// create the contact us page
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/contact.html';
-    		$layout = 'content';
-    		$stylesheet = 'content';
-    				
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
-    			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
-    		}
-    		
-            $contactUs = Page::Add('contact', 'Contact', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
-            Page::SetIsActive($contactUs['PageUniqId'], 1);
-        
-    		Publish::PublishFragment($site['FriendlyId'], $contactUs['PageUniqId'], 'publish', $content);
-    			
-    		// create the error page
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/error.html';
-    		$layout = 'content';
-    		$stylesheet = 'content';
-    				
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
-    			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
-    		}
-    		
-            $pageNotFound = Page::Add('error', 'Page Not Found', $description, $layout, $stylesheet, $pageType['PageTypeId'], $site['SiteId'], $userId);
-            Page::SetIsActive($pageNotFound['PageUniqId'], 1);
-            
-    		Publish::PublishFragment($site['FriendlyId'], $pageNotFound['PageUniqId'], 'publish', $content);
-
-    		// create a sample blog post
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/post.html';
-    		$layout = 'post';
-    		$stylesheet = 'content';
-    		
-    		// add the post page type
-    		$postPageType = PageType::Add('post', 'Post', 'Posts', $layout, $stylesheet, 0, $site['SiteId'], $userId, $userId);
-    		
-    				
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
-    			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
-    		}
-            
-    		$samplePost = Page::Add('sample-blog-post', 'Sample Blog Post', $description, $layout, $stylesheet, $postPageType['PageTypeId'], $site['SiteId'], $userId);
-    		Page::EditLayout($samplePost['PageUniqId'], 'post', $userId);
-            Page::SetIsActive($samplePost['PageUniqId'], 1);
-    		
-    		Publish::PublishFragment($site['FriendlyId'], $samplePost['PageUniqId'], 'publish', $content);
-    		
-    		// create a sample blog list page
-    		$content = '';
-    		$filename = '../themes/'.DEFAULT_THEME.'/pages/blog.html';
-    		$layout = 'post';
-    		$stylesheet = 'content';
-    				
-    		if(file_exists($filename)){
-    			$content = file_get_contents($filename);
-    			
-    			// fix images
-    			$content = str_replace('{{site-dir}}', 'sites/'.$site['FriendlyId'], $content);
-    		}
-            
-    		$blog = Page::Add('blog', 'Blog', $description, $layout, $stylesheet, -1, $site['SiteId'], $userId);
-    		Page::EditLayout($blog['PageUniqId'], 'blog', $userId);
-    		Page::SetIsActive($blog['PageUniqId'], 1);
-    		
-    		Publish::PublishFragment($site['FriendlyId'], $blog['PageUniqId'], 'publish', $content);
-    		
-    		// create the menu
-    		MenuItem::Add('Home', '', 'primary', 'index', $homePage['PageId'], 0, $site['SiteId'], $userId, $userId);
-            MenuItem::Add('Blog', '', 'primary', 'blog', $blog['PageId'], 2, $site['SiteId'], $userId, $userId);
-            MenuItem::Add('About', '', 'primary', 'page/about', $aboutUs['PageId'], 2, $site['SiteId'], $userId, $userId);
-    		MenuItem::Add('Contact', '', 'primary', 'page/contact', $contactUs['PageId'], 3, $site['SiteId'], $userId, $userId);
-    		
     		// publishes a theme for a site
-    		Publish::PublishTheme($site, DEFAULT_THEME);
+    		Publish::PublishTheme($site, $theme);
     		
     		// publish the site
     		Publish::PublishSite($site['SiteUniqId']);

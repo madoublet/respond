@@ -10,6 +10,7 @@
 	require_once 'menuItem.php';
 	require_once 'menuType.php';
     require_once 'user.php';
+    require_once 'role.php';
     require_once 'site.php';
     require_once 'file.php';
     require_once 'form.php';
