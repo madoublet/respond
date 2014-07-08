@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '2.10.3');
+	define('VERSION', '2.11.3');
 
 	// debugging
 	define('DEBUG', true);
@@ -86,6 +86,7 @@
 	require_once 'dao/PageType.php';
 	require_once 'dao/MenuType.php';
 	require_once 'dao/Page.php';
+	require_once 'dao/Role.php';
 	require_once 'dao/MenuItem.php';
 	require_once 'dao/Category.php';
 	require_once 'dao/SearchIndex.php';

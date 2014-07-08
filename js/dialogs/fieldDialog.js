@@ -13,7 +13,7 @@ var fieldDialog = {
       
 			var fieldType = $('#fieldType').val();
 	      
-			if(fieldType=='select' || fieldType=='checkboxlist' || fieldType=='radiolist'){
+			if(fieldType=='select' || fieldType=='checkboxlist' || fieldType=='radiolist' || fieldType=='hidden'){
 				$('#options').show();
 			}
 			else{
@@ -67,6 +67,15 @@ var fieldDialog = {
 
 			if(fieldType=='text'){
 				html += '<input id="' + id + '" name="' + id + '" type="text" class="form-control"'+placeholder+'>';
+			}
+
+			if(fieldType=='hidden'){
+				// first we force the label to not visible
+				htmltmp = html.substring(0, html.indexOf('<label for=', 1));
+				htmltmp += '<label style="display:none;" for=';
+				htmltmp += html.substring(html.indexOf('<label for=', 1) + 11);
+				html =  htmltmp + '<input id="' + id + '" name="' + id + '" type="hidden" value="' + options + '" class="form-control"'+placeholder+'>';
+				helperText = '';
 			}
 
 			if(fieldType=='textarea'){
@@ -177,7 +186,6 @@ var fieldDialog = {
 		$('#fieldDialog .add').hide();
 		$('#fieldDialog .edit').show();
 
-	 
 	 	var type = $(container).find('.form-group').attr('data-type');
 	 	var label = $(container).find('.form-group>label').text();
 	 	var id = $(container).find('label').attr('for');
@@ -220,14 +228,18 @@ var fieldDialog = {
 	 		}
 		
 		}
-		
+
 		// trim trailing options
 		if(options.length > 2){
 			 options = options.substring(0, options.length-2);
 		}
-		
+
+		if(type=='hidden'){
+	 		var options = $(container).find(':input[type=hidden]').val();
+		}
+
 		// hide/show options
-		if(type=='select' || type=='checkboxlist' || type=='radiolist'){
+		if(type=='select' || type=='checkboxlist' || type=='radiolist' || type=='hidden'){
 			$('#options').show();
 		}
 		else{
@@ -264,8 +276,6 @@ var fieldDialog = {
 	 	$('#fieldPlaceholderText').val(placeholder);
 	 	$('#fieldHelperText').val(helper);
 	 	$('#fieldCssClass').val(cssClass);
-	 	
-	 	
 	  
 	    $('#fieldDialog').modal('show');
 

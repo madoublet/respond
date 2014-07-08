@@ -1,10 +1,17 @@
 // models the create page
 var createModel = {
     
+    theme: ko.observable('simple'),
     timeZone: ko.observable('America/Chicago'),
     languages: ko.observableArray([]),
+    themes: ko.observableArray([]),
+    themesLoading: ko.observable(false),
     
     init:function(){
+    
+    	var theme = $('#create').attr('data-default');
+
+    	createModel.theme(theme);
         
         var tz = jstz.determine();
         createModel.timeZone(tz.name());
@@ -15,6 +22,15 @@ var createModel = {
 			$('#tempUrl').removeClass('temp');
 			$('#tempUrl').html(keyed);
 			$('#friendlyId').val(keyed);
+		});
+		
+		$('#password').keyup(function(){
+		
+			var keyed = $(this).val();
+			
+			if(keyed.length > 5){
+				$('.future').removeClass('future').addClass('current');
+    		}
 		});
 		
 		// validate site id
@@ -57,6 +73,10 @@ var createModel = {
 	          error: function(data){}
 	        });
 			
+		});
+		
+		$('#toggle-advanced').on('click', function(){
+			$('.advanced').show();
 		});
 		
 		
@@ -127,6 +147,7 @@ var createModel = {
 
         
         createModel.updateLanguages();
+        createModel.updateThemes();
         
         ko.applyBindings(createModel);  // apply bindings
     },
@@ -136,28 +157,23 @@ var createModel = {
         var name = $('#name').val();
         var email = $('#email').val();
         var password = $('#password').val();
-        var retype = $('#retype').val();
         var passcode = $('#passcode').val();
         var timeZone = $('#timeZone').val();
         var language = $('#language').val();
         var userLanguage = $('#userLanguage').val();
+        var theme = createModel.theme();
         
-        if(name=='' || friendlyId=='' || email=='' || password=='' || retype=='' || language == ''){
+        if(name=='' || friendlyId=='' || email=='' || password=='' || language == ''){
 			message.showMessage('error', $('#msg-create-required').val());
 			return;
 		}
 		
-		if(password!=retype){
-			message.showMessage('error', $('#msg-password-error').val());
-			return;
-		}
-
         message.showMessage('progress', $('#msg-creating').val());
 
         $.ajax({
           url: 'api/site/create',
           type: 'POST',
-          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone, language: language, userLanguage: userLanguage},
+          data: {friendlyId: friendlyId, name: name, email: email, password: password, passcode: passcode, timeZone: timeZone, language: language, userLanguage: userLanguage, theme: theme},
           success: function(data){
             message.showMessage('success', $('#msg-created-successfully').val());
             
@@ -208,6 +224,38 @@ var createModel = {
 			}
 		});
     },
+    
+    updateThemes:function(){  // updates the page types arr
+
+		createModel.themes.removeAll();
+		createModel.themesLoading(true);
+
+		$.ajax({
+			url: 'api/theme/',
+			type: 'GET',
+			data: {},
+			dataType: 'json',
+			success: function(data){
+			
+				for(x in data){
+
+					var theme = Theme.create(data[x]);
+					
+					createModel.themes.push(theme); 
+
+				}
+
+			}
+		});
+
+	},
+	
+	setTheme:function(o, e){
+		
+		var theme = o.id();
+		
+		createModel.theme(theme);
+	}
     
 }
 

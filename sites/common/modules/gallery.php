@@ -13,7 +13,7 @@
 				foreach($imgHtml->find('img') as $img){ ?>
 				
 			<div class="thumbnail thumbail-<?php if($img_count==0){print ' active';}?>">	
-				<a class="gallery-image" href="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>" rel="group-<?php print $id; ?>">
+				<a class="gallery-image" href="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>" rel="group-<?php print $id; ?>" title="<?php print '<?php print _("'.htmlentities($img->title, ENT_QUOTES).'"); ?>'; ?>">
 					<img src="<?php print $rootloc.'files/t-'; ?><?php print $img->id; ?>">
 				</a>
 				<?php if(empty($img->title)==false){?>

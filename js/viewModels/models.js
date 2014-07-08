@@ -95,7 +95,8 @@ User.create = function(data){
 function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, keywords, callout, 
 				beginDate, endDate,
 				location, latLong,
-				rss, layout, stylesheet, url, image, thumb, lastModifiedDate, lastModifiedFullName, isActive){
+				rss, layout, stylesheet, url, image, thumb, lastModifiedDate, lastModifiedFullName, isActive,
+				canEdit, canPublish, canRemove){
 
 	var self = this;
 
@@ -120,6 +121,9 @@ function Page(pageId, pageUniqId, pageTypeId, friendlyId, name, description, key
 	self.lastModifiedDate = ko.observable(lastModifiedDate);
 	self.lastModifiedFullName = ko.observable(lastModifiedFullName);
 	self.isActive = ko.observable(isActive);
+	self.canEdit = ko.observable(canEdit);
+	self.canPublish = ko.observable(canPublish);
+	self.canRemove = ko.observable(canRemove);
 
 	self.friendlyDate = ko.computed(function(){
 		var st = moment.utc(self.lastModifiedDate(), 'YYYY-MM-DD HH:mm:ss');
@@ -242,7 +246,7 @@ Page.create = function(data){
 					data['Location'], data['LatLong'],
 					data['Rss'], data['Layout'], data['Stylesheet'], 
 					data['Url'], data['Image'], data['Thumb'], data['LastModifiedDate'], data['LastModifiedFullName'], 
-					data['IsActive']);
+					data['IsActive'], data['CanEdit'], data['CanPublish'], data['CanRemove']);
 }
 
 // models a category
@@ -487,4 +491,25 @@ Transaction.create = function(data){
 		data['ProcessorTransactionId'], 
 		data['ProcessorStatus'], data['Email'], data['PayerId'], data['Name'], data['Shipping'], data['Fee'], 
 		data['Tax'], data['Total'], data['Currency'], data['Items'], data['Data'], data['Created']);
+}
+
+// models a role
+function Role(roleUniqId, name, canView, canEdit, canPublish, canRemove, canCreate){
+
+    var self = this;
+
+    self.roleUniqId = ko.observable(roleUniqId);
+	self.name = ko.observable(name);
+	self.canView = ko.observable(canView);
+	self.canEdit = ko.observable(canEdit);
+	self.canPublish = ko.observable(canPublish);
+	self.canRemove = ko.observable(canRemove);
+	self.canCreate = ko.observable(canCreate);
+
+}
+
+// creates a theme based on data returned from the API
+Role.create = function(data){
+
+	return new Role(data['RoleUniqId'], data['Name'], data['CanView'], data['CanEdit'], data['CanPublish'], data['CanRemove'], data['CanCreate']);
 }

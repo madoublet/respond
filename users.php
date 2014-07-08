@@ -36,6 +36,9 @@
 <input id="msg-updated" value="<?php print _("User successfully updated"); ?>" type="hidden">
 <input id="msg-removing" value="<?php print _("Removing..."); ?>" type="hidden">
 <input id="msg-removed" value="<?php print _("User successfully removed"); ?>" type="hidden">
+<input id="msg-admin" value="<?php print _("Administrator"); ?>" type="hidden">
+<input id="msg-contributor" value="<?php print _("Contributor"); ?>" type="hidden">
+<input id="msg-member" value="<?php print _("Member"); ?>" type="hidden">
 		
 <section class="main">
 
@@ -44,23 +47,25 @@
     
         <ul>
             <li class="static active"><a><?php print _("Users"); ?></a></li>
+            <li class="static"><a href="roles"><?php print _("Roles"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add User"); ?></span></a>
+        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add User"); ?>"><i class="fa fa-plus-circle"></i></span></a>
     </nav>
 
     <div id="usersList" class="list has-photo" data-bind="foreach: users">
     
         <div class="listItem" data-bind="attr: { 'data-id': userUniqId}">
     		<a class="remove" data-bind="click: $parent.showRemoveDialog">
-                <i class="fa fa-minus-circle fa-lg"></i>
+                <i class="fa fa-minus-circle"></i>
             </a>
             <button class="update-photo" data-bind="click: $parent.showImagesDialog, css:{'has-photo':hasPhotoUrl}, attr:{'style':'background-image: url(sites/<?php print $authUser->SiteFriendlyId; ?>/files/'+photoUrl() +')'}"><span><?php print _("Update Photo"); ?></span></button>
     		<h2>
     			<a data-bind="text:fullName, click: $parent.showEditDialog"></a>
 				<span class="role admin" data-bind="visible:role()=='Admin'"><?php print _("Administrator"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
 				<span class="role contributor" data-bind="visible:role()=='Contributor'"><?php print _("Contributor"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
-				<span class="role member" data-bind="visible:role()=='Member'"><?php print _("Member"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span>
+				<span class="role member" data-bind="visible:role()=='Member'"><?php print _("Member"); ?><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
+				<span class="role contributor" data-bind="visible:role()!='Member' && role()!='Contributor' && role()!='Admin'"><span data-bind="text:role"></span><span data-bind="visible:isActive()=='0'"> &ndash; <?php print _("Not Active"); ?></span></span>
     		</h2>
     		<p><span class="email" data-bind="text:email"></span></p>
             <em><?php print _("Created"); ?> <span data-bind="text:friendlyDate"></span></em>
@@ -105,13 +110,15 @@
 					<input id="lastName" type="text" class="form-control">
 				</div>
 				
+		
 				<div class="form-group">
 					<label for="role"><?php print _("Role:"); ?></label>
-					<select id="role" class="form-control">
-						<option value="Admin"><?php print _("Administrator"); ?></option>
-						<option value="Contributor"><?php print _("Contributor"); ?></option>
-						<option value="Member"><?php print _("Member"); ?></option>
-					</select>
+					<select id="role" class="form-control" data-bind="
+					    options: roles,
+					    optionsText: 'name',
+					    optionsValue: 'id'">
+					    <option value="Admin"><?php print _("Administrator"); ?></option>
+				    </select>
 				</div>
 				
 				<div class="form-group">

@@ -45,7 +45,7 @@
             <li><a href="plans"><?php print _("Plans"); ?></a></li>
         </ul>
         
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle"></i> <?php print _("Add Site"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog" title="<?php print _("Add Site"); ?>"><i class="fa fa-plus-circle"></i></a>
         
     </nav>
 

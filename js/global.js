@@ -2,6 +2,11 @@
 var global = {
     
     init:function(){
+    
+    	// enable tooltip
+	  	if(!Modernizr.touch){ 
+	  		$('.show-tooltip').tooltip({container: 'body', placement: 'bottom'});
+	  	}
       
         // toggle nav
         $('.show-menu, .hide-menu').live('click', function(){

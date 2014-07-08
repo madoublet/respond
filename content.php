@@ -57,16 +57,19 @@
     <!-- /#editor-container -->
     
     <div id="actions">
-    <?php if($authUser->Role=='Admin'){ ?>
-        <button class="primary-button" type="button" data-bind="click: saveContent"><?php print _("Save and Publish"); ?></button>
-        <button class="secondary-button" type="button" data-bind="click: saveDraft"><?php print _("Save Draft"); ?></button>
-	<?php } ?>
-	<?php if($authUser->Role=='Contributor'){ ?>
-        <button class="primary-button" type="button" data-bind="click: saveDraft"><?php print _("Save"); ?></button>
-	<?php } ?>
+    
+    	<!-- ko with:page -->
+    
+        <button class="primary-button" type="button" data-bind="click: $parent.saveContent, visible: canPublish"><?php print _("Save and Publish"); ?></button>
+        <button class="secondary-button" type="button" data-bind="click: $parent.saveDraft, visible: canEdit"><?php print _("Save Draft"); ?></button>
+        
         <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()"><i class="fa fa-reply"></i> <?php print _("Return"); ?></button>
     
-		<a class="alternate" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("View Live Page"); ?> <i class="fa fa-external-link"></i></a>
+		<!-- /ko -->
+    
+		<div class="alternate">
+			<a class="live" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("Live"); ?></a><a class="preview" data-bind="click:preview" target="_blank"><?php print _("Preview"); ?></a>
+		</div>
     </div>
     <!-- /#actions -->
     

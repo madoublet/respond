@@ -243,6 +243,9 @@ class PageType{
     		if($row){
     			return $row;
     		}
+    		else{
+	    		return NULL;
+    		}
         
         } catch(PDOException $e){
             die('[PageType::GetByFriendlyId] PDO Error: '.$e->getMessage());

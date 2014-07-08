@@ -14,6 +14,9 @@ class SiteAuthUser{
 	public $HasPhotoUrl;
 	public $PhotoUrl;
 	
+	// role-based priveleges
+	public $CanView;
+	
 	function __construct($siteFriendlyId, $root_url, $returnUrl){
 		
 		if(!isset($_SESSION)){
@@ -31,6 +34,7 @@ class SiteAuthUser{
 			$this->LastName = $_SESSION[$siteFriendlyId.'.LastName'];
 			$this->HasPhotoUrl = $_SESSION[$siteFriendlyId.'.HasPhotoUrl'];
 			$this->PhotoUrl = $_SESSION[$siteFriendlyId.'.PhotoUrl'];
+			$this->CanView = $_SESSION[$siteFriendlyId.'.CanView'];
 		}
 		else{
 			$this->Redirect($root_url, $returnUrl);
@@ -38,22 +42,40 @@ class SiteAuthUser{
 	}
 	
 	// redirects failed login
-	private function Redirect($root_url, $returnUrl){
-	    header('location:'.$root_url.'login?r='.urlencode($returnUrl));
+	private function Redirect($root_url, $returnUrl, $hash = ''){
+	    header('location:'.$root_url.'login?r='.urlencode($returnUrl).$hash);
 	}
     
 	// authenticates a user based on role
-	public function Authenticate($auth){
+	public function Authenticate($pageTypeUniqId, $root_url, $returnUrl){
+	
+
+		if(isset($this->UserUniqId)){
 		
-		if($auth=='Admin'){
-			if($this->Role != 'Admin'){
-				die('You are not authorized to view this page.');
+			// members, contributors, and admin all have access to secured pages by default
+			if($this->Role == 'Member' || $this->Role == 'Contributor' || $this->Role == 'Admin'){
+				return true;
 			}
+			else{
+				
+				// check permissions
+				if(Utilities::CanPerformAction($pageTypeUniqId, $this->CanView) == false){
+					$this->Redirect($root_url, $returnUrl, '#invalid-permissions');
+				}
+				else{
+					return true;
+				}
+			}
+		
+		}
+		else{
+			$this->Redirect($root_url, $returnUrl);
 		}
 		
 	}
 	
-	public static function Create($siteFriendlyId, $user){
+	// create an AuthUser session
+	public static function Create($siteFriendlyId, $user, $canView){
 		
 		if(!isset($_SESSION)){
 			session_start();
@@ -76,6 +98,7 @@ class SiteAuthUser{
 		$_SESSION[$siteFriendlyId.'.LastName'] = $user['LastName'];
 		$_SESSION[$siteFriendlyId.'.HasPhotoUrl'] = $hasPhotoUrl;
 		$_SESSION[$siteFriendlyId.'.PhotoUrl'] = $user['PhotoUrl'];
+		$_SESSION[$siteFriendlyId.'.CanView'] = $canView;
 		
 	}
 	

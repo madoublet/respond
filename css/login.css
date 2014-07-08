@@ -20,26 +20,43 @@ body .content h1{
 	font-weight: bold;
 }
 
-body .content h2{
+body .content h2.title{
 	position: relative;
-	border-bottom: 1px solid #ddd;
+	border: 1px solid #f8f8f8;
 	font-size: 15px;
 	color: #fff;
-	padding: 10px 0 5px 0;
-	color: #888;
+	padding: 15px;
+	color: #aaa;
 	text-transform: uppercase;
 	margin-bottom: 25px;
 	text-align: left;
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
-	body .content h2:first-child{
-		margin-top: 0;
+	body .content h2.title .step{
+		display: inline-block;
+		background-color: #81b841;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		color: #fff;
+		margin-right: 25px;
+		border-radius: 50%;
 	}
+	
+	body .content h2.title a{
+		position: absolute;
+		top: 28px;
+		right: 15px;
+	}
+	
+body .content .col-md-12{
+	text-align: left;
+}
 
-	body .content h2 span{
-		color: #ccc;
-		margin-right: 5px;
+	body .content .col-md-12 .image-list{
+		margin: 0;
 	}
 
 body .content p{
@@ -51,21 +68,46 @@ body .content p{
 	
 }
 
+.advanced{
+	display: none;
+}
+
+.future h2{
+	background-color: #f0f0f0;
+}
+
+.future .container-fluid{
+	display: block;
+}
+
+	.future h2.title .step{
+		background-color: #aaa !important;
+	}
+
 fieldset{
-	max-width: 400px;
+	max-width: 900px;
 	text-align: center;
 	border-bottom: none;
 	margin: 0 auto;
 	padding: 0;
 }
 
+fieldset.login, fieldset.forgot, fieldset.reset{
+	max-width: 400px;
+}
+
 	.content fieldset p{
 		text-align: left;
+	}
+	
+	body .content fieldset label{
+		color: #808080;
+		font-size: 14px;
 	}
 
 body .form-group{
 	position: relative;
-	margin: 0 0 20px 0;
+	margin: 0 0 25px 0;
 }
 
 body .divider{
@@ -87,6 +129,10 @@ body .divider{
 		margin-top: 35px;
 		text-transform: uppercase;
 		font-size: 14px;
+	}
+	
+	body .forgot-link{
+		float: right;
 	}
 
 .content fieldset label{
@@ -137,23 +183,21 @@ small{
 
 body p.site-name{
 	margin-top: 5px;
-	font-size: 13px;
-	color: #aaa;
+	font-size: 14px;
+	color: #bbb;
 	margin-bottom: 0;
 	padding-bottom: 0;
 	height: 25px;
 	line-height: 25px;
-	color: #aaa;
+	display: none;
 }
 
 	body p.site-name span{
 		font-weight: bold;
 		display: inline-block;
-		padding: 4px 15px;
-		margin: 0 0 0 5px;
-		background-color: #f0f0f0;
+		padding: 0;
+		margin: 0 0 0 2px;
 		color: #3299bb;
-		border-radius: 15px;
 	}
 	
 /* create styles */
@@ -217,5 +261,11 @@ table.test{
     table.test i{
         font-size: 30px;
     }
+
+/* brand */
+.brand img{
+	max-height: 75px;
+}
+
 
 

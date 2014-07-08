@@ -60,9 +60,7 @@
 		<?php } ?>	
 	</ul>
 	<!-- /.menu -->
-	<?php } ?>
-	
-	<?php if($authUser->Role=='Contributor'){ ?>
+	<?php } else { ?>
 	<h2 class="basic"><?php print _("Menu"); ?></h2>
 	
 	<ul class="menu">

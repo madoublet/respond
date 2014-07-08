@@ -593,6 +593,8 @@ var contentModel = {
 				message.showMessage('error', $('#msg-draft-error').val());
 			}
 		});
+		
+		return false;
 	},
     
     // hides the preview
