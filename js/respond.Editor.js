@@ -651,6 +651,17 @@ respond.Editor.ParseHTML = function(top){
 						
 						var code = $(node).html();
 						
+						// backwards compatibility with older version
+						if(code.indexOf('&lt;') != -1){
+						
+							code = global.replaceAll(code, '&lt;', '<');
+							code = global.replaceAll(code, '&gt;', '>');
+							
+							alert(code);
+						}
+						
+						
+						
 						// create pretty code for display
 						var prettyCode = global.replaceAll(code, '<', '&lt;');
 						prettyCode = global.replaceAll(prettyCode, '>', '&gt;');
