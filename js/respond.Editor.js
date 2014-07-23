@@ -656,11 +656,8 @@ respond.Editor.ParseHTML = function(top){
 						
 							code = global.replaceAll(code, '&lt;', '<');
 							code = global.replaceAll(code, '&gt;', '>');
-							
-							alert(code);
+		
 						}
-						
-						
 						
 						// create pretty code for display
 						var prettyCode = global.replaceAll(code, '<', '&lt;');
