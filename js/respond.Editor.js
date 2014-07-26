@@ -651,6 +651,14 @@ respond.Editor.ParseHTML = function(top){
 						
 						var code = $(node).html();
 						
+						// backwards compatibility with older version
+						if(code.indexOf('&lt;') != -1){
+						
+							code = global.replaceAll(code, '&lt;', '<');
+							code = global.replaceAll(code, '&gt;', '>');
+		
+						}
+						
 						// create pretty code for display
 						var prettyCode = global.replaceAll(code, '<', '&lt;');
 						prettyCode = global.replaceAll(prettyCode, '>', '&gt;');
@@ -678,11 +686,20 @@ respond.Editor.ParseHTML = function(top){
 					if(name=='map'){
 				  		var address = $(node).attr('address');
 					  	if(address==undefined)address='';
+					  	
+				  		var zoom = $(node).attr('zoom');
+				  		if(zoom==undefined)zoom='auto';
+					  	
 						var id = $(node).attr('id');
 						if(id==undefined || id=='')id='m-'+parseInt(new Date().getTime() / 1000);
-				  
-					  	response+= '<div id="'+id+'" class="map">' +
-					  				respond.defaults.elementMenuNoConfig +
+						
+						var cssclass = $(node).attr('class');
+						if(cssclass==undefined || cssclass=='')cssclass = '';
+						
+						cssclass = global.replaceAll(cssclass, 'map ', '');
+				
+					  	response+= '<div id="'+id+'" data-id="'+id+'" data-cssclass="'+cssclass+'" class="map" data-zoom="' + zoom +'">' +
+					  				respond.defaults.elementMenu +
 									'<div><i class="in-textbox fa fa-map-marker"></i><input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div></div>';
 					}
 					
@@ -1308,8 +1325,8 @@ respond.Editor.SetupMenuEvents = function(){
 		var uniqId = respond.Editor.GenerateUniqId(editor, className, prefix);
 		
 		respond.Editor.Append(editor, 
-			'<div id="'+uniqId+'" class="map">' +
-			respond.defaults.elementMenuNoConfig + 
+			'<div id="'+uniqId+'" data-id="'+uniqId+'" data-cssclass="" class="map" data-zoom="auto">' +
+			respond.defaults.elementMenu + 
 			'<div><i class="in-textbox fa fa-map-marker"></i><input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210"></div></div>'
 		);
 		
@@ -2833,11 +2850,17 @@ respond.Editor.GetContent = function(el){
 		
 			// generate MAP
 			if($(divs[x]).hasClass('map')){
-		  		var id = $(divs[x]).attr('id');
+		  		var id = $(divs[x]).attr('data-id');
 		  		if(id==undefined || id=='')id=parseInt(new Date().getTime() / 1000);
+		  		
+		  		var cssclass = $(divs[x]).attr('data-cssclass') || '';
 		  
 		  		var address = $(divs[x]).find('input[type=text]').val();
-		  		newhtml += '<module id="'+id+'" name="map" address="'+address+'"></module>';
+		  		var zoom = $(divs[x]).attr('data-zoom');
+		  		
+		  		if(zoom == undefined)zoom = 'auto';
+		  		
+		  		newhtml += '<module id="'+id+'" name="map" address="' + address + '" zoom="' + zoom + '" class="' + cssclass + '"></module>';
 			}
 	
 			// generate FILE

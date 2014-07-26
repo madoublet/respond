@@ -1,4 +1,4 @@
-<div class="respond-map" data-list="<?php print $listid; ?>">
+<div class="respond-map" data-list="<?php print $listid; ?>" data-zoom="auto">
 	<div id="list-map-<?php print $listid; ?>" class="map-container"></div>
 </div>
 

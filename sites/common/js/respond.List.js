@@ -304,7 +304,7 @@ respond.List.Update = function(params){
 										'</div>';
 						
 						
-						respond.Map.CreatePoint(mapId, latitude, longitude, content);
+						respond.Map.CreatePoint(mapId, 'auto', latitude, longitude, content);
 					}
                 }
                 else{

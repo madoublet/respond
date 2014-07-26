@@ -1164,11 +1164,17 @@ class Utilities
 	                    }
 	                    else if($el->display == 'map'){
 	                    	$list = '';
+	                    	
+	                    	$id = 'map-' + $mapcount;
+	                        $cssClass = '';
+	                        $zoom = 'auto';
 	                        
 	                        ob_start();
 					        include $root.'sites/common/modules/list-map.php'; // loads the module
 					        $list = ob_get_contents(); // get content from module
 					        ob_end_clean();
+					        
+					        $mapcount++;
 	                    }
 	                    
 	                    $el->outertext = $list;
@@ -1353,12 +1359,36 @@ class Utilities
                 }
                 else if($name=='map'){
                     $address = $el->address;
+                    
+                    if(isset($el->zoom)){
+                    	$zoom = $el->zoom;
+                    }
+                    else{
+	                    $zoom = 'auto';
+                    }
+                    
+                    if(isset($el->id)){
+                    	$id = $el->id;
+                    }
+                    else{
+	                    $id = 'map-' + $mapcount;
+                    }
+                    
+                    if(isset($el->class)){
+                    	$cssClass = $el->class;
+                    }
+                    else{
+	                    $cssClass = '';
+                    }
+                    
                     ob_start();
                     include $root.'sites/common/modules/map.php'; // loads the module
                     $content = ob_get_contents(); // holds the content
                     ob_end_clean();
                     
                     $el->outertext= $content;
+                    
+                    $mapcount++;
                 }
                 else if($name=='like'){
                     $username = $el->username;

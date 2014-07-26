@@ -11,11 +11,19 @@ respond.Map = function(config){
 	
 	// get DOM id of map
 	var mapId = $(this.el).find('.map-container').attr('id');
+	var zoom = $(this.el).attr('data-zoom') || 'auto';
+		
+	if(zoom == 'auto'){
+		defaultZoom = 8;
+	}
+	else{
+		defaultZoom = parseInt(zoom);
+	}
 	
 	// create the map
 	var mapOptions = {
       center: new google.maps.LatLng(38.6272, 90.1978),
-      zoom: 8,
+      zoom: defaultZoom,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
@@ -41,7 +49,11 @@ respond.Map = function(config){
 	    
 	        if (status == google.maps.GeocoderStatus.OK){
 	            // #ref: https://developers.google.com/maps/documentation/javascript/reference#LatLng
-	            respond.Map.CreatePoint(mapId, results[0].geometry.location.lat(), results[0].geometry.location.lng(), results[0].formatted_address);
+	            respond.Map.CreatePoint(mapId, 
+	            	zoom,
+	            	results[0].geometry.location.lat(), 
+	            	results[0].geometry.location.lng(), 
+	            	results[0].formatted_address);
 	        }
 	    
 	    });
@@ -51,7 +63,7 @@ respond.Map = function(config){
 }
 
 // creates and adds a point to a map
-respond.Map.CreatePoint = function(mapId, latitude, longitude, content){
+respond.Map.CreatePoint = function(mapId, zoom, latitude, longitude, content){
 	
     // create coords
     var coords = new google.maps.LatLng(latitude, longitude);
@@ -81,11 +93,16 @@ respond.Map.CreatePoint = function(mapId, latitude, longitude, content){
     	infowindow.open(map, marker);
 		});
     
-    // extend the bounds based on the new marker
-    respond.maps[mapId].bounds.extend(marker.position);
+    if(zoom == 'auto'){
+    	// extend the bounds based on the new marker
+		respond.maps[mapId].bounds.extend(marker.position);
     
-    // fit the map to the bounds
-    respond.maps[mapId].reference.fitBounds(respond.maps[mapId].bounds);
+		// fit the map to the bounds
+    	respond.maps[mapId].reference.fitBounds(respond.maps[mapId].bounds);
+    }
+    else{
+	    respond.maps[mapId].reference.setCenter(coords);
+    }
 
 }
 
