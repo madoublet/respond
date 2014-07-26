@@ -433,7 +433,20 @@ a.next, a.previous{
 	outline: none !important;
 	color: #808080;
 	border: 1px dashed #fff !important;
+	z-index: 1;
 }
+
+	.block div.file input, .block div.map select{
+		position: absolute;
+		top: 0;
+		right: 50px;
+		width: 75px;
+		background-color: #fff;
+		z-index: 2;
+		height: 38px !important;
+		line-height: 38px !important;
+	}
+	
 
 	.block div.file input:hover, .block div.map input:hover{
 		border: 1px dashed #ddd !important;

@@ -46,6 +46,15 @@ var elementConfigDialog = {
                 
                 el.html(respond.defaults.elementMenu + html);     
             }
+            
+            if(el.hasClass('map')){
+            	
+            	var zoom = $('#elementZoom').val();
+            	
+            	el.attr('data-zoom', zoom);
+            	
+            }
+            
             if(el.hasClass('table')){
 	            
 	            var columns = $('#tableColumns').val();
@@ -155,9 +164,11 @@ var elementConfigDialog = {
 	
         $('.image-config').hide();
         $('.table-config').hide();
+        $('.map-config').hide();
     
         if($('#'+moduleId).hasClass('i')){
             $('.table-config').hide();
+            $('.map-config').hide();
             $('.image-config').show();
             
             // get left, right
@@ -179,6 +190,7 @@ var elementConfigDialog = {
         
         if($('#'+moduleId).hasClass('table')){
             $('.image-config').hide();
+            $('.map-config').hide();
             $('.table-config').show();
             
             elementConfigDialog.columns = parseInt($('#'+moduleId).find('table').attr('data-columns'));
@@ -186,6 +198,17 @@ var elementConfigDialog = {
             
             $('#tableColumns').val(elementConfigDialog.columns);
             $('#tableRows').val(elementConfigDialog.rows);
+            
+        }
+        
+        if($('#'+moduleId).hasClass('map')){
+            $('.image-config').hide();
+            $('.table-config').hide();
+            $('.map-config').show();
+            
+			var zoom = $('#'+moduleId).attr('data-zoom');
+			
+            $('#elementZoom').val(zoom);
             
         }
 
