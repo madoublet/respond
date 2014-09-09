@@ -18,8 +18,9 @@ body{
 	font-family: "Roboto", sans-serif;
 }
 
-	body p, body label, body li, body input, body select, body div{
+	body p, body label, body li, body input, body select, body div, body button{
 		font-family: "Roboto", sans-serif;
+    	font-weight: 300;
 	}
 
 	body label{
@@ -27,7 +28,8 @@ body{
 	}
 	
 	body h1, body h2, body h3{
-    	font-family: "Roboto Condensed", sans-serif;
+    	font-family: "Roboto", sans-serif;
+    	font-weight: 700;
     }
 
 a, a:hover{
@@ -49,8 +51,8 @@ body select.form-control{
 	background: none;
 	outline: none !important;
 	border: none !important;
-	border: 1px solid #ddd !important;
-	border-radius: 5px !important;
+	border: 1px solid #ccc !important;
+	border-radius: 0 !important;
 	padding: 5px 10px !important;
 	height: 45px !important;
     background-color: transparent;
@@ -59,16 +61,25 @@ body select.form-control{
 .primary-button, .secondary-button, .tertiary-button{
     display: inline-block;
     background-color: #3299bb;
-    border: 2px solid #3299bb;
-    border-radius: 25px;
-    font-family: "Roboto Condensed", sans-serif;
+    border: 1px solid #3299bb;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: normal;
     color: #fff;
-    font-size: 1.15em;
+    font-size: 14px;
     margin: 0;
     padding: 0 20px;
     cursor: pointer; 
     padding: 8px 20px;
+    font-weight: 100;
+    outline: none;
+    border-radius: 20px;
 }
+
+	.primary-button[disabled=disabled]{
+		background-color: #f0f0f0;
+		border-color: #ccc;
+		color: #ccc;
+	}
 
     .primary-button:hover{
         background-color: #1d7b9a;
@@ -78,16 +89,16 @@ body select.form-control{
 .secondary-button{
     background-color: #fff;
     color: #3299bb;
+    border-color: #ddd;
 }
-    .secondary-button: hover{
-        background-color: #f0f0f0;
-        border-color: #1d7b9a;
+    .secondary-button:hover{
+        border-color: #3299bb;
     }
     
 .tertiary-button{
     background-color: #fff;
     color: #3299bb;
-    border-color: #ccc;
+    border-color: #ddd;
     color: #888;
 }
     .tertiary-button: hover{
@@ -207,6 +218,13 @@ body .modal-header{
 	margin-bottom: 10px;
 }
 
+	.modal-content {
+		border-radius: 0 !important;
+		box-shadow: none;
+		border-color: #888;
+	}
+
+
 	body .modal-header h3{
 		padding-top: 0;
 		margin-top: 10px;
@@ -265,6 +283,11 @@ body .modal-header{
 			color: #aaa;
 			margin-left: 10px;
 		}
+		
+		body .modal .radio, body .modal .checkbox{
+			padding-left: 20px;
+		}
+		
 
 
 header{
@@ -273,12 +296,11 @@ header{
     left: 0;
 	margin-left: -350px;
 	width: 350px;
-	background-color: #333;
+	background-color: #f8f8f8;
 	min-width: 35px;
-	z-index: 2;
+	z-index: 1000;
 	height: 100%;
 	overflow: scroll;
-	border-right: 5px solid #3299bb;
     -webkit-transition: .2s all ease;
 	-moz-transition: .2s all ease;
 	-o-transition: .2s all ease;    
@@ -306,7 +328,7 @@ header{
 		}
 	
 		header .profile a{
-			color: #ddd;
+			color: #111;
 			text-transform: uppercase;
 		}
 
@@ -317,7 +339,7 @@ header{
         height: 40px;
         line-height: 40px;
         text-align: center;
-        color: #ccc;
+        color: #aaa;
         font-size: 1em;
         margin-left: 0;
 		border-radius: 50%;
@@ -346,27 +368,50 @@ header{
 	}
 	
 	header a.hide-menu{
-		background-color: #555;
+		background-color: #ccc;
 		color: #fff;
-		border-color: #555;
+		border-color: #ccc;
 	}
 
     body.show-nav header{
         margin-left: 0;
+		box-shadow: 30px 30px 100px rgba(0,0,0,.2);
     }
+    
+    #header-overlay{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.25);
+		z-index: 999;
+		display: none;
+	}
+    
+    body.show-nav #header-overlay{
+		display: block;
+	}
     
     header ul, header li{
         list-style: none;
         margin: 0;
         padding: 0;
-        border-bottom: 1px solid #444;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    header ul{
+	    border-top: 1px solid #ccc;
+	    border-bottom: none;
+	    margin-bottom: 10px;
     }
     
     header h2{
     	position: relative;
 	    color: #888;
-	    font-size: 15px;
-	    padding: 0 0 0 10px;
+	    font-weight: 100;
+	    font-size: 13px;
+	    padding: 10px 0 0 10px;
 	    margin: 0;
 	    text-transform: uppercase;
     }
@@ -396,39 +441,31 @@ header{
 	    }
     
     header ul{
-        border-top: 1px solid #444;
+        border-top: 1px solid #aaa;
     }
     
     header li a{
-        font-family: 'Roboto Condensed', sans-serif;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
         font-size: 16px;
         display: block;
         padding: 10px 15px;
-        color: #ccc;
+        color: #111;
         font-size: 1.1em;
     }
     
         header li a i{
             display: inline-block !important;
-            color: #ccc;
+            color: #aaa;
             margin-right: 10px;
             width: 20px !important;
         }
-    
-        header li.active a{
-            background-color: #3299BB;
-            color: #fff;
-        }
-        
-        	header li.active i{
-	        	color: #fff;
-        	}
     
         header li a:hover{
             list-style: none;
             color: #fff;
             text-decoration: none;
-            background-color: #3299bb;
+            background-color: #7EA501;
         }
         
             header li a:hover i{
@@ -477,36 +514,144 @@ section.main{
 	}
 
 
+/* menu */
+section.main menu{
+	position: relative;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #f0f0f0;	
+	margin: 0;
+	padding: 0 20px;
+	line-height: 50px;
+	height: 50px;
+}
+
+	section.main menu .menu-actions{
+		position: absolute;
+		top: 0;
+		right: 13px;
+	}
+
+	section.main menu i{
+		margin-left: 5px;
+		color: #888;	
+		padding: 4px 5px 0 5px;
+		font-size: 16px;
+	}
+	
+	section.main menu .active i{
+		color: #81b841;
+	}
+	
+	section.main menu a:hover i{
+		color: #81b841;
+	}
+		
+	section.main menu .dropdown-menu{
+		border-radius: 0;
+		box-shadow: none;
+		border: 1px solid #f0f0f0;
+	}
+	
+		section.main menu .dropdown-menu a{
+			color: #aaa;
+			font-size: 13px;
+		}
+		
+		section.main menu .dropdown-menu .lock{
+			margin-left: 5px;
+		}
+		
+	section.main menu .dropdown{
+		margin: 0;
+	}
+	
+	section.main menu .dropdown .btn{
+		border-radius: 0;
+		border-color: #ddd;
+	}
+	
+	section.main menu .dropdown .caret{
+		margin-left: 5px;
+		color: #ddd;
+	}
+	
+	section.main menu .dropdown-menu .secure{
+		margin-left: 5px;
+		color: #ddd;
+	}
+	
+	section.main menu .dropdown-menu a{
+		color: #888;
+		padding: 10px 15px;
+		min-width: 205px;
+	}
+	
+	section.main menu #account-message{
+		display: inline-block;
+		margin-left: 10px;
+	}
+	
+	section.main menu #account-message a{
+		margin-left: 5px;
+	}
+	
 /* nav */
 section.main nav{
-    background-color: #666;
-    height: 50px;
+    background-color: #8FBE00;
+    height: 64px;
     margin: 0;
     padding: 0;
     position: relative;
 }   
     
-    section.main nav .show-menu{
+    section.main nav .show-menu, section.main nav .back{
         position: absolute;
         display: block;
         top: 0;
         left: 0;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
         text-align: center;
-        background: #3299bb;
+        background: url('../images/menu.png') no-repeat 18px 18px;
+        background-size: 25px;
+        color: #fff;
     }
     
-        section.main nav .show-menu:hover{
-            background: #1d7b9a;
+    	section.main nav .back{
+	        background: #8FBE00 url('../images/back.png') no-repeat 20px 20px;
+	        background-size: 15px;
+		}
+    
+    	section.main nav .show-menu:hover, section.main nav .back:hover{
+            background-color: rgba(255,255,255,0.25);
             text-decoration: none;
         }
-
-        section.main nav .show-menu i{
-            color: #fff;
-        }
-
+    
+	section.main h1{
+		margin: 0;
+		padding: 0 0 0 68px;
+		line-height: 64px;
+		height: 64px;
+		font-size: 18px;
+		color: #fff;
+		font-family: "Roboto", sans-serif;
+		font-weight: 100;
+	}
+	
+	section.main nav h2{
+		position: absolute;
+		top: 1px;
+		right: 20px;
+		margin: 0;
+		padding: 0;
+		line-height: 64px;
+		height: 64px;
+		font-size: 15px;
+		color: #fff;
+		font-family: "Roboto", sans-serif;
+		font-weight: 100;
+	}
 
 	section.main nav .static-title{
         display: inline-block;
@@ -523,121 +668,83 @@ section.main nav{
 			margin: 0 7px;
 		}
 
-    section.main nav ul{
-        list-style: none;
-        vertical-align: top;
-        height: 50px;
-        margin: 0 0 0 50px;
-        padding: 0;
-    }
-
-    section.main nav li{
-        position: relative;
-        display: inline-block;
+    section.main nav .primary-action{
+        position: absolute;
+        display: block;
+        right: 52px;
+        top: 15px;
+        height: 35px;
+        line-height: 35px;
+        white-space: nowrap;
+        font-size: 15px;
+        padding: 0 15px;
+        color: #fff;
+        background-color: transparent;
+        border: 1px solid rgba(255,255,255,0.25);
+        font-size: 14px;
+        font-weight: 100;
+        width: auto;
         text-align: center;
-        height: 50px;
-        line-height: 50px;
     }
     
-        section.main nav li.root a{
-            width: 45px;
-        }
-    
-        section.main nav li i{
-            display: none;
-        }
-        
-        section.main nav li a{
-            display: inline-block;
-            font-size: 1em;
-            height: 50px;
-            line-height: 50px;
-            padding: 0 20px 0 20px;
-            color: #fff;
-            text-align: center;
-        }
-        
-        	section.main nav li.has-action.active a{
-	        	padding-right: 30px;
-        	}
-        
-            section.main nav li.static a{
-                padding: 0 30px;   
-            }
-        
-        section.main nav li.root a{
-            padding: 0 15px;
-        }
-        
-        section.main nav li.add{
-	     	padding: 0;  
-	     	vertical-align: top;
-	     	line-height: normal;
-        } 
-        
-        section.main nav li.add i{
-            display: inline-block;
-            color: #fff;
-            cursor: pointer;
-            font-size: 18px;
-            padding-top: 17px;
-            margin: 0 10px;
-        }
-        
-            section.main nav li.add i:hover{
-                color: #FF9900;
-            }
-    
-    section.main nav li.active{
-        background: #888;
-        height: 50px;
-        line-height: 50px;
-    }
-    
-        section.main nav li.active a{
-            color: #fff;
-        }
-        
-        section.main nav li.active i{
-            position: absolute;
-            top: 17px;
-            right: 5px;
-            display: inline-block;
-            color: #ddd;
-            cursor: pointer;
-            margin: 0 ;
-            padding: 0;
-            font-size: 18px;
-        }
-        
-            section.main nav li.active i:hover{
-                color: #fff;
-            }
-    
-    section.main nav a.primary-action{
+    	section.main nav .primary-action:hover{
+	    	border: 1px solid #fff;
+    	}
+    	
+    section.main nav .more{
         position: absolute;
         display: block;
         right: 0;
         top: 0;
-        height: 50px;
+        height: 65px;
         font-size: 1em;
-        background: #FF9900;
-        padding: 0 5px;
+        padding: 0;
         color: #fff;
         font-size: 14px;
         width: 50px;
         text-align: center;
     }
     
-        section.main nav a.primary-action:hover{
+    	 section.main nav .more button{
+	    	 height: 65px;
+	    	 line-height: 75px;
+	    	 width: 50px;
+	    	 margin: 0;
+	    	 padding: 0;
+			 background-color: transparent;
+			 border: none;
+		}
+    
+        section.main nav .more.open{
             text-decoration: none;
-            background: #ffb648;
+			background: #7EA501;
         }
         
-        section.main nav a.primary-action i{
-            font-size: 18px;
-            padding-top: 17px;
+        section.main nav .more i{
+            font-size: 22px;
         }
+        
+        section.main nav .dropdown-menu{
+	        border-radius: 0;
+	        border: 0;
+			background: #7EA501;
+			margin: -1px 0 0 0;
+        }
+        
+        	section.main nav .dropdown-menu li:hover, section.main nav .dropdown-menu a:hover{
+	        	background: none !important;
+        	}
+        	
+        	section.main nav .dropdown-menu li a{
+	        	color: #fff;
+        	}
+        	
+        	section.main nav .dropdown-menu li a{
+	        	padding: 10px 15px;
+	        	font-size: 14px;
+	        	font-weight: 100;
+        	}
+    
     
     section.main .actions{
         position: fixed;
@@ -647,9 +754,9 @@ section.main nav{
         padding: 10px 20px;
         width: 100%;
         background-color: #fff;
-        z-index: 1000;
+        z-index: 900;
     }
-
+    
 	/* flipsnap */
 	.main nav .fs-container{
 		overflow: hidden;
@@ -827,9 +934,9 @@ div.select{
   overflow:auto;
   overflow-y:scroll;
   height: 150px;
-  margin: 0;
+  margin: 0 0 20px 0;
   border: 1px solid #ccc !important;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 	div.select.select-lg{

@@ -10,7 +10,7 @@
 }
 
 .editor.container{
-    padding-top: 60px;
+    padding-top: 10px;
     padding-bottom: 100px;
     z-index: 100;
 }
@@ -21,30 +21,30 @@
 	margin-bottom: 10px;
 }
 
-section.main nav.editor-menu{
-    background: #666;
-    margin: 0;
-    position: fixed !important;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    -webkit-transition: .2s all ease;
-    -moz-transition: .2s all ease;
-    -o-transition: .2s all ease;    
-	-ms-transition: .2s all ease;
-	transition: .2s all ease;
+
+/* #editor-menu */
+#editor-menu{
+	background-color: #aaa;
+	padding: 0;
 }
 
-	section.main nav.editor-menu .plugins{
-		background: url('../images/plug.png') no-repeat 12px 11px;
-		background-size: 16px 16px;
+	#editor-menu.sticky{
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    z-index: 1000;
+	    width: 100%;
 	}
-
+	
+.editor-menu{
+	overflow: hidden;
+}
+	
 .editor-actions{
-    margin: 0 130px 0 55px;
-    padding: 0;
+    padding: 0 10px;
+    margin: 0;
     height: 50px;
-    z-index: 1000;
+    z-index: 900;
 }
 
     .editor-actions div{
@@ -53,30 +53,70 @@ section.main nav.editor-menu{
         margin: 0;
         padding: 0;
     }
-
-body section.main nav a.primary-action{
-    position: absolute;
-    top: 0;
-    right: 50px;
-    width: 50px;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-	body section.main nav a.primary-action.settings{
-	    right: 0;
+	
+	.editor-actions a.primary-action{
+	    position: absolute;
+	    top: 0;
+	    right: 50px;
+	    width: 50px;
+	    text-align: center;
+	    margin: 0;
+	    padding: 0;
 	}
 	
-	body section.main nav a.primary-action i{
+		.editor-actions a.primary-action.settings{
+		    right: 0;
+		}
+		
+	.editor-actions a, .draggable{
 		box-sizing: border-box;
-		margin-right: 0;
-		width: 50px;
+		display: inline-block;
+		position: relative;
+		width: 40px; 
 		height: 40px;
-		margin: 5px 0;
+		margin: 5px 1px 5px 0;
 		padding: 0;
+		text-align: center;
 		line-height: 40px;
-	}
+		color: #fff;
+		vertical-align: top;
+		background-color: transparent;
+		border-radius: 50%;
+		font-size: 13px;
+		border: 1px solid transparent;
+	}	
+	
+		.editor-actions a.active{
+			border: 1px solid rgba(255,255,255,0.95);
+		}
+	
+		body>.draggable{
+			background-color: #3299BB;
+			color: #fff;
+			z-index: 100000;
+		}
+	
+		.editor-actions a.draggable{
+			cursor: move;
+		}
+	
+	    .editor-actions a:hover{
+	        background-color: rgba(255,255,255,.25);
+	        text-decoration: none;
+	    }
+	    
+	    .editor-actions small{
+	        position: absolute;
+	        width: 100%;
+	        height: 12px;
+	        line-height: 12px;
+	        text-align: center;
+	        bottom: 0;
+	        right: 0;
+	        color: #888;
+	        font-size: 0.65em;
+	        margin: 0;
+	    }
 
 a.next, a.previous{
     position: absolute;
@@ -88,7 +128,14 @@ a.next, a.previous{
     z-index: 100;
     padding: 0 10px;
     text-decoration: none;
+    color: #fff;
+    text-align: center;
 }
+
+	a.next i, a.previous i{
+		opacity: 1;
+		color: #fff !important;
+	}
 
     a.next:hover, a.previous:hover{
         opacity: 1;
@@ -96,12 +143,12 @@ a.next, a.previous{
     
     a.next{
         top: 0;
-        right: 50px;
+        right: 0;
     }
     
     a.previous{
         top: 0;
-        left: 50px;
+        left: 0;
         display: none;
     }
 
@@ -117,54 +164,6 @@ a.next, a.previous{
 	color: #ccc;
 	border-right: 1px solid #ddd;
 }
-	
-.editor-actions a, .draggable{
-	display: inline-block;
-	position: relative;
-	width: 40px; 
-	height: 40px;
-	margin: 5px 1px 5px 0;
-	padding: 0;
-	text-align: center;
-	line-height: 40px;
-	color: #fff;
-	font-size: 1.1em !important;
-	vertical-align: top;
-	background-color: #666;
-	border-radius: 50%;
-}	
-
-	.editor-actions a.active{
-		background-color: #aaa;
-	}
-
-	body>.draggable{
-		background-color: #3299BB;
-		color: #fff;
-		z-index: 100000;
-	}
-
-	.editor-actions a.draggable{
-		cursor: move;
-	}
-
-    .editor-actions a:hover{
-        background-color: #777 !important;
-        text-decoration: none;
-    }
-    
-    .editor-actions small{
-        position: absolute;
-        width: 100%;
-        height: 12px;
-        line-height: 12px;
-        text-align: center;
-        bottom: 0;
-        right: 0;
-        color: #888;
-        font-size: 0.65em;
-        margin: 0;
-    }
 
 .block{
 	position: relative;

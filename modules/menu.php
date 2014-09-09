@@ -71,3 +71,5 @@
 	<?php } ?>
 	
 </header>
+
+<div id="header-overlay" class="ng-scope"></div>

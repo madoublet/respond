@@ -39,17 +39,23 @@
 		
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-            <li class="static"><a href="users"><?php print _("Users"); ?></a></li>
-            <li class="static active"><a><?php print _("Roles"); ?></a></li>
-        </ul>
-        
-        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Role"); ?>"><i class="fa fa-plus-circle"></i></span></a>
-    </nav>
 
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1><?php print _("Roles"); ?></h1>
+        
+        <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Role"); ?></a>
+        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			  <li><a href="users"><?php print _("Users"); ?></a></li>
+		  </ul>
+		</div>
+    </nav>
 
     <div id="rolesList" class="list">
     	<div class="listItem" data-id="Admin">

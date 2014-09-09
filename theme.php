@@ -33,13 +33,11 @@
 
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-    	    <li class="static active"><a href="theme"><?php print _("Themes"); ?></a></li>
-        </ul>
+
+	<nav>
+        <a class="show-menu"></a>
         
+        <h1><?php print _("Themes"); ?></h1>
     </nav>
 
     <div id="themesList" class="image-list" data-bind="foreach: themes">

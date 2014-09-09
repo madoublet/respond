@@ -3,6 +3,7 @@ var scriptsModel = {
     
     files: ko.observableArray([]),
     content: ko.observable(''),
+    title: ko.observable(''),
     cm: null,
     hasFile: ko.observable(false),
     name: ko.observable(''),
@@ -60,6 +61,7 @@ var scriptsModel = {
     updateContent:function(o){
         
         scriptsModel.current = o;
+        scriptsModel.title(o.file);
         
         var name = global.replaceAll(o.file, '.js', '');
         scriptsModel.name(name);
@@ -155,9 +157,9 @@ var scriptsModel = {
     },
     
     showRemoveDialog:function(o, e){
-        scriptsModel.toBeRemoved = o;
+        scriptsModel.toBeRemoved = scriptsModel.current;
         
-        $('#removeName').text(o.file);
+        $('#removeName').text(scriptsModel.current.file);
         
 		$('#removeDialog').modal('show');
 

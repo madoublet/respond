@@ -68,9 +68,9 @@ if(strtoupper($type)=='SUBSCRIPTION'){ // if the site has a plan
 } 
 
 if($alertVisible==true){	
-	print '<p id="account-message" class="'.$alertClass.'">';
+	print '<span id="account-message" class="'.$alertClass.'">';
 	echo sprintf($alertText, $days);
 	print $link;
-	print '</p>';
+	print '</span>';
 }
 ?>

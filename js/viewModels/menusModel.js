@@ -2,6 +2,7 @@
 var menusModel = {
 
 	type: ko.observable('primary'),
+	name: ko.observable('Primary'),
 	menuTypes: ko.observableArray([]),
     menuItems: ko.observableArray([]),
 	menuLoading: ko.observable(true),
@@ -11,6 +12,7 @@ var menusModel = {
 
 	toBeRemoved: null,
     toBeEdited: null,
+    curr: null,
 
 	init:function(){ // initializes the model
 		menusModel.updateMenuTypes();	
@@ -64,8 +66,6 @@ var menusModel = {
 
 				}
 				
-				global.setupFs();
-
 				menusModel.updateMenuItems();
 
 			}
@@ -266,16 +266,22 @@ var menusModel = {
 
     showPrimary: function(o, e){
         menusModel.type('primary');
+        menusModel.name('Primary');
+        menusModel.curr = null;
         menusModel.updateMenuItems();
     },
     
     showFooter: function(o, e){
         menusModel.type('footer');
+        menusModel.name('Footer');
+        menusModel.curr = null;
         menusModel.updateMenuItems();
     },
     
     showMenuType: function(o, e){
         menusModel.type(o.friendlyId());
+        menusModel.name(o.name());
+        menusModel.curr = o;
         menusModel.updateMenuItems();
     },
     
@@ -416,7 +422,8 @@ var menusModel = {
     
     showRemoveMenuTypeDialog:function(o, e){
         
-        menusModel.toBeRemoved = o;
+        menusModel.toBeRemoved = menusModel.curr;
+        $('#removeTypeName').html(menusModel.toBeRemoved.name());  // show remove dialog
         
     	$('#deleteMenuTypeDialog').modal('show');
     },

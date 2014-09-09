@@ -71,13 +71,14 @@ h3{
   font: bold 16px arial;  
 }
 
-input[type=text], input[type=password], textarea{
+body input[type=text], body input[type=password], body textarea{
   border: 1px solid #ccc;
   padding: 3px;
   font: 12px arial;
+  border-radius: 0;
 }
 
-input[type=text]{
+body input[type=text]{
   width: 200px;
 }
 
@@ -93,11 +94,11 @@ select{
   font: 12px arial;
 }
 
-input[type=text]:focus, input[type=password]:focus, textarea:focus{
-  border: 1px solid #808080;
+body input[type=text]:focus, body input[type=password]:focus, body textarea:focus{
+  border: 1px solid #888;
 }
 
-textarea{
+body textarea{
   width: 500px;
   height: 100px;
 }

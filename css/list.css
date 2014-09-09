@@ -47,7 +47,7 @@ div.listItem .draft-tag{
 	position: absolute;
 	top: 19px;
 	right: 85px;
-	font-size: 0.7em;
+	font-size: 11px;
 	text-transform: uppercase;
 	color: #fff;
 	background-color: #FF9900;
@@ -303,7 +303,7 @@ div.listItem span.status{
 }
 
 	div.listItem span.status i.published{
-		color: #7ec57e;
+		color: #7EA501;
 		font-size: 20px;
 	}
 	

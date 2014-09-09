@@ -35,15 +35,27 @@
 
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-		    <li class="static active"><a href="branding"><?php print _("Branding"); ?></a></li>
-		    <li class="static"><a href="colors"><?php print _("Colors"); ?></a></li>
-        </ul>
+	<nav>
+        <a class="show-menu"></a>
         
+        <h1><?php print _("Branding"); ?></h1>
     </nav>
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    <?php print _("Branding"); ?>
+			<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		  	<li><a href="branding"><?php print _("Branding"); ?></a></li>
+		    <li><a href="colors"><?php print _("Colors"); ?></a></li>
+		  </ul>
+		  
+		</div>
+		
+   </menu>
 
   <div class="row-fluid">
     <div class="span12">

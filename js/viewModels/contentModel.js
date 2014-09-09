@@ -7,6 +7,7 @@ var contentModel = {
     toPagePrefix: ko.observable(''),
     domain: ko.observable(''),
     appUrl: ko.observable(''),
+    title: ko.observable(''),
     
     content: ko.observable(''),
     contentLoading: ko.observable(false),
@@ -59,6 +60,16 @@ var contentModel = {
 		contentModel.updatePage();
 		contentModel.updatePageTypes();
 		
+		// create sticky header for editor
+        $('section.main').scroll(function() {
+        
+			if ($(this).scrollTop() > 63){  
+				$('#editor-menu').addClass("sticky");
+			}
+			else{
+				$('#editor-menu').removeClass("sticky");
+			}
+		});
 
 		ko.applyBindings(contentModel);  // apply bindings
 	},
@@ -527,6 +538,8 @@ var contentModel = {
 			success: function(data){
 
 				var page = Page.create(data);
+				
+				contentModel.title(page.name());
 				
 				// build URL
 				var domain = $('body').attr('data-domain');

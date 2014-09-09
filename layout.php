@@ -38,31 +38,44 @@
 
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+
+	<nav>
+        <a class="show-menu"></a>
         
-        <div class="fs-container full">
-    
-			<div class="fs">
-    
-		        <ul>
-		        <!-- ko foreach: files -->
-		            <li class="has-action" data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Layout"); ?>"></i></li>
-		        <!-- /ko -->    
-		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Layout"); ?>"></i></li>
-		        </ul>
+        <h1><?php print _("Layout"); ?></h1>
         
-			</div>
-			<!-- /.fs -->
+        <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Layout"); ?></a>
         
-        </div>
-        <!-- /.fs-container -->
-        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			  <li><a data-bind="click: showRemoveDialog"><?php print _("Remove Layout"); ?></a></li>
+		  </ul>
+		</div>
     </nav>
-   
-    	<div class="codemirror-block">
-	    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
-    	</div>
+
+	<menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    <span data-bind="text:title"></span>
+			<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		  	<!-- ko foreach: files -->
+		    <li><a data-bind="text: file, click: $parent.updateContent"></a></li>
+		    <!-- /ko -->  
+		  </ul>
+		  
+		</div>
+		
+	</menu>
+
+	<div class="codemirror-block">
+    	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>
+	</div>
     
     <div class="actions">
         <button class="primary-button" type="button" data-bind="click: save"><?php print _("Save"); ?></button>

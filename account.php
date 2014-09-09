@@ -48,14 +48,10 @@
 <section class="main">
 
     <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-            <li class="static active"><a><?php print _("Account"); ?></a></li>
-        </ul>
+        <a class="show-menu"></a>
         
+        <h1><?php print _("Account"); ?></h1>
     </nav>
-    <!-- /nav -->
 
 	<div class="container">
 	
