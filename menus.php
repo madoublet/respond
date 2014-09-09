@@ -39,30 +39,45 @@
 			
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+
+	<nav>
+        <a class="show-menu"></a>
         
-        <div class="fs-container">
-    
-			<div class="fs">
-    
-		        <ul>
-		            <li class="static" data-bind="click: showPrimary, css: {active: type()=='primary'}"><a><?php print _("Primary"); ?></a></li>
-		        	<li class="static" data-bind="click: showFooter, css: {active: type()=='footer'}"><a><?php print _("Footer"); ?></a></li>
-		    	<!-- ko foreach: menuTypes -->
-		    		<li class="has-action" data-bind="css: {active: $parent.type()==friendlyId()}"><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> <i class="fa fa-minus-circle show-tooltip"  data-bind="click: $parent.showRemoveMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
-		    	<!-- /ko -->
-		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddMenuTypeDialog" title="<?php print _("Add Menu Type"); ?>"></i></li>
-		        </ul>
-		        
-			</div>
-			<!-- /.fs -->
+        <h1><?php print _("Menus"); ?></h1>
         
-        </div>
-        <!-- /.fs-container -->
-        
-        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Menu Item"); ?>"><i class="fa fa-plus-circle"></i></a>
+        <a class="primary-action" data-bind="click: showAddMenuTypeDialog"><?php print _("Add Menu Type"); ?></a>
+  
+		<div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			<li data-bind="visible: (type() != 'primary' && type() != 'footer')">
+				<a data-bind="click: showRemoveMenuTypeDialog"><?php print _("Remove Menu Type"); ?></a>
+			</li>
+		  </ul>
+		</div>
+  
     </nav>
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    <span data-bind="text: name()"></span>
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+	      		<li data-bind="click: showPrimary"><a><?php print _("Primary"); ?></a></li>
+	        	<li data-bind="click: showFooter"><a><?php print _("Footer"); ?></a></li>
+	    	<!-- ko foreach: menuTypes -->
+	    		<li><a data-bind="text: name, attr:{'data-friendlyid':friendlyId}, click:$parent.showMenuType"></a> </li>
+	    	<!-- /ko -->
+		  </ul>
+		  
+		</div>
+		
+    </menu>
 
 	<div id="menu-republish-message" class="list-menu">
 		<p>
@@ -288,7 +303,7 @@
 			<div class="modal-body">
 			
 				<p>
-					<?php print _("Are you sure that you want to delete"); ?> <strong id="removeName">this menu type</strong>?
+					<?php print _("Confirm that you want to remove:"); ?> <strong id="removeTypeName">this menu type</strong>?
 				</p>
 			
 			</div>

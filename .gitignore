@@ -3,6 +3,10 @@
 #################
 
 setup.local.php
+themes/geometric/*
+themes/notion/*
+themes/serene/*
+
 
 #################
 ## Eclipse

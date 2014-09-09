@@ -162,8 +162,6 @@ var pagesModel = {
 					pagesModel.updateCategories();
 				}
 				
-				global.setupFs();
-				
 			}
 		});
 
@@ -237,8 +235,6 @@ var pagesModel = {
 			data: {pageTypeUniqId:pagesModel.pageTypeUniqId()},
 			dataType: 'json',
 			success: function(data){
-			
-				console.log(data[x]);
 
 				for(x in data){
 				
@@ -540,7 +536,7 @@ var pagesModel = {
     // shows a dialog to remove a pagetype
     showRemovePageTypeDialog:function(o, e){
 		pagesModel.toBeRemoved = o;
-
+		
 		var id = o.pageTypeUniqId();
 		var name = o.typeP();
 		

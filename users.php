@@ -42,15 +42,21 @@
 		
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-            <li class="static active"><a><?php print _("Users"); ?></a></li>
-            <li class="static"><a href="roles"><?php print _("Roles"); ?></a></li>
-        </ul>
+	<nav>
+        <a class="show-menu"></a>
         
-        <a class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add User"); ?>"><i class="fa fa-plus-circle"></i></span></a>
+        <h1><?php print _("Users"); ?></h1>
+        
+        <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add User"); ?></a>
+        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			  <li><a href="roles"><?php print _("Roles"); ?></a></li>
+		  </ul>
+		</div>
     </nav>
 
     <div id="usersList" class="list has-photo" data-bind="foreach: users">

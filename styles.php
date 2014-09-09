@@ -40,27 +40,40 @@
 
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+	<nav>
+        <a class="show-menu"></a>
         
-        <div class="fs-container full">
-    
-			<div class="fs">
-    
-		        <ul>
-		        <!-- ko foreach: files -->
-		            <li class="has-action" data-bind="css: name"><a data-bind="text: file, click: $parent.updateContent"></a><i data-bind="click: $parent.showRemoveDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Stylesheet"); ?>"></i></li>
-		        <!-- /ko -->    
-		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Stylesheet"); ?>"></i></li>
-		        </ul>
-			
-			</div>
-			<!-- /.fs -->
+        <h1><?php print _("Styles"); ?></h1>
         
-        </div>
-        <!-- /.fs-container -->
+        <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Stylesheet"); ?></a>
         
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			  <li><a data-bind="click: showRemoveDialog"><?php print _("Remove Stylesheet"); ?></a></li>
+		  </ul>
+		</div>
     </nav>
+
+	<menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    <span data-bind="text:title"></span>
+			<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		  	<!-- ko foreach: files -->
+		    <li><a data-bind="text: file, click: $parent.updateContent"></a></li>
+		    <!-- /ko -->  
+		  </ul>
+		  
+		</div>
+		
+	</menu>
+	
 
 	<div class="codemirror-block">
     	<textarea id="content" spellcheck="false" data-bind="value: content"></textarea>

@@ -3,6 +3,7 @@ var layoutModel = {
     
     files: ko.observableArray([]),
     content: ko.observable(''),
+    title: ko.observable(''),
     cm: null,
     
     current: null,
@@ -47,8 +48,7 @@ var layoutModel = {
                 if(current!=null){
                     layoutModel.updateContent(current);
                 }
-                
-                global.setupFs();
+             
 			}
 		});
 
@@ -57,6 +57,7 @@ var layoutModel = {
     updateContent:function(o){
         
         layoutModel.current = o;
+        layoutModel.title(o.name);
    
     	$('nav ul li').removeClass('active');
 		$('nav ul li.'+o.name).addClass('active');
@@ -143,9 +144,9 @@ var layoutModel = {
     },
     
     showRemoveDialog:function(o, e){
-        layoutModel.toBeRemoved = o;
+        layoutModel.toBeRemoved = layoutModel.current;
         
-        $('#removeName').text(o.file);
+        $('#removeName').text(layoutModel.current.file);
         
 		$('#removeDialog').modal('show');
 

@@ -104,8 +104,7 @@ respond.Editor.BuildMenu = function(el){
 	var id = el.id;
 	
 	// create menu
-	var menu =  '<nav class="editor-menu">' +
-                '<div class="editor-actions"><div>' +
+	var menu =  '<div class="editor-actions"><div>' +
 				'<a class="bold fa fa-bold" title="'+t('bold_text')+'" data-target="'+id+'"></a>' +
 				'<a class="italic fa fa-italic" title="'+t('italic_text')+'" data-target="'+id+'"></a>' +
 				'<a class="strike fa fa-strikethrough" title="'+t('strike_text')+'" data-target="'+id+'"></a>' +
@@ -161,11 +160,10 @@ respond.Editor.BuildMenu = function(el){
 	}
 	
 	menu += '</div></div>' +
-                '<a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>' +
-				'<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
-				'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>' +
-				'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
-				'</nav>';
+                '<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>' +
+				'<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>'
+				//'<a class="primary-action settings" title="'+t('settings')+'"><i class="fa fa-cog"></i></a>' +
+				;
 				
 	return menu;
 	
@@ -1102,7 +1100,7 @@ respond.Editor.SetupMenuEvents = function(){
 	});
  
 	// update PAGE SETTINGS
-	$('.editor-menu a.settings').click(function(){
+	$('.page-settings').click(function(){
 	  
 		pageSettingsDialog.show(); 
 		

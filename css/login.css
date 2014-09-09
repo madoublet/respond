@@ -4,7 +4,7 @@ html{
 
 .content{
 	text-align: center;
-	padding: 50px 20px;
+	padding: 75px 20px;
 }
 
 #create-confirmation{
@@ -12,7 +12,7 @@ html{
 }
 
 body .content h1{
-	font-family: "Roboto Condensed", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 45px;
 	padding-bottom: 25px;
     color: #777;
@@ -21,6 +21,8 @@ body .content h1{
 }
 
 body .content h2.title{
+	font-family: "Roboto", sans-serif;
+	font-weight: 100;
 	position: relative;
 	border: 1px solid #f8f8f8;
 	font-size: 15px;
@@ -264,7 +266,7 @@ table.test{
 
 /* brand */
 .brand img{
-	max-height: 75px;
+	max-height: 60px;
 }
 
 

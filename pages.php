@@ -55,58 +55,66 @@
 <section class="main">
 
     <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
+        <a class="show-menu"></a>
         
-        <div class="fs-container">
-    
-			<div class="fs">
+        <h1><?php print _("Pages"); ?></h1>
+        
+        <a id="add-page" class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Page"); ?></a>
+  
+		<div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+			<?php if($authUser->Role=='Admin'){ ?>
+			<li><a data-bind="click: showAddPageTypeDialog"><?php print _("Add Page Type"); ?></a>
+			<?php } ?>
 			
-		        <ul>
-		        
-		        	<?php if($authUser->Access=='All' || strpos($authUser->Access, 'root') !== FALSE){ ?>
-		        
-		            <li id="root-item" class="root" data-bind="click: switchPageType, css: {'active': friendlyId()=='root'}"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
-		            
-		            <?php } ?>
-		            
-		        	<!--ko foreach: pageTypes -->
-		    		<li 
-		    			<?php if($authUser->Role=='Admin'){ ?>class="has-action"<?php } ?>
-						data-bind="css: {'active': friendlyId()==$parent.friendlyId(), 'is-secure': isSecure()==1}">
-		    			
-		    			<a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
-						</a> 
-						
-			    		<?php if($authUser->Role=='Admin'){ ?>
-			    		<i data-bind="click: $parent.showRemovePageTypeDialog" class="fa fa-minus-circle show-tooltip" title="<?php print _("Remove Page Type"); ?>"></i>
-			    		<?php } ?>
-			    		
-		    		</li>
-		    		<!--/ko -->
-		    		
-		    		<?php if($authUser->Role=='Admin'){ ?>
-		            <li class="add"><i class="fa fa-plus-circle show-tooltip" data-bind="click: showAddPageTypeDialog" title="<?php print _("Add Page Type"); ?>"></i></li>
-		             <?php } ?>
-		        </ul>
-	        
-			</div>
-			<!-- /.fs -->
-        
-        </div>
-        <!-- /.fs-container -->
-        
-        <a id="add-page" class="primary-action show-tooltip" data-bind="click: showAddDialog" title="<?php print _("Add Page"); ?>"><i class="fa fa-plus-circle"></i></a>
+			<?php if($authUser->Role=='Admin'){ ?>
+			<li data-bind="visible: pagesModel.pageTypeUniqId() != -1">
+				<a data-bind="click: showRemovePageTypeDialog"><?php print _("Remove"); ?> <span data-bind="text:pagesModel.typeS()"></span></a>
+			</li>
+			<?php } ?>
+		  </ul>
+		</div>
   
     </nav>
     
-    <div class="list-menu">
-    	<?php include 'modules/account.php'; ?>
-    	
-		<div class="list-menu-actions">
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    / <span data-bind="text: pagesModel.friendlyId(), visible: pagesModel.pageTypeUniqId() != -1"></span>
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		  	<?php if($authUser->Access=='All' || strpos($authUser->Access, 'root') !== FALSE){ ?>
+		        
+		            <li id="root-item" class="root" data-bind="click: switchPageType"><a data-friendlyid="root" data-pagetypeuniqid="-1" data-types="Page" data-typep="Pages" data-layout="content" data-stylesheet="content">/</a></li>
+		            
+		    <?php } ?>
+		  
+			<!--ko foreach: pageTypes -->
+    		<li 
+    			<?php if($authUser->Role=='Admin'){ ?>class="has-action"<?php } ?>
+				data-bind="css: {'is-secure': isSecure()==1}">
+    			
+    			<a data-bind="html: dir, attr: {'data-friendlyid': friendlyId, 'data-pagetypeuniqid': pageTypeUniqId, 'data-types': typeS, 'data-typep': typeP, 'data-layout': layout, 'data-stylesheet': stylesheet, 'data-issecure': isSecure}, click: $parent.switchPageType">
+				</a> 
+			
+    		</li>
+    		<!--/ko -->
+    		
+		  </ul>
+		  
+		  <?php include 'modules/account.php'; ?>
+		</div>
 		
-			<div id="categories" class="categories btn-group" data-bind="visible: pageTypeUniqId()!=-1">
+		<div class="menu-actions">
+    		
+			<div id="categories" class="dropdown btn-group" data-bind="visible: pageTypeUniqId()!=-1">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				  <span class="current-category"><?php print _("All Categories"); ?></span> <i class="fa fa-angle-down"></i>
+				  <span class="current-category"><?php print _("All Categories"); ?></span> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
 				  <li><a data-bind="click:resetCategory"><?php print _("All Categories"); ?></a></li>
@@ -122,8 +130,9 @@
 			<a title="<?php print _("Sort by Name"); ?>"><i class="fa fa-sort-alpha-asc" data-bind="click:sortName"></i></a>
 			<a><i class="fa fa-cog" data-bind="click: showEditPageTypeDialog, visible: pageTypeUniqId()!=-1"></i></a>
 		</div>
-    </div>
-
+		
+    </menu>
+   
     <div class="list" data-bind="foreach: pages">
     
     	<div class="listItem" data-bind="attr: { 'data-id': pageUniqId, 'data-name': name, 'data-isactive': isActive}, css: {'has-thumb': thumb()!=''}">

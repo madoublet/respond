@@ -6,6 +6,7 @@ var snippetsModel = {
     cm: null,
     hasFile: ko.observable(false),
     name: ko.observable(''),
+    title: ko.observable(''),
     
     current: null,
     toBeRemoved: null,
@@ -49,8 +50,6 @@ var snippetsModel = {
                 	snippetsModel.hasFile(true);
                     snippetsModel.updateContent(current);
                 }
-                
-                global.setupFs();
                 
 			}
 		});
@@ -157,9 +156,9 @@ var snippetsModel = {
     },
     
     showRemoveDialog:function(o, e){
-        snippetsModel.toBeRemoved = o;
+        snippetsModel.toBeRemoved = snippetsModel.current;
         
-        $('#removeName').text(o.file);
+        $('#removeName').text(snippetsModel.toBeRemoved.file);
         
 		$('#removeDialog').modal('show');
 

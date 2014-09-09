@@ -3,6 +3,7 @@ var stylesModel = {
     
     files: ko.observableArray([]),
     content: ko.observable(''),
+    title: ko.observable(''),
     cm: null,
     
     current: null,
@@ -58,6 +59,7 @@ var stylesModel = {
     updateContent:function(o){
         
         stylesModel.current = o;
+        stylesModel.title(o.name);
    
     	$('nav ul li').removeClass('active');
 		$('nav ul li.'+o.name).addClass('active');
@@ -147,9 +149,9 @@ var stylesModel = {
     },
     
     showRemoveDialog:function(o, e){
-        stylesModel.toBeRemoved = o;
+        stylesModel.toBeRemoved = stylesModel.current;
         
-        $('#removeName').text(o.file);
+        $('#removeName').text(stylesModel.current.file);
         
 		$('#removeDialog').modal('show');
 

@@ -48,7 +48,25 @@
 
 <section class="main">
 
-	<div id="editor-menu"></div>
+	<nav>
+        <a class="back" onclick="javascript:history.back()"></a>
+        
+        <h1 data-bind="text: title"></h1>
+        
+		<div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li><a class="live" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("Live"); ?></a></li>
+		  	<li><a class="preview" data-bind="click:preview" target="_blank"><?php print _("Preview"); ?></a></li>
+		  	<li><a class="page-settings"><?php print _("Settings"); ?></a></li>
+		  </ul>
+		</div>
+  
+    </nav>
+
+	<menu id="editor-menu" class="editor-menu"></menu>
 	<!-- /#editor-menu -->
  
     <div id="editor-container">
@@ -62,14 +80,9 @@
     
         <button class="primary-button" type="button" data-bind="click: $parent.saveContent, visible: canPublish"><?php print _("Save and Publish"); ?></button>
         <button class="secondary-button" type="button" data-bind="click: $parent.saveDraft, visible: canEdit"><?php print _("Save Draft"); ?></button>
-        
-        <button class="tertiary-button offset-left" type="button" onclick="javascript:history.back()"><i class="fa fa-reply"></i> <?php print _("Return"); ?></button>
-    
+       
+  
 		<!-- /ko -->
-    
-		<div class="alternate">
-			<a class="live" data-bind="attr:{'href':fullUrl}" target="_blank"><?php print _("Live"); ?></a><a class="preview" data-bind="click:preview" target="_blank"><?php print _("Preview"); ?></a>
-		</div>
     </div>
     <!-- /#actions -->
     
