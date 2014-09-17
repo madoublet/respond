@@ -45,13 +45,16 @@
         
         <h1><?php print _("Menus"); ?></h1>
         
-        <a class="primary-action" data-bind="click: showAddMenuTypeDialog"><?php print _("Add Menu Type"); ?></a>
+        <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Menu Item"); ?></a>
   
 		<div class="dropdown more">
 		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
 		    <i class="fa fa-ellipsis-v"></i>
 		  </button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li>
+				<a data-bind="click: showRemoveMenuTypeDialog"><?php print _("Add Menu Type"); ?></a>
+			</li>	
 			<li data-bind="visible: (type() != 'primary' && type() != 'footer')">
 				<a data-bind="click: showRemoveMenuTypeDialog"><?php print _("Remove Menu Type"); ?></a>
 			</li>
