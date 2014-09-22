@@ -18,7 +18,7 @@
 				</a>
 				<?php if(empty($img->title)==false){?>
 				<div class="caption">
-                  <p><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
+                  <p><?php print '<?php print _("'.htmlentities($img->title, ENT_QUOTES).'"); ?>'; ?></p>
                 </div>
 				<?php } ?>
 			</div>
