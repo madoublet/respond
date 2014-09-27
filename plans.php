@@ -35,17 +35,29 @@
 
 <section class="main">
 
-    <nav>
-        <a class="show-menu"><i class="fa fa-bars fa-lg"></i></a>
-    
-        <ul>
-            <li><a href="admin"><?php print _("Sites"); ?></a></li>
-            <li class="static active"><a href="plans"><?php print _("Plans"); ?></a></li>
-        </ul>
-        <?php if (STRIPE_API_KEY!='') {?>
-        <a class="primary-action" data-bind="click: showAddDialog"><i class="fa fa-plus-circle fa-lg"></i> <?php print _("Add Plan"); ?></a>
-         <?php } ?>
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1><?php print _("Admin"); ?></h1>
+        
+         <a class="primary-action" data-bind="click: showAddDialog"><?php print _("Add Plan"); ?></a>
     </nav>
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    <?php print _("Plans"); ?>
+			<span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		  	<li><a href="admin"><?php print _("Sites"); ?></a></li>
+		    <li><a href="plans"><?php print _("Plans"); ?></a></li>
+		  </ul>
+		  
+		</div>
+		
+   </menu>
 
     <div class="container">
     <?php if (STRIPE_API_KEY!='') {?>
