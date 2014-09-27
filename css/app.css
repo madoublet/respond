@@ -409,7 +409,7 @@ header{
     header h2{
     	position: relative;
 	    color: #888;
-	    font-weight: 100;
+	    font-weight: 300;
 	    font-size: 13px;
 	    padding: 10px 0 0 10px;
 	    margin: 0;
@@ -446,7 +446,7 @@ header{
     
     header li a{
         font-family: 'Roboto', sans-serif;
-        font-weight: 100;
+        font-weight: 300;
         font-size: 16px;
         display: block;
         padding: 10px 15px;
