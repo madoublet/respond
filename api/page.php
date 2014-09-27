@@ -676,7 +676,7 @@ class PageUnPublishResource extends Tonic\Resource {
 			// get $pageTypeUniqId
             if($page['PageTypeId']!=-1){
                 $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
-                $filename .= strtolower($pageType['FriendlyId']).'/';
+                $filename .= $pageType['FriendlyId'].'/';
                 
                 $pageTypeUniqId = $pageType['PageTypeUniqId'];
             }
@@ -747,7 +747,7 @@ class PageListAll extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                 }
 
                 $row['Url'] = $url;
@@ -837,7 +837,7 @@ class PageListSortedResource extends Tonic\Resource {
             if($friendlyId!='root'){ // get pagetype
                 $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
                 $pageTypeId = $pageType['PageTypeId'];
-                $dir = strtolower($pageType['TypeS']).'/';
+                $dir = $pageType['FriendlyId'].'/';
             }
             
             // get site url
@@ -887,7 +887,7 @@ class PageListSortedResource extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                     
                     // set edit permissions
 					if($authUser->CanEdit=='All' || strpos($authUser->CanEdit, $pageType['PageTypeUniqId']) !== FALSE){
@@ -988,7 +988,7 @@ class PageListFriendlyResource extends Tonic\Resource {
             if($friendlyId!='root'){ // get pagetype
                 $pageType = PageType::GetByFriendlyId($friendlyId, $siteId);
                 $pageTypeId = $pageType['PageTypeId'];
-                $dir = strtolower($pageType['TypeS']).'/';
+                $dir = $pageType['FriendlyId'].'/';
             }
             
             // get site url
@@ -1029,7 +1029,7 @@ class PageListFriendlyResource extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['TypeS']).'/'.$page['FriendlyId'];
+                    $url = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
                 }
 
 				// set url
