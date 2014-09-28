@@ -145,7 +145,7 @@ respond.Editor.BuildMenu = function(el){
 				'<a class="html fa fa-html5 draggable" title="'+t('addhtml')+'" data-target="'+id+'"></a>' + 
 				'<a class="syntax fa fa-terminal draggable" title="'+t('addSyntax')+'" data-target="'+id+'"></a>' +
 				'<a class="secure fa fa-lock draggable" title="'+t('secure')+'" data-target="'+id+'"></a>' +
-				'<a class="plugins draggable" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
+				'<a class="plugins fa fa-plug draggable" title="'+t('plugins')+'" data-target="'+id+'"></a>' +
 				'<span class="sep"></span>' +
 				'<a class="load fa fa-upload" title="'+t('load')+'" data-target="'+id+'"></a>' +
 				'<a class="layout fa fa-columns" title="'+t('layout')+'" data-target="'+id+'"></a>';
