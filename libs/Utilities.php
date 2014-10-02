@@ -112,6 +112,7 @@ class Utilities
 		$ch = curl_init();
 
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
 	    curl_setopt($ch, CURLOPT_URL, $url);
 
 	    $data = curl_exec($ch);
@@ -1335,7 +1336,7 @@ class Utilities
 					}
 
 					if (strpos($el->innertext, '{{reCaptcha}}')>0) {
-						$replace = '<?php require_once(\''.$root.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['FormPublicId'].'");?>';
+						$replace = '<?php require_once(\''.$rootloc.'libs/recaptchalib.php\'); echo recaptcha_get_html("'.$site['FormPublicId'].'");?>';
 						$el->innertext = str_replace('{{reCaptcha}}', $replace, $el->innertext);
 					}
 
