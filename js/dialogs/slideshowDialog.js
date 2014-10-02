@@ -17,7 +17,7 @@ var slideshowDialog = {
 
 			var html = '<div id="' + uniqId + '" class="slideshow" data-display="'+display+'">' +
 				respond.defaults.elementMenuNoConfig +
-				'<div class="images"><button type="button" class="add-image"><i class="fa fa-picture-o"></i></button>' +
+				'<div class="images"><button type="button" class="add-'+display+'-image"><i class="fa fa-picture-o"></i></button>' +
 				'</div>' +
 				'</div>';
 

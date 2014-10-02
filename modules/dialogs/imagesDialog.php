@@ -3,7 +3,6 @@
 	<!-- messages -->
 	<input id="msg-enter-caption" value="<?php print _("Enter caption"); ?>" type="hidden">
 	<input id="msg-image-instructions" value="<?php print _("Add your content here or click the settings icon to change the image layout"); ?>" type="hidden">
-	<input id="msg-enter-caption" value="<?php print _("Enter caption"); ?>" type="hidden">
 
 	<div class="immersive-header">
 		<h3><?php print _("Select or upload a new image"); ?></h3>

@@ -10,14 +10,41 @@
 		<?php 
 			if($imgHtml){
 			
-				foreach($imgHtml->find('img') as $img){ ?>
-			<div class="item<?php if($img_count==0){print ' active';}?>">	
-				<img class="sliderImage" src="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>">
-				<?php if(empty($img->title)==false){?>
+				foreach($imgHtml->find('img') as $img){ 
+
+					// convert to an array to make it easier to access hyphenated properties
+					$a_img = Utilities::objectToArray( $img );
+
+					?>
+
+			<div class="item<?php if($img_count==0){print ' active';}?><?php if (empty($a_img['attr']['data-slidecssclass'])==false) { print ' '.$a_img['attr']['data-slidecssclass']; } ?>" id="<?php print $img->id; ?>">
+				<img class="sliderImage" src="<?php print $rootloc; ?><?php print $a_img['attr']['data-srcfullsize']; ?>">
+
+				<?php if (
+						(empty($a_img['attr']['data-headline'])==false) ||
+						(empty($a_img['attr']['data-buttonlabel'])==false) ||
+						(empty($a_img['attr']['title'])==false)
+					)
+					{?>
+
 				<div class="carousel-caption">
-                  <p><?php print '<?php print _("'.$img->title.'"); ?>'; ?></p>
-                </div>
+
+				<?php if(empty($a_img['attr']['data-headline'])==false){?>
+                  <h2 class="carousel-headline"><?php print '<?php print _("'.$a_img['attr']['data-headline'].'"); ?>'; ?></h2>
 				<?php } ?>
+
+				<?php if(empty($a_img['attr']['title'])==false){?>
+                  <p class="carousel-captiontext"><?php print '<?php print _("'.$a_img['attr']['title'].'"); ?>'; ?></p>
+				<?php } ?>
+
+				<?php if(empty($a_img['attr']['data-buttonlabel'])==false){?>
+                  <a <?php if(empty($a_img['attr']['target'])==false){ print 'target="' . $a_img['attr']['target'] . '"'; } ?> href="<?php print $a_img['attr']['data-buttonurl']; ?>" class="btn btn-lg btn-primary carousel-button" role="button"><?php print '<?php print _("'.$a_img['attr']['data-buttonlabel'].'"); ?>'; ?></a>
+				<?php } ?>
+
+                </div><!-- /.carousel-caption -->
+
+				<?php } ?>
+
 			</div>
 		<?php 
 					$img_count = $img_count+1;
