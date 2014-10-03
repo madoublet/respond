@@ -436,7 +436,7 @@ a.next, a.previous{
 }
 
 	.block div.file input, .block div.map select{
-		position: absolute;
+		position: static;
 		top: 0;
 		right: 50px;
 		width: 75px;
