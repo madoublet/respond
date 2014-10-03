@@ -309,6 +309,9 @@ class PageResource extends Tonic\Resource {
 		        // remove page from the DB
 		        Page::Remove($pageUniqId);
 		        
+		        // remove page from the search index
+		        SearchIndex::Remove($pageUniqId);
+		        
 				return new Tonic\Response(Tonic\Response::OK);
 			
 	        }
