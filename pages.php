@@ -67,7 +67,7 @@
 		  </button>
 		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">	
 			<?php if($authUser->Role=='Admin'){ ?>
-			<li><a data-bind="click: showAddPageTypeDialog"><?php print _("Add Page Type"); ?></a>
+			<li><a data-bind="click: showAddPageTypeDialog"><?php print _("Add Page Type"); ?></a></li>
 			<?php } ?>
 			
 			<?php if($authUser->Role=='Admin'){ ?>
@@ -272,7 +272,7 @@
 				</p>
 				
 				<p data-bind="visible: pages().length > 0">
-					<?php print _("Please remove all pages first."); ?></strong>
+					<strong><?php print _("Please remove all pages first."); ?></strong>
 				</p>
 				
 			</div>
