@@ -1818,7 +1818,7 @@ msgstr "Theme appliqué avec succés"
 
 #: theme.php:34 theme.php:30
 msgid "Theme successfully reset"
-msgstr "Theme supprimé avec succés"
+msgstr "Theme réinitialisé avec succès"
 
 #: theme.php:14 theme.php:44 theme.php:40
 msgid "Themes"
