@@ -182,12 +182,14 @@
 
     $handle = curl_init($url);
     curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
-    
+    curl_setopt($handle, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
+
     /* Get the HTML or whatever is linked in $url. */
     $response = curl_exec($handle);
     
     /* Check for 200*/
     $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
     if($httpCode == 200) {
         print '<i title="MOD_REWRITE working" class="fa fa-check-circle"></i>';
     }
@@ -207,12 +209,14 @@
 
     $handle = curl_init($url);
     curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($handle, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
     
     /* Get the HTML or whatever is linked in $url. */
     $response = curl_exec($handle);
     
     /* Check for 200*/
     $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
     if($httpCode == 200 && $response=='API works!') {
         print '<i title="API working" class="fa fa-check-circle"></i>';
     }
