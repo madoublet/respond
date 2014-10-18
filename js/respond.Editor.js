@@ -608,12 +608,13 @@ respond.Editor.ParseHTML = function(top){
 					  		'<div class="images">';
 					
 					  	for(var y=0; y<imgs.length; y++){
-							var caption = $(imgs[y]).attr('title');
+
 							imghtml = $('<div>').append($(imgs[y]).clone()).remove().html();
-							response +='<span class="image">' + imghtml + '<span class="caption"><input type="text" value="'+caption+'" placeholder="Enter caption" maxwidth="140" ></span><a class="remove-image fa fa-minus-circle"></a></span>';
+
+							response +='<span class="image">' + imghtml + '<a class="image-control edit-'+display+'-properties fa fa-cog"></a><a class="image-control remove-image fa fa-minus-circle"></a></span>';
 					  	}
 					
-					  	response += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button></div></div>';
+					  	response += '<button type="button" class="secondary-button add-'+display+'-image"><i class="fa fa-picture-o"></i></button></div></div>';
 					}
 	
 					// parse LIKE MODULE
@@ -1737,7 +1738,7 @@ respond.Editor.SetupMenuEvents = function(){
 		
 }
 
-// sets up persistent events for the ediotr
+// sets up persistent events for the editor
 respond.Editor.SetupPersistentEvents = function(el){
 	
 	// setup context
@@ -1869,18 +1870,6 @@ respond.Editor.SetupPersistentEvents = function(el){
 		return false;
 	});
 	
-	// caption focus (for images)
-	$(el).on('focus', '.caption input', function(){
-		$(this.parentNode.parentNode).addClass('edit');
-	});
-
-	// caption blur (for images)
-	$(el).on('blur', '.caption input', function(){
-		var caption = $(this).val();
-		$(this.parentNode.parentNode).find('img').attr('title', caption);
-		$(this.parentNode.parentNode).removeClass('edit');
-	});
-
 	// image click
 	$(el).on('click', '.img', function(){
 		var moduleId = this.parentNode.id;
@@ -1897,6 +1886,20 @@ respond.Editor.SetupPersistentEvents = function(el){
 		$(this.parentNode.parentNode).remove();
 		context.find('a.'+this.parentNode.className).show();
 		respond.currnode = null;
+		return false;
+	}); 
+
+	// edit-slideshow-properties click
+	$(el).on('click', '.edit-slideshow-properties', function(){
+		var id = $(this.parentNode).find('img').attr('id');
+		slideDialog.show(id);
+		return false;
+	}); 
+
+	// edit-gallery-properties click
+	$(el).on('click', '.edit-gallery-properties', function(){
+		var id = $(this.parentNode).find('img').attr('id');
+		galleryImgDialog.show(id);
 		return false;
 	}); 
 
@@ -1945,14 +1948,24 @@ respond.Editor.SetupPersistentEvents = function(el){
 		return false;
 	});
 	
-	// add image click
-	$(el).on('click', '.add-image', function(){
+	// add slideshow image click
+	$(el).on('click', '.add-slideshow-image', function(){
 		var editor = $('#'+$(this).parents('.editor').attr('id'));
 	
 		var d = this.parentNode.parentNode;
 		var id = $(d).attr('id');
 
 		imagesDialog.show(editor, 'slideshow', id);
+	});
+	
+	// add gallery image click
+	$(el).on('click', '.add-gallery-image', function(){
+		var editor = $('#'+$(this).parents('.editor').attr('id'));
+	
+		var d = this.parentNode.parentNode;
+		var id = $(d).attr('id');
+
+		imagesDialog.show(editor, 'gallery', id);
 	});
 	
 	// config list click   

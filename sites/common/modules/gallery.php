@@ -10,11 +10,16 @@
 		<?php 
 			if($imgHtml){
 			
-				foreach($imgHtml->find('img') as $img){ ?>
-				
-			<div class="thumbnail thumbail-<?php if($img_count==0){print ' active';}?>">	
-				<a class="gallery-image" href="<?php print $rootloc.'files/'; ?><?php print $img->id; ?>" rel="group-<?php print $id; ?>" title="<?php print '<?php print _("'.htmlentities($img->title, ENT_QUOTES).'"); ?>'; ?>">
-					<img src="<?php print $rootloc.'files/t-'; ?><?php print $img->id; ?>">
+				foreach($imgHtml->find('img') as $img){ 
+
+					// convert to an array to make it easier to access hyphenated properties
+					$a_img = Utilities::objectToArray( $img );
+
+					?>
+
+			<div class="thumbnail thumbail-<?php if($img_count==0){print ' active';}?><?php if (empty($a_img['attr']['data-slidecssclass'])==false) { print ' '.$a_img['attr']['data-slidecssclass']; } ?>" id="<?php print $img->id; ?>">
+				<a class="gallery-image" href="<?php print $rootloc.$a_img['attr']['data-srcfullsize']; ?>" rel="group-<?php print $id; ?>" title="<?php print '<?php print _("'.htmlentities($img->title, ENT_QUOTES).'"); ?>'; ?>">
+					<img src="<?php print $a_img['attr']['src']; ?>">
 				</a>
 				<?php if(empty($img->title)==false){?>
 				<div class="caption">

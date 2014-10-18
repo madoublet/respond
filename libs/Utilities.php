@@ -1245,6 +1245,9 @@ class Utilities
                     }
                     
                     $imgList = $el->innertext;
+
+            		// update slideshow thumbnails with sites/[name] to a relative URL
+                    $imgList = str_replace('data-srcfullsize="sites/'.$site['FriendlyId'].'/', 'data-srcfullsize="'.$rootloc, $imgList);
                     
                     ob_start();
                     
@@ -1711,6 +1714,19 @@ class Utilities
 	    
     }
 
+    // converts an object to an array. Makes it easier to access values of hyphenated HTML attribute nodes via PHP
+    public static function objectToArray( $object )
+    {
+        $array = array();
+        foreach ($object as $key => $value) {
+            if ($value instanceof StdClass) {
+                $array[$key] = $value->toArray();
+            } else {
+                $array[$key] = $value;
+            }
+        }
+        return $array;
+    }
 }
 	
 ?>

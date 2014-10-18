@@ -38,18 +38,31 @@ var imagesDialog = {
       
       var uniqId = 'image'+images_count;
       
-      if(imagesDialog.type=='slideshow'){  // add image (thumb) to slideshow
+      if((imagesDialog.type=='slideshow')||(imagesDialog.type=='gallery')) {  // add image (thumb) to slideshow or gallery
       
+        if (imagesDialog.type=='slideshow') {
+          var className = 'slide';
+          var prefix = 'slide';
+        }
+        
+        if (imagesDialog.type=='gallery') {
+          var className = 'galleryimg';
+          var prefix = 'galleryimg';
+        }
+        
+        var uniqId = respond.Editor.GenerateUniqId(imagesDialog.editor, className, prefix);
+
         var html = '<span class="image"><img id="' + 
-        	filename + 
-        	'" src="' +
-        	t_src + 
-        	'" title=""><span class="caption"><input type="text" value="" placeholder="' + $('#msg-enter-caption').val() + '" maxwidth="140"></span>' +
-        	'<a class="remove-image fa fa-minus-circle"></a></span>';
+        	uniqId + 
+          '" src="' +
+          t_src + 
+          '" data-srcfullsize="' +
+          src + 
+        	'" title=""><a class="image-control edit-'+imagesDialog.type+'-properties fa fa-cog"></a><a class="image-control remove-image fa fa-minus-circle"></a></span>';
         
-        html += '<button type="button" class="secondary-button add-image"><i class="fa fa-picture-o"></i></button>';
+        html += '<button type="button" class="secondary-button add-'+imagesDialog.type+'-image"><i class="fa fa-picture-o"></i></button>';
         
-        $(imagesDialog.editor).find('div#'+imagesDialog.moduleId+' .add-image').remove();
+        $(imagesDialog.editor).find('div#'+imagesDialog.moduleId+' .add-'+imagesDialog.type+'-image').remove();
         
         $(imagesDialog.editor).find('div#'+imagesDialog.moduleId+
         ' div.images').append(
