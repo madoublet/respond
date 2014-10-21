@@ -161,7 +161,7 @@
 <script type="text/javascript" src="js/helper/prettify.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/dropzone.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/helper/beautify-html.js?v=<?php print VERSION; ?>"></script>
-<script type="text/javascript" src="http://feather.aviary.com/js/feather.js"></script>
+<script type="text/javascript" src="https://dme0ih8comzn4.cloudfront.net/js/feather.js"></script>
 
 <?php if(GOOGLE_MAPS_API_KEY != '' && GOOGLE_MAPS_API_KEY != 'YOUR GOOGLE MAPS API KEY'){ ?>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php print GOOGLE_MAPS_API_KEY; ?>&sensor=false"></script>
