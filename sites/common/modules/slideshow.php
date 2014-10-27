@@ -6,6 +6,17 @@
 ?>
 
 <div id="<?php print $id; ?>" class="carousel slide">
+
+	<ol class="carousel-indicators">
+		<?php 
+		for( $i = 0; $i <= ( sizeof($imgHtml->find('img')) - 1); $i++ ) { 
+		?>
+			<li data-target="#<?php print $id; ?>" data-slide-to="<?php print $i; ?>"></li>
+		<?php
+		}
+		?>
+	</ol>
+
 	<div class="carousel-inner">
 		<?php 
 			if($imgHtml){
