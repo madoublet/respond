@@ -144,6 +144,10 @@
 
 <?php include 'modules/dialogs/loadLayoutDialog.php'; ?>
 
+<?php include 'modules/dialogs/slideDialog.php'; ?>
+
+<?php include 'modules/dialogs/galleryImgDialog.php'; ?>
+
 <div id='aviary-modal'></div>
 
 <div id="overlay"></div>
@@ -191,6 +195,8 @@
 <script type="text/javascript" src="js/dialogs/blockConfigDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/aviaryDialog.js?v=<?php print VERSION; ?>"></script>
 <script type="text/javascript" src="js/dialogs/layoutDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/slideDialog.js?v=<?php print VERSION; ?>"></script>
+<script type="text/javascript" src="js/dialogs/galleryImgDialog.js?v=<?php print VERSION; ?>"></script>
 
 <!-- page -->
 <script type="text/javascript" src="js/viewModels/models.js?v=<?php print VERSION; ?>" defer="defer"></script>

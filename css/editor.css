@@ -842,37 +842,6 @@ div.date div{
 	height: 75px;
 }
 
-.block div.slideshow span.image span.caption{
-	display: block;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	bottom: 5px;
-	left: 5px;
-}
-
-.block div.slideshow span.image.edit span.caption{
-	left: 0;
-	bottom: -2px;
-	background: #fff;
-	padding: 10px;
-	border: 1px solid #f0f0f0;
-}
-
-.block div.slideshow span.image span.caption input{
-	width: 75px;
-	height: 30px;
-	font-size: 11px;
-	margin: 0;
-	border-radius: 0;
-	padding: 2px;
-}
-
-.block div.slideshow span.image span.caption input:focus{
-	width: 220px;
-	font-size: 13px;
-}
-
 .block div.slideshow span.editor-highlight{
 	display: inline-block;
 	width: 75px;
@@ -885,10 +854,7 @@ div.date div{
 	vertical-align: top;
 } 
 
-.block div.slideshow span.image .remove-image{
-	position: absolute;
-	top: 5px;
-	right: 5px;  
+.block div.slideshow span.image .image-control{
 	width: 25px !important;
 	height: 25px !important;
 	border: none !important;
@@ -896,14 +862,33 @@ div.date div{
 	text-align: center;
 	line-height: 25px;
 	font-size: 1.0em;
-	color: #fff;
+	color: #888;
 	text-decoration: none;
 	border: none !important;
+}
+
+.block div.slideshow span.image .edit-slideshow-properties,
+.block div.slideshow span.image .edit-gallery-properties
+{
+	position: absolute;
+	bottom: 5px;
+	left: 10px;  
+}
+
+.block div.slideshow span.image .remove-image{
+	position: absolute;
+	bottom: 5px;
+	right: 10px;  
+}
+
+.block div.slideshow span.image .edit-image-properties:hover{
+	color: #3299BB;
 }
 
 .block div.slideshow span.image .remove-image:hover{
 	color: #B11623;
 }
+
 
 .block div.slideshow>div{
 	color: #808080;
