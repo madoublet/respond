@@ -1,0 +1,70 @@
+<div class="context-text-events">
+
+	<h2>{{'Text' | i18next}}</h2>
+	
+	<div class="context-block">
+	
+		<a data-action="respond.text.bold"><i class="fa fa-bold"></i></a>
+		<a data-action="respond.text.italic"><i class="fa fa-italic"></i></a>
+		<a data-action="respond.text.strike"><i class="fa fa-strikethrough"></i></a>
+		<a data-action="respond.text.subscript"><i class="fa fa-subscript"></i></a>
+		<a data-action="respond.text.superscript"><i class="fa fa-superscript"></i></a>
+		<a data-action="respond.text.underline"><i class="fa fa-underline"></i></a>
+		<a data-action="respond.text.link"><i class="fa fa-link"></i></a>
+		<a data-action="respond.text.code"><i class="fa fa-code"></i></a>
+		<a data-action="respond.text.icon"><i class="fa fa-flag"></i></a>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-text-events -->
+
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+
+<div class="context-body">
+
+	<h2>{{'List Item' | i18next}} <a class="element-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="item-id">{{'Id' | i18next}}</label>
+			<input name="item-id" type="text" maxlength="128" class="form-control" 
+				ng-model="element.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="item-cssClass">{{'CSS Class' | i18next}}</label>
+			<input name="item-cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="element.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+	

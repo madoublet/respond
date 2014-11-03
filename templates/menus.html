@@ -1,0 +1,331 @@
+<section class="main">
+
+
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Menus' | i18next}}</h1>
+         
+       <button ng-click="showAddMenuItem()"
+       		class="primary-action">
+	   		{{'Add Item' | i18next}}
+       </button>  
+        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="showAddMenuType()"
+    				tabindex="-1">
+    				{{'Add Menu' | i18next}}
+    			</a>
+		  	</li>
+		  	<li ng-if="current.PageTypeId != -1"
+		  		role="presentation"> 
+    			<a 
+    				ng-if="(friendlyId != 'primary' && friendlyId != 'footer')"
+    				ng-click="showRemoveMenuType(current)"
+    				tabindex="-1">
+    				{{'Remove' | i18next}} {{friendlyId}}
+    			</a> 	
+		  	</li>
+		  </ul>
+		</div>
+  
+    </nav>
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    {{friendlyId}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="page-types">
+		  	<li ng-click="setFriendlyId('primary')"
+		  		role="presentation">
+            		<a>{{'Primary' | i18next}}</a>
+            </li>
+            <li ng-click="setFriendlyId('footer')"
+            	role="presentation">
+            	<a>{{'Footer' | i18next}}</a>
+            </li>
+		        		
+		  	<li ng-repeat="menuType in menuTypes" 
+		  		role="presentation"> 
+    			<a ng-click="setMenuType(menuType)">
+    				{{menuType.Name}}
+    			</a>
+		    </li>      		
+		  </ul>
+		</div>
+    	
+		
+    </menu>
+	
+	<div id="menuItemsList" class="list">
+    
+		<div class="listItem" 
+    		ng-repeat="item in menuItems | filter: {Type: friendlyId} | orderBy: 'Priority': false"
+    		ng-class="{'is-nested': (item.IsNested == 1)}"
+    		data-id="{{item.MenuItemId}}">
+    		
+    		<a ng-click="showRemoveMenuItem(item)"
+    			class="remove">
+                <i class="fa fa-minus"></i>
+            </a>
+            
+            <span class="hook fa fa-arrows-v"></span>
+            
+    		<h2>
+    			<span class="nested-left"
+    				ng-click="toggleNested(item)"
+    				ng-show="(item.IsNested == 1)">
+	            	<i class="fa fa-angle-left arrow"></i> 
+	            	<i class="fa fa-spinner fa-spin"></i>
+	            </span> 
+	            <span class="nested-right"
+    				ng-click="toggleNested(item)"
+    				ng-show="(item.IsNested == 0)">
+	            	<i class="fa fa-angle-right arrow"></i> 
+	            	<i class="fa fa-spinner fa-spin"></i>
+	            </span>
+    			<a ng-click="showEditMenuItem(item)">{{item.Name}}</a>
+    		
+				<span class="url">{{item.Url}}</span>   
+    		</h2>
+    		
+    	</div>
+    	<!-- /.listItem -->
+    
+	</div>
+	<!-- /.list -->
+    
+    <p ng-show="loading" class="list-loading"><i class="fa fa-spinner fa-spin"></i> {{'Loading' | i18next}}</p>
+    
+    <p ng-show="(menuItems | filter: {Type: friendlyId}).length == 0" class="list-none">{{'no_menu_items' | i18next}}</p>
+    
+    <div class="actions">
+        <button class="primary-button" type="button"
+        	ng-click="publish()">{{'Publish' | i18next}}</button>
+    </div>
+</section>
+<!-- /.main -->
+
+<!-- begin add/edit dialog -->
+<div class="modal fade" id="addEditDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3 class="add">{{'Add Menu Item' | i18next}}</h3>
+				<h3 class="edit">{{'Update Menu Item' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<form id="menuItemForm">
+			
+			<div class="modal-body">
+			
+				<div class="form-group">
+					<label for="url" class="control-label">{{'URL' | i18next}}</label>
+					<input id="url" 
+						ng-model="temp.Url"
+						type="text" class="form-control" required>
+					<div class="input-select">
+					    <button class="btn dropdown-toggle" data-toggle="dropdown">
+					      <span class="caret"></span>
+					    </button>
+					    <ul class="dropdown-menu dropdown-menu-right">
+					    	<li ng-repeat="page in pages" 
+					    		ng-click="setUrl(page)">
+					    		<a>
+								{{page.Name}}
+								<small>{{page.Url}}</small>
+					    		</a>
+							</li>
+					    </ul>
+					</div>	
+				</div>
+	
+				
+	
+				<div class="form-group">
+					<label for="name" class="control-label">{{'Name' | i18next}}</label>
+					<input id="name" type="text" 
+						ng-model="temp.Name"
+						maxlength="140" class="form-control" required>
+				</div>
+			
+				<div class="form-group">
+					<label for="cssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input id="cssClass" type="text" 
+						ng-model="temp.CssClass"
+						maxlength="140" class="form-control">
+				</div>
+				
+		
+			</div>
+			<!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button add"
+					ng-click="addMenuItem(temp)"
+					ng-disabled="menuTypeForm.$invalid || isUnchanged(temp)">{{'Add Menu Item' | i18next}}</button>
+				<button class="primary-button edit"
+					ng-click="editMenuItem(temp)">{{'Update Menu Item' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeMenuItemDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<p>
+					{{'Confirm you want to remove' | i18next}} <strong>{{temp.Name}}</strong>
+				</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" 
+					ng-click="removeMenuItem(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="menuTypeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Add Menu' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<form id="menuTypeForm">
+			
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="menuTypeName" class="control-label">{{'Name' | i18next}}</label>
+				<input id="menuTypeName" 
+					ng-model="temp.Name"
+					ng-keyup="createFriendlyId(temp)"
+					type="text"
+					maxlength="50" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="menuTypeFriendlyId" class="control-label">{{'Friendly Id' | i18next}}</label>
+				<input id="menuTypeFriendlyId" 
+					ng-model="temp.FriendlyId"
+					type="text"
+					maxlength="50" class="form-control">
+				<span class="help-block">{{'special_naming_unique' | i18next}}</span>
+			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" class="form-control"
+					ng-click="addMenuType(temp)"
+					ng-disabled="menuTypeForm.$invalid || isUnchanged(temp)">{{'Add Menu' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeMenuTypeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p>
+					{{'Confirm you want to remove' | i18next}} <strong>{{temp.Name}}</strong>?
+				</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="removeMenuType(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->

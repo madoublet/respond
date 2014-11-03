@@ -1,0 +1,156 @@
+<section class="main">
+
+    <nav>
+       	<a ng-click="back()" 
+        	class="back"></a>
+        
+        <h1>{{'Theme' | i18next}}</h1>
+    </nav>
+
+
+	<div class="container-fluid">
+			
+			<div class="row">
+			
+				<div class="col-md-12">
+
+					<div id="update-theme" class="carousel slide">
+								
+						<!-- slides-->
+						<div class="carousel-inner">
+						
+							<div class="item" ng-repeat="theme in themes" 
+								data-id="{{theme.id}}"
+								ng-class="{'active': (theme.id == themeId)}">
+									<img ng-src="{{setup.themes}}/{{theme.id}}/screenshot.png">
+									<div class="carousel-caption">
+										 <p>
+										 	<b>{{theme.name}}</b>{{theme.desc}}
+										 
+										 	<a ng-show="theme.id != themeId"
+										 		ng-click="showApply(theme)">{{'Select Theme' | i18next}}</a>
+										 	<a 
+										 		 ng-show="theme.id == themeId"
+										 		ng-click="showReset(theme)">{{'Reset Theme' | i18next}}</a>
+										 
+										 </p>
+									</div>
+							</div>
+						
+						</div>
+						
+						<!-- controls -->
+						<a class="left carousel-control" ng-click="previous()">
+							<i class="fa fa-chevron-left"></i>
+						</a>
+						<a class="right carousel-control"  ng-click="next()">
+							<i class="fa fa-chevron-right"></i>
+						</a>
+						
+					</div>
+					<!-- /.carousel -->
+
+
+				</div>
+				<!-- /.col-md-12 -->
+			
+			</div>
+			<!-- /.row -->
+		
+		</div>
+		<!-- /.container-fluid -->
+    
+    </div>
+    <!-- /.image-list -->
+
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="applyDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		        <h3>{{'Apply Theme' | i18next}}</span></h3>
+		    </div>
+		    <div class="modal-body">
+		    
+		    <p>
+		    	{{'Confirm you want to apply' | i18next}}: <strong>{{temp.name | toHuman}}</strong>
+		    </p>
+		    
+		    <p>
+		        {{'reset_theme' | i18next}}
+		    </p>
+		    
+		    <p class="check-alert alert alert-warning">
+			    <label>
+			    	<input 
+			    		ng-model="replaceContent"
+			    		type="checkbox">
+			    	{{'replace_content' | i18next}}
+			    </label>
+		    </p>
+		    
+		    </div>
+		    <div class="modal-footer">
+		    	<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+		    	<button class="primary-button"
+		    		ng-click="applyTheme(temp)">{{'Apply' | i18next}}</button>
+		    </div>
+		    <!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="resetDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+		    <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		        <h3>{{'Confirm you want to reset' | i18next}}</span></h3>
+		    </div>
+		    <div class="modal-body">
+		    
+		    <p>
+		        {{'Confirm you want to reset' | i18next}} <strong>{{temp.name}}</strong>
+		    </p>
+		    
+		    <p>
+		        {{'override_custom_changes' | i18next}}
+		    </p>
+		    
+		    </div>
+		    <div class="modal-footer">
+		        <button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+		    	<button class="primary-button"
+		    		ng-click="resetTheme(temp)">{{'Reset' | i18next}}</button>
+		    </div>
+		    <!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->

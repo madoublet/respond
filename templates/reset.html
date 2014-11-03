@@ -1,0 +1,34 @@
+<!-- begin content -->
+<section class="main">
+
+	<h1><span class="brand"><img src="{{setup.logo}}" title="{{setup.brand}}"></span></h1>
+
+	<form novalidate ng-submit="reset(user)">
+	<fieldset class="reset">
+		<p>
+			{{'recover_password' | i18next}}
+		</p>
+		
+		<div class="form-group">
+			<label for="password">{{'Password' | i18next}}</label>
+			<input id="password" type="password" 
+				ng-model="user.password"
+				placeholder="New Password" class="form-control">
+		</div>
+		
+		<span class="actions">
+			<button type="submit" class="primary-button">{{'Change Password' | i18next}}</button>
+		</span>
+			
+	</fieldset>
+	</form>
+	<!-- /.reset -->
+
+	<p  class="alternate">
+		<a ui-sref="login({ id: friendlyId })">{{'Return to Login' | i18next}}</a>
+	</p>
+
+	<small>{{setup.app}} {{setup.version}} &mdash; {{setup.copy}}</small>
+
+</div>
+<!-- /.main -->

@@ -1,0 +1,149 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Scripts' | i18next}}</h1>
+         
+       <button ng-click="showAddFile()"
+       		class="primary-action">
+	   		{{'Add Script' | i18next}}
+       </button>  
+       
+       <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="showRemoveFile(name)"
+    				tabindex="-1">
+    				{{'Remove' | i18next}} {{name}}
+    			</a> 	
+		  	</li>
+		  </ul>
+		</div>
+    
+    </nav>
+    <!-- /nav -->
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    {{name}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="page-types">
+		  	<li ng-repeat="file in files" 
+        		role="presentation"> 
+    			<a ng-click="setName(file)"
+    				tabindex="-1">
+    				{{file}}
+    			</a> 
+		  	</li>
+		  </ul>
+		</div>
+
+    </menu>
+    <!-- /menu -->
+   
+	<div class="codemirror-block">
+    	<ui-codemirror ng-model="content" ui-codemirror-opts="editorOptions"></ui-codemirror>
+	</div>
+    
+    <div class="actions">
+        <button class="primary-button" type="button"
+        	ng-click="publish()">{{'Publish' | i18next}}</button>
+    </div>
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="addDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Add Script' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<form id="addScriptForm">
+
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="name">{{'Name' | i18next}}</label>
+				<input id="name" type="text" 
+					ng-model="temp"
+					class="form-control" required="required">
+				<span class="help-block">{{'special_naming_for_js' | i18next}}</span>
+			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="addFile(temp)"
+					ng-disabled="addScriptForm.$invalid || isUnchanged(temp)">{{'Add' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+			<p>
+				{{'Confirm you want to remove' | i18next}} <strong>{{temp}}</strong>
+			</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="removeFile(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->

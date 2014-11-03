@@ -1,0 +1,43 @@
+<div class="modal fade" id="iconDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Add Font Awesome Icon' | i18next}}</h3>
+			</div>
+  
+			<div class="modal-body">
+
+				<div id="selectIcon" class="select select-lg">
+				
+				<ul>
+					<li ng-repeat="icon in icons">
+						<i ng-class="'fa fa-' + icon.id"></i>
+						{{icon.name}}
+					</li>
+				</ul>
+				
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button">{{'Add' | i18next}}</a>
+			</div>  
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+  
+</div>
+<!-- /.modal -->

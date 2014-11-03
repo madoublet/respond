@@ -1,12 +1,31 @@
 #################
-## Respond
+## Triangulate
 #################
 
-setup.local.php
+api/setup.local.php
+
+info.php
+
+themes/premium
+themes/premium/*
+
+themes/chromatic
+themes/chromatic/*
+
+themes/geometric
 themes/geometric/*
+
+themes/notion
 themes/notion/*
+
+themes/serene
 themes/serene/*
 
+themes/sidebar
+themes/sidebar/*
+
+themes/tension
+themes/tension/*
 
 #################
 ## Eclipse

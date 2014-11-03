@@ -1,0 +1,33 @@
+<!-- begin main -->
+<section class="main">
+
+    <h1><span class="brand"><img src="{{setup.logo}}" title="{{setup.brand}}"></span></h1>
+
+    <form name="loginForm" novalidate ng-submit="login(user)">
+	<fieldset class="login">
+
+		<div class="form-group">
+			<label for="email" class="control-label">{{'Email' | i18next}}</label>
+			<input id="email" type="email" autocomplete="off" class="form-control" tabindex="1" ng-model="user.email" required>
+		</div>
+		
+		<div class="form-group">
+			<label for="password" class="control-label">{{'Password' | i18next}} 
+				<a class="forgot-link" ui-sref="forgot({ id: friendlyId })" tabindex="4">{{'Forgot your Password?' | i18next}}</a>
+			</label>
+			<input id="password" type="Password" autocomplete="off" class="form-control" tabindex="2" ng-model="user.password" required>
+		</div>
+		
+		<span class="actions">
+			<button class="primary-button" 
+				ng-disabled="loginForm.$invalid"
+				type="submit" tabindex="3">{{'Login' | i18next}} <i class="fa fa-angle-right fa-white"></i></button>
+		</span>
+	</fieldset>
+    </form>
+	<!-- /.login -->
+    
+    <small>{{setup.app}} {{setup.version}} &mdash; {{setup.copy}}</small>
+
+</section>
+<!-- /.main -->

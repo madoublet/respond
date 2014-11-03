@@ -1,28 +1,27 @@
 /* begin list */
 div.list.has-dropzone{
     margin-right: 200px;    
-    border-right: 1px solid #eee;
     min-height: 400px;
 }
 
-div.listItem{
+.listItem{
 	position: relative;
 	border-bottom: 1px solid #eee;
 	padding: 20px 20px;
 	margin: 0;
 }
 
-	div.list.has-photo div.listItem{
+	div.list.has-photo .listItem{
 		min-height: 105px;
 		padding-left: 105px;
 		padding-top: 27px;
 	}
 
-div.listItem:last-child{
+.listItem:last-child{
   	border-bottom: none;
 }
 
-div.listItem h2{
+.listItem h2{
 	line-height: 1em;
 	margin: 0;
 	padding: 0 0 5px 0;
@@ -34,43 +33,54 @@ div.listItem h2{
 	border: none;
 }
 
-div.listItem.sortable h2{
+.listItem small{
+	display: block;
+	padding: 5px 0 5px 0;
+	color: #aaa;
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+	.listItem small .tags{
+		display: inline-block;
+		margin-left: 10px;	
+	}
+	
+	.listItem small .tags i{
+		margin-right: 5px;
+	}
+
+.listItem.sortable h2{
   	margin-left: 20px;
 }
 
-div.listItem h2 a{
+.listItem h2 a{
     display: inline-block;
-    width: 300px;
 }
 
-div.listItem .draft-tag{
-	position: absolute;
-	top: 19px;
-	right: 85px;
-	font-size: 11px;
-	text-transform: uppercase;
-	color: #fff;
-	background-color: #FF9900;
-	padding: 2px 10px;
-	border-radius: 10px;
-	font-weight: normal;
-	letter-spacing: 1.25px;
+	.listItem h2 a.hasDraft{
+		font-style: italic;
+	}
+
+.listItem .draft-tag{
+	display: inline-block;
+	margin-right: 5px;
 }
 
-div.listItem h2 small{
+.listItem h2 small{
     font-weight: normal;
     font-size: 0.75em;
     margin-left: 10px;
 }
 
-div.listItem p{
+.listItem p{
 	width: 80%;
 	margin: 0;
 	padding: 0 0 2px 0;
 	color: #888;
 }
 
-div.listItem p.lastUpdated, div.listItem em{
+.listItem p.lastUpdated, .listItem em{
 	color: #ccc;
 	font-size: 11px;
 	font-style: normal;
@@ -84,11 +94,11 @@ div.placeholder{
 	background: #fbec5d !important;
 } 
 
-div.listItem.sortable{
+.listItem.sortable{
 	padding-left: 40px;
 }
 
-div.listItem span.hook{
+.listItem span.hook{
 	position: absolute;
 	top: 20px;
 	left: 20px;
@@ -101,41 +111,44 @@ div.listItem span.hook{
 	text-align: center;
 }
 
-div.listItem span.hook:hover{
+.listItem span.hook:hover{
 	cursor: n-resize;
 	background: #f0f0f0 url('../images/app-sprite.png') no-repeat -100px 0;
 }
 
-div.listItem.has-thumb{
+.listItem.has-thumb{
 	min-height: 110px;
 }
 
-div.listItem.has-thumb h2, div.listItem.has-thumb p, div.listItem.has-thumb em{
+.listItem.has-thumb h2, .listItem.has-thumb p, .listItem.has-thumb em, .listItem.has-thumb small{
 	margin-left: 90px;
 }
 
-div.listItem span.image{
+.listItem span.image{
 	position: absolute;
 	top: 20px;
 	left: 20px;
 } 
 
-div.listItem span.image img{
+.listItem span.image img{
     width: 75px;
     height: 75px;
+    border-radius: 50%;
+    border: 2px solid #f8f8f8;
+    margin-top: -2px;
 }
 
-div.listItem span.icon{
+.listItem span.icon{
 	position: absolute;
 	top: 15px;
 	left: 60px;
 }
 
-div#pageFileList div.listItem span.icon{
+div#pageFileList .listItem span.icon{
 	left: 15px;
 }
 
-div.listItem a.switchSite{
+.listItem a.switchSite{
 	position: absolute;
 	top: 15px;
 	right: 15px;  
@@ -145,23 +158,23 @@ div.listItem a.switchSite{
 	border: 1px solid #ccc;
 }
 
-div.listItem a.switchSite.selected{
+.listItem a.switchSite.selected{
   	background: #fbec5d;
 }
 
-div.listItem p.size{
+.listItem p.size{
 	font-size: 12px;
 	color: #888;
 	line-height: 17px;
 }
 
-div.listItem button{
+.listItem button{
 	position: absolute;
 	top: 15px;
 	right: 20px;
 }
 
-div.listItem button.update-photo{
+button.update-photo{
 	box-sizing: border-box;
 	right: auto;
 	left: 20px;
@@ -177,30 +190,30 @@ div.listItem button.update-photo{
 	outline: none;
 }
 
-	div.listItem button.update-photo.has-photo{
+	button.update-photo.has-photo{
 		border: none;
 		background-size:cover;
 	}
 
-	div.listItem button.update-photo.has-photo span{
+	button.update-photo.has-photo span{
 		display: none;
 	}
 
-	div.listItem button.update-photo:hover{
+	button.update-photo:hover{
 		border-color: #3299BB;
 	}
 
 
 /* begin images */
-div#imageList div.listItem span.field{
+div#imageList .listItem span.field{
  	margin-left: 10px;
 }
 
-div#imageList div.listItem span.field input{
+div#imageList .listItem span.field input{
 	 width: 300px;
 }
 
-div#imageList div.listItem img{
+div#imageList .listItem img{
   	margin-bottom: 10px;
 }
 
@@ -219,22 +232,31 @@ div#imageList div.listItem img{
 .listItem .remove{
 	position: absolute;
 	top: 19px;
-	right: 12px;
+	right: 20px;
 	display: inline-block;
-	width: 25px;
-	height: 25px;
-	color: #ccc;
-	line-height: 25px;
+	width: 22px;
+	height: 22px;
+	text-align: center;
+	color: #fff;
+	background-color: #ddd;
+	line-height: 22px;
+	border-radius: 50%;
 }
 
-.listItem .remove i{
-	font-size: 20px;
-}
+	.listItem .remove i{
+		padding-top: 5px;
+		font-size: 14px;
+	}
 
-.listItem .remove:hover{
-    color: #B11623;
-    text-decoration: none;
-}
+
+	.editing .remove{
+		display: none;
+	}
+
+	.listItem .remove:hover{
+	    background-color: #B11623;
+	    text-decoration: none;
+	}
 
 .listItem .edit{
 	position: absolute;
@@ -254,147 +276,50 @@ div#imageList div.listItem img{
 /* handles an editable mode for a list-item */
 .editable-selected{
 	position: absolute;
-	top: 18px;
+	top: 20px;
 	right: 45px;
 	color: #fff;
 	background-color: #ff9900;
 	border-radius: 10px;
 	padding: 2px 10px;
-	display: none;
 	font-size: 0.85em;
+	display: none;
 }
 
-.edit-mode .editable-selected{
-	display: inline-block;
-}
+	.editing .editable-selected{
+		display: block;
+	}
 
 .cancel-edit{
 	position: absolute;
 	top: 20px;
 	right: 20px;
 	color: #fff;
-	display: none;
 	font-size: 0.85em;
 	color: #ff9900;
+	display: none;
 }
+
+	.editing .cancel-edit{
+		display: block;
+	}
 
 	.cancel-edit:hover{
 		color: #888;
 	}
 
-.edit-mode .cancel-edit{
-	display: block;
-}
-
-.edit-mode .edit, .edit-mode .remove{
-	display: none !important;
-}
-	
-
 /* handles statuses */
-div.listItem span.status{
-	position: absolute;
-	top: 20px;
-	right: 52px;
-	color: #aaa;
-	text-align: right;
-	cursor: pointer;
-	padding: 0;
+.listItem .status{
+	display: inline-block;
+	margin-right: 10px;
+	color: #888;
 }
-
-	div.listItem span.status i.published{
-		color: #7EA501;
-		font-size: 20px;
-	}
-	
-	div.listItem span.status i.not-published{
-		color: #A4110A;
-		font-size: 20px;
-	}
-	
-	div.listItem span.status.published i.not-published{
-		display: none;
-	}
-	
-	div.listItem span.status.not-published i.published{
-		display: none;
-	}
-	
-/* list-menu */
-.list-menu{
-	position: relative;
-	border: 1px solid #f0f0f0;	
-	margin: 20px 20px 0 20px;
-	padding: 10px 10px;
-	min-height: 40px;
-}
-
-	.list-menu-actions{
-		position: absolute;
-		top: 7px;
-		right: 5px;
-	}
-
-	.list-menu i{
-		margin-left: 5px;
-		color: #aaa;	
-		padding: 4px 5px 0 5px;
-		font-size: 16px;
-	}
-	
-	.list-menu .active i{
-		background-color: #fff;
-		color: #FF9900;
-	}
-	
-	.list-menu a:hover i{
-		background-color: #fff;
-	}
-	
-	.list-menu p{
-		margin: 0;
-		padding: 0;
-		color: #aaa;
-		font-size: 0.95em;
-		max-width: 80%;
-		text-align: left;
-	}
-	
-	.list-menu p a{
-		margin-left: 5px;
-	}
-	
-		.list-menu .categories .caret{
-			border-top-color: #888;
-			margin-left: 3px;
-		}
-	
-		.list-menu .categories .btn-default{
-			border: none;
-			padding: 0 5px;
-			margin-top: -5px;
-			color: #aaa;
-			font-size: 12px;
-			text-transform: uppercase;
-			box-shadow: 0;
-			border-radius: 0;
-		}
-		
-	.list-menu .dropdown-menu{
-		border-radius: 0;
-		box-shadow: none;
-		border: 1px solid #f0f0f0;
-	}
-	
-		.list-menu .dropdown-menu a{
-			color: #aaa;
-			font-size: 13px;
-		}
 		
 /* menuItemsList */
 .nested-left, .nested-right{
 	font-size: 18px;
 	margin-right: 10px;
+	margin-left: 40px;
 	display: inline-block;
 	width: 25px;
 	height: 25px;
@@ -429,7 +354,7 @@ div.listItem span.status{
 	
 	.nested-left{
 		display: none;
-		margin-left: 35px;
+		margin-left: 80px;
 	}
 	
 	.nested-right{
@@ -538,9 +463,9 @@ div.listItem span.status{
 	}
 	
 	.image-item.active h2{
-		background-color: #81b841;
+		background-color: #81b841 !important;
 		color: #fff;
-		border-bottom: 1px solid #81b841;
+		border-bottom: 1px solid #81b841 !important;
 	}
 
 /* #usersList */
@@ -561,3 +486,10 @@ div.listItem span.status{
 	#usersList .role.contributor{
 		background-color: #94D237;
 	}
+	
+/* sites list */
+#sitesList i{
+	color: #ccc;
+	margin-left: 5px;
+	font-size: 11px;
+}

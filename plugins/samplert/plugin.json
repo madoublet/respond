@@ -1,9 +1,0 @@
-{
-  "samplert":{
-    "type":"samplert",
-    "name":"Sample Runtime",
-    "desc":"A simple sample that demonstates plugins rendered at run time.",
-    "render":"runtime",
-    "config":"true"
-  }
-}

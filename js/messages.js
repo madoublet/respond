@@ -25,11 +25,20 @@ var message = {
   
   	// create message if it does note exist
   	if($('#message').length == 0){
-	  	$('body').append('<p id="message"><span></span><a class="close" href="#"></a></p>');
+	  	$('body').append('<p id="message"><span></span></p>');
 	}
   
-    $('#message span').html(text); // set text
-    
+	if(type=='success'){
+		$('#message span').html('<i class="fa fa-check"></i>'); // set text
+	}
+	if(type=='error'){
+		$('#message span').html('<i class="fa fa-times"></i>'); // set text
+	}
+	if(type=='progress'){
+		$('#message span').html('<i class="fa fa-refresh fa-spin"></i>'); // set text
+	}
+  
+  
     // center the message
     var calc = $(window).width()/2;  // set left
     calc -= ($('#message').width()/2);
@@ -57,12 +66,6 @@ var message = {
 	if(type=='error'){ // for error messages, we want to fade it out, but a little slower
       setTimeout('message.hide()', 3000);
     }
-    
-    $('#message a.close').click(function(){
-      $('#message').fadeOut();
-      $('#message').removeClass('visible');
-      return false;
-    });
  
   },
   
@@ -82,7 +85,7 @@ var message = {
   
   // hides the message
   hide:function(){
-     $('#message').animate({marginTop:'-46px'}, 100);
+     $('#message').animate({marginTop:'-100px'}, 100);
      $('#message').removeClass('visible');
   }
 

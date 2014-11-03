@@ -1,0 +1,39 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Account' | i18next}}</h1>
+    </nav>
+    <!-- /nav -->
+
+    <table class="table">
+    	<col width="25%">
+    	<tr>
+    		<th>{{'Status' | i18next}}</th>
+    		<td class="status">
+    			{{site.Status}}
+				<a 	ng-show="site.Status == 'Trial'"
+					ui-sref="app.signup">{{'Sign up' | i18next}}</a>
+    		</td>
+    	</tr>
+    	<tr>
+    		<th>{{'Plan' | i18next}}</th>
+    		<td>{{site.Plan}}</td>
+    	</tr>
+    	<tr>
+    		<th>{{'Provider' | i18next}}</th>
+    		<td>{{site.Provider}}</td>
+    	</tr>
+    	<tr>
+    		<th>{{'Subscription ID' | i18next}}</th>
+    		<td>{{site.SubscriptionId}}</td>
+    	</tr>
+    	<tr>
+    		<th>{{'Customer ID' | i18next}}</th>
+    		<td>{{site.CustomerId}}</td>
+    	</tr>
+    </table>
+    
+</section>
+<!-- /.main -->

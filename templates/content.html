@@ -1,0 +1,590 @@
+<section class="main" data-pageid="{{pageId}}">
+	
+	<nav>
+        <a ng-click="back()" 
+        	class="back"></a>
+        
+        <h1>{{page.Name}}</h1>
+       
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="showPageSettings()"
+    				tabindex="-1">
+    				{{'Page Settings' | i18next}}
+    			</a>
+		  	</li>
+		  	<li role="presentation"> 
+    			<a target="_blank" 
+    				ng-href="{{site.Domain}}{{separator}}{{page.Url}}">{{'Live Page' | i18next}}</a>
+		  	</li>
+		  	<li role="presentation"> 
+    			<a target="_blank" 
+    				ng-href="{{site.Domain}}{{separator}}{{page.Url}}?preview=true">{{'Preview Page' | i18next}}</a>
+		  	</li>
+		  </ul>
+		</div>
+  
+    </nav>
+
+	<menu id="editor-menu">
+		<div class="editor-menu">
+			<div class="editor-actions">
+				<div>
+					<a ng-repeat="item in editorItems" class="{{item.class}} {{item.icon}}" title="{{item.title}}" data-action="{{item.action}}">
+						{{item.text}}
+					</a>
+				</div>
+			</div>
+			<a class="next fs-next"><i class="fa fa-chevron-right"></i></a>
+			<a class="previous fs-prev"><i class="fa fa-chevron-left"></i></a>
+		</div>
+	</menu>
+	<!-- /#editor-menu -->
+	
+	<aside id="context-menu" class="context-menu">
+	
+		<div class="page-settings config active">
+	
+			<div class="context-body">
+	
+			<h2>{{'Page' | i18next}}</h2>
+			
+			<div class="context-block">
+		
+				<div class="form-group">
+					<label for="name">{{'Name' | i18next}}</label>
+					<input id="name" 
+						ng-model="page.Name"
+						type="text" maxlength="128" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="URL">{{'URL' | i18next}}</label>
+					<input id="friendlyId" 
+						ng-model="page.FriendlyId"
+						type="text" maxlength="128" class="form-control">
+					<span class="help-block">{{'special_naming_pages' | i18next}}</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="description">{{'Description' | i18next}}</label>
+					<textarea id="description" 
+						ng-model="page.Description"
+						class="form-control"></textarea>
+				</div>
+				
+				<div class="form-group">
+					<label for="keywords">{{'Keywords' | i18next}}</label>
+					<textarea id="keywords" 
+						ng-model="page.Keywords"
+						class="form-control"></textarea>
+				</div>   
+				
+				<div class="form-group">
+					<label for="callout">{{'Callout' | i18next}}</label>
+					<input id="callout" 
+						ng-model="page.Callout"
+						type="text" maxlength="100" placeholder="Between $5-$8, On Sale Now" class="form-control">
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+			
+			<h2 data-toggle="#event-settings">{{'Event' | i18next}} <a><i class="fa fa-angle-down"></i></a></h2>
+			
+			<div id="event-settings" class="context-block hidden">
+		
+				<div class="form-group">
+					<label for="beginDate">{{'Begin Date' | i18next}}</label>
+					<input id="beginDate" 
+						ng-model="page.LocalBeginDate"
+						type="date" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="beginTime">{{'Begin Time' | i18next}}</label>
+					<input id="beginTime" 
+						ng-model="page.LocalBeginTime"
+						type="time" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="endDate">{{'End Date' | i18next}}</label>
+					<input id="endDate"
+						ng-model="page.LocalEndDate"
+						type="date" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="endTime">{{'End Time' | i18next}}</label>
+					<input id="endTime" 
+						ng-model="page.LocalEndTime"
+						type="time" class="form-control">
+				</div>
+			
+				<div class="form-group">
+					<label for="location">{{'Location' | i18next}}</label>
+					<input id="location" 
+						ng-model="page.Location"
+						ng-blur="setLocation()"
+						type="text" maxlength="128" class="form-control" placeholder="1234 Main Street, Some City, LA 90210">
+				</div>
+				
+				<div class="form-group">
+					<label for="lat">{{'Latitude' | i18next}}</label>
+					<input id="lat" 
+						ng-model="page.Latitude"
+						type="text" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="long">{{'Longitude' | i18next}}</label>
+					<input id="long" 
+						ng-model="page.Longitude"
+						type="text" class="form-control">
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+			
+			<h2 data-toggle="#display-settings">{{'Display' | i18next}} <a><i class="fa fa-angle-down"></i></a></h2>
+			
+			<div id="display-settings" class="context-block hidden">
+			
+				<div class="form-group">
+					<label for="layout">{{'Layout' | i18next}}</label>
+					<select id="layout" class="form-control" 
+						ng-model="page.Layout"
+						ng-options="layout for layout in layouts">
+					</select>
+				</div>
+				
+				<div class="control-group">
+					<label for="stylesheet">{{'Stylesheet' | i18next}}</label>
+					<select id="stylesheet" class="form-control" 
+						ng-model="page.Stylesheet"
+						ng-options="stylesheet for stylesheet in stylesheets">
+					</select>
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+			
+			</div>
+			<!-- /.context-body -->
+			
+		</div>
+		<!-- /.config -->
+		
+		<div class="block-settings config">
+		
+			<div class="context-body">
+	
+			<h2>{{'Layout' | i18next}} <a class="block-remove">{{'Remove' | i18next}}</a></h2>
+			
+			<div class="context-block">
+		
+				<div class="form-group">
+					<label for="blockId" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockId" type="text" maxlength="128" value="" 
+						ng-model="block.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockCssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockCssClass" type="text" maxlength="128" value="" 
+						ng-model="block.cssClass"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockNested" class="control-label">{{'Nesting' | i18next}}</label>
+					<select name="blockNested" 
+						ng-model="block.nested"
+						class="form-control">
+						<option value="not-nested">not-nested</option>
+						<option value="nested">nested</option>
+					</select>
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+				
+			<h2>{{'Container' | i18next}}</h2>
+			
+			<div class="context-block">
+				
+				<div class="form-group block-nested">
+					<label for="blockContainerId" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockContainerId" type="text" maxlength="128" value="" 
+						ng-model="container.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockContainerCssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockContainerCssClass" type="text" maxlength="128" value="" 
+						ng-model="container.cssClass"
+						class="form-control">
+				</div>
+		
+			</div>
+			<!-- /.context-block -->
+						
+			</div>
+			<!-- /.context-body -->
+			
+			<h2>{{'Column 1' | i18next}}</h2>
+			
+			<div class="context-block">
+				
+				<div class="form-group block-nested">
+					<label for="blockCol1Id" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockCol1Id" type="text" maxlength="128" value="" 
+						ng-model="column1.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockCol1CssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockCol1CssClass" type="text" maxlength="128" value="" 
+						ng-model="column1.cssClass"
+						class="form-control">
+				</div>
+		
+			</div>
+			<!-- /.context-block -->
+			
+			<h2 ng-show="numColumns > 1">{{'Column 2' | i18next}}</h2>
+			
+			<div ng-show="numColumns > 1" class="context-block">
+				
+				<div class="form-group block-nested">
+					<label for="blockCol2Id" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockCol2Id" type="text" maxlength="128" value="" 
+						ng-model="column2.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockCol2CssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockCol2CssClass" type="text" maxlength="128" value="" 
+						ng-model="column2.cssClass"
+						class="form-control">
+				</div>
+		
+			</div>
+			<!-- /.context-block -->
+			
+			<h2 ng-show="numColumns > 2">{{'Column 3' | i18next}}</h2>
+			
+			<div ng-show="numColumns > 2" class="context-block">
+				
+				<div class="form-group block-nested">
+					<label for="blockCol3Id" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockCol3Id" type="text" maxlength="128" value="" 
+						ng-model="column3.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockCol3CssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockCol3CssClass" type="text" maxlength="128" value="" 
+						ng-model="column3.cssClass"
+						class="form-control">
+				</div>
+		
+			</div>
+			<!-- /.context-block -->
+			
+			<h2 ng-show="numColumns > 3">{{'Column 4' | i18next}}</h2>
+			
+			<div ng-show="numColumns > 3" class="context-block">
+				
+				<div class="form-group block-nested">
+					<label for="blockCol4Id" class="control-label">{{'Id' | i18next}}</label>
+					<input name="blockCol4Id" type="text" maxlength="128" value="" 
+						ng-model="column4.id"
+						class="form-control">
+				</div>
+				
+				<div class="form-group block-nested">
+					<label for="blockCol4CssClass" class="control-label">{{'CSS Class' | i18next}}</label>
+					<input name="blockCol4CssClass" type="text" maxlength="128" value="" 
+						ng-model="column4.cssClass"
+						class="form-control">
+				</div>
+		
+			</div>
+			<!-- /.context-block -->
+						
+			</div>
+			<!-- /.context-body -->
+			
+		</div>
+		<!-- /.config -->
+			
+		<div ng-repeat="item in editorItems" ng-if="item.config" data-action="{{item.action}}" class="config">
+			<div ng-include="item.config"></div>
+		</div>
+	</aside>
+	<!-- /.context-menu -->
+	
+	<div ng-include="item.modal" ng-repeat="item in editorItems" ng-if="item.modal"></div>
+	<!-- /.modals -->
+ 
+    <div id="editor-container">
+        <div id="respond-editor" class="container"></div>
+    </div>
+    <!-- /#editor-container -->
+    
+    <div id="actions">
+    
+        <button class="primary-button" 
+        	ng-click="saveAndPublish()"
+        	ng-show="page.CanPublish"
+        	type="button">{{'Save and Publish' | i18next}}</button>
+        	
+        <button class="secondary-button"
+        	ng-click="saveDraft()"
+        	ng-show="page.CanPublish || page.CanEdit"
+        	type="button">{{'Save Draft' | i18next}}</button>
+        
+        <!-- {{page.HasDraft}} -->
+        
+        <button class="secondary-button"
+        	ng-click="revertDraft()"
+        	ng-show="(page.CanPublish || page.CanEdit) && page.HasDraft"
+        	type="button">{{'Revert Draft' | i18next}}</button>
+		
+    </div>
+    <!-- /#actions -->
+    
+</section>
+<!-- /.main -->
+
+<div class="immersive" id="imagesDialog">
+
+	<!-- messages -->
+	<input id="msg-enter-caption" value="{{'Enter caption' | i18next}}" type="hidden">
+	<input id="msg-image-instructions" value="{{'add_content_change_image' | i18next}}" type="hidden">
+
+	<div class="immersive-header">
+		<h3>{{'Select or upload a new image' | i18next}} <span class="size">{{totalSize}} / {{fileLimit}} MB</span></h3>
+		<button type="button" class="close" 
+			ng-click="cancelAddImage()"
+			>x</button>
+	</div>
+	<!-- /.modal-header -->
+
+	<div class="immersive-body">
+	
+		<div class="image-list">
+		
+		    <div class="image existing" ng-repeat="image in images">
+		        <img 
+		        	ng-src="{{image.thumbUrl}}"
+		        	ng-click="addImage(image)">
+		        <small>
+		            <span>{{image.filename}}</span><br>
+		            <span>{{image.width}}</span>px x <span>{{image.height}}</span>px
+		        </small>
+		    </div>
+		
+		</div>
+		
+		<div id="drop" 
+			ng-if="totalSize <= fileLimit"
+			class="dropzone in-dialog" drop-zone target="editor" plugin="" callback="updateImages()">
+		    <span class="dz-message">
+		        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
+		    </span>
+		</div>
+		<!-- /.dropzone -->
+	
+	</div>
+	<!-- /.immersive-body -->
+
+</div>
+<!-- /.modal -->
+
+<!-- include modals -->
+<div class="modal fade" id="linkDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Add Link' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+	
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="linkUrl" class="control-label">{{'Url' | i18next}}</label>
+				<input id="linkUrl" type="text" class="form-control">
+				<div class="input-select">
+				    <button class="btn dropdown-toggle" data-toggle="dropdown">
+				      <i class="fa fa-file"></i>
+				    </button>
+				    <ul class="dropdown-menu dropdown-menu-right">
+				    	<li ng-repeat="page in pages">
+				    		<a data-value="{{page.Url}}">
+							{{page.Name}}
+							<small>{{page.Url}}</small>
+				    		</a>
+						</li>
+				    </ul>
+				</div>
+				<div class="input-select option2">
+				    <button class="btn dropdown-toggle" data-toggle="dropdown">
+				      <i class="fa fa-folder-open"></i>
+				    </button>
+				    <ul class="dropdown-menu dropdown-menu-right">
+				    	<li ng-repeat="file in files">
+				    		<a data-value="{{file.fullUrl}}">
+							{{file.filename}}
+							<small>{{file.fullUrl}}</small>
+				    		</a>
+						</li>
+				    </ul>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="linkCssClass">{{'CSS Class' | i18next}}</label>
+				<input id="linkCssClass" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkTarget">{{'Target' | i18next}}</label>
+				<input id="linkTarget" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="linkTitle">{{'Title' | i18next}}</label>
+				<input id="linkTitle" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button id="addLink" type="button" class="primary-button">{{'Add' | i18next}}</button>
+			</div>   
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="iconDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Add Font Awesome Icon' | i18next}}</h3>
+			</div>
+  
+			<div class="modal-body">
+
+				<div id="selectIcon" class="select select-lg">
+				
+				<ul>
+					<li ng-repeat="icon in icons">
+						<i ng-class="'fa fa-' + icon.id"></i>
+						{{icon.name}}
+					</li>
+				</ul>
+				
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button">{{'Add' | i18next}}</a>
+			</div>  
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+  
+</div>
+<!-- /.modal -->
+
+<!-- modals -->
+<div class="modal fade" id="filesDialog">
+
+	<!-- messages -->
+	<input id="msg-files-dialog-download" value="{{'Download' | i18next}}" type="hidden">
+	<input id="msg-files-dialog-desc" value="{{'File Description' | i18next}}" type="hidden">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Add File' | i18next}}</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<div id="selectFile" class="select select-lg">
+				
+				    <ul data-bind="foreach: files">
+				      <li>
+				        <i class="fa fa-file-alt" data-bind="visible: (extension == 'pdf' || extension == 'doc'|| extension == 'docx'|| extension == 'zip' || extension == 'ppt')"></i>
+				        <i class="fa fa-picture" data-bind="visible: (extension == 'png' || extension == 'jpg'|| extension == 'gif')"></i>
+				        <a data-bind="attr:{'data-filename':filename, 'data-fullurl':fullUrl, 'data-extension':extension}, text:filename"></a>
+				      </li>
+				    </ul>
+				
+				</div>
+				
+			</div>
+				
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" data-bind="click: addFile">{{'Add' | i18next}}</a>
+			</div>  
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+  
+</div>
+<!-- /.modal -->

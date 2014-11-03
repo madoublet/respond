@@ -1,0 +1,236 @@
+[
+	{
+		"action":	"respond.element.h1",
+		"tag":		"H1",
+		"title":	"H1 Headline",
+		"class":	"respond-h1",
+		"icon":		"draggable",
+		"text":		"H1",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.h2",
+		"tag":		"H2",
+		"title":	"H2 Headline",
+		"class":	"respond-h2",
+		"icon":		"draggable",
+		"text":		"H2",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.h3",
+		"tag":		"H3",
+		"title":	"H3 Headline",
+		"class":	"respond-h3",
+		"icon":		"draggable",
+		"text":		"H3",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.h4",
+		"tag":		"H4",
+		"title":	"H4 Headline",
+		"class":	"respond-h4",
+		"icon":		"draggable",
+		"text":		"H4",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.h5",
+		"tag":		"H5",
+		"title":	"H5 Headline",
+		"class":	"respond-h5",
+		"icon":		"draggable",
+		"text":		"H5",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.p",
+		"tag":		"P",
+		"title":	"Paragraph",
+		"class":	"respond-p",
+		"icon":		"draggable",
+		"text":		"P",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.q",
+		"tag":		"BLOCKQUOTE",
+		"title":	"Blockquote",
+		"class":	"respond-q",
+		"icon":		"fa fa-quote-left draggable",
+		"text":		"",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.ul",
+		"tag":		"UL",
+		"title":	"Unordered List",
+		"class":	"respond-ul",
+		"icon": 	"fa fa-list-ul draggable",
+		"text":		"",
+		"config":	"plugins/element/config/list.html"
+	},
+	{
+		"action":	"respond.element.ol",
+		"tag":		"OL",
+		"title":	"Ordered List",
+		"class":	"respond-ol",
+		"icon":		"fa fa-list-ol draggable",
+		"text":		"",
+		"config":	"plugins/element/config/list.html"
+	},
+	{
+		"action":	"respond.component.tabset",
+		"tag":		"TRIANGULATE-TABSET",
+		"title":	"Tabs",
+		"class":	"respond-tabset",
+		"icon": 	"fa fa-folder draggable",
+		"text":		"",
+		"config":	"plugins/component/config/tabs.html"
+	},
+	{
+		"action":	"respond.element.table",
+		"tag":		"TABLE",
+		"title":	"Table",
+		"class":	"respond-table",
+		"icon":		"fa fa-table draggable",
+		"text":		"",
+		"config":	"plugins/element/config/table.html"
+	},
+	{
+		"action":	"respond.element.hr",
+		"tag":		"HR",
+		"title":	"HR",
+		"class":	"respond-hr",
+		"icon":		"fa fa-minus draggable",
+		"text":		"",
+		"config":	"plugins/element/config/default.html"
+	},
+	{
+		"action":	"respond.element.image",
+		"tag":		"DIV",
+		"title":	"Image",
+		"class":	"respond-image",
+		"icon":		"fa fa-picture-o draggable",
+		"text":		"",
+		"config":	"plugins/element/config/images.html"
+	},
+	{
+		"action":	"respond.component.slideshow",
+		"tag":		"TRIANGULATE-SLIDESHOW",
+		"title":	"Slideshow",
+		"class":	"respond-slideshow",
+		"icon":		"fa fa-film draggable",
+		"text":		"",
+		"config":	"plugins/component/config/slideshow.html"
+	},
+	{
+		"action":	"respond.component.video",
+		"tag":		"TRIANGULATE-VIDEO",
+		"title":	"Video",
+		"class":	"respond-video",
+		"icon":		"fa fa-video-camera draggable",
+		"text":		"",
+		"config":	"plugins/component/config/video.html"
+	},
+	{
+		"action":	"respond.component.map",
+		"tag":		"TRIANGULATE-MAP",
+		"title":	"Map",
+		"class":	"respond-map",
+		"icon":		"fa fa-map-marker draggable",
+		"text":		"",
+		"config":	"plugins/component/config/map.html"
+	},
+	{
+		"action":	"respond.component.content",
+		"tag":		"TRIANGULATE-CONTENT",
+		"title":	"Content",
+		"class":	"respond-content",
+		"icon":		"fa fa-cube draggable",
+		"text":		"",
+		"config":	"plugins/component/config/content.html"
+	},
+	{
+		"action":	"respond.component.list",
+		"tag":		"TRIANGULATE-LIST",
+		"title":	"List",
+		"class":	"respond-list",
+		"icon":		"fa fa-cubes draggable",
+		"text":		"",
+		"config":	"plugins/component/config/list.html"
+	},
+	{
+		"action":	"respond.element.pre",
+		"tag":		"PRE",
+		"title":	"Pre-formatted Text",
+		"class":	"respond-pre",
+		"icon":		"fa fa-terminal draggable",
+		"text":		"",
+		"config":	"plugins/element/config/pre.html"
+	},
+	{
+		"action":	"respond.component.html",
+		"tag":		"TRIANGULATE-HTML",
+		"title":	"Insert HTML",
+		"class":	"respond-html",
+		"icon":		"fa fa-html5 draggable",
+		"text":		"",
+		"config":	"plugins/component/config/html.html"
+	},
+	{
+		"action":	"respond.component.form",
+		"tag":		"TRIANGULATE-FORM",
+		"title":	"Form",
+		"class":	"respond-form",
+		"icon":		"fa fa-check draggable",
+		"text":		"",
+		"config":	"plugins/component/config/form.html"
+	},
+	{
+		"action":	"respond.component.shelf",
+		"tag":		"TRIANGULATE-SHELF",
+		"title":	"Shelf",
+		"class":	"respond-shelf",
+		"icon":		"fa fa-tags draggable",
+		"text":		"",
+		"config":	"plugins/component/config/shelf.html"
+	},
+	{
+		"action":	"respond.component.login",
+		"tag":		"TRIANGULATE-LOGIN",
+		"title":	"Login",
+		"class":	"respond-login",
+		"icon":		"fa fa-key draggable",
+		"text":		"",
+		"config":	"plugins/component/config/login.html"
+	},
+	{
+		"action":	"respond.component.registration",
+		"tag":		"TRIANGULATE-REGISTRATION",
+		"title":	"Registration",
+		"class":	"respond-registration",
+		"icon":		"fa fa-lock draggable",
+		"text":		"",
+		"config":	"plugins/component/config/registration.html"
+	},
+	{
+		"action":	"respond.utility.load",
+		"tag":		"n/a",
+		"title":	"Load Content",
+		"class":	"load",
+		"icon":		"fa fa-upload",
+		"text":		"",
+		"modal":	"plugins/utility/modal/load.html"
+	},
+	{
+		"action":	"respond.utility.layout",
+		"tag":		"n/a",
+		"title":	"Layout",
+		"class":	"layout",
+		"icon":		"fa fa-columns",
+		"text":		"",
+		"modal":	"plugins/utility/modal/layout.html"
+	}
+]

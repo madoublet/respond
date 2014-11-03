@@ -1,4 +1,4 @@
 {
-	"name": "Simple",
-	"desc": "This is the default theme for Respond CMS and a great starting point for any responsive site"
+	"name": "simple",
+	"desc": "A simple theme based on the default styles of Bootstrap."
 }

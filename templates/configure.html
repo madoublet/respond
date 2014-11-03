@@ -1,0 +1,129 @@
+<section class="main">
+	
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{themeId | toHuman}}</h1>
+        
+        <button ng-click="changeTheme()"
+       		class="primary-action">
+	   		{{'Change Theme' | i18next}}
+       </button>
+       
+       <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="refresh()"
+    				tabindex="-1">
+    				{{'Refresh' | i18next}}
+    			</a>
+		  	</li>
+		  </ul>
+		</div>
+    </nav>
+	
+	<aside id="context-menu" class="context-menu">
+	
+		<div class="page-settings config active">
+	
+			<div class="context-body">
+				
+				<div ng-repeat="config in configs">
+					
+					<h2 data-toggle="#{{config.name | toid}}-settings">{{config.name}} <a><i class="fa fa-angle-down"></i></a></h2>
+					
+					<div id="{{config.name | toid}}-settings" class="context-block" ng-class='{hidden: !$first}'>
+				
+						<div class="form-group" ng-repeat="control in config.controls">
+							<label for="name">{{control.name}}</label>
+							<input
+								ng-if="control.control=='text' || control.control=='color' || control.control=='image'"
+								type="text" maxlength="128" class="form-control"
+									ng-model="control.selected">
+									
+							<input
+								ng-if="control.control=='number'"
+								type="number" class="form-control"
+									ng-model="control.selected">
+							
+							<input 
+								ng-if="control.control=='color'"
+								respond-spectrum type="color" ng-value="control.selected" color="{{control.selected}}" current="control">
+								
+							<button 
+								ng-if="control.control=='image'"
+								ng-click="showAddImage(control)"
+								class="image-picker"><i class="fa fa-image"></i></button>	
+								
+							<select
+								ng-if="control.control=='select'" 
+								ng-options="o as o for o in control.options"
+								ng-model="control.selected" class="form-control">
+							</select>	
+									
+						</div>
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<div class="context-footer">
+				<button ng-click="apply()">{{'Apply to Theme' | i18next}}</button>
+			</div>
+			
+	</aside>
+	<!-- /.context-menu -->
+	
+	<iframe ng-src="{{currentSite}}">
+	
+	</iframe>
+	
+</section>
+<!-- /.main -->
+
+<div class="immersive" id="imagesDialog">
+
+	<!-- messages -->
+	<input id="msg-enter-caption" value="{{'Enter caption' | i18next}}" type="hidden">
+	<input id="msg-image-instructions" value="{{'add_content_change_image' | i18next}}" type="hidden">
+
+	<div class="immersive-header">
+		<h3>{{'Select or upload a new image' | i18next}}  <span class="size">{{totalSize}} / {{fileLimit}} MB</h3>
+		<button type="button" class="close" data-dismiss="modal">x</button>
+	</div>
+	<!-- /.modal-header -->
+
+	<div class="immersive-body">
+	
+		<div class="image-list">
+		
+		    <div class="image existing" ng-repeat="image in images">
+		        <img 
+		        	ng-src="{{image.thumbUrl}}"
+		        	ng-click="addImage(image)">
+		        <small>
+		            <span>{{image.filename}}</span><br>
+		            <span>{{image.width}}</span>px x <span>{{image.height}}</span>px
+		        </small>
+		    </div>
+		
+		</div>
+		
+		<div id="drop" 
+			ng-if="totalSize <= fileLimit"
+			class="dropzone in-dialog" drop-zone target="branding" callback="updateImages()">
+		    <span class="dz-message">
+		        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
+		    </span>
+		</div>
+		<!-- /.dropzone -->
+	
+	</div>
+	<!-- /.immersive-body -->
+
+</div>
+<!-- /.modal -->

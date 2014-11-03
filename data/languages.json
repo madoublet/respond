@@ -1,32 +1,14 @@
-{
-	"languages":[
-		{
-			"code": "en",
-			"text": "English (en-US)"
-		},
-		{
-			"code": "cs_CZ",
-			"text": "Čeština (cs-CZ)"
-		},
-		{
-			"code": "de_DE",
-			"text": "Deutsch (de-DE)"
-		},
-		{
-			"code": "es_ES",
-			"text": "Spanish (es-ES)"
-		},
-		{
-			"code": "fr_FR",
-			"text": "French (fr-FR)"
-		},
-		{
-			"code": "pt_BR",
-			"text": "Portuguese (pt-BR)"
-		},
-		{
-			"code": "ru_RU",
-			"text": "Russian (ru-RU)"
-		}
-	]
-}
+[
+	{
+		"code": "en",
+		"text": "English (en-US)"
+	},
+	{
+		"code": "ja",
+		"text": "Japanese (ja)"
+	},
+	{
+		"code": "es-ES",
+		"text": "Spanish (es-ES)"
+	}
+]

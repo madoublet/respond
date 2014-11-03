@@ -1,0 +1,25 @@
+<div class="respond-search">
+	
+	<form class="triangulage-search" ng-submit="search()">
+      <div class="search-container">
+        <input type="text" 
+        	ng-model="term"
+        	class="form-control">
+        <button><i class="fa fa-search"></i></button>
+      </div>  
+    </form>  
+	  
+  	<div class="respond-search-results">
+  		<ul>
+		  	<li class="searching" ng-if="searching"><i class="fa fa-spinner fa-spin"></i> {{'Searching...'}}</li>
+		  	<li ng-repeat="result in results">
+			  	<h4><a ui-sref="{{result.Url}}" href="/{{result.Url}}" ng-i18next="{{result.PageId}}.name">{{result.Name}}</a></h4>
+			  	<small><a ui-sref="{{result.Url}}" href="/{{result.Url}}">{{result.Url}}</a></small>
+			  	<p ng-i18next="{{result.PageId}}.description">
+			  		{{result.Description}}
+			  	</p>
+		  	</li>
+		  	<li class="no-results" ng-show="results.length == 0">{{'No results found'}}</li>
+	  	</ul>
+  	</div>
+</div>

@@ -1,0 +1,115 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Files' | i18next}}</h1>
+        <h2>{{totalSize}} / {{fileLimit}} MB</h2>
+        
+    </nav>
+    <!-- /nav -->
+    
+     <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+		    <span id="settings-text">{{'Files' | i18next}}</span>
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu dropdown-auto" role="menu" aria-labelledby="page-types" data-display="#settings-text">
+	  		<li class="active" data-target="#section-site" ng-click="setFolder('files')"><a>{{'Files' | i18next}}</a></li>
+			<li data-target="#section-display" ng-click="setFolder('downloads')"><a>{{'Digital Downloads' | i18next}}</a></li>
+		  </ul>
+		</div>
+    </menu>
+    
+    <div id="drop" 
+    	ng-if="totalSize <= fileLimit"
+    	class="dropzone dark fixed" drop-zone target="files" filename="{{temp.filename}}" callback="updateFiles()" folder="{{folder}}">
+        <span class="dz-message">
+            <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}} to {{folder}}</span>
+        </span>
+    </div>
+    
+    <div class="list has-dropzone">
+    
+        <div class="listItem" 
+        	ng-repeat="file in files"
+        	ng-class="{'has-thumb': (file.isImage == true)}">
+        
+			<!--
+        	<a class="edit" 
+        		ng-click="edit(file, $event)"><i class="fa fa-pencil fa-lg"></i></a> -->
+        		
+    		<a class="remove" 
+    			ng-click="showRemove(file)"><i class="fa fa-minus"></i></a>
+    			
+    		<a class="cancel-edit"
+    			ng-click="cancelEdit()">
+    			<i class="fa fa-undo fa-lg"></i>
+    		</a>
+    		
+    		<span class="editable-selected">{{'Selected' | i18next}}</span>
+            
+            <span class="image" ng-if="file.isImage == true">
+            	<img height="75" width="75"
+            		ng-src="{{file.thumbUrl}}">
+            </span>
+            
+        	<h2><a ng-href="{{file.fullUrl}}">{{file.filename}}</a></h2>
+            <em ng-if="file.isImage == true">{{file.width}}px x {{file.height}}px ({{file.size}} MB)</em>
+       
+    	</div>
+    	<!-- /.listItem -->
+    	
+    	<p ng-show="loading" class="list-loading"><i class="fa fa-spinner fa fa-spin"></i> {{'Loading' | i18next}}</p>
+    
+		<p ng-show="files.length == 0" class="list-none">{{'no_files_click_upload' | i18next}}</p>
+    
+    </div>
+    <!-- /.list -->
+    
+      
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="removeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p>
+					{{'Confirm you want to remove:' | i18next}} <strong>{{temp.filename}}</strong>
+				</p>
+				
+				<p>
+					{{'total_elimination' | i18next}}
+				</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="remove()">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+  
+		</div>
+		<!-- /.modal-content -->
+  
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->

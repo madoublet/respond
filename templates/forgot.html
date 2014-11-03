@@ -1,0 +1,33 @@
+<!-- begin content -->
+<section class="main">
+
+	<h1><span class="brand"><img src="{{setup.logo}}" title="{{setup.brand}}"></span></h1>
+	
+	<form novalidate ng-submit="forgot(user)">
+	<fieldset class="forgot">
+	
+		<p>{{'reset_password' | i18next}}</p>
+		
+		<div class="form-group">
+			<label for="email">{{'Email' | i18next}}</label>
+			<input id="email" 
+				ng-model="user.email"
+				type="text" placeholder="you@yourlogin.com" class="form-control input-lg">	
+		</div>
+		
+		<span class="actions">
+			<button type="submit" class="primary-button">{{'Send Email' | i18next}} <i class="fa fa-envelope-o"></i></button>
+		</span>
+		
+	</fieldset>
+	</form>
+	<!-- /.forgot -->
+	
+	<p  class="alternate">
+		<a ui-sref="login({ id: friendlyId })">{{'Return to Login' | i18next}}</a>
+	</p>
+
+	<small>{{setup.app}} {{setup.version}} &mdash; {{setup.copy}}</small>
+
+</div>
+<!-- /.main -->

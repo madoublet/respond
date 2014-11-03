@@ -1,0 +1,244 @@
+<section class="main">
+
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Users' | i18next}}</h1>
+        
+        <button ng-click="showAddUser()"
+        	ng-if="canAdd"
+       		class="primary-action">
+	   		{{'Add User' | i18next}}
+       </button>  
+        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ui-sref="app.roles"
+    				tabindex="-1">
+    				{{'Roles' | i18next}}
+    			</a>
+		  	</li>
+		  </ul>
+		</div>
+    </nav>
+    <!-- /nav -->
+
+    <div id="usersList" class="list has-photo">
+    
+        <div class="listItem" ng-repeat="user in users">
+    		<a class="remove"
+    			ng-click="showRemoveUser(user)">
+                <i class="fa fa-minus"></i>
+            </a>
+            
+            <button class="update-photo" 
+            	ng-class="{'has-photo':user.HasPhoto}"
+            	ng-click="showAddImage(user)"
+            	style="background-image: url({{user.FullPhotoUrl}})">
+				<span>{{'Update Photo' | i18next}}</span></button>
+    		<h2>
+    			<a ng-click="showEditUser(user)">{{user.FirstName}} {{user.LastName}}</a>
+    		</h2>
+    		<p><span class="email">{{user.Email}}</span></p>
+            <em>
+            	<span class="status">{{user.Role}}
+				<span ng-show="user.IsActive=='0'"> &ndash; {{'Not Active' | i18next}}</span></span> 
+            	{{'Created' | i18next}} {{user.Created | fromNow}}
+            </em>
+    	</div>
+    	<!-- /.listItem -->
+    
+    </div>
+    <!-- /.list -->
+    
+    <p ng-show="loading" class="list-loading"><i class="fa fa-spinner fa-spin"></i> {{'Loading' | i18next}}</p>
+    
+    <p ng-show="users.length == 0" class="list-none">{{'no_users_click_add_user' | i18next}}</p>
+      
+
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="addEditDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3 class="add">{{'Add User' | i18next}}</h3>
+				<h3 class="edit">{{'Update User' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+
+			<div class="modal-body">
+			
+				<form name="addEditForm" novalidate>
+			
+				<div class="form-group">
+					<label for="firstName">{{'First Name' | i18next}}</label>
+					<input id="firstName" 
+						ng-model="temp.FirstName"
+						type="text" class="form-control" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="lastName">{{'Last Name' | i18next}}</label>
+					<input id="lastName"
+						ng-model="temp.LastName" 
+						type="text" class="form-control" required>
+				</div>
+				
+		
+				<div class="form-group">
+					<label for="role">{{'Role' | i18next}}</label>
+					
+					<select id="role"
+						ng-model="temp.Role"
+						ng-options="role.Name as role.Name for role in roles"
+						class="form-control" required>
+						</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="language">{{'Language' | i18next}}</label>
+					<select id="language" class="form-control" 
+						ng-model="temp.Language"
+						ng-options="language.code as language.text for language in languages" required></select>
+				</div>
+				
+				<div class="form-group">
+					<label for="isActive">{{'Active' | i18next}}</label>
+					<select id="isActive"
+						ng-model="temp.IsActive" class="form-control">
+					    <option value="1">{{'Yes' | i18next}}</option>
+					    <option value="0">{{'No' | i18next}}</option>
+				    </select>
+				</div>
+				
+				<div class="form-group">
+					<label for="email">{{'Email' | i18next}}</label>
+					<input id="email"
+						ng-model="temp.Email" 
+						type="text" class="form-control" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="password">{{'Password' | i18next}}</label>
+					<input id="password" type="password"
+						ng-model="temp.Password" class="form-control" required>
+					<span class="help-block">{{'special_naming_password' | i18next}}</span>
+				</div>
+				
+				</form>
+			
+			</div>
+			<!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button add" type="button"
+					ng-click="addUser(temp)"
+					ng-disabled="addEditForm.$invalid || isUnchanged(temp)">{{'Add' | i18next}}</button>
+				<button class="primary-button edit" type="button"
+					ng-click="editUser(temp)"
+					ng-disabled="addEditForm.$invalid || isUnchanged(temp)">{{'Update' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+				<p>
+				{{'Confirm you want to remove:' | i18next}} <strong>{{temp.FirstName}} {{temp.LastName}}</strong>
+				</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" ng-click="removeUser(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="immersive" id="imagesDialog">
+
+	<!-- messages -->
+	<input id="msg-enter-caption" value="{{'Enter caption' | i18next}}" type="hidden">
+	<input id="msg-image-instructions" value="{{'add_content_change_image' | i18next}}" type="hidden">
+
+	<div class="immersive-header">
+		<h3>{{'Select or upload a new image' | i18next}}</h3>
+		<button type="button" class="close" data-dismiss="modal">x</button>
+	</div>
+	<!-- /.modal-header -->
+
+	<div class="immersive-body">
+	
+		<div class="image-list">
+		
+		    <div class="image existing" ng-repeat="image in images">
+		        <img 
+		        	ng-src="{{image.thumbUrl}}"
+		        	ng-click="addImage(image)">
+		        <small>
+		            <span>{{image.filename}}</span><br>
+		            <span>{{image.width}}</span>px x <span>{{image.height}}</span>px
+		        </small>
+		    </div>
+		
+		</div>
+		
+		<div id="drop" class="dropzone in-dialog" drop-zone target="profile" callback="updateImages()">
+		    <span class="dz-message">
+		        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
+		    </span>
+		</div>
+		<!-- /.dropzone -->
+	
+	</div>
+	<!-- /.immersive-body -->
+
+</div>
+<!-- /.modal -->

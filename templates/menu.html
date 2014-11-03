@@ -1,0 +1,62 @@
+<header>
+	
+	<div class="profile">
+		<span id="menu-photo" class="photo"
+			style="background-image: url({{user.FullPhotoUrl}})"></span>
+		<a id="menu-name" ui-sref="app.profile" class="hide-menu">{{user.FirstName}} {{user.LastName}}</a>
+	</div>
+	<!-- /.profile -->
+	
+	<div class="sub-menu">
+		<a class="signout" ui-sref="login({ id: site.FriendlyId })" title="{{'Sign Out' | i18next}}"><i class="fa fa-power-off"></i></a>
+		<a class="hide-menu" title="{{'Close Menu' | i18next}}"><i class="fa fa-times"></i></a>
+	</div>
+	<!-- /.sub-menu -->
+
+	<h2 class="basic" ng-if="user.Role == 'Admin'">
+		{{'Manage your Site' | i18next}}
+		<a class="site" target="_blank" href="{{site.Domain}}">{{'View Site' | i18next}} <i class="fa fa-external-link"></i></a>
+	</h2>
+	<!-- /.basic -->
+
+	<ul class="menu" ng-if="user.Role == 'Admin'">
+		<li class="menu-pages"><a ui-sref="app.pages" class="hide-menu"><i class="fa fa-file"></i> {{'Pages' | i18next}}</a></li>
+    	<li class="menu-menu"><a ui-sref="app.menus" class="hide-menu"><i class="fa fa-bars"></i> {{'Menus' | i18next}}</a></li>
+		<li class="menu-theme"><a ui-sref="app.configure" class="hide-menu"><i class="fa fa-desktop"></i> {{'Theme' | i18next}}</a></li>
+    	<li class="menu-branding"><a ui-sref="app.branding" class="hide-menu"><i class="fa fa-certificate"></i> {{'Branding' | i18next}}</a></li>
+    	<li class="menu-files"><a ui-sref="app.files" class="hide-menu"><i class="fa fa-folder-open"></i> {{'Files' | i18next}}</a></li>
+		<li class="menu-users"><a ui-sref="app.users" class="hide-menu"><i class="fa fa-user"></i> {{'Users' | i18next}}</a></li>
+		<!--<li class="menu-account"><a ui-sref="app.account"><i class="fa fa-key"></i> {{'Account' | i18next}}</a></li>-->
+	</ul>
+	<!-- /.menu -->
+	
+	<h2 class="advanced" ng-if="user.Role == 'Admin'">
+		{{'Advanced Configurations' | i18next}}
+		<a class="republish" ng-click="republish()">{{'Republish' | i18next}} <i class="fa fa-refresh"></i></a>
+	</h2>
+	<!-- /.advanced -->
+	
+	<ul class="menu" ng-if="user.Role == 'Admin'">	
+        <li class="menu-layout"><a ui-sref="app.layouts" class="hide-menu"><i class="fa fa-th-large"></i> {{'Layouts' | i18next}}</a></li>	
+        <li class="menu-styles"><a ui-sref="app.styles" class="hide-menu"><i class="fa fa-text-height"></i> {{'Styles' | i18next}}</a></li>
+        <li class="menu-styles"><a ui-sref="app.scripts" class="hide-menu"><i class="fa fa-bolt"></i> {{'Scripts' | i18next}}</a></li>
+        <li class="menu-settings"><a ui-sref="app.translations" class="hide-menu"><i class="fa fa-language"></i> {{'Translations' | i18next}}</a></li>
+        <li class="menu-settings"><a ui-sref="app.settings" class="hide-menu"><i class="fa fa-cog"></i> {{'Settings' | i18next}}</a></li>
+        <li class="menu-admin" ng-if="user.SiteAdmin == 1"><a ui-sref="app.admin" class="hide-menu"><i class="fa fa-sitemap"></i> {{'Admin' | i18next}}</a></li>
+        <li class="menu-deploy"
+        	ng-if="site.CanDeploy == 1"><a ng-click="deploy()"><i class="fa fa-cloud"></i> {{'Deploy to Cloud' | i18next}}</a></li>
+    </ul>
+	<!-- /.menu -->
+
+	<h2 class="basic" ng-if="user.Role != 'Admin'">{{'Menu' | i18next}}</h2>
+	
+	<ul class="menu" ng-if="user.Role != 'Admin'">
+		<li class="menu-pages"><a ui-sref="app.pages"><i class="fa fa-file"></i> {{'Pages' | i18next}}</a></li>
+		<li class="menu-profile"><a ui-sref="app.profile"><i class="fa fa-user"></i> {{'Profile' | i18next}}</a></li>
+	</ul>
+
+</header>
+
+<div id="header-overlay"></div>
+
+<div ui-view="content"></div>

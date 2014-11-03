@@ -1,14 +1,14 @@
 .dropzone{
     position: absolute;
-    top: 65px;
+    top: 113px;
     right: 0;
     text-align: center;
     z-index: 100;
     width: 200px;
     height: 100%;
+    border: none !important;
 }
     
-
 .dropzone .dz-message{
   cursor: pointer;
   display: block;

@@ -1,0 +1,398 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Pages' | i18next}}</h1>
+         
+       <button ng-click="showAddPage()"
+       		class="primary-action">
+	   		{{'Add Page' | i18next}}
+       </button>  
+        
+        <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="showAddPageType()"
+    				tabindex="-1">
+    				{{'Add Type' | i18next}}
+    			</a>
+		  	</li>
+		  	<li ng-if="current.PageTypeId != -1"
+		  		role="presentation"> 
+    			<a ng-click="showRemovePageType(current)"
+    				tabindex="-1">
+    				{{'Remove' | i18next}} /{{current.FriendlyId}}
+    			</a> 	
+		  	</li>
+		  </ul>
+		</div>
+  
+    </nav>
+  
+    <section class="notice" ng-if="site.Status == 'Trial'">
+    	<a ui-sref="app.signup">
+    		<span class="days-left">{{site.Created | daysLeft}} {{'days left' | i18next}}</span>
+    		{{'trial_message' | i18next}} <i class="fa fa-chevron-right"></i> 
+    	</a>
+    	
+    	
+    </section>
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    /{{current.FriendlyId}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="page-types">
+		  	<li ng-repeat="pageType in pageTypes" 
+        		role="presentation"> 
+    			<a ng-click="setPageType(pageType)"
+    				tabindex="-1">
+    				/{{pageType.FriendlyId}}
+    				<span ng-show="(pageType.IsSecure == 1)" class="secure fa fa-lock"></span>
+    			</a> 
+		  	</li>
+		  </ul>
+		</div>
+    	
+		<div class="menu-actions">
+
+    		<a title="{{'Sort by Last Modified' | i18next}}" 
+    			ng-click="setPredicate('LastModifiedDate')"
+    			ng-class="{'active': (predicate == 'LastModifiedDate')}">
+    				<i class="fa fa-sort-amount-desc"></i></a>
+			<a title="{{'Sort by Name' | i18next}}"
+				ng-click="setPredicate('Name')"
+				ng-class="{'active': (predicate == 'Name')}">
+				<i class="fa fa-sort-alpha-asc"></i></a>
+			
+			<a ng-show="(pageTypeId != -1 && canEditTypes)"
+				ng-click="showEditPageType()">
+				<i class="fa fa-cog"></i>
+			</a>
+		</div>
+		
+    </menu>
+
+    <div class="list">
+    
+    	<div class="listItem" 
+    		ng-repeat="page in pages | filter: {PageTypeId: pageTypeId} | orderBy: predicate"
+    		ng-class="{'has-thumb': (page.Thumb != '')}">
+    		
+            <span class="image" ng-show="page.Thumb != ''"><img height="75" width="75" ng-src="{{page.Thumb}}"></span>
+            
+    		<a 	ng-if="canRemovePage"
+    			ng-click="showRemovePage(page)"
+    			class="remove">
+                <i class="fa fa-minus"></i>
+            </a>
+            
+    		<h2>
+    			<a 	ng-class="{hasDraft:page.HasDraft}"
+    				ng-show="(page.CanEdit || page.CanPublish)" 
+    				ui-sref="app.content({ id: page.PageId })">
+    				<span class="draft-tag" ng-show="page.HasDraft">*</span>
+    				{{page.Name}}
+    			</a>
+				<span ng-show="!(page.CanEdit || page.CanPublish)">
+					<span class="draft-tag" ng-show="page.HasDraft">*</span>
+					{{page.Name}}
+				</span>
+    		</h2>
+    		
+    		<small>
+    			{{page.Url}}
+				<span class="tags">
+					<i class="fa fa-tags"></i> 
+					<a ng-click="showEditTags(page)">{{page.Tags|notags}}</a>
+				</span>
+    		
+    		</small>
+    		
+			</h2>
+			
+			<em>
+				<span class="status" 
+					ng-show="(page.CanPublish == true)">
+					<a 	ng-show="page.IsActive == 1"
+						ng-click="togglePublished(page)">
+						{{'Published' | i18next}}	
+					</a>
+					<a 	ng-show="page.IsActive == 0"
+						ng-click="togglePublished(page)">
+						{{'Not Published' | i18next}}	
+					</a>
+				</span>
+				{{'Updated' | i18next}} {{page.LastModifiedDate | fromNow}} {{'by' | i18next}} {{page.LastModifiedFullName}}
+			</em>
+    		
+    	</div>
+    	<!-- /.listItem -->
+    
+    </div>
+    <!-- /.list -->
+    
+    <p ng-show="loading" class="list-loading"><i class="fa fa-spinner fa-spin"></i> {{'Loading' | i18next}}</p>
+    
+    <p ng-show="(pages | filter: {PageTypeId: pageTypeId}).length == 0" class="list-none">{{'no_pages_click_add_page' | i18next}}</p>
+      
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="pageDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Add Page' | i18next}}</h3>
+			</div>
+			
+			<form name="pageForm" novalidate>
+			
+			<div class="modal-body">
+				
+				<div class="form-group">
+					<label for="name" class="control-label">{{'Name' | i18next}}</label>
+					<input id="name" type="text" 
+					 	ng-model="temp.Name"
+					 	maxlength="255" class="form-control" required respond-create-id>
+				</div>
+				
+				<div class="form-group">
+					<label for="URL" class="control-label">{{'Friendly URL' | i18next}}</label>
+					<input id="friendlyId" type="text" 
+						ng-model="temp.FriendlyId"
+						maxlength="128" placeholder="page-name" class="form-control" required>
+					<span class="help-block">{{'special_naming_pages' | i18next}}</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="description" 
+						class="control-label">{{'Description' | i18next}}</label>
+					<textarea id="description" 
+						ng-model="temp.Description"
+						class="form-control"></textarea>
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" 
+					ng-click="addPage(temp)"
+					ng-disabled="pageForm.$invalid || isUnchanged(temp)">{{'Add' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removePageDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Remove Page' | i18next}}</h3>
+			</div>
+			<div class="modal-body">
+			
+			<p>
+				{{'Confirm you want to remove' | i18next}} <strong>{{temp.Name}}</strong>
+			</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="removePage(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="editTagsDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Tags' | i18next}}</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<form name="tagsForm" novalidate>
+			
+					<div class="form-group">
+						<label for="tag" class="control-label">{{'Tags' | i18next}}</label>
+						<input id="tag" type="text"
+							ng-model="temp.Tags"
+							value="" maxlength="100" class="form-control" required>
+						<span class="add help-block">{{'example_tags' | i18next}}</span>
+					</div>
+				
+				</form>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="editTags(temp)">{{'Update' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removePageTypeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Remove Page Type' | i18next}}</h3>
+			</div>
+			
+			<div class="modal-body">
+			
+				<p ng-show="(pages | filter: {PageTypeId: pageTypeId}).length == 0">
+					{{'Confirm you want to remove' | i18next}} <strong>/{{temp.FriendlyId}}</strong>
+				</p>
+				
+				<p ng-show="(pages | filter: {PageTypeId: pageTypeId}).length != 0">
+					{{'remove_all_pages' | i18next}}</strong>
+				</p>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" 
+					ng-click="removePageType(temp)"
+					ng-show="(pages | filter: {PageTypeId: pageTypeId}).length == 0">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="pageTypeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+			
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3 class="add">{{'Add Page Type' | i18next}}</h3>
+				<h3 class="edit">{{'Update Page Type' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+
+			<div class="modal-body">
+			
+			<form name="pageTypeForm" novalidate>
+				
+				<div class="add form-group">
+					<label for="typeFriendlyId" class="control-label">{{'Friendly URL' | i18next}}</label>
+					<input id="typeFriendlyId" type="text" 
+						ng-model="temp.FriendlyId"
+						value="" maxlength="50" class="form-control" required>
+					<span class="add help-block">e.g. http://respond.io/[friendly-url]/. {{'Must be lowercase with no spaces' | i18next}}</span>
+				</div>
+				
+				<div class="form-group">
+					<label for="layout" class="control-label">{{'Default Layout' | i18next}}</label>
+					<select id="layout"
+						ng-model="temp.Layout"
+						ng-options="layout for layout in layouts"
+						class="form-control" required></select>
+				</div>
+				
+				<div class="form-group">
+					<label for="stylesheet" class="control-label">{{'Default Styles' | i18next}}</label>
+					<select id="stylesheet" 
+						ng-model="temp.Stylesheet"
+						ng-options="stylesheet for stylesheet in stylesheets"
+						class="form-control" required></select>
+				</div>
+				
+				<div class="form-group">
+					<label for="stylesheet" class="control-label">{{'Requires Login' | i18next}}</label>
+					<select id="isSecure" 
+						ng-model="temp.IsSecure"
+						class="form-control" required>
+						<option value="0">{{'No' | i18next}}</option>
+						<option value="1">{{'Yes' | i18next}}</option>
+					</select>
+				</div>
+			
+			</form>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="add primary-button" 
+					ng-click="addPageType(temp)"
+					ng-disabled="pageTypeForm.$invalid || isUnchanged(temp)">{{'Add' | i18next}}</button>
+				<button class="edit primary-button" 
+					ng-click="editPageType(temp)"
+					ng-disabled="pageTypeForm.$invalid || isUnchanged(temp)">{{'Update' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->

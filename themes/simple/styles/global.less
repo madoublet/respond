@@ -1,14 +1,45 @@
-/* import global styles */
-@import url("search.css");
-@import url("calendar.css");
-@import url("cart.css");
+body{
+	background: config(--body-background-color) config(--body-background-image) config(--body-background-repeat) config(--body-background-position);
+	background-size: config(--body-background-size);
+}
 
-h1, h2, h3, p, blockquote{
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote{
 	margin-bottom: 25px;
 }
 
-p, blockquote{
+body h1{
+	font-size: config(--h1-font-size);
+	color: config(--h1-color);
+}
+
+body h2{
+	font-size: config(--h2-font-size);
+	color: config(--h2-color);
+}
+
+body h3{
+	font-size: config(--h3-font-size);
+	color: config(--h3-color);
+}
+
+body h4{
+	font-size: config(--h4-font-size);
+	color: config(--h4-color);
+}
+
+body h5{
+	font-size: config(--h1-font-size);
+	color: config(--h1-color);
+}
+
+body p, body blockquote, body label, body td, body th, body li{
+	font-size: config(--default-font-size);
+	color: config(--default-color);
 	line-height: 25px;
+}
+
+blockquote{
+	background-color: #f0f0f0;
 }
 
 header{
@@ -29,10 +60,19 @@ pre.prettyprint ol.linenums{
 }
 
 footer{
-  	border-top: 2px solid #f0f0f0;
+  	border-top: 2px solid config(--footer-border-color);
 	margin: 25px 0 0 0;
   	padding: 25px 10px 25px 10px;
+  	background-color: config(--footer-background-color);
 }
+
+	footer h4{
+  		color: config(--footer-headline-color);
+	}
+	
+	footer a{
+		color: config(--footer-link-color);
+	}
 
     footer div{
         text-align: left;
@@ -40,6 +80,7 @@ footer{
 
 	footer p{
 		margin-bottom: 5px;
+		color: config(--footer-text-color);
 	}
 
 	footer .menu{
@@ -52,10 +93,12 @@ footer{
   		height: 40px;
   		line-height: 40px;
   		text-align: center;
-  		border: 1px solid #ddd;
+  		border: 1px solid config(--footer-icon-color);
   		border-radius: 50%;
   		font-size: 16px;
   		margin: 0 10px 0 0;
+  		color: config(--footer-icon-color);
+  		background-color: config(--footer-icon-background-color);
   		
 	}
 
@@ -116,17 +159,17 @@ body .list-group-item a.thumbnail{
 }
 
 /* images */
-div.o-image img{
+div.respond-image img{
   	margin: 5px 0 20px 0;
   	border: 3px solid #f0f0f0;
   	max-width: 100%;
 }
 
-div.l-image, div.r-image{
+div.respond-image, div.respond-image{
   	clear: both;
 }
 
-div.l-image img{
+div.respond-image[data-display=left] img{
   	float: left;
   	margin: 5px 20px 20px 0;
   	border: 3px solid #f0f0f0;
@@ -134,7 +177,7 @@ div.l-image img{
   	max-width: 50%;
 }
 
-div.r-image img{
+div.respond-image[data-display=right] img{
   	float: right;
   	margin: 5px 0 20px 20px;
   	border: 3px solid #f0f0f0;
@@ -143,22 +186,14 @@ div.r-image img{
 }
 
 /* forms */
-.respond-form .alert, form .alert{
-	display: none;
+.respond-form label{
+  font-weight: normal;
 }
 
-	.respond-form i.icon-spinner{
-		display: none !important;
-	}
-
-	.respond-form label{
-		font-weight: normal;
-	}
-	
-	.respond-form .error label{
-		font-weight: bold;
-		color: #b94a48;
-	}
+.respond-form .error label{
+  font-weight: bold;
+  color: #b94a48;
+}
 
 /* navbar-brand */
 .navbar-brand{
@@ -173,6 +208,14 @@ div.r-image img{
   	padding: 0;
 }
 
+body .navbar-default{
+	background-color: config(--nav-background-color);
+	border-color: config(--nav-border-color);
+}
+
+body .navbar-default ul.nav li a{
+	color: config(--nav-text-color);
+}
 
 /* map */
 div.map-container{
@@ -196,104 +239,112 @@ div.map-container{
   	  float: left;
   }
 
-/* settings: language + welcome */
-.settings{
+/* tabs */
+.nav-tabs{
+	margin-bottom: 20px;
+}
+
+.tab-pane{
+	display: none;
+}
+
+.tab-pane.active{
 	display: block;
-	background-color: #777;
+}
+
+/* respond-settings: language + welcome */
+.settings-toggle{
+	float: right;
+  	width: 50px;
+  	height: 50px;
+  	line-height: 50px;
+  	text-align: center;
+  	border-left: 1px solid config(--nav-border-color);
+  	color: config(--nav-icon-color);
+}
+
+.respond-settings{
+	display: block;
+	background-color: config(--settings-background-color);
 	text-align: right;
 	height: 50px;
   	line-height: 50px;
 	padding: 0 10px;
-	color: #ccc;
+	color: config(--settings-text-color);
 	margin-top: -50px;
   	font-size: 13px;
-	transition: .35s all ease;
 }
 
-	.settings .welcome-message a{
+	.respond-settings .welcome-message a{
 		display: inline-block;
 		margin-left: 5px;
 	}
 
-	.show-settings .settings{
+	.show-settings .respond-settings{
 		margin-top: 0;
+		transition: .35s all ease;
 	}
 
-	.settings a{
-		color: #fff;
+	.respond-settings a{
+		color: config(--settings-link-color);
 	}
 	
-	.settings .language{
+	.respond-settings .language{
 		display: inline-block;
 		margin-left: 10px;
 	}
 	
-	.settings .language label{
-		color: #888;
+	.respond-settings .language label{
+		color: config(--settings-text-color);
 		font-weight: normal;
 		font-size: 13px;
 		margin-right: 5px;
 	}
 	
-	.settings .language select{
+	.respond-settings .language select{
 		display: inline-block;
 		width: 75px;
 		font-size: 12px;
 		height: 25px;
 	}
 	
-	.settings ul.respond-select-language{
+	.respond-settings ul.select-language{
 		display: inline-block;
   		margin: 0 0 0 15px;
   		padding: 0;
 	}
 	
-	.settings ul.respond-select-language li{
+	.respond-settings ul.select-language li{
 		display: inline-block;
 		margin: 0 0 0 5px;
+		color: config(--settings-text-color);
 	}
 
-	.settings ul.respond-select-language li a{
+	.respond-settings ul.select-language li.active a{
+     	background-color: config(--settings-active-background-color); 
+    }
+
+	.respond-settings ul.select-language li a{
 		display: inline-block;
 		cursor: pointer;
+      	padding: 0 10px;
 	}
-
-.settings-toggle{
-  	position: relative;
-	display: inline-block;
-  	width: 40px;
-  	height: 40px;
-  	line-height: 40px;
-  	text-align: center;
-  	border: 1px solid #ddd;
-  	border-radius: 50%;
-  	font-size: 16px;
-  	margin: 4px 10px 0 10px;
-  	background-color: #fff;
-  	cursor: pointer;
+		
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
 }
-
-	body .settings-toggle:hover{
-	  	border: 1px solid #428bca;
-	  	background-color: #fff !important;
-	}
-	
-	.settings-toggle i{
-		position: absolute;
-	  	top: 12px;
-	  	left: 13px;
-	  	font-size: 15px;
-	  	color: #428bca;
-	}	
-	
-	body.show-settings .settings-toggle, body.show-settings .settings-toggle:hover{
-	  	border: 1px solid #428bca;
-		background-color: #428bca !important;
-	}
-	
-		.show-settings .settings-toggle i{
-			color: #fff;
-		}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /* login, registration look and feel */
 .respond-login, .respond-registration{
@@ -335,20 +386,4 @@ div.map-container{
       	max-width: 1170px;
   	}
 
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
-}
- 
-.video-container iframe,
-.video-container object,
-.video-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }

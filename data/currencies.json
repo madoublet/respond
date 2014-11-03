@@ -1,96 +1,94 @@
-{
-	"currencies":[
-		{
-			"code": "AUD",
-			"text": "Australian Dollar"
-		},
-		{
-			"code": "BRL",
-			"text": "Brazilian Real"
-		},
-		{
-			"code": "CAD",
-			"text": "Canadian Dollar"
-		},
-		{
-			"code": "CZK",
-			"text": "Czech Koruna"
-		},
-		{
-			"code": "DKK",
-			"text": "Danish Krone"
-		},
-		{
-			"code": "EUR",
-			"text": "Euro"
-		},
-		{
-			"code": "HKD",
-			"text": "Hong Kong Dollar"
-		},
-		{
-			"code": "HUF",
-			"text": "Hungarian Forint"
-		},
-		{
-			"code": "ILS",
-			"text": "Israeli New Sheqel"
-		},
-		{
-			"code": "JPY",
-			"text": "Japanese Yen"
-		},
-		{
-			"code": "MXN",
-			"text": "Mexican Peso"
-		},
-		{
-			"code": "NOK",
-			"text": "Norwegian Krone"
-		},
-		{
-			"code": "NZD",
-			"text": "New Zealand Dollar"
-		},
-		{
-			"code": "PHP",
-			"text": "Philippine Peso"
-		},
-		{
-			"code": "PLN",
-			"text": "Polish Zloty"
-		},
-		{
-			"code": "GBP",
-			"text": "Pound Sterling"
-		},
-		{
-			"code": "RUB",
-			"text": "Russian Ruble"
-		},
-		{
-			"code": "SGD",
-			"text": "Singapore Dollar"
-		},
-		{
-			"code": "SEK",
-			"text": "Swedish Krona"
-		},
-		{
-			"code": "CHF",
-			"text": "Swiss Franc"
-		},
-		{
-			"code": "TWD",
-			"text": "Taiwan New Dollar"
-		},
-		{
-			"code": "THB",
-			"text": "Thai Baht"
-		},
-		{
-			"code": "USD",
-			"text": "U.S. Dollar"
-		}
-	]
-}
+[
+	{
+		"code": "AUD",
+		"text": "Australian Dollar"
+	},
+	{
+		"code": "BRL",
+		"text": "Brazilian Real"
+	},
+	{
+		"code": "CAD",
+		"text": "Canadian Dollar"
+	},
+	{
+		"code": "CZK",
+		"text": "Czech Koruna"
+	},
+	{
+		"code": "DKK",
+		"text": "Danish Krone"
+	},
+	{
+		"code": "EUR",
+		"text": "Euro"
+	},
+	{
+		"code": "HKD",
+		"text": "Hong Kong Dollar"
+	},
+	{
+		"code": "HUF",
+		"text": "Hungarian Forint"
+	},
+	{
+		"code": "ILS",
+		"text": "Israeli New Sheqel"
+	},
+	{
+		"code": "JPY",
+		"text": "Japanese Yen"
+	},
+	{
+		"code": "MXN",
+		"text": "Mexican Peso"
+	},
+	{
+		"code": "NOK",
+		"text": "Norwegian Krone"
+	},
+	{
+		"code": "NZD",
+		"text": "New Zealand Dollar"
+	},
+	{
+		"code": "PHP",
+		"text": "Philippine Peso"
+	},
+	{
+		"code": "PLN",
+		"text": "Polish Zloty"
+	},
+	{
+		"code": "GBP",
+		"text": "Pound Sterling"
+	},
+	{
+		"code": "RUB",
+		"text": "Russian Ruble"
+	},
+	{
+		"code": "SGD",
+		"text": "Singapore Dollar"
+	},
+	{
+		"code": "SEK",
+		"text": "Swedish Krona"
+	},
+	{
+		"code": "CHF",
+		"text": "Swiss Franc"
+	},
+	{
+		"code": "TWD",
+		"text": "Taiwan New Dollar"
+	},
+	{
+		"code": "THB",
+		"text": "Thai Baht"
+	},
+	{
+		"code": "USD",
+		"text": "U.S. Dollar"
+	}
+]

@@ -1,0 +1,168 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Admin' | i18next}}</h1>
+    </nav>
+    <!-- /nav -->
+
+    <div>
+    
+        <div class="listItem" ng-repeat="site in sites">
+
+    		<a class="remove"
+    			ng-click="showRemoveSite(site)">
+				<i class="fa fa-minus"></i>
+            </a>
+            
+    		<h2>
+    			<a ng-click="showEditSite(site)">{{site.Name}}</a>
+    		</h2>
+    		<p><span class="domain"><a ng-href="{{site.Domain}}" target="_blank">{{site.Domain}}</a></span> <span class="domain">{{site.Bucket}}</span></p>
+            <em>
+            	<span class="status">{{site.Status}} 
+            		<span ng-if="site.Status=='Trial'" class="days-left">({{site.Created | daysLeft}} {{'days left' | i18next}})</span>
+            	</span>
+            	{{'Created' | i18next}} {{site.Created | fromNow}}
+            	
+            	<span class="last-login" ng-if="site.LastLogin">
+            		&mdash; {{'Last Login' | i18next}} {{site.LastLogin | fromNow}}
+            	</span>
+            </em>
+    	</div>
+    	<!-- /.listItem -->
+    
+    </div>
+    <!-- /.list -->
+    
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="siteDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Site' | i18next}}</h3>
+			</div>
+			
+			<form name="pageForm" novalidate>
+			
+			<div class="modal-body">
+				
+				<div class="form-group">
+					<label for="domain" class="control-label">{{'Domain' | i18next}}</label>
+					<input id="domain" type="text" 
+					 	ng-model="temp.Domain"
+					 	maxlength="255" class="form-control" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="bucket" class="control-label">{{'Amazon S3 Bucket' | i18next}}</label>
+					<input id="bucket" type="text" 
+					 	ng-model="temp.Bucket"
+					 	maxlength="255" class="form-control" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="status" class="control-label">{{'Status' | i18next}}</label>
+					<div>
+						<select id="status" 
+							ng-model="temp.Status"
+							class="form-control">
+							<option value="Trial">{{'Trial' | i18next}}</option>
+					    	<option value="Active">{{'Active' | i18next}}</option>
+					    	<option value="Expired">{{'Expired' | i18next}}</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="userLimit" class="control-label">{{'User Limit' | i18next}}</label>
+					<div>
+						 <select id="userLimit" 
+							ng-model="temp.UserLimit"
+							class="form-control">
+							<option value="1">1</option>
+					    	<option value="5">5</option>
+					    	<option value="10">10</option>
+					    	<option value="25">25</option>
+					    	<option value="50">50</option>
+					    	<option value="100">100</option>
+					    	<option value="1000">1000</option>
+					    	<option value="5000">5000</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="fileLimit" class="control-label">{{'File Limit' | i18next}}</label>
+					<div>
+						<select id="fileLimit" 
+							ng-model="temp.FileLimit"
+							class="form-control">
+							<option value="10">10 MB</option>
+					    	<option value="100">100 MB</option>
+					    	<option value="1000">1 GB</option>
+					    	<option value="10000">10 GB</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button" 
+					ng-click="updateSite(temp)"
+					ng-disabled="isUnchanged(temp)">{{'Update' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeSiteDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Remove Site' | i18next}}</h3>
+			</div>
+			<div class="modal-body">
+			
+			<p>
+				{{'Confirm you want to remove' | i18next}} <strong>{{temp.Name}}</strong>
+			</p>
+			
+			</div>
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="removeSite(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+</div>
+<!-- /.modal -->

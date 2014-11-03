@@ -1,0 +1,93 @@
+<div class="modal fade" id="loadLayoutDialog">
+
+	<!-- messages -->
+	<input id="msg-select-layout-error" value="{{'Please select a layout' | i18next}}" type="hidden">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+  
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Load Page' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<menu>
+    
+		    	<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+				    <span id="load-text">{{'Existing Page' | i18next}}</span>
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu dropdown-auto" role="menu" aria-labelledby="page-types" data-display="#load-text">
+			  		<li class="active" data-target=".load-existing"><a>{{'Existing Page' | i18next}}</a></li>
+					<li data-target=".load-theme"><a>{{'From Theme' | i18next}}</a></li>
+					<li data-target=".load-code"><a>{{'From Code' | i18next}}</a></li>
+					<li data-target=".load-version"><a>{{'From Version' | i18next}}</a></li>
+				  </ul>
+				</div>
+		    </menu>
+			
+			<div class="modal-body">
+			
+			<div class="load-existing">
+				<div id="selectPage" class="select select-lg">
+					<ul>
+						<li ng-repeat="page in pages"
+							data-pageid="{{page.PageId}}">{{page.Name}}</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /#load-existing -->
+			
+			<div class="load-theme hidden">
+				<div id="selectThemePage" class="select select-lg">
+					<ul>
+						<li ng-repeat="page in themePages"
+							data-location="{{page.location}}">{{page.name}}</li>
+					</ul>
+				</div>    
+			</div>
+			<!-- #load-theme -->
+			
+			<div class="load-code hidden">
+				<textarea id="load-code" style="width: 100%;"></textarea>   
+			</div>
+			<!-- #load-code -->
+			
+			<div class="load-version hidden">
+				<div id="selectVersion" class="select select-lg">
+					<ul>
+						<li ng-repeat="version in versions"
+							data-version="{{version.VersionId}}">
+							{{version.Created | prettyDate}} {{'by' | i18next}} {{version.FirstName}} {{version.LastName}}
+						</li>
+					</ul>
+				</div>    
+			</div>
+			<!-- #load-theme -->
+			
+			</div>
+			<!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button id="loadLayout" class="load-existing primary-button" type="button">{{'Load Layout' | i18next}}</button>
+				<button id="loadLayoutFromTheme" class="load-theme primary-button hidden" type="button">{{'Load Layout' | i18next}}</button>
+				<button id="loadLayoutFromCode" class="load-code primary-button hidden" type="button">{{'Load Layout' | i18next}}</button>
+				<button id="loadLayoutFromVersion" class="load-version primary-button hidden" type="button">{{'Load Layout' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->

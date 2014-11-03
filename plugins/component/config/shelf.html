@@ -1,0 +1,87 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+
+<div class="context-body">
+
+	<h2>{{'Item' | i18next}} <a class="element-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="field-sku">{{'Id' | i18next}}</label>
+			<span class="text-block">{{element.productid}}</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-sku">{{'SKU' | i18next}}</label>
+			<input name="field-sku" type="text" maxlength="128" class="form-control" 
+				ng-model="element.sku">
+			<span class="help-block">{{'Internal Use Only' | i18next}}</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-name">{{'Name' | i18next}}</label>
+			<input name="field-name" type="text" maxlength="128" class="form-control" 
+				ng-model="element.name">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-price">{{'Price' | i18next}}</label>
+			<input name="field-price" type="number" maxlength="128" class="form-control" 
+				ng-model="element.price">
+			<span class="help-block">{{site.Currency}}</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-type">{{'Shipping' | i18next}}</label>
+			<select id="field-type" class="form-control"
+				ng-model="element.shipping">
+				<option value="not shipped">{{'Not Shipped' | i18next}}</option>
+				<option value="shipped">{{'Shipped' | i18next}}</option>
+		  	</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-weight">{{'Weight' | i18next}}</label>
+			<input name="field-weight" type="number" maxlength="128" class="form-control" 
+				ng-model="element.weight">
+			<span class="help-block">{{site.WeightUnit}}</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="listDownloads">{{'Download' | i18next}}</label>				
+			<select name="listDownloads" class="form-control"
+				ng-model="element.download">
+				<option value="">{{'Not Selected' | i18next}}</option>
+				<option ng-repeat="download in downloads" value="{{download.filename}}">
+					{{download.filename}}
+				</option>
+			</select>
+		</div>
+			
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->

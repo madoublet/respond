@@ -1,0 +1,151 @@
+<section class="main">
+
+	<nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Translations' | i18next}}</h1>
+         
+       <button ng-click="showAddLocale()"
+       		class="primary-action">
+	   		{{'Add Translation' | i18next}}
+       </button>  
+       
+       <div class="dropdown more">
+		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
+		    <i class="fa fa-ellipsis-v"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
+		  	<li role="presentation"> 
+    			<a ng-click="showRemoveLocale(locale)"
+    				tabindex="-1">
+    				{{'Remove' | i18next}} {{name}}
+    			</a> 	
+		  	</li>
+		  </ul>
+		</div>
+    
+    </nav>
+    <!-- /nav -->
+    
+    <menu>
+    
+    	<div class="dropdown">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="page-types" data-toggle="dropdown">
+		    {{locale}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="page-types">
+		  	<li ng-repeat="locale in locales"
+        		role="presentation"> 
+    			<a ng-click="setLocale(locale)"
+    				tabindex="-1">
+    				{{locale}}
+    			</a> 
+		  	</li>
+		  </ul>
+		</div>
+
+    </menu>
+    <!-- /menu -->
+
+	<div ng-if="showError" class="alert alert-danger" role="alert">{{'invalid_json' | i18next}}</div>
+
+	<div class="codemirror-block">
+    	<ui-codemirror ng-model="content" ui-codemirror-opts="editorOptions"></ui-codemirror>
+	</div>
+    
+    <div class="actions">
+        <button class="primary-button" type="button"
+        	ng-click="publish()">{{'Publish' | i18next}}</button>
+    </div>
+</section>
+<!-- /.main -->
+
+<div class="modal fade" id="addDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Add Translation' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<form id="addStylesheetForm">
+
+			<div class="modal-body">
+			
+			<div class="form-group">
+				<label for="name">{{'Locale Code' | i18next}}</label>
+				<input id="name" type="text" 
+					ng-model="temp"
+					class="form-control" required="required">
+				<span class="help-block">{{'e.g. en, en-US, de, fr' | i18next}}</span>
+			</div>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="addLocale(temp)"
+					ng-disabled="addStylesheetForm.$invalid || isUnchanged(temp)">{{'Add' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+			
+			</form>
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="removeDialog">
+
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">x</button>
+				<h3>{{'Remove' | i18next}}</h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<div class="modal-body">
+			
+			<p>
+				{{'Confirm you want to remove' | i18next}} <strong>{{temp}}</strong>
+			</p>
+			
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button class="primary-button"
+					ng-click="removeLocale(temp)">{{'Remove' | i18next}}</button>
+			</div>
+			<!-- /.modal-footer -->
+		
+		</div>
+		<!-- /.modal-content -->
+		
+	</div>
+	<!-- /.modal-dialog -->
+
+  </div>
+  <!-- /.modal-body -->
+
+</div>
+<!-- /.modal -->

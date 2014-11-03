@@ -1,0 +1,15 @@
+Options -Multiviews
+Options -Indexes
+Options +FollowSymLinks
+
+RewriteEngine on 
+
+RewriteCond %{REQUEST_URI} !dispatch\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.* dispatch.php [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php
+
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

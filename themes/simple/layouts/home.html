@@ -1,31 +1,22 @@
-<!doctype html>
-
-<html lang="{{language}}">
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>{{site}}</title>
-<meta name="description" content="{{description}}">
-<meta name="keywords" content="{{keywords}}">
-<meta name="callout" content="{{callout}}">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">  
-
-{{css-bootstrap}}
-{{css}}
-{{rss}}
-    
-</head>
-
-<body>
+<respond-settings  ng-if="site.ShowSettings"></respond-settings>
 
 <header role="banner">
 
 	<nav class="navbar navbar-default" role="navigation">
+      
+       <a 
+           ng-if="site.ShowSettings"
+           ng-click="toggleSettings()"
+           class="settings-toggle"><i class="fa fa-cog"></i></a>
+        
+        <a 
+           ng-if="site.ShowCart"
+           ng-click="toggleCart()"
+           class="cart-toggle"><i class="fa fa-shopping-cart"></i></a>
+        
+        <a 
+           ng-click="toggleSearch()"
+           class="search-toggle"><i class="fa fa-search"></i></a>
 	  
 	  <div class="navbar-header">
 	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -35,27 +26,27 @@
 	      <span class="icon-bar"></span>
 	    </button>
         
-        <a class="navbar-brand" href="{{site-url}}"><img src="{{logo}}"></a>
+		<a class="navbar-brand" href="{{site.Url}}"><img ng-src="{{fullLogoUrl}}"></a>
 	  </div>
 	  <!-- /.navbar-header -->
 	
-	  
-	  <div class="collapse navbar-collapse navbar-ex1-collapse">
-	    <ul class="nav navbar-nav navbar-right">
-			{{menu-primary}}
-          	{{search-menu}}
+	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+        <ul class="nav navbar-nav navbar-right">
+			<respond-menu type="primary"></respond-menu>
 	    </ul>
         
 	  </div>
 	  <!-- /.navbar-collapse -->
       
-      
 	</nav>
 
 </header>
 
+<respond-cart ng-if="site.ShowCart"></respond-cart>
+<respond-search></respond-search> 
+
 <div id="content" class="container" role="main">
-	{{content}}
+	<respond-content id="main-content" url="{{page.Url}}"></respond-content>
 </div>
 
 <footer role="contentinfo">
@@ -66,10 +57,10 @@
 		
           <div class="col-md-6">
             
-            <h4>{{t}}Contact{{/t}}</h4>
+            <h4>Contact</h4>
             
             <p>
-              {{t}}Call us at (555) 555-5555 or reach out via the website:{{/t}} <a href="{{root}}page/contact">{{t}}Contact{{/t}}</a>
+              Call us at (555) 555-5555 or reach out via the website: <a ui-sref="page/contact">Contact</a>
             </p>
             
             <p class="social">
@@ -84,10 +75,10 @@
           
           <div class="col-md-6">
             
-            <h4>{{t}}About{{/t}}</h4>
+            <h4>About</h4>
             
             <p>
-              {{site}} {{t}}powered by{{/t}} <a href="http://respondcms.com">Respond</a>. {{t}}Respond is an open source, responsive content management system that you can use to build responsive sites.  The latest version features Bootstrap 3.0, Bootswatch themes, a complete REST API, and a beautiful UI.{{/t}}
+              {{site.Name}} powered by <a href="http://www.respondcms.com">Respond</a>. Respond is an open source, responsive content management system (CMS) built on AngularJS that you can use to build responsive sites.  The latest version features Bootstrap 3.0, robust themes, a complete REST API, and a beautiful UI.
             </p>
             
           </div>
@@ -101,8 +92,8 @@
           <div class="col-md-12 menu">
               
               <ul>
-                <li>{{t}}Menu:{{/t}}</li>
-                {{menu-primary}}
+                <li>Menu:</li>
+				<respond-menu type="footer"></respond-menu>
               </ul>
               
           </div>
@@ -114,10 +105,3 @@
   	<!-- /.container -->
   
 </footer>
-  
-{{js}}
-{{analytics}}
-
-</body>
-
-</html>

@@ -1,0 +1,123 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+
+<div class="context-body">
+
+	<h2>{{'Messages' | i18next}}</h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="success">{{'Success' | i18next}}</label>
+			<input name="success" type="text" maxlength="128" class="form-control" 
+				ng-model="node.success">
+		</div>
+		
+		<div class="form-group">
+			<label for="error">{{'Error' | i18next}}</label>
+			<input name="error" type="text" maxlength="128" class="form-control" 
+				ng-model="node.error">
+		</div>
+		
+		<div class="form-group">
+			<label for="submit">{{'Button' | i18next}}</label>
+			<input name="submit" type="text" maxlength="128" class="form-control" 
+				ng-model="node.submit">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+
+<div class="context-body">
+
+	<h2>{{'Field' | i18next}} <a class="element-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="field-type">{{'Type' | i18next}}</label>
+			<select name="field-type" class="form-control"
+				ng-model="element.type">
+				<option value="text">{{'Text Box' | i18next}}</option>
+				<option value="textarea">{{'Text Area' | i18next}}</option>
+				<option value="select">{{'Dropdown List' | i18next}}</option>
+				<option value="checkboxlist">{{'Checkbox List' | i18next}}</option>
+				<option value="radiolist">{{'Radio button List' | i18next}}</option>
+		  	</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-label">{{'Label' | i18next}}</label>
+			<input name="field-label" type="text" maxlength="128" class="form-control" 
+				ng-model="element.label">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-id">{{'Id' | i18next}}</label>
+			<input name="field-id" type="text" maxlength="128" class="form-control" 
+				ng-model="element.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-required">{{'Required' | i18next}}</label>
+			<select id="field-required" class="form-control"
+				ng-model="element.required">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+		  	</select>
+		</div>
+		
+		<div id="options" class="form-group">
+			<label for="field-options" class="control-label">{{'Options' | i18next}}</label>
+			<textarea id="field-options" class="form-control"
+				ng-model="element.options"></textarea>
+			<span class="help-block">{{'Comma separated' | i18next}}</span>
+		</div>
+		
+		<div class="form-group">
+			<label for="field-helper-text">{{'Helper' | i18next}}</label>
+			<input name="field-helper-text" type="text" maxlength="128" class="form-control" 
+				ng-model="element.helper">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-placeholder">{{'Placeholder' | i18next}}</label>
+			<input name="field-placeholder" type="text" maxlength="128" class="form-control" 
+				ng-model="element.placeholder">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-cssclass">{{'CSS Class' | i18next}}</label>
+			<input name="field-cssclass" type="text" maxlength="128" class="form-control" 
+				ng-model="element.cssclass">
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="respond">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title ng-bind="title"></title>
+
+	<!-- css -->
+	<link type="text/css" href="//fonts.googleapis.com/css?family=Roboto:700,300,100|Inconsolata" rel="stylesheet">
+	<link type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link type="text/css" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+	<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link type="text/css" href="/css/app.css" rel="stylesheet">
+	<link type="text/css" href="/css/messages.css" rel="stylesheet">
+	<link type="text/css" href="/css/dropzone.css" rel="stylesheet">
+	<link type="text/css" href="/css/list.css" rel="stylesheet">
+	<link type="text/css" href="/css/login.css" rel="stylesheet">
+	<link type="text/css" href="/css/dialog.css" rel="stylesheet">
+	<link type="text/css" href="/css/content.css" rel="stylesheet">
+	<link type="text/css" href="/css/editor.css" rel="stylesheet">
+	
+	<!-- set base for HTML5 mode -->
+    <base href="/">
+
+    <!-- angular / ui-* -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.min.js"></script>
+    <script src="js/libs/ui-codemirror.js"></script>
+    
+    <!-- jquery / ui -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+   	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    
+    <!-- libs -->
+    <script src="js/utilities.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment-with-langs.min.js"></script>
+    <script src="js/libs/flipsnap.min.js"></script>
+	<script src="js/libs/prettify.js"></script>
+	<script src="js/libs/dropzone.js"></script>
+	<script src="js/libs/beautify-html.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/i18next/1.6.3/i18next-1.6.3.min.js"></script>
+    
+    <!-- Google maps API (for geocoding) -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
+    <!-- bootstrap -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- app -->
+    <script src="/api/setup.js.php"></script>
+    <script src="/js/respond.js"></script>
+    <script src="/js/messages.js"></script>
+    <script src="/js/respond.controllers.js"></script>
+    <script src="/js/respond.factories.js"></script>
+    <script src="/js/respond.directives.js"></script>
+    <script src="/js/respond.filters.js"></script>
+    <script src="/js/jm.i18next.js"></script>
+    
+    <!-- codemirror -->
+    <link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.css" rel="stylesheet">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/mode/xml/xml.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/mode/css/css.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/mode/javascript/javascript.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.4.0/addon/search/search.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.4.0/addon/search/searchcursor.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.4.0/addon/search/match-highlighter.js"></script>
+	
+	<!-- spectrum -->
+	<link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.3.0/css/spectrum.min.css" rel="stylesheet">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.3.0/js/spectrum.min.js"></script>
+    
+    <!-- jquery plugins -->
+	<script src="js/libs/jquery.paste.js"></script>
+	
+	<!-- stripe -->
+	<script src="https://js.stripe.com/v2/"></script>
+
+	<!-- respond.* -->
+	<script src="/js/respond.editor.js"></script>
+	<script src="/plugins/text/respond.text.js"></script>
+	<script src="/plugins/element/respond.element.js"></script>
+	<script src="/plugins/component/respond.component.js"></script>
+	<script src="/plugins/utility/respond.utility.js"></script>
+	
+  </head>
+  
+  <body class="{{template}}">
+	  <div ui-view></div>
+  </body>
+  
+</html>

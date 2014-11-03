@@ -1,0 +1,98 @@
+<section class="main">
+
+    <nav>
+        <a class="show-menu"></a>
+        
+        <h1>{{'Branding' | i18next}}</h1>
+    </nav>
+
+	
+	<form id="form-vertical">
+
+		<div class="form-group">
+			<label class="control-label">{{'Site' | i18next}}</label>
+
+			<div>
+                <span
+                	ng-click="showAddImage('logo')"
+                	class="placeholder">
+                    <img ng-if="logoUrl != null" 
+                    	ng-src="{{logoUrl}}">
+                </span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label">{{'Touch / Tile / Favorite' | i18next}}</label>
+
+			<div>
+                <span
+                	ng-click="showAddImage('icon')"
+                	class="placeholder touch">
+                    <img ng-if="iconUrl != null" 
+                    	ng-src="{{iconUrl}}">
+                </span>
+                <small>200px x 200px ({{'png_to_ico' | i18next}})</small>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label">{{'Tile Background' | i18next}}</label>
+
+			<div>
+				<input id="iconBg" type="text" 
+					ng-model="site.IconBg" class="form-control inline">
+				<button class="btn btn-default" 
+					ng-click="updateIconBg()">{{'Update' | i18next}}</button>
+                <small>{{'background_windows8' | i18next}}</small>
+			</div>
+		</div>
+	
+	</form>
+	<!-- /.form-horizontal -->
+
+</section>
+<!-- /.main -->
+
+<div class="immersive" id="imagesDialog">
+
+	<!-- messages -->
+	<input id="msg-enter-caption" value="{{'Enter caption' | i18next}}" type="hidden">
+	<input id="msg-image-instructions" value="{{'add_content_change_image' | i18next}}" type="hidden">
+
+	<div class="immersive-header">
+		<h3>{{'Select or upload a new image' | i18next}}  <span class="size">{{totalSize}} / {{fileLimit}} MB</h3>
+		<button type="button" class="close" data-dismiss="modal">x</button>
+	</div>
+	<!-- /.modal-header -->
+
+	<div class="immersive-body">
+	
+		<div class="image-list">
+		
+		    <div class="image existing" ng-repeat="image in images">
+		        <img 
+		        	ng-src="{{image.thumbUrl}}"
+		        	ng-click="addImage(image)">
+		        <small>
+		            <span>{{image.filename}}</span><br>
+		            <span>{{image.width}}</span>px x <span>{{image.height}}</span>px
+		        </small>
+		    </div>
+		
+		</div>
+		
+		<div id="drop" 
+			ng-if="totalSize <= fileLimit"
+			class="dropzone in-dialog" drop-zone target="branding" callback="updateImages()">
+		    <span class="dz-message">
+		        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
+		    </span>
+		</div>
+		<!-- /.dropzone -->
+	
+	</div>
+	<!-- /.immersive-body -->
+
+</div>
+<!-- /.modal -->
