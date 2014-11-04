@@ -1171,6 +1171,8 @@ angular.module('respond.controllers', [])
 		$scope.separator = '/#!/';
 	}
 	
+	$scope.page = null
+	
 	// retrieve page
 	Page.retrieveExtended($scope.pageId, $scope.site.Offset, function(data){
 	
@@ -1179,6 +1181,7 @@ angular.module('respond.controllers', [])
 		if(Setup.debug)console.log(data);
 		
 		$scope.page = data;
+		
 	});
 		
 	
