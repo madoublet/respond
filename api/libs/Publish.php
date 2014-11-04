@@ -1224,9 +1224,6 @@ class Publish
 		
 		}
 
-		// replace ui-sref with static reference
-		//$html = str_replace('ui-sref="', 'href="/', $html);
-		
 		// replace common Angular calls for SEO, e.g. {{page.Name}} {{page.Description}} {{site.Name}}
 		$html = str_replace('{{page.Name}}', $page['Name'], $html);
 		$html = str_replace('{{page.Description}}', $page['Description'], $html);
@@ -1235,6 +1232,102 @@ class Publish
 		$html = str_replace('{{site.Name}}', $site['Name'], $html);
 		$html = str_replace('{{site.Language}}', $site['Language'], $html);
 		
+		// add menu links for SEO (<respond-menu type="primary"></respond-menu>)
+		$delimiter = '#';
+		$startTag = '<respond-menu type="';
+		$endTag = '"></respond-menu>';
+		
+		$regex = $delimiter . preg_quote($startTag, $delimiter) 
+		                    . '(.*?)' 
+		                    . preg_quote($endTag, $delimiter) 
+		                    . $delimiter 
+		                    . 's';
+		
+		// match against html
+		preg_match_all($regex, $html, $matches);
+		
+		// crawl matches
+		foreach($matches[1] as &$value){
+			
+			// init menu
+			$menu = '';
+			
+			// get items for type
+			$menuItems = MenuItem::GetMenuItemsForType($site['SiteId'], $value);
+		    $i = 0;
+		    $parent_flag = false;
+		    $new_parent = true;
+		    
+		    // walk through items
+		    foreach($menuItems as $menuItem){
+		    	$url = $menuItem['Url'];
+		    	$name = $menuItem['Name'];
+		    	$css = '';
+		    	$cssClass = '';
+		    	$active = '';
+		    	
+		    	if($page['PageId']==$menuItem['PageId']){
+			    	$css = 'active';
+		    	}
+		    
+			    $css .= ' '.$menuItem['CssClass'];
+		    
+				if(trim($css)!=''){
+					$cssClass = ' class="'.$css.'"';
+				}
+			
+				// check for new parent
+				if(isset($menuItems[$i+1])){
+					if($menuItems[$i+1]['IsNested'] == 1 && $new_parent==true){
+						$parent_flag = true;
+					}
+				}
+			
+				$menu_root = '/';
+				
+				// check for external links
+				if(strpos($url,'http') !== false) {
+				    $menu_root = '';
+				}
+		
+				if($new_parent == true && $parent_flag == true){
+					$menu .= '<li>';
+					$menu .= '<a href="'.$menu_root.$url.'">'.$menuItem['Name'].'</a>';
+					$menu .= '<ul class="dropdown-menu">';
+					$new_parent = false;
+				}
+				else{
+			    	$menu .= '<li'.$cssClass.'>';
+					$menu .= '<a href="'.$menu_root.$url.'">'.$menuItem['Name'].'</a>';
+					$menu .= '</li>';
+			    }
+			    
+			    // end parent
+			    if(isset($menuItems[$i+1])){
+					if($menuItems[$i+1]['IsNested'] == 0 && $parent_flag==true){
+						$menu .= '</ul></li>'; // end parent if next item is not nested
+						$parent_flag = false;
+						$new_parent = true;
+					}
+				}
+				else{
+					if($parent_flag == true){
+						$menu .= '</ul></li>'; // end parent if next menu item is null
+						$parent_flag = false;
+						$new_parent = true;
+					}
+				}
+			}
+				
+			$i = $i+1;
+				
+			// fill menu with string
+			$html = str_replace('<respond-menu type="'.$value.'"></respond-menu>', 
+					'<respond-menu type="'.$value.'">'.$menu.'</respond-menu>', $html);
+			
+		}
+		
+	
 		// save the content to the published file
 		Utilities::SaveContent($dest, $file, $html);
 		

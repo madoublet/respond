@@ -2,7 +2,7 @@
 // respond.controllers 	-> js/respond.controllers.js
 // respond.factories 	-> js/respond.factories.js
 // respond.directives	-> js/respond.directives.js
-angular.module('respond.site', dependencies)
+angular.module('respond.site', ['ui.router', 'respond.site.controllers', 'respond.site.factories', 'respond.site.directives', 'jm.i18next'])
 
 // disable header during development
 .config(['$httpProvider', function($httpProvider) {

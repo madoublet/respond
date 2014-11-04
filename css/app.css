@@ -1267,9 +1267,9 @@ body .CodeMirror{
 		}
 		
 /* contextual validation */
-.triangulate-validating, 
-.triangulate-valid, 
-.triangulate-invalid{
+.respond-validating, 
+.respond-valid, 
+.respond-invalid{
 	position: absolute;
 	top: 37px;
 	right: 10px;
@@ -1284,17 +1284,17 @@ body .CodeMirror{
 	display: none;
 }
 
-	.triangulate-valid{
+	.respond-valid{
 		background-color: #7ec57e;
 	}
 	
-	.triangulate-invalid{
+	.respond-invalid{
 		background-color: #A4110A;
 	}
 	
-	.triangulate-validating.visible, 
-	.triangulate-valid.visible, 
-	.triangulate-invalid.visible{
+	.respond-validating.visible, 
+	.respond-valid.visible, 
+	.respond-invalid.visible{
 		display: inline-block;
 	}
 

@@ -16,7 +16,6 @@ angular.module('respond.setup', [])
 	// urls where your app (url), api and sites folder are publicly available
 	url: 				'<?php print APP_URL; ?>',
 	api: 				'<?php print API_URL; ?>',
-	sites: 				'<?php print SITES_URL; ?>',
 	site:				'<?php print SITE_URL; ?>',
 	terms:				'<?php print TERMS_URL; ?>',
 	

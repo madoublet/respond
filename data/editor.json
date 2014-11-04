@@ -82,7 +82,7 @@
 	},
 	{
 		"action":	"respond.component.tabset",
-		"tag":		"TRIANGULATE-TABSET",
+		"tag":		"RESPOND-TABSET",
 		"title":	"Tabs",
 		"class":	"respond-tabset",
 		"icon": 	"fa fa-folder draggable",
@@ -118,7 +118,7 @@
 	},
 	{
 		"action":	"respond.component.slideshow",
-		"tag":		"TRIANGULATE-SLIDESHOW",
+		"tag":		"RESPOND-SLIDESHOW",
 		"title":	"Slideshow",
 		"class":	"respond-slideshow",
 		"icon":		"fa fa-film draggable",
@@ -127,7 +127,7 @@
 	},
 	{
 		"action":	"respond.component.video",
-		"tag":		"TRIANGULATE-VIDEO",
+		"tag":		"RESPOND-VIDEO",
 		"title":	"Video",
 		"class":	"respond-video",
 		"icon":		"fa fa-video-camera draggable",
@@ -136,7 +136,7 @@
 	},
 	{
 		"action":	"respond.component.map",
-		"tag":		"TRIANGULATE-MAP",
+		"tag":		"RESPOND-MAP",
 		"title":	"Map",
 		"class":	"respond-map",
 		"icon":		"fa fa-map-marker draggable",
@@ -145,7 +145,7 @@
 	},
 	{
 		"action":	"respond.component.content",
-		"tag":		"TRIANGULATE-CONTENT",
+		"tag":		"RESPOND-CONTENT",
 		"title":	"Content",
 		"class":	"respond-content",
 		"icon":		"fa fa-cube draggable",
@@ -154,7 +154,7 @@
 	},
 	{
 		"action":	"respond.component.list",
-		"tag":		"TRIANGULATE-LIST",
+		"tag":		"RESPOND-LIST",
 		"title":	"List",
 		"class":	"respond-list",
 		"icon":		"fa fa-cubes draggable",
@@ -172,7 +172,7 @@
 	},
 	{
 		"action":	"respond.component.html",
-		"tag":		"TRIANGULATE-HTML",
+		"tag":		"RESPOND-HTML",
 		"title":	"Insert HTML",
 		"class":	"respond-html",
 		"icon":		"fa fa-html5 draggable",
@@ -181,7 +181,7 @@
 	},
 	{
 		"action":	"respond.component.form",
-		"tag":		"TRIANGULATE-FORM",
+		"tag":		"RESPOND-FORM",
 		"title":	"Form",
 		"class":	"respond-form",
 		"icon":		"fa fa-check draggable",
@@ -190,7 +190,7 @@
 	},
 	{
 		"action":	"respond.component.shelf",
-		"tag":		"TRIANGULATE-SHELF",
+		"tag":		"RESPOND-SHELF",
 		"title":	"Shelf",
 		"class":	"respond-shelf",
 		"icon":		"fa fa-tags draggable",
@@ -199,7 +199,7 @@
 	},
 	{
 		"action":	"respond.component.login",
-		"tag":		"TRIANGULATE-LOGIN",
+		"tag":		"RESPOND-LOGIN",
 		"title":	"Login",
 		"class":	"respond-login",
 		"icon":		"fa fa-key draggable",
@@ -208,7 +208,7 @@
 	},
 	{
 		"action":	"respond.component.registration",
-		"tag":		"TRIANGULATE-REGISTRATION",
+		"tag":		"RESPOND-REGISTRATION",
 		"title":	"Registration",
 		"class":	"respond-registration",
 		"icon":		"fa fa-lock draggable",

@@ -758,7 +758,7 @@ respond.component.list = {
 	
 	// parse list
 	parse:function(node){
-	
+		
 		// get params
 		var id = $(node).attr('id');
 		var type = $(node).attr('type');
