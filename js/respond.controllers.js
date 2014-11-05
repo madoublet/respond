@@ -2235,6 +2235,8 @@ angular.module('respond.controllers', [])
 		Theme.apply(theme.name, $scope.replaceContent,
 			function(){
 				 message.showMessage('success');
+				 
+				 $scope.themeId = theme.name;
 			});
 	
 		// hide the modal

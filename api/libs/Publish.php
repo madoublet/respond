@@ -943,21 +943,27 @@ class Publish
 	    	$content = file_get_contents($lessFile);
 
 	    	$less = new lessc;
-
-	    	try{
 	    	
-	    	  // compile less
-			  $less->compileFile($lessFile, $cssFile);
-
-			  // set configurations
-			  Publish::SetConfigurations($configFile, $cssFile);
-
-			  return true;
-			} 
-			catch(exception $e){
-			
-			  return false;
+	    	try{
+		    	
+		    	$css = $content;
+		    	
+		    	// set configurations
+		    	$css = Publish::SetConfigurations($configFile, $css);
+		    	
+		    	// compile less to css
+		    	$css = $less->compile($css);
+		    	
+		    	// put css into file
+		    	file_put_contents($cssFile, $css);
+		    	
+		    	return true;
+		    	
+	    	}
+	    	catch(exception $e){
+				return false;
 			}
+			
     	}
     	else{
     		return false;
@@ -966,12 +972,9 @@ class Publish
 	}
 	
 	// publish configurations
-	public static function SetConfigurations($configFile, $cssFile){
+	public static function SetConfigurations($configFile, $css){
 		
-		if(file_exists($configFile) && file_exists($cssFile)){
-		
-			// get css
-			$css = file_get_contents($cssFile);
+		if(file_exists($configFile)){
 		
 			// get jsontxt
 			$json = file_get_contents($configFile);
@@ -1011,11 +1014,10 @@ class Publish
 				}
 				
 			}
-			
-			// replace css with updated configs
-			file_put_contents($cssFile, $css);
 		
 		}
+		
+		return $css;
 		
 		
 	}
