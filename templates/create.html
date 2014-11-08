@@ -11,7 +11,10 @@
 	
 		<div ng-class="{'future': step != 1}">
 	
-			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}} <a id="toggle-advanced">{{'Language and Timezone' | i18next}}</a></h2>
+			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}} 
+				<a id="toggle-advanced"
+					ng-show="setup.changeDefaultLanguage">{{'Language and Timezone' | i18next}}</a>
+			</h2>
 			
 			<div class="container-fluid">
 			

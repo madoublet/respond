@@ -12,7 +12,7 @@ body.login{}
 		text-transform: uppercase;
 		font-weight: bold;
 		margin: 50px 0 0 0;
-		padding: 0 0 25px 0;
+		padding: 0 0 50px 0;
 		height: auto;
 	}
 	
@@ -240,7 +240,7 @@ body.login{}
 	
 	/* brand */
 	body.login .brand img{
-		max-height: 100px;
+		max-height: 50px;
 	}
 
 	body.login .terms{

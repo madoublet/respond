@@ -41,16 +41,16 @@
 	
 	// image prefix (the protocol to use for accessing images, prefixes the domain name)
 	define('IMAGE_PREFIX', 'http://');
-	
-	// default mode (hash, hashbang, html5, static)
-	define('DEFAULT_URL_MODE', 'static');
-	
+
 	// locations
 	define('APP_LOCATION', '../');
 	define('SITES_LOCATION', '../../sites');
 	
 	// setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');
+	
+	// determines whether the user can change the default language while creating the site
+	define('CHANGE_DEFAULT_LANGUAGE', false);
 	
 	// passcode
 	define('PASSCODE', 'iloverespond');
