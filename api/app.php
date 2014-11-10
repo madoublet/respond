@@ -20,8 +20,8 @@
 	define('IMAGE_MAX_HEIGHT', 768);
 	
 	// thumb width and height
-	define('THUMB_MAX_WIDTH', 200);
-	define('THUMB_MAX_HEIGHT', 200);
+	define('THUMB_MAX_WIDTH', 400);
+	define('THUMB_MAX_HEIGHT', 400);
 	
 	// set default as UTC
 	date_default_timezone_set('UTC');

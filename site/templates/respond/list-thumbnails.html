@@ -1,19 +1,21 @@
 <div class="respond-list list-group">
 	
-	<span class="thumbnail"
+	<span class="thumbnail-item"
 		ng-repeat="page in pages | filter:tag">
 		
 		<a class="pull-left thumbnail"
 			 ui-sref="{{page.Url}}"
 			 href="/{{page.Url}}"
 			 ng-show="page.HasImage">
-				 <img ng-src="{{site.ImagesURL}}{{page.Thumb}}">
+			
+			<img ng-src="{{site.ImagesURL}}{{page.Thumb}}">
+		
+			<div class="caption">
+				<h4>{{page.Name}}</h4>
+				<h5 ng-show="page.Callout">{{page.Callout}}</h5>
+				<p>{{page.Description}}</p>
+			</div>
 		</a>
-		<div class="caption">
-			<h4><a ui-sref="{{page.Url}}" href="/{{page.Url}}">{{page.Name}}</a></h4>
-			<h5 ng-show="page.Callout">{{page.Callout}}</h5>
-			<p>{{page.Description}}</p>
-		</div>
 		
 	</span>
 	
@@ -21,5 +23,11 @@
 
 <p ng-show="(pages | filter:tag).length == 0" class="list-none">{{'No additional pages' | i18next}}</p>
 
-<button class="btn btn-default" ng-show="pageResults && current != 0" ng-click="previous()"><i class="fa fa-chevron-left"></i> {{'Previous' | i18next}}</button>
-<button class="btn btn-default" ng-show="pageResults && ((pages | filter:tag).length != 0)" ng-click="next()">{{'Next' | i18next}} <i class="fa fa-chevron-right"></i> </button>
+<button class="btn btn-default" 
+	ng-if="pageResults == true" 
+	ng-show="current != 0" 
+	ng-click="previous()"><i class="fa fa-chevron-left"></i> {{'Previous' | i18next}}</button>
+<button class="btn btn-default" 
+	ng-if="pageResults == true" 
+	ng-show="((pages | filter:tag).length != 0)" 
+	ng-click="next()">{{'Next' | i18next}} <i class="fa fa-chevron-right"></i> </button>
