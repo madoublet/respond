@@ -70,7 +70,7 @@ angular.module('respond.site.controllers', [])
 	$rootScope.site = $scope.site;
 	
 	// set fullLogoUrl
-	$scope.fullLogoUrl = $scope.site.ImagesURL + $scope.site.LogoUrl;
+	$scope.fullLogoUrl = $scope.site.ImagesUrl + $scope.site.LogoUrl;
 	
 	// set cart to scope
 	$scope.cart = $rootScope.cart;
