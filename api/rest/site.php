@@ -312,7 +312,7 @@ class SiteRetrieveResource extends Tonic\Resource {
 			}
 			
 			// set the ImagesURL
-			$site['ImagesURL'] = $imagesURL.'/';
+			$site['ImagesUrl'] = $imagesURL.'/';
             
             // determine offset for timezone
             $zone = new DateTimeZone($site['TimeZone']);

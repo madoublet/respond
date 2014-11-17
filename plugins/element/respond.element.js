@@ -1412,9 +1412,10 @@ respond.element.image = {
 		var scope = angular.element($("section.main")).scope();
 		
 		// get domain from scope
-		var url = scope.site.ImagesURL;
+		var url = scope.site.ImagesUrl;
 		
 		// replace the images URL with the URL from the site
+		src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
 		src = utilities.replaceAll(src, '{{site.ImagesURL}}', url);
 		
 		// get display class
@@ -1492,18 +1493,18 @@ respond.element.image = {
 	  		
   		}
   		
-  		var html = startLink + '<img ng-src="{{site.ImagesURL}}' + src + '">' + endLink;
+  		var html = startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink;
   
   		// html for tag
   		if(display == 'left'){
 	  		
-	  		html = startLink + '<img ng-src="{{site.ImagesURL}}' + src + '">' + endLink + 
+	  		html = startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink + 
 	  					'<p>' + $(node).find('[contentEditable=true]').html() + '</p>';
 	  		
   		}
   		else if(display == 'right'){
 	  		html =  '<p>' + $(node).find('[contentEditable=true]').html() + '</p>' +
-	  					startLink + '<img ngsrc="{{site.ImagesURL}}' + src + '">' + endLink;
+	  					startLink + '<img ngsrc="{{site.ImagesUrl}}' + src + '">' + endLink;
   		}
   		
 		// tag attributes

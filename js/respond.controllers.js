@@ -2385,7 +2385,7 @@ angular.module('respond.controllers', [])
 	$scope.addImage = function(image){
 	
 		// setup url for images
-		var url = $scope.site.ImagesURL + 'files/' + image.filename;
+		var url = $scope.site.ImagesUrl + 'files/' + image.filename;
 		
 		// set selected
 		$scope.control.selected = url;
@@ -2415,15 +2415,15 @@ angular.module('respond.controllers', [])
 		
 	// update image urls
 	if($scope.site.LogoUrl != null){
-    	$scope.logoUrl = $scope.site.ImagesURL + 'files/' + $scope.site.LogoUrl;
+    	$scope.logoUrl = $scope.site.ImagesUrl + 'files/' + $scope.site.LogoUrl;
     }
     
     if($scope.site.PayPalLogoUrl != null){
-		$scope.payPalLogoUrl = $scope.site.ImagesURL + 'files/' + $scope.site.PayPalLogoUrl;
+		$scope.payPalLogoUrl = $scope.site.ImagesUrl + 'files/' + $scope.site.PayPalLogoUrl;
 	}
 	
 	if($scope.site.IconUrl != null){
-		$scope.iconUrl = $scope.site.ImagesURL + 'files/' + $scope.site.IconUrl;
+		$scope.iconUrl = $scope.site.ImagesUrl + 'files/' + $scope.site.IconUrl;
 	}
 	
 	// shows the images dialog
@@ -2477,13 +2477,13 @@ angular.module('respond.controllers', [])
 			
 			// update image
 			if($scope.type == 'logo'){
-				$scope.logoUrl = $scope.site.ImagesURL + 'files/' + image.filename;
+				$scope.logoUrl = $scope.site.ImagesUrl + 'files/' + image.filename;
 			}
 			else if($scope.type == 'paypal'){
-				$scope.payPalLogoUrl = $scope.site.ImagesURL + 'files/' + image.filename;
+				$scope.payPalLogoUrl = $scope.site.ImagesUrl + 'files/' + image.filename;
 			}
 			else if($scope.type == 'icon'){
-				$scope.iconUrl = $scope.site.ImagesURL + 'files/' + image.filename;
+				$scope.iconUrl = $scope.site.ImagesUrl + 'files/' + image.filename;
 			}
 			
 			// update site in session
