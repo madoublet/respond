@@ -69,6 +69,9 @@ angular.module('respond.site.controllers', [])
 	$scope.site = siteMeta.data;
 	$rootScope.site = $scope.site;
 	
+	// fallback
+	$scope.site.ImagesURL = $scope.site.ImagesUrl;
+	
 	// set fullLogoUrl
 	$scope.fullLogoUrl = $scope.site.ImagesUrl + $scope.site.LogoUrl;
 	

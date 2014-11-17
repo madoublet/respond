@@ -66,6 +66,9 @@
 	$scope.site = site;
 	$rootScope.site = $scope.site;
 	
+	// fallback
+	$scope.site.ImagesURL = $scope.site.ImagesUrl;
+	
 	// set fullLogoUrl
 	$scope.fullLogoUrl = $scope.site.ImagesUrl + $scope.site.LogoUrl;
 	
