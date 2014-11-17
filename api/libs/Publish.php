@@ -451,7 +451,7 @@ class Publish
 						        .'			FirstName: \''.$page['FirstName'].'\','.PHP_EOL
 						        .'			LastName: \''.$page['LastName'].'\','.PHP_EOL
 						        .'			LastModifiedBy: \''.$page['FirstName'].' '.$page['LastName'].'\','.PHP_EOL
-						        .'			PhotoUrl: \''.$page['PhotoUrl'].'\''.PHP_EOL
+						        .'			PhotoURL: \''.$page['PhotoUrl'].'\''.PHP_EOL
 						        .'		};'.PHP_EOL
 						        .'},'.PHP_EOL
 						        
@@ -592,7 +592,7 @@ class Publish
 						        .'"FirstName": "'.$page['FirstName'].'",'
 						        .'"LastName": "'.$page['LastName'].'",'
 						        .'"LastModifiedBy": "'.$page['FirstName'].' '.$page['LastName'].'",'
-						        .'"PhotoUrl": "'.$page['PhotoUrl'].'"'
+						        .'"PhotoURL": "'.$page['PhotoUrl'].'"'
 						        .'},';
 			}
 			
