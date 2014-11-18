@@ -125,9 +125,10 @@ respond.component.slideshow = {
 			var scope = angular.element($("section.main")).scope();
 			
 			// get domain from scope
-			var url = scope.site.ImagesURL;
+			var url = scope.site.ImagesUrl;
 			
 			// replace the images URL with the URL from the site
+			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
 			src = utilities.replaceAll(src, '{{site.ImagesURL}}', url);
 			
 			var image = '<img src="' + src + '" title="' + title + '">';

@@ -243,6 +243,49 @@ var utilities = {
 	    return null;
 	},
 	
+	// get a link from the selected text
+	getLinkFromSelection:function() {
+		
+		var parent = null;
+		
+		if(document.selection){
+    		parent = document.selection.createRange().parentElement();
+    	}
+	    else{
+	    	var selection = window.getSelection();
+	    	if(selection.rangeCount > 0){
+	    		parent = selection.getRangeAt(0).startContainer.parentNode;
+	    	}
+	    }
+	    
+	    if(parent != null){
+		    if(parent.tagName == 'A'){
+			    return parent;
+		    }
+	    }
+	    
+	    if (window.getSelection) {
+	        var selection = window.getSelection();
+	        
+	        if(selection.rangeCount > 0) {
+	            var range = selection.getRangeAt(0);
+	            var div = document.createElement('DIV');
+	            div.appendChild(range.cloneContents());
+	            var links = div.getElementsByTagName("A");
+	            
+	            if(links.length > 0){
+		            return links[0];
+	            }
+	            else{
+		            return null;
+	            }
+	            
+	        }
+	    }
+	    
+	    return null;
+	},
+	
 	// restores the selection
 	restoreSelection:function(savedSel) {
 	    if (savedSel) {

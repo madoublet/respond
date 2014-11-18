@@ -66,8 +66,11 @@
 	$scope.site = site;
 	$rootScope.site = $scope.site;
 	
+	// fallback
+	$scope.site.ImagesURL = $scope.site.ImagesUrl;
+	
 	// set fullLogoUrl
-	$scope.fullLogoUrl = $scope.site.ImagesURL + $scope.site.LogoUrl;
+	$scope.fullLogoUrl = $scope.site.ImagesUrl + $scope.site.LogoUrl;
 	
 	// set cart to scope
 	$scope.cart = $rootScope.cart;

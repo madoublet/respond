@@ -305,12 +305,30 @@ respond.text.link = {
 	// creates link
 	create:function(){
 
+		// save the selection
 		respond.text.link.selection = utilities.saveSelection();
 
-	    $('#linkUrl').val('');
-	    $('#linkCssClass').val('');
-	    $('#linkTarget').val('');
-	    $('#linkTitle').val('');
+		// defaults
+		var url = '';
+		var cssClass = '';
+		var target = '';
+		var title = '';
+
+		// get link from selected text
+		var link = utilities.getLinkFromSelection();
+		
+		// set link detail if available
+		if(link != null){
+			url = link.href;
+			cssClass = link.className;
+			target = link.target;
+			title = link.title;
+		}
+
+	    $('#linkUrl').val(url);
+	    $('#linkCssClass').val(cssClass);
+	    $('#linkTarget').val(target);
+	    $('#linkTitle').val(title);
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 	    

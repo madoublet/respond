@@ -708,7 +708,7 @@ class Publish
 			'Domain' => $site['Domain'],
 			'API' => API_URL,
 			'Name' => $site['Name'],
-			'ImagesURL' => $imagesURL,
+			'ImagesUrl' => $imagesURL,
 			'UrlMode' => $site['UrlMode'],
 			'LogoUrl' => $logoUrl,
 			'IconUrl' => $iconUrl,

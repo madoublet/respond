@@ -22,14 +22,14 @@ angular.module('respond', ['ui.router',
 }])
 
 // configure the module
-.config(function($stateProvider, $locationProvider, $urlRouterProvider, $i18nextProvider, $httpProvider) {
+.config(function($stateProvider, $locationProvider, $urlRouterProvider, $i18nextProvider, $httpProvider, Setup) {
 
 	// config $il8nextProvider
 	$i18nextProvider.options = {
-        lng: 'en',
+        lng: Setup.language,
         useCookie: false,
         useLocalStorage: false,
-        fallbackLng: 'en',
+        fallbackLng: Setup.language,
         resGetPath: 'locales/__lng__/__ns__.json'
     };
 	
