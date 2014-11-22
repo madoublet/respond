@@ -15,11 +15,11 @@
 				lat-long="{{page.LatLong}}" map-id="{{id}}-map">
 			<a class="pull-left thumbnail"
 				 ui-sref="{{page.Url}}"
-				 href="/{{page.Url}}"
+				 href="{{page.Url}}"
 				 ng-show="page.HasImage">
 					 <img ng-src="page.Thumb">
 			</a>
-			<h4><a ui-sref="{{page.Url}}" href="/{{page.Url}}">{{page.Name}}</a></h4>
+			<h4><a ui-sref="{{page.Url}}" href="{{page.Url}}">{{page.Name}}</a></h4>
 			<h5 ng-show="page.Location">{{page.Location}}</h5>
 			<p>{{page.Description}}</p>
 		</li>

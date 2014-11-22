@@ -1,7 +1,7 @@
 <div class="respond-list-blog-item"
 	ng-repeat="page in pages | filter:tag">
 	<respond-content url="{{page.Url}}"></respond-content>
-	<div class="blog-meta"><p><a ui-sref="{{page.Url}}" href="/{{page.Url}}">{{'Permanent Link'  | i18next}}</a></p></div>
+	<div class="blog-meta"><p><a ui-sref="{{page.Url}}" href="{{page.Url}}">{{'Permanent Link'  | i18next}}</a></p></div>
 </div>
 
 <p ng-show="(pages | filter:tag).length == 0" class="list-none">{{'No additional pages' | i18next}}</p>

@@ -2279,6 +2279,7 @@ angular.module('respond.controllers', [])
 	
 	$scope.themeId = Site.Theme;
     $scope.domain = Site.Domain;
+    $scope.friendlyId = null;
     $scope.configs = [];
 	$scope.totalSize = 0;
 	$scope.fileLimit = $rootScope.site.FileLimit;
@@ -2290,10 +2291,11 @@ angular.module('respond.controllers', [])
 		
 		$scope.themeId = data.Theme;
 		$scope.domain = data.Domain;
+		$scope.friendlyId = data.FriendlyId;
 		
 		var stamp = moment().format('X');
 			
-		var url = $scope.domain + '/?t='+stamp;
+		var url = $scope.setup.sites + '/' + $scope.friendlyId + '?t='+stamp;
 		
 		$scope.currentSite = $sce.trustAsResourceUrl(url);
 	});
@@ -2316,7 +2318,7 @@ angular.module('respond.controllers', [])
 			function refresh(){
 				var stamp = moment().format('X');
 					
-				var url = $scope.domain + '/?t='+stamp;
+				var url = $scope.setup.sites + '/' + $scope.friendlyId + '?t='+stamp;
 				
 				$scope.currentSite = $sce.trustAsResourceUrl(url);
 			}

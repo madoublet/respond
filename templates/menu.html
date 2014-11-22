@@ -15,7 +15,7 @@
 
 	<h2 class="basic" ng-if="user.Role == 'Admin'">
 		{{'Manage your Site' | i18next}}
-		<a class="site" target="_blank" href="{{site.Domain}}">{{'View Site' | i18next}} <i class="fa fa-external-link"></i></a>
+		<a class="site" target="_blank" ng-href="{{site.Domain}}">{{'View Site' | i18next}} <i class="fa fa-external-link"></i></a>
 	</h2>
 	<!-- /.basic -->
 
