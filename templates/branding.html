@@ -47,6 +47,17 @@
                 <small>{{'background_windows8' | i18next}}</small>
 			</div>
 		</div>
+		
+		<div class="form-group">
+			<label class="control-label">{{'QR Code' | i18next}}</label>
+
+			<div>
+				<qrcode version="4" 
+					error-correction-level="M" 
+					size="280" 
+					data="{{site.Domain}}" href="{{site.Domain}}"></qrcode>
+			</div>
+		</div>
 	
 	</form>
 	<!-- /.form-horizontal -->

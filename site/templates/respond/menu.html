@@ -1,6 +1,6 @@
 <li ng-repeat="item in menuItems" class="{{item.CssClass}} {{item.HasChildren && 'dropdown' || ''}}  {{(item.PageId == currentPageId) && 'active' || ''}}">
 	<a ng-if="item.HasChildren == false && item.PageId != ''"
-		ui-sref="{{item.Url}}" href="/{{item.Url}}">{{item.Name}}</a>
+		ui-sref="{{item.Url}}" href="{{item.Url}}">{{item.Name}}</a>
 		
 	<a ng-if="item.HasChildren == false && item.PageId == ''"
 		href="{{item.Url}}">{{item.Name}}</a>
@@ -11,7 +11,7 @@
 	<ul ng-if="item.HasChildren == true" class="dropdown-menu">
 		<li ng-repeat="child in item.Children" class="{{item.CssClass}}"> 
 			<a ng-if="child.PageId != ''"
-				ui-sref="{{child.Url}}" href="/{{child.Url}}">{{child.Name}}</a>
+				ui-sref="{{child.Url}}" href="{{child.Url}}">{{child.Name}}</a>
 				
 			<a ng-if="child.PageId == ''"
 				href="{{child.Url}}">{{child.Name}}</a>

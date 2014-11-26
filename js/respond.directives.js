@@ -20,7 +20,7 @@ angular.module('respond.directives', [])
 	        	$invalid.hide();
 	       
 				var name = $el.val();
-				var friendlyId = $el.attr('data-id');
+				var friendlyId = scope.friendlyId;
 				
 				if(name == ''){
 					$validating.hide();
@@ -231,6 +231,7 @@ angular.module('respond.directives', [])
 	}
 })
 
+
 .directive('respondSpectrum', function(Setup) {
     return {
         // attribute
@@ -245,6 +246,21 @@ angular.module('respond.directives', [])
         	 	$(element).spectrum({
 	        	 	color: val,
 	        	 	showInput: true,
+					showInitial: true,
+					showPalette: true,
+					showSelectionPalette: true,
+					preferredFormat: "hex",
+					palette: [
+					["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+					["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+					["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+					["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+					["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+					["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+					["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+					["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+					],
+					localStorageKey: "colors.respond",
         	 		beforeShow: function(){
 	        	 		utilities.selection = utilities.saveSelection();
 	        	 		
@@ -265,15 +281,196 @@ angular.module('respond.directives', [])
 							    scope.current.selected = hex;
 						    }
 					    )
-						
-					    
+
 					    // execute forecolor
 					    document.execCommand('foreColor', false, hex);
 					}
-        	 	});
-          
+        	 	});          
         }
     };
 })
 
+.directive('qrcode', ['$window', function($window) {
+
+    var canvas2D = !!$window.CanvasRenderingContext2D,
+        levels = {
+          'L': 'Low',
+          'M': 'Medium',
+          'Q': 'Quartile',
+          'H': 'High'
+        },
+        draw = function(context, qr, modules, tile) {
+          for (var row = 0; row < modules; row++) {
+            for (var col = 0; col < modules; col++) {
+              var w = (Math.ceil((col + 1) * tile) - Math.floor(col * tile)),
+                  h = (Math.ceil((row + 1) * tile) - Math.floor(row * tile));
+
+              context.fillStyle = qr.isDark(row, col) ? '#000' : '#fff';
+              context.fillRect(Math.round(col * tile),
+                               Math.round(row * tile), w, h);
+            }
+          }
+        };
+
+    return {
+      restrict: 'E',
+      template: '<canvas class="qrcode"></canvas>',
+      link: function(scope, element, attrs) {
+        var domElement = element[0],
+            $canvas = element.find('canvas'),
+            canvas = $canvas[0],
+            context = canvas2D ? canvas.getContext('2d') : null,
+            download = 'download' in attrs,
+            href = attrs.href,
+            link = download || href ? document.createElement('a') : '',
+            trim = /^\s+|\s+$/g,
+            error,
+            version,
+            errorCorrectionLevel,
+            data,
+            size,
+            modules,
+            tile,
+            qr,
+            $img,
+            setVersion = function(value) {
+              version = Math.max(1, Math.min(parseInt(value, 10), 10)) || 4;
+            },
+            setErrorCorrectionLevel = function(value) {
+              errorCorrectionLevel = value in levels ? value : 'M';
+            },
+            setData = function(value) {
+              if (!value) {
+                return;
+              }
+
+              data = value.replace(trim, '');
+              qr = qrcode(version, errorCorrectionLevel);
+              qr.addData(data);
+
+              try {
+                qr.make();
+              } catch(e) {
+                error = e.message;
+                return;
+              }
+
+              error = false;
+              modules = qr.getModuleCount();
+            },
+            setSize = function(value) {
+              size = parseInt(value, 10) || modules * 2;
+              tile = size / modules;
+              canvas.width = canvas.height = size;
+            },
+            render = function() {
+              if (!qr) {
+                return;
+              }
+
+              if (error) {
+                if (link) {
+                  link.removeAttribute('download');
+                  link.title = '';
+                  link.href = '#_';
+                }
+                if (!canvas2D) {
+                  domElement.innerHTML = '<img src width="' + size + '"' +
+                                         'height="' + size + '"' +
+                                         'class="qrcode">';
+                }
+                scope.$emit('qrcode:error', error);
+                return;
+              }
+
+              if (download) {
+                domElement.download = 'qrcode.png';
+                domElement.title = 'Download QR code';
+              }
+
+              if (canvas2D) {
+                draw(context, qr, modules, tile);
+
+                if (download) {
+                  domElement.href = canvas.toDataURL('image/png');
+                  return;
+                }
+              } else {
+                domElement.innerHTML = qr.createImgTag(tile, 0);
+                $img = element.find('img');
+                $img.addClass('qrcode');
+
+                if (download) {
+                  domElement.href = $img[0].src;
+                  return;
+                }
+              }
+
+              if (href) {
+                domElement.href = href;
+              }
+            };
+
+        if (link) {
+          link.className = 'qrcode-link';
+          $canvas.wrap(link);
+          domElement = link;
+        }
+
+        setVersion(attrs.version);
+        setErrorCorrectionLevel(attrs.errorCorrectionLevel);
+        setSize(attrs.size);
+
+        attrs.$observe('version', function(value) {
+          if (!value) {
+            return;
+          }
+
+          setVersion(value);
+          setData(data);
+          setSize(size);
+          render();
+        });
+
+        attrs.$observe('errorCorrectionLevel', function(value) {
+          if (!value) {
+            return;
+          }
+
+          setErrorCorrectionLevel(value);
+          setData(data);
+          setSize(size);
+          render();
+        });
+
+        attrs.$observe('data', function(value) {
+          if (!value) {
+            return;
+          }
+
+          setData(value);
+          setSize(size);
+          render();
+        });
+
+        attrs.$observe('size', function(value) {
+          if (!value) {
+            return;
+          }
+
+          setSize(value);
+          render();
+        });
+
+        attrs.$observe('href', function(value) {
+          if (!value) {
+            return;
+          }
+
+          href = value;
+          render();
+        });
+      }
+    };
+  }])
 ;

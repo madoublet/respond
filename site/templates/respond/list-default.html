@@ -4,7 +4,7 @@
 		ng-repeat="page in pages | filter:tag">
 		<a class="pull-left thumbnail"
 			 ui-sref="{{page.Url}}"
-			 href="/{{page.Url}}"
+			 href="{{page.Url}}"
 			 ng-show="page.HasImage">
 				 <img src="{{site.ImagesUrl}}{{page.Thumb}}">
 		</a>

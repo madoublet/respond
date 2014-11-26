@@ -493,3 +493,33 @@ div#imageList .listItem img{
 	margin-left: 5px;
 	font-size: 11px;
 }
+
+/* font awesome selection */
+#searchIcons{
+	margin-bottom: 10px;
+}
+
+div#selectIcon ul {
+	text-align: center;
+}
+
+div#selectIcon ul li {
+	display: inline-block;
+	margin: 3px;
+	padding: 5px;
+	border: 1px solid #F0F0F0;
+	text-align: center;
+	color: #111;
+	width: 15%;
+	min-height: 90px;
+	vertical-align: top;
+	font-size: 12px;
+}
+
+div#selectIcon ul li i {
+	display: block;
+	font-size: 25px;
+	text-align: center;
+	margin: 5px 0 0 0;
+	padding: 5px 0;
+}

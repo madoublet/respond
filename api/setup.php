@@ -31,7 +31,7 @@
 	// URLs
 	define('APP_URL', 'http://app.myrespond.com');
 	define('API_URL', 'http://app.myrespond.com/api');
-	define('SITES_URL', 'http://sites.myrespond.com');
+	define('SITES_URL', 'http://app.myrespond.com/sites');
 	define('SITE_URL', 'http://{{friendlyId}}.myrespond.com');
 	define('TERMS_URL', 'http://myrespond.com/page/terms-of-service');
 	define('PRICING_URL', 'http://myrespond.com/page/terms-of-service');
@@ -44,7 +44,7 @@
 
 	// locations
 	define('APP_LOCATION', '../');
-	define('SITES_LOCATION', '../../sites');
+	define('SITES_LOCATION', '../sites');
 	
 	// setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');

@@ -995,18 +995,26 @@ class Publish
 					$prefix = '';
 					$postfix = '';
 					
-					// set prefix
+					// set prefix (deprecated)
 					if(isset($control['prefix'])){
 						$prefix = $control['prefix'];
+						
+						$selected = $prefix.$selected;
 					}
 					
 					// set postfix
 					if(isset($control['postfix'])){
 						$postfix = $control['postfix'];
+						
+						$selected  = $selected.$postfix;
 					}
 					
-					// add prefix and postfix
-					$selected = $prefix.$selected.$postfix;
+					// set format
+					if(isset($control['cssFormat'])){
+						$cssFormat = $control['cssFormat'];
+						
+						$selected = str_replace('%1', $selected, $cssFormat);
+					}
 					
 					// replace config with selection
 					$css = str_replace($replace, $selected, $css);
@@ -1159,6 +1167,9 @@ class Publish
 		// created ctrl
 		$ctrl = ucfirst($page['FriendlyId']);
 		$ctrl = str_replace('-', '', $ctrl);
+		
+		// set base
+		$base = '';
         
  	  	// create a static location for the page
  	  	if($page['PageTypeId'] == -1){
@@ -1177,6 +1188,9 @@ class Publish
 				$ctrl = ucfirst($pageType['FriendlyId']).$ctrl;
 				$ctrl = str_replace('-', '', $ctrl);
 			}
+			
+			// set $base to the root of the director
+			$base = '../';
 
 		}
         
@@ -1233,6 +1247,9 @@ class Publish
 		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
 		$html = str_replace('{{site.Name}}', $site['Name'], $html);
 		$html = str_replace('{{site.Language}}', $site['Language'], $html);
+		
+		// update base
+		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
 		
 		// add menu links for SEO (<respond-menu type="primary"></respond-menu>)
 		$delimiter = '#';
