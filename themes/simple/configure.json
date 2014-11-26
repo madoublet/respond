@@ -13,8 +13,7 @@
 				"replace": 		"config(--body-background-image)",
 				"control":		"image",
 				"selected":		"",
-				"prefix":		"url(",
-				"postfix":		")"
+				"cssFormat":	"url(%1)"
 			},
 			{
 				"name": 		"Background Position",
@@ -204,7 +203,7 @@
 				"replace": 		"config(--h1-font-size)",
 				"control":		"number",
 				"selected":		40,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",
@@ -222,7 +221,7 @@
 				"replace": 		"config(--h2-font-size)",
 				"control":		"number",
 				"selected":		30,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",
@@ -240,7 +239,7 @@
 				"replace": 		"config(--h3-font-size)",
 				"control":		"number",
 				"selected":		20,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",
@@ -258,7 +257,7 @@
 				"replace": 		"config(--h4-font-size)",
 				"control":		"number",
 				"selected":		16,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",
@@ -276,7 +275,7 @@
 				"replace": 		"config(--h5-font-size)",
 				"control":		"number",
 				"selected":		16,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",
@@ -294,7 +293,7 @@
 				"replace": 		"config(--default-font-size)",
 				"control":		"number",
 				"selected":		14,
-				"postfix":		"px"
+				"cssFormat":	"%1px"
 			},
 			{
 				"name": 		"Text Color",

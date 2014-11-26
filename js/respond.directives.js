@@ -20,7 +20,7 @@ angular.module('respond.directives', [])
 	        	$invalid.hide();
 	       
 				var name = $el.val();
-				var friendlyId = $el.attr('data-id');
+				var friendlyId = scope.friendlyId;
 				
 				if(name == ''){
 					$validating.hide();

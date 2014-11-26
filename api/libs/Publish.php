@@ -995,18 +995,26 @@ class Publish
 					$prefix = '';
 					$postfix = '';
 					
-					// set prefix
+					// set prefix (deprecated)
 					if(isset($control['prefix'])){
 						$prefix = $control['prefix'];
+						
+						$selected = $prefix.$selected;
 					}
 					
 					// set postfix
 					if(isset($control['postfix'])){
 						$postfix = $control['postfix'];
+						
+						$selected  = $selected.$postfix;
 					}
 					
-					// add prefix and postfix
-					$selected = $prefix.$selected.$postfix;
+					// set format
+					if(isset($control['cssFormat'])){
+						$cssFormat = $control['cssFormat'];
+						
+						$selected = str_replace('%1', $selected, $cssFormat);
+					}
 					
 					// replace config with selection
 					$css = str_replace($replace, $selected, $css);

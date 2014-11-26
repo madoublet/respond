@@ -507,11 +507,13 @@
 			</div>
   
 			<div class="modal-body">
+				
+				<input id="searchIcons" type="text" ng-model="search.name" class="form-control" placeholder="{{'Search' | i18next}}">
 
 				<div id="selectIcon" class="select select-lg">
 				
 				<ul>
-					<li ng-repeat="icon in icons">
+					<li ng-repeat="icon in icons | filter:search">
 						<i ng-class="'fa fa-' + icon.id"></i>
 						{{icon.name}}
 					</li>
