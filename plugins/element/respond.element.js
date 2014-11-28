@@ -1504,7 +1504,7 @@ respond.element.image = {
   		}
   		else if(display == 'right'){
 	  		html =  '<p>' + $(node).find('[contentEditable=true]').html() + '</p>' +
-	  					startLink + '<img ngsrc="{{site.ImagesUrl}}' + src + '">' + endLink;
+	  					startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink;
   		}
   		
 		// tag attributes
