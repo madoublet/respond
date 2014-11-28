@@ -4,7 +4,7 @@
 class Site{
 	
 	// adds a Site
-	public static function Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $theme, $primaryEmail, $timeZone, $language, $welcomeEmail, $receiptEmail){
+	public static function Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $theme, $primaryEmail, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail){
         
         try{
             
@@ -18,8 +18,8 @@ class Site{
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteId, FriendlyId, UrlMode, Domain, Bucket, Name, LogoUrl, Theme, PrimaryEmail, TimeZone, Language, WelcomeEmail, ReceiptEmail, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteId, FriendlyId, UrlMode, Domain, Bucket, Name, LogoUrl, Theme, PrimaryEmail, TimeZone, Language, Direction, WelcomeEmail, ReceiptEmail, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteId);
@@ -33,9 +33,10 @@ class Site{
             $s->bindParam(9, $primaryEmail);
             $s->bindParam(10, $timeZone);
             $s->bindParam(11, $language);
-            $s->bindParam(12, $welcomeEmail);
-            $s->bindParam(13, $receiptEmail);
-            $s->bindParam(14, $timestamp);
+            $s->bindParam(12, $direction);
+            $s->bindParam(13, $welcomeEmail);
+            $s->bindParam(14, $receiptEmail);
+            $s->bindParam(15, $timestamp);
             
             $s->execute();
             
@@ -51,6 +52,7 @@ class Site{
                 'PrimaryEmail' => $primaryEmail,
                 'TimeZone' => $timeZone,
                 'Language' => $language,
+                'Direction' => $direction,
                 'WelcomeEmail' => $welcomeEmail,
                 'ReceiptEmail' => $receiptEmail,
                 'Created' => $timestamp
@@ -62,7 +64,7 @@ class Site{
 	}
 	
 	// edits the site information
-	public static function Edit($siteId, $name, $domain, $primaryEmail, $timeZone, $language, 
+	public static function Edit($siteId, $name, $domain, $primaryEmail, $timeZone, $language, $direction, 
 		$showCart, $showSettings, $showLanguages, $showLogin, $urlMode,
 		$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox,
 		$welcomeEmail, $receiptEmail,
@@ -79,6 +81,7 @@ class Site{
         			PrimaryEmail = ?,
         			TimeZone = ?,
         			Language = ?,
+        			Direction = ?,
         			Currency = ?,
         			ShowCart = ?,
         			ShowSettings = ?,
@@ -109,29 +112,30 @@ class Site{
             $s->bindParam(3, $primaryEmail);
             $s->bindParam(4, $timeZone);
             $s->bindParam(5, $language);
-            $s->bindParam(6, $currency);
-            $s->bindParam(7, $showCart);
-            $s->bindParam(8, $showSettings);
-            $s->bindParam(9, $showLanguages);
-            $s->bindParam(10, $showLogin);
-            $s->bindParam(11, $urlMode);
-            $s->bindParam(12, $weightUnit);
-            $s->bindParam(13, $shippingCalculation);
-            $s->bindValue(14, strval($shippingRate), PDO::PARAM_STR);
-            $s->bindParam(15, $shippingTiers);
-            $s->bindParam(16, $taxRate);
-            $s->bindParam(17, $payPalId);
-            $s->bindParam(18, $payPalUseSandbox);
-            $s->bindParam(19, $welcomeEmail); 
-            $s->bindParam(20, $receiptEmail);
-			$s->bindParam(21, $isSMTP); 
-			$s->bindParam(22, $SMTPHost); 
-			$s->bindParam(23, $SMTPAuth); 
-			$s->bindParam(24, $SMTPUsername);  
-			$s->bindParam(25, $SMTPSecure); 
-            $s->bindParam(26, $formPublicId);
-            $s->bindParam(27, $formPrivateId);
-            $s->bindParam(28, $siteId);
+            $s->bindParam(6, $direction);
+            $s->bindParam(7, $currency);
+            $s->bindParam(8, $showCart);
+            $s->bindParam(9, $showSettings);
+            $s->bindParam(10, $showLanguages);
+            $s->bindParam(11, $showLogin);
+            $s->bindParam(12, $urlMode);
+            $s->bindParam(13, $weightUnit);
+            $s->bindParam(14, $shippingCalculation);
+            $s->bindValue(15, strval($shippingRate), PDO::PARAM_STR);
+            $s->bindParam(16, $shippingTiers);
+            $s->bindParam(17, $taxRate);
+            $s->bindParam(18, $payPalId);
+            $s->bindParam(19, $payPalUseSandbox);
+            $s->bindParam(20, $welcomeEmail); 
+            $s->bindParam(21, $receiptEmail);
+			$s->bindParam(22, $isSMTP); 
+			$s->bindParam(23, $SMTPHost); 
+			$s->bindParam(24, $SMTPAuth); 
+			$s->bindParam(25, $SMTPUsername);  
+			$s->bindParam(26, $SMTPSecure); 
+            $s->bindParam(27, $formPublicId);
+            $s->bindParam(28, $formPrivateId);
+            $s->bindParam(29, $siteId);
             
             $s->execute();
             
@@ -375,7 +379,7 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						PrimaryEmail, TimeZone, Language, Currency, 
+    						PrimaryEmail, TimeZone, Language, Direction, Currency, 
     						ShowCart, ShowSettings, ShowLanguages, ShowLogin, UrlMode,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
@@ -466,7 +470,7 @@ class Site{
     		$db = DB::get();
             
             $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						PrimaryEmail, TimeZone, Language, Currency, 
+    						PrimaryEmail, TimeZone, Language, Direction, Currency, 
     						ShowCart, ShowSettings, ShowLanguages, ShowLogin, UrlMode,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
@@ -503,7 +507,7 @@ class Site{
         	$db = DB::get();
             
             $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						PrimaryEmail, TimeZone, Language, Currency, 
+    						PrimaryEmail, TimeZone, Language, Direction, Currency, 
     						ShowCart, ShowSettings, ShowLanguages, ShowLogin, UrlMode,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
@@ -540,7 +544,7 @@ class Site{
             $db = DB::get();
             
             $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, IconUrl, IconBg, Theme,
-    						PrimaryEmail, TimeZone, Language, Currency, 
+    						PrimaryEmail, TimeZone, Language, Direction, Currency, 
     						ShowCart, ShowSettings, ShowLanguages, ShowLogin, UrlMode,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,

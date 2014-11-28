@@ -159,6 +159,7 @@ angular.module('respond.factories', [])
 			primaryEmail: site.PrimaryEmail, 
 			timeZone: site.TimeZone,
 			language: site.Language,
+			direction: site.Direction,
 			currency: site.Currency,
 			showCart: site.ShowCart,
 			showSettings: site.ShowSettings,

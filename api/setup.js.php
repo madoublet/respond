@@ -30,6 +30,7 @@ angular.module('respond.setup', [])
 	
 	// default lanugage
 	language: 				'<?php print DEFAULT_LANGUAGE; ?>',
+	direction: 				'<?php print DEFAULT_DIRECTION; ?>',
 	changeDefaultLanguage:	<?php print $arr[CHANGE_DEFAULT_LANGUAGE]; ?>, 
 
 	// public keys

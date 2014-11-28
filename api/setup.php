@@ -49,6 +49,9 @@
 	// setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');
 	
+	// setup the default text direction for the site (ltr, rtl, auto)
+	define('DEFAULT_DIRECTION', 'ltr');
+	
 	// determines whether the user can change the default language while creating the site
 	define('CHANGE_DEFAULT_LANGUAGE', false);
 	

@@ -506,6 +506,7 @@ class Publish
             // set html5mode, language, and states
             $content = str_replace('{{html5mode}}', $html5mode, $content);
             $content = str_replace('{{language}}', $site['Language'], $content);
+            $content = str_replace('{{direction}}', $site['Direction'], $content);
             $content = str_replace('{{states}}', $states, $content);
         }
         
@@ -716,6 +717,7 @@ class Publish
 			'Theme' => $site['Theme'],
 			'PrimaryEmail' => $site['PrimaryEmail'],
 			'Language' => $site['Language'],
+			'Direction' => $site['Direction'],
 			'ShowCart' => $showCart,
 			'ShowSettings' => $showSettings,
 			'ShowLanguages' => $showLanguages,
@@ -1247,6 +1249,7 @@ class Publish
 		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
 		$html = str_replace('{{site.Name}}', $site['Name'], $html);
 		$html = str_replace('{{site.Language}}', $site['Language'], $html);
+		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
 		
 		// update base
 		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);

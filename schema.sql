@@ -102,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `PrimaryEmail` varchar(255) DEFAULT NULL,
   `TimeZone` varchar(100) DEFAULT NULL,
   `Language` varchar(10) NOT NULL DEFAULT 'en',
+  `Direction` varchar(10) NOT NULL DEFAULT 'ltr',
   `ShowCart` INT NOT NULL DEFAULT '0',
   `ShowSettings` INT NOT NULL DEFAULT '0',
   `ShowLanguages` INT NOT NULL DEFAULT '0',

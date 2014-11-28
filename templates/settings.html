@@ -358,6 +358,18 @@
 					<input id="language" type="text" class="form-control form-stacked-bottom hidden" placeholder="us-us">
 				</div>
 			</div>
+			
+			<div class="form-group">
+				<label class="control-label">{{'Text Direction' | i18next}}</label>
+				<div>
+					<select 
+						ng-model="site.Direction"
+						class="form-control">
+				    	<option value="ltr">LTR</option>
+				    	<option value="rtl">RTL</option>
+					</select>
+				</div>
+			</div>
 		
 		</div>	
 		<!-- /.section-site -->

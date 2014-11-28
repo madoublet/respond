@@ -101,7 +101,8 @@ class SiteCreateResource extends Tonic\Resource {
         $timeZone = $request['timeZone'];
         $email = '';
         $password = '';
-        $language = 'en-us'; // language for the app
+        $language = DEFAULT_LANGUAGE; // language for the app
+        $direction = DEFAULT_DIRECTION;
         $userId = -1;
         
         // validate name and friendlyId
@@ -119,6 +120,11 @@ class SiteCreateResource extends Tonic\Resource {
         // set language if set
         if(isset($request['language'])){
 	        $language = $request['language'];
+        }
+        
+        // set direction if set
+        if(isset($request['direction'])){
+	        $direction = $request['direction'];
         }
         
         // check for email and password
@@ -203,7 +209,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$urlMode = DEFAULT_URL_MODE;
     		
             // add the site
-    	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $theme, $email, $timeZone, $language, $welcomeEmail, $receiptEmail);
+    	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
     	                
             // add the admin
             if($email != ''){
@@ -490,6 +496,7 @@ class SiteSaveResource extends Tonic\Resource {
             $primaryEmail = $request['primaryEmail'];
             $timeZone = $request['timeZone'];
             $language = $request['language'];
+            $direction = $request['direction'];
             
             $currency = $request['currency'];
             $showCart = $request['showCart'];
@@ -545,7 +552,7 @@ class SiteSaveResource extends Tonic\Resource {
             }
 
 			// edit site
-            Site::Edit($token->SiteId, $name, $domain, $primaryEmail, $timeZone, $language, 
+            Site::Edit($token->SiteId, $name, $domain, $primaryEmail, $timeZone, $language, $direction, 
             	$showCart, $showSettings, $showLanguages, $showLogin, $urlMode,
             	$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, 
             	$taxRate, $payPalId, $payPalUseSandbox, 
