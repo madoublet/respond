@@ -660,7 +660,7 @@ class Publish
 		// set imagesURL
 		if($env == 'local'){  // if it is locally deployed
 		
-			$imagesURL = '/';
+			$imagesURL = $site['Domain'].'/';
 			
 			// if files are stored on S3
 			if(FILES_ON_S3 == true){
