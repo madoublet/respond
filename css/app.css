@@ -87,7 +87,7 @@ body textarea.form-control{
     padding: 0 20px;
     cursor: pointer; 
     padding: 8px 20px;
-    font-weight: 100;
+    font-weight: 300;
     outline: none;
     border-radius: 20px;
 }
@@ -532,7 +532,7 @@ header{
     
     header li a{
     	font-family: "Roboto", sans-serif;
-    	font-weight: 100;
+    	font-weight: 300;
         font-size: 16px;
         display: block;
         padding: 10px 15px;
@@ -724,7 +724,7 @@ section.main nav{
 		font-size: 18px;
 		color: #fff;
 		font-family: "Roboto", sans-serif;
-		font-weight: 100;
+		font-weight: 300;
 	}
 	
 	section.main nav h2{
@@ -738,7 +738,7 @@ section.main nav{
 		font-size: 15px;
 		color: #fff;
 		font-family: "Roboto", sans-serif;
-		font-weight: 100;
+		font-weight: 300;
 	}
 
 	section.main nav .static-title{
@@ -769,7 +769,7 @@ section.main nav{
         background-color: transparent;
         border: 1px solid rgba(255,255,255,0.25);
         font-size: 14px;
-        font-weight: 100;
+        font-weight: 300;
         width: auto;
         text-align: center;
     }
@@ -829,7 +829,7 @@ section.main nav{
         	section.main nav .dropdown-menu li a{
 	        	padding: 10px 15px;
 	        	font-size: 14px;
-	        	font-weight: 100;
+	        	font-weight: 300;
         	}
     
     

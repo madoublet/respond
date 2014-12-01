@@ -41,6 +41,12 @@ angular.module('respond.site.directives', [])
 		replace: true,
 		templateUrl: 'templates/respond/search.html',
 		link: function(scope, element, attr){
+			
+			scope.showClose = false;
+			
+			if(attr.showClose){
+				scope.showClose = attr.showClose;
+			}
 		
 			scope.currentPageId = $rootScope.page.PageId;
 			scope.term = '';
@@ -48,17 +54,15 @@ angular.module('respond.site.directives', [])
 			scope.searching = false;
 			scope.noResults = false;
 			
-			// hide search when the body is clicked
-			$('body').on('click', function(){
-			
-				// open up the dialog
-				$(element).removeClass('open');
-				
-			});
 			
 			$('.dropdown-menu input, .dropdown-menu label').click(function(e) {
 		        e.stopPropagation();
 		    });
+		    
+		    // close the search
+		    scope.close = function(){
+			    $('body').removeClass('show-search');
+		    }
 			
 			// searches the translation files for the term, returns pages that have them
 			scope.search = function(){
@@ -909,6 +913,18 @@ angular.module('respond.site.directives', [])
 		replace: true,
 		templateUrl: 'templates/respond/cart.html',
 		link: function(scope, element, attr){
+			
+			// show close button
+			scope.showClose = false;
+			
+			if(attr.showClose){
+				scope.showClose = attr.showClose;
+			}
+		
+			// close the search
+		    scope.close = function(){
+			    $('body').removeClass('show-cart');
+		    }
 		
 			// get transaction variable passed from paypal
 			var tx = respond.utilities.getQueryStringByName('tx');
@@ -1185,6 +1201,17 @@ angular.module('respond.site.directives', [])
 		scope: {},
 		templateUrl: 'templates/respond/settings.html',
 		link: function(scope, element, attr){
+			
+			scope.showClose = false;
+			
+			if(attr.showClose){
+				scope.showClose = attr.showClose;
+			}
+			
+			// close the search
+		    scope.close = function(){
+			    $('body').removeClass('show-settings');
+		    }
 		
 			scope.currentPageId = $rootScope.page.PageId;
 			scope.site = $rootScope.site;

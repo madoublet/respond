@@ -1,5 +1,9 @@
 <div class="respond-search">
 	
+	<a 	ng-if="showClose"
+		ng-click="close()"
+		class="close-search" title="Close Menu"><i class="fa fa-times"></i></a>
+	
 	<form class="respond-search-form" ng-submit="search()">
       <div class="search-container">
         <input type="text" 

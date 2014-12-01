@@ -1,4 +1,8 @@
 <section ng-if="site.ShowSettings" class="respond-settings">
+	
+	<a 	ng-if="showClose"
+		ng-click="close()"
+		class="close-settings" title="Close Menu"><i class="fa fa-times"></i></a>
 
 	<respond-welcome ng-if="site.ShowLogin"></respond-welcome>
 
