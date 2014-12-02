@@ -331,27 +331,55 @@ var utilities = {
 	// converts to local date
 	convertToLocalDate:function(date, offset){
 		if(date != null && date != ''){
-			var m = moment.utc(date, 'YYYY-MM-DD HH:mm:ss');
+			var m = moment(date, 'YYYY-MM-DD HH:mm:ss');
 			m.add('hours',offset);
+			
+			return m.toDate();
+		}
+		else{
+			return null;
+		}
+	},
+	
+	// converts to date string
+	convertToDateString:function(date){
+		
+		if(date != null && date != ''){
+			var m = moment(date);
 			
 			return m.format('YYYY-MM-DD');
 		}
 		else{
 			return '';
 		}
+		
 	},
 	
 	// converts to local date
 	convertToLocalTime:function(date, offset){
 		if(date != null && date != ''){
-			var m = moment.utc(date, 'YYYY-MM-DD HH:mm:ss');
+			var m = moment(date, 'YYYY-MM-DD HH:mm:ss');
 			m.add('hours',offset);
+			
+			return m.toDate();
+		}
+		else{
+			return null;
+		}
+	},
+	
+	// converts to time string
+	convertToTimeString:function(date){
+		
+		if(date != null && date != ''){
+			var m = moment(date);
 			
 			return m.format('HH:mm:ss');
 		}
 		else{
 			return '';
 		}
+		
 	},
 	
 	// parses latitude from LatLong

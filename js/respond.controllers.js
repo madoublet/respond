@@ -1143,9 +1143,15 @@ angular.module('respond.controllers', [])
 	
 	// save settings
 	$scope.saveSettings = function(){
+		
 	
-		var beginDate = $.trim($scope.page.LocalBeginDate + ' ' + $scope.page.LocalBeginTime);
-		var endDate = $.trim($scope.page.LocalEndDate + ' ' + $scope.page.LocalEndTime);
+		var beginDate = $.trim(utilities.convertToDateString($scope.page.LocalBeginDate) 
+							+ ' ' + 
+							utilities.convertToTimeString($scope.page.LocalBeginTime));
+							
+		var endDate = $.trim(utilities.convertToDateString($scope.page.LocalEndDate) 
+							+ ' ' + 
+							utilities.convertToTimeString($scope.page.LocalEndTime));
 		
 		Page.saveSettings($scope.pageId, 
 			$scope.page.Name, $scope.page.FriendlyId, $scope.page.Description, $scope.page.Keywords, $scope.page.Callout, 

@@ -17,9 +17,10 @@
 				 ui-sref="{{page.Url}}"
 				 href="{{page.Url}}"
 				 ng-show="page.HasImage">
-					 <img ng-src="page.Thumb">
+				 	<img src="{{site.ImagesUrl}}{{page.Thumb}}">
 			</a>
 			<h4><a ui-sref="{{page.Url}}" href="{{page.Url}}">{{page.Name}}</a></h4>
+			<h5>{{page.BeginDate}} - {{page.EndDate}}</h5>
 			<small ng-show="page.Callout">{{page.Callout}}</small>
 			<p>{{page.Description}}</p>
 		</li>
