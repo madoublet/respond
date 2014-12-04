@@ -181,7 +181,9 @@ angular.module('jm.i18next', [])
 
 		if (attr === 'html') {
 
-			element.empty().append(string);
+          	if(string !== key){
+				element.empty().append(string);
+            }
 
 		} else if (attr === 'text') {
 
@@ -234,7 +236,7 @@ angular.module('jm.i18next', [])
 			var translationValue;
 
 			function observe (value) {
-
+              
 				if (value === '') {
 					translationValue = element.text().replace(/^\s+|\s+$/g, ''); // RegEx removes whitespace
 				} else {
