@@ -924,12 +924,12 @@ angular.module('respond.factories', [])
 	}
 	
 	// save settings
-	page.saveSettings = function(pageId, name, friendlyId, description, keywords, callout, layout, stylesheet, 
+	page.saveSettings = function(pageId, name, friendlyId, description, keywords, callout, layout, stylesheet, includeOnly,
 									beginDate, endDate, location, latitude, longitude, callback){
 		
 		// set params
 		var params = {pageId: pageId, name: name, friendlyId: friendlyId, description: description, keywords: keywords, 
-				   		callout: callout,  layout: layout, stylesheet: stylesheet,
+				   		callout: callout,  layout: layout, stylesheet: stylesheet, includeOnly: includeOnly,
 				   		beginDate: beginDate, endDate: endDate,
 				   		location: location, latitude: latitude, longitude: longitude};
 			

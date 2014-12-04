@@ -1,0 +1,25 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="listMenuType">{{'Menu' | i18next}}</label>				
+			<select name="listMenuType" class="form-control"
+				ng-model="node.type">
+				<option value="">{{'Not Selected' | i18next}}</option>
+				<option value="primary">{{'Primary' | i18next}}</option>
+				<option value="footer">{{'Footer' | i18next}}</option>
+				<option ng-repeat="menuType in menuTypes" value="{{menuType.FriendlyId}}">
+					{{menuType.Name}}
+				</option>
+			</select>
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+	

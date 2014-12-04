@@ -162,6 +162,15 @@
 		"config":	"plugins/component/config/list.html"
 	},
 	{
+		"action":	"respond.component.menu",
+		"tag":		"RESPOND-MENU",
+		"title":	"Menu",
+		"class":	"respond-menu",
+		"icon":		"fa fa-bars draggable",
+		"text":		"",
+		"config":	"plugins/component/config/menu.html"
+	},
+	{
 		"action":	"respond.element.pre",
 		"tag":		"PRE",
 		"title":	"Pre-formatted Text",

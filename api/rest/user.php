@@ -543,7 +543,6 @@ class UserEditResource extends Tonic\Resource {
 				User::Edit($userId, $email, $password, $firstName, $lastName, $role, $language, $isActive);
 			}
 			else{
-				$role = $request['role'];
 				User::EditProfile($userId, $email, $password, $firstName, $lastName, $language);
 			}
 

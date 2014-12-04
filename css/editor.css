@@ -518,6 +518,11 @@
 			background-color: #AA65A9;
 		}
 		
+		.editor .block .respond-menu .title i{
+			color: #fff;
+			background-color: #BE705E;
+		}
+		
 		.editor .block .respond-html .title i{
 			color: #fff;
 			background-color: #AA571B;

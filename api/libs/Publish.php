@@ -1067,7 +1067,11 @@ class Publish
 			
 			if($site['UrlMode'] == 'static'){ // for sites using static html pages (URL-based routing)
 				Publish::PublishDynamicPage($page, $site, $preview, $remove_draft);
-				Publish::PublishStaticPage($page, $site, $preview, $remove_draft);
+				
+				// do not publish a static page for include only pages
+				if($page['IncludeOnly'] == 0){
+					Publish::PublishStaticPage($page, $site, $preview, $remove_draft);
+				}
 				
 				// inject controllers
 				Publish::InjectControllers($site);

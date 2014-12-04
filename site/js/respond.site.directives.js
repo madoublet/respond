@@ -10,9 +10,22 @@ angular.module('respond.site.directives', [])
 			type: '@'
 		},
 		replace: true,
-		templateUrl: 'templates/respond/menu.html',
+		templateUrl: function(element, attr){
+			if(attr.standalone){
+				return 'templates/respond/menu-standalone.html';
+			}
+			else{
+				return 'templates/respond/menu.html';
+			}
+		},
 		link: function(scope, element, attr){
-		
+			
+			scope.standalone = false;
+			
+			if(attr.standalone){
+				scope.standalone = attr.standalone;
+			}
+			
 			scope.currentPageId = $rootScope.page.PageId;
 			
 			Menu.list(scope.type, function(data){

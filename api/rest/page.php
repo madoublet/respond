@@ -586,6 +586,7 @@ class PageSaveResource extends Tonic\Resource {
             $callout = $request['callout'];
             $layout = $request['layout'];
             $stylesheet = $request['stylesheet'];
+            $includeOnly = $request['includeOnly'];
             $beginDate = $request['beginDate'];
             $endDate = $request['endDate'];
             $location = $request['location'];
@@ -625,7 +626,7 @@ class PageSaveResource extends Tonic\Resource {
             Page::EditSettings($pageId, $name, $friendlyId, $description, $keywords, $callout, 
             	$beginDate, $endDate, $timeZone,
             	$location, $latitude, $longitude,
-            	$layout, $stylesheet, $token->UserId);
+            	$layout, $stylesheet, $includeOnly, $token->UserId);
             
             return new Tonic\Response(Tonic\Response::OK);
         

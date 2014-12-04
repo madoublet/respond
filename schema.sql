@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `Pages` (
   `Stylesheet` varchar(50) DEFAULT NULL,
   `IsActive` int(11) DEFAULT NULL,
   `Image` varchar(256) DEFAULT NULL,
+  `IncludeOnly` INT NOT NULL DEFAULT '0',
   `PageTypeId` varchar(50) NOT NULL,
   `SiteId` varchar(50) NOT NULL,
   `LastModifiedBy` varchar(50) NOT NULL,

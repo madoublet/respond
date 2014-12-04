@@ -163,11 +163,20 @@
 					</select>
 				</div>
 				
-				<div class="control-group">
+				<div class="form-group">
 					<label for="stylesheet">{{'Stylesheet' | i18next}}</label>
 					<select id="stylesheet" class="form-control" 
 						ng-model="page.Stylesheet">
 							<option ng-repeat="stylesheet in stylesheets" ng-value="{{stylesheet}}">{{stylesheet}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="layout">{{'Include Only' | i18next}}</label>
+					<select id="layout" class="form-control" 
+						ng-model="page.IncludeOnly">
+							<option value="1">{{'Yes' | i18next}}</option>
+							<option value="0">{{'No' | i18next}}</option>
 					</select>
 				</div>
 				

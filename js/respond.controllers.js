@@ -819,7 +819,7 @@ angular.module('respond.controllers', [])
 })
 
 // content controller
-.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product) {
+.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product, MenuType) {
 	
 	$rootScope.template = 'content';
 	
@@ -1155,7 +1155,7 @@ angular.module('respond.controllers', [])
 		
 		Page.saveSettings($scope.pageId, 
 			$scope.page.Name, $scope.page.FriendlyId, $scope.page.Description, $scope.page.Keywords, $scope.page.Callout, 
-			$scope.page.Layout, $scope.page.Stylesheet, 
+			$scope.page.Layout, $scope.page.Stylesheet, $scope.page.IncludeOnly,
 			beginDate, endDate, $scope.page.Location, $scope.page.Latitude, $scope.page.Longitude,
 			function(data){});
 		
@@ -1341,6 +1341,16 @@ angular.module('respond.controllers', [])
 	}
 	
 	$scope.updateDownloads();
+	
+	// list menutypes
+	MenuType.list(function(data){
+	
+		// debugging
+		if(Setup.debug)console.log('[respond.debug] MenuType.list');
+		console.log(data);
+		
+		$scope.menuTypes = data;
+	});
 	
 	// retrieve pre-cached editor items
 	$scope.editorItems = $rootScope.editorItems;

@@ -1549,4 +1549,78 @@ respond.component.tabset = {
 
 respond.component.tabset.init();
 
+// menu component
+respond.component.menu = {
+
+	// creates list
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('menu', 'menu');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-bars"></i> <span node-text="type">Not Selected</span></div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-menu';
+		attrs['data-type'] = '';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+	
+		return true;
+		
+	},
+	
+	// parse menu
+	parse:function(node){
+		
+		// get params
+		var id = $(node).attr('id');
+		var type = $(node).attr('type');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-bars"></i> <span node-text="type">' + type + '</span></div>';
+		
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['data-type'] = $(node).attr('type');
+		attrs['class'] = 'respond-menu';
+		
+		utilities.element('div', attrs, html)
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate menu
+	generate:function(node){
+
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = $(node).attr('data-id');
+		attrs['type'] = $(node).attr('data-type');
+		attrs['standalone'] = 'true';
+		
+		// return element
+		return utilities.element('respond-menu', attrs, '');
+		
+	},
+	
+	// config list
+	config:function(node, form){}
+	
+};
+
+
 

@@ -248,7 +248,7 @@ class Page{
 	}
 
 	// edits the settings for a page
-	public static function EditSettings($pageId, $name, $friendlyId, $description, $keywords, $callout, $beginDate, $endDate, $timeZone, $location, $latitude, $longitude, $layout, $stylesheet, $lastModifiedBy){
+	public static function EditSettings($pageId, $name, $friendlyId, $description, $keywords, $callout, $beginDate, $endDate, $timeZone, $location, $latitude, $longitude, $layout, $stylesheet, $includeOnly, $lastModifiedBy){
 	
 		$gm_bdate = null;
 		
@@ -289,7 +289,8 @@ class Page{
 					Location = ?,
 					LatLong = PointFromText(?),
 					Layout = ?, 
-					Stylesheet = ?, 
+					Stylesheet = ?,
+					IncludeOnly = ?, 
 					LastModifiedBy = ?, 
 					LastModifiedDate = ? 
 					WHERE PageId = ?";
@@ -306,9 +307,10 @@ class Page{
             $s->bindParam(9, $latLong);
             $s->bindParam(10, $layout);
             $s->bindParam(11, $stylesheet);
-            $s->bindParam(12, $lastModifiedBy);
-            $s->bindParam(13, $timestamp);
-            $s->bindParam(14, $pageId);
+            $s->bindParam(12, $includeOnly);
+            $s->bindParam(13, $lastModifiedBy);
+            $s->bindParam(14, $timestamp);
+            $s->bindParam(15, $pageId);
             
             $s->execute();
            
@@ -429,7 +431,7 @@ class Page{
             		Pages.Description, Pages.Keywords, 
             		Pages.Content, Pages.Draft, Pages.Callout, 
             		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
-        			Pages.Layout, Pages.Stylesheet,
+        			Pages.Layout, Pages.Stylesheet, Pages.IncludeOnly,
         			Pages.SiteId,
         			Pages.LastModifiedBy, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
@@ -478,7 +480,7 @@ class Page{
             		Pages.Description, Pages.Keywords, 
             		Pages.Content, Pages.Draft, Pages.Callout,
             		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong),
-        			Pages.Layout, Pages.Stylesheet,
+        			Pages.Layout, Pages.Stylesheet, Pages.IncludeOnly,
         			Pages.SiteId,
         			Pages.LastModifiedBy, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
@@ -564,7 +566,7 @@ class Page{
             		Pages.Description, Pages.Keywords, Pages.Tags,
             		Pages.Content, Pages.Draft, Pages.Callout, 
             		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
-        			Pages.Layout, Pages.Stylesheet,
+        			Pages.Layout, Pages.Stylesheet, Pages.IncludeOnly,
         			Pages.SiteId, 
         			Pages.LastModifiedBy, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
@@ -603,7 +605,7 @@ class Page{
 		    
             $q = "SELECT Pages.PageId, Pages.FriendlyId, Pages.Name, Pages.Description, Pages.Keywords, Pages.Tags,
             		Pages.Content, Pages.Draft, Pages.Callout, 
-            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
+            		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong, Pages.IncludeOnly,
             		Pages.SiteId,
         			Pages.LastModifiedBy, Pages.LastModifiedDate, 
         			Pages.IsActive, Pages.Image, Pages.PageTypeId,
@@ -680,7 +682,7 @@ class Page{
             		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.LastModifiedBy, Pages.LastModifiedDate,  
-        			Pages.IsActive, Pages.Image
+        			Pages.IsActive, Pages.Image, Pages.IncludeOnly
         		 	FROM Pages WHERE FriendlyId=? AND PageTypeId=? AND SiteId=?";
                     
             $s = $db->prepare($q);
@@ -739,7 +741,7 @@ class Page{
             		Pages.BeginDate, Pages.EndDate, Pages.Location, AsText(Pages.LatLong) AS LatLong,
         			Pages.Layout, Pages.Stylesheet,
         			Pages.PageTypeId, Pages.SiteId, Pages.LastModifiedBy, Pages.LastModifiedDate,  
-        			Pages.IsActive, Pages.Image
+        			Pages.IsActive, Pages.Image, Pages.IncludeOnly
         		 	FROM Pages WHERE PageId=?";
                     
             $s = $db->prepare($q);
