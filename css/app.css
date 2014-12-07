@@ -1578,6 +1578,10 @@ body .carousel .carousel-control{
 	height: 100%;
 	border: none;
 }	
+
+body.configure > .ng-scope, body.configure > .ng-scope > div.ng-scope {
+	height: 100%;
+}
 	
 	
 /* Large desktop */
