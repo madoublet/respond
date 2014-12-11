@@ -292,8 +292,29 @@ angular.module('respond', ['ui.router',
 	if($window.sessionStorage.editorItems != null){
 	
 		var str = $window.sessionStorage.editorItems;
+		var data = JSON.parse(str);
 		
-		$rootScope.editorItems = JSON.parse(str);
+		$rootScope.editorItems = data;
+		
+		// set cache to true so it won't reload scripts
+		$.ajaxSetup({
+		    cache: true
+		});
+		
+		// holds loaded scripts
+		var loaded = [];
+		
+		// load scripts for all plugins
+		for(x=0; x<data.length; x++){
+			var url = Setup.url + '/' + data[x].script;
+			
+			if(loaded.indexOf(url) == -1){
+				$.getScript(url);
+				loaded.push(url);
+				if(Setup.debug)console.log('[respond.debug] load plugin script='+url);
+			}
+			
+		}
 	}
 		
 });

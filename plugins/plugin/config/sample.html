@@ -1,0 +1,56 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Attributes' | i18next}}</h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="zoom">{{'Attribute 1' | i18next}}</label>
+			<select name="zoom" class="form-control" 
+				ng-model="node.attr1">
+				<option value="default">Default</option>
+				<option value="option-1">Option 1</option>
+				<option value="option-2">Option 2</option>
+			</select>
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="zoom">{{'Attribute 2' | i18next}}</label>
+			<select name="zoom" class="form-control" 
+				ng-model="node.attr2">
+				<option value="default">Default</option>
+				<option value="option-1">Option 1</option>
+				<option value="option-2">Option 2</option>
+			</select>
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+	

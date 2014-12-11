@@ -266,7 +266,7 @@ class Utilities
 		  	continue;
 		  }
 		  
-		  if($page['IncludeOnly']==1){
+		  if($row['IncludeOnly']==1){
 			  continue;
 		  }
 		  

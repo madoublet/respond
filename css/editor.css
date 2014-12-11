@@ -495,6 +495,11 @@
 			text-align: center;
 			margin-right: 10px;
 		}
+		
+		.editor .block .title i{
+			color: #fff;
+			background-color: #4F8B9D;
+		}
 	
 		.editor .block .respond-like .title i, 
 		.editor .block .respond-comments .title i{

@@ -31,7 +31,10 @@ class Publish
 		Publish::PublishCommonCSS($siteId);
 		
 		// publish controller
-		Publish::PublishCommon($siteId);	
+		Publish::PublishCommon($siteId);
+		
+		// publish plugins
+		Publish::PublishPlugins($siteId);	
 	}
 	
 	// publishes common site files
@@ -383,6 +386,82 @@ class Publish
 			Publish::InjectStates($site);
 		}
 		
+	}
+	
+	// publishes plugins for the site
+	public static function PublishPlugins($siteId){
+		
+		$site = Site::GetBySiteId($siteId);
+		
+		// open plugins direcotry
+        if($handle = opendir(APP_LOCATION.'plugins')){
+        
+		    $blacklist = array('.', '..');
+		    
+		    // holds all directives to be added
+		    $directives = '';
+		    
+		    // walk through directories
+		    while (false !== ($file = readdir($handle))) {
+		    
+		        if (!in_array($file, $blacklist)) {
+		            $dir = $file;
+		            
+		            $directive = APP_LOCATION.'plugins/'.$dir.'/publish/directive.js';
+		            
+		            // get directives to be added
+		            if(file_exists($directive)){
+		            	$content = file_get_contents($directive);
+		            	$directives .= $content;
+		            }
+		            
+		            // source templates directory
+		            $src_dir = APP_LOCATION.'plugins/'.$dir.'/publish/templates';
+		            
+		            // add templates
+		            if(file_exists($src_dir)){
+		            
+		            	// destination templates directory
+		            	$dest_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/'.$dir;
+		            
+						// create template directory
+						if(!file_exists($dest_dir)){
+							mkdir($dest_dir, 0755, true);	
+						}
+						
+						// copies a directory
+						Utilities::CopyDirectory($src_dir, $dest_dir);
+		            }
+		            
+		            
+		        }
+		        
+		    }
+		    
+		    closedir($handle);
+		}
+		
+		// replace directives
+		if($directives != ''){
+			
+			// get directive
+			$directive_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.site.directives.js';
+			
+			if(file_exists($directive_file)){
+				
+				// get directives
+				$content = file_get_contents($directive_file);
+				
+				// add new directives
+				$content = str_replace('// #published-directives', $directives, $content);
+				
+				// update file
+				file_put_contents($directive_file, $content);
+				
+			}
+			
+		}
+				
 	}
 	
 	// injects states into sites/js/respond.site.js
