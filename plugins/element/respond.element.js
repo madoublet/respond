@@ -1573,6 +1573,8 @@ respond.element.pre = {
 		var description = $(node).attr('description');
 		var code = $(node).html();
 		
+		code = utilities.replaceAll(code, '&lt;', '<');
+		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<div class="title respond-element"><i class="fa fa-terminal"></i> '+
@@ -1605,6 +1607,7 @@ respond.element.pre = {
 		attrs['ng-non-bindable'] = 'true';
 		
 		var code = $(node).find('textarea').val();
+		code = utilities.replaceAll(code, '<', '&lt;');
 		
 		// return element
 		return utilities.element('PRE', attrs, code);

@@ -6,7 +6,8 @@
 		"class":	"respond-h1",
 		"icon":		"draggable",
 		"text":		"H1",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.h2",
@@ -15,7 +16,8 @@
 		"class":	"respond-h2",
 		"icon":		"draggable",
 		"text":		"H2",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.h3",
@@ -24,7 +26,8 @@
 		"class":	"respond-h3",
 		"icon":		"draggable",
 		"text":		"H3",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.h4",
@@ -33,7 +36,8 @@
 		"class":	"respond-h4",
 		"icon":		"draggable",
 		"text":		"H4",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.h5",
@@ -42,7 +46,8 @@
 		"class":	"respond-h5",
 		"icon":		"draggable",
 		"text":		"H5",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.p",
@@ -51,7 +56,8 @@
 		"class":	"respond-p",
 		"icon":		"draggable",
 		"text":		"P",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.q",
@@ -60,7 +66,8 @@
 		"class":	"respond-q",
 		"icon":		"fa fa-quote-left draggable",
 		"text":		"",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.ul",
@@ -69,7 +76,8 @@
 		"class":	"respond-ul",
 		"icon": 	"fa fa-list-ul draggable",
 		"text":		"",
-		"config":	"plugins/element/config/list.html"
+		"config":	"plugins/element/config/list.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.ol",
@@ -78,7 +86,8 @@
 		"class":	"respond-ol",
 		"icon":		"fa fa-list-ol draggable",
 		"text":		"",
-		"config":	"plugins/element/config/list.html"
+		"config":	"plugins/element/config/list.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.component.tabset",
@@ -87,7 +96,8 @@
 		"class":	"respond-tabset",
 		"icon": 	"fa fa-folder draggable",
 		"text":		"",
-		"config":	"plugins/component/config/tabs.html"
+		"config":	"plugins/component/config/tabs.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.element.table",
@@ -96,7 +106,8 @@
 		"class":	"respond-table",
 		"icon":		"fa fa-table draggable",
 		"text":		"",
-		"config":	"plugins/element/config/table.html"
+		"config":	"plugins/element/config/table.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.hr",
@@ -105,7 +116,8 @@
 		"class":	"respond-hr",
 		"icon":		"fa fa-minus draggable",
 		"text":		"",
-		"config":	"plugins/element/config/default.html"
+		"config":	"plugins/element/config/default.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.element.image",
@@ -114,7 +126,8 @@
 		"class":	"respond-image",
 		"icon":		"fa fa-picture-o draggable",
 		"text":		"",
-		"config":	"plugins/element/config/images.html"
+		"config":	"plugins/element/config/images.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.component.slideshow",
@@ -123,7 +136,8 @@
 		"class":	"respond-slideshow",
 		"icon":		"fa fa-film draggable",
 		"text":		"",
-		"config":	"plugins/component/config/slideshow.html"
+		"config":	"plugins/component/config/slideshow.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.video",
@@ -132,7 +146,8 @@
 		"class":	"respond-video",
 		"icon":		"fa fa-video-camera draggable",
 		"text":		"",
-		"config":	"plugins/component/config/video.html"
+		"config":	"plugins/component/config/video.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.map",
@@ -141,7 +156,8 @@
 		"class":	"respond-map",
 		"icon":		"fa fa-map-marker draggable",
 		"text":		"",
-		"config":	"plugins/component/config/map.html"
+		"config":	"plugins/component/config/map.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.content",
@@ -150,7 +166,8 @@
 		"class":	"respond-content",
 		"icon":		"fa fa-cube draggable",
 		"text":		"",
-		"config":	"plugins/component/config/content.html"
+		"config":	"plugins/component/config/content.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.list",
@@ -159,7 +176,8 @@
 		"class":	"respond-list",
 		"icon":		"fa fa-cubes draggable",
 		"text":		"",
-		"config":	"plugins/component/config/list.html"
+		"config":	"plugins/component/config/list.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.menu",
@@ -168,7 +186,8 @@
 		"class":	"respond-menu",
 		"icon":		"fa fa-bars draggable",
 		"text":		"",
-		"config":	"plugins/component/config/menu.html"
+		"config":	"plugins/component/config/menu.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.element.pre",
@@ -177,7 +196,8 @@
 		"class":	"respond-pre",
 		"icon":		"fa fa-terminal draggable",
 		"text":		"",
-		"config":	"plugins/element/config/pre.html"
+		"config":	"plugins/element/config/pre.html",
+		"script":	"plugins/element/respond.element.js"
 	},
 	{
 		"action":	"respond.component.html",
@@ -186,7 +206,8 @@
 		"class":	"respond-html",
 		"icon":		"fa fa-html5 draggable",
 		"text":		"",
-		"config":	"plugins/component/config/html.html"
+		"config":	"plugins/component/config/html.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.form",
@@ -195,7 +216,8 @@
 		"class":	"respond-form",
 		"icon":		"fa fa-check draggable",
 		"text":		"",
-		"config":	"plugins/component/config/form.html"
+		"config":	"plugins/component/config/form.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.shelf",
@@ -204,7 +226,8 @@
 		"class":	"respond-shelf",
 		"icon":		"fa fa-tags draggable",
 		"text":		"",
-		"config":	"plugins/component/config/shelf.html"
+		"config":	"plugins/component/config/shelf.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.login",
@@ -213,7 +236,8 @@
 		"class":	"respond-login",
 		"icon":		"fa fa-key draggable",
 		"text":		"",
-		"config":	"plugins/component/config/login.html"
+		"config":	"plugins/component/config/login.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.component.registration",
@@ -222,7 +246,8 @@
 		"class":	"respond-registration",
 		"icon":		"fa fa-lock draggable",
 		"text":		"",
-		"config":	"plugins/component/config/registration.html"
+		"config":	"plugins/component/config/registration.html",
+		"script":	"plugins/component/respond.component.js"
 	},
 	{
 		"action":	"respond.utility.load",
@@ -231,7 +256,8 @@
 		"class":	"load",
 		"icon":		"fa fa-upload",
 		"text":		"",
-		"modal":	"plugins/utility/modal/load.html"
+		"modal":	"plugins/utility/modal/load.html",
+		"script":	"plugins/utility/respond.utility.js"
 	},
 	{
 		"action":	"respond.utility.layout",
@@ -240,6 +266,7 @@
 		"class":	"layout",
 		"icon":		"fa fa-columns",
 		"text":		"",
-		"modal":	"plugins/utility/modal/layout.html"
+		"modal":	"plugins/utility/modal/layout.html",
+		"script":	"plugins/utility/respond.utility.js"
 	}
 ]

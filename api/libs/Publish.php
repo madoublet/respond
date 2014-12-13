@@ -1333,6 +1333,7 @@ class Publish
 		$html = str_replace('{{site.Name}}', $site['Name'], $html);
 		$html = str_replace('{{site.Language}}', $site['Language'], $html);
 		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
+		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
 		
 		// update base
 		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
