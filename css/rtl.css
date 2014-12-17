@@ -1,0 +1,619 @@
+html[dir=rtl] *{
+	text-align: right;
+}
+
+html[dir=rtl] body{
+	direction: rtl;
+	overflow-x: hidden;
+}
+
+html[dir=rtl] a, html[dir=rtl] a:hover{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+/* LOGIN */
+html[dir=rtl] body.login .main fieldset label{
+	text-align: right;
+}
+
+html[dir=rtl] body.login .forgot-link{
+	float: left;
+}
+
+html[dir=rtl] body.login .actions{
+	text-align: left;
+}
+
+html[dir=rtl] body.login .main h2.title{
+	text-align: right;
+	font-size: 16px;
+}
+
+html[dir=rtl] body.login .main h2.title .step{
+	margin-left: 25px;
+	margin-right: 0;
+}
+
+html[dir=rtl] body.login .main h2.title a{
+	left: 15px;
+	right: auto;
+}
+
+html[dir=rtl] body.login .terms{
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+html[dir=rtl] .fa-angle-right:before{
+	content: "\f104";
+}
+
+html[dir=rtl] body.login .actions button i{
+	margin-right: 5px;
+	margin-left: -10px;
+}
+
+html[dir=rtl] body.login .main h1{
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+html[dir=rtl] body.login .main #create-confirmation p:first-child{
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+html[dir=rtl] body.login .terms i{
+	margin-right: 0;
+	margin-left: 5px;
+}
+
+html[dir=rtl]body.login small{
+	padding-bottom: 0;
+}
+
+html[dir=rtl] .respond-validating, 
+html[dir=rtl] .respond-valid, 
+html[dir=rtl] .respond-invalid{
+	right: auto;
+	left: 10px;
+}
+
+html[dir=rtl] body.login .main fieldset p{
+	text-align: right;
+}
+
+html[dir=rtl] body.login .main #create-confirmation fieldset p{
+	text-align: center;
+}
+/* LOGIN END */
+
+/* EDITOR */
+html[dir=rtl] section.main nav .show-menu, 
+html[dir=rtl] section.main nav .back{
+	top: 0;
+	right: 0;
+	left: auto;
+}
+
+html[dir=rtl] section.main nav .primary-action{
+	left: 52px;
+	right: auto;
+}
+
+html[dir=rtl] section.main nav .more{
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] section.main nav .dropdown-menu, .config .dropdown-menu{
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] section.main menu .menu-actions {
+	left: 13px;
+	right: auto;
+}
+
+html[dir=rtl] div.list.has-photo .listItem{
+	padding-right: 105px;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+html[dir=rtl] button.update-photo{
+	right: 20px;
+	left: auto;
+}
+
+html[dir=rtl] .listItem .remove{
+	left: 20px;
+	right: auto;
+	top: 40px;
+}
+
+html[dir=rtl] .listItem .status{
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+html[dir=rtl] .dropdown-menu{
+	right: 0;
+	left: auto;
+	float: right;
+	text-align: right;
+}
+
+html[dir=rtl] .content .context-menu{
+	left: 0;
+	right: auto;
+	border-right: 1px solid #ddd;
+	border-left: none;
+}
+
+html[dir=rtl] .content .context-menu.sticky{
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] body .context-menu select.form-control{
+	background: url('../images/down.png') no-repeat 10px 6px;
+	background-size: 20px;
+}
+
+html[dir=rtl] .content .context-menu h2 a{
+	float: left;
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+html[dir=rtl] a.fs-next{
+	top: 0;
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] section.main menu i{
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+html[dir=rtl] .fa-chevron-right:before{
+	content: "\f053";
+}
+
+html[dir=rtl] .fa-chevron-left:before{
+	content: "\f054";
+}
+
+html[dir=rtl] a.fs-prev{
+	right: 0;
+	left: auto;
+}
+
+html[dir=rtl] .editor span.block-actions span{
+	right: 10px;
+	left: auto;
+	padding-right: 5px;
+	padding-left: 0;
+}
+
+html[dir=rtl] .editor .block-actions{
+	direction: ltr;
+}
+
+html[dir=rtl] .context-menu .input-select{
+	right: auto;
+	left: 2px;
+}
+
+html[dir=rtl] .editor .expand-menu{
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] .editor .element-menu{
+	left: 0;
+	right:auto;
+	padding: 0 0 0 40px !important;
+	margin-left: -300px !important;
+	margin-right: 0 !important;
+}
+
+html[dir=rtl] .editor .element-menu.active{
+	margin-left: 0 !important;
+}
+
+html[dir=rtl] header{
+	right: 0;
+	left: auto;
+	margin-right: -350px;
+}
+
+html[dir=rtl] body.show-nav header{
+	margin-right: 0;
+}
+
+html[dir=rtl] header .profile{
+	right: 5px;
+	left: auto;
+}
+
+html[dir=rtl] header .profile .photo{
+	float: right;
+	margin-left: 5px;
+	margin-right: 0;
+}
+
+html[dir=rtl] header .sub-menu{
+	left: 5px;
+	right: auto;
+}
+
+html[dir=rtl] header h2 a{
+	left: 10px;
+	right: auto;
+}
+
+html[dir=rtl] header h2 a i{
+	margin-right: 5px;
+	margin-left: 0;
+}
+
+html[dir=rtl] header h2.advanced{
+	padding: 20px 10px 10px 0;
+}
+
+html[dir=rtl] header h2.basic{
+	padding: 75px 10px 10px 0;
+}
+
+html[dir=rtl] div#actions{
+	text-align: left;
+	direction: ltr;
+}
+
+html[dir=rtl] section.main h1{
+	padding: 0 78px 0 0;
+}
+
+html[dir=rtl] section.main nav .more button{
+	text-align: center;
+}
+
+html[dir=rtl] .close{
+	float: left;
+}
+
+html[dir=rtl] .modal-footer{
+	text-align: left;
+}
+
+html[dir=rtl] .nested-left, html[dir=rtl] .nested-right{
+	margin-right: 40px;
+	margin-left: 10px;
+	float: right;
+}
+
+html[dir=rtl] .nested-left{
+	margin-right: 80px;
+	margin-left: 10px;
+}
+
+html[dir=rtl] .listItem span.hook{
+	right: 20px;
+	left: auto;
+}
+
+html[dir=rtl] body .context-menu .form-group .sp-replacer, body .context-menu .form-group .image-picker{
+	right: auto;
+	left: 0;
+	border: 1px solid #ddd;
+}
+
+html[dir=rtl] .configure iframe{
+	float: left;
+}
+
+html[dir=rtl] .context-menu h2 a{
+	float: left;
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+html[dir=rtl] .context-menu .context-footer button{
+	float: right;
+	text-align: center;
+}
+
+html[dir=rtl] section.notice a i{
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+html[dir=rtl] body .carousel .carousel-caption p b{
+	margin-right: 0;
+	margin-left: 5px;
+}
+
+html[dir=rtl] body .carousel .carousel-caption p b:after{
+	content: " - ";
+}
+
+html[dir=rtl] body .carousel .carousel-caption p a{
+	margin: 0 10px 0 0;
+}
+
+html[dir=rtl] body .carousel .carousel-caption p{
+	font-size: 16px !important;
+}
+
+html[dir=rtl] .immersive{
+	left: auto;
+	right: 0;
+}
+
+html[dir=rtl] .immersive-body{
+	margin-right: 0;
+	margin-left: 200px;
+}
+
+html[dir=rtl] .immersive-header h3 span.size{
+	margin-right: 15px;
+	margin-left: 0;
+}
+
+html[dir=rtl] .immersive-header button.close{
+	right: auto;
+	left: 0;
+}
+
+html[dir=rtl] body.files .dropzone{
+	top: 113px;
+	right: auto;
+	left: 0;
+	background: rgba(0,0,0,0.08);
+	width: 220px;
+}
+
+html[dir=rtl] body.files div.list.has-dropzone{
+	margin-right: 0;
+	margin-left: 220px;
+}
+
+html[dir=rtl] body.files section.main nav h2{
+	direction: ltr;
+}
+
+html[dir=rtl] .content .layouts .cols span{
+	float: right;
+}
+
+/* Editor Blocks */
+html[dir=rtl] .editor .block .col{
+	border-right: 0;
+	border-left: 3px solid #fff;
+}
+
+html[dir=rtl] .editor .block .col:first-child{
+	border-right: 0;
+	border-left: 3px solid #fff;
+}
+/* END Editor Blocks */
+
+html[dir=rtl] div#selectIcon ul{
+	text-align: center;
+}
+
+html[dir=rtl] div#selectIcon ul li{
+	display: inline-block;
+	margin: 3px;
+	padding: 5px;
+	text-align: center;
+	width: 15%;
+	min-height: 90px;
+	vertical-align: top;
+}
+
+html[dir=rtl] div#selectIcon ul li i{
+	display: block;
+	font-size: 28px;
+	text-align: center;
+	margin: 0;
+	padding: 5px 0;
+}
+
+html[dir=rtl] div.select ul li.selected{
+	font-weight: bold;
+}
+
+html[dir=rtl] .editor .editor-highlight {
+	min-height: 50px;
+	margin-bottom: 10px;
+	display: block;
+}
+
+html[dir=rtl] .list-loading, html[dir=rtl] .list-none {
+	font-size: 16px;
+}
+
+
+/*  NAV END  */
+
+
+html[dir=rtl] .sp-button-container{
+	float: left !important;
+}
+
+html[dir=rtl] .sp-cancel{
+	margin-left: 5px !important;
+	margin-right: 0 !important;
+}
+
+html[dir=rtl] .editor .move{
+	left: 0;
+	right: auto;
+}
+
+html[dir=rtl] .editor .block .triangulate-file i, 
+html[dir=rtl] .editor .block .triangulate-map i, 
+html[dir=rtl] .editor .block .triangulate-q i{
+	right: 5px;
+	left: auto;
+}
+
+html[dir=rtl] .editor .block .respond-q div[contentEditable=true], 
+.editor .block .respond-file input, 
+.editor .block .respond-map input{
+	padding-right: 45px !important;
+	padding-left: 0 !important;
+}
+
+html[dir=rtl] body .modal .input-select{
+	left: 5px;
+	right: auto;
+	border-right: 1px solid #ddd;
+	border-left: none;
+}
+
+html[dir=rtl] body .modal-footer .primary-button{
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+
+html[dir=rtl] .editor-actions a, html[dir=rtl] .draggable{
+	margin: 5px 0 5px 1px;
+}
+
+html[dir=rtl] body select.form-control{
+	background: url('../images/down.png') no-repeat 10px 12px;
+	background-size: 20px;
+}
+
+html[dir=rtl] section.main nav h2{
+	left: 20px;
+	right: auto;
+}
+
+html[dir=rtl] .listItem span.image{
+	right: 20px;
+	left: auto;
+}
+
+html[dir=rtl] .listItem.has-thumb h2, 
+html[dir=rtl] .listItem.has-thumb p, 
+html[dir=rtl] .listItem.has-thumb em, 
+html[dir=rtl] .listItem.has-thumb small{
+	margin-right: 90px;
+	margin-left: 0;
+}
+
+html[dir=rtl] body .login input.form-control[type=password], 
+html[dir=rtl] body .login input.form-control[type=email]{
+	text-align: center;
+	direction: ltr;
+}
+
+html[dir=rtl] body .carousel {
+	border: 0;
+}
+html[dir=rtl] .carousel-control.right{
+	right: auto;
+	left: 0;
+}
+
+html[dir=rtl] .carousel-control.left{
+	left: auto;
+	right: 0;
+}
+
+html[dir=rtl] body .carousel .carousel-control.right i{
+	right: auto;
+	left: 5px;
+}
+
+html[dir=rtl] body .carousel .carousel-control.left i{
+	left: auto;
+	right: 5px;
+}
+
+html[dir=rtl] body .carousel .carousel-caption{
+	right: 0;
+	direction: rtl;
+}
+
+html[dir=rtl] body.layouts .CodeMirror, body.layouts .CodeMirror pre{
+	direction: ltr;
+	text-align: left;
+}
+
+html[dir=rtl] body.styles .CodeMirror, body.styles .CodeMirror pre{
+	direction: ltr;
+	text-align: left;
+}
+
+html[dir=rtl] body.scripts .CodeMirror, body.scripts .CodeMirror pre{
+	direction: ltr;
+	text-align: left;
+}
+
+html[dir=rtl] body.translations .CodeMirror, body.translations .CodeMirror pre{
+	direction: ltr;
+	text-align: left;
+}
+
+html[dir=rtl] .editor div.respond-image{
+	direction:ltr;
+}
+
+html[dir=rtl] .editor div.respond-image div.editable-content{
+	direction:rtl;
+}
+
+html[dir=rtl] .editor .block div[data-display="right"] img{
+	margin-left: 5px;
+}
+
+html[dir=rtl] body.login .carousel, 
+html[dir=rtl] body.theme #update-theme{
+  opacity: 1;
+  di
+  rection: ltr;
+}
+
+html[dir=rtl] body.login .carousel .item, 
+html[dir=rtl] body.theme #update-theme .item{
+  -moz-transition: opacity ease-in-out .6s;
+  -o-transition: opacity ease-in-out .6s;
+  -webkit-transition: opacity ease-in-out .6s;
+  transition: opacity ease-in-out .6s;
+  -webkit-transform: translate3d(0,0,0);
+  left: 0 !important;
+  opacity: 0;
+  top:0;
+  position:absolute;
+  width: 100%;
+  display:block !important;
+  z-index:1;
+}
+
+html[dir=rtl] body.login .carousel .item:first-child, 
+html[dir=rtl] body.theme #update-theme .item:first-child{
+  top:auto;
+  position:relative;
+}
+
+html[dir=rtl] body.login .carousel .item.active, 
+html[dir=rtl] body.theme #update-theme .item.activ {
+  opacity: 1;
+  -moz-transition: opacity ease-in-out .6s;
+  -o-transition: opacity ease-in-out .6s;
+  -webkit-transition: opacity ease-in-out .6s;
+  transition: opacity ease-in-out .6s;
+  -webkit-transform: translate3d(0,0,0);
+  z-index:2;
+}

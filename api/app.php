@@ -1,31 +1,5 @@
 <?php
 
-	// Version
-	define('VERSION', '4 ');
-
-	// debugging
-	define('DEBUG', true);
-
-	if(DEBUG){
-		error_reporting(E_ALL);
-		ini_set('display_errors', '1');
-	}
-	
-	// allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
-	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');
-	
-	// advanced configurations
-	define('IMAGE_AUTO_RESIZE', true);
-	define('IMAGE_MAX_WIDTH', 1024);
-	define('IMAGE_MAX_HEIGHT', 768);
-	
-	// thumb width and height
-	define('THUMB_MAX_WIDTH', 400);
-	define('THUMB_MAX_HEIGHT', 400);
-	
-	// set default as UTC
-	date_default_timezone_set('UTC');
-	
     // include optional local setup
     if(file_exists(__DIR__.'/setup.local.php')){
     	include 'setup.local.php';
@@ -86,4 +60,19 @@
 	if(defined('JSON_C_VERSION') == false){	
 		define('JSON_C_VERSION', true);
 	}
+	
+	// workaround for apache_request_headers not available under Nginx/FastCGI
+	if (!function_exists('apache_request_headers')) { 
+        function apache_request_headers() { 
+            foreach($_SERVER as $key=>$value) { 
+                if (substr($key,0,5)=="HTTP_") { 
+                    $key=str_replace(" ","-",ucwords(strtolower(str_replace("_"," ",substr($key,5))))); 
+                    $out[$key]=$value; 
+                }else{
+                    $out[$key]=$value; 
+		}
+            } 
+            return $out; 
+        } 
+}
 ?>

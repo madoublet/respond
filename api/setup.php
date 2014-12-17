@@ -1,17 +1,29 @@
 <?php
 
+	// Version
+	define('VERSION', '4');
+
 	// define brand
 	define('BRAND', 'Respond');
+	define('BRAND_CSS', '');
 	define('BRAND_LOGO', '/images/respond-icon.png');
 	define('BRAND_ICON', '/images/respond-icon.png');
 	define('COPY', 'Made by Matthew Smith in Manchester, MO');
 	define('EMAIL', 'sample@adminemail.com');
-	
+
 	// DB connection parameters
 	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'respond');
 	define('DB_USER', 'dbuser');
 	define('DB_PASSWORD', 'dbpass');
+	
+	// debugging
+	define('DEBUG', true);
+
+	if(DEBUG){
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+	}
 	
 	// S3 deployment options
 	
@@ -123,4 +135,19 @@
 	// set the default theme (directory name: themes/simple => simple)
 	define('DEFAULT_THEME', 'simple');
 	define('THEMES_FOLDER', 'themes');
+	
+	// allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
+	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');
+	
+	// advanced configurations
+	define('IMAGE_AUTO_RESIZE', true);
+	define('IMAGE_MAX_WIDTH', 1024);
+	define('IMAGE_MAX_HEIGHT', 768);
+	
+	// thumb width and height
+	define('THUMB_MAX_WIDTH', 400);
+	define('THUMB_MAX_HEIGHT', 400);
+	
+	// set default as UTC
+	date_default_timezone_set('UTC');
 ?>

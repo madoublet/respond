@@ -27,6 +27,7 @@ angular.module('respond.setup', [])
 	logo: 					'<?php print BRAND_LOGO; ?>',
 	icon: 					'<?php print BRAND_ICON; ?>',
 	brand: 					'<?php print BRAND; ?>',
+	css:					'<?php print BRAND_CSS; ?>',
 	
 	// default lanugage
 	language: 				'<?php print DEFAULT_LANGUAGE; ?>',

@@ -271,6 +271,8 @@ angular.module('respond', ['ui.router',
 
 	// set app title
 	$rootScope.title = Setup.app;
+	$rootScope.direction = Setup.direction;
+	$rootScope.css = Setup.css;
 	
 	// retrieve site from session storage
 	if($window.sessionStorage.site != null){
