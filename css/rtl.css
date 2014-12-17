@@ -586,7 +586,7 @@ html[dir=rtl] body.theme #update-theme{
 }
 
 html[dir=rtl] body.login .carousel .item, 
-html[dir=rtl] body.theme #update-theme .item{
+html[dir=rtl] body.theme .carousel .item{
   -moz-transition: opacity ease-in-out .6s;
   -o-transition: opacity ease-in-out .6s;
   -webkit-transition: opacity ease-in-out .6s;
@@ -602,13 +602,13 @@ html[dir=rtl] body.theme #update-theme .item{
 }
 
 html[dir=rtl] body.login .carousel .item:first-child, 
-html[dir=rtl] body.theme #update-theme .item:first-child{
+html[dir=rtl] body.theme .carousel .item:first-child{
   top:auto;
   position:relative;
 }
 
 html[dir=rtl] body.login .carousel .item.active, 
-html[dir=rtl] body.theme #update-theme .item.activ {
+html[dir=rtl] body.theme .carousel .item.active{
   opacity: 1;
   -moz-transition: opacity ease-in-out .6s;
   -o-transition: opacity ease-in-out .6s;
