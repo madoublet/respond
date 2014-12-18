@@ -532,12 +532,25 @@ angular.module('respond.controllers', [])
 })
 
 // menu controller
-.controller('MenuCtrl', function($scope, $rootScope, $state, Setup, Site, User) {
+.controller('MenuCtrl', function($scope, $rootScope, $state, $window, $i18next, Setup, Site, User) {
 
 	// get user from session
 	$scope.user = $rootScope.user;
 	$scope.site = $rootScope.site;
 	$scope.sites = Setup.sites;
+	
+	// logs a user out of the site
+	$scope.logout = function(){
+		$window.sessionStorage.removeItem('user');
+		
+		// set language back
+		$i18next.options.lng =  Setup.language;
+		moment.lang(Setup.language);
+		
+		// go to login
+		$state.go('login', {'id': $scope.site.FriendlyId});
+		
+	}
 	
 	// publishes a site
 	$scope.republish = function(){

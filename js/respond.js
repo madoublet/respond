@@ -24,14 +24,28 @@ angular.module('respond', ['ui.router',
 // configure the module
 .config(function($stateProvider, $locationProvider, $urlRouterProvider, $i18nextProvider, $httpProvider, Setup) {
 
+	var lang = Setup.language;
+
+	// retrieve user from session storage
+	if(sessionStorage.user != null){
+		var user = JSON.parse(sessionStorage.user);
+		
+		if(user != null){
+			lang = user.Language;
+		}
+	}
+
 	// config $il8nextProvider
 	$i18nextProvider.options = {
-        lng: Setup.language,
+        lng: lang,
         useCookie: false,
         useLocalStorage: false,
         fallbackLng: Setup.language,
         resGetPath: 'locales/__lng__/__ns__.json'
     };
+	
+	// set language for moment
+	moment.lang(lang);
 	
 	// set authInterceptor
 	$httpProvider.interceptors.push('authInterceptor');
