@@ -115,17 +115,24 @@ class StylesheetPublishResource extends Tonic\Resource {
 
             file_put_contents($f, $content); // save to file
 
-            $result = Publish::PublishCSS($site, $name);
+            $errors = Publish::GetLESSErrors($site, $name);
             
-            if($result == true){
-	            $response = new Tonic\Response(Tonic\Response::OK);
+            if($errors == NULL){
+            
+            	// publishes all css
+            	Publish::PublishAllCSS($site['SiteId']);
+            
+            	// send success
+            	$response = new Tonic\Response(Tonic\Response::OK);
 	            $response->contentType = 'text/HTML';
-	            $response->body = $content;
-            }
+	            $response->body = 'yay!';
+			}
             else{
+            
+            	// send errors
 	            $response = new Tonic\Response(Tonic\Response::BADREQUEST);
 	            $response->contentType = 'text/HTML';
-	            $response->body = $result;
+	            $response->body = $errors;
             }
 
             return $response;

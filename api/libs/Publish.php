@@ -93,9 +93,23 @@ class Publish
 			file_put_contents($htaccess, $contents); // save to file			
 		}
 		else if($site['UrlMode'] == 'static'){
-			$contents = 'RewriteEngine On'.PHP_EOL.
-						'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-						'RewriteRule ^([^\.]+)$ $1.html [NC,L]';
+						
+			$contents = '<IfModule mod_expires.c>'.PHP_EOL.
+				'RewriteEngine On'.PHP_EOL.
+				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
+				'</IfModule>'.PHP_EOL.
+				'<IfModule mod_expires.c>'.PHP_EOL.
+				'ExpiresActive On '.PHP_EOL.
+				'ExpiresDefault "access plus 1 month"'.PHP_EOL.
+				'ExpiresByType image/x-icon "access plus 1 year"'.PHP_EOL.
+				'ExpiresByType image/gif "access plus 1 month"'.PHP_EOL.
+				'ExpiresByType image/png "access plus 1 month"'.PHP_EOL.
+				'ExpiresByType image/jpg "access plus 1 month"'.PHP_EOL.
+				'ExpiresByType image/jpeg "access plus 1 month"'.PHP_EOL.
+				'ExpiresByType text/css "access 1 month"'.PHP_EOL.
+				'ExpiresByType application/javascript "access plus 1 year"'.PHP_EOL.
+				'</IfModule>';	
 			
 			file_put_contents($htaccess, $contents); // save to file
 		}
@@ -385,6 +399,42 @@ class Publish
 			// inject states
 			Publish::InjectStates($site);
 		}
+		
+		// combine JS
+		$js_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/';
+		
+		//get all image files with a .less ext
+		$files = glob($js_dir . "*.js");
+		
+		// combined js
+		$combined_js = '';
+
+		// walk through file names
+		foreach($files as $file){
+		
+			if(strpos($file, 'respond.min') === FALSE){
+			 	if(file_exists($file)){
+			    	$content = file_get_contents($file);
+			    
+			    	$combined_js .= $content;	
+				}
+			}
+		   
+		}
+		
+		// remove comments
+		$pattern = '/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\')\/\/.*))/';
+		$combined_js = preg_replace($pattern, '', $combined_js);
+		
+		// remove whitespace
+		//$combined_js = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $combined_js);
+		$combined_js = str_replace(array("\t", '  ', '    ', '    '), '', $combined_js);
+
+		// publish combined js
+	    $combined_js_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.min.js';
+	    
+	    // put combined js
+	    file_put_contents($combined_js_file, $combined_js);
 		
 	}
 	
@@ -1002,6 +1052,55 @@ class Publish
 		Utilities::SaveContent($dest.'/', 'sitemap.xml', $content);
 	}
 	
+	// gets errors for teh less files
+	public static function GetLESSErrors($site, $name){
+	
+		// get references to file
+	    $lessDir = SITES_LOCATION.'/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/styles/';
+	    $cssDir = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/';
+	    
+	    // get reference to config file
+	    $configFile = SITES_LOCATION.'/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/configure.json';
+
+	    $lessFile = $lessDir.$name.'.less';
+	    $cssFile = $cssDir.$name.'.css';
+
+	    // create css directory (if needed)
+	    if(!file_exists($cssDir)){
+			mkdir($cssDir, 0755, true);	
+		}
+
+	    if(file_exists($lessFile)){
+	    	$content = file_get_contents($lessFile);
+
+	    	$less = new lessc;
+	    	
+	    	try{
+		    	
+		    	$css = $content;
+		    	
+		    	// set configurations
+		    	$css = Publish::SetConfigurations($configFile, $css);
+		    	
+		    	// compile less to css
+		    	$css = $less->compile($css);
+		    	
+		    	return NULL;
+		    	
+	    	}
+	    	catch(exception $e){
+				return $e->getMessage();
+			}
+			
+    	}
+    	else{
+    		return NULL;
+    	}
+
+	}
+	
+	
+	
 	// publishes a specific css file
 	public static function PublishCSS($site, $name){
 	
@@ -1035,19 +1134,30 @@ class Publish
 		    	// compile less to css
 		    	$css = $less->compile($css);
 		    	
+		    	// compress css, #ref: http://manas.tungare.name/software/css-compression-in-php/
+		    	
+		    	// remove comments
+				$css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+		    	
+		    	// Remove space after colons
+				$css = str_replace(': ', ':', $css);
+		    	
+		    	// Remove whitespace
+				$css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
+		    	
 		    	// put css into file
 		    	file_put_contents($cssFile, $css);
 		    	
-		    	return true;
+		    	return $css;
 		    	
 	    	}
 	    	catch(exception $e){
-				return false;
+				return NULL;
 			}
 			
     	}
     	else{
-    		return false;
+    		return NULL;
     	}
 
 	}
@@ -1120,6 +1230,9 @@ class Publish
 		
 		//get all image files with a .less ext
 		$files = glob($lessDir . "*.less");
+		
+		// combined css
+		$combined_css = '';
 
 		//print each file name
 		foreach($files as $file){
@@ -1128,9 +1241,16 @@ class Publish
 			$filename = $f_arr[$count-1];
 			$name = str_replace('.less', '', $filename);
 
-			Publish::PublishCSS($site, $name);
+			if(strpos($name, 'respond.min') === FALSE){
+				$combined_css .= Publish::PublishCSS($site, $name);
+			}
 		}
-
+		// publish combined css
+	    $css_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/respond.min.css';
+	    
+	    // put combined css
+	    file_put_contents($css_file, $combined_css);
+	 
 	}
 
 	// publishes a page
@@ -1301,7 +1421,7 @@ class Publish
 		if(file_exists($layout)){
         	$layout_html = file_get_contents($layout);
         
-			$html = str_replace('<body ui-view></body>', '<body ng-controller="PageCtrl" page="'.$page['PageId'].'">'.$layout_html.'</body>', $html);
+			$html = str_replace('<body ui-view></body>', '<body ng-controller="PageCtrl" page="'.$page['PageId'].'" class="'.$page['Stylesheet'].'">'.$layout_html.'</body>', $html);
         }
 		
 		// get draft/content
