@@ -38,6 +38,7 @@ angular.module('respond', ['ui.router',
 	// config $il8nextProvider
 	$i18nextProvider.options = {
         lng: lang,
+        getAsync : false,
         useCookie: false,
         useLocalStorage: false,
         fallbackLng: Setup.language,
@@ -81,7 +82,6 @@ angular.module('respond', ['ui.router',
 		
 		.state('app', {
 		  url: "/app",
-		  abstract: true,
 		  templateUrl: "templates/menu.html",
 		  controller: 'MenuCtrl'
 		})

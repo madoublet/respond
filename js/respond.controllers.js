@@ -35,8 +35,7 @@ angular.module('respond.controllers', [])
 					$rootScope.user = data.user;
 					$window.sessionStorage.user = JSON.stringify(data.user);
 					
-					// set start
-					$state.go(data.start);
+					var start = data.start;
 					
 					// retrieve site
 					Site.retrieve(function(data){
@@ -46,6 +45,9 @@ angular.module('respond.controllers', [])
 						// set site in $rootScope, session
 						$rootScope.site = data;
 						$window.sessionStorage.site = JSON.stringify(data);
+						
+						// set start
+						$state.go(start);
 							
 					});
 					
