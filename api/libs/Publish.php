@@ -94,7 +94,7 @@ class Publish
 		}
 		else if($site['UrlMode'] == 'static'){
 						
-			$contents = '<IfModule mod_expires.c>'.PHP_EOL.
+			$contents = '<IfModule mod_rewrite.c>'.PHP_EOL.
 				'RewriteEngine On'.PHP_EOL.
 				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
 				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
