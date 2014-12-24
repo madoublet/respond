@@ -81,9 +81,12 @@ var utilities = {
 	        if(value != undefined){
 	        	var input = $(this).parents('.form-group').find('input');
 	        
+				// need to figure out how to bind this to a model
 	        
 				$(input).val(value);
-				$(input).trigger('change');
+				//$(input).trigger('input');
+				
+				angular.element(input).triggerHandler('change');
 	        }
 	        
         });

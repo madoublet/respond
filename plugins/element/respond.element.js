@@ -1459,7 +1459,7 @@ respond.element.image = {
   		if(link != ''){
 	  		// external links should have http
 			if(link.indexOf('http') == -1){
-				startLink = '<a ui-sref="'+link+'"';
+				startLink = '<a href="'+link+'" ui-sref="'+link+'"';
 			}
 			else{
 				startLink = '<a href="'+link+'"';

@@ -27,22 +27,24 @@
     	<li class="menu-files"><a ui-sref="app.files" class="hide-menu"><i class="fa fa-folder-open"></i> {{'Files' | i18next}}</a></li>
 		<li class="menu-users"><a ui-sref="app.users" class="hide-menu"><i class="fa fa-user"></i> {{'Users' | i18next}}</a></li>
 		<!--<li class="menu-account"><a ui-sref="app.account"><i class="fa fa-key"></i> {{'Account' | i18next}}</a></li>-->
+		<li ng-if="user.Role == 'Admin'" class="menu-settings"><a ui-sref="app.settings" class="hide-menu"><i class="fa fa-cog"></i> {{'Settings' | i18next}}</a></li>
 	</ul>
 	<!-- /.menu -->
 	
-	<h2 class="advanced" ng-if="user.Role == 'Admin'">
+	<h2 data-toggle="#advanced-menu" class="advanced" ng-if="user.Role == 'Admin'">
 		{{'Advanced Configurations' | i18next}}
-		<a class="republish" ng-click="republish()">{{'Republish' | i18next}} <i class="fa fa-refresh"></i></a>
+		<!-- <a class="republish" ng-click="republish()">{{'Republish' | i18next}} <i class="fa fa-refresh"></i></a> -->
+		<a><i class="fa fa-angle-down"></i></a>
 	</h2>
 	<!-- /.advanced -->
 	
-	<ul class="menu" ng-if="user.Role == 'Admin'">	
+	<ul id="advanced-menu" class="menu hidden" ng-if="user.Role == 'Admin'">	
         <li class="menu-layout"><a ui-sref="app.layouts" class="hide-menu"><i class="fa fa-th-large"></i> {{'Layouts' | i18next}}</a></li>	
         <li class="menu-styles"><a ui-sref="app.styles" class="hide-menu"><i class="fa fa-text-height"></i> {{'Styles' | i18next}}</a></li>
         <li class="menu-styles"><a ui-sref="app.scripts" class="hide-menu"><i class="fa fa-bolt"></i> {{'Scripts' | i18next}}</a></li>
-        <li class="menu-settings"><a ui-sref="app.translations" class="hide-menu"><i class="fa fa-language"></i> {{'Translations' | i18next}}</a></li>
-        <li class="menu-settings"><a ui-sref="app.settings" class="hide-menu"><i class="fa fa-cog"></i> {{'Settings' | i18next}}</a></li>
+        <li class="menu-settings"><a ui-sref="app.translations" class="hide-menu"><i class="fa fa-language"></i> {{'Translations' | i18next}}</a>
         <li class="menu-admin" ng-if="user.SiteAdmin == 1"><a ui-sref="app.admin" class="hide-menu"><i class="fa fa-sitemap"></i> {{'Admin' | i18next}}</a></li>
+        <li class="menu-admin"><a ng-click="republish()" class="hide-menu"><i class="fa fa-refresh"></i> {{'Republish' | i18next}}</a></li>
         <li class="menu-deploy"
         	ng-if="site.CanDeploy == 1"><a ng-click="deploy()"><i class="fa fa-cloud"></i> {{'Deploy to Cloud' | i18next}}</a></li>
     </ul>

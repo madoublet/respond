@@ -7,7 +7,8 @@ html[dir=rtl] body{
 	overflow-x: hidden;
 }
 
-html[dir=rtl] a, html[dir=rtl] a:hover{
+html[dir=rtl] a, 
+html[dir=rtl] a:hover{
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -108,7 +109,8 @@ html[dir=rtl] section.main nav .more{
 	right: auto;
 }
 
-html[dir=rtl] section.main nav .dropdown-menu, .config .dropdown-menu{
+html[dir=rtl] section.main nav .dropdown-menu, 
+html[dir=rtl] .config .dropdown-menu{
 	left: 0;
 	right: auto;
 }
@@ -292,7 +294,8 @@ html[dir=rtl] .modal-footer{
 	text-align: left;
 }
 
-html[dir=rtl] .nested-left, html[dir=rtl] .nested-right{
+html[dir=rtl] .nested-left, 
+html[dir=rtl] .nested-right{
 	margin-right: 40px;
 	margin-left: 10px;
 	float: right;
@@ -308,7 +311,8 @@ html[dir=rtl] .listItem span.hook{
 	left: auto;
 }
 
-html[dir=rtl] body .context-menu .form-group .sp-replacer, body .context-menu .form-group .image-picker{
+html[dir=rtl] body .context-menu .form-group .sp-replacer, 
+html[dir=rtl] body .context-menu .form-group .image-picker{
 	right: auto;
 	left: 0;
 	border: 1px solid #ddd;
@@ -436,7 +440,8 @@ html[dir=rtl] .editor .editor-highlight {
 	display: block;
 }
 
-html[dir=rtl] .list-loading, html[dir=rtl] .list-none {
+html[dir=rtl] .list-loading, 
+html[dir=rtl] .list-none {
 	font-size: 16px;
 }
 
@@ -466,8 +471,8 @@ html[dir=rtl] .editor .block .triangulate-q i{
 }
 
 html[dir=rtl] .editor .block .respond-q div[contentEditable=true], 
-.editor .block .respond-file input, 
-.editor .block .respond-map input{
+html[dir=rtl] .editor .block .respond-file input, 
+html[dir=rtl] .editor .block .respond-map input{
 	padding-right: 45px !important;
 	padding-left: 0 !important;
 }
