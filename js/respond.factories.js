@@ -85,6 +85,7 @@ angular.module('respond.factories', [])
 	
 	// create a site
 	site.create = function(friendlyId, name, email, password, passcode, timeZone, language, userLanguage, theme, 
+		firstName, lastName,
 		successCallback, failureCallback){
 	
 		// set params
@@ -97,7 +98,9 @@ angular.module('respond.factories', [])
 			timeZone: timeZone, 
 			language: language, 
 			userLanguage: userLanguage, 
-			theme: theme
+			theme: theme,
+			firstName: firstName,
+			lastName: lastName
 		}
 	
 		// set post to URL Encoded

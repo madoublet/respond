@@ -105,6 +105,10 @@ class SiteCreateResource extends Tonic\Resource {
         $direction = DEFAULT_DIRECTION;
         $userId = -1;
         
+        // get first name and lastname
+        $firstName = $request['firstName'];
+        $lastName = $request['lastName'];
+        
         // validate name and friendlyId
         if($friendlyId == '' || $name == ''){
 	        return new Tonic\Response(Tonic\Response::BADREQUEST);
@@ -157,8 +161,6 @@ class SiteCreateResource extends Tonic\Resource {
         }
         
         // defaults
-        $firstName = 'New';
-        $lastName = 'User';
         $domain = SITE_URL;
     	
     	$domain = str_replace('{{friendlyId}}', $friendlyId, $domain);

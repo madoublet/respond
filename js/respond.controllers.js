@@ -516,8 +516,13 @@ angular.module('respond.controllers', [])
 		
 		message.showMessage('progress');
 		
+		// default first and last name
+		var firstName = $('#firstName').val();
+		var lastName = $('#lastName').val();
+		
+		// create the site
 		Site.create($scope.friendlyId, $scope.name, $scope.email, $scope.password, $scope.passcode, $scope.timeZone, 
-			$scope.siteLanguage, $scope.userLanguage, $scope.themeId, 
+			$scope.siteLanguage, $scope.userLanguage, $scope.themeId, firstName, lastName,
 			function(){  // success
 				message.showMessage('success');
 				

@@ -260,6 +260,7 @@
   "remove_all_pages": "始めに全てのページを削除して下さい。",
   "Remove Page": "ページの削除",
   "Remove Page Type": "ページタイプの削除",
+  "replace_content": "Replace content with default theme content. Any changes will be saved in version history.",
   "Republish": "再パブリッシュする",
   "Required": "必須",
   "Requires Login": "ログインする必要があります。",
