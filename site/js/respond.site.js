@@ -19,10 +19,12 @@ angular.module('respond.site', ['ui.router', 'respond.site.controllers', 'respon
 	// config $il8nextProvider
 	$i18nextProvider.options = {
         lng: '{{language}}',
+        getAsync : false,
         useCookie: false,
         useLocalStorage: false,
         fallbackLng: 'en',
-        resGetPath: 'locales/__lng__/__ns__.json'
+        resGetPath: 'locales/__lng__/__ns__.json',
+        defaultLoadingValue: ''
     };
 
 	// set authInterceptor

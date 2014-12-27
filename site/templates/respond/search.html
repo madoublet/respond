@@ -15,7 +15,7 @@
 	  
   	<div class="respond-search-results">
   		<ul>
-		  	<li class="searching" ng-if="searching"><i class="fa fa-spinner fa-spin"></i> {{'Searching...'}}</li>
+		  	<li class="searching" ng-if="searching"><i class="fa fa-spinner fa-spin"></i> {{'Searching...' | i18next}}</li>
 		  	<li ng-repeat="result in results">
 			  	<h4><a ui-sref="{{result.Url}}" href="/{{result.Url}}" ng-i18next="{{result.PageId}}.name">{{result.Name}}</a></h4>
 			  	<small><a ui-sref="{{result.Url}}" href="/{{result.Url}}">{{result.Url}}</a></small>
@@ -23,7 +23,7 @@
 			  		{{result.Description}}
 			  	</p>
 		  	</li>
-		  	<li class="no-results" ng-show="results.length == 0">{{'No results found'}}</li>
+		  	<li class="no-results" ng-show="results.length == 0">{{'No results found' | i18next}}</li>
 	  	</ul>
   	</div>
 </div>

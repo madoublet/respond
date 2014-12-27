@@ -528,9 +528,6 @@ respond.component.form = {
 		attrs['class'] = 'respond-form';
 		attrs['data-cssclass'] = '';
 		attrs['data-action'] = '';
-		attrs['data-success'] = 'Form submitted successfully.';
-		attrs['data-error'] = 'There was an error submitting your form.';
-		attrs['data-submit'] = 'Submit';
 		attrs['data-field-count'] = '1';
 		
 		// append element to the editor
@@ -590,9 +587,6 @@ respond.component.form = {
 		attrs['class'] = 'respond-form';
 		attrs['data-cssclass'] = $(node).attr('class');
 		attrs['data-action'] = $(node).attr('action');
-		attrs['data-success'] = $(node).attr('success');
-		attrs['data-error'] = $(node).attr('error');
-		attrs['data-submit'] = $(node).attr('submit');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -629,10 +623,6 @@ respond.component.form = {
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['type'] = $(node).attr('data-type');
 		attrs['action'] = $(node).attr('data-action');
-		attrs['success'] = $(node).attr('data-success');
-		attrs['error'] = $(node).attr('data-error');
-		attrs['submit'] = $(node).attr('data-submit');
-		
 		
 		// return element
 		return utilities.element('respond-form', attrs, html);
@@ -930,9 +920,6 @@ respond.component.login = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-login';
 		attrs['data-cssclass'] = '';
-		attrs['data-success'] = 'Login successful.';
-		attrs['data-error'] = 'Your username or password is invalid. Please try again.';
-		attrs['data-button'] = 'Login';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -959,9 +946,6 @@ respond.component.login = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-login';
 		attrs['data-cssclass'] = $(node).attr('class');
-		attrs['data-success'] = $(node).attr('success');
-		attrs['data-error'] = $(node).attr('error');
-		attrs['data-button'] = $(node).attr('button');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -975,9 +959,6 @@ respond.component.login = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
-		attrs['success'] = $(node).attr('data-success');
-		attrs['error'] = $(node).attr('data-error');
-		attrs['button'] = $(node).attr('data-button');
 		
 		// return element
 		return utilities.element('respond-login', attrs, '');
@@ -1008,10 +989,6 @@ respond.component.registration = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-registration';
 		attrs['data-cssclass'] = '';
-		attrs['data-success'] = 'Registration successful.';
-		attrs['data-error'] = 'There was a problem registering. Please try again.';
-		attrs['data-required'] = 'All fields are required.';
-		attrs['data-button'] = 'Register';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -1039,10 +1016,6 @@ respond.component.registration = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-registration';
 		attrs['data-cssclass'] = $(node).attr('class');
-		attrs['data-success'] = $(node).attr('success');
-		attrs['data-error'] = $(node).attr('error');
-		attrs['data-required'] = $(node).attr('required');
-		attrs['data-button'] = $(node).attr('button');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -1056,10 +1029,6 @@ respond.component.registration = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
-		attrs['success'] = $(node).attr('data-success');
-		attrs['error'] = $(node).attr('data-error');
-		attrs['required'] = $(node).attr('data-required');
-		attrs['button'] = $(node).attr('data-button');
 		
 		// return element
 		return utilities.element('respond-registration', attrs, '');

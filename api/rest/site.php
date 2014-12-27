@@ -252,8 +252,10 @@ class SiteCreateResource extends Tonic\Resource {
 			// set filename
 			$filename = 'translation.json';
 			
-			// create a blank translation file
-		   	Utilities::SaveContent($locale_dir, $filename, '{}');
+			if(!file_exists($locale_dir.$filename)){
+				// create a blank translation file
+				Utilities::SaveContent($locale_dir, $filename, '{}');
+			}
     		
     		// send welcome email
     		if(SEND_WELCOME_EMAIL == true && $email != ''){

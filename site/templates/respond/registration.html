@@ -2,8 +2,8 @@
 
 	<form name="respondRegistrationForm" novalidate>
 
-		<div ng-show="showSuccess" class="alert registration-success alert-success">{{success}}</div>
-		<div ng-show="showError" class="alert registration-error alert-danger">{{error}}</div>
+		<div ng-show="showSuccess" class="alert registration-success alert-success">{{'Registration successful' | i18next}}</div>
+		<div ng-show="showError" class="alert registration-error alert-danger">{{'There was a problem registering' | i18next}}</div>
 	
 		<div class="form-group">
 			<label class="control-label">{{'First Name' | i18next}}</label>
@@ -34,7 +34,7 @@
 			<button class="btn btn-default"
 				ng-click="register(user)"
 				ng-disabled="respondRegistrationForm.$invalid || isUnchanged(user)">
-					{{button}} <i ng-show="showLoading" class="fa fa-angle-right fa-white"></i>
+					{{'Register' | i18next}} <i ng-show="showLoading" class="fa fa-angle-right fa-white"></i>
 				</button>
 		</span>
 	

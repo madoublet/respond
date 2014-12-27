@@ -1,12 +1,12 @@
 <form id="{{id}}" role="form" name="respondForm" class="{{cssClass}}" action="{{action}}">
-	<div ng-show="showSuccess" class="alert alert-success">{{success}}</div>
-	<div ng-show="showError" class="alert alert-danger">{{error}}</div>
+	<div ng-show="showSuccess" class="alert alert-success">{{'Form submitted successfully' | i18next}}</div>
+	<div ng-show="showError" class="alert alert-danger">{{'There was an error submitting your form' | i18next}}</div>
 
 	<div ng-transclude></div>
 
 	<button type="button" class="btn btn-default"
 		ng-click="submitForm(temp)"
 		ng-disabled="respondForm.$invalid">
-			{{submit}} <i ng-show="showLoading" class="fa fa-spinner fa-spin icon-spinner"></i>
+			{{'Submit' | i18next}} <i ng-show="showLoading" class="fa fa-spinner fa-spin icon-spinner"></i>
 		</button>	
 </form>

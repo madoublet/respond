@@ -35,6 +35,10 @@ class Publish
 		
 		// publish plugins
 		Publish::PublishPlugins($siteId);	
+		
+		// publish locales
+		Publish::PublishLocales($siteId);
+		
 	}
 	
 	// publishes common site files
@@ -58,6 +62,24 @@ class Publish
 		
 		// setup htaccess
 		Publish::SetupHtaccess($site);
+		
+	}
+	
+	// publishes locales for the site
+	public static function PublishLocales($siteId){
+        
+        $site = Site::GetBySiteId($siteId);
+      	
+		// copy templates/respond
+		$locales_src = APP_LOCATION.'/site/locales';
+		$locales_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/locales';
+		
+		// create libs directory if it does not exist
+		if(!file_exists($locales_dest)){
+			mkdir($locales_dest, 0755, true);	
+			
+			Utilities::CopyDirectory($locales_src, $locales_dest);
+		}
 		
 	}
 	
