@@ -180,8 +180,11 @@ angular.module('jm.i18next', [])
 		}
 
 		if (attr === 'html') {
+		
+			if(string !== key){
+				element.empty().append(string);
+            }
 
-			element.empty().append(string);
 
 		} else if (attr === 'text') {
 
