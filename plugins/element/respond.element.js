@@ -364,15 +364,19 @@ respond.element.h5 = {
 
 // p element
 respond.element.p = {
+	
+	map:[],
 
 	// initialize p
 	init:function(){
 	
 		// keydown event
-		$(document).on('keydown', '.respond-p [contentEditable=true]', function(event){
+		$(document).on('keydown keyup', '.respond-p [contentEditable=true]', function(event){
+			
+			respond.element.p.map[event.keyCode] = event.type == 'keydown';
 		
 			// ENTER KEY
-			if(event.keyCode == '13'){
+			if(respond.element.p.map[13] && !respond.element.p.map[16]){
 				
 				// get a reference to the editor
 				var editor = $(this).parents('.container');
