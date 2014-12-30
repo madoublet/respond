@@ -278,7 +278,10 @@ angular.module('respond.directives', [])
 					    
 					    scope.$apply(
 						    function(){
-							    scope.current.selected = hex;
+							    
+							    if(scope.current !== undefined){
+							    	scope.current.selected = hex;
+							    }
 						    }
 					    )
 
