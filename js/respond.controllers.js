@@ -2716,7 +2716,7 @@ angular.module('respond.controllers', [])
 		// push admin, contributor and member
 		data.push({
 			RoleId: 'Admin',
-			Name: 'Admin', 
+			Name: i18n.t('Admin'), 
 			CanView: '', 
 			CanEdit: '', 
 			CanPublish: '', 
@@ -2725,7 +2725,7 @@ angular.module('respond.controllers', [])
 			
 		data.push({
 			RoleId: 'Contributor',
-			Name: 'Contributor', 
+			Name: i18n.t('Contributor'), 
 			CanView: '', 
 			CanEdit: '', 
 			CanPublish: '', 
@@ -2734,7 +2734,7 @@ angular.module('respond.controllers', [])
 			
 		data.push({
 			RoleId: 'Member',
-			Name: 'Member', 
+			Name: i18n.t('Member'), 
 			CanView: '', 
 			CanEdit: '', 
 			CanPublish: '', 

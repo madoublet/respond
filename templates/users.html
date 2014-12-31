@@ -45,7 +45,7 @@
     		</h2>
     		<p><span class="email">{{user.Email}}</span></p>
             <em>
-            	<span class="status">{{user.Role}}
+            	<span class="status">{{user.Role | i18next}}
 				<span ng-show="user.IsActive=='0'"> &ndash; {{'Not Active' | i18next}}</span></span> 
             	{{'Created' | i18next}} {{user.Created | fromNow}}
             </em>
@@ -100,7 +100,7 @@
 					
 					<select id="role"
 						ng-model="temp.Role"
-						ng-options="role.Name as role.Name for role in roles"
+						ng-options="role.RoleId as role.Name for role in roles"
 						class="form-control" required>
 						</select>
 				</div>
