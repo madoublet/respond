@@ -248,6 +248,7 @@ angular.module('respond.directives', [])
 	        	 	showInput: true,
 					showInitial: true,
 					showPalette: true,
+					showAlpha: true,
 					showSelectionPalette: true,
 					preferredFormat: "hex",
 					palette: [
