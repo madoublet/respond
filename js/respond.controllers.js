@@ -1465,14 +1465,16 @@ angular.module('respond.controllers', [])
 	// add image
 	$scope.addImage = function(image){
 	
-		console.log('$scope.addImage');
-		console.log(image);
-	
-	
 		var plugin = $('#imagesDialog').attr('data-plugin');
+		var action= $('#imagesDialog').attr('data-action');
 		
-		// build add
-		var fn = plugin + '.addImage';
+		// add or edit the image
+		if(action != undefined && action == 'edit'){
+			var fn = plugin + '.editImage';
+		}
+		else{
+			var fn = plugin + '.addImage';
+		}
 		
 		// execute method
 		utilities.executeFunctionByName(fn, window, image);

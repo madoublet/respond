@@ -1315,13 +1315,28 @@ respond.element.image = {
 		
 			var node = $(respond.editor.currNode);
 		
-			var form = $('.config[data-action="respond.element.table"]');
 			var display = $(this).val();
 			var src = $(node).find('img').attr('src');
 			var html = $(node).find('[contentEditable=true]').html() || '';
 			
 			// update html
 			$(node).html(respond.element.image.html(display, src, html));
+			
+		});
+		
+		$(document).on('click', '.respond-image img', function(){
+			
+			// tell the dialog which plugin is calling it
+			$('#imagesDialog').attr('data-plugin', 'respond.element.image');
+			$('#imagesDialog').attr('data-action', 'edit');
+			
+			// show dialog
+			$('#imagesDialog').modal('show');
+			
+			// get scope from page
+			var scope = angular.element($("section.main")).scope();
+			
+			scope.retrieveImages();
 			
 		});
 		
@@ -1347,6 +1362,20 @@ respond.element.image = {
 		
 		return content;
 		
+	},
+	
+	// edits an image
+	editImage:function(image){
+		
+		var node = $(respond.editor.currNode);
+		
+		var src = $(node).find('img').attr('src', image.fullUrl);
+		
+		// hide dialog
+		$('#imagesDialog').modal('hide');
+		
+		return true;
+	
 	},
 	
 	// adds an image
@@ -1391,6 +1420,7 @@ respond.element.image = {
 		
 		// tell the dialog which plugin is calling it
 		$('#imagesDialog').attr('data-plugin', 'respond.element.image');
+		$('#imagesDialog').attr('data-action', 'add');
 		
 		// show dialog
 		$('#imagesDialog').modal('show');
