@@ -65,7 +65,7 @@ angular.module('respond.site.factories', [])
 	
 	var page = {};
 	
-	// retrieve languages
+	// retrieve a list of pages
 	page.list = function(type, pagesize, current, orderby, successCallback, failureCallback){
 		
 		// set params
@@ -81,6 +81,24 @@ angular.module('respond.site.factories', [])
 	
 		// post to API
 		$http.post($rootScope.site.API + '/page/published/list', $.param(params))
+			.success(successCallback)
+			.error(failureCallback);
+			
+	}
+	
+	// retrieve a count for a list
+	page.count = function(type, successCallback, failureCallback){
+		
+		// set params
+		var params = {
+			siteId: $rootScope.site.SiteId,
+			type: type
+		}
+		// set post to URL Encoded
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	
+		// post to API
+		$http.post($rootScope.site.API + '/page/published/count', $.param(params))
 			.success(successCallback)
 			.error(failureCallback);
 			
