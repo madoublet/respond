@@ -55,7 +55,7 @@ respond.component.slideshow = {
 		
 		// build html
 		var html = '<span class="image"><img src="' + image.fullUrl + '" title="">' +
-				   '<span class="caption"><input type="text" value="" placeholder="Enter Caption" maxwidth="140"></span>' +
+				   '<span class="caption"><input type="text" value="" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140"></span>' +
 				   '<a class="remove-image fa fa-minus-circle"></a></span>';
 				   
 		$(node).find('.images').append(html);
@@ -136,7 +136,7 @@ respond.component.slideshow = {
 			// build html
 			html +=	'<span class="image">' + image + 
 					'<span class="caption">' +
-					'<input type="text" value="' + title + '" placeholder="Enter caption" maxwidth="140">' +
+					'<input type="text" value="' + title + '" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140">' +
 					'</span>' +
 					'<a class="remove-image fa fa-minus-circle"></a>' +
 					'</span>';
@@ -220,7 +220,7 @@ respond.component.map = {
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<i class="in-textbox fa fa-map-marker"></i>' +
-					'<input type="text" value="" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210">';
+					'<input type="text" value="" spellcheck="false" maxlength="512" placeholder="">';
 					
 		// tag attributes
 		var attrs = [];
@@ -250,7 +250,7 @@ respond.component.map = {
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<i class="in-textbox fa fa-map-marker"></i>' +
-					'<input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="1234 Main Street, Some City, LA 90210">';
+					'<input type="text" value="' + address + '" spellcheck="false" maxlength="512" placeholder="' + i18n.t('1234 Main Street, Some City, LA 90210') + '">';
 					
 		// tag attributes
 		var attrs = [];

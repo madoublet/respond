@@ -7,8 +7,7 @@ html[dir=rtl] body{
 	overflow-x: hidden;
 }
 
-html[dir=rtl] a, 
-html[dir=rtl] a:hover{
+html[dir=rtl] a, html[dir=rtl] a:hover{
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -109,8 +108,7 @@ html[dir=rtl] section.main nav .more{
 	right: auto;
 }
 
-html[dir=rtl] section.main nav .dropdown-menu, 
-html[dir=rtl] .config .dropdown-menu{
+html[dir=rtl] section.main nav .dropdown-menu, .config .dropdown-menu{
 	left: 0;
 	right: auto;
 }
@@ -294,8 +292,7 @@ html[dir=rtl] .modal-footer{
 	text-align: left;
 }
 
-html[dir=rtl] .nested-left, 
-html[dir=rtl] .nested-right{
+html[dir=rtl] .nested-left, html[dir=rtl] .nested-right{
 	margin-right: 40px;
 	margin-left: 10px;
 	float: right;
@@ -311,8 +308,7 @@ html[dir=rtl] .listItem span.hook{
 	left: auto;
 }
 
-html[dir=rtl] body .context-menu .form-group .sp-replacer, 
-html[dir=rtl] body .context-menu .form-group .image-picker{
+html[dir=rtl] body .context-menu .form-group .sp-replacer, body .context-menu .form-group .image-picker{
 	right: auto;
 	left: 0;
 	border: 1px solid #ddd;
@@ -440,8 +436,7 @@ html[dir=rtl] .editor .editor-highlight {
 	display: block;
 }
 
-html[dir=rtl] .list-loading, 
-html[dir=rtl] .list-none {
+html[dir=rtl] .list-loading, html[dir=rtl] .list-none {
 	font-size: 16px;
 }
 
@@ -471,8 +466,8 @@ html[dir=rtl] .editor .block .triangulate-q i{
 }
 
 html[dir=rtl] .editor .block .respond-q div[contentEditable=true], 
-html[dir=rtl] .editor .block .respond-file input, 
-html[dir=rtl] .editor .block .respond-map input{
+.editor .block .respond-file input, 
+.editor .block .respond-map input{
 	padding-right: 45px !important;
 	padding-left: 0 !important;
 }
@@ -588,37 +583,7 @@ html[dir=rtl] body.theme #update-theme{
   opacity: 1;
   di
   rection: ltr;
+  direction: ltr;
 }
-
-html[dir=rtl] body.login .carousel .item, 
-html[dir=rtl] body.theme .carousel .item{
-  -moz-transition: opacity ease-in-out .6s;
-  -o-transition: opacity ease-in-out .6s;
-  -webkit-transition: opacity ease-in-out .6s;
-  transition: opacity ease-in-out .6s;
-  -webkit-transform: translate3d(0,0,0);
-  left: 0 !important;
-  opacity: 0;
-  top:0;
-  position:absolute;
-  width: 100%;
-  display:block !important;
-  z-index:1;
-}
-
-html[dir=rtl] body.login .carousel .item:first-child, 
-html[dir=rtl] body.theme .carousel .item:first-child{
-  top:auto;
-  position:relative;
-}
-
-html[dir=rtl] body.login .carousel .item.active, 
-html[dir=rtl] body.theme .carousel .item.active{
-  opacity: 1;
-  -moz-transition: opacity ease-in-out .6s;
-  -o-transition: opacity ease-in-out .6s;
-  -webkit-transition: opacity ease-in-out .6s;
-  transition: opacity ease-in-out .6s;
-  -webkit-transform: translate3d(0,0,0);
-  z-index:2;
-}
+Window size: 1270 x 837
+Viewport size: 1270 x 765
