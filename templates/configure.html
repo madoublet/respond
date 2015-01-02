@@ -3,7 +3,7 @@
 	<nav>
         <a class="show-menu"></a>
         
-        <h1>{{themeId | toHuman}}</h1>
+        <h1>{{themeId | i18next | toHuman}}</h1>
         
         <button ng-click="changeTheme()"
        		class="primary-action">

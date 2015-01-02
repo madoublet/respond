@@ -25,7 +25,7 @@
 									<img ng-src="{{setup.themes}}/{{theme.id}}/screenshot.png">
 									<div class="carousel-caption">
 										 <p>
-										 	<b>{{theme.name}}</b>{{theme.desc}}
+										 	<b>{{theme.name | i18next}}</b>{{theme.desc | i18next}}
 										 
 										 	<a ng-show="theme.id != themeId"
 										 		ng-click="showApply(theme)">{{'Select Theme' | i18next}}</a>
