@@ -18,6 +18,7 @@ class UserLoginResource extends Tonic\Resource {
         
         // get site
         $site = null;
+        $first_login = false;
         
         if(isset($request['friendlyId'])){
 	        
@@ -42,6 +43,11 @@ class UserLoginResource extends Tonic\Resource {
 			$response->body = 'Access denied';
 			return $response;
 	        
+        }
+        
+        // set first_login if the last login is null
+        if($site['LastLogin'] == NULL){
+	        $first_login = true;
         }
        
         // get the user from the credentials
@@ -163,6 +169,7 @@ class UserLoginResource extends Tonic\Resource {
 				$params = array(
 					'start' => START_PAGE,
 					'user' => $returned_user,
+					'firstLogin' => $first_login,
 					'token' => Utilities::CreateJWTToken($user['UserId'], $user['SiteId'])
 				);
 				

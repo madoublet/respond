@@ -5,7 +5,7 @@
         
         <h1>{{'Pages' | i18next}}</h1>
          
-       <button ng-click="showAddPage()"
+       <button id="add-page" ng-click="showAddPage()"
        		class="primary-action">
 	   		{{'Add Page' | i18next}}
        </button>  
@@ -27,6 +27,12 @@
     				tabindex="-1">
     				{{'Remove' | i18next}} /{{current.FriendlyId}}
     			</a> 	
+		  	</li>
+		  	<li role="presentation"> 
+    			<a ng-click="showIntro()"
+    				tabindex="-1">
+    				{{'Show Introduction' | i18next}}
+    			</a>
 		  	</li>
 		  </ul>
 		</div>
@@ -80,9 +86,10 @@
 		
     </menu>
 
-    <div class="list">
+    <div id="pages-list" class="list">
     
     	<div class="listItem" 
+	    	id="listItem-{{$index}}"
     		ng-repeat="page in pages | filter: {PageTypeId: pageTypeId} | orderBy: predicate"
     		ng-class="{'has-thumb': (page.Thumb != '')}">
     		

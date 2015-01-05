@@ -37,6 +37,9 @@ angular.module('respond.controllers', [])
 					
 					var start = data.start;
 					
+					// set firstLogin
+					$rootScope.firstLogin = data.firstLogin;
+					
 					// retrieve site
 					Site.retrieve(function(data){
 					
@@ -837,6 +840,12 @@ angular.module('respond.controllers', [])
 		
 		$scope.pages = data;
 		$scope.loading = false;
+		
+		setTimeout(function(){
+			$scope.setupTour();
+		}, 1);
+		
+		
 	});
 	
 	// list stylesheets
@@ -858,6 +867,21 @@ angular.module('respond.controllers', [])
 		
 		$scope.layouts = data;
 	});
+	
+	// shows the tour
+	$scope.setupTour = function(){
+		
+		// show the intro tour
+		if($rootScope.firstLogin == true){
+			tour.intro();
+		}
+	}
+	
+	// shows the tour
+	$scope.showIntro = function(){
+		tour.intro();
+	}
+	
 	
 })
 

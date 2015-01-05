@@ -1,0 +1,355 @@
+.shepherd-element,.shepherd-element:after,.shepherd-element:before,.shepherd-element *,.shepherd-element :after,.shepherd-element :before
+{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+.shepherd-element
+{
+	display:none;
+	position:absolute;
+}
+
+.shepherd-element.shepherd-open
+{
+	display:block;
+}
+
+.shepherd-element
+{
+	max-height:100%;
+	max-width:100%;
+}
+
+.shepherd-element .shepherd-content
+{
+	-moz-border-radius: 0;
+	-moz-filter:drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+	-moz-transform:translateZ(0);
+	-ms-border-radius: 0;
+	-ms-transform:translateZ(0);
+	-o-border-radius: 0;
+	-o-transform:translateZ(0);
+	-webkit-border-radius: 0;
+	-webkit-filter:drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+	-webkit-transform:translateZ(0);
+	background:#FFF;
+	border-radius: 0;
+	color:#444;
+	filter:drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+	font-family:inherit;
+	font-size:1.1em;
+	line-height:1.5em;
+	padding:0;
+	position:relative;
+	transform:translateZ(0);
+}
+
+.shepherd-element .shepherd-content:before
+{
+	border-color:transparent;
+	border-style:solid;
+	border-width:8px;
+	content:"";
+	display:block;
+	height:0;
+	position:absolute;
+	width:0;
+}
+
+.shepherd-element.no-arrow .shepherd-content:before{
+	border-width: 0;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-center .shepherd-content
+{
+	margin-bottom:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-center .shepherd-content:before
+{
+	border-top-color:#FFF;
+	left:50%;
+	margin-left:-16px;
+	top:100%;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-center .shepherd-content
+{
+	margin-top:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-center .shepherd-content:before
+{
+	border-bottom-color:#FFF;
+	bottom:100%;
+	left:50%;
+	margin-left:-16px;
+}
+
+.shepherd-element.shepherd-element-attached-right.shepherd-element-attached-middle .shepherd-content
+{
+	margin-right:16px;
+}
+
+.shepherd-element.shepherd-element-attached-right.shepherd-element-attached-middle .shepherd-content:before
+{
+	border-left-color:#FFF;
+	left:100%;
+	margin-top:-16px;
+	top:50%;
+}
+
+.shepherd-element.shepherd-element-attached-left.shepherd-element-attached-middle .shepherd-content
+{
+	margin-left:16px;
+}
+
+.shepherd-element.shepherd-element-attached-left.shepherd-element-attached-middle .shepherd-content:before
+{
+	border-right-color:#FFF;
+	margin-top:-16px;
+	right:100%;
+	top:50%;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-left.shepherd-target-attached-bottom .shepherd-content
+{
+	margin-top:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-left.shepherd-target-attached-bottom .shepherd-content:before
+{
+	border-bottom-color:#FFF;
+	bottom:100%;
+	left:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-right.shepherd-target-attached-bottom .shepherd-content
+{
+	margin-top:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-right.shepherd-target-attached-bottom .shepherd-content:before
+{
+	border-bottom-color:#FFF;
+	bottom:100%;
+	right:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-left.shepherd-target-attached-top .shepherd-content
+{
+	margin-bottom:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-left.shepherd-target-attached-top .shepherd-content:before
+{
+	border-top-color:#FFF;
+	left:16px;
+	top:100%;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-right.shepherd-target-attached-top .shepherd-content
+{
+	margin-bottom:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-right.shepherd-target-attached-top .shepherd-content:before
+{
+	border-top-color:#FFF;
+	right:16px;
+	top:100%;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-right.shepherd-target-attached-left .shepherd-content
+{
+	margin-right:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-right.shepherd-target-attached-left .shepherd-content:before
+{
+	border-left-color:#FFF;
+	left:100%;
+	top:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-left.shepherd-target-attached-right .shepherd-content
+{
+	margin-left:16px;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-left.shepherd-target-attached-right .shepherd-content:before
+{
+	border-right-color:#FFF;
+	right:100%;
+	top:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-right.shepherd-target-attached-left .shepherd-content
+{
+	margin-right:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-right.shepherd-target-attached-left .shepherd-content:before
+{
+	border-left-color:#FFF;
+	bottom:16px;
+	left:100%;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-left.shepherd-target-attached-right .shepherd-content
+{
+	margin-left:16px;
+}
+
+.shepherd-element.shepherd-element-attached-bottom.shepherd-element-attached-left.shepherd-target-attached-right .shepherd-content:before
+{
+	border-right-color:#FFF;
+	bottom:16px;
+	right:100%;
+}
+
+.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-center.shepherd-has-title .shepherd-content:before,.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-right.shepherd-target-attached-bottom.shepherd-has-title .shepherd-content:before,.shepherd-element.shepherd-element-attached-top.shepherd-element-attached-left.shepherd-target-attached-bottom.shepherd-has-title .shepherd-content:before
+{
+	border-bottom-color:#eee;
+}
+
+.shepherd-element.shepherd-has-title .shepherd-content header
+{
+	background:#eee;
+	padding:1em;
+}
+
+.shepherd-element.shepherd-has-title .shepherd-content header a.shepherd-cancel-link
+{
+	margin-bottom:0;
+	padding:0;
+}
+
+.shepherd-element.shepherd-has-cancel-link .shepherd-content header h3
+{
+	float:left;
+}
+
+.shepherd-element .shepherd-content *
+{
+	font-size:inherit;
+}
+
+.shepherd-element .shepherd-content header
+{
+	-moz-border-radius:5px 5px 0 0;
+	-ms-border-radius:5px 5px 0 0;
+	-o-border-radius:5px 5px 0 0;
+	-webkit-border-radius:5px 5px 0 0;
+	border-radius:5px 5px 0 0;
+	zoom:1;
+}
+
+.shepherd-element .shepherd-content header:after
+{
+	clear:both;
+	content:"";
+	display:table;
+}
+
+.shepherd-element .shepherd-content header h3
+{
+	font-weight:400;
+	line-height:1;
+	margin:0;
+}
+
+.shepherd-element .shepherd-content header a.shepherd-cancel-link
+{
+	color:rgba(0,0,0,0.5);
+	float:right;
+	font-size:1.25em;
+	font-weight:400;
+	line-height:.8em;
+	margin-bottom:-.8em;
+	opacity:0.25;
+	padding:.8em;
+	position:relative;
+	text-decoration:none;
+	top:.1em;
+}
+
+.shepherd-element .shepherd-content header a.shepherd-cancel-link:hover
+{
+	opacity:1;
+}
+
+.shepherd-element .shepherd-content .shepherd-text
+{
+	padding:1em;
+}
+
+.shepherd-element .shepherd-content .shepherd-text p
+{
+	line-height:1.3em;
+	margin:0 0 .5em;
+}
+
+.shepherd-element .shepherd-content .shepherd-text p:last-child
+{
+	margin-bottom:0;
+}
+
+.shepherd-element .shepherd-content footer
+{
+	padding:0 1em 1em;
+}
+
+.shepherd-element.pull-front{
+	z-index: 10000000;
+}
+
+.shepherd-element .shepherd-content footer .shepherd-buttons
+{
+	list-style:none;
+	margin:0;
+	padding:0;
+	text-align:right;
+}
+
+.shepherd-element .shepherd-content footer .shepherd-buttons li
+{
+	display:inline;
+	margin:0;
+	padding:0;
+}
+
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button
+{
+	-moz-border-radius:3px;
+	-ms-border-radius:3px;
+	-o-border-radius:3px;
+	-webkit-border-radius:3px;
+	background:#81b841;
+	border:0;
+	border-radius:3px;
+	color:#FFF;
+	cursor:pointer;
+	display:inline;
+	font-family:inherit;
+	font-size:.8em;
+	letter-spacing:.1em;
+	line-height:1em;
+	margin:0 .5em 0 0;
+	padding:.75em 2em;
+	vertical-align:auto;
+	zoom:1;
+}
+
+.shepherd-element .shepherd-content footer .shepherd-buttons li .shepherd-button.shepherd-button-secondary
+{
+	background:#eee;
+	color:#888;
+}
+
+.shepherd-element .shepherd-content footer .shepherd-buttons li:last-child .shepherd-button
+{
+	margin-right:0;
+}

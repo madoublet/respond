@@ -375,7 +375,7 @@ body .modal-header{
 			}
 
 /* header */
-header{
+header.slideout{
     position: fixed;
     top: 0;
     left: 0;
@@ -406,7 +406,7 @@ header{
 		display: none;	
 	}
 	
-	header .profile{
+	header.slideout .profile{
 		position: absolute;
 		top: 5px;
 		left: 5px;
@@ -415,7 +415,7 @@ header{
 		z-index: 10;
 	}
 	
-		header .profile .photo{
+		header.slideout .profile .photo{
 			float: left;
 			display: inline-block;
 			width: 45px;
@@ -432,7 +432,7 @@ header{
 		}
 
     
-    header .sub-menu a{
+    header.slideout .sub-menu a{
         display: inline-block;
         width: 40px;
         height: 40px;
@@ -444,34 +444,34 @@ header{
 		border-radius: 50%;
     }
     
-         header .sub-menu a:hover{
+         header.slideout .sub-menu a:hover{
              text-decoration: none;
              color: #1111;
          }
          
-         header .sub-menu a.signout:hover{
+         header.slideout .sub-menu a.signout:hover{
 	         background-color: #A4110A;
 	         color: #fff;
          }
          
-         header .sub-menu a.republish:hover{
+         header.slideout .sub-menu a.republish:hover{
 	         background-color: #7ec57e;
          }
          
-	header .sub-menu{
+	header.slideout .sub-menu{
 		position: absolute;
 		top: 7px;
 		right: 5px;
 		z-index: 10;
 	}
 	
-	header .sub-menu a.hide-menu{
+	header.slideout .sub-menu a.hide-menu{
 		background-color: #ddd;
 		color: #fff;
 		border-color: #555;
 	}
 	
-		header .sub-menu a.hide-menu:hover{
+		header.slideout .sub-menu a.hide-menu:hover{
 			background-color: #aaa;
 		}
 
@@ -484,14 +484,14 @@ header{
         display: block;
     }
     
-    header ul, header li{
+    header.slideout ul, header.slideout li{
         list-style: none;
         margin: 0;
         padding: 0;
         border-bottom: 1px solid #f0f0f0;
     }
     
-    header h2{
+    header.slideout h2{
     	position: relative;
 	    color: #aaa;
 	    font-size: 13px;
@@ -501,7 +501,7 @@ header{
 	    text-transform: uppercase;
     }
     
-    	header h2 a{
+    	header.slideout h2 a{
     		position: absolute;
     		bottom: 10px;
     		right: 10px;
@@ -512,25 +512,25 @@ header{
 	    	text-transform: uppercase;
     	}
     	
-    	header h2 a i{
+    	header.slideout h2 a i{
 	    	color: #888;
 	    	font-size: 11px;
 	    	margin-left: 5px;
     	}
     
-    	header h2.basic{
+    	header.slideout h2.basic{
 	    	padding: 75px 0 10px 10px;
     	}
     	
-    	header h2.advanced{
+    	header.slideout h2.advanced{
 	    	padding: 20px 0 10px 10px;
 	    }
     
-    header ul{
+    header.slideout ul{
         border-top: 1px solid #ccc;
     }
     
-    header li a{
+    header.slideout li a{
     	font-family: "Roboto", sans-serif;
     	font-weight: 300;
         font-size: 16px;
@@ -540,14 +540,14 @@ header{
         font-size: 1.1em;
     }
     
-        header li a i{
+        header.slideout li a i{
             display: inline-block !important;
             color: #aaa;
             margin-right: 10px;
             width: 20px !important;
         }
     
-        header li.active a{
+        header.slideout li.active a{
             background-color: #3299BB;
             color: #fff;
         }
@@ -556,14 +556,14 @@ header{
 	        	color: #fff;
         	}
     
-        header li a:hover{
+        header.slideout li a:hover{
             list-style: none;
             color: #fff;
             text-decoration: none;
             background-color: #3299bb;
         }
         
-            header li a:hover i{
+            header.slideout li a:hover i{
                 color: #fff;
             }
 
