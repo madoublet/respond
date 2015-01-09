@@ -4,7 +4,7 @@
         <a ng-click="back()" 
         	class="back"></a>
         
-        <h1>{{page.Name}}</h1>
+        <h1>{{page.Name}} <span ng-if="isModified">*</span></h1>
        
         <div class="dropdown more">
 		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
@@ -550,12 +550,7 @@
 </div>
 <!-- /.modal -->
 
-<!-- modals -->
-<div class="modal fade" id="filesDialog">
-
-	<!-- messages -->
-	<input id="msg-files-dialog-download" value="{{'Download' | i18next}}" type="hidden">
-	<input id="msg-files-dialog-desc" value="{{'File Description' | i18next}}" type="hidden">
+<div class="modal fade" id="changeDialog">
 
 	<div class="modal-dialog">
 	
@@ -563,28 +558,18 @@
 
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>{{'Add File' | i18next}}</h3>
+				<h3>{{'Are you sure?' | i18next}}</h3>
 			</div>
 			
 			<div class="modal-body">
-			
-				<div id="selectFile" class="select select-lg">
-				
-				    <ul data-bind="foreach: files">
-				      <li>
-				        <i class="fa fa-file-alt" data-bind="visible: (extension == 'pdf' || extension == 'doc'|| extension == 'docx'|| extension == 'zip' || extension == 'ppt')"></i>
-				        <i class="fa fa-picture" data-bind="visible: (extension == 'png' || extension == 'jpg'|| extension == 'gif')"></i>
-				        <a data-bind="attr:{'data-filename':filename, 'data-fullurl':fullUrl, 'data-extension':extension}, text:filename"></a>
-				      </li>
-				    </ul>
-				
-				</div>
-				
+				<p>
+					{{'save_changes_message' | i18next}}
+				</p>
 			</div>
 				
 			<div class="modal-footer">
-				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
-				<button class="primary-button" data-bind="click: addFile">{{'Add' | i18next}}</a>
+				<button class="secondary-button" data-dismiss="modal">{{'Cancel' | i18next}}</button>
+				<button class="primary-button" ng-click="continueBack()">{{'Continue' | i18next}}</a>
 			</div>  
 			<!-- /.modal-footer -->
 		

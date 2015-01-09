@@ -39,6 +39,7 @@ angular.module('respond.controllers', [])
 					
 					// set firstLogin
 					$rootScope.firstLogin = data.firstLogin;
+					$rootScope.introShown = false;
 					
 					// retrieve site
 					Site.retrieve(function(data){
@@ -872,8 +873,9 @@ angular.module('respond.controllers', [])
 	$scope.setupTour = function(){
 		
 		// show the intro tour
-		if($rootScope.firstLogin == true){
+		if($rootScope.firstLogin == true && $rootScope.introShown == false){
 			tour.intro();
+			$rootScope.introShown = true;
 		}
 	}
 	
@@ -886,7 +888,7 @@ angular.module('respond.controllers', [])
 })
 
 // content controller
-.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product, MenuType) {
+.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product, MenuType, Snippet) {
 	
 	$rootScope.template = 'content';
 	
@@ -906,6 +908,8 @@ angular.module('respond.controllers', [])
 	$scope.numColumns = 1;
 	$scope.totalSize = 0;
 	$scope.fileLimit = $rootScope.site.FileLimit;
+	$scope.isModified = false;
+	$scope.snippets = null;
 	
 	// watch for changes in the block collection
     $scope.$watchCollection('block', function(newValues, oldValues){
@@ -1076,6 +1080,8 @@ angular.module('respond.controllers', [])
 	
 	// save & publish
 	$scope.saveAndPublish = function(){
+	
+		$scope.isModified = false;
 		
 		var editor = $('#respond-editor');
 		
@@ -1135,6 +1141,8 @@ angular.module('respond.controllers', [])
 	
 	// saves a draft
 	$scope.saveDraft = function(){
+	
+		$scope.isModified = false;
 	
 		var editor = $('#respond-editor');
 		
@@ -1230,6 +1238,19 @@ angular.module('respond.controllers', [])
 	
 	// back
 	$scope.back = function(){
+		
+		if($scope.isModified == true){
+			$('#changeDialog').modal('show');
+		}
+		else{
+			window.history.back();
+		}
+	}
+	
+	// continue
+	$scope.continueBack = function(){
+		$('#changeDialog').modal('hide');
+	
 		window.history.back();
 	}
 	
@@ -1361,6 +1382,24 @@ angular.module('respond.controllers', [])
 				console.log(data);
 				
 				$scope.totalSize = parseFloat(data);
+			});
+		
+		}
+	
+	}
+	
+	// retrieve snippets
+	$scope.retrieveSnippets = function(){
+	
+		if($scope.snippets == null){
+	
+			// list images
+			Snippet.list(function(data){
+			
+				// debugging
+				if(Setup.debug)console.log('[respond.debug] Snippet.list');
+				
+				$scope.snippets = data;
 			});
 		
 		}

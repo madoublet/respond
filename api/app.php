@@ -54,6 +54,7 @@
     require_once 'rest/transaction.php';
     require_once 'rest/version.php';
     require_once 'rest/product.php';
+    require_once 'rest/snippet.php';
     require_once 'rest/app.php';
    
 	// workaround for JSON module issues

@@ -10,6 +10,7 @@ respond.editor.currConfig = null;
 respond.editor.prefix = '';
 respond.editor.menu = null;
 respond.editor.api = '';
+respond.editor.isModified = false;
 
 // reference to the editor
 respond.editor.el = null;
@@ -1111,6 +1112,19 @@ respond.editor.build = function(){
   	}
 	
 	respond.editor.setupPlugins();
+	
+	// detect any changes
+	$(el).bind("DOMSubtreeModified", function() {
+	    
+	    // set scope
+  		var scope = angular.element($("section.main")).scope();
+  		
+  		// set block, container
+  		scope.$apply(function(){
+		    scope.isModified = true;
+		});
+	    
+	});
 	
 }
 

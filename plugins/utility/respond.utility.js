@@ -174,184 +174,57 @@ respond.utility.load.init();
 respond.utility.layout = {
 
 	init:function(){
-		// create COLS
-		$(document).on('click', '.cols5050', function(){
 		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
+		// load snippet
+		$(document).on('click', '#layoutDialog button', function(){
 			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-					'<div class="col col-md-6 sortable">' +
-					'</div>' +
-					'<div class="col col-md-6 sortable">' +
-					'</div>' +
-					'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' + 
-					respond.editor.defaults.blockMenu + '</span></div>';
-					
+			var id = $(this).attr('data-id');
+			var prefix = $(this).attr('data-prefix');
 			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
+			var uniqId = respond.editor.generateUniqId(prefix, prefix);
 			
-			// re-init sortable
-			respond.editor.setupSortable();
+			// get scope from page
+			var scope = angular.element($("section.main")).scope();
 			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
+			var api = scope.setup.api;
 			
-			// hide modal
-			$('#layoutDialog').modal('hide'); 
-		});
-	
-		// create COLS 7/3
-		$(document).on('click', '.cols73', function(){
-		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
+			// get data
+			$.post(api + '/snippet/content', {'snippet': id}, function(data){
+				
+				var html = data;
+				html = utilities.replaceAll(html, '{{id}}', uniqId);
+				html = utilities.replaceAll(html, '{{menu}}', respond.editor.defaults.blockMenu);
+				
+				// append to editor
+				$(respond.editor.el).append(
+					html
+				);
+				
+				// re-init sortable
+				respond.editor.setupSortable();
+				
+				// reset respond.editor.currNode (new content should be added to the end)
+				respond.editor.currNode = null;
+				
+				// hide modal
+				$('#layoutDialog').modal('hide');
+				
+			});
 			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-							'<div class="col col-md-9 sortable">' +
-							'</div>' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
-							respond.editor.defaults.blockMenu + '</span></div>';
-			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
-			
-			// re-init sortable
-			respond.editor.setupSortable();
-			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
-			
-			// hide modal
-			$('#layoutDialog').modal('hide');  
-		});
-		
-		// create COLS 3/7
-		$(document).on('click', '.cols37', function(){
-		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
-			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<div class="col col-md-9 sortable">' +
-							'</div>' +
-							'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
-							respond.editor.defaults.blockMenu + '</span></div>';
-			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
-			
-			// re-init sortable
-			respond.editor.setupSortable();
-			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
-			
-			// hide modal
-			$('#layoutDialog').modal('hide');  
-		});
-	
-		// create COLS 3/3/3
-		$(document).on('click', '.cols333', function(){
-		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
-			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-							'<div class="col col-md-4 sortable">' +
-							'</div>' +
-							'<div class="col col-md-4 sortable">' +
-							'</div>' +
-							'<div class="col col-md-4 sortable">' +
-							'</div>' +
-							'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
-							respond.editor.defaults.blockMenu + '</span></div>';
-			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
-			
-			// re-init sortable
-			respond.editor.setupSortable();
-			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
-			
-			// hide modal
-			$('#layoutDialog').modal('hide'); 
-			
-		});
-		
-		// create COLS 4*25
-		$(document).on('click', '.cols425', function(){
-		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
-			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<div class="col col-md-3 sortable">' +
-							'</div>' +
-							'<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
-							respond.editor.defaults.blockMenu + '</span></div>'; 
-			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
-			
-			// re-init sortable
-			respond.editor.setupSortable();
-			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
-			
-			// hide modal
-			$('#layoutDialog').modal('hide');  
-		});
-		
-		// create SINGLE COL
-		$(document).on('click', '.single', function(){
-		
-			var uniqId = respond.editor.generateUniqId('block', 'block');
-			
-			var html = '<div id="'+uniqId+'" class="block row" data-nested="not-nested" data-containerid=""  data-containercssclass="">' +
-					'<div class="col col-md-12 sortable"></div>' +
-					 '<span class="block-actions"><span>#'+ uniqId + ' .block.row</span>' +
-					 respond.editor.defaults.blockMenu + '</span></div>';
-			
-			// append to editor
-			$(respond.editor.el).append(
-				html
-			);
-			
-			// re-init sortable
-			respond.editor.setupSortable();
-			
-			// reset respond.editor.currNode (new content should be added to the end)
-			respond.editor.currNode = null;
-			
-			// hide modal
-			$('#layoutDialog').modal('hide'); 
 		});
 		
 	},
 
-	// creates bold text
+	// create layout
 	create:function(){
 	
+		// get scope from page
+		var scope = angular.element($("section.main")).scope();
+		
+		// retrieve snippets
+		scope.retrieveSnippets();
+	
+		// show modal
 		$('#layoutDialog').modal('show');	
 		
 	}

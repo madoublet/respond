@@ -1189,61 +1189,30 @@
 	}
 
 	.content .layouts button{
-		box-sizing: border-box;
 		position: relative;
-		border: 5px solid #fff;
-		width: 175px;
-		height: 175px;
+		display: inline-block;
+		margin: 0 10px 10px 0;
+		padding: 5px 5px 25px 5px;
+		border: 0;
 		background-color: #fff;
-		vertical-align: top;
-		margin-right: 10px;
-		margin-bottom: 12px;
 	}
 	
-		.content .layouts button.selected{
-			 border: 5px solid #ff9900;
+		.content .layouts button img{
+			width: 200px;
+			height: 200px;
+			margin: 0;
+			padding: 0;
 		}
 	
 		.content .layouts button small{
 			position: absolute;
 			left: 0;
 			bottom: 5px;
-			width: 165px;
+			width: 210px;
 			text-align: center;
 			color: #888;
 		}
 		
-		.content .layouts .cols{
-			position: absolute;
-			top: 10px;
-			left: 10px;
-			display: block;
-			box-sizing: border-box;
-			width: 145px;
-			height: 125px;
-			border-right: none;
-		}
-		
-			.content .layouts .cols.wrap{
-				position: absolute;
-				top: 10px;
-				left: 10px;
-				display: block;
-				box-sizing: border-box;
-				width: 145px;
-				height: 125px;
-				border: 2px solid #99B2B7;
-				padding: 2px 0 2px 2px;
-			}
-		
-			.content .layouts .cols span{
-				box-sizing: border-box;
-				display: block;
-				float: left;
-				height: 117px;
-				border-right: 2px solid #fff;
-				background-color: #E9E9E9;
-			}
 	
 	.content .wrap{
 		color: #fff;

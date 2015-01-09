@@ -288,6 +288,7 @@ angular.module('respond', ['ui.router',
 	$rootScope.direction = Setup.direction;
 	$rootScope.css = Setup.css;
 	$rootScope.firstLogin = false;
+	$rootScope.introShown = true;
 	
 	// retrieve site from session storage
 	if($window.sessionStorage.site != null){
