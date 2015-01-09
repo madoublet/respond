@@ -1,0 +1,337 @@
+[
+	{
+		"name": 			"Body",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--body-background-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Background Image",
+				"replace": 		"config(--body-background-image)",
+				"control":		"image",
+				"selected":		"",
+				"cssFormat":	"url(%1)"
+			},
+			{
+				"name": 		"Background Position",
+				"replace": 		"config(--body-background-position)",
+				"control":		"select",
+				"selected":		"center center",
+				"options":		["top left", "center center", "top right"]
+			},
+			{
+				"name": 		"Background Repeat",
+				"replace": 		"config(--body-background-repeat)",
+				"control":		"select",
+				"selected":		"repeat",
+				"options":		["repeat", "no-repeat"]
+			},
+			{
+				"name": 		"Background Size",
+				"replace": 		"config(--body-background-size)",
+				"control":		"select",
+				"selected":		"initial",
+				"options":		["initial", "cover"]
+			}
+		]
+	},
+	{
+		"name": 			"Navigation",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--nav-background-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--nav-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--nav-icon-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	},
+	{
+		"name": 			"Settings",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--settings-background-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--settings-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--settings-link-color)",
+				"control":		"color",
+				"selected":		"#ffffff"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--settings-icon-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			}
+		]
+	},
+	{
+		"name": 			"Cart",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--cart-background-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			},
+			{
+				"name": 		"Alternate Background Color",
+				"replace": 		"config(--cart-alternate-background-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--cart-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Alternate Text Color",
+				"replace": 		"config(--cart-alternate-text-color)",
+				"control":		"color",
+				"selected":		"#555"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--cart-icon-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			},
+			{
+				"name": 		"Active Icon Color",
+				"replace": 		"config(--cart-icon-active-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			}
+		]
+	},
+	{
+		"name": 			"Search",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--search-background-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			},
+			{
+				"name": 		"Border Color",
+				"replace": 		"config(--search-border-color)",
+				"control":		"color",
+				"selected":		"rgba(255,255,255,.25)"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--search-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--search-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--search-icon-color)",
+				"control":		"color",
+				"selected":		"#92A8B3"
+			}
+		]
+	},
+	{
+		"name": 			"H1",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h1-font-size)",
+				"control":		"number",
+				"selected":		40,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h1-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H2",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h2-font-size)",
+				"control":		"number",
+				"selected":		30,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h2-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H3",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h3-font-size)",
+				"control":		"number",
+				"selected":		20,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h3-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H4",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h4-font-size)",
+				"control":		"number",
+				"selected":		16,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h4-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H5",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h5-font-size)",
+				"control":		"number",
+				"selected":		16,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h5-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"Default Text",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--default-font-size)",
+				"control":		"number",
+				"selected":		18,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--default-color)",
+				"control":		"color",
+				"selected":		"#555"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--default-link-color)",
+				"control":		"color",
+				"selected":		"#428bca"
+			}
+		]
+	},
+	{
+		"name": 			"Footer",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--footer-background-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Top Border Color",
+				"replace": 		"config(--footer-border-color)",
+				"control":		"color",
+				"selected":		"#f8f8f8"
+			},
+			{
+				"name": 		"Headline Color",
+				"replace": 		"config(--footer-headline-color)",
+				"control":		"color",
+				"selected":		"#555"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--footer-text-color)",
+				"control":		"color",
+				"selected":		"#777"
+			},
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--footer-font-size)",
+				"control":		"number",
+				"selected":		14,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--footer-link-color)",
+				"control":		"color",
+				"selected":		"#428bca"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--footer-icon-color)",
+				"control":		"color",
+				"selected":		"#aaa"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--footer-icon-background-color)",
+				"control":		"color",
+				"selected":		"#ffffff"
+			}
+		]
+	}
+]
