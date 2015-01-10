@@ -33,9 +33,6 @@ class Publish
 		// publish controller
 		Publish::PublishCommon($siteId);
 		
-		// publish plugins
-		Publish::PublishPlugins($siteId);	
-		
 		// publish locales
 		Publish::PublishLocales($siteId);
 		
@@ -422,6 +419,9 @@ class Publish
 			Publish::InjectStates($site);
 		}
 		
+		// publish plugins
+		Publish::PublishPlugins($site);
+		
 		// combine JS
 		$js_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/';
 		
@@ -461,9 +461,7 @@ class Publish
 	}
 	
 	// publishes plugins for the site
-	public static function PublishPlugins($siteId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishPlugins($site){
 		
 		// open plugins direcotry
         if($handle = opendir(APP_LOCATION.'plugins')){
@@ -515,12 +513,12 @@ class Publish
 		
 		// replace directives
 		if($directives != ''){
-			
+		
 			// get directive
 			$directive_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.site.directives.js';
 			
 			if(file_exists($directive_file)){
-				
+			
 				// get directives
 				$content = file_get_contents($directive_file);
 				
@@ -529,6 +527,8 @@ class Publish
 				
 				// update file
 				file_put_contents($directive_file, $content);
+				
+				print $directive_file;
 				
 			}
 			
