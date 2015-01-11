@@ -888,7 +888,7 @@ angular.module('respond.controllers', [])
 })
 
 // content controller
-.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product, MenuType, Snippet) {
+.controller('ContentCtrl', function($scope, $rootScope, $stateParams, $sce, $timeout, Setup, Site, Page, Version, PageType, Image, Icon, Theme, Layout, Stylesheet, Editor, Translation, File, Product, MenuType, Snippet) {
 	
 	$rootScope.template = 'content';
 	
@@ -1074,6 +1074,15 @@ angular.module('respond.controllers', [])
   		});
     	
     });
+    
+    // set modified
+    $scope.setModified = function(){
+	    
+	    $timeout(function(){
+	  		$scope.isModified = true;
+		});
+	    
+    }
     
 	// get pageId
 	$scope.pageId = $stateParams.id;

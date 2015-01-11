@@ -1119,10 +1119,8 @@ respond.editor.build = function(){
 	    // set scope
   		var scope = angular.element($("section.main")).scope();
   		
-  		// set block, container
-  		scope.$apply(function(){
-		    scope.isModified = true;
-		});
+  		// set modified
+  		scope.setModified();
 	    
 	});
 	
