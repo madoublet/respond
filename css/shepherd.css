@@ -44,6 +44,7 @@
 	padding:0;
 	position:relative;
 	transform:translateZ(0);
+	border: 2px solid #ddd;
 }
 
 .shepherd-element .shepherd-content:before

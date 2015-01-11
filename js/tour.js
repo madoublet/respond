@@ -132,8 +132,8 @@ var tour = {
 		  }
 		});
 		
-		tour.addStep('step2', {
-		  text: 'It is all powered by our one-of-a-kind editor that makes creating your site easier than ever. So, click a page to get started building your site.',
+		tour.addStep('step6', {
+		  text: i18n.t('tour_intro_step6'),
 		  attachTo: '#listItem-0 h2 a right',
 		  classes: '',
 		  buttons: [
