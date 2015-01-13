@@ -9,9 +9,6 @@ class Publish
 		// publish sitemap
 		Publish::PublishSiteMap($siteId);
 		
-		// publish all CSS
-		Publish::PublishAllCSS($siteId);	
-
 		// publish all pages
 		Publish::PublishAllPages($siteId);
 
@@ -24,7 +21,7 @@ class Publish
 		// publish site json
 		Publish::PublishSiteJSON($siteId);
 		
-		// publish common js
+		// publish common js (also combines JS and publishes plugins)
 		Publish::PublishCommonJS($siteId);
 		
 		// publish common css
@@ -32,6 +29,9 @@ class Publish
 		
 		// publish controller
 		Publish::PublishCommon($siteId);
+		
+		// publish all CSS
+		Publish::PublishAllCSS($siteId);
 		
 		// publish locales
 		Publish::PublishLocales($siteId);
@@ -423,6 +423,14 @@ class Publish
 		Publish::PublishPlugins($site);
 		
 		// combine JS
+		Publish::CombineJS($site);
+		
+	}
+	
+	// combines JS files
+	public static function CombineJS($site){
+		
+		// combine JS
 		$js_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/';
 		
 		//get all image files with a .less ext
@@ -471,18 +479,29 @@ class Publish
 		    // holds all directives to be added
 		    $directives = '';
 		    
+		    // holds all css to be included
+		    $css = '';
+		    
 		    // walk through directories
 		    while (false !== ($file = readdir($handle))) {
 		    
 		        if (!in_array($file, $blacklist)) {
 		            $dir = $file;
 		            
+		            // get directives to be added
 		            $directive = APP_LOCATION.'plugins/'.$dir.'/publish/directive.js';
 		            
-		            // get directives to be added
 		            if(file_exists($directive)){
 		            	$content = file_get_contents($directive);
 		            	$directives .= $content;
+		            }
+		            
+		            // get css to be added
+		            $styles = APP_LOCATION.'plugins/'.$dir.'/publish/styles.css';
+		            
+		            if(file_exists($styles)){
+		            	$content = file_get_contents($styles);
+		            	$css .= $content;
 		            }
 		            
 		            // source templates directory
@@ -528,9 +547,18 @@ class Publish
 				// update file
 				file_put_contents($directive_file, $content);
 				
-				print $directive_file;
-				
 			}
+			
+		}
+		
+		// add styles
+		if($css != ''){
+		
+			// get plugins
+			$plugins_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/plugins.css';
+			
+			// update file
+			file_put_contents($plugins_file, $css);
 			
 		}
 				
@@ -1267,6 +1295,25 @@ class Publish
 				$combined_css .= Publish::PublishCSS($site, $name);
 			}
 		}
+		
+		// get plugins CSS
+		$plugins_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/plugins.css';
+		
+		if(file_exists($plugins_file)){
+			$css = file_get_contents($plugins_file);
+			
+			// remove comments
+			$css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+	    	
+	    	// Remove space after colons
+			$css = str_replace(': ', ':', $css);
+	    	
+	    	// Remove whitespace
+			$css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
+			
+			$combined_css .= $css;
+		}
+		
 		// publish combined css
 	    $css_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/respond.min.css';
 	    
