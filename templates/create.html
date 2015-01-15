@@ -410,7 +410,10 @@
 									ng-class="{'active': (theme.id == themeId)}">
 										<img ng-src="{{setup.themes}}/{{theme.id}}/screenshot.png">
 										<div class="carousel-caption">
-											 <p><b>{{theme.name | i18next}}</b>{{theme.desc | i18next}}</p>
+											 <p>
+												 <b>{{theme.name | i18next}}</b>
+												 <span class="allow-breaks">{{theme.desc | i18next}}</span>
+											</p>
 										</div>
 								</div>
 							

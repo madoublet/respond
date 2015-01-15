@@ -1582,7 +1582,10 @@ body .carousel .carousel-control{
 body.configure > .ng-scope, body.configure > .ng-scope > div.ng-scope {
 	height: 100%;
 }
-	
+
+.allow-breaks{
+	white-space: pre;
+}	
 	
 /* Large desktop */
 @media (min-width: 1200px) { }
