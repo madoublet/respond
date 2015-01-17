@@ -16,14 +16,14 @@ var tour = {
 		  classes: 'no-arrow',
 		  buttons: [
 		    {
-		      text: 'Exit',
+		      text: i18n.t('Exit'),
 		      classes: 'shepherd-button-secondary',
 		      action: function() {
 		        return tour.hide();
 		      }
 		    },
 		    {
-		      text: 'Next',
+		      text: i18n.t('Next'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 		        return tour.next();
@@ -38,14 +38,14 @@ var tour = {
 		  classes: '',
 		  buttons: [
 		    {
-		      text: 'Exit',
+		      text: i18n.t('Exit'),
 		      classes: 'shepherd-button-secondary',
 		      action: function() {
 		        return tour.hide();
 		      }
 		    },
 		    {
-		      text: 'Next',
+		      text: i18n.t('Next'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 		        return tour.next();
@@ -60,14 +60,14 @@ var tour = {
 		  classes: '',
 		  buttons: [
 		    {
-		      text: 'Exit',
+		      text: i18n.t('Exit'),
 		      classes: 'shepherd-button-secondary',
 		      action: function() {
 		        return tour.hide();
 		      }
 		    },
 		    {
-		      text: 'Next',
+		      text: i18n.t('Next'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 		        return tour.next();
@@ -86,14 +86,14 @@ var tour = {
 		  classes: '',
 		  buttons: [
 		    {
-		      text: 'Exit',
+		      text: i18n.t('Exit'),
 		      classes: 'shepherd-button-secondary',
 		      action: function() {
 		        return tour.hide();
 		      }
 		    },
 		    {
-		      text: 'Next',
+		      text: i18n.t('Next'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 			    $('body').toggleClass('show-nav');   
@@ -112,14 +112,14 @@ var tour = {
 		  classes: 'pull-front',
 		  buttons: [
 		    {
-		      text: 'Exit',
+		      text: i18n.t('Exit'),
 		      classes: 'shepherd-button-secondary',
 		      action: function() {
 		        return tour.hide();
 		      }
 		    },
 		    {
-		      text: 'Next',
+		      text: i18n.t('Next'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 			    $('body').toggleClass('show-nav');   
@@ -138,7 +138,7 @@ var tour = {
 		  classes: '',
 		  buttons: [
 		    {
-		      text: 'Get Started',
+		      text: i18n.t('Get Started'),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 		        return tour.hide();

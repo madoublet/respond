@@ -137,8 +137,6 @@ class S3
 			    'Key' => $key
 			));
 			
-			
-		    echo '$key='.$object['Key'].' CopySource='.$source.' Destination='.$dest;
 		}
 		
 		/*
