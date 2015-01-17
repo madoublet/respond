@@ -522,6 +522,31 @@ class Publish
 						Utilities::CopyDirectory($src_dir, $dest_dir);
 		            }
 		            
+		            // source resources directory
+		            $src_rsc_dir = APP_LOCATION.'plugins/'.$dir.'/publish/resources';
+		            
+		            // add templates
+		            if(file_exists($src_dir)){
+		            
+		            	// destination templates directory
+		            	$dest_rsc_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/plugins';
+		            
+						// create plugins directory
+						if(!file_exists($dest_rsc_dir)){
+							mkdir($dest_rsc_dir, 0755, true);	
+						}
+						
+						$dest_rsc_dir = $dest_rsc_dir.'/'.$dir;
+						
+						// create plugin directory
+						if(!file_exists($dest_rsc_dir)){
+							mkdir($dest_rsc_dir, 0755, true);	
+						}
+						
+						// copies a directory
+						Utilities::CopyDirectory($src_rsc_dir, $dest_rsc_dir);
+		            }
+		            
 		            
 		        }
 		        
