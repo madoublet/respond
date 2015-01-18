@@ -27,7 +27,10 @@
     	ng-if="totalSize <= fileLimit"
     	class="dropzone dark fixed" drop-zone target="files" filename="{{temp.filename}}" callback="updateFiles()" folder="{{folder}}">
         <span class="dz-message">
-            <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}} to {{folder}}</span>
+            <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}} &ndash;
+            	<span ng-show="folder == 'files'">{{'Files' | i18next}}</span>
+            	<span ng-show="folder == 'downloads'">{{'Digital Downloads' | i18next}}</span>
+            </span>
         </span>
     </div>
     
