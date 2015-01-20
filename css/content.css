@@ -632,13 +632,24 @@ body.content{}
 		top: 1px;
 		right: 2px;
 	}
+		
+		.context-menu .input-select.option2{
+			right: 25px;
+		}
 	
 		.context-menu .input-select button{
 			display: inline-block;
 			box-sizing: border-box;
-			padding: 0 7px 4px 7px;
+			margin: 0;
+			padding: 0;
+			height: 25px;
+			width: 25px;
+			font-size: 12px;
+			text-align: center;
+			line-height: 25px;
 			border-radius: 0;	
 			background-color: #fff;
+			color: #888;
 			border-left: 1px solid #f0f0f0;
 		}
 		
@@ -660,6 +671,10 @@ body.content{}
 			display: block;
 			color: #888;
 			font-size: 11px;
+			max-width: 150px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		
 		.context-menu .input-select .dropdown-menu{

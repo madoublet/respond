@@ -108,7 +108,8 @@ html[dir=rtl] section.main nav .more{
 	right: auto;
 }
 
-html[dir=rtl] section.main nav .dropdown-menu, .config .dropdown-menu{
+html[dir=rtl] section.main nav .dropdown-menu, 
+html[dir=rtl] .config .dropdown-menu{
 	left: 0;
 	right: auto;
 }

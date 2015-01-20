@@ -64,9 +64,10 @@
 			<label for="link">{{'Link' | i18next}}</label>
 			<input name="link" type="text" maxlength="128" class="form-control" 
 				ng-model="node.link">
+			
 				<div class="input-select">
 				    <button class="btn dropdown-toggle" data-toggle="dropdown">
-				      ...
+				      <i class="fa fa-file"></i>
 				    </button>
 				    <ul class="dropdown-menu dropdown-menu-right">
 				    	<li ng-repeat="page in pages">
@@ -77,6 +78,21 @@
 						</li>
 				    </ul>
 				</div>
+				<div class="input-select option2">
+				    <button class="btn dropdown-toggle" data-toggle="dropdown">
+				      <i class="fa fa-folder-open"></i>
+				    </button>
+				    <ul class="dropdown-menu dropdown-menu-right">
+				    	<li ng-repeat="file in files">
+				    		<a data-value="{{file.fullUrl}}" title="{{file.fullUrl}}">
+							{{file.filename}}
+							<small>{{file.fullUrl}}</small>
+				    		</a>
+						</li>
+				    </ul>
+				</div>
+				
+				
 		</div>
 		
 		<div class="form-group pull-up">

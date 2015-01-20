@@ -1337,6 +1337,7 @@ respond.element.image = {
 			var scope = angular.element($("section.main")).scope();
 			
 			scope.retrieveImages();
+			scope.updateFiles();
 			
 		});
 		
@@ -1430,11 +1431,18 @@ respond.element.image = {
 		var scope = angular.element($("section.main")).scope();
 		
 		scope.retrieveImages();
+		scope.updateFiles();
 				
 	},
 	
 	// parse image
 	parse:function(node){
+	
+		// get scope from page
+		var scope = angular.element($("section.main")).scope();
+		
+		scope.retrieveImages();
+		scope.updateFiles();
 	
 		// get params
 		var id = $(node).attr('id');		
