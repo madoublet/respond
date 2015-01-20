@@ -1399,6 +1399,7 @@ respond.element.image = {
 		attrs['data-link'] = '';
 		attrs['data-title'] = '';
 		attrs['data-target'] = '';
+		attrs['data-lightbox'] = 'false';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -1441,6 +1442,14 @@ respond.element.image = {
 		var link = $(node).find('a').attr('href') || $(node).find('a').attr('ui-sref') || '';
 		var title = $(node).find('a').attr('title') || '';
 		var target = $(node).find('a').attr('target') || '';
+		var lightbox = '0';
+		
+		// set lightbox
+		var attr = $(node).find('a').attr('respond-lightbox');
+			
+		if (typeof attr !== typeof undefined && attr !== false) {	
+			lightbox = '1';
+		}
 		
 		// get scope from page
 		var scope = angular.element($("section.main")).scope();
@@ -1468,6 +1477,7 @@ respond.element.image = {
 		attrs['data-link'] = link;
 		attrs['data-title'] = title;
 		attrs['data-target'] = target;
+		attrs['data-lightbox'] = lightbox;
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -1484,6 +1494,13 @@ respond.element.image = {
   		var link = $(node).attr('data-link') || '';
   		var title = $(node).attr('data-title') || '';
   		var target = $(node).attr('data-target') || '';
+  		var lightbox = $(node).attr('data-lightbox') || '';
+  		var isLightbox = false;
+  		
+  		// set lightbox
+  		if(lightbox == '1'){
+	  		isLightbox = true;
+  		}
   		
   		// build html
   		var html = '';
@@ -1507,6 +1524,11 @@ respond.element.image = {
 			// add target
 			if(target != ''){
 				startLink += ' target="' + target + '"';
+			}
+			
+			// add lightbox
+			if(isLightbox == true){
+				startLink += ' respond-lightbox';
 			}
 			
 			// close start of <a>

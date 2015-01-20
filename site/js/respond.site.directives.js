@@ -1296,6 +1296,38 @@ angular.module('respond.site.directives', [])
 	
 })
 
+// creates a lightbox
+.directive('respondLightbox', function(Menu){
+	
+	return{
+		
+		restrict: 'A',
+		link: function(scope, element, attr){
+			
+			var href = $(element).attr('href');
+			
+			var ext = href.split('.').pop().toUpperCase();
+			
+			if(ext == 'JPG' || ext == 'PNG' || ext == 'GIF'){
+				popupType = 'image';
+			}
+			else{
+				popupType = 'iframe';
+			}
+			
+			if(jQuery().magnificPopup){
+				$(element).magnificPopup({ 
+				  type: popupType
+				});
+			}
+				
+			
+		}
+		
+	}
+	
+})
+
 // published directives
 // #published-directives
 

@@ -266,10 +266,10 @@ respond.text.link = {
 				html += '<a href="'+url+'"';
 			}
 			
-			
 			var cssClass = $('#linkCssClass').val().trim();
 			var target = $('#linkTarget').val().trim();
 			var title = $('#linkTitle').val().trim();
+			var lightbox = $('#linkLightbox').is(':checked');
 			
 			// restore selection
 			utilities.restoreSelection(respond.text.link.selection);
@@ -290,6 +290,11 @@ respond.text.link = {
 			// insert title into link
 			if(title != ''){
 				html += ' title="'+title+'"';
+			}
+			
+			// set lightbox
+			if(lightbox == true){
+				html += ' respond-lightbox';
 			}
 			
 			html += '>'+text+'</a>';
@@ -313,17 +318,28 @@ respond.text.link = {
 		var cssClass = '';
 		var target = '';
 		var title = '';
+		var hasLightbox = false;
 
 		// get link from selected text
 		var link = utilities.getLinkFromSelection();
 		
 		// set link detail if available
 		if(link != null){
-			url = link.href;
+			url = $(link).attr('ui-sref');
+			
+			if(url == undefined){
+				url = $(link).attr('href');
+			}
+			
 			cssClass = link.className;
 			target = link.target;
 			title = link.title;
+			
+			if($(link).attr('respond-lightbox') != undefined){
+				hasLightbox = true;
+			}
 		}
+		
 
 	    $('#linkUrl').val(url);
 	    $('#linkCssClass').val(cssClass);
@@ -331,6 +347,8 @@ respond.text.link = {
 	    $('#linkTitle').val(title);
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
+	    
+	    $('#linkLightbox').prop('checked', hasLightbox);
 	    
 	    // update pages
     	var scope = angular.element($("section.main")).scope();

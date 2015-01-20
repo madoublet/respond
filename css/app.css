@@ -302,6 +302,10 @@ body .modal-header{
 		position: relative;
 	}
 	
+		body .modal .form-group.pull-up{
+			margin-top: -20px;		
+		}
+	
 		body .modal .form-group.no-border{
 			border-bottom: none;
 			padding-bottom: 0;
