@@ -49,7 +49,8 @@ class User{
                 'Role' => $role,
                 'Language' => $language,
                 'IsActive' => $isActive,
-                'Token' => $token
+                'Token' => $token,
+                'Created' => $timestamp
                 );
                 
         } catch(PDOException $e){

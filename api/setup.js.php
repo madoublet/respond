@@ -29,10 +29,11 @@ angular.module('respond.setup', [])
 	brand: 					'<?php print BRAND; ?>',
 	css:					'<?php print BRAND_CSS; ?>',
 	
-	// default lanugage
+	// defaults
 	language: 				'<?php print DEFAULT_LANGUAGE; ?>',
 	direction: 				'<?php print DEFAULT_DIRECTION; ?>',
 	changeDefaultLanguage:	<?php print $arr[CHANGE_DEFAULT_LANGUAGE]; ?>, 
+	defaultNameOnCreate:	<?php print $arr[DEFAULT_NAME_ON_CREATE]; ?>, 
 
 	// public keys
 	stripePubKey:			'<?php print STRIPE_PUBLISHABLE_KEY; ?>',

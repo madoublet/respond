@@ -47,6 +47,9 @@
 	define('SITE_URL', 'http://{{friendlyId}}.myrespond.com');
 	define('TERMS_URL', 'http://myrespond.com/page/terms-of-service');
 	define('PRICING_URL', 'http://myrespond.com/page/terms-of-service');
+	
+	// webhooks URL
+	define('WEBHOOKS_URL', '');
 
 	// default mode (hash, hashbang, html5, static)
 	define('DEFAULT_URL_MODE', 'static');
@@ -60,6 +63,9 @@
 	
 	// setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');
+	
+	// default the name on create
+	define('DEFAULT_NAME_ON_CREATE', true);
 	
 	// setup the default text direction for the site (ltr, rtl, auto)
 	define('DEFAULT_DIRECTION', 'ltr');
@@ -150,4 +156,5 @@
 	
 	// set default as UTC
 	date_default_timezone_set('UTC');
+	
 ?>

@@ -19,6 +19,12 @@ class FormResource extends Tonic\Resource {
     
         $site = Site::GetBySiteId($siteId);
         $page = Page::GetByPageId($pageId);
+        
+        // create a form (sent to webhooks)
+        $wh_form = array(
+        	'SiteId' => $siteId,
+        	'PageId' => $pageId
+        	);
 
         if($site != null && $page != null){
             
@@ -50,6 +56,8 @@ class FormResource extends Tonic\Resource {
 	                        '<td style="width: 125px; padding: 5px 25px 5px 0;">'.$title.'</td>'.
 	                        '<td style="padding: 5px 0">'.$value.'</td>'.
 	                        '</tr>';
+	                
+	                $wh_form[$key] = $value;
                         
 				}
 	         	
@@ -64,6 +72,9 @@ class FormResource extends Tonic\Resource {
             
     		// send site email
     		Utilities::SendSiteEmail($site, $to, $site['PrimaryEmail'], $site['Name'], $subject, $content);
+    		
+    		// send webhook
+    		Webhooks::FormSubmit($wh_form);
             
             // return a successful response (200)
             return new Tonic\Response(Tonic\Response::OK);

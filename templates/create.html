@@ -75,6 +75,45 @@
 				</div>
 				<!-- /.row -->
 				
+				<div class="row" ng-if="!setup.defaultNameOnCreate">
+				
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="firstName">{{'First Name' | i18next}}</label>
+							<input id="firstName" type="text"
+								ng-minlength="3"
+								ng-maxlength="255"
+								ng-model="firstName"
+								ng-focus="setStep(1)"
+								class="form-control" required>
+							
+							<i class="respond-validating fa fa-spinner fa-spin"></i>
+							<i class="respond-valid fa fa-check"></i>
+							<i class="respond-invalid fa fa-times"></i>
+						</div>
+						<!-- /.form-group -->
+						
+					</div>
+					<!-- /.col-md-4 -->
+					
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="lastName">{{'Last Name' | i18next}}</label>
+							<input id="lastName" type="text" 
+								ng-minlength="3"
+								ng-maxlength="255"
+								ng-model="lastName"
+								ng-focus="setStep(1)"
+								class="form-control" required>
+						</div>
+						<!-- /.form-group -->
+						
+					</div>
+					<!-- /.col-md-4 -->
+					
+				</div>
+				<!-- /.row -->
+				
 				<div class="row advanced">
 				
 					<div class="col-md-4">
@@ -370,14 +409,6 @@
 							    </select>
 						</div>
 						
-						<div class="form-group" style="display:none">
-							<input id="firstName" type="text"
-								value="{{'New' | i18next}}"
-								class="form-control">
-							<input id="lastName" type="text"
-								value="{{'User' | i18next}}"
-								class="form-control">
-						</div>
 					</div>
 					<!-- /.col-md-4 -->
 				

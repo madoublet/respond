@@ -465,6 +465,14 @@ angular.module('respond.controllers', [])
     $scope.userLanguage = Setup.language;
     $scope.themeId = Setup.themeId;
     $scope.passcode = '';
+    $scope.firstName = '';
+    $scope.lastName = '';
+    
+    if($scope.setup.defaultNameOnCreate){
+	    $scope.firstName = i18n.t('New');
+		$scope.lastName = i18n.t('User');
+    }
+    
     
     $(document).on('click', '#toggle-advanced', function(){
 		$('.advanced').show();
@@ -520,13 +528,9 @@ angular.module('respond.controllers', [])
 		
 		message.showMessage('progress');
 		
-		// default first and last name
-		var firstName = $('#firstName').val();
-		var lastName = $('#lastName').val();
-		
 		// create the site
 		Site.create($scope.friendlyId, $scope.name, $scope.email, $scope.password, $scope.passcode, $scope.timeZone, 
-			$scope.siteLanguage, $scope.userLanguage, $scope.themeId, firstName, lastName,
+			$scope.siteLanguage, $scope.userLanguage, $scope.themeId, $scope.firstName, $scope.lastName,
 			function(){  // success
 				message.showMessage('success');
 				

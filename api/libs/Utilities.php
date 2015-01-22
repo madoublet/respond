@@ -356,6 +356,7 @@ class Utilities
 			$mail->Username = $site['SMTPUsername'];    // SMTP username
 			$mail->Password = $decrypted;    			// SMTP password
 			$mail->SMTPSecure = $site['SMTPSecure'];    // Enable encryption, 'ssl' also accepted
+			$mail->CharSet = 'UTF-8';
 			
 		}
 		else{
@@ -404,6 +405,7 @@ class Utilities
 			$mail->Username = SMTP_USERNAME;    // SMTP username
 			$mail->Password = SMTP_PASSWORD;    // SMTP password
 			$mail->SMTPSecure = SMTP_SECURE;    // Enable encryption, 'ssl' also accepted
+			$mail->CharSet = 'UTF-8';
 		
 		}
 		

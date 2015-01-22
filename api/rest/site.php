@@ -280,6 +280,13 @@ class SiteCreateResource extends Tonic\Resource {
 	    		
 	    		// send email from file
 	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+	    		
+	    		// send new site hook
+	    		Webhooks::NewSite($site);
+	    		
+	    		// send new user hook
+	    		Webhooks::NewUser($user);
+	    		
 	    	}
             
             return new Tonic\Response(Tonic\Response::OK);

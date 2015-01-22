@@ -31,6 +31,7 @@
 	
 	// include libs
 	require_once 'libs/Utilities.php';
+	require_once 'libs/Webhooks.php';
 	require_once 'libs/S3.php';
 	require_once 'libs/Validator.php';
 	require_once 'libs/Image.php';
