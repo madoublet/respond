@@ -74,6 +74,13 @@ body textarea.form-control{
 	body textarea.form-control.large{
 		height: 250px !important;
 	}
+	
+	body p.help-block{
+		font-size: 12px !important;
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+	}
 
 .primary-button, .secondary-button, .tertiary-button{
     display: inline-block;
