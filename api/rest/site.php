@@ -263,8 +263,8 @@ class SiteCreateResource extends Tonic\Resource {
 	    		$to = $email;
 	    		$from = REPLY_TO;
 	    		$fromName = REPLY_TO_NAME;
-	    		$subject = BRAND.': Welcome to '.BRAND;
-	    		$file = APP_LOCATION.'/emails/new-user.html';
+	    		$subject = WELCOME_EMAIL_SUBJECT;
+	    		$file = WELCOME_EMAIL_FILE;
 	    		
 	    		// create strings to replace
 	    		$loginUrl = APP_URL.'/login/'.$site['FriendlyId'];

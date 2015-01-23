@@ -131,7 +131,13 @@
     // set what emails should be sent out and a reply-to email address
 	define('REPLY_TO', '');
 	define('REPLY_TO_NAME', '');
+	
+	// welcome email
 	define('SEND_WELCOME_EMAIL', false);
+	define('WELCOME_EMAIL_SUBJECT', 'Respond: Welcome to Respond!');
+	define('WELCOME_EMAIL_FILE', '../emails/new-user.html');
+	
+	// payment emails
 	define('SEND_PAYMENT_SUCCESSFUL_EMAIL', false);
 	define('SEND_PAYMENT_FAILED_EMAIL', false);
 	

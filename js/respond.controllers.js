@@ -285,7 +285,7 @@ angular.module('respond.controllers', [])
 		// make sure that x was found
 		if(x == -1){
 			 message.showMessage('error');
-			 console.log('[Triangulate.error] could not find plan');
+			 console.log('[Respond.error] could not find plan');
 			 return;
 		}
 		
@@ -296,6 +296,7 @@ angular.module('respond.controllers', [])
 		var email = $scope.setup.paypalEmail;
 		var currency = $scope.setup.paypalCurrency;
 		var returnUrl = $scope.setup.url + '/app/thankyou';
+		var cancelUrl = $scope.setup.url + '/app/signup';
 		var api = $scope.setup.api;
 		
 		// live url
@@ -308,7 +309,7 @@ angular.module('respond.controllers', [])
 	
 		// set data for transaction
 		var data = {
-			'item_name':		'Triangulate Subscription - ' + plan.desc + ' (' + $scope.temp.domain + ')',
+			'item_name':		plan.desc + ' (' + $scope.temp.domain + ')',
 			'email':			email,
 			'cmd':				'_xclick-subscriptions',
 			'currency_code': 	currency,
@@ -321,7 +322,7 @@ angular.module('respond.controllers', [])
 			'src':				'1',
 			'sra':				'1',
 			'return':			returnUrl + '?thank-you',
-			'cancel_return':	returnUrl + '?cancel',
+			'cancel_return':	cancelUrl,
 			'notify_url':		api + '/transaction/paypal/subscribe',
 			'custom':			$rootScope.site.SiteId
 		};
