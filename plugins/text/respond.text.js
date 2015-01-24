@@ -256,16 +256,6 @@ respond.text.link = {
   
 			var url = $('#linkUrl').val();
 			
-			var html = '';
-			
-			// external links should have http
-			if(url.indexOf('http') == -1){
-				html += '<a ui-sref="'+url+'" href="/'+url+'"';
-			}
-			else{
-				html += '<a href="'+url+'"';
-			}
-			
 			var cssClass = $('#linkCssClass').val().trim();
 			var target = $('#linkTarget').val().trim();
 			var title = $('#linkTitle').val().trim();
@@ -277,30 +267,70 @@ respond.text.link = {
 			// create link
 			var text = utilities.getSelectedText();
 			
-			// insert css class into link
-			if(cssClass != ''){
-				html += ' class="'+cssClass+'"';
+			if(respond.text.link.element == null){
+			
+				var html = '';
+			
+				// external links should have http
+				if(url.indexOf('http') == -1){
+					html += '<a ui-sref="'+url+'" href="/'+url+'"';
+				}
+				else{
+					html += '<a href="'+url+'"';
+				}
+			
+				// insert css class into link
+				if(cssClass != ''){
+					html += ' class="'+cssClass+'"';
+				}
+				
+				// insert target into link
+				if(target != ''){
+					html += ' target="'+target+'"';
+				}
+				
+				// insert title into link
+				if(title != ''){
+					html += ' title="'+title+'"';
+				}
+				
+				// set lightbox
+				if(lightbox == true){
+					html += ' respond-lightbox';
+				}
+				
+				html += '>'+text+'</a>';
+				
+				// insert HTML
+				document.execCommand('InsertHTML', false, html);
+			
 			}
+			else{
+				var link = $(respond.text.link.element);
 			
-			// insert target into link
-			if(target != ''){
-				html += ' target="'+target+'"';
+				link.attr('class', cssClass);
+				link.attr('target', target);
+				link.attr('title', title);
+				
+				// set lightbox
+				if(lightbox == true){
+					link.attr('respond-lightbox', '');
+				}
+				else{
+					link.removeAttr('respond-lightbox');
+				}
+				
+				// external links should have http
+				if(url.indexOf('http') == -1){
+					link.attr('ui-sref', url);
+					link.attr('href', '/'+url);
+				}
+				else{
+					link.attr('href', url);
+				}
+				
+				
 			}
-			
-			// insert title into link
-			if(title != ''){
-				html += ' title="'+title+'"';
-			}
-			
-			// set lightbox
-			if(lightbox == true){
-				html += ' respond-lightbox';
-			}
-			
-			html += '>'+text+'</a>';
-			
-			// insert HTML
-			document.execCommand('InsertHTML', false, html);
 
 			$('#linkDialog').modal('hide');
 		});
@@ -312,6 +342,7 @@ respond.text.link = {
 
 		// save the selection
 		respond.text.link.selection = utilities.saveSelection();
+		respond.text.link.element = null;
 
 		// defaults
 		var url = '';
@@ -322,6 +353,9 @@ respond.text.link = {
 
 		// get link from selected text
 		var link = utilities.getLinkFromSelection();
+		
+		// set link
+		respond.text.link.element = link;
 		
 		// set link detail if available
 		if(link != null){

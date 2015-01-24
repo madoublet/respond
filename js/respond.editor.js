@@ -469,6 +469,66 @@ respond.editor.setupPersistentEvents = function(){
 	// make blocks sortable
 	setupSortable();
 	
+	
+	// handle link clicks
+	$(el).on('click', '[contentEditable=true] a', function(){
+		
+		// save the selection
+		respond.text.link.selection = utilities.saveSelection();
+		respond.text.link.element = null;
+
+		// defaults
+		var url = '';
+		var cssClass = '';
+		var target = '';
+		var title = '';
+		var hasLightbox = false;
+
+		// get link from selected text
+		var link = utilities.getLinkFromSelection();
+		
+		respond.text.link.element = link;
+		
+		// set link detail if available
+		if(link != null){
+			url = $(link).attr('ui-sref');
+			
+			if(url == undefined){
+				url = $(link).attr('href');
+			}
+			
+			cssClass = link.className;
+			target = link.target;
+			title = link.title;
+			
+			if($(link).attr('respond-lightbox') != undefined){
+				hasLightbox = true;
+			}
+		}
+		
+
+	    $('#linkUrl').val(url);
+	    $('#linkCssClass').val(cssClass);
+	    $('#linkTarget').val(target);
+	    $('#linkTitle').val(title);
+	    $('#pageUrl li').removeClass('selected');
+	    $('#existing').attr('checked','checked');
+	    
+	    $('#linkLightbox').prop('checked', hasLightbox);
+	    
+	    // update pages
+    	var scope = angular.element($("section.main")).scope();
+		
+		scope.retrievePages();
+		scope.updateFiles();
+
+		// show modal
+		$('#linkDialog').modal('show');
+		
+		return false;
+	});
+	
+	
 	// set respond.editor.currNode when div is focused
 	$(el).on('click focusin', '.sortable>div', function(){
 		respond.editor.currNode = this;
