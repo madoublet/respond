@@ -50,6 +50,7 @@ class User{
                 'Language' => $language,
                 'IsActive' => $isActive,
                 'Token' => $token,
+                'SiteId' => $siteId,
                 'Created' => $timestamp
                 );
                 
