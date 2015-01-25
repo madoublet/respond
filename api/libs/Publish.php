@@ -351,8 +351,6 @@ class Publish
 		
 			$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files';
 			
-			echo '$files_src='.$files_src;
-			
 			// deploy directory to S3
 			S3::DeployDirectory($site, $files_src, 'files/');
 		
@@ -1010,8 +1008,6 @@ class Publish
 		// walk through types
 		foreach($types as $type){
 		
-			echo $type['FriendlyId'];
-		
 			// get items for type
 			$list = MenuItem::GetMenuItemsForType($site['SiteId'], $type['FriendlyId']);
 			
@@ -1079,8 +1075,6 @@ class Publish
 			$encoded = json_encode($menu);
 	
 			$dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/data/';
-			
-			echo $dest.'menu-'.$type['FriendlyId'].'.json';
 			
 			Utilities::SaveContent($dest, 'menu-'.$type['FriendlyId'].'.json', $encoded);
 		}
