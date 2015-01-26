@@ -39,11 +39,7 @@
         <div class="listItem" 
         	ng-repeat="file in files"
         	ng-class="{'has-thumb': (file.isImage == true)}">
-        
-			<!--
-        	<a class="edit" 
-        		ng-click="edit(file, $event)"><i class="fa fa-pencil fa-lg"></i></a> -->
-        		
+     	
     		<a class="remove" 
     			ng-click="showRemove(file)"><i class="fa fa-minus"></i></a>
     			
@@ -91,7 +87,7 @@
 			<div class="modal-body">
 			
 				<p>
-					{{'Confirm you want to remove:' | i18next}} <strong>{{temp.filename}}</strong>
+					{{'Confirm you want to remove' | i18next}} <strong>{{temp.filename}}</strong>
 				</p>
 				
 				<p>

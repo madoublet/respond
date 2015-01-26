@@ -137,7 +137,6 @@
 .dropzone-previews .dz-preview .dz-success-mark,
 .dropzone .dz-preview .dz-error-mark,
 .dropzone-previews .dz-preview .dz-error-mark {
-  display: none;
   position: absolute;
   width: 40px;
   height: 40px;
