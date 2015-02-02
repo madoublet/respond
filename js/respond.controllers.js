@@ -229,19 +229,7 @@ angular.module('respond.controllers', [])
 			Site.subscribeWithStripe(token, $scope.temp.plan, $scope.temp.domain,
 				function(data){		// success
 				
-					// update the site
-					Site.retrieve(function(data){
-					
-						message.showMessage('success');
-					
-						// set site in $rootScope, session
-						$rootScope.site = data;
-						$window.sessionStorage.site = JSON.stringify(data);
-						
-						// go to start URL
-						$state.go('app.thankyou');
-							
-					});
+					$state.go('app.thankyou');
 					
 					
 				},
@@ -323,8 +311,8 @@ angular.module('respond.controllers', [])
 			'sra':				'1',
 			'return':			returnUrl + '?thank-you',
 			'cancel_return':	cancelUrl,
-			'notify_url':		api + '/transaction/paypal/subscribe',
-			'custom':			$rootScope.site.SiteId
+			'notify_url':		api + '/site/subscribe/paypal',
+			'custom':			$rootScope.site.SiteId + '//' + plan.id
 		};
 	
 		// set logo
@@ -349,12 +337,23 @@ angular.module('respond.controllers', [])
 })
 
 // Thankyou controller
-.controller('ThankyouCtrl', function($scope, $window, $stateParams, $rootScope, $i18next, Setup) {
+.controller('ThankyouCtrl', function($scope, $window, $stateParams, $rootScope, $i18next, Setup, Site) {
 	
 	$rootScope.template = 'thankyou';
 	
 	// setup
 	$scope.setup = Setup;
+	
+	// update the site
+	Site.retrieve(function(data){
+	
+		message.showMessage('success');
+	
+		// set site in $rootScope, session
+		$rootScope.site = data;
+		$window.sessionStorage.site = JSON.stringify(data);
+			
+	});
 })
 
 
@@ -601,7 +600,7 @@ angular.module('respond.controllers', [])
 })
 
 // pages controller
-.controller('PagesCtrl', function($scope, $rootScope, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
+.controller('PagesCtrl', function($scope, $rootScope, $state, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
 
 	// retrieve user
 	$scope.user = $rootScope.user;
@@ -625,6 +624,10 @@ angular.module('respond.controllers', [])
 	
 	if($scope.user.Role == 'Admin'){
 		$scope.canEditTypes = true;
+	}
+	
+	$scope.signUp = function(){
+		$state.go('app.signup');
 	}
 	
 	// sets the pageTypeId
@@ -882,6 +885,12 @@ angular.module('respond.controllers', [])
 			tour.intro();
 			$rootScope.introShown = true;
 		}
+		
+		// show the expired tour
+		if($scope.isTrialOver() == true){
+			tour.expired();
+		}
+		
 	}
 	
 	// shows the tour
@@ -889,6 +898,25 @@ angular.module('respond.controllers', [])
 		tour.intro();
 	}
 	
+	// determines if the trial is over
+	$scope.isTrialOver = function(){
+		
+		var length = $scope.setup.trialLength;
+		var now = moment.utc();
+
+    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+		
+		var difference = length - now.diff(st, 'days');
+		
+		// expired when the difference is less then 0
+		if(difference < 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+	}
 	
 })
 
@@ -915,6 +943,7 @@ angular.module('respond.controllers', [])
 	$scope.fileLimit = $rootScope.site.FileLimit;
 	$scope.isModified = false;
 	$scope.snippets = null;
+	$scope.site = $rootScope.site;
 	
 	// watch for changes in the block collection
     $scope.$watchCollection('block', function(newValues, oldValues){
@@ -1611,6 +1640,35 @@ angular.module('respond.controllers', [])
 	$scope.clearProducts = function(){
 	
 		Product.clear($scope.pageId, function(data){});
+	}
+	
+	// enable/disable for trial
+	$scope.disableAfterTrial = function(){
+		
+		// disable after trial
+		if($scope.setup.disableAfterTrial == true){
+			
+			var length = $scope.setup.trialLength;
+			var now = moment.utc();
+    
+	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+			
+			var difference = length - now.diff(st, 'days');
+			
+			// expired when the difference is less then 0
+			if(difference < 0){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
+		else{
+			return false;
+		}
+		
+		
 	}				
 
 })

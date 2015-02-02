@@ -102,18 +102,20 @@ class Publish
 	
 		if($site['UrlMode'] == 'html5'){
 			
-			$contents = 'RewriteEngine On'.PHP_EOL.
-							'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-							'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-							'RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)'.PHP_EOL.
-							'RewriteRule (.*) index.html [L]';
+			$contents = 'Options -Indexes'.PHP_EOL.
+				'RewriteEngine On'.PHP_EOL.
+				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+				'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
+				'RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)'.PHP_EOL.
+				'RewriteRule (.*) index.html [L]';
 			
 
 			file_put_contents($htaccess, $contents); // save to file			
 		}
 		else if($site['UrlMode'] == 'static'){
 						
-			$contents = '<IfModule mod_rewrite.c>'.PHP_EOL.
+			$contents = 'Options -Indexes'.PHP_EOL.
+				'<IfModule mod_rewrite.c>'.PHP_EOL.
 				'RewriteEngine On'.PHP_EOL.
 				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
 				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.

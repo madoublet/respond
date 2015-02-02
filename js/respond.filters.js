@@ -24,13 +24,13 @@ angular.module('respond.filters', [])
 })
 
 .filter('daysLeft', function() {
-    return function(text) {
+    return function(text, length) {
     
     	var now = moment.utc();
     
     	var st = moment.utc(text, 'YYYY-MM-DD HH:mm:ss');
 		
-		var difference = 30 - now.diff(st, 'days');
+		var difference = length - now.diff(st, 'days');
 		
 		if(difference < 0){
 			difference = 0;

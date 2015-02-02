@@ -357,20 +357,23 @@
         <button class="primary-button" 
         	ng-click="saveAndPublish()"
         	ng-show="page.CanPublish"
+        	ng-disabled="disableAfterTrial()"
         	type="button">{{'Save and Publish' | i18next}}</button>
         	
         <button class="secondary-button"
         	ng-click="saveDraft()"
         	ng-show="page.CanPublish || page.CanEdit"
+        	ng-if="!disableAfterTrial()"
         	type="button">{{'Save Draft' | i18next}}</button>
         
         <!-- {{page.HasDraft}} -->
         
         <button class="secondary-button"
         	ng-click="revertDraft()"
+        	ng-if="!disableAfterTrial()"
         	ng-show="(page.CanPublish || page.CanEdit) && page.HasDraft"
         	type="button">{{'Revert Draft' | i18next}}</button>
-		
+   
     </div>
     <!-- /#actions -->
     

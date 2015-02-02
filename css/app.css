@@ -100,9 +100,9 @@ body textarea.form-control{
 }
 
 	.primary-button[disabled=disabled]{
-		background-color: #f0f0f0;
-		border-color: #ccc;
-		color: #ccc;
+		background-color: #f8f8f8;
+		border-color: #ddd;
+		color: #ddd;
 	}
 
     .primary-button:hover{
@@ -115,6 +115,13 @@ body textarea.form-control{
     color: #3299bb;
     border-color: #ddd;
 }
+
+	.secondary-button[disabled=disabled]{
+		background-color: #f8f8f8;
+		border-color: #ddd;
+		color: #ddd;
+	}
+
     .secondary-button:hover{
         border-color: #3299bb;
     }

@@ -295,7 +295,7 @@ angular.module('respond.directives', [])
 						    function(){
 							    
 							    if(scope.current !== undefined){
-							    	scope.current.selected = hex;
+							    	scope.current.selected = color;
 							    }
 						    }
 					    )

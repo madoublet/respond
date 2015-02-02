@@ -1174,7 +1174,39 @@ respond.editor.build = function(){
 	respond.editor.setupPlugins();
 	
 	// detect any changes
-	$(el).bind("DOMSubtreeModified", function() {
+	$(el).on('keyup', '[contentEditable=true]', function() {
+	    
+	    // set scope
+  		var scope = angular.element($("section.main")).scope();
+  		
+  		// set modified
+  		scope.setModified();
+	    
+	});
+	
+	$('.editor-actions a').on('mousedown', function() {
+	    
+	    // set scope
+  		var scope = angular.element($("section.main")).scope();
+  		
+  		// set modified
+  		scope.setModified();
+	    
+	});
+	
+	// detect any changes
+	$('#context-menu input').on('keyup', function() {
+	    
+	    // set scope
+  		var scope = angular.element($("section.main")).scope();
+  		
+  		// set modified
+  		scope.setModified();
+	    
+	});
+	
+	// detect any changes
+	$('#context-menu select').on('change', function() {
 	    
 	    // set scope
   		var scope = angular.element($("section.main")).scope();

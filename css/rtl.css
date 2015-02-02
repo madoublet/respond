@@ -309,7 +309,8 @@ html[dir=rtl] .listItem span.hook{
 	left: auto;
 }
 
-html[dir=rtl] body .context-menu .form-group .sp-replacer, body .context-menu .form-group .image-picker{
+html[dir=rtl] body .context-menu .form-group .sp-replacer, 
+html[dir=rtl] body .context-menu .form-group .image-picker{
 	right: auto;
 	left: 0;
 	border: 1px solid #ddd;

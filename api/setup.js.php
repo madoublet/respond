@@ -2,9 +2,7 @@
 	include 'app.php';
 	
 	$arr = Array(false => 'false', true => 'true');
-	$plans = unserialize(SUBSCRIPTION_PLANS);
-	
-	
+	$plans = file_get_contents(APP_LOCATION.'data/plans.json');
 	
 	header("content-type: application/javascript"); 
 	
@@ -25,6 +23,7 @@ angular.module('respond.setup', [])
 	
 	// branding
 	logo: 					'<?php print BRAND_LOGO; ?>',
+	paypalLogo: 			'<?php print PAYPAL_LOGO; ?>',
 	icon: 					'<?php print BRAND_ICON; ?>',
 	brand: 					'<?php print BRAND; ?>',
 	css:					'<?php print BRAND_CSS; ?>',
@@ -55,7 +54,13 @@ angular.module('respond.setup', [])
 	pricingLink:			'<?php print PRICING_URL; ?>',
 	
 	// plans
-	plans: 					<?php print json_encode($plans); ?>,
+	plans: 					<?php print $plans; ?>,
+	
+	// trial length
+	trialLength: 			<?php print TRIAL_LENGTH; ?>,
+	
+	// disable after trial
+	disableAfterTrial:		<?php print $arr[DISABLE_AFTER_TRIAL]; ?>,
 	
 	// themes 
 	themes:					'<?php print THEMES_FOLDER; ?>'

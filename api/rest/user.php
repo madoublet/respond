@@ -368,7 +368,8 @@ class UserAddMemberResource extends Tonic\Resource {
         $user = User::Add($email, $password, $firstName, $lastName, $role, $language, $isActive, $siteId);
         
         // send welcome email
-        $subject = '['.$site['Name'].'] Welcome to '.$site['Name'];
+        $subject = SITE_WELCOME_EMAIL_SUBJECT;
+    	$subject = str_replace('{{site}}', $site['Name'], $subject);
     		
         $content = $site['WelcomeEmail'];
     		
@@ -382,11 +383,9 @@ class UserAddMemberResource extends Tonic\Resource {
 
         return $response;
         
-   
     }
 
 }
-
 
 
 /**

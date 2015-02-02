@@ -14,12 +14,16 @@ class Site{
     		$analyticsId = '';
     		$facebookAppId = '';
     		
-    		$type = 'Non-Subscription';
+    		// set defaults
+    		$status = DEFAULT_STATUS;
+    		$plan = DEFAULT_PLAN;
+    		$userLimit = DEFAULT_USER_LIMIT;
+    		$fileLimit = DEFAULT_FILE_LIMIT;
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteId, FriendlyId, UrlMode, Domain, Bucket, Name, LogoUrl, Theme, PrimaryEmail, TimeZone, Language, Direction, WelcomeEmail, ReceiptEmail, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteId, FriendlyId, UrlMode, Domain, Bucket, Name, LogoUrl, Theme, PrimaryEmail, TimeZone, Language, Direction, WelcomeEmail, ReceiptEmail, Status, Plan, UserLimit, FileLimit, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteId);
@@ -36,7 +40,11 @@ class Site{
             $s->bindParam(12, $direction);
             $s->bindParam(13, $welcomeEmail);
             $s->bindParam(14, $receiptEmail);
-            $s->bindParam(15, $timestamp);
+            $s->bindParam(15, $status);
+            $s->bindParam(16, $plan);
+            $s->bindParam(17, $userLimit);
+            $s->bindParam(18, $fileLimit);
+            $s->bindParam(19, $timestamp);
             
             $s->execute();
             
@@ -366,6 +374,44 @@ class Site{
             $s->bindParam(6, $siteId);
             
             $s->execute();
+            
+            // unserialize plans
+            $plans_json = file_get_contents(APP_LOCATION.'data/plans.json');
+            
+            // decode json
+            $plans = json_decode($plans_json, true);
+            
+            // set test defaults
+            $userLimit = -1;
+            $fileLimit = -1;
+            
+            // walkthrough plans
+            foreach ($plans as $item) {
+	            
+	            //$ids .= $item['id'].' ';
+			    
+			    if($item['id'] == $plan){
+				    
+				    // get user and file limit from plan
+				    $userLimit = $item['userLimit'];
+				    $fileLimit = $item['fileLimit'];
+				    
+			    }
+			    
+			}
+
+			// set the user and file limit if found
+			if($userLimit != -1){
+				
+				$q = "UPDATE Sites SET UserLimit = ?, FileLimit = ? WHERE SiteId = ?";
+     
+	            $s = $db->prepare($q);
+	            $s->bindParam(1, $userLimit);
+	            $s->bindParam(2, $fileLimit);
+	            $s->bindParam(3, $siteId);
+				
+				$s->execute();
+			}
             
 		} catch(PDOException $e){
             die('[Site::Subscribe] PDO Error: '.$e->getMessage());

@@ -842,40 +842,51 @@ class SiteSubscribeStripeResource extends Tonic\Resource {
 			// subscribe to a plan
 			Site::Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId);
 			
-			// send success email to user
-			$to = $site['PrimaryEmail'];
-    		$from = REPLY_TO;
-    		$fromName = REPLY_TO_NAME;
-    		$subject = BRAND.': Thank your for subscribing to '.BRAND;
-    		$file = APP_LOCATION.'/emails/subscribe-success.html';
- 
-    		$replace = array(
-    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-    			'{{brand}}' => BRAND,
-    			'{{reply-to}}' => REPLY_TO
-    		);
+			// send email to user
+			if(NEW_SUBSCRIPTION_EMAIL == true){
+			
+				// send success email to user
+				$to = $site['PrimaryEmail'];
+	    		$from = REPLY_TO;
+	    		$fromName = REPLY_TO_NAME;
+	    		$subject = NEW_SUBSCRIPTION_EMAIL_SUBJECT;
+	    		$file = NEW_SUBSCRIPTION_EMAIL_FILE;
+	 
+	    		$replace = array(
+	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
+	    			'{{brand}}' => BRAND,
+	    			'{{reply-to}}' => REPLY_TO
+	    		);
+	    		
+	    		// send 
+	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+    		}
     		
-    		// send 
-    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		
-    		// send details email to admin
-			$to = REPLY_TO;
-    		$from = REPLY_TO;
-    		$fromName = REPLY_TO_NAME;
-    		$subject = BRAND.': New Subscriber';
-    		$file = APP_LOCATION.'/emails/subscribe-details.html';
- 
-    		$replace = array(
-    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-    			'{{brand}}' => BRAND,
-    			'{{reply-to}}' => REPLY_TO,
-    			'{{domain}}' => $domain,
-    			'{{siteid}}' => $site['SiteId'],
-    			'{{friendlyid}}' => $site['FriendlyId'],
-    			'{{provider}}' => $provider,
-    			'{{customerid}}' => $customerId
-    		);
-    		
+    		// send email to admin
+			if(NEW_SUBSCRIBER_EMAIL == true){
+			
+	    		// send details email to admin
+				$to = REPLY_TO;
+	    		$from = REPLY_TO;
+	    		$fromName = REPLY_TO_NAME;
+	    		$subject = NEW_SUBSCRIBER_EMAIL_SUBJECT;
+	    		$file = NEW_SUBSCRIBER_EMAIL_FILE;
+	 
+	    		$replace = array(
+	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
+	    			'{{brand}}' => BRAND,
+	    			'{{reply-to}}' => REPLY_TO,
+	    			'{{domain}}' => $domain,
+	    			'{{siteid}}' => $site['SiteId'],
+	    			'{{friendlyid}}' => $site['FriendlyId'],
+	    			'{{provider}}' => $provider,
+	    			'{{customerid}}' => $customerId
+	    		);
+	    		
+	    		// send email from file
+	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+    		}
+    		    		
     		// send email from file
     		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
         
@@ -977,6 +988,110 @@ class SiteUnsubscribeStripeResource extends Tonic\Resource {
         }
     }
 }
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /site/subscribe/paypal
+ */
+class SiteSubscribePaypalResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+    
+    	parse_str($this->request->data, $request);
+    	
+    	$txn_type = $request['txn_type'];
+    	$status = $request['payer_status'];
+    	
+    	$email = $request['payer_email'];
+		$payerId = $request['payer_id'];
+		$item_name = $request['item_name'];
+		
+		// explode custom (siteId-plan)
+		$custom = explode('//', $request['custom']);
+		
+		// get site and plan
+		$siteId = $custom[0];
+		$plan = $custom[1];
+		
+		// parse domain
+		preg_match('#\((.*?)\)#', $item_name, $match);
+		$domain = $match[1];
+				
+	    // get reference to site
+	    $site = Site::GetBySiteId($siteId);
+
+		// response was "VERIFIED"
+		if($status == 'verified' && $txn_type == 'subscr_signup'){
+			
+		    $provider = 'PayPal';
+		    $status = 'Active';
+		    $subscriptionId = $payerId;
+		    $customerId = $email;
+		    
+		    // subscribe to a plan
+			Site::Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId);
+			
+			// send email to user
+			if(NEW_SUBSCRIPTION_EMAIL == true){
+			
+				// send success email to user
+				$to = $site['PrimaryEmail'];
+	    		$from = REPLY_TO;
+	    		$fromName = REPLY_TO_NAME;
+	    		$subject = NEW_SUBSCRIPTION_EMAIL_SUBJECT;
+	    		$file = NEW_SUBSCRIPTION_EMAIL_FILE;
+	 
+	    		$replace = array(
+	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
+	    			'{{brand}}' => BRAND,
+	    			'{{reply-to}}' => REPLY_TO
+	    		);
+	    		
+	    		// send 
+	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+    		}
+    		
+    		// send email to admin
+			if(NEW_SUBSCRIBER_EMAIL == true){
+			
+	    		// send details email to admin
+				$to = REPLY_TO;
+	    		$from = REPLY_TO;
+	    		$fromName = REPLY_TO_NAME;
+	    		$subject = NEW_SUBSCRIBER_EMAIL_SUBJECT;
+	    		$file = NEW_SUBSCRIBER_EMAIL_FILE;
+	 
+	    		$replace = array(
+	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
+	    			'{{brand}}' => BRAND,
+	    			'{{reply-to}}' => REPLY_TO,
+	    			'{{domain}}' => $domain,
+	    			'{{siteid}}' => $site['SiteId'],
+	    			'{{friendlyid}}' => $site['FriendlyId'],
+	    			'{{provider}}' => $provider,
+	    			'{{customerid}}' => $customerId
+	    		);
+	    		
+	    		// send email from file
+	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+    		}
+    		
+  
+		} else {
+		    // IPN response was "INVALID"\
+		}
+
+        $response = new Tonic\Response(Tonic\Response::OK);
+        $response->contentType = 'text/HTML';
+        $response->body = 'Yah!!!';
+
+        return $response;
+    }
+}
+
 
 
 ?>

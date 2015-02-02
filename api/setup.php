@@ -1,13 +1,19 @@
 <?php
 
 	// Version
-	define('VERSION', '4');
+	define('VERSION', '4.03');
 
-	// define brand
+	// Brand name
 	define('BRAND', 'Respond');
+	
+	// Location of custom css for your brand (e.g. css/custom.css)
 	define('BRAND_CSS', '');
+	
+	// Brand logos (should be fully qualified (e.g. http://) to support emails, paypal)
 	define('BRAND_LOGO', '/images/respond-icon.png');
 	define('BRAND_ICON', '/images/respond-icon.png');
+	
+	// Copyright and default email
 	define('COPY', 'Made by Matthew Smith in Manchester, MO');
 	define('EMAIL', 'sample@adminemail.com');
 
@@ -17,7 +23,7 @@
 	define('DB_USER', 'dbuser');
 	define('DB_PASSWORD', 'dbpass');
 	
-	// debugging
+	// Debugging
 	define('DEBUG', true);
 
 	if(DEBUG){
@@ -25,15 +31,13 @@
 		ini_set('display_errors', '1');
 	}
 	
-	// S3 deployment options
-	
-	// enables copying site to S3 for deployment
+	// Enables copying site to S3 for deployment
 	define('ENABLE_S3_DEPLOYMENT', false);
 	
-	// stores all uploaded files on S3
+	// Stores all uploaded files on S3
 	define('FILES_ON_S3', false);
 	
-	// default bucket
+	// Default bucket
 	define('BUCKET_NAME', 'yourdomain.com');
 	define('S3_LOCATION', 'us-east-1');
 	define('S3_URL', 'http://{{bucket}}.s3-website-us-east-1.amazonaws.com/{{site}}');
@@ -48,76 +52,71 @@
 	define('TERMS_URL', 'http://myrespond.com/page/terms-of-service');
 	define('PRICING_URL', 'http://myrespond.com/page/terms-of-service');
 	
-	// webhooks URL
+	// Webhooks URL
 	define('WEBHOOKS_URL', '');
 
-	// default mode (hash, hashbang, html5, static)
+	// Default URL mode (hash, hashbang, html5, static)
 	define('DEFAULT_URL_MODE', 'static');
 	
-	// image prefix (the protocol to use for accessing images, prefixes the domain name)
+	// Image prefix (the protocol to use for accessing images, prefixes the domain name)
 	define('IMAGE_PREFIX', 'http://');
 
-	// locations
+	// Locations of apps and sites
 	define('APP_LOCATION', '../');
 	define('SITES_LOCATION', '../sites');
 	
-	// setup default language for the site
+	// Setup default language for the site
 	define('DEFAULT_LANGUAGE', 'en');
 	
-	// default the name on create
+	// Default the name on create
 	define('DEFAULT_NAME_ON_CREATE', true);
 	
-	// setup the default text direction for the site (ltr, rtl, auto)
+	// Setup the default text direction for the site (ltr, rtl, auto)
 	define('DEFAULT_DIRECTION', 'ltr');
 	
-	// determines whether the user can change the default language while creating the site
+	// Determines whether the user can change the default language while creating the site
 	define('CHANGE_DEFAULT_LANGUAGE', false);
 	
-	// passcode
+	// Passcode
 	define('PASSCODE', 'iloverespond');
 	
 	// JWT key
 	define('JWT_KEY', 'iloverespond');
 	
-	// paypal
+	// Paypal
 	define('PAYPAL_EMAIL', '');
 	define('PAYPAL_USE_SANDBOX', false);
 	define('PAYPAL_CURRENCY', 'USD');
-	define('PAYPAL_LOGO', '');
+	define('PAYPAL_LOGO', '/images/respond-icon.png');
 	
-	// stripe keys
+	// Stripe keys
 	define('STRIPE_SECRET_KEY', '');
 	define('STRIPE_PUBLISHABLE_KEY', '');
 	
-	// plans
-	define ('SUBSCRIPTION_PLANS', serialize (array (
-			array(
-				'id' 		=> 'respond-starter',
-				'desc' 		=> 'Starter - $5/mo',
-				'price' 	=> 5,
-				'interval'	=> 'M'  // M = month, D = day, W = week, Y = year
-			),
-			array(
-				'id' 		=> 'respond-basic',
-				'desc' 		=> 'Basic - $15/mo',
-				'price' 	=> 15,
-				'interval'	=> 'M'
-			),
-			array(
-				'id' 		=> 'respond-pro',
-				'desc' 		=> 'Professional - $30/mo',
-				'price' 	=> 30,
-				'interval'	=> 'M'
-			)
-		
-	    )));
+	// Default account status (Trial for subscription based sites, or Active for non-subscription based sites)
+	define('DEFAULT_STATUS', 'Trial');
+	
+	// Default plan (Typically Trial or blank for non-subscription based sites)
+	define('DEFAULT_PLAN', 'Trial');
+	
+	// Trial length
+	define('TRIAL_LENGTH', 30);
+	
+	// Disable after trial
+	define('DISABLE_AFTER_TRIAL', true);
+	
+	// Default user limit
+	define('DEFAULT_USER_LIMIT', 1);
+	
+	// default file limit (in MBs)
+	define('DEFAULT_FILE_LIMIT', 100);
 	
 	// Cross Origin Resource Sharing (CORS)
 	define ('CORS', serialize (array (
 	    'http://sites.myrespond.com'
 	    )));
 	    
-	// advanced SMTP settings (see https://github.com/Synchro/PHPMailer)
+	// Advanced SMTP settings (see https://github.com/Synchro/PHPMailer)
 	define('IS_SMTP', false);
 	define('SMTP_HOST', 'smtp.mailserver.com');
 	define('SMTP_AUTH', true);
@@ -125,42 +124,52 @@
 	define('SMTP_PASSWORD', '');
 	define('SMTP_SECURE', 'tls');
 	
-	// key used to encrypt site SMTP passwords
+	// Key used to encrypt site SMTP passwords
 	define('SMTPENC_KEY', 'iloverespond');
 	    
-    // set what emails should be sent out and a reply-to email address
+    // Set what emails should be sent out and a reply-to email address
 	define('REPLY_TO', '');
 	define('REPLY_TO_NAME', '');
 	
-	// welcome email
-	define('SEND_WELCOME_EMAIL', false);
+	// Welcome email
+	define('SEND_WELCOME_EMAIL', true);
 	define('WELCOME_EMAIL_SUBJECT', 'Respond: Welcome to Respond!');
 	define('WELCOME_EMAIL_FILE', '../emails/new-user.html');
 	
-	// payment emails
-	define('SEND_PAYMENT_SUCCESSFUL_EMAIL', false);
-	define('SEND_PAYMENT_FAILED_EMAIL', false);
+	// New subscription email (to user)
+	define('NEW_SUBSCRIPTION_EMAIL', true);
+	define('NEW_SUBSCRIPTION_EMAIL_SUBJECT', 'Respond: Thank you for subscribing!');
+	define('NEW_SUBSCRIPTION_EMAIL_FILE', '../emails/subscribe-success.html');
 	
-    // start page (sets the default page (route state) a user sees after logon)
+	// New subscriber email (to admin)
+	define('NEW_SUBSCRIBER_EMAIL', true);
+	define('NEW_SUBSCRIBER_EMAIL_SUBJECT', 'Respond: We have a new subscriber!');
+	define('NEW_SUBSCRIBER_EMAIL_FILE', '../emails/subscribe-details.html');
+	
+	// Site emails
+	define('SITE_RECEIPT_EMAIL_SUBJECT', '[{{site}}] Receipt for your purchase (Transaction #: {{transactionId}})');
+	define('SITE_WELCOME_EMAIL_SUBJECT', 'Welcome to {{site}}');
+	
+    // Start page (sets the default page (route state) a user sees after logon)
 	define('START_PAGE', 'app.pages');
 	
-	// set the default theme (directory name: themes/simple => simple)
+	// Set the default theme (directory name: themes/simple => simple)
 	define('DEFAULT_THEME', 'simple');
 	define('THEMES_FOLDER', 'themes');
 	
-	// allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
+	// Allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
 	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');
 	
-	// advanced configurations
+	// Advanced configurations
 	define('IMAGE_AUTO_RESIZE', true);
 	define('IMAGE_MAX_WIDTH', 1024);
 	define('IMAGE_MAX_HEIGHT', 768);
 	
-	// thumb width and height
+	// Thumb width and height
 	define('THUMB_MAX_WIDTH', 400);
 	define('THUMB_MAX_HEIGHT', 400);
 	
-	// set default as UTC
+	// Set default as UTC
 	date_default_timezone_set('UTC');
 	
 ?>
