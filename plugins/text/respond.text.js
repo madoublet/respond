@@ -270,14 +270,15 @@ respond.text.link = {
 			if(respond.text.link.element == null){
 			
 				var html = '';
-			
+				
 				// external links should have http
-				if(url.indexOf('http') == -1){
+				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1){
 					html += '<a ui-sref="'+url+'" href="/'+url+'"';
 				}
 				else{
 					html += '<a href="'+url+'"';
 				}
+				
 			
 				// insert css class into link
 				if(cssClass != ''){
@@ -321,7 +322,7 @@ respond.text.link = {
 				}
 				
 				// external links should have http
-				if(url.indexOf('http') == -1){
+				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1){
 					link.attr('ui-sref', url);
 					link.attr('href', '/'+url);
 				}
