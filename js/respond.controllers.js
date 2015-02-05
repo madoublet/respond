@@ -901,20 +901,26 @@ angular.module('respond.controllers', [])
 	// determines if the trial is over
 	$scope.isTrialOver = function(){
 		
-		var length = $scope.setup.trialLength;
-		var now = moment.utc();
-
-    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+		if($scope.site.Status == 'Trial'){
 		
-		var difference = length - now.diff(st, 'days');
+			var length = $scope.setup.trialLength;
+			var now = moment.utc();
+	
+	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+			
+			var difference = length - now.diff(st, 'days');
+			
+			// expired when the difference is less then 0
+			if(difference < 0){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
 		
-		// expired when the difference is less then 0
-		if(difference < 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return false;
 		
 	}
 	
@@ -1648,16 +1654,23 @@ angular.module('respond.controllers', [])
 		// disable after trial
 		if($scope.setup.disableAfterTrial == true){
 			
-			var length = $scope.setup.trialLength;
-			var now = moment.utc();
-    
-	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+			if($scope.site.Status == 'Trial'){
 			
-			var difference = length - now.diff(st, 'days');
+				var length = $scope.setup.trialLength;
+				var now = moment.utc();
+	    
+		    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+				
+				var difference = length - now.diff(st, 'days');
+				
+				// expired when the difference is less then 0
+				if(difference < 0){
+					return true;
+				}
+				else{
+					return false;
+				}
 			
-			// expired when the difference is less then 0
-			if(difference < 0){
-				return true;
 			}
 			else{
 				return false;

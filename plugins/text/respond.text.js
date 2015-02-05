@@ -272,7 +272,7 @@ respond.text.link = {
 				var html = '';
 				
 				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1){
+				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
 					html += '<a ui-sref="'+url+'" href="/'+url+'"';
 				}
 				else{
@@ -322,7 +322,7 @@ respond.text.link = {
 				}
 				
 				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1){
+				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
 					link.attr('ui-sref', url);
 					link.attr('href', '/'+url);
 				}
