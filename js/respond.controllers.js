@@ -2352,6 +2352,9 @@ angular.module('respond.controllers', [])
         
         Site.save($scope.site, function(){
 	        message.showMessage('success');
+	        
+	        // update site
+	        $rootScope.site = $scope.site;
         },
         function(){
 	     	message.showMessage('error');   
