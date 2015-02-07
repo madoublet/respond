@@ -276,6 +276,11 @@ body .modal-header{
 		font-size: 1.4em;
 	}
 	
+	body .modal-header h3 small{
+		text-transform: uppercase;
+		margin-left: 15px;
+	}
+	
 	body .modal-header .close{
 		margin-top: 7px;
 	}
@@ -391,6 +396,10 @@ body .modal-header{
 				padding-top: 5px;
 				padding-bottom: 5px;
 			}
+			
+	body .modal .modal-lg .modal-content{
+		min-height: 500px;
+	}
 
 /* header */
 header.slideout{
@@ -635,7 +644,7 @@ section.main{
 	}
 
 /* menu */
-section.main menu{
+section.main menu, .modal menu{
 	position: relative;
 	background-color: #f8f8f8;
 	border-bottom: 1px solid #f0f0f0;	
@@ -645,48 +654,48 @@ section.main menu{
 	height: 50px;
 }
 
-	section.main menu .menu-actions{
+	section.main menu .menu-actions, .modal menu .menu-actions{
 		position: absolute;
 		top: 2px;
 		right: 13px;
 	}
 
-	section.main menu i{
+	section.main menu i, .modal menu i{
 		margin-left: 5px;
 		color: #888;	
 		padding: 4px 5px 0 5px;
 		font-size: 16px;
 	}
 	
-	section.main menu .active i{
+	section.main menu .active i, .modal menu .active i{
 		color: #81b841;
 	}
 	
-	section.main menu a:hover i{
+	section.main menu a:hover i, .modal menu a:hover i{
 		color: #81b841;
 	}
 		
-	section.main menu .dropdown-menu{
+	section.main menu .dropdown-menu, .modal menu .dropdown-menu{
 		border-radius: 0;
 		box-shadow: none;
 		border: 1px solid #f0f0f0;
 	}
 	
-		section.main menu .dropdown-menu a{
+		section.main menu .dropdown-menu a, .modal menu .dropdown-menu a{
 			color: #aaa;
 			font-size: 13px;
 		}
 		
-	section.main menu .dropdown{
+	section.main menu .dropdown, .modal menu .dropdown{
 		margin: 0;
 	}
 	
-	section.main menu .dropdown .btn{
+	section.main menu .dropdown .btn, .modal menu .dropdown .btn{
 		border-radius: 0;
 		border-color: #ddd;
 	}
 	
-	section.main menu .dropdown .caret{
+	section.main menu .dropdown .caret, .modal menu .dropdown .caret{
 		margin-left: 5px;
 		color: #ddd;
 	}
@@ -696,7 +705,7 @@ section.main menu{
 		color: #ddd;
 	}
 	
-	section.main menu .dropdown-menu a{
+	section.main menu .dropdown-menu a, .modal menu .dropdown-menu a{
 		color: #888;
 		padding: 10px 15px;
 		min-width: 205px;
@@ -1045,6 +1054,10 @@ div.select{
 	div.select.select-lg{
 		height: 300px;
 	}
+	
+	div.select.select-xl{
+		height: 500px;
+	}
 
 div.select.small{
   height: 200px;
@@ -1107,6 +1120,11 @@ div.select em{
 	font-size: 0.9em;
 	margin: 0;
 	padding: 0;
+}
+
+div.select .select-block{
+	display: inline-block;
+	margin-left: 5px;
 }
 
 /* table */

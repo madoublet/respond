@@ -8,6 +8,27 @@
     height: 100%;
     border: none !important;
 }
+
+.dropzone.in-dialog{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	min-height: 125px;
+	margin: 0 0 20px 0;
+	padding: 20px;
+}
+
+	.dropzone.in-dialog .dz-message i{
+		display: block;
+		color: #888;
+		cursor: pointer;
+	}
+	
+	.dropzone.in-dialog .dz-message{
+		color: #888;
+	}
     
 .dropzone .dz-message{
   cursor: pointer;
@@ -19,10 +40,6 @@
   font-size: 1.1em;
   cursor: pointer;
 }
-
-	.dropzone.in-dialog .dz-message{
-		margin-top: 70px;
-	}
 
 	.dropzone .dz-message i{
 		display: block;

@@ -725,7 +725,7 @@ respond.editor.setupPersistentEvents = function(){
 			cssClass = ' .block.row';
 		}
 		
-		$(clone).find('.block-actions span').texi18n.t('#'+blockid+cssClass);
+		$(clone).find('.block-actions span').text('#'+blockid+cssClass);
 		
 		// find all blocks in clone
 		var blocks = $(clone).find('.col>div');

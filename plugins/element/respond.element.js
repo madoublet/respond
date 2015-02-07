@@ -1333,6 +1333,14 @@ respond.element.image = {
 			// show dialog
 			$('#imagesDialog').modal('show');
 			
+			// reset modal
+			$('#imagesDialog .add-existing-image').removeClass('hidden');
+			$('#imagesDialog .upload-new-image').addClass('hidden');
+			$('#imagesDialog .add-external-image').addClass('hidden');
+			$('#external-image').val('');
+			$('#load-image').text(i18n.t('Existing Image'));
+			$('#images-dropdown').find('li').removeClass('active');
+			
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
 			
@@ -1344,21 +1352,28 @@ respond.element.image = {
 	},
 	
 	// helper method to get HTML for the image based on alignment
-	html:function(display, src, html){
+	html:function(display, src, html, isExternal){
+		
+		// set local vs external image
+		var location = 'local';
+		
+		if(isExternal == true){
+			location = 'external';
+		}
 		
 		var content = respond.editor.defaults.elementMenu +
-					'<img src="' + src + '">' +
+					'<img src="' + src + '" data-location="' + location + '">' +
 					'<div class="editable-content" contentEditable="true">' + html + '</div>';
 		
 		// build html
 		if(display=='standalone'){
 			content = respond.editor.defaults.elementMenu +
-					'<img src="' + src + '">';
+					'<img src="' + src + '" data-location="' + location + '">';
 		}
 		else if(display=='right'){
 			content = respond.editor.defaults.elementMenu +
 					'<div class="editable-content" contentEditable="true">' + html + '</div>' +
-					'<img src="' + src + '">';
+					'<img src="' + src + '" data-location="' + location + '">';
 		}
 		
 		return content;
@@ -1370,7 +1385,15 @@ respond.element.image = {
 		
 		var node = $(respond.editor.currNode);
 		
-		var src = $(node).find('img').attr('src', image.fullUrl);
+		// set local vs external image
+		var location = 'local';
+		
+		if(image.isExternal == true){
+			location = 'external';
+		}
+		
+		$(node).find('img').attr('src', image.fullUrl);
+		$(node).find('img').attr('data-location', location);
 		
 		// hide dialog
 		$('#imagesDialog').modal('hide');
@@ -1385,9 +1408,16 @@ respond.element.image = {
 		// generate uniqId
 		var id = respond.editor.generateUniqId('image', 'image');
 		
+		// set local vs external image
+		var location = 'local';
+		
+		if(image.isExternal == true){
+			location = 'external';
+		}
+		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
-					'<img src="' + image.fullUrl + '">' +
+					'<img src="' + image.fullUrl + '" data-location="' + location +'">' +
 					'<div class="editable-content" contentEditable="true"></div>';
 					
 		// tag attributes
@@ -1427,6 +1457,14 @@ respond.element.image = {
 		// show dialog
 		$('#imagesDialog').modal('show');
 		
+		// reset modal
+		$('#imagesDialog .add-existing-image').removeClass('hidden');
+		$('#imagesDialog .upload-new-image').addClass('hidden');
+		$('#imagesDialog .add-external-image').addClass('hidden');
+		$('#external-image').val('');
+		$('#load-image').text(i18n.t('Existing Image'));
+		$('#images-dropdown').find('li').removeClass('active');
+		
 		// get scope from page
 		var scope = angular.element($("section.main")).scope();
 		
@@ -1445,12 +1483,19 @@ respond.element.image = {
 		scope.updateFiles();
 	
 		// get params
+		var isExternal = false;
 		var id = $(node).attr('id');		
 		var src = $(node).find('img').attr('ng-src');
 		var link = $(node).find('a').attr('href') || $(node).find('a').attr('ui-sref') || '';
 		var title = $(node).find('a').attr('title') || '';
 		var target = $(node).find('a').attr('target') || '';
 		var lightbox = '0';
+		
+		// get external image
+		if(src == undefined){
+			src = $(node).find('img').attr('src');
+			isExternal = true;
+		}
 		
 		// set lightbox
 		var attr = $(node).find('a').attr('respond-lightbox');
@@ -1473,7 +1518,7 @@ respond.element.image = {
 		var display = $(node).attr('data-display') || 'left';
 		
 		// set html
-		var html = respond.element.image.html(display, src, $(node).find('p').html());
+		var html = respond.element.image.html(display, src, $(node).find('p').html(), isExternal);
 		
 		// tag attributes
 		var attrs = [];
@@ -1548,27 +1593,45 @@ respond.element.image = {
   		
   		// set image src
   		var src = $(node).find('img').attr('src');
+  		var location = $(node).find('img').attr('data-location');
   		
-  		// removes the domain from the img
-  		if(src != ''){
-	  		
-	  		var parts = src.split('files/');
-	  		src = 'files/' + parts[1];
-	  		
+  		// handle older images
+  		if(location == undefined || location == null){
+	  		location = 'local';
   		}
   		
-  		var html = startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink;
+  		//set img
+  		var img = '';
+  		
+  		if(location == 'local'){
+	  		
+	  		// removes the domain from the img
+	  		if(src != ''){
+		  		var parts = src.split('files/');
+		  		src = 'files/' + parts[1];
+	  		}
+	  		
+	  		// set image tag
+	  		img = '<img ng-src="{{site.ImagesUrl}}' + src + '">';
+	  		
+	  	}
+	  	else{
+		  	// set image tag
+	  		img = '<img src="' + src + '">'; 	
+	  	}
+  		
+  		var html = startLink + img + endLink;
   
   		// html for tag
   		if(display == 'left'){
 	  		
-	  		html = startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink + 
+	  		html = startLink + img + endLink + 
 	  					'<p>' + $(node).find('[contentEditable=true]').html() + '</p>';
 	  		
   		}
   		else if(display == 'right'){
 	  		html =  '<p>' + $(node).find('[contentEditable=true]').html() + '</p>' +
-	  					startLink + '<img ng-src="{{site.ImagesUrl}}' + src + '">' + endLink;
+	  					startLink + img + endLink;
   		}
   		
 		// tag attributes

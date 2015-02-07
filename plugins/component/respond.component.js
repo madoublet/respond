@@ -17,6 +17,14 @@ respond.component.slideshow = {
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.slideshow');
 			$('#imagesDialog').modal('show');
+			
+			// reset modal
+			$('#imagesDialog .add-existing-image').removeClass('hidden');
+			$('#imagesDialog .upload-new-image').addClass('hidden');
+			$('#imagesDialog .add-external-image').addClass('hidden');
+			$('#external-image').val('');
+			$('#load-image').text(i18n.t('Existing Image'));
+			$('#images-dropdown').find('li').removeClass('active');
 		});
 		
 		// caption focus (for images)
@@ -49,12 +57,19 @@ respond.component.slideshow = {
 	
 	// adds an image to the slideshow
 	addImage:function(image){
+		
+		// set local vs external image
+		var location = 'local';
+		
+		if(image.isExternal == true){
+			location = 'external';
+		}
 	
 		// get current node
 		var node = $(respond.editor.currNode);
 		
 		// build html
-		var html = '<span class="image"><img src="' + image.fullUrl + '" title="">' +
+		var html = '<span class="image"><img src="' + image.fullUrl + '" title="" data-location="' + location + '">' +
 				   '<span class="caption"><input type="text" value="" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140"></span>' +
 				   '<a class="remove-image fa fa-minus-circle"></a></span>';
 				   
@@ -120,6 +135,13 @@ respond.component.slideshow = {
 			// get caption
 			var title = $(imgs[y]).attr('title');
 			var src = $(imgs[y]).attr('ng-src');
+			var location = 'local';
+			
+			// get external image
+			if(src == undefined || src == null){
+				var src = $(imgs[y]).attr('src');
+				var location = 'external';
+			}
 		
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
@@ -131,7 +153,7 @@ respond.component.slideshow = {
 			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
 			src = utilities.replaceAll(src, '{{site.ImagesURL}}', url);
 			
-			var image = '<img src="' + src + '" title="' + title + '">';
+			var image = '<img src="' + src + '" title="' + title + '" data-location="' + location + '">';
 			
 			// build html
 			html +=	'<span class="image">' + image + 
@@ -175,14 +197,25 @@ respond.component.slideshow = {
   		
   			var title = $(imgs[y]).attr('title');
   			var src = $(imgs[y]).attr('src');
-  		
-  			// removes the domain from the img
-	  		if(src != ''){
-		  		var parts = src.split('files/');
-		  		src = 'files/' + parts[1];
-	  		}
   			
-  			var image = '<img ng-src="{{site.ImagesURL}}' + src + '" title="' + title + '">';
+  			var location = $(imgs[y]).attr('data-location');
+  			
+  			if(location == undefined || location == null){
+	  			location = 'local';
+  			}
+  		
+  			if(location == 'local'){
+	  			// removes the domain from the img
+		  		if(src != ''){
+			  		var parts = src.split('files/');
+			  		src = 'files/' + parts[1];
+		  		}
+	  			
+	  			var image = '<img ng-src="{{site.ImagesURL}}' + src + '" title="' + title + '">';
+  			}
+  			else{
+	  			var image = '<img src="' + src + '" title="' + title + '">';
+  			}
   			
 			html += '<div>' + image + '</div>';
 		}
