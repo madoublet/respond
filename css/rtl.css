@@ -468,8 +468,8 @@ html[dir=rtl] .editor .block .triangulate-q i{
 }
 
 html[dir=rtl] .editor .block .respond-q div[contentEditable=true], 
-.editor .block .respond-file input, 
-.editor .block .respond-map input{
+html[dir=rtl] .editor .block .respond-file input, 
+html[dir=rtl] .editor .block .respond-map input{
 	padding-right: 45px !important;
 	padding-left: 0 !important;
 }

@@ -1236,6 +1236,10 @@
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
 	
+	aside#context-menu{
+		display: none;
+	}
+	
 	.editor .block{
 		padding-bottom: 5px;
 	}
