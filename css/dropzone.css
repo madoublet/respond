@@ -2,10 +2,8 @@
     position: relative;
 	top: 0;
 	left: 0;
-	min-height: 125px;
-	height: 50px;
 	margin: 20px;
-	padding: 20px;
+	padding: 10px 20px;
 	text-align: center;
 }
 
@@ -14,10 +12,8 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 50px;
-	min-height: 125px;
 	margin: 0 0 20px 0;
-	padding: 20px;
+	padding: 10px 20px;
 }
 
 .dropzone .dz-message{
@@ -25,18 +21,19 @@
   display: block;
   color: #888;
   padding: 0 20px;	
-  color: #fff;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.1em;
+  font-size: 13px;
   cursor: pointer;
   margin: 0;
   padding: 0;
+  text-transform: uppercase;
 }
 
 	.dropzone .dz-message i{
 		display: block;
-		color: #888;
+		color: #888 !important;
 		cursor: pointer;
+		font-size: 40px;
 	}
 
     .dropzone.dark .dz-message, .dropzone.dark .dz-message i{
@@ -207,7 +204,6 @@
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);
-  padding: 23px;
 }
 .dropzone .dz-default.dz-message {
   opacity: 1;
