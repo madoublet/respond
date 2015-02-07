@@ -1,12 +1,12 @@
 .dropzone{
-    position: absolute;
-    top: 113px;
-    right: 0;
-    text-align: center;
-    z-index: 100;
-    width: 200px;
-    height: 100%;
-    border: none !important;
+    position: relative;
+	top: 0;
+	left: 0;
+	min-height: 125px;
+	height: 50px;
+	margin: 20px;
+	padding: 20px;
+	text-align: center;
 }
 
 .dropzone.in-dialog{
@@ -20,16 +20,6 @@
 	padding: 20px;
 }
 
-	.dropzone.in-dialog .dz-message i{
-		display: block;
-		color: #888;
-		cursor: pointer;
-	}
-	
-	.dropzone.in-dialog .dz-message{
-		color: #888;
-	}
-    
 .dropzone .dz-message{
   cursor: pointer;
   display: block;
@@ -39,11 +29,13 @@
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1.1em;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
 	.dropzone .dz-message i{
 		display: block;
-		color: #fff;
+		color: #888;
 		cursor: pointer;
 	}
 
@@ -212,7 +204,6 @@
 }
 .dropzone {
   border: 1px solid rgba(0,0,0,0.03);
-  min-height: 360px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);
