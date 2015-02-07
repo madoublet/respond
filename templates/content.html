@@ -159,7 +159,7 @@
 					<label for="layout">{{'Layout' | i18next}}</label>
 					<select id="layout" class="form-control" 
 						ng-model="page.Layout">
-							<option ng-repeat="layout in layouts" ng-value="{{layout}}">{{layout}}</option>
+							<option ng-repeat="layout in layouts">{{layout}}</option>
 					</select>
 				</div>
 				
@@ -167,7 +167,8 @@
 					<label for="stylesheet">{{'Stylesheet' | i18next}}</label>
 					<select id="stylesheet" class="form-control" 
 						ng-model="page.Stylesheet">
-							<option ng-repeat="stylesheet in stylesheets" ng-value="{{stylesheet}}">{{stylesheet}}</option>
+							<option 
+								ng-repeat="stylesheet in stylesheets">{{stylesheet}}</option>
 					</select>
 				</div>
 				
