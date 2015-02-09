@@ -103,6 +103,8 @@ respond.component.slideshow = {
 		attrs['data-arrows'] = 'true';
 		attrs['data-interval'] = '5000';
 		attrs['data-wrap'] = 'true';
+		attrs['data-pauseonhover'] = 'true';
+		attrs['data-transition'] = 'slide';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -178,6 +180,8 @@ respond.component.slideshow = {
 		attrs['data-arrows'] = $(node).attr('arrows');
 		attrs['data-interval'] = $(node).attr('interval');
 		attrs['data-wrap'] = $(node).attr('wrap');
+		attrs['data-pauseonhover'] = $(node).attr('pauseonhover');
+		attrs['data-transition'] = $(node).attr('transition');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -228,6 +232,8 @@ respond.component.slideshow = {
 		attrs['arrows'] = $(node).attr('data-arrows');
 		attrs['interval'] = $(node).attr('data-interval');
 		attrs['wrap'] = $(node).attr('data-wrap');
+		attrs['pauseonhover'] = $(node).attr('data-pauseonhover');
+		attrs['transition'] = $(node).attr('data-transition');
 		
 		// return element
 		return utilities.element('respond-slideshow', attrs, html);

@@ -508,7 +508,9 @@ angular.module('respond.site.directives', [])
 			interval: '@',
 			wrap: '@',
 			indicators: '@',
-			arrows: '@'
+			arrows: '@',
+			transition: '@',
+			pauseonhover: '@'
 		},
 		templateUrl: 'templates/respond/slideshow.html',
 		transclude: true,
@@ -522,6 +524,13 @@ angular.module('respond.site.directives', [])
 			
 			// contains a simple count of images
 			scope.images = [];
+			
+			// set pause
+			var pauseOn = '';
+			
+			if(scope.pauseonhover == 'true'){
+				pauseOn = 'hover';
+			}
 			
 			// build indicators
 			for(x=0; x<containers.length; x++){
@@ -547,6 +556,7 @@ angular.module('respond.site.directives', [])
 			// create carousel
 			$($el).carousel({
 				interval: scope.interval,
+				pause: pauseOn,
 				wrap: scope.wrap
 			});
 	

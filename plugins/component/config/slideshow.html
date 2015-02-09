@@ -22,6 +22,24 @@
 	<h2>{{'Slideshow' | i18next}}</h2>
 	
 	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="indicators">{{'Transition' | i18next}}</label>
+			<select name="transition" class="form-control" 
+				ng-model="node.transition">
+				<option value="slide">{{'Slide' | i18next}}</option>
+				<option value="fade">{{'Fade' | i18next}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="indicators">{{'Pause on Hover' | i18next}}</label>
+			<select name="pauseonhover" class="form-control" 
+				ng-model="node.pauseonhover">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
 	
 		<div class="form-group">
 			<label for="indicators">{{'Indicators' | i18next}}</label>
