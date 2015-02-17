@@ -1,0 +1,300 @@
+<polymer-element name="respond-list-default" attributes="id type pagesize orderby pageresults">
+  <template>
+  	<style>
+		.respond-list{
+			list-style: none;
+		  	border: 1px solid #ddd;
+		  	margin: 0 0 25px 0;
+		  	padding: 0;
+		}
+		
+		.respond-list li{
+		  	position: relative;
+		  	border-bottom: 1px solid #ddd;
+		  	padding: 10px;
+		}
+		
+		.respond-list li:last-child{
+		  	border-bottom: none;
+		}
+		
+		.respond-list h4, .respond-list h5, .respond-list p{
+			margin: 0 0 5px 0;
+		  	padding: 0;
+		}
+				
+		.respond-list p{
+			margin-bottom: 0;
+		}
+		
+		.respond-list a, .respond-list a:visited, .respond-list a:hover{
+			text-decoration: none;
+		}
+		
+		.respond-list img{
+		  	position: absolute;
+		  	top: 10px;
+		  	left: 5px;
+		  	width: 100px;
+		}
+		
+		.respond-list .has-image{
+			padding-left: 110px;
+		  	min-height: 100px;
+		}
+		
+		.map-container{
+			width: 100%;
+		  	height: 200px;
+		  	border: 1px solid #ddd;
+		  	margin-bottom: 5px;
+		}
+		
+		.list-actions{
+			margin: 0 0 25px 0;
+		  	padding: 0;
+		  	vertical-align: top;
+		}
+		
+		.list-actions .pager{
+		  	margin: 0 15px 0 0;
+		  	padding: 0;
+			display: inline-block;
+		}
+		
+		.list-actions button{
+		  	font-size: 14px;
+		  	display: inline-block;
+		    box-sizing: border-box;
+		  	background-color: #fff;
+		  	border: 1px solid #ddd;
+		  	padding: 0 15px;
+		  	font-size: 16px;
+		    height: 45px;
+		    line-height: 45px;
+		    vertical-align: top;
+		    outline: none;
+		}
+		
+		.list-actions a{
+		  	font-size: 14px;
+		  	display: inline-block;
+		    box-sizing: border-box;
+		    text-decoration: none;
+			background-color: #fff;
+		  	border: 1px solid #ddd;
+		  	padding: 0 15px;
+		  	font-size: 16px;
+		    cursor: pointer;
+		    height: 45px;
+		    line-height: 45px;
+		    vertical-align: top;
+		}
+		
+		.list-actions a.active{
+			background-color: #f0f0f0;
+		}
+		
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 7px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
+  	</style>
+	<ul class="respond-list">
+		<template repeat="{{page in pages}}">
+			<li class="{{page.CssClass}}">
+				<template if="{{page.HasImage == true}}">
+					<img src="{{images}}{{page.Thumb}}">
+				</template>
+				<h4><a href="{{page.Url}}">{{page.Name}}</a></h4>
+				<template if="{{page.Callout != ''}}">
+					<h5 class="respond-list-callout">{{page.Callout}}</h5>
+				</template>
+				<p>{{page.Description}}</p>
+			</li>
+		</template>
+		
+	</ul>
+	
+	<template if="{{showPrevious == true || showNext == true}}">
+		<div class="list-actions">
+		
+		<span class="pager">	
+		<template repeat="{{page in pager}}">
+			<a class="{{ {active: current == (page.title - 1) } | tokenList}}"
+				on-click="{{gotoPage}}">{{page.title}}</a>
+		</template>	
+		</span>	
+			
+		<template if="{{showPrevious == true}}">
+			<button on-click="{{previous}}">Previous</button>	
+		</template>
+		
+		<template if="{{showNext == true}}">
+			<button on-click="{{next}}">Next</button>	
+		</template>
+		
+		<template if="{{loading == true}}">
+			<paper-spinner active></paper-spinner>
+		</template>
+		
+		</div>
+	</template>
+	
+  </template>
+  
+  <script>
+
+  Polymer('respond-list-default', {
+	  
+	count: 0,
+	numberOfPages: 1,
+	showNext: false,
+	showPrevious: false,
+	loading: false,
+	pager: [],
+
+	// ready
+	ready: function() {
+		
+		// get page information
+		this.pageId = document.body.getAttribute('page');
+		this.siteId = respond.site.settings.SiteId;
+		this.api = respond.site.settings.API;
+		this.images = respond.site.settings.ImagesUrl;
+		this.pageResults = (this.pageresults === 'true');
+		this.current = 0;
+		
+		// set pages
+		this.pages = [];
+		
+		// set params
+		this.params = {
+			siteId: this.siteId,
+			type: this.type,
+			pagesize: this.pagesize,
+			current: this.current,
+			orderby: this.orderby
+		}
+		
+		// get the pages
+		this.getPages(this.current);
+		
+		// set context
+		var context = this;
+		
+		// set params
+		var params2 = {
+			siteId: this.siteId,
+			type: this.type
+		}
+		
+		// post to API to get the count of pages
+		$.post(this.api + '/page/published/count', $.param(params2), function(data){
+			
+			context.count = data.count;
+			context.numberOfPages = Math.ceil(data.count / context.pagesize);
+			
+			// show/hide buttons
+			context.showPreviousNext();
+			
+			// build pager
+			for(x = 0; x < (context.count-1); x++){
+				context.pager.push({'title': (x+1)});
+			}
+			
+		});
+	
+	},
+	
+	// gets a list of pages
+	getPages:function(current){
+		
+		this.current = current;
+		this.params.current = current;
+		
+		// set loading
+		this.loading = true;
+		
+		var context = this;
+		
+		// show/hide buttons
+		context.showPreviousNext();
+		
+		// post to API
+		$.post(this.api + '/page/published/list', $.param(this.params), function(data){
+			
+			// set class for data
+			for(x=0; x<data.length; x++){
+				
+				// set CssClass
+				if(data[x].HasImage == true){
+					data[x].CssClass = 'has-image';
+				}
+				else{
+					data[x].CssClass = '';
+				}
+				
+			}
+			
+			// update pages
+			context.pages = data;
+			
+			// set loading
+			context.loading = false;
+			
+		});
+		
+	},
+	
+	// previous event handler
+	previous:function(){
+		this.getPages(this.current-1);
+	},
+	
+	// previous event handler
+	next:function(){
+		this.getPages(this.current+1);
+	},
+	
+	// previous event handler
+	gotoPage:function(e, detail, sender){
+		
+		var index = e.target.templateInstance.model.page.title;
+		
+		this.getPages(index-1);
+	},
+	
+	// show previous and next buttons
+	showPreviousNext:function(){
+		
+		// set next and previous
+		if(this.pageResults == true){
+			
+			// set showNext
+			if(this.current < (this.numberOfPages - 1)){
+				this.showNext = true;
+			}
+			else{
+				this.showNext = false;
+			}
+			
+			// set showPrevious
+			if(this.current != 0){
+				this.showPrevious = true;
+			}
+			else{
+				this.showPrevious = false;
+			}
+			
+		}
+	}
+    
+  });
+  </script>
+</polymer-element>

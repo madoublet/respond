@@ -1,0 +1,92 @@
+<polymer-element name="respond-slideshow" attributes="id indicators arrows interval wrap pauseonhover transition">
+  <template>
+  	<content></content>
+  </template>
+  
+  <script>
+
+  Polymer('respond-slideshow', {
+
+	// ready
+	ready: function() {
+		
+		var id = this.id;
+		var images = $(this).find('img');
+		var imagesHtml = '';
+		var indicatorsHtml = '<ol class="carousel-indicators">';
+		
+		// walk through images
+		for(x=0; x<images.length; x++){
+			
+			var active = '';
+			
+			// set active
+			if(x==0){
+				active = ' active';
+			}
+			
+			imagesHtml += '<div class="item' + active + '"><img src="' + images[x].src + '"></div>';
+			indicatorsHtml += '<li data-target="#carousel-' + this.id + '" data-slide-to="' + x + '" class="' + active + '"></li>';
+			
+			if(Boolean(this.indicators) == false){
+				indicatorsHtml = '';
+			}
+			
+		}
+		
+		indicatorsHtml += '</ol>';
+		
+		// hide indicators
+		if(this.indicators === 'false'){
+			indicatorsHtml = '';
+		}
+		
+		// set arrows
+		var arrowsHtml = '<a class="left carousel-control" href="#carousel-' + this.id + '" role="button" data-slide="prev">' +
+							'<span class="glyphicon glyphicon-chevron-left"></span>' +
+							'<span class="sr-only">Previous</span>' +
+						'</a>' +
+						'<a class="right carousel-control" href="#carousel-' + this.id + '" role="button" data-slide="next">' +
+							'<span class="glyphicon glyphicon-chevron-right"></span>' +
+							'<span class="sr-only">Next</span>' +
+						'</a>';
+		
+		// hide arrows
+		if(this.arrows === 'false'){
+			arrowsHtml = '';
+		}
+		
+		// build a carousel
+		html = '<div id="carousel-' + this.id + '" class="carousel ' + this.transition + '" data-ride="carousel">' +
+						indicatorsHtml + 
+						'<div class="carousel-inner" role="listbox">' + imagesHtml + '</div>' +
+						arrowsHtml +
+					'</div>';
+		
+		// update light DOM		
+		this.innerHTML = html;
+		
+		// set default
+		var pause = '';
+		var wrap = false;
+		
+		if(this.pauseonhover === 'true'){
+			pause = 'pause';
+		}
+		
+		if(this.wrap === 'true'){
+			wrap = true;
+		}
+		
+		// initialize the carousel
+		$('#carousel-' + id).carousel({
+			interval: this.interval,
+			pause: pause,
+			wrap: wrap
+		});
+		
+	}
+    
+  });
+  </script>
+</polymer-element>

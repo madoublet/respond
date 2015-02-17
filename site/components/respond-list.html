@@ -1,0 +1,27 @@
+<polymer-element name="respond-list" attributes="id type display pagesize orderby pageresults">
+  <template>
+  	<content></content>
+  </template>
+  
+  <script>
+
+  Polymer('respond-list', {
+
+	// ready
+	ready: function() {
+		
+		// build list
+		var list = '<respond-' + this.display + 
+							' type="' + this.type + '"' +
+							' pagesize="' + this.pagesize + '"' +
+							' orderby="' + this.orderby + '"' +
+							' pageresults="' + this.pageresults + '"></respond-' + this.display + '>';
+		
+		// set list in Light DOM
+		this.innerHTML = list;
+	
+	}
+    
+  });
+  </script>
+</polymer-element>

@@ -1,0 +1,109 @@
+<polymer-element name="respond-form" attributes="type action success error submit">
+  <template>
+    <style>
+		button{
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+			font-size: 16px;
+		}
+    </style>
+    
+    <div id="container">
+    	<form id="form">
+    		<content id="content"></content>
+    	</form>
+    </div>
+
+	<button type="button" class="btn btn-primary" 
+		on-click="{{submitForm}}">{{action}}</button>
+
+  </template>
+  
+  <script>
+
+  Polymer('respond-form', {
+  
+	action: 'Submit',
+	
+	// ready
+	ready: function() {
+	
+	},
+	
+	// handles the form submit
+	submitForm: function(event, detail, sender){
+		
+		// query light DOM in the container
+		var container = this.children[0];
+		
+		// select all inputs in the light DOM
+		var groups = container.querySelectorAll('.form-group');
+		
+		// initialize params
+		var params = {};
+		
+		// get page information
+		var pageId = document.body.getAttribute('page');
+		var siteId = respond.site.settings.SiteId;
+		var api = respond.site.settings.API;
+		
+		// add page and site
+		params['pageId'] = pageId;
+		params['siteId'] = siteId;
+		
+		// walk through inputs
+		for(x=0; x<groups.length; x++){
+			
+			// get name, id, type
+			var name = groups[x].getAttribute('data-label');
+			var id = groups[x].getAttribute('data-id');
+			var type = groups[x].getAttribute('data-type');
+			
+			// get value by type
+			var value = '';
+			
+			if(type == 'text'){
+				value = groups[x].querySelector('input').value;
+			}
+			else if(type == 'textarea'){
+				value = groups[x].querySelector('textarea').value;
+			}
+			else if(type == 'radiolist'){
+				var radio = groups[x].querySelector('input[type=radio]:checked');
+				
+				if(radio != null){
+					value = radio.value;
+				}
+			}
+			else if(type == 'select'){
+				value = groups[x].querySelector('select').value;
+			}
+			else if(type == 'checkboxlist'){
+				var checkboxes = groups[x].querySelectorAll('input[type=checkbox]:checked');
+				
+				// create comma separated list
+				for(y=0; y<checkboxes.length; y++){
+					value += checkboxes[y].value + ', ';
+				}
+				
+				// remove trailing comma and space
+				if(value != ''){
+					value = value.slice(0, -2);
+				}
+			}
+			
+			params[id] = value;
+			
+		}
+		
+		// submit form
+		$.post(api + '/form', $.param(params), function(){
+			alert('success');
+		});
+		
+	}
+    
+  });
+  </script>
+</polymer-element>

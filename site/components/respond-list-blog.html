@@ -1,0 +1,48 @@
+<polymer-element name="respond-list-blog" attributes="id type pagesize orderby pageresults">
+  <template>
+  	<content></content>
+  </template>
+  
+  <script>
+
+  Polymer('respond-list-blog', {
+
+	// ready
+	ready: function() {
+		
+		// get page information
+		var pageId = document.body.getAttribute('page');
+		var siteId = respond.site.settings.SiteId;
+		var api = respond.site.settings.API;
+		this.images = respond.site.settings.ImagesUrl;
+		
+		// set pages
+		this.pages = [];
+		
+		// set params
+		var params = {
+			siteId: siteId,
+			type: this.type,
+			pagesize: this.pagesize,
+			current: this.current,
+			orderby: this.orderby
+		}
+		
+		// set context
+		var context = this;
+		
+		// post to API
+		$.post(api + '/page/published/list', $.param(params), function(data){
+			
+			// for each page, add content components to the Light DOM 
+			for(x=0; x<data.length; x++){
+				context.innerHTML += '<respond-content url="' + data[x].Url + '"></respond-content>';
+			}
+			
+		});
+	
+	}
+    
+  });
+  </script>
+</polymer-element>

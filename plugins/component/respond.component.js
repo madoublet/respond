@@ -136,15 +136,9 @@ respond.component.slideshow = {
 		
 			// get caption
 			var title = $(imgs[y]).attr('title');
-			var src = $(imgs[y]).attr('ng-src');
-			var location = 'local';
-			
-			// get external image
-			if(src == undefined || src == null){
-				var src = $(imgs[y]).attr('src');
-				var location = 'external';
-			}
-		
+			var src = $(imgs[y]).attr('src');
+			var location = $(imgs[y]).attr('data-location');
+	
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
 			
@@ -153,7 +147,6 @@ respond.component.slideshow = {
 			
 			// replace the images URL with the URL from the site
 			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
-			src = utilities.replaceAll(src, '{{site.ImagesURL}}', url);
 			
 			var image = '<img src="' + src + '" title="' + title + '" data-location="' + location + '">';
 			
@@ -215,10 +208,10 @@ respond.component.slideshow = {
 			  		src = 'files/' + parts[1];
 		  		}
 	  			
-	  			var image = '<img ng-src="{{site.ImagesURL}}' + src + '" title="' + title + '">';
+	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" data-location="local">';
   			}
   			else{
-	  			var image = '<img src="' + src + '" title="' + title + '">';
+	  			var image = '<img src="' + src + '" title="' + title + '" data-location="external">';
   			}
   			
 			html += '<div>' + image + '</div>';

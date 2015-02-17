@@ -1,0 +1,115 @@
+<polymer-element name="respond-map" attributes="id address zoom">
+  <template>
+    <style>
+		.respond-map{
+			margin: 0 0 25px 0;
+		  	padding: 0;
+		}
+		
+		.respond-map .map-container{
+			width: 100%;
+		  	height: 200px;
+		  	border: 1px solid #ddd;
+		  	margin-bottom: 5px;
+		}
+		
+		.respond-map p{
+			margin: 0 0 5px 0;
+		  	padding: 0;
+		}
+		
+		.respond-map a, .respond-map a:visited, .respond-map a:hover{
+			text-decoration: none;
+		}
+    </style>
+
+	<div class="respond-map">
+		<div id="mapContainer" class="map-container"></div>
+			<p class="map-address"><span>{{address}}</span> 
+			<a id="directions" href="http://maps.google.com/?q={{address}}">Get Directions</a></p>
+		</div>
+	</div>
+
+  </template>
+  
+  <script>
+  Polymer('respond-map', {
+	  
+	  // defaults
+	  address: '',
+	  
+	  // ready
+	  ready: function() {
+        
+        var defaultZoom = 8;	
+	
+		if(this.zoom != 'auto' && this.zoom != undefined){
+			defaultZoom = parseInt(this.zoom);
+		}
+		
+		// create the map
+		var mapOptions = {
+	      center: new google.maps.LatLng(38.6272, 90.1978),
+	      zoom: defaultZoom,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	
+		// create the map              
+		var container = this.$.mapContainer;
+		
+		// create map and bounds
+	    var map = new google.maps.Map(container, mapOptions);
+	    
+		// look for a default address
+		if(this.address != null && this.address != undefined){
+		
+		    // geo-code the address
+		    var geocoder = new google.maps.Geocoder();
+		    
+		    var context = this;
+		    
+		    geocoder.geocode({'address': this.address}, function(results, status){
+			    
+			    console.log(results);
+			    console.log(status);
+		    
+		        if (status == google.maps.GeocoderStatus.OK){
+			        
+		            var latitude = results[0].geometry.location.lat();
+		            var longitude = results[0].geometry.location.lng();
+		            var content = results[0].formatted_address;
+		            
+		            var coords = new google.maps.LatLng(latitude, longitude);
+		            
+		            var infowindow = new google.maps.InfoWindow({
+				        content: content
+				    });
+		            
+		             // create marker				    
+		            var marktext = $("<div/>").html(content).text();
+				    
+				    var marker = new google.maps.Marker({
+				        position: coords,
+				        map: map,
+				        title: marktext
+				    });
+				    
+				    google.maps.event.addListener(marker, 'click', function() {
+				    	infowindow.open(map, marker);
+						});
+						
+					
+					map.setCenter(coords);
+
+		        }
+		    
+		    });
+		    
+	    }
+        
+        
+      }
+	
+  });
+  </script>
+</polymer-element>

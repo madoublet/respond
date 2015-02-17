@@ -1,16 +1,3 @@
-/* menu border */
-@menu-background-color: #FFF;
-@menu-link-color: #111;
-
-/* link color */
-@link-color: #3299bb;
-
-/* h1,h2,h3 colors */
-@headline: #555;
-
-@settings-background-color: #aaa;
-@settings-toggle-color: #888;
-
 /* h1,h2,h3 colors */
 body{
 	background: config(--body-background-color) config(--body-background-image) config(--body-background-repeat) config(--body-background-position);
@@ -27,37 +14,39 @@ body h1, body h2, body h3, body h4, body h5, body p, body blockquote{
 	margin-bottom: 25px;
 }
 
-body h1{
+body h1, body /deep/ h1{
 	font-size: config(--h1-font-size);
 	color: config(--h1-color);
 }
 
-body h2{
+body h2, body /deep/ h2{
 	font-size: config(--h2-font-size);
 	color: config(--h2-color);
 }
 
-body h3{
+body h3, body /deep/ h3{
 	font-size: config(--h3-font-size);
 	color: config(--h3-color);
 }
 
-body h4{
+body h4, body /deep/ h4{
 	font-size: config(--h4-font-size);
 	color: config(--h4-color);
 }
 
-body h5{
+body h5, body /deep/ h5{
 	font-size: config(--h5-font-size);
 	color: config(--h5-color);
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input,
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
 
-body p, body blockquote, body label, body td, body th, body li{
+body p, body blockquote, body label, body td, body th, body li,
+body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
 	font-size: config(--default-font-size);
 	color: config(--default-color);
 	line-height: 25px;
@@ -66,7 +55,8 @@ body p, body blockquote, body label, body td, body th, body li{
   	font-weight: 300;
 }
 
-body a{
+body a, body a:visited,
+body /deep/ a, body /deep/ a:visited{
 	color: config(--default-link-color);	
 }
 
@@ -405,6 +395,61 @@ div.map-container{
 .tab-pane.active{
 	display: block;
 }
+
+/* cart-toggle */
+.cart-toggle{
+	float: right;
+  	width: 65px;
+  	height: 65px;
+  	line-height: 65px;
+  	text-align: center;
+  	color: config(--nav-icon-color);
+	cursor: pointer;
+  	border-left: 1px solid config(--nav-border-color);
+  	display: none;
+}
+
+	.show-cart .cart-toggle{
+		display: block;
+	}
+
+	.cart-toggle:hover{
+	  	color: config(--nav-icon-hover-color);
+	}
+	
+	.cart-toggle i{
+		font-size: 15px;
+	}
+
+body .navbar a.cart-toggle.active{
+	color: config(--nav-icon-active-color) !important;
+}
+
+/* search-toggle */
+.search-toggle{
+	float: right;
+  	width: 65px;
+  	height: 65px;
+  	line-height: 65px;
+  	text-align: center;
+  	color: config(--nav-icon-color);
+	cursor: pointer;
+  	border-left: 1px solid config(--nav-border-color);
+  	display: none;
+}
+
+	.show-search .search-toggle{
+		display: block;
+	}
+
+	.search-toggle:hover{
+	  	color: config(--nav-icon-hover-color);
+	}
+	
+	.search-toggle i{
+		font-size: 15px;
+	}
+
 	
 /* settings: language + welcome */
 .settings-toggle{

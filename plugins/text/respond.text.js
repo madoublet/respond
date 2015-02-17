@@ -273,7 +273,7 @@ respond.text.link = {
 				
 				// external links should have http
 				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					html += '<a ui-sref="'+url+'" href="/'+url+'"';
+					html += '<a href="/'+url+'"';
 				}
 				else{
 					html += '<a href="'+url+'"';
@@ -323,7 +323,6 @@ respond.text.link = {
 				
 				// external links should have http
 				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					link.attr('ui-sref', url);
 					link.attr('href', '/'+url);
 				}
 				else{
@@ -360,11 +359,7 @@ respond.text.link = {
 		
 		// set link detail if available
 		if(link != null){
-			url = $(link).attr('ui-sref');
-			
-			if(url == undefined){
-				url = $(link).attr('href');
-			}
+			url = $(link).attr('href');
 			
 			cssClass = link.className;
 			target = link.target;

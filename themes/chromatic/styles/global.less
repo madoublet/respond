@@ -14,37 +14,39 @@ body h1, body h2, body h3, body h4, body h5, body p, body blockquote{
 	margin-bottom: 25px;
 }
 
-body h1{
+body h1, body /deep/ h1{
 	font-size: config(--h1-font-size);
 	color: config(--h1-color);
 }
 
-body h2{
+body h2, body /deep/ h2{
 	font-size: config(--h2-font-size);
 	color: config(--h2-color);
 }
 
-body h3{
+body h3, body /deep/ h3{
 	font-size: config(--h3-font-size);
 	color: config(--h3-color);
 }
 
-body h4{
+body h4, body /deep/ h4{
 	font-size: config(--h4-font-size);
 	color: config(--h4-color);
 }
 
-body h5{
+body h5, body /deep/ h5{
 	font-size: config(--h5-font-size);
 	color: config(--h5-color);
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input,
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input{
   	font-family: 'Roboto', sans-serif;
   	font-weight: 300;
 }
 
-body p, body blockquote, body label, body td, body th, body li{
+body p, body blockquote, body label, body td, body th, body li,
+body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
 	font-size: config(--default-font-size);
 	color: config(--default-color);
 	line-height: 25px;
@@ -350,6 +352,48 @@ div.map-container{
 .tab-pane.active{
 	display: block;
 }
+
+/* cart toggle */
+.cart-toggle{
+	float: right;
+  	width: 50px;
+  	height: 65px;
+  	line-height: 65px;
+  	text-align: center;
+  	cursor: pointer;
+  	border-left: 1px solid config(--nav-border-color);
+  	color: config(--nav-icon-color);
+  	display: none;
+}
+
+	.show-cart .cart-toggle{
+		display: none;
+	}
+
+.cart-toggle:hover{
+	color: config(--nav-icon-hover-color);
+}
+
+/* search toggle */
+.search-toggle{
+	float: right;
+  	width: 50px;
+  	height: 65px;
+  	line-height: 65px;
+  	text-align: center;
+  	cursor: pointer;
+  	border-left: 1px solid config(--nav-border-color);
+  	color: config(--nav-icon-color);
+  	display: none;
+}
+
+	.show-search .search-toggle{
+		display: block;
+	}
+
+.search-toggle:hover{
+	color: config(--nav-icon-hover-color);
+}
 	
 /* respond-settings: language + welcome */
 .settings-toggle{
@@ -360,7 +404,12 @@ div.map-container{
   	text-align: center;
   	border-left: 1px solid config(--nav-border-color);
   	color: config(--nav-icon-color);
+  	display: none;
 }
+	
+	.show-settings .settings-toggle{
+		display: block;
+	}
 
 .settings-toggle:hover{
 	color: config(--nav-icon-hover-color);
