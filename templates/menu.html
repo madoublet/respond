@@ -44,7 +44,7 @@
         <li class="menu-styles"><a ui-sref="app.scripts" class="hide-menu"><i class="fa fa-bolt"></i> {{'Scripts' | i18next}}</a></li>
         <li class="menu-settings"><a ui-sref="app.translations" class="hide-menu"><i class="fa fa-language"></i> {{'Translations' | i18next}}</a>
         <li class="menu-admin" ng-if="user.SiteAdmin == 1"><a ui-sref="app.admin" class="hide-menu"><i class="fa fa-sitemap"></i> {{'Admin' | i18next}}</a></li>
-        <li class="menu-admin"><a ng-click="republish()" class="hide-menu"><i class="fa fa-refresh"></i> {{'Republish' | i18next}}</a></li>
+        <li class="menu-admin"><a ng-click="republish()"><i class="fa fa-refresh"></i> {{'Republish' | i18next}}</a></li>
         <li class="menu-deploy"
         	ng-if="site.CanDeploy == 1"><a ng-click="deploy()"><i class="fa fa-cloud"></i> {{'Deploy to Cloud' | i18next}}</a></li>
     </ul>

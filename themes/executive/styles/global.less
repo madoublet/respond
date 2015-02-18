@@ -435,7 +435,6 @@ body .navbar a.cart-toggle.active{
   	color: config(--nav-icon-color);
 	cursor: pointer;
   	border-left: 1px solid config(--nav-border-color);
-  	display: none;
 }
 
 	.show-search .search-toggle{
@@ -461,7 +460,12 @@ body .navbar a.cart-toggle.active{
   	color: config(--nav-icon-color);
 	cursor: pointer;
   	border-left: 1px solid config(--nav-border-color);
+  	display: none;
 }
+
+	.show-settings .settings-toggle{
+		display: block;
+	}
 
 	.settings-toggle:hover{
 	  	color: config(--nav-icon-hover-color);

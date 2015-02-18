@@ -5,22 +5,54 @@ respond.site = {
 	// site settings
 	settings: {},
 	
+	// states
+	settingsVisible: false,
+	cartVisible: false,
+	searchVisible: false,
+	
 	// init respond.site
 	init:function(){
 		
 		// settings toggle
 		$('.settings-toggle').on('click', function(){
-			$('body').toggleClass('show-settings');
+			
+			respond.site.settingsVisible = !respond.site.settingsVisible;
+			
+			if(respond.site.settingsVisible == true){
+				$('respond-settings').attr('display', 'visible');
+			}
+			else{
+				$('respond-settings').attr('display', 'hidden');	
+			}
+			
 		});
 		
 		// cart toggle
 		$('.cart-toggle').on('click', function(){
-			$('body').toggleClass('show-cart');
+			
+			respond.site.cartVisible = !respond.site.cartVisible;
+			
+			if(respond.site.cartVisible == true){
+				$('respond-cart').attr('display', 'visible');
+			}
+			else{
+				$('respond-cart').attr('display', 'hidden');	
+			}
+			
 		});
 		
 		// search toggle
 		$('.search-toggle').on('click', function(){
-			$('body').toggleClass('show-search');
+			
+			respond.site.searchVisible = !respond.site.searchVisible;
+			
+			if(respond.site.searchVisible == true){
+				$('respond-search').attr('display', 'visible');
+			}
+			else{
+				$('respond-search').attr('display', 'hidden');	
+			}
+			
 		});
 		
 	},

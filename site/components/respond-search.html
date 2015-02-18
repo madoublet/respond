@@ -26,6 +26,7 @@
 		  	text-align: right;
 		  	margin-top: -350px;
 		  	z-index: 5;
+		  	background-color: #f0f0f0;
 		}
 		
 			.respond-search.active{
@@ -55,6 +56,7 @@
 		  	height: 40px;
 		  	line-height: 40px;
 		  	outline: none;
+		  	text-indent: 10px;
 		}
 		
 		.respond-search .search-container button{
@@ -94,7 +96,12 @@
 		.respond-search-results{
 		  	max-height: 275px;
 		  	overflow: auto;
+		  	display: none;
 		}
+		
+			.respond-search-results.active{
+				display: block;
+			}
 		
 		.respond-search ul{
 			margin: 0;
@@ -146,6 +153,14 @@
 			border-bottom: none;
 		}
 		
+		.respond-search li.no-results{
+			display: none;
+		}
+		
+		.respond-search li.no-results.active{
+			display: block;
+		}
+		
 		/* Small devices (tablets, 768px and up) */
 		@media (max-width: 768px) {
 		
@@ -179,16 +194,20 @@
 	
 		<a class="close-search" title="Close Menu"><i class="fa fa-times"></i></a>
 		
-		<form class="respond-search-form" ng-submit="search()">
+		<form class="respond-search-form" on-submit="{{search}}">
 	      <div class="search-container">
-	        <input type="text" class="form-control">
+	        <input id="searchText" type="text" class="form-control">
 	        <button><core-icon icon="search"></core-icon></button>
 	      </div>  
 	    </form>  
 		  
-	  	<div class="respond-search-results">
+	  	<div class="respond-search-results {{ {active: showResults == true} | tokenList}}">
+		  	
+		  	<template if="{{loading == true}}">
+				<paper-spinner active></paper-spinner>
+			</template>
+		  	
 	  		<ul>
-			  	<li class="searching" ng-if="searching"><i class="fa fa-spinner fa-spin"></i> Searching</li>
 			  	
 			<template repeat="{{result in results}}">
 				<li>
@@ -200,7 +219,7 @@
 				</li>
 			</template> 
 			 	
-			  	<li class="no-results">No results found</li>
+			  	<li class="no-results {{ {active: noResults == true} | tokenList}}">No results found</li>
 		  	</ul>
 	  	</div>
 	</div>
@@ -214,11 +233,91 @@
 	  results: [],
 	  
 	  display: 'hidden',
+	  loading: false,
+	  showResults: false,
+	  noResults: false,
 	  
 	  // ready
 	  ready: function() {
         
         
+      },
+      
+      search: function(e, d, s){
+	    
+	    // get search and language  
+	    this.text = this.$.searchText.value;
+	    this.siteId = respond.site.settings.SiteId;
+	    this.language = respond.site.settings.Language;
+	    this.api = respond.site.settings.API;
+	    this.loading = true;
+	    this.showResults = true;
+	    
+	    // set params
+		var params = {
+			siteId: this.siteId,
+			locale: this.language
+		}
+		
+		var context = this;
+		
+		// post to API to get translation file (we will use this to search
+		$.post(this.api + '/translation/retrieve', $.param(params), function(data){
+			
+			context.results = [];
+			
+			// set class for data
+			for(x in data){
+			
+				// pages are stored in objects
+				if(typeof(data[x]) == 'object'){
+				
+					// this is what will be returned
+					var result = {
+						PageId: x,
+						Name: data[x]['name'],
+						Url: data[x]['url'],
+						Description: data[x]['description']
+					}
+					
+					// walk through data[x]
+					for(y in data[x]){
+					
+						var text = data[x][y].toLowerCase();
+					
+						// searh for the term
+						if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
+							
+							// push found pages
+							context.results.push(result);
+							
+							break;
+								
+						}
+		
+					}
+					
+				}
+				
+			}
+			
+			// set noResults
+			if(context.results.length == 0){
+				context.noResults = true;
+			}
+			else{
+				context.noResults = false;
+			}
+			
+			
+			// set loading
+			context.loading = false;
+			
+		});
+	    
+	    e.preventDefault();
+	    return false;
+	    
       }
 	
   });
