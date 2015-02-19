@@ -58,6 +58,13 @@ body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /
 body a, body a:visited,
 body /deep/ a, body /deep/ a:visited{
 	color: config(--default-link-color);	
+	text-decoration: none;
+}
+
+body a:hover,
+body /deep/ a:hover{
+	color: config(--default-link-color);	
+	text-decoration: underline;
 }
 
 body input.form-control[type=text], 

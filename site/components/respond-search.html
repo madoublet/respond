@@ -1,38 +1,66 @@
 <polymer-element name="respond-search" attributes="display">
   <template>
     <style>
-		.search-toggle{
-			float: right;
-		  	width: 65px;
-		  	height: 65px;
-		  	line-height: 65px;
-		  	text-align: center;
-			cursor: pointer;
-		}
-		
-			.search-toggle i{
-				font-size: 15px;
-			}
 		
 		.respond-search{
 		  	position: fixed;
-		  	top: 65px;
+		  	top: 0;
 		  	left: 0;
 		  	width: 100%;
-		  	height: 300px;
 		  	padding: 0;
 		    text-transform: uppercase;
 		  	z-index: 100;
-		  	text-align: right;
+		  	text-align: left;
 		  	margin-top: -350px;
 		  	z-index: 5;
-		  	background-color: #f0f0f0;
+		  	background-color: #fff;
+		  	z-index: 10000;
+			transition: .35s all ease;
+			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
 		}
 		
 			.respond-search.active{
 				margin-top: 0;
-				transition: .35s all ease;
 			}
+			
+		/* close search */
+		.respond-search .close-search{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			color: #ccc;
+			position: absolute;
+			top: 15px;
+			right: 10px;
+		  	background: none;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		}
+		
+		/* close search */
+		.respond-search .search-loading{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			position: absolute;
+			top: 15px;
+			right: 100px;
+		  	background: none;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		}
+		
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 7px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
 		
 		/* respond-search */
 		.respond-search .search-container{
@@ -45,13 +73,14 @@
 		.respond-search form{
 			padding: 5px;
 		  	background-color: config(--search-background-color);
+		    border-bottom: 1px solid #ddd;
 		}
 		
 		.respond-search input{
 			font-family: 'Open Sans', sans-serif;
 		  	font-size: 15px;
 			background-color: #fff;
-		  	width: 100%;
+		  	width: calc(100% - 50px);
 		  	border: 1px solid #ddd;
 		  	height: 40px;
 		  	line-height: 40px;
@@ -59,10 +88,10 @@
 		  	text-indent: 10px;
 		}
 		
-		.respond-search .search-container button{
+		.respond-search .search-container button.search{
 			position: absolute;
 		  	top: 0;
-		  	right: 0;
+		  	right: 50px;
 		  	margin: 0;
 		  	padding: 0 10px;
 		  	background: none;
@@ -70,6 +99,7 @@
 		  	color: #ccc;
 		  	height: 40px;
 		  	line-height: 40px;
+		  	outline: none;
 		}
 		
 		.respond-search h4{
@@ -115,11 +145,8 @@
 		  	text-align: left;
 		  	margin: 0;
 		  	padding: 5px;
+		  	border-bottom: 1px solid #ddd;
 		}
-		
-		  .respond-search li:first-child{
-		      border-top: none;
-		  }
 		
 		.respond-search li p{
 			overflow: hidden;
@@ -160,59 +187,34 @@
 		.respond-search li.no-results.active{
 			display: block;
 		}
-		
-		/* Small devices (tablets, 768px and up) */
-		@media (max-width: 768px) {
-		
-		.respond-search .input-group{
-			width: 100%;
-		  	margin: 0;
-		  	padding: 0;
-		}
-		    
-		    .respond-search .form-control{
-		        height: 28px;
-		        width: calc(~"100% - 30px");
-		    }
-		
-		}
-		
-		/* Medium devices (desktops, 992px and up) */
-		@media (min-width: 992px) { 
-		
-		
-		}
-		
-		/* Large devices (large desktops, 1200px and up) */
-		@media (min-width: 1200px) { 
-		
-		}
 
     </style>
 
 	<div class="respond-search {{ {active: display == 'visible'} | tokenList}}">
 	
-		<a class="close-search" title="Close Menu"><i class="fa fa-times"></i></a>
+		<button class="close-search" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
+		
+		<template if="{{loading == true}}">
+			<span class="search-loading">
+				<paper-spinner active></paper-spinner>
+			</span>
+		</template>
 		
 		<form class="respond-search-form" on-submit="{{search}}">
 	      <div class="search-container">
-	        <input id="searchText" type="text" class="form-control">
-	        <button><core-icon icon="search"></core-icon></button>
+	        <input id="searchText" type="text" autocomplete="off">
+	        <button class="search"><core-icon icon="search"></core-icon></button>
 	      </div>  
 	    </form>  
 		  
 	  	<div class="respond-search-results {{ {active: showResults == true} | tokenList}}">
 		  	
-		  	<template if="{{loading == true}}">
-				<paper-spinner active></paper-spinner>
-			</template>
-		  	
 	  		<ul>
 			  	
 			<template repeat="{{result in results}}">
 				<li>
-					<h4><a href="/{{result.Url}}" data-i18next="{{result.PageId}}.name">{{result.Name}}</a></h4>
-				  	<small><a href="/{{result.Url}}">{{result.Url}}</a></small>
+					<h4><a href="{{result.Url}}" data-i18next="{{result.PageId}}.name">{{result.Name}}</a></h4>
+				  	<small><a href="{{result.Url}}">{{result.Url}}</a></small>
 				  	<p data-i18next="{{result.PageId}}.description">
 				  		{{result.Description}}
 				  	</p>
@@ -237,12 +239,25 @@
 	  showResults: false,
 	  noResults: false,
 	  
+	  
 	  // ready
-	  ready: function() {
-        
-        
+	  ready: function(){},
+      
+      // closes the search
+      close: function(e, d, s){
+      
+      	  this.display = 'hidden';
+	      this.results = [];
+	      this.showResults = false;
+	      this.$.searchText.value = '';
+	      this.noResults = false;
+	      respond.site.searchVisible = false;
+	      
+	      this.setAttribute('display', 'hidden');
+	      
       },
       
+      // performs a search
       search: function(e, d, s){
 	    
 	    // get search and language  

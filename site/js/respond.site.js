@@ -50,6 +50,7 @@ respond.site = {
 				$('respond-search').attr('display', 'visible');
 			}
 			else{
+				alert('set hidden');
 				$('respond-search').attr('display', 'hidden');	
 			}
 			

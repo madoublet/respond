@@ -84,8 +84,16 @@ body button{
   	border-radius: 0 !important;
 }
 
-body a, body a:hover {
+body a, body a:hover,
+body /deep/ a, body /deep/ a:hover{
   color: config(--default-link-color);
+  text-decoration: none;
+}
+
+body a:hover,
+body /deep/ a:hover{
+	color: config(--default-link-color);	
+	text-decoration: underline;
 }
 
 b {
@@ -384,12 +392,7 @@ div.map-container{
   	cursor: pointer;
   	border-left: 1px solid config(--nav-border-color);
   	color: config(--nav-icon-color);
-  	display: none;
 }
-
-	.show-search .search-toggle{
-		display: block;
-	}
 
 .search-toggle:hover{
 	color: config(--nav-icon-hover-color);

@@ -1154,7 +1154,7 @@ class Publish
 		
 		}
 
-		// replace common Angular calls for SEO, e.g. {{page.Name}} {{page.Description}} {{site.Name}}
+		// replace mustaches syntax {{page.Description}} {{site.Name}}
 		$html = str_replace('{{page.Name}}', $page['Name'], $html);
 		$html = str_replace('{{page.Description}}', $page['Description'], $html);
 		$html = str_replace('{{page.Keywords}}', $page['Keywords'], $html);
@@ -1164,6 +1164,9 @@ class Publish
 		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
 		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
 		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
+		
+		// add a timestamp
+		$html = str_replace('{{timestamp}}', time(), $html);
 		
 		// set imaages URL
 		$imagesURL = $site['Domain'].'/';
