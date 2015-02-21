@@ -10,9 +10,12 @@ respond.site = {
 	cartVisible: false,
 	searchVisible: false,
 	
+	// options
+	options: null,
+	
 	// init respond.site
 	init:function(){
-		
+	
 		// settings toggle
 		$('.settings-toggle').on('click', function(){
 			
@@ -58,20 +61,30 @@ respond.site = {
 		
 	},
 	
-	// gets the qs from the URL
-	getQueryStringByName:function(name){
-		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-		var regexS = "[\\?&]" + name + "=([^&#]*)";
-		var regex = new RegExp(regexS);
-		var results = regex.exec(window.location.href);
-		if(results == null){
-			return "";
+	// translates a text string
+	i18n:function(text){
+		
+		// setup i18next (if not setup)
+		if(respond.site.options == null){
+			
+			respond.site.options = {
+		        lng: respond.site.settings.Language,
+		        getAsync : false,
+		        useCookie: false,
+		        useLocalStorage: false,
+		        fallbackLng: 'en',
+		        resGetPath: 'locales/__lng__/__ns__.json',
+		        defaultLoadingValue: ''
+		    };
+		
+			i18n.init(respond.site.options);
+			
 		}
-		else{
-			return decodeURIComponent(results[1].replace(/\+/g, " "));
-		}
+		
+		return i18n.t(text);	
 	}
 	
 };
 
+// fire init
 $(document).ready(function(){respond.site.init();});

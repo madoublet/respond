@@ -77,13 +77,13 @@
 		}
 		
 		.list-actions a{
-		  	font-size: 14px;
 		  	display: inline-block;
 		    box-sizing: border-box;
 		    text-decoration: none;
 			background-color: #fff;
 		  	border: 1px solid #ddd;
 		  	padding: 0 15px;
+		  	margin: 0 1px;
 		  	font-size: 16px;
 		    cursor: pointer;
 		    height: 45px;
@@ -137,19 +137,15 @@
 		</span>	
 			
 		<template if="{{showPrevious == true}}">
-			<button on-click="{{previous}}">Previous</button>	
+			<button on-click="{{previous}}">{{label.previous | i18n}}</button>	
 		</template>
 		
 		<template if="{{showNext == true}}">
-			<button on-click="{{next}}">Next</button>	
+			<button on-click="{{next}}">{{label.next | i18n}}</button>	
 		</template>
 		
 		<template if="{{loading == true}}">
-			<div class="spinner">
-				<div class="bounce1"></div>
-				<div class="bounce2"></div>
-				<div class="bounce3"></div>
-			</div>
+			<paper-spinner active></paper-spinner>
 		</template>
 		
 		</div>
@@ -160,6 +156,11 @@
   <script>
 
   Polymer('respond-list-map', {
+	  
+	label:{
+	  		next: 'Next',
+			previous: 'Previous'
+	  },
 	  
 	count: 0,
 	numberOfPages: 1,
@@ -379,7 +380,12 @@
 			}
 			
 		}
+	},
+      
+	i18n: function(text){
+	  return respond.site.i18n(text);
 	}
+
     
   });
   </script>

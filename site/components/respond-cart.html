@@ -1,0 +1,614 @@
+<polymer-element name="respond-cart" attributes="display">
+  <template>
+    <style>
+    
+		.respond-cart{
+		  	position: fixed;
+		  	top: 0;
+		  	left: 0;
+		  	width: 100%;
+		  	padding: 0;
+		  	z-index: 100;
+		  	text-align: left;
+		  	margin-top: -350px;
+		  	z-index: 5;
+		  	background-color: #fff;
+		  	z-index: 10000;
+			transition: .35s all ease;
+			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
+			min-height: 350px;
+		}
+		
+			.respond-cart.active{
+				margin-top: 0;
+			}
+			
+		/* close search */
+		.respond-cart .close-cart{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			color: #ccc;
+			position: absolute;
+			top: 5px;
+			right: 10px;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		  	background-color: #fff;
+		}
+		
+		.respond-cart .cart-container{
+			height: 300px;
+			overflow: auto;
+		}
+		
+		/* table */
+		.respond-cart table{
+			border: none;
+			padding: 0;
+			margin: 50px 0 0 0;
+			width: 100%;
+			border-collapse: collapse;
+		}
+		
+		.respond-cart table th{
+			font-weight: bold;
+		}
+		
+		.respond-cart table th, .respond-cart table td{
+			padding: 5px;
+			margin: 0;
+			border-bottom: 1px solid #ddd;
+		}
+		
+		.respond-cart table th small, .respond-cart table td small{
+			display: block;
+			color: #888;
+			text-transform: uppercase;
+		}
+		
+		.respond-cart table th:first-child, .respond-cart table td:first-child{
+			padding-left: 10px;
+		}
+		
+		.respond-cart table th:last-child, .respond-cart table td:last-child{
+			padding-right: 10px;
+		}
+		
+		.respond-cart table th.number, .respond-cart table td.number{
+			text-align: right;
+		}
+		
+		.respond-cart td button{
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 7px 10px;
+			margin: 0;
+			font-size: 16px;
+			outline: none;
+			font-size: 0.95em;
+			color: #777;
+			border: none;
+			color: #CF4647;
+		}
+		
+		.respond-cart td input[type=number]{
+			height: 36px;
+			line-height: 36px;
+			border: 1px solid #ddd;
+			width: 50px;
+			text-align: right;
+		}
+		
+		/* header */
+		.respond-cart table thead th{
+			background-color: #f0f0f0;
+			border-top: 1px solid #ddd;
+		}
+		
+		.checkout{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			text-align: right;
+			background-color: #f0f0f0;
+			border-top: 1px solid #ddd;
+		}
+		
+		.checkout button{
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+			margin: 10px 15px 10px 0;
+			font-size: 16px;
+			outline: none;
+		}
+		
+		.checkout a{
+			cursor: pointer;
+			position: absolute;
+			top: 19px;
+			left: 15px;
+			text-transform: uppercase;
+		}
+		
+		.checkout .total{
+			display: inline-block;
+			font-weight: bold;
+			margin-right: 10px;
+		}
+		
+		.checkout .total span{
+			color: #888;
+			margin-right: 5px;
+			font-weight: normal;
+		}
+		
+		
+	</style>
+
+	<div class="respond-cart {{ {active: display == 'visible'} | tokenList}}">
+	
+		<button class="close-cart" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
+		
+		<div class="cart-container">
+		
+			<table>
+				<thead>
+					<tr>
+						<th>{{label.item | i18n}}</th>
+						<th class="number">{{label.quantity | i18n}}</th>
+						<th class="number">{{label.price | i18n}}</th>
+						<th class="number">{{label.total | i18n}}</th>
+					</tr>
+				</thead>
+				<tbody>
+			<template repeat="{{item in cart}}">
+					<tr class="item">
+						<td class="name">
+							{{item.name}}
+							<small>{{item.sku}}</small>
+						</td>
+						<td class="quantity number">
+							<input type="number" value="{{item.quantity}}" on-change="{{changeItem}}">
+							<button class="remove"
+								on-click="{{removeItem}}">
+								<core-icon icon="close"></core-icon>
+							</button>
+						<td class="price number">{{mark}}{{item.price}} {{currency}}</td>
+						<td class="total number">{{mark}}{{(item.price * item.quantity)}} {{currency}}</td>
+					</tr>
+				<!-- /.item -->
+			</template>
+				<tfoot>
+					<tr class="subtotal">
+						<th colspan="3">
+							{{label.subtotal | i18n}}
+						</th>
+						<td class="number">
+							{{mark}}{{subtotal}} {{currency}}
+						</td>
+					</tr>
+				<template if="tax != 0">
+					<tr class="tax">
+						<th colspan="3">
+							{{label.tax | i18n}}
+						</th>
+						<td class="number">
+							{{mark}}{{tax}} {{currency}}
+						</td>
+					</tr>
+				</template>
+				<template if="shipping != 0">
+					<tr class="shipping">
+						<th colspan="3">
+							{{label.shipping | i18n}}
+						</th>
+						<td class="number">
+							{{mark}}{{shipping}} {{currency}}
+						</td>
+					</tr>
+				</template>
+					<tr class="total">
+						<th colspan="3">
+							{{label.total | i18n}}
+						</th>
+						<td class="number">
+							{{mark}}{{total}} {{currency}}
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		
+		</div>
+		<!-- /.cart-container -->
+				
+		<div class="checkout">
+			<a on-click="{{clearCart}}">{{label.clear | i18n}}</a>
+			
+			<span class="total">
+				<span>{{label.total | i18n}}</span>
+				{{mark}}{{total}} {{currency}}
+			</span>
+			
+			<button on-click="{{checkoutWithPayPal}}">{{label.checkoutWithPayPal | i18n}}</button>
+		</div>
+		
+	</div>
+
+  </template>
+  
+  <script>
+  Polymer('respond-cart', {
+	  
+	  // labels
+	  label:{
+	  		clear: 'Clear Cart',
+			item: 'Item', 
+			quantity: 'Quantity',
+			price: 'Price',
+			subtotal: 'Subtotal',
+			tax: 'Tax',
+			shipping: 'Shipping',
+			total: 'Total',
+			checkoutWithPayPal: 'Checkout with PayPal'
+	  },
+	  
+	  // defaults
+	  cart: [],
+	  display: 'hidden',
+	  currency: '',
+	  mark: '',
+	  subtotal: 0.00,
+	  tax: 0.00,
+	  taxRate: 0,
+	  shipping: 0.00,
+	  total: 0.00,
+	  numberShipped: 0,
+	  
+	  // ready
+	  ready: function(){
+		  
+			this.currency = respond.site.settings.Currency;
+			this.taxRate = parseFloat(respond.site.settings.TaxRate);
+			this.pageId = document.body.getAttribute('page');
+			
+			// get cart from session
+			if(sessionStorage['respond-cart'] != null){
+				var str = sessionStorage['respond-cart'];
+			
+				this.cart = eval(str);
+			}
+			else{
+				this.cart = [];
+			}
+			
+			// set mark
+			if(this.currency == 'USD'){
+				this.mark = '$';
+			}
+			else{
+				this.mark = ' ';
+			}
+			
+			// refresh the totals in the cart
+			this.refreshCart();
+			
+			// set context
+			var context = this;
+			
+			var items = document.querySelectorAll('respond-shelf-item');
+			
+			for(x=0; x<items.length; x++){
+			
+				items[x].addEventListener('cart-updated', function(e) {
+					context.refreshCart();
+				  });
+				  
+			}
+
+	  },
+	  
+	  // refreshes the cart
+	  refreshCart: function(){
+	  
+	  		// get cart from session
+			if(sessionStorage['respond-cart'] != null){
+				var str = sessionStorage['respond-cart'];
+			
+				this.cart = eval(str);
+			}
+			else{
+				this.cart = [];
+			}	
+	  
+			// calculate subtotal
+			this.subtotal = this.calculateSubtotal();
+			
+			// calculate totalweight
+			this.totalWeight = this.calculateTotalWeight();  
+			
+			// set tax
+			this.tax =  this.subtotal * this.taxRate;
+			
+			// set # shipped
+			this.numberShipped = this.calculateNumberShipped();
+			
+			// set shipping $
+			this.shipping = this.calculateShipping();
+			
+			// set total
+			this.total = this.subtotal + this.tax + this.shipping;
+	  },
+	  
+	  // clears the cart
+	  clearCart: function(){
+		  
+		  	// clear the cart and save it to localstorage
+		  	this.cart = [];
+		  
+		  	// save cart to local storage
+			var json = JSON.stringify(this.cart);
+			sessionStorage['respond-cart'] = json;
+			
+			// recalculate
+			this.refreshCart();
+		  
+	  },
+	  
+	  // calculates the subtotal
+	  calculateSubtotal: function(){
+		  	var st = 0;
+			
+			// subtotal the items in the cart
+			for(x=0; x<this.cart.length; x++){
+			
+				st = st + (this.cart[x].price * this.cart[x].quantity);
+			
+			}
+			
+			return st;
+	  },
+	  
+	  // calculates the total weight
+	  calculateTotalWeight: function(){
+		  
+		  	var w = 0;
+			
+			// subtotal the items in the cart
+			for(x=0; x<this.cart.length; x++){
+			
+				if(this.cart[x].weight != null && this.cart[x].weight != undefined){
+					w = w + (this.cart[x].weight * this.cart[x].quantity);
+				}
+			
+			}
+			
+			return w;
+	  
+	  
+	  },
+	  
+	  // calculate the number shipped
+	  calculateNumberShipped: function(){
+		
+			var count = 0;
+			
+			// walk through cart
+			for(x=0; x<this.cart.length; x++){
+			
+				if($.trim(this.cart[x].shipping) == 'shipped'){
+					count = count + this.cart[x].quantity;
+					
+				}
+			
+			}
+		
+			return count;
+		  
+	  },
+	  
+	  // calculate shipping
+	  calculateShipping: function(){
+		  
+		  	// set default stop
+			var stop = 0;
+			
+			// get subtotal and weight
+			var subtotal = this.subtotal;
+			var totalWeight = this.totalWeight;
+			var countShipped = this.numberShipped;
+			
+			// get params
+			var calculation = respond.site.settings.ShippingCalculation;	
+			var rate = parseFloat(respond.site.settings.ShippingRate);
+			var tiers = [];
+			
+			// get tiers
+			if(respond.site.settings.ShippingTiers != '' && respond.site.settings.ShippingTiers != null){
+				tiers = JSON.parse(decodeURI(respond.site.settings.ShippingTiers));
+			}
+			
+			// free, flat-rate, etc
+			if(calculation == 'free'){
+			    return 0;
+			}
+			else if(calculation == 'flat-rate'){
+				if(countShipped > 0){
+					return rate;
+				}
+				else{
+					return 0;
+				}
+			}
+			else if(calculation == 'amount'){
+			    stop = subtotal;
+			}
+			else if(calculation == 'weight'){
+			    stop = totalWeight;
+			}
+			else{
+			    return 0;
+			}
+			
+			// walk through tiers
+			for(x=0; x<tiers.length; x++){
+			    var from = tiers[x].from;
+			    var to = tiers[x].to;
+			
+			    // determine if rate falls between to and from
+			    if(stop > from && stop <= to){
+				    var rate = Number(tiers[x].rate);
+			
+				    // return rate
+				    if(!isNaN(rate)){
+					    return rate;
+				    }
+			    }
+			
+			} 
+			
+			// default is 0
+			return 0;
+		  
+	  },	
+      
+      // closes the cart
+      close: function(e, d, s){
+      
+			this.display = 'hidden';
+			this.results = [];
+			this.noResults = false;
+			respond.site.cartVisible = false;
+			
+			this.setAttribute('display', 'hidden');
+	      
+      },
+      
+      // change item in the cart
+      changeItem: function(e, d, s){
+	      
+      		var item = e.target.templateInstance.model.item;
+      		
+      		if(item.quantity <= 0){
+				var index = this.cart.indexOf(item);
+				this.cart.splice(index, 1);   
+			}
+			
+			// save cart to local storage
+			var json = JSON.stringify(this.cart);
+			sessionStorage['respond-cart'] = json;
+			
+			// recalculate
+			this.refreshCart();
+      },
+      
+      // remove item from the cart
+      removeItem: function(e, d, s){
+      
+      		var item = e.target.templateInstance.model.item;
+      		
+			var index = this.cart.indexOf(item);
+			this.cart.splice(index, 1);
+			
+			// save cart to local storage
+			var json = JSON.stringify(this.cart);
+			sessionStorage['respond-cart'] = json;
+			
+			// recalculate
+			this.refreshCart();
+      },
+      
+      // checkout with PayPal
+      checkoutWithPayPal: function(){
+	      
+			var email = respond.site.settings.PayPalId;
+			var logo = respond.site.ImagesUrl + respond.site.settings.LogoUrl;
+			var currency = respond.site.settings.Currency;
+			var returnUrl = respond.site.settings.Domain;
+			var api = respond.site.settings.API;
+			var siteId = respond.site.settings.SiteId;
+			var weightUnit = respond.site.settings.WeightUnit;
+			var useSandbox = false;
+			
+			if(parseInt(respond.site.settings.PayPalUseSandbox) == 1){
+				useSandbox = true;
+			}
+			
+			// data setup
+			var data = {
+				'email':			email,
+				'cmd':				'_cart',
+				'upload':			'1',
+				'currency_code': 	currency,
+				'business':			email,
+				'rm':				'0',
+				'charset':			'utf-8',
+				'return':			returnUrl + '/thank-you',
+				'cancel_return':	returnUrl + '/cancel',
+				'notify_url':		api + '/transaction/paypal',
+				'custom':			siteId
+			};
+			
+			var noshipping = 1;
+			
+			// set logo
+			if(logo != ''){
+				data['image_url'] = logo;
+			}
+			
+			// add cart items
+			for(x=0; x< this.cart.length; x++){
+			
+				var c = x+1;
+			
+				var item = this.cart[x];
+			
+				data['item_name_'+c] = item.name;
+				data['quantity_'+c] = item.quantity;
+				data['amount_'+c] = parseFloat(item.price).toFixed(2);
+				data['item_number_'+c] = item.sku;
+			
+				if($.trim(item.shipping.toUpperCase()) == 'SHIPPED'){
+					noshipping = 2;
+				}
+			
+			}
+			
+			data['no_shipping'] = noshipping; // 1 = do not prompt, 2 = prompt for address and require it
+			data['weight_unit'] = weightUnit;
+			data['handling_cart'] = parseFloat(this.shipping).toFixed(2);
+			data['tax_cart'] = parseFloat(this.tax).toFixed(2);
+			
+			// live url
+			var url = 'https://www.paypal.com/cgi-bin/webscr';
+			
+			// set to sandbox if specified
+			if(useSandbox){
+				url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+			}
+			
+			// create form with data values
+			var form = $('<form id="paypal-form" action="' + url + '" method="POST"></form');
+			
+			for(x in data){
+				form.append('<input type="hidden" name="'+x+'" value="'+data[x]+'" />');
+			}
+			
+			// append form
+			$('body').append(form);
+			
+			// submit form
+			$('#paypal-form').submit();
+	      
+      },
+      
+      i18n: function(text){
+	      return respond.site.i18n(text);
+      }
+	
+  });
+  </script>
+</polymer-element>

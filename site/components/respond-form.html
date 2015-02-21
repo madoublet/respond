@@ -7,6 +7,37 @@
 			padding: 10px 15px;
 			font-size: 16px;
 		}
+		
+		.success, .error{
+			display: inline-block;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+			font-size: 16px;
+			margin: 0 0 0 15px;
+		}
+		
+		.error{
+			border: 1px solid #CF4647;
+			color: #fff;
+			background-color: #CF4647;
+		}
+		
+		.success{
+			border: 1px solid #08B168;
+			color: #fff;
+			background-color: #08B168;
+		}
+		
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 15px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
     </style>
     
     <div id="container">
@@ -16,15 +47,38 @@
     </div>
 
 	<button type="button" class="btn btn-primary" 
-		on-click="{{submitForm}}">{{action}}</button>
+		on-click="{{submitForm}}">{{action | i18n}}</button>
+		
+	<template if="{{loading == true}}">
+		<paper-spinner active></paper-spinner>
+	</template>
+	
+	<template if="{{showSuccess == true}}">
+	<span class="success">
+		{{success}}
+	</span>
+	</template>
+	
+	<template if="{{showError == true}}">
+	<span class="error">
+		{{error | i18n}}
+	</span>
+	</template>
 
   </template>
   
   <script>
 
   Polymer('respond-form', {
+	  
+	loading: false,
+	showSuccess: false,
+	showError: false,
   
+	// messges
 	action: 'Submit',
+	success: 'Form submitted successfully',
+	error: 'There was an error submitting your form',
 	
 	// ready
 	ready: function() {
@@ -33,6 +87,11 @@
 	
 	// handles the form submit
 	submitForm: function(event, detail, sender){
+		
+		// init messages
+		this.showSuccess = false;
+		this.showError = false;
+		this.loading = false;
 		
 		// query light DOM in the container
 		var container = this.children[0];
@@ -59,6 +118,7 @@
 			var name = groups[x].getAttribute('data-label');
 			var id = groups[x].getAttribute('data-id');
 			var type = groups[x].getAttribute('data-type');
+			var required = groups[x].getAttribute('data-required');
 			
 			// get value by type
 			var value = '';
@@ -95,14 +155,36 @@
 			
 			params[id] = value;
 			
+			// check requiref fields
+			if(required == 'true' && value == ''){
+				this.showError = true;
+			}
+			
 		}
+		
+		// exit if error
+		if(this.showError == true){
+			return false;
+		}
+		
+		// set loading
+		this.loading = true;
+		
+		// set context
+		var context = this;
 		
 		// submit form
 		$.post(api + '/form', $.param(params), function(){
-			alert('success');
+			context.loading = false;
+			context.showSuccess = true;
 		});
 		
+	},
+      
+	i18n: function(text){
+		return respond.site.i18n(text);
 	}
+
     
   });
   </script>
