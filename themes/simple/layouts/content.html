@@ -1,22 +1,14 @@
-<respond-settings  ng-if="site.ShowSettings"></respond-settings>
+<respond-languages></respond-languages>
+<respond-cart></respond-cart>
+<respond-search></respond-search> 
 
 <header role="banner">
 
 	<nav class="navbar navbar-default" role="navigation">
       
-       <a 
-           ng-if="site.ShowSettings"
-           ng-click="toggleSettings()"
-           class="settings-toggle"><i class="fa fa-cog"></i></a>
-        
-        <a 
-           ng-if="site.ShowCart"
-           ng-click="toggleCart()"
-           class="cart-toggle"><i class="fa fa-shopping-cart"></i></a>
-        
-        <a 
-           ng-click="toggleSearch()"
-           class="search-toggle"><i class="fa fa-search"></i></a>
+      <respond-search-toggle></respond-search-toggle>
+      <respond-cart-toggle></respond-cart-toggle>
+      <respond-languages-toggle></respond-languages-toggle>
 	  
 	  <div class="navbar-header">
 	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -32,7 +24,7 @@
 	
 	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
         <ul class="nav navbar-nav navbar-right">
-			<respond-menu type="primary"></respond-menu>
+			<respond-menu type="primary" render="publish"></respond-menu>
 	    </ul>
         
 	  </div>
@@ -42,9 +34,6 @@
 
 </header>
 
-<respond-cart ng-if="site.ShowCart"></respond-cart>
-<respond-search></respond-search> 
-  
 <div id="content" class="container" role="main">
   <respond-content id="main-content" url="{{page.Url}}"></respond-content>
 </div>
@@ -93,7 +82,7 @@
               
               <ul>
                 <li>Menu:</li>
-				<respond-menu type="footer"></respond-menu>
+				<respond-menu type="footer" render="publish"></respond-menu>
               </ul>
               
           </div>
