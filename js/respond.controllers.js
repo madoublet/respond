@@ -39,7 +39,8 @@ angular.module('respond.controllers', [])
 					
 					// set firstLogin
 					$rootScope.firstLogin = data.firstLogin;
-					$rootScope.introShown = false;
+					$rootScope.introTourShown = false;
+					$rootScope.editorTourShown = false;
 					
 					// retrieve site
 					Site.retrieve(function(data){
@@ -873,17 +874,17 @@ angular.module('respond.controllers', [])
 		$scope.layouts = data;
 	});
 	
-	// shows the tour
+	// show the intro tour automatically upon initial login
 	$scope.setupTour = function(){
 		
 		// show the intro tour
-		if($rootScope.firstLogin == true && $rootScope.introShown == false){
+		if($rootScope.firstLogin == true && $rootScope.introTourShown == false){
 			tour.intro();
-			$rootScope.introShown = true;
+			$rootScope.introTourShown = true;
 		}
 	}
 	
-	// shows the tour
+	// shows the intro tour on demand
 	$scope.showIntro = function(){
 		tour.intro();
 	}
@@ -1521,6 +1522,11 @@ angular.module('respond.controllers', [])
 	    			menu: $scope.editorItems
 				});
 
+	setTimeout(function(){
+		$scope.setupTour();
+	}, 1);
+
+
 	// list new images
 	$scope.updateImages = function(){
 		Image.list(function(data){
@@ -1611,6 +1617,21 @@ angular.module('respond.controllers', [])
 	
 		Product.clear($scope.pageId, function(data){});
 	}				
+
+	// show the editor tour automatically during initial user session
+	$scope.setupTour = function(){
+		
+		// show the editor tour
+		if($rootScope.firstLogin == true && $rootScope.editorTourShown == false){
+			tour.editor();
+			$rootScope.editorTourShown = true;
+		}
+	}
+
+	// shows the editor tour on demand
+	$scope.showIntro = function(){
+		tour.editor();
+	}
 
 })
 

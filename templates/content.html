@@ -25,6 +25,12 @@
     			<a target="_blank" 
     				ng-href="{{site.Domain}}{{separator}}{{page.Url}}?preview=true">{{'Preview Page' | i18next}}</a>
 		  	</li>
+		  	<li role="presentation"> 
+    			<a ng-click="showIntro()"
+    				tabindex="-1">
+    				{{'Show Editor Tour' | i18next}}
+    			</a>
+		  	</li>
 		  </ul>
 		</div>
   
