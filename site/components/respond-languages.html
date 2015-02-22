@@ -60,15 +60,9 @@
 		    margin-right: 15px;
 	    }
 	    
-	    .select-language button{
-			background-color: #fff;
-			border: 1px solid #ddd;
-			padding: 10px 15px;
-			margin: 10px 2px 10px 0;
-			font-size: 14px;
-			outline: none;
-			text-transform: uppercase;
-			width: 100px;
+	    .select-language a{
+		    display: inline-block;
+			margin: 0 10px;
 		}
 		
     </style>
@@ -87,7 +81,7 @@
 			</template>
 			
 			<template repeat="{{language in languages}}">
-				<button on-click="{{setLanguage}}">{{language}}</button>
+				<a on-click="{{setLanguage}}">{{language}}</a>
 			</template>
 		</div>
 		
