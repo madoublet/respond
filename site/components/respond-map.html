@@ -26,7 +26,7 @@
 	<div class="respond-map">
 		<div id="mapContainer" class="map-container"></div>
 			<p class="map-address"><span>{{address}}</span> 
-			<a id="directions" href="http://maps.google.com/?q={{address}}">Get Directions</a></p>
+			<a id="directions" href="http://maps.google.com/?q={{address}}">{{label.getDirections | i18n}}</a></p>
 		</div>
 	</div>
 
@@ -34,6 +34,11 @@
   
   <script>
   Polymer('respond-map', {
+	  
+	   // labels
+	  label:{
+	  		getDirections: 'Get Directions'
+	  },
 	  
 	  // defaults
 	  address: '',
@@ -108,6 +113,10 @@
 	    }
         
         
+      },
+      
+      i18n: function(text){
+	      return respond.site.i18n(text);
       }
 	
   });

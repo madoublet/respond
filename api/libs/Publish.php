@@ -496,50 +496,6 @@ class Publish
 		// publish plugins
 		Publish::PublishPlugins($site);
 		
-		// combine JS
-		Publish::CombineJS($site);
-		
-	}
-	
-	// combines JS files
-	public static function CombineJS($site){
-		
-		// combine JS
-		$js_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/';
-		
-		//get all image files with a .less ext
-		$files = glob($js_dir . "*.js");
-		
-		// combined js
-		$combined_js = '';
-
-		// walk through file names
-		foreach($files as $file){
-		
-			if(strpos($file, 'respond.min') === FALSE){
-			 	if(file_exists($file)){
-			    	$content = file_get_contents($file);
-			    
-			    	$combined_js .= $content;	
-				}
-			}
-		   
-		}
-		
-		// remove comments
-		$pattern = '/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\')\/\/.*))/';
-		$combined_js = preg_replace($pattern, '', $combined_js);
-		
-		// remove whitespace
-		//$combined_js = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $combined_js);
-		$combined_js = str_replace(array("\t", '  ', '    ', '    '), '', $combined_js);
-
-		// publish combined js
-	    $combined_js_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.min.js';
-	    
-	    // put combined js
-	    file_put_contents($combined_js_file, $combined_js);
-		
 	}
 	
 	// publishes plugins for the site
@@ -922,24 +878,6 @@ class Publish
 			if(strpos($name, 'respond.min') === FALSE){
 				$combined_css .= Publish::PublishCSS($site, $name);
 			}
-		}
-		
-		// get plugins CSS
-		$plugins_file = SITES_LOCATION.'/'.$site['FriendlyId'].'/css/plugins.css';
-		
-		if(file_exists($plugins_file)){
-			$css = file_get_contents($plugins_file);
-			
-			// remove comments
-			$css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
-	    	
-	    	// Remove space after colons
-			$css = str_replace(': ', ':', $css);
-	    	
-	    	// Remove whitespace
-			$css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
-			
-			$combined_css .= $css;
 		}
 		
 		// publish combined css

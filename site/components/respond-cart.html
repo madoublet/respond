@@ -308,6 +308,22 @@
 				  });
 				  
 			}
+			
+			// wait for toggle
+		  	var items = document.querySelectorAll('respond-cart-toggle');
+			
+		  	for(x=0; x<items.length; x++){
+			
+				items[x].addEventListener('cart-toggled', function(e) {
+					if(context.display == 'visible'){
+						context.close();
+					}
+					else{
+						context.open();
+					}
+				});
+			
+			}
 
 	  },
 	  
@@ -474,15 +490,19 @@
 			return 0;
 		  
 	  },	
+	  
+	  // opens the cart
+      open: function(){
+      
+			this.display = 'visible';
+			this.setAttribute('display', 'visible');
+	      
+      },
       
       // closes the cart
-      close: function(e, d, s){
+      close: function(){
       
 			this.display = 'hidden';
-			this.results = [];
-			this.noResults = false;
-			respond.site.cartVisible = false;
-			
 			this.setAttribute('display', 'hidden');
 	      
       },

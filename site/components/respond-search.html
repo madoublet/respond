@@ -221,7 +221,7 @@
 				</li>
 			</template> 
 			 	
-			  	<li class="no-results {{ {active: noResults == true} | tokenList}}">No results found</li>
+			  	<li class="no-results {{ {active: noResults == true} | tokenList}}">{{label.noResults | i18n}}</li>
 		  	</ul>
 	  	</div>
 	</div>
@@ -231,6 +231,11 @@
   <script>
   Polymer('respond-search', {
 	  
+	   // labels
+	  label:{
+	  		noResults: 'No results found'
+	  },
+	  
 	  // defaults
 	  results: [],
 	  
@@ -239,12 +244,45 @@
 	  showResults: false,
 	  noResults: false,
 	  
-	  
 	  // ready
-	  ready: function(){},
+	  ready: function(){
+		  
+		  	var context = this;
+		  
+		  	// wait for toggle
+		  	var items = document.querySelectorAll('respond-search-toggle');
+			
+		  	for(x=0; x<items.length; x++){
+			
+			items[x].addEventListener('search-toggled', function(e) {
+					if(context.display == 'visible'){
+						context.close();
+					}
+					else{
+						context.open();
+					}
+				});
+				  
+			}
+		  
+	  },
+	  
+	  // opens the search
+	  open: function(){
+      
+      	  this.display = 'visible';
+	      this.results = [];
+	      this.showResults = false;
+	      this.$.searchText.value = '';
+	      this.noResults = false;
+	      respond.site.searchVisible = false;
+	      
+	      this.setAttribute('display', 'visible');
+	      
+      },
       
       // closes the search
-      close: function(e, d, s){
+      close: function(){
       
       	  this.display = 'hidden';
 	      this.results = [];
@@ -333,6 +371,10 @@
 	    e.preventDefault();
 	    return false;
 	    
+      },
+      
+      i18n: function(text){
+	      return respond.site.i18n(text);
       }
 	
   });
