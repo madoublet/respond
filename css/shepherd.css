@@ -373,8 +373,8 @@
 }
 
 .shepherd-highlight .block-actions {
-	background-color: #ffbf00;
-	color: #fff;
+	background-color: #ffbf00 !important;
+	color: #fff !important;
 }
 
 .shepherd-highlight div {
