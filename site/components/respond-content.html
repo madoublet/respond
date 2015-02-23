@@ -13,7 +13,7 @@
 		var url = this.url.replace('/', '.');
 		var context = this;
 		
-		$.get('../templates/page/' + url + '.html', function(data){
+		$.get('templates/page/' + url + '.html', function(data){
 		
 			// update light DOM with HTML from request
 			context.innerHTML = data;

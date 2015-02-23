@@ -354,3 +354,39 @@
 {
 	margin-right:0;
 }
+
+
+
+
+
+
+.shepherd-highlight {
+	background-color: #f7ff00;
+}
+
+.shepherd-highlight div.col {
+	background-color: #f7ff00;
+}
+
+.shepherd-highlight div.col div {
+	background-color: #f7ff00 !important;
+}
+
+.shepherd-highlight .block-actions {
+	background-color: #ffbf00;
+	color: #fff;
+}
+
+.shepherd-highlight div {
+	background-color: #f7ff00;
+}
+
+.shepherd-editoraction-hover {
+	background-color: rgba(255,255,255,.25) !important;
+	text-decoration: none;
+}
+
+.shepherd-move-hover {
+	background-color: #3299bb !important;
+	color: #fff !important;
+}

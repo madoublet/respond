@@ -1193,7 +1193,7 @@ class Publish
 					}
 					else{
 				    	$menu .= '<li'.$cssClass.'>';
-						$menu .= '<a href="'.$menu_root.$url.'">'.$menuItem['Name'].'</a>';
+						$menu .= '<a href="'.$url.'">'.$menuItem['Name'].'</a>';
 						$menu .= '</li>';
 				    }
 				    
