@@ -338,6 +338,12 @@ class ThemeConfigurationsApplyResource extends Tonic\Resource {
             
             // republish css
             Publish::PublishAllCSS($token->SiteId);
+            
+            // get index
+            $page = Page::GetByFriendlyId('index', '-1', $token->SiteId);
+            
+            // republish home page
+            Publish::PublishPage($page['PageId']);
  
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
