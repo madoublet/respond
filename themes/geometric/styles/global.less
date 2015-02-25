@@ -3,53 +3,58 @@ body{
 	background-size: config(--body-background-size);
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote{
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote,
+body /deep/ h1, body /deep/ h2, body /deep/ h3, body /deep/ h4, body /deep/ h5, body /deep/ p, body /deep/ blockquote{
 	margin-bottom: 25px;
 }
 
-body h1, body h2, body h3, body h4, body h5{
+body h1, body h2, body h3, body h4, body h5,
+body /deep/ h1, body /deep/ h2, body /deep/ h3, body /deep/ h4, body /deep/ h5{
   font-family: 'Roboto Condensed', sans-serif;
   margin-bottom: 25px;
   font-weight: 300;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input,
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input{
   color: #555;
   font-family: 'Roboto', sans-serif;
 }
 
-body h1{
+body h1, body /deep/ h1{
 	font-size: config(--h1-font-size);
 	color: config(--h1-color);
 }
 
-body h2{
+body h2, body /deep/ h2{
 	font-size: config(--h2-font-size);
 	color: config(--h2-color);
 }
 
-body h3{
+body h3, body /deep/ h3{
 	font-size: config(--h3-font-size);
 	color: config(--h3-color);
 }
 
-body h4{
+body h4, body /deep/ h4{
 	font-size: config(--h4-font-size);
 	color: config(--h4-color);
 }
 
-body h5{
+body h5, body /deep/ h5{
 	font-size: config(--h5-font-size);
 	color: config(--h5-color);
 	font-weight: bold;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input,
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
 
-body p, body blockquote, body label, body td, body th, body li{
+body p, body blockquote, body label, body td, body th, body li,
+body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
 	font-size: config(--default-font-size);
 	color: config(--default-color);
 	line-height: 25px;
@@ -279,6 +284,10 @@ body .navbar{
   	border-radius: 0;
 }
 
+body .navbar ul.nav{
+	margin-right: 10px;
+}
+
 body .navbar-collapse{
 	padding: 0;
 }
@@ -388,104 +397,31 @@ div.map-container{
 	display: block;
 }
 
-/* respond-settings: language + welcome */
-.settings-toggle{
+/* toggles (search, cart, languages, etc) */
+body .toggle, 
+body /deep/ .toggle{
+  	display: block;
 	float: right;
   	width: 50px;
   	height: 50px;
   	line-height: 50px;
   	text-align: center;
-  	border-left: 1px solid config(--nav-icon-border-color);
   	color: config(--nav-icon-color);
+	cursor: pointer;
+    border-left: 1px solid #ddd;
 }
 
-.settings-toggle:hover{
-	color: config(--nav-icon-hover-color);
-}
-
-.respond-settings{
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-	display: block;
-	background-color: config(--settings-background-color);
-  	border-bottom: 2px solid config(--settings-border-color);
-  	color: config(--settings-text-color);
-	text-align: right;
-	height: 50px;
-  	line-height: 50px;
-	padding: 0;
-	color: #ccc;
-	margin-top: 0;
-  	width: 100%;
-    font-size: 12px;
-    text-transform: uppercase;
-  	z-index: 5;
-}
-
-	.respond-settings .welcome-message a{
-		display: inline-block;
-		margin-left: 5px;
-	}
-
-	.show-settings .respond-settings{
-		margin-top: 50px;
-		transition: .35s all ease;
-	}
-
-	.respond-settings a{
-      	color: config(--settings-link-color);
+	body .toggle:hover,
+	body /deep/ .toggle:hover{
+	  	color: config(--nav-icon-hover-color);
 	}
 	
-	.respond-settings .language{
-		display: inline-block;
-		margin-left: 10px;
-	}
-	
-	.respond-settings .language label{
-		color: #888;
-		font-weight: normal;
-		font-size: 12px;
-		margin-right: 5px;
-		color: config(--settings-text-color);
-	}
-	
-	.respond-settings .language select{
-		display: inline-block;
-		width: 75px;
-		font-size: 12px;
-		height: 25px;
-	}
-	
-	.respond-settings ul.select-language{
-		display: inline-block;
-  		margin: 0 10px 0 15px;
-  		padding: 0;
-	}
-	
-	.respond-settings ul.select-language li{
-		display: inline-block;
-		margin: 0 0 0 5px;
-      	text-transform: uppercase;
-      	font-size: 12px;
-	  	color: config(--settings-text-color);
-	}
-
-	.respond-settings ul.select-language li.active a{
-     	background-color: config(--settings-active-background-color); 
+	body .toggle.active,
+	body /deep/ .toggle.active{
+        color: config(--nav-icon-active-color) !important;
     }
 
-	.respond-settings ul.select-language li a{
-		display: inline-block;
-		cursor: pointer;
-      	padding: 0 10px;
-      	color: config(--settings-link-color);
-	}
-
-.settings-toggle{
-  	cursor: pointer;
-}
-
+/* video */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;

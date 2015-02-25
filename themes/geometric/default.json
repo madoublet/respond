@@ -14,7 +14,7 @@
 		"source"		: "pages/blog.html",
 		"name"			: "Blog",
 		"description"	: "Your blog contains a list of your blog posts",
-		"layout"		: "blog",
+		"layout"		: "content",
 		"stylesheet"	: "content",
 		"primaryMenu"	: true,
 		"footerMenu"	: true
