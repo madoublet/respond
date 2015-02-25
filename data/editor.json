@@ -230,26 +230,6 @@
 		"script":	"plugins/component/respond.component.js"
 	},
 	{
-		"action":	"respond.component.login",
-		"tag":		"RESPOND-LOGIN",
-		"title":	"Login",
-		"class":	"respond-login",
-		"icon":		"fa fa-key draggable",
-		"text":		"",
-		"config":	"plugins/component/config/login.html",
-		"script":	"plugins/component/respond.component.js"
-	},
-	{
-		"action":	"respond.component.registration",
-		"tag":		"RESPOND-REGISTRATION",
-		"title":	"Registration",
-		"class":	"respond-registration",
-		"icon":		"fa fa-lock draggable",
-		"text":		"",
-		"config":	"plugins/component/config/registration.html",
-		"script":	"plugins/component/respond.component.js"
-	},
-	{
 		"action":	"respond.utility.load",
 		"tag":		"n/a",
 		"title":	"Load Content",
