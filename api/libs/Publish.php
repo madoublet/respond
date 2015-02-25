@@ -576,68 +576,8 @@ class Publish
 			// get items for type
 			$list = MenuItem::GetMenuItemsForType($site['SiteId'], $type['FriendlyId']);
 			
-			// create array for menu
-			$menu = array();
-			
-			// walk through menu items
-			foreach($list as $row){
-			
-				$isInternal = false;
-				$state = '';
-				$url = '';
-	
-				// push non nested items onto the array
-				if($row['IsNested'] == 0){
-					
-					// create an array item
-					$item = array(
-						'MenuItemId' => $row['MenuItemId'],
-					    'Name'  => $row['Name'],
-					    'CssClass'  => $row['CssClass'],
-					    'Url' => $row['Url'],
-						'PageId' => $row['PageId'],
-						'HasChildren' => false,
-						'Children' => array()
-					);
-					
-					// push item onto the array
-					array_push($menu, $item);
-					
-				}
-				else{
-					
-					// create an array item
-					$item = array(
-						'MenuItemId' => $row['MenuItemId'],
-					    'Name'  => $row['Name'],
-					    'CssClass'  => $row['CssClass'],
-					    'Url' => $row['Url'],
-						'PageId' => $row['PageId']
-					);
-					
-					// get a reference to the parent
-					$parent = array_pop($menu);
-					
-					// make sure the parent exists
-					if($parent != NULL){
-						
-						// push item to the children array
-						array_push($parent['Children'], $item);
-						
-						// set that it has children
-						$parent['HasChildren'] = true;
-						
-						// push item onto the array
-						array_push($menu, $parent);
-						
-					}
-					
-				}
-		
-			}
-			
 			// encode to json
-			$encoded = json_encode($menu);
+			$encoded = json_encode($list);
 	
 			$dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/data/';
 			
