@@ -1,5 +1,15 @@
 [
 	{
+		"url" 			: "component/footer",
+		"source"		: "pages/footer.html",
+		"name"			: "Footer",
+		"description"	: "This is the footer used across pages for your site",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
 		"url" 			: "index",
 		"source"		: "pages/home.html",
 		"name"			: "Home",
@@ -44,7 +54,7 @@
 		"source"		: "pages/post.html",
 		"name"			: "Sample Blog Post",
 		"description"	: "A sample blog post to get you started",
-		"layout"		: "content",
+		"layout"		: "post",
 		"stylesheet"	: "content",
 		"primaryMenu"	: false,
 		"footerMenu"	: false

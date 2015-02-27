@@ -1,4 +1,6 @@
 {
+	"en": "English",
+	"es-ES": "Spanish",
 	"No additional pages": "No additional pages",
 	"Previous": "Previous",
 	"Next": "Next",
@@ -33,5 +35,7 @@
 	"Add to Cart": "Add to Cart",
 	"Welcome": "Welcome",
 	"Logout": "Logout",
-	"Sign In": "Sign In"
+	"Sign In": "Sign In",
+	"Last modified by": "Last modified by",
+	"Direction": "Direction"
 }

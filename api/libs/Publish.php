@@ -1043,6 +1043,34 @@ class Publish
 		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
 		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
 		
+		// meta data
+		$photo = '';
+		$firstName = '';
+		$lastName = '';
+		$lastModifiedDate = $page['LastModifiedDate'];
+		
+		// replace last modified
+		if($page['LastModifiedBy'] != NULL){
+			
+			// get user
+			$user = User::GetByUserId($page['LastModifiedBy']);
+			
+			// set user infomration
+			if($user != NULL){
+				$photo = $user['PhotoUrl'];
+				$firstName = $user['FirstName'];
+				$lastName = $user['LastName'];
+			}
+			
+		}
+		
+		
+		// set page information
+		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
+		$html = str_replace('{{page.FirstName}}', $firstName, $html);
+		$html = str_replace('{{page.LastName}}', $lastName, $html);
+		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
+		
 		// add a timestamp
 		$html = str_replace('{{timestamp}}', time(), $html);
 		
@@ -1085,7 +1113,15 @@ class Publish
 				$type = $el->type;
 				
 				// init menu
-				$menu = '';
+				$menu = '<ul';
+				
+				// set class if applicable
+				if(isset($el->class)){
+					$menu .= ' class="'.$el->class.'">';
+				}
+				else{
+					$menu .= '>';
+				}
 				
 				// get items for type
 				$menuItems = MenuItem::GetMenuItemsForType($site['SiteId'], $type);
@@ -1155,12 +1191,43 @@ class Publish
 					
 					$i = $i+1;
 				}
+				
+				$menu .= '</ul>';
 					
 				$el->outertext = $menu;
 						
 				
 			}
 			/* isset */
+			
+		}
+		/* foreach */
+		
+		// replace content where render is set to publish
+		foreach($html->find('respond-content[render=publish]') as $el){
+		
+			// get the url
+			if(isset($el->url)){
+			
+				$url = $el->url;
+				
+				// replace the / with a period
+				$url = str_replace('/', '.', $url);
+				$url .= '.html';
+				$content_html = '';
+			
+				// get the content from the site
+				$content_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/page/'.$url;
+				
+				if(file_exists($content_dest)){
+					$content_html = file_get_contents($content_dest);
+				}
+				
+				// set outer text
+				if($content_html != ''){
+					$el->outertext = $content_html;
+				}
+			}
 			
 		}
 		/* foreach */

@@ -4,7 +4,7 @@
 
 <header role="banner">
 
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-fixed-top" role="navigation">
       
       <respond-search-toggle></respond-search-toggle>
       <respond-cart-toggle></respond-cart-toggle>
@@ -23,16 +23,20 @@
 	  <!-- /.navbar-header -->
 	
 	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-        <respond-menu type="primary" class="nav navbar-nav navbar-right" render="publish"></respond-menu>
+	  	<respond-menu type="primary" class="nav navbar-nav navbar-right" render="publish"></respond-menu>
 	  </div>
 	  <!-- /.navbar-collapse -->
       
 	</nav>
 
 </header>
-
+  
 <div id="content" class="container" role="main">
   <respond-content id="main-content" url="{{page.Url}}"></respond-content>
+</div>
+
+<div class="container" role="main">
+  <respond-meta photo="{{page.PhotoUrl}}" first="{{page.FirstName}}" last="{{page.LastName}}" date="{{page.LastModifiedDate}}"></respond-meta>
 </div>
 
 <footer role="contentinfo">

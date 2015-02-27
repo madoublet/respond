@@ -26,6 +26,22 @@ respond.site = {
 			sessionStorage['respond-language'] = respond.site.settings.Language;
 		}
 		
+		// set direction
+		if(sessionStorage['respond-direction'] != null){
+			
+			var direction = sessionStorage['respond-direction'];
+			
+			// translate if the set language is not the default
+			if(direction != respond.site.settings.Direction){
+				// set language in html
+				$('html').attr('dir', direction);
+			}
+			
+		}
+		else{
+			sessionStorage['respond-direction'] = respond.site.settings.Direction;
+		}
+		
 		// setup prettyprint
 		prettyPrint();
 		
@@ -38,6 +54,12 @@ respond.site = {
 		
 		for(x=0; x<els.length; x++){
 			var id = $(els[x]).attr('data-i18n');
+			
+			// set id to text if empty
+			if(id == ''){
+				id = $(els[x]).text();
+			}
+			
 			var html = respond.site.i18n(id);
 			
 			$(els[x]).html(html);
@@ -82,6 +104,13 @@ respond.site = {
 			sessionStorage['respond-language'] = language;
 			respond.site.translate(language);
 		});
+	},
+	
+	// set current direction
+	setDirection:function(direction){
+		
+		sessionStorage['respond-direction'] = direction;
+		
 	},
 	
 	// gets a QueryString by name

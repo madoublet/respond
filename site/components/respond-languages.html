@@ -16,6 +16,7 @@
 		  	background-color: #fff;
 		  	z-index: 10000;
 		  	min-height: 70px;
+		  	line-height: auto;
 			transition: .35s all ease;
 			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
 		}
@@ -57,13 +58,29 @@
 	    }
 	    
 	    .select-language label{
+		    display: inline-block;
 		    margin-right: 15px;
+			height: 50px;
+			line-height: 50px;
+			font-size: 0.95em;
+	    }
+	    
+	    .select-language label.direction{
+		    margin-left: 15px;
 	    }
 	    
 	    .select-language a{
 		    display: inline-block;
-			margin: 0 10px;
+			height: 50px;
+			line-height: 50px;
+			margin: 10px 10px 10px 0;
+			padding: 0 15px;
 		}
+		
+		.select-language a.active{
+			border: 1px solid #ddd;
+		}
+		
 		
     </style>
 
@@ -81,8 +98,13 @@
 			</template>
 			
 			<template repeat="{{language in languages}}">
-				<a on-click="{{setLanguage}}">{{language}}</a>
+				<a class="{{ {active: language == currentLanguage } | tokenList}}" on-click="{{setLanguage}}">{{language | i18n}}</a>
 			</template>
+			
+			<label class="direction">{{label.direction | i18n}}</label>
+			
+			<a class="{{ {active: 'ltr' == currentDirection } | tokenList}}" on-click="{{setLtr}}">LTR</a>
+			<a class="{{ {active: 'rtl' == currentDirection } | tokenList}}" on-click="{{setRtl}}">RTL</a>
 		</div>
 		
 	</div>
@@ -94,7 +116,8 @@
 	  
 	  // labels
 	  label:{
-	  		language: 'Language'
+	  		language: 'Language',
+	  		direction: 'Direction'
 	  },
 	  
 	  // defaults
@@ -103,11 +126,24 @@
 	  display: 'hidden',
 	  loading: false,
 	  
+	  currentLanguage: null,
+	  
 	  // ready
 	  ready: function(){
 		  
 		  	var context = this;
-		  
+		  	
+		  	this.currentLanguage = respond.site.settings.Language;
+		  	this.currentDirection = respond.site.settings.Direction;
+		  	
+		  	if(sessionStorage['respond-language'] != null){
+				this.currentLanguage = sessionStorage['respond-language'];
+			}
+			
+			if(sessionStorage['respond-direction'] != null){
+				this.currentDirection = sessionStorage['respond-direction'];
+			}
+			
 		  	// wait for toggle
 		  	var items = document.querySelectorAll('respond-languages-toggle');
 			
@@ -147,8 +183,6 @@
 				// get languages
 				$.post(respond.site.settings.API + '/translation/list/locales', $.param(params), function(data){
 					
-					console.log(data);
-					
 					context.languages = data;
 					context.loading = false;
 					
@@ -167,13 +201,29 @@
 	      
       },
       
-       // sets the language
+      // sets the language
       setLanguage: function(e, d, s){
 	      
 	      var item = e.target.templateInstance.model;
 	      
 	      respond.site.setLanguage(item.language);
 	      
+	      location.reload();
+	      
+      },
+      
+      // set LTR direction
+      setLtr: function(){
+	      respond.site.setDirection('ltr');
+	      
+	      location.reload();
+      },
+      
+      // set RTL direction
+      setRtl: function(){
+	      respond.site.setDirection('rtl');
+	      
+	      location.reload();
       },
       
       i18n: function(text){

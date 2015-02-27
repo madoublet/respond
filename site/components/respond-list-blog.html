@@ -170,14 +170,14 @@
 		context.showPreviousNext();
 		
 		// reset innerhtml
-		context.$.content.innerHTML = '';
+		context.innerHTML = '';
 		
 		// post to API
 		$.post(this.api + '/page/published/list', $.param(this.params), function(data){
 			
 			// for each page, add content components to the Light DOM 
 			for(x=0; x<data.length; x++){
-				context.$.content.innerHTML += '<respond-content url="' + data[x].Url + '"></respond-content>';
+				context.innerHTML += '<respond-content url="' + data[x].Url + '"></respond-content>';
 			}
 	
 			// set loading
