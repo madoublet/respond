@@ -176,6 +176,7 @@ CREATE TABLE IF NOT EXISTS `Transactions` (
   `Currency` varchar(10) DEFAULT 'USD',
   `Items` text,
   `Data` text,
+  `Receipt` text,
   `Created` datetime NOT NULL,
   PRIMARY KEY (`TransactionId`),
   KEY `SiteId` (`SiteId`)

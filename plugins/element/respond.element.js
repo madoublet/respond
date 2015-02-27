@@ -1730,7 +1730,6 @@ respond.element.pre = {
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['description'] = $(node).attr('data-description');
 		attrs['respond-pre'] = 'true';
-		attrs['ng-non-bindable'] = 'true';
 		
 		var code = $(node).find('textarea').val();
 		code = utilities.replaceAll(code, '<', '&lt;');

@@ -10,6 +10,26 @@
 		"footerMenu"	: true
 	},
 	{
+		"url" 			: "thank-you",
+		"source"		: "pages/thank-you.html",
+		"name"			: "Thank you",
+		"description"	: "You have successfully completed your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
+		"url" 			: "cancel",
+		"source"		: "pages/cancel.html",
+		"name"			: "Purchase Cancelled",
+		"description"	: "You have successfully cancelled your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
 		"url" 			: "blog",
 		"source"		: "pages/blog.html",
 		"name"			: "Blog",

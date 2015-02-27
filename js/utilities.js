@@ -518,7 +518,7 @@ var utilities = {
 			// get pageId
 			var prefix = scope.page.PageId + '.';
 		
-			el += ' data-i18n="[html]' + prefix + attrs['id'] + '">';
+			el += ' data-i18n="' + prefix + attrs['id'] + '">';
 		}
 		else{
 			el += '>';

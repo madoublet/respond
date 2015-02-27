@@ -167,10 +167,12 @@
 	      
       },
       
-      // sets the language
-      setLanguage: function(){
+       // sets the language
+      setLanguage: function(e, d, s){
 	      
-	      alert('set language');
+	      var item = e.target.templateInstance.model;
+	      
+	      respond.site.setLanguage(item.language);
 	      
       },
       

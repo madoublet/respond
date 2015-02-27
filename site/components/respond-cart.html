@@ -267,6 +267,7 @@
 	  shipping: 0.00,
 	  total: 0.00,
 	  numberShipped: 0,
+	  count: 0,
 	  
 	  // ready
 	  ready: function(){
@@ -324,6 +325,14 @@
 				});
 			
 			}
+			
+			// clear cart when a transaction is found
+			this.processorTransactionId = respond.site.getQueryStringByName('tx');
+		
+			// clear the cart
+			if(this.processorTransactionId != null){
+				this.clearCart();
+			}
 
 	  },
 	  
@@ -357,6 +366,15 @@
 			
 			// set total
 			this.total = this.subtotal + this.tax + this.shipping;
+			
+			// set count
+			this.count = this.calculateCount();
+			
+			// set count as attribute
+			this.setAttribute('count', this.count);
+			
+			// fire updated event
+			this.fire('cart-updated');
 	  },
 	  
 	  // clears the cart
@@ -364,6 +382,7 @@
 		  
 		  	// clear the cart and save it to localstorage
 		  	this.cart = [];
+		  	this.count = 0;
 		  
 		  	// save cart to local storage
 			var json = JSON.stringify(this.cart);
@@ -386,6 +405,20 @@
 			}
 			
 			return st;
+	  },
+	  
+	  // calculates the count
+	  calculateCount: function(){
+		  	var q = 0;
+			
+			// subtotal the items in the cart
+			for(x=0; x<this.cart.length; x++){
+			
+				q = q + this.cart[x].quantity;
+			
+			}
+			
+			return q;
 	  },
 	  
 	  // calculates the total weight

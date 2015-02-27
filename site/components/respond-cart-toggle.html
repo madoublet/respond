@@ -9,20 +9,49 @@
 		  	text-align: center;
 		  	color: #555;
 		}
+		
+		.toggle.active{
+			background-color: rgba(255,255,255,.5);
+		}
     </style>
     
     <template if="{{showCart == true}}">
-		<a class="toggle" on-click="{{toggleCart}}"><core-icon icon="shopping-cart"></core-icon></a>
+		<a class="toggle {{ {active: count > 0 } | tokenList}}" on-click="{{toggleCart}}">
+			<core-icon icon="shopping-cart"></core-icon> 
+		<template if="{{count > 0}}">
+			<span class="count">{{count}}</span>
+		</template>
+		</a>
 	</template>
 
   </template>
   
   <script>
   Polymer('respond-cart-toggle', {
+  
+  	  count: 0,
 
 	  // ready
 	  ready: function() {
 		  this.showCart = respond.site.settings.ShowCart;
+		  
+		  // set context
+		  var context = this;
+		  
+		  // wait for updated
+		  var items = document.querySelectorAll('respond-cart');
+		
+		  for(x=0; x<items.length; x++){
+		
+				items[x].addEventListener('cart-updated', function(e) {
+				
+					console.log(this);
+					
+					context.count = $(this).attr('count');
+					
+				});
+		
+		  }
       },
       
       // toggle cart

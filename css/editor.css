@@ -338,7 +338,7 @@
 		text-align: center;
 		top: 0;
 		right: 0;
-		color: #f0f0f0;
+		color: #ccc;
 		cursor: pointer;
 		text-decoration: none;
 		z-index: 101;
@@ -696,9 +696,10 @@
 		display: inline-block;
 		margin: 0;
 		text-align: right;
-		color: #aaa;
+		color: #888;
 		overflow: hidden;
-		border: 1px solid #f0f0f0;
+		border: 1px solid #ddd;
+		background-color: #f8f8f8;
 		cursor: pointer;
 	}
 	
