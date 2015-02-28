@@ -7,54 +7,50 @@ body h1, body h2, body h3, body h4, body h5, body p, body blockquote{
 	margin-bottom: 25px;
 }
 
-body h1, body h2, body h3, body h4, body h5,
-body /deep/ h1, body /deep/ h2, body /deep/ h3, body /deep/ h4, body /deep/ h5{
+body h1, body h2, body h3, body h4, body h5{
   font-family: 'Exo 2', sans-serif;
   margin-bottom: 25px;
   font-weight: 400;
 }
 
-body p, body td, body th, body small, body li, body label, body input,
-body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input {
+body p, body td, body th, body small, body li, body label, body input{
   color: #555;
   font-family: 'Exo 2', sans-serif;
   font-weight: 300;
 }
 
-body h1, body /deep/ h1{
+body h1{
 	font-size: config(--h1-font-size);
 	color: config(--h1-color);
 }
 
-body h2, body /deep/ h2{
+body h2{
 	font-size: config(--h2-font-size);
 	color: config(--h2-color);
 }
 
-body h3, body /deep/ h3{
+body h3{
 	font-size: config(--h3-font-size);
 	color: config(--h3-color);
 }
 
-body h4, body /deep/ h4{
+body h4{
 	font-size: config(--h4-font-size);
 	color: config(--h4-color);
 }
 
-body h5, body /deep/ h5{
+body h5{
 	font-size: config(--h5-font-size);
 	color: config(--h5-color);
 	font-weight: bold;
 }
 
-body p, body td, body th, body small, body li, body label, body input,
-body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input{
+body p, body td, body th, body small, body li, body label, body input{
   font-family: 'Exo 2', sans-serif;
   font-weight: 300;
 }
 
-body p, body blockquote, body label, body td, body th, body li,
-body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
+body p, body blockquote, body label, body td, body th, body li{
 	font-size: config(--default-font-size);
 	color: config(--default-color);
 	line-height: 25px;
@@ -66,9 +62,13 @@ p, blockquote, li, button, label{
   	font-weight: 300;
 }
 
-body a, body a:hover,
-body /deep/ a, body /deep/ a:hover{
+body a, body a:hover{
   color: config(--default-link-color);
+  text-decoration: none;
+}
+
+body a:hover{
+	text-decoration: underline;
 }
 
 body input[type=text], 
@@ -510,30 +510,6 @@ div.map-container{
 	display: block;
 }
 
-/* settings: language + welcome */
-body .toggle,
-body /deep/ .toggle{
-	float: right;
-  	width: 50px;
-  	height: 50px;
-  	line-height: 50px;
-  	text-align: center;
-  	color: config(--settings-icon-color);
-  	font-size: 18px;
-}
-
-  body .toggle:hover,
-  body /deep/ .toggle:hover{
-      color: config(--settings-icon-color);
-      background-color: #f8f8f8;
-  }
-  
-  body .toggle core-icon,
-	body /deep/ .toggle core-icon{
-      width: 20px;
-      height: 20px;
-    }
-
 /* video */
 .video-container {
     position: relative;
@@ -550,18 +526,6 @@ body /deep/ .toggle{
     width: 100%;
     height: 100%;
 }
-
-/* login, registration look and feel */
-.respond-login, .respond-registration{
-	border: 1px solid #ddd;
-  	border-radius: 20px;
-  	padding: 25px;
-  	max-width: 500px;
-}
-
-  .respond-login button, .respond-registration button{
-      margin-top: 15px;
-  }
 
 /* fade carousel */
 body .carousel.fade {
