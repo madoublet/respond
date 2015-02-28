@@ -2087,6 +2087,7 @@ angular.module('respond.controllers', [])
 	
 	// set name
 	$scope.setName = function(name){
+		
 		$scope.name = name;
 		
 		// retrieve content for layout
@@ -2133,7 +2134,7 @@ angular.module('respond.controllers', [])
 	
 	// shows the remove file dialog
 	$scope.showRemoveFile = function(file){
-	
+		
 		// set temporary model
 		$scope.temp = file;
 	

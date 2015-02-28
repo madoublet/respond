@@ -1456,7 +1456,7 @@ angular.module('respond.factories', [])
 	// get the index by id
 	stylesheet.getIndexById = function(id){
 	
-		var data = layout.data;
+		var data = stylesheet.data;
 		
 		for(x=0; x<data.length; x++){
 			

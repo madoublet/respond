@@ -153,9 +153,9 @@ class StylesheetPublishResource extends Tonic\Resource {
 class StylesheetRemoveResource extends Tonic\Resource {
 
      /**
-     * @method DELETE
+     * @method POST
      */
-    function delete() {
+    function post() {
 
         // get token
 		$token = Utilities::ValidateJWTToken(apache_request_headers());
