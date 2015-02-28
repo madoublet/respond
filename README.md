@@ -15,15 +15,13 @@ New in version 4.5:
 - Editable footers in themes
 
 Upgrading from 4.0+:
-1. Pull latest version
-2. Reset themes
-3. Re-publish sites
-4. Update Transaction table (bugfix)
+- Pull latest version
+- Reset themes
+- Re-publish sites
+- Update Transaction table (bugfix)
 
 ALTER TABLE  `Transactions` ADD `Receipt` TEXT AFTER `Data`;
 
 Migrating custom themes to 4.5:
-A guide is available here:
-http://respondcms.com/documentation/migrating-to-respond-4-5 
-
-The themes in the build have been updated to support Respond 4.5.  Use these as a reference for upgrading your own themes.
+- A guide is available here: http://respondcms.com/documentation/migrating-to-respond-4-5 
+- The themes in the build have been updated to support Respond 4.5.  Use these as a reference for upgrading your own themes.
