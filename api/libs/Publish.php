@@ -175,6 +175,14 @@ class Publish
 				$stylesheet = $value['stylesheet'];
 				$primaryMenu = $value['primaryMenu'];
 				$footerMenu = $value['footerMenu'];
+				$includeOnly = 0;
+				
+				// set includeOnly (if specified in default)
+				if(isset($value['includeOnly'])){
+					if($value['includeOnly'] == true){
+						$includeOnly = 1;
+					}
+				}
 				
 				// initialize PT
 				$pageType = NULL;
@@ -230,6 +238,9 @@ class Publish
 			
 					// set the page to active							
 					Page::SetIsActive($page['PageId'], 1);
+					
+					// set include only
+					Page::SetIncludeOnly($page['PageId'], $includeOnly);
 					
 					// build the content file
 					$filename = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/'.$source;

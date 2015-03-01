@@ -7,7 +7,8 @@
 		"layout"		: "content",
 		"stylesheet"	: "content",
 		"primaryMenu"	: false,
-		"footerMenu"	: false
+		"footerMenu"	: false,
+		"includeOnly"	: true
 	},
 	{
 		"url" 			: "index",
