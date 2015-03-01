@@ -780,14 +780,24 @@ class PageContentSaveResource extends Tonic\Resource {
           
 			// publish if status is set to publish and the user can publish
             if($status=='publish' && $canPublish == true){
-            
+            	
+            	// set active
             	Page::SetIsActive($page['PageId'], 1);
+            	
+            	// publish page
                 $url = Publish::PublishPage($page['PageId'], false, true);
                 
+                // edit image
                 Page::EditImage($page['PageId'], $image, $token->UserId);
                 
                 // republish common JS
 				Publish::PublishCommonJS($page['SiteId']);
+				
+				// if page is include only, republish site
+				if($page['IncludeOnly'] == 1){
+					Publish::PublishSite($page['SiteId']);
+				}
+				
             }
 
 			// return successful response

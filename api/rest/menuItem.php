@@ -283,7 +283,11 @@ class MenuItemPublishResource extends Tonic\Resource {
 
             parse_str($this->request->data, $request); // parse request
 
+			// publish json
             Publish::PublishMenuJSON($token->SiteId);
+
+			// re-publish site
+			Publish::PublishSite($token->SiteId);
 
             return new Tonic\Response(Tonic\Response::OK);
         }
