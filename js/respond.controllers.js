@@ -2290,9 +2290,6 @@ angular.module('respond.controllers', [])
 	        // set JSON for tiers
 	        shippingTiers = JSON.stringify(tiers);
 	        
-	        if(Setup.debug)console.log('[respond.debug] Set Shipping Tiers');
-	        console.log(shippingTiers);
-	        
 	        // update model
 	        $scope.site.ShippingTiers = shippingTiers;
         }
