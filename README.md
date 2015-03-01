@@ -16,6 +16,7 @@ New in version 4.5:
 
 Upgrading from 4.0+:
 - Pull latest version
+- Update dependencies using Composer (php composer.phar update)
 - Reset themes
 - Re-publish sites
 - Update Transaction table (bugfix)
