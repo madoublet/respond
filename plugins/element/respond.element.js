@@ -1475,6 +1475,9 @@ respond.element.image = {
 	
 	// parse image
 	parse:function(node){
+		
+		console.log('respond-image');
+		console.log(node);
 	
 		// get scope from page
 		var scope = angular.element($("section.main")).scope();
@@ -1484,8 +1487,16 @@ respond.element.image = {
 	
 		// get params
 		var isExternal = false;
-		var id = $(node).attr('id');		
+		var id = $(node).attr('id');
+		
+		// get src
 		var src = $(node).find('img').attr('src');
+		
+		// compatibility for ng-src (deprecated)
+		if($(node).find('img').attr('ng-src') != '' && $(node).find('img').attr('ng-src') != undefined){
+			src =  $(node).find('img').attr('ng-src');
+		}
+		
 		var location = $(node).find('img').attr('data-location') || '';
 		var link = $(node).find('a').attr('href') || $(node).find('a').attr('ui-sref') || '';
 		var title = $(node).find('a').attr('title') || '';
