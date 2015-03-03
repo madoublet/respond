@@ -175,9 +175,12 @@
 		// post to API
 		$.post(this.api + '/page/published/list', $.param(this.params), function(data){
 			
+			console.log(data);
+			
 			// for each page, add content components to the Light DOM 
 			for(x=0; x<data.length; x++){
-				context.innerHTML += '<respond-content url="' + data[x].Url + '"></respond-content>';
+				context.innerHTML += '<div class="blog-post"><respond-content url="' + data[x].Url + '"></respond-content>' +
+									  '<respond-meta photo="' + data[x].Photo + '"  first="' + data[x].FirstName + '" last="' + data[x].LastName + '" date="' + data[x].LastModified + '" url="' + respond.site.settings.Domain +  '/' + data[x].Url + '" ></respond-meta></div>';
 			}
 	
 			// set loading

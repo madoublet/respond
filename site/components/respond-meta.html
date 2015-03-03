@@ -1,0 +1,78 @@
+<polymer-element name="respond-meta" attributes="photo first last date url">
+  <template>
+  
+  	<style>
+	  	.respond-meta{
+		  	position: relative;
+		  	height: 40px;
+		  	padding: 5px 5px 5px 60px;
+	  	}
+	  	
+  		img{
+	  		position: absolute;
+	  		top: 5px;
+	  		left: 5px;
+  			display: block;
+  			border: none;
+  			height: 40px;
+  			width: 40px;
+  			border-radius: 50%;
+  		}
+  		
+  		.respond-meta p{
+	  		height: 40px;
+	  		line-height: 40px;
+	  		text-transform: uppercase;
+	  		font-size: 14px;
+	  		color: #888;
+	  		margin: 0;
+	  		padding: 0;
+  		}
+  	</style>
+  	
+  	<div class="respond-meta">
+  		<p>
+  		<template if="{{photo != ''}}">
+  			<img src="{{photo}}">
+  		</template>
+  		{{first}} {{last}} &ndash; {{date}}
+  		
+  		<template if="{{url != ''}}">
+  		 	&ndash; <a href="{{url}}">{{label.permanentLink | i18n}}</a>
+  		</template>
+  		
+  		</p>
+  	</div>
+  	
+  </template>
+  
+  <script>
+
+  Polymer('respond-meta', {
+  
+  	url: '',
+  
+  	// labels
+	label:{
+		lastModifiedBy: 'Last modified by',
+		permanentLink: 'Permanent Link'
+	},
+
+	// ready
+	ready: function() {
+		
+		// set photo
+		if(this.photo != '' && this.photo != undefined){
+			this.photo = respond.site.settings.ImagesUrl + 'files/thumbs/' + this.photo;
+		}
+		
+	},
+	
+	// translate  
+	i18n: function(text){
+	  return respond.site.i18n(text);
+	}
+    
+  });
+  </script>
+</polymer-element>

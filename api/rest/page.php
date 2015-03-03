@@ -1588,15 +1588,6 @@ class PageListResource extends Tonic\Resource {
                 $hasCallout = true;
             }
 
-			// get photo
-            $hasPhoto = false;
-            $photo = '';
-            
-            if($row['PhotoUrl'] != null && $row['PhotoUrl'] != ''){
-	            $hasPhoto = true;
-	            $photo = 'files/'.$row['PhotoUrl'];
-            }
-
 			// build URL
             $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
             
@@ -1648,8 +1639,9 @@ class PageListResource extends Tonic\Resource {
                     'EndDateReadable' => $endReadable,
                     'LastModified' => $page['LastModifiedDate'],
                     'Author' => $name,
-                    'HasPhoto' => $hasPhoto,
-                    'Photo' => $photo,
+                    'FirstName' => $row['FirstName'],
+                    'LastName' => $row['LastName'],
+                    'Photo' => $row['PhotoUrl'],
                     'Tags' => $page['Tags']
                 );
             

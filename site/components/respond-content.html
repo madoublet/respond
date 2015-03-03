@@ -15,6 +15,10 @@
 		
 		$.get('templates/page/' + url + '.html', function(data){
 		
+			// replace imagesURL with url
+			data = respond.site.replaceAll(data, '{{site.ImagesUrl}}', respond.site.settings.ImagesUrl);
+			data = respond.site.replaceAll(data, '{{site.ImagesURL}}', respond.site.settings.ImagesUrl);
+		
 			// update light DOM with HTML from request
 			context.innerHTML = data;
 			

@@ -317,7 +317,7 @@ var utilities = {
 		 return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 	},
 	
-	// replaces all occurances for a string
+	// replaces all occurences for a string
 	replaceAll:function(src, stringToFind, stringToReplace){
 	  	var temp = src;
 	

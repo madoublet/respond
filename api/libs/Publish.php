@@ -512,18 +512,29 @@ class Publish
 	// publishes plugins for the site
 	public static function PublishPlugins($site){
 		
-		// copy templates/respond
-		$components_src = APP_LOCATION.'/site/components';
-		$components_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/components';
+		// copy polyfills
+		$components_src = APP_LOCATION.'/site/components/lib/webcomponentsjs-min';
+		$components_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/components/lib/webcomponentsjs-min';
 		
-		// create libs directory if it does not exist
+		// create polyfills directory if it does not exist
 		if(!file_exists($components_dest)){
 			mkdir($components_dest, 0755, true);	
 		}
 		
-		// copy libs directory
+		// copy polyfills directory
 		if(file_exists($components_dest)){
 			Utilities::CopyDirectory($components_src, $components_dest);
+		}
+		
+		// copy build
+		$build_src = APP_LOCATION.'/site/components/respond-build.html';
+		$build_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/components/respond-build.html';
+		
+		if(file_exists($build_src)){
+			
+			$content = file_get_contents($build_src);
+			file_put_contents($build_dest, $content);
+			
 		}
 				
 	}
