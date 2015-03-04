@@ -294,6 +294,27 @@ body .carousel.fade .left, body .carousel.fade .right{
 	z-index: 10;
 }
 
+/* rtl */
+html[dir=rtl] .navbar-left{
+  	float:right!important
+}
+
+html[dir=rtl] .navbar-right{
+  	float:left!important
+}
+
+html[dir=rtl] .navbar-brand{
+	position: absolute;
+	float: none;
+  	left: auto;
+  	right:0;
+}
+
+html[dir=rtl] body .navbar-toggle{
+  	float: left !important;
+  	margin-left: 10px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 

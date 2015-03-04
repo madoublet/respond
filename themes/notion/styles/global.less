@@ -496,6 +496,32 @@ body .carousel.fade .left, body .carousel.fade .right{
 	z-index: 10;
 }
 
+/* rtl */
+html[dir=rtl] header{
+  text-align: right;
+}
+
+html[dir=rtl] body .navbar-brand{
+  margin:5px 50px 0 0;
+  float: right;
+}
+
+html[dir=rtl] body .toggle-nav{
+  left:auto;
+  right:5px;
+}
+
+html[dir=rtl] body nav{
+  margin-left:0;
+  margin-right:-300px;
+  left:auto;
+  right:0;
+}
+
+html[dir=rtl] body.show-nav nav{
+  margin-right:0;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 

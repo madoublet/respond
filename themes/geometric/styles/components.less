@@ -68,3 +68,9 @@ body /deep/ .toggle{
 	body /deep/ .toggle.active{
         color: config(--nav-icon-active-color) !important;
     }
+    
+html[dir=rtl] body /deep/ .toggle{
+  	float: left; 
+ 	border-left: none;
+  	border-right: 1px solid config(--nav-border-color);
+}  

@@ -92,6 +92,11 @@ body .container{
 	padding-right: 40px !important;
 }
 
+html[dir=rtl] body .container{
+	padding-right: 0 !important;
+	padding-left: 40px !important;
+}
+
 /* off canvas navigation */
 body .wrapper {
     position: relative;
@@ -563,6 +568,32 @@ body .carousel.fade .left, body .carousel.fade .right{
 	z-index: 10;
 }
 
+/* rtl */
+html[dir=rtl] body .toggle-nav{
+	left: auto;
+	right: 0;
+}
+
+html[dir=rtl] body.show-nav .canvas{
+	-webkit-transform:translateX(-300px);
+	transform: translateX(-300px);
+}
+
+html[dir=rtl] nav{
+	left: auto;
+	right: -300px;
+}
+
+html[dir=rtl] body .navbar-brand-inverse{
+	left: auto;
+	right: 50px;
+}
+
+html[dir=rtl] body header{
+	right: auto;
+	left: 0;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
@@ -574,6 +605,12 @@ body .carousel.fade .left, body .carousel.fade .right{
     nav{
        	left: 0;
   	}
+  	
+  	/* rtl */
+  	html[dir=rtl] nav{
+	  	left: auto;
+	  	right: 0;
+  	}
   
   	.navbar-brand{
   		display: block;
@@ -581,6 +618,11 @@ body .carousel.fade .left, body .carousel.fade .right{
   
   	body .canvas{
     	padding: 25px 25px 25px 325px;
+    }
+    
+    /* rtl */
+    html[dir=rtl] body .canvas{
+    	padding: 25px 325px 25px 25px;
     }
   
   .toggle-nav{

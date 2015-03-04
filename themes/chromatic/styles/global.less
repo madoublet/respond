@@ -328,21 +328,6 @@ div.respond-image[data-display=right] img{
 		font-weight: bold;
 		color: #b94a48;
 	}
-
-/* map */
-div.map-container{
-  	position: relative;
-  	margin: 0 0 20px 0;
-  	padding: 0;
-  	width: 100%;
-  	height: 250px;
-  	border: 1px solid #f0f0f0;
-  	overflow: hidden;
-}
-
-	div.map p span{
-		font-size: 1em;
-	}
 	
 /* tabs */
 .nav-tabs{
@@ -410,6 +395,25 @@ body .carousel.fade .left, body .carousel.fade .right{
 	z-index: 10;
 }
 
+/* rtl */
+html[dir=rtl] .navbar-left{
+  	float:right!important
+}
+
+html[dir=rtl] .navbar-right{
+  	float:left!important
+}
+
+html[dir=rtl] .navbar-brand{
+  	left:auto;
+  	right:0;
+}
+
+html[dir=rtl] body .navbar-toggle{
+  	float: left !important;
+  	margin-left: 10px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
@@ -423,8 +427,7 @@ body .carousel.fade .left, body .carousel.fade .right{
   		height: 65px;
   		line-height: 65px;
 	}
-
-
+	
 }
 
 /* Medium devices (desktops, 992px and up) */

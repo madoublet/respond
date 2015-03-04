@@ -11,10 +11,10 @@
 			vertical-align: top;
 			display: inline-block;
 			width: 200px;
-			height: 30px;
+			height: 235px;
 		  	position: relative;
 		  	border: 1px solid #f0f0f0;
-		  	padding: 205px 5px 5px 5px;
+		  	padding: 0;
 		  	margin: 0 10px 10px 0;
 		}
 		
@@ -35,13 +35,20 @@
 		  	position: absolute;
 		  	top: 5px;
 		  	left: 5px;
-		  	width: 200px;
+		  	width: 190px;
+		  	height: 190px;
 		}
 		
 		.respond-list h4{
 			margin-top: 7px;
 			text-align: center;
 			font-size: 14px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 190px;
+			padding: 5px 0;
+			margin: 0;
 		}
 		
 		.respond-list h5{
@@ -50,7 +57,8 @@
 			position: absolute;
 			left: 5px;
 			bottom: 30px;
-			padding: 5px;
+			padding: 5px 0;
+			margin: 0;
 			width: 190px;
 			text-align: center;
 			font-size: 13px;
@@ -118,15 +126,17 @@
   	<div class="respond-list">
 	  	
 	<template repeat="{{page in pages}}">
-		<div class="thumbnail">
+		<a class="thumbnail" href="{{page.Url}}">
 			<template if="{{page.HasImage == true}}">
-				<img src="{{images}}{{page.Thumb}}">
+				<a href="{{page.Url}}">
+					<img src="{{images}}{{page.Thumb}}">
+				</a>
 			</template>
-			<h4><a href="{{page.Url}}">{{page.Name}}</a></h4>
+			<h4>{{page.Name}}</h4>
 			<template if="{{page.Callout != ''}}">
 				<h5 class="respond-list-callout">{{page.Callout}}</h5>
 			</template>
-		</div>
+		</a>
 	</template>
 	
   	</div>
