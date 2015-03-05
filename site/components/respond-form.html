@@ -94,7 +94,7 @@
 		this.loading = false;
 		
 		// query light DOM in the container
-		var container = this.children[0];
+		var container = this;
 		
 		// select all inputs in the light DOM
 		var groups = container.querySelectorAll('.form-group');
@@ -115,7 +115,7 @@
 		for(x=0; x<groups.length; x++){
 			
 			// get name, id, type
-			var name = groups[x].getAttribute('data-label');
+			var label = groups[x].getAttribute('data-label');
 			var id = groups[x].getAttribute('data-id');
 			var type = groups[x].getAttribute('data-type');
 			var required = groups[x].getAttribute('data-required');

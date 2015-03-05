@@ -388,154 +388,20 @@ respond.component.form = {
 
 	// builds a field
 	buildField:function(type, label, id, required, helper, placeholder, cssClass, options){
-	
-		// create model from id
-		var model = utilities.toTitleCase(id);
-	
-		// set label
-		var html = '<label for="' + id + '"'; 
-		var prefix = '';
-		
-		if(id != null){
-		
-			// get scope
-			var scope = angular.element($("section.main")).scope();
-			
-			// get pageId
-			prefix = scope.page.PageId + '.';
-		
-			html += 'id="' + id + '-label" ng-i18next="[html]' + prefix + id + '-label">';
-		}
-		else{
-			html += '>';
-		}
-		
-		html += label + '</label>';
-		
-		var req = '';
-		
-		if(required == 'true'){
-			req = ' required';
-		}
-
-		// create textbox
-		if(type=='text'){
-			html += '<input id="' + id + '" name="' + id + 
-					'" type="text" class="form-control" placeholder="'+placeholder+'"' + req +
-					' ng-model="temp.' + model + '"' +
-					'>';
-		}
-
-		// create textarea
-		if(type=='textarea'){
-			html += '<textarea id="' + id + '" name="' + id + '" class="form-control"' + req + 
-					' ng-model="temp.' + model + '"' +
-					'></textarea>';
-		}
-
-		// create select
-		if(type=='select'){
-			html += '<select id="' + id + '" name="' + id + '" class="form-control"' + req + 
-			' ng-model="temp.' + model + '"' +
-			'>';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-			
-				if(id != null){
-					html += '<option id="' + id + '-option' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-option' + (x+1) + '">' + $.trim(arr[x]) + '</option>';
-				}
-				else{
-	  				html += '<option>' + $.trim(arr[x]) + '</option>';
-	  			}
-			}
-
-			html += '</select>'
-		}
-
-		// create checkboxlist
-		if(type=='checkboxlist'){
-			html += '<span class="list">';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-				
-				var val = utilities.toTitleCase($.trim(arr[x]));
-			
-	  			html += '<label class="checkbox"><input name="' + id + '" type="checkbox" value="' + $.trim(arr[x]) + '"' + 
-	  				' ng-model="temp.' + model + '.' + val + 
-	  				'" ng-true-value="' + $.trim(arr[x]) + '"' +
-	  				'" ng-false-value=""' +
-	  				'>';
-	  			
-	  			if(id != null){
-		  			html += '<span id="' + id + '-checkbox' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-checkbox' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create radio list
-		if(type=='radiolist'){
-			html += '<span class="list">';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-	  			html += '<label class="radio"><input name="' + id + '" type="radio" value="' + $.trim(arr[x]) + '" name="' + id + '"' +
-	  				' ng-model="temp.' + model + '"' +
-	  				'>';
-	  			
-	  			if(id != null){
-		  			html += '<span id="' + id + '-radio' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-radio' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create helper
-		if(helper != '') {
-		
-			if(id != null){
-	  			html += '<span id="' + id + '-help" ng-i18next="[html]' + prefix + id + '-help" class="help-block">' + helper + '</span>';
-			}
-			else{
-				html += '<span class="help-block">' + helper + '</span>';
-			}
-	  		
-		}
 
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = id;
-		attrs['data-id'] = id;
-		attrs['data-model'] = model;
-		attrs['class'] = 'form-group';
-		attrs['data-type'] = type;
-		attrs['data-label'] = label;
-		attrs['data-required'] = required;
-		attrs['data-helper'] = helper;
-		attrs['data-placeholder'] = placeholder;
-		attrs['data-id'] = id;
-		attrs['data-cssclass'] = cssClass;
-		attrs['data-options'] = options;
+		attrs['type'] = type;
+		attrs['label'] = label;
+		attrs['required'] = required;
+		attrs['helper'] = helper;
+		attrs['placeholder'] = placeholder;
+		attrs['cssclass'] = cssClass;
+		attrs['options'] = options;
 		
 		// return element
-		return utilities.element('div', attrs, html);
+		return utilities.element('respond-form-field', attrs, '');
 		
 	},
 
@@ -582,6 +448,7 @@ respond.component.form = {
 		// build html
 		var html = respond.editor.defaults.elementMenu + '<div class="field-list">';
 		
+		// support for legacy fields
 		var fields = $(node).find('div');
 		
 		for(y=0; y<fields.length; y++){
@@ -608,6 +475,33 @@ respond.component.form = {
 			  	
 		}
 		
+		// support respond-form-field
+		var fields = $(node).find('respond-form-field');
+		
+		for(y=0; y<fields.length; y++){
+		
+			// get type
+			var type = $(fields[y]).attr('type');
+			
+			if(type != null){
+				
+				// get attributes
+				var label = $(fields[y]).attr('label') || '';
+				var required = $(fields[y]).attr('required') || '';
+				var helper = $(fields[y]).attr('helper') || '';
+				var placeholder = $(fields[y]).attr('placeholder') || '';
+				var id = $(fields[y]).attr('id') || '';
+				var cssClass = $(fields[y]).attr('cssclass') || '';
+				var options = $(fields[y]).attr('options') || '';
+				
+				// build mock element
+				html += respond.component.form.buildMock(type, label, id, required, helper, placeholder, cssClass, options)
+	
+			}
+			  	
+		}
+		
+		
 		html += '</div>';
 		
 		html += '<button type="button" class="add-field"><i class="fa fa-plus-circle"></i></button>';
@@ -629,9 +523,8 @@ respond.component.form = {
 	generate:function(node){
 	
 		var fields = $(node).find('.field-list>div');
-		var html = '<div class="respond-form-fields">';
+		var html = '';
 		    
-		  
   		for(var y=0; y<fields.length; y++){
   			field = $(fields[y]);
   			
@@ -647,8 +540,8 @@ respond.component.form = {
   				field.attr('data-options') || '');  				
   		}
   		
-  		html += '</div>';
-	
+  		html += '';
+  		
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
