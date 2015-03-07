@@ -1,33 +1,14 @@
 <div id="block-1" class="block row" data-nested="not-nested" data-containerid="" data-containercssclass="">
     <div class="col col-md-12">
         <h1 id="h1-1">Contact Us</h1>
-        <p id="p-1">Placeholder for the Contact Us page.</p>
-        <respond-form id="form-1" success="Form submitted successfully." error="There was an error submitting your form." submit="Submit">
-            <div class="respond-form-fields">
-                <div id="firstName" data-id="firstName" data-model="firstName" class="form-group" data-type="text" data-label="First Name" data-required="false" data-cssclass="form-control">
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" name="firstName" type="text" class="form-control" placeholder="" ng-model="temp.firstName">
-                </div>
-                <div id="lastName" data-id="lastName" data-model="lastName" class="form-group" data-type="text" data-label="Last Name" data-required="field1">
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" type="text" class="form-control" placeholder="" ng-model="temp.lastName">
-                </div>
-                <div id="email" data-id="email" data-model="email" class="form-group" data-type="text" data-label="Email" data-required="field1">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="text" class="form-control" placeholder="" ng-model="temp.email">
-                </div>
-                <div id="phone" data-id="phone" data-model="phone" class="form-group" data-type="text" data-label="Phone" data-required="field1">
-                    <label for="phone">Phone</label>
-                    <input id="phone" name="phone" type="text" class="form-control" placeholder="" ng-model="temp.phone">
-                </div>
-                <div id="preferredContact" data-id="preferredContact" data-model="preferredContact" class="form-group" data-type="radiolist" data-label="Preferred Contact" data-required="field1" data-options="Email, Phone">
-                    <label for="preferredContact">Preferred Contact</label><span class="list"><label class="radio"><input name="preferredContact" type="radio" value="Email" name="preferredContact" ng-model="temp.preferredContact">Email</label><label class="radio"><input name="preferredContact" type="radio" value="Phone" name="preferredContact" ng-model="temp.preferredContact">Phone</label></span>
-                </div>
-                <div id="additionalInformation" data-id="additionalInformation" data-model="additionalInformation" class="form-group" data-type="textarea" data-label="Additional Information" data-required="field1">
-                    <label for="additionalInformation">Additional Information</label>
-                    <textarea id="additionalInformation" name="additionalInformation" class="form-control" ng-model="temp.additionalInformation"></textarea>
-                </div>
-            </div>
+        <p id="p-1">Fill out the form below to get in touch.</p>
+        <respond-form id="additionalInformation">
+            <respond-form-field id="firstName" type="text" label="First Name" required="required" cssclass="form-control"></respond-form-field>
+            <respond-form-field id="lastName" type="text" label="Last Name" required="required"></respond-form-field>
+            <respond-form-field id="email" type="text" label="Email" required="required"></respond-form-field>
+            <respond-form-field id="phone" type="text" label="Phone" required="required"></respond-form-field>
+            <respond-form-field id="preferredContact" type="radiolist" label="Preferred Contact" required="required" options="Email, Phone"></respond-form-field>
+            <respond-form-field id="additionalInformation" type="textarea" label="Additional Information" required="required"></respond-form-field>
         </respond-form>
     </div>
 </div>
