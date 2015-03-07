@@ -1562,6 +1562,60 @@ angular.module('respond.controllers', [])
 		utilities.executeFunctionByName(fn, window, image);
 	}
 	
+	// add external image
+	$scope.addExternalImage = function(image){
+		
+		var url = $.trim($('#external-image').val());
+		
+		if(url != ''){
+			
+			var fileName = '';
+			var ext = '';
+			
+			var arr = url.split('/');
+			
+			// get filename and extension
+			if(arr.length > 0){
+				var filename = arr[arr.length-1];
+				
+				var arr = filename.split('.');
+				
+				if(arr.length > 0){
+					var ext = arr[arr.length-1];
+				}
+			}
+			
+			// create image
+			var image = {
+				fileName: fileName,
+				fullUrl: url,
+				thumbUrl: url,
+				extension: ext,
+				isImage: true,
+				size: 0,
+				width: -1,
+				height: -1
+			}
+		
+			var plugin = $('#imagesDialog').attr('data-plugin');
+			var action= $('#imagesDialog').attr('data-action');
+			
+			// add or edit the image
+			if(action != undefined && action == 'edit'){
+				var fn = plugin + '.editImage';
+			}
+			else{
+				var fn = plugin + '.addImage';
+			}
+			
+			// set isExternal flag
+			image['isExternal'] = true;
+			
+			// execute method
+			utilities.executeFunctionByName(fn, window, image);
+		}
+	}
+	
 	// list icon
 	Icon.list(function(data){
 	
