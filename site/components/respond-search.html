@@ -187,10 +187,25 @@
 		.respond-search li.no-results.active{
 			display: block;
 		}
+		
+		/* rtl */
+		.respond-search.rtl .search-container button.search{
+			right: auto;
+			left: 50px;
+		}
+		
+		.respond-search.rtl .close-search{
+			right: auto;
+			left: 10px;
+		}
+		
+		.respond-search.rtl .search-container input{
+			margin-left: 50px;
+		}
 
     </style>
 
-	<div class="respond-search {{ {active: display == 'visible'} | tokenList}}">
+	<div class="respond-search {{ {active: display == 'visible'} | tokenList}} {{ {rtl: dir == 'rtl'} | tokenList}}">
 	
 		<button class="close-search" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
 		
@@ -240,6 +255,7 @@
 	  results: [],
 	  
 	  display: 'hidden',
+	  dir: 'ltr',
 	  loading: false,
 	  showResults: false,
 	  noResults: false,
@@ -264,7 +280,14 @@
 				});
 				  
 			}
-		  
+			
+			// set direction
+			this.dir = respond.site.settings.Direction;
+			
+			if(sessionStorage['respond-direction'] != null){
+				this.dir = sessionStorage['respond-direction'];
+			}
+			
 	  },
 	  
 	  // opens the search
