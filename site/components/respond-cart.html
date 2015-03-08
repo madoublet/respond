@@ -365,7 +365,7 @@
 			this.shipping = this.calculateShipping();
 			
 			// set total
-			this.total = this.subtotal + this.tax + this.shipping;
+			this.total = parseFloat(this.subtotal + this.tax + this.shipping).toFixed(2);
 			
 			// set count
 			this.count = this.calculateCount();
@@ -404,7 +404,7 @@
 			
 			}
 			
-			return st;
+			return st.toFixed(2);
 	  },
 	  
 	  // calculates the count
