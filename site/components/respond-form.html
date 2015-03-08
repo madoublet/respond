@@ -177,7 +177,24 @@
 		$.post(api + '/form', $.param(params), function(){
 			context.loading = false;
 			context.showSuccess = true;
+			
+			// clear the form after submit
+			context.clearForm();
 		});
+		
+	},
+	
+	// clears the form on submit
+	clearForm:function(){
+	
+		// query light DOM in the container
+		var container = this;
+		
+		// select all inputs in the light DOM
+		$(container).find('input[type=text]').val('');
+		$(container).find('textarea').val('');
+		$(container).find('input[type=checkbox]').attr('checked', '');
+		$(container).find('input[type=radio]').attr('checked', '');
 		
 	},
       

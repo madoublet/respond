@@ -41,17 +41,12 @@ class Publish
         $site = Site::GetBySiteId($siteId);
       	
 		// copy templates/respond
-		$templates_src = APP_LOCATION.'/site/templates/respond';
-		$templates_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/respond';
+		$templates_src = APP_LOCATION.'/site/templates/';
+		$templates_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/';
 		
 		// create libs directory if it does not exist
 		if(!file_exists($templates_dest)){
 			mkdir($templates_dest, 0755, true);	
-		}
-		
-		// copy libs directory
-		if(file_exists($templates_dest)){
-			Utilities::CopyDirectory($templates_src, $templates_dest);
 		}
 		
 		// setup htaccess
