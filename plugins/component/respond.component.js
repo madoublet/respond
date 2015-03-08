@@ -460,16 +460,16 @@ respond.component.form = {
 					
 				
 				// get attributes
-				var label = $(fields[y]).attr('data-label') || '';
-				var required = $(fields[y]).attr('data-required') || '';
-				var helper = $(fields[y]).attr('data-helper') || '';
-				var placeholder = $(fields[y]).attr('data-placeholder') || '';
-				var id = $(fields[y]).attr('data-id') || '';
-				var cssClass = $(fields[y]).attr('data-cssclass') || '';
-				var options = $(fields[y]).attr('data-options') || '';
+				var fieldLabel = $(fields[y]).attr('data-label') || '';
+				var fieldRequired = $(fields[y]).attr('data-required') || '';
+				var fieldHelper = $(fields[y]).attr('data-helper') || '';
+				var fieldPlaceholder = $(fields[y]).attr('data-placeholder') || '';
+				var fieldId = $(fields[y]).attr('data-id') || '';
+				var fieldCssClass = $(fields[y]).attr('data-cssclass') || '';
+				var fieldOptions = $(fields[y]).attr('data-options') || '';
 				
 				// build mock element
-				html += respond.component.form.buildMock(type, label, id, required, helper, placeholder, cssClass, options)
+				html += respond.component.form.buildMock(type, fieldLabel, fieldId, fieldRequired, fieldHelper, fieldPlaceholder, fieldCssClass, fieldOptions)
 	
 			}
 			  	
@@ -486,16 +486,16 @@ respond.component.form = {
 			if(type != null){
 				
 				// get attributes
-				var label = $(fields[y]).attr('label') || '';
-				var required = $(fields[y]).attr('required') || '';
-				var helper = $(fields[y]).attr('helper') || '';
-				var placeholder = $(fields[y]).attr('placeholder') || '';
-				var id = $(fields[y]).attr('id') || '';
-				var cssClass = $(fields[y]).attr('cssclass') || '';
-				var options = $(fields[y]).attr('options') || '';
+				var fieldLabel = $(fields[y]).attr('label') || '';
+				var fieldRequired = $(fields[y]).attr('required') || '';
+				var fieldHelper = $(fields[y]).attr('helper') || '';
+				var fieldPlaceholder = $(fields[y]).attr('placeholder') || '';
+				var fieldId = $(fields[y]).attr('id') || '';
+				var fieldCssClass = $(fields[y]).attr('cssclass') || '';
+				var fieldOptions = $(fields[y]).attr('options') || '';
 				
 				// build mock element
-				html += respond.component.form.buildMock(type, label, id, required, helper, placeholder, cssClass, options)
+				html += respond.component.form.buildMock(type, fieldLabel, fieldId, fieldRequired, fieldHelper, fieldPlaceholder, fieldCssClass, fieldOptions)
 	
 			}
 			  	
