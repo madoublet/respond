@@ -2,4 +2,4 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)
-RewriteRule (.*) index.html [L]
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
