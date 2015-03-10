@@ -1240,6 +1240,10 @@ class Publish
 					$content_html = file_get_contents($content_dest);
 				}
 				
+				// update images url
+				$content_html = str_replace('{{site.ImagesUrl}}', $imagesURL, $content_html);
+				$content_html = str_replace('{{site.ImagesURL}}', $imagesURL, $content_html);
+				
 				// set outer text
 				if($content_html != ''){
 					$el->outertext = $content_html;
