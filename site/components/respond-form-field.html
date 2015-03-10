@@ -24,13 +24,14 @@
 		// set label
 		var html = '<label for="' + this.id + '"'; 
 		var prefix = '';
+		var pageId = document.body.getAttribute('page');
 		
 		if(this.id != null){
 
 			// get pageId
-			prefix = respond.site.settings.PageId + '.';
+			prefix = pageId + '.';
 		
-			html += 'id="' + this.id + '-label" data-i18n="' + prefix + this.id + '-label">';
+			html += 'id="' + this.id + '-label" class="control-label" data-i18n="' + prefix + this.id + '-label">';
 		}
 		else{
 			html += '>';

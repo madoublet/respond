@@ -457,7 +457,6 @@ respond.component.form = {
 			var type = $(fields[y]).attr('data-type');
 			
 			if(type != null){
-					
 				
 				// get attributes
 				var fieldLabel = $(fields[y]).attr('data-label') || '';
@@ -485,9 +484,15 @@ respond.component.form = {
 			
 			if(type != null){
 				
+				var required = $(fields[y]).get(0).getAttribute('required');
+				
+				if(required == 'required'){
+					required = 'false';
+				}
+				
 				// get attributes
 				var fieldLabel = $(fields[y]).attr('label') || '';
-				var fieldRequired = $(fields[y]).attr('required') || '';
+				var fieldRequired = required;
 				var fieldHelper = $(fields[y]).attr('helper') || '';
 				var fieldPlaceholder = $(fields[y]).attr('placeholder') || '';
 				var fieldId = $(fields[y]).attr('id') || '';
@@ -537,7 +542,7 @@ respond.component.form = {
   				field.attr('data-helper') || '', 
   				field.attr('data-placeholder') || '', 
   				field.attr('data-cssclass') || '', 
-  				field.attr('data-options') || '');  				
+  				field.attr('data-options') || '');  			
   		}
   		
   		html += '';
