@@ -391,7 +391,7 @@ respond.component.form = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
+		attrs['fieldid'] = id;
 		attrs['type'] = type;
 		attrs['label'] = label;
 		attrs['required'] = required;
@@ -443,7 +443,12 @@ respond.component.form = {
 	parse:function(node){
 	
 		// get params
-		var id = $(node).attr('id');
+		var id = $(node).attr('formid');
+		
+		// get old formid
+		if(id == undefined){
+			id = $(node).attr('id');
+		}
 		
 		// build html
 		var html = respond.editor.defaults.elementMenu + '<div class="field-list">';
@@ -490,12 +495,19 @@ respond.component.form = {
 					required = 'false';
 				}
 				
+				// get params
+				var fieldId = $(fields[y]).attr('fieldid');
+				
+				// get old fieldid
+				if(fieldId == undefined){
+					fieldId = $(fields[y]).attr('id') || '';
+				}
+				
 				// get attributes
 				var fieldLabel = $(fields[y]).attr('label') || '';
 				var fieldRequired = required;
 				var fieldHelper = $(fields[y]).attr('helper') || '';
 				var fieldPlaceholder = $(fields[y]).attr('placeholder') || '';
-				var fieldId = $(fields[y]).attr('id') || '';
 				var fieldCssClass = $(fields[y]).attr('cssclass') || '';
 				var fieldOptions = $(fields[y]).attr('options') || '';
 				
@@ -549,7 +561,7 @@ respond.component.form = {
   		
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
+		attrs['formid'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['type'] = $(node).attr('data-type');
 		attrs['action'] = $(node).attr('data-action');
