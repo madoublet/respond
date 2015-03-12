@@ -1,4 +1,4 @@
-<polymer-element name="respond-map" attributes="id address zoom">
+<polymer-element name="respond-map" attributes="address zoom">
   <template>
     <style>
 		.respond-map{
@@ -75,9 +75,6 @@
 		    
 		    geocoder.geocode({'address': this.address}, function(results, status){
 			    
-			    console.log(results);
-			    console.log(status);
-		    
 		        if (status == google.maps.GeocoderStatus.OK){
 			        
 		            var latitude = results[0].geometry.location.lat();

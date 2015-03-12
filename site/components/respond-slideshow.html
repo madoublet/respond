@@ -1,4 +1,4 @@
-<polymer-element name="respond-slideshow" attributes="id indicators arrows interval wrap pauseonhover transition">
+<polymer-element name="respond-slideshow" attributes="slideshowid indicators arrows interval wrap pauseonhover transition">
   <template>
   	<content></content>
   </template>
@@ -10,7 +10,7 @@
 	// ready
 	ready: function() {
 		
-		var id = this.id;
+		var id = this.slideshowid;
 		var images = $(this).find('img');
 		var imagesHtml = '';
 		var indicatorsHtml = '<ol class="carousel-indicators">';
@@ -26,7 +26,7 @@
 			}
 			
 			imagesHtml += '<div class="item' + active + '"><img src="' + images[x].src + '"></div>';
-			indicatorsHtml += '<li data-target="#carousel-' + this.id + '" data-slide-to="' + x + '" class="' + active + '"></li>';
+			indicatorsHtml += '<li data-target="#carousel-' + this.slideshowid + '" data-slide-to="' + x + '" class="' + active + '"></li>';
 			
 			if(Boolean(this.indicators) == false){
 				indicatorsHtml = '';
@@ -42,12 +42,12 @@
 		}
 		
 		// set arrows
-		var arrowsHtml = '<a class="left carousel-control" href="#carousel-' + this.id + '" role="button" data-slide="prev">' +
-							'<span class="glyphicon glyphicon-chevron-left"></span>' +
+		var arrowsHtml = '<a class="left carousel-control" href="#carousel-' + this.slideshowid + '" role="button" data-slide="prev">' +
+							'<i class="icon-prev fa fa-3x fa-chevron-left"></i>' +
 							'<span class="sr-only">Previous</span>' +
 						'</a>' +
-						'<a class="right carousel-control" href="#carousel-' + this.id + '" role="button" data-slide="next">' +
-							'<span class="glyphicon glyphicon-chevron-right"></span>' +
+						'<a class="right carousel-control" href="#carousel-' + this.slideshowid + '" role="button" data-slide="next">' +
+							'<i class="icon-next fa fa-3x fa-chevron-right"></i>' +
 							'<span class="sr-only">Next</span>' +
 						'</a>';
 		
@@ -57,7 +57,7 @@
 		}
 		
 		// build a carousel
-		html = '<div id="carousel-' + this.id + '" class="carousel ' + this.transition + '" data-ride="carousel">' +
+		html = '<div id="carousel-' + this.slideshowid + '" class="carousel ' + this.transition + '" data-ride="carousel">' +
 						indicatorsHtml + 
 						'<div class="carousel-inner" role="listbox">' + imagesHtml + '</div>' +
 						arrowsHtml +
@@ -71,7 +71,7 @@
 		var wrap = false;
 		
 		if(this.pauseonhover === 'true'){
-			pause = 'pause';
+			pause = 'hover';
 		}
 		
 		if(this.wrap === 'true'){

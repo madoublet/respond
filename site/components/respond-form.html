@@ -1,4 +1,4 @@
-<polymer-element name="respond-form" attributes="type action success error submit">
+<polymer-element name="respond-form" attributes="formid type action success error submit">
   <template>
     <style>
 		button{
@@ -41,7 +41,7 @@
     </style>
     
     <div id="container">
-    	<form id="form">
+    	<form id="{{formid}}">
     		<content id="content"></content>
     	</form>
     </div>
