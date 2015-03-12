@@ -17,6 +17,14 @@ respond.component.slideshow = {
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.slideshow');
 			$('#imagesDialog').modal('show');
+			
+			// reset modal
+			$('#imagesDialog .add-existing-image').removeClass('hidden');
+			$('#imagesDialog .upload-new-image').addClass('hidden');
+			$('#imagesDialog .add-external-image').addClass('hidden');
+			$('#external-image').val('');
+			$('#load-image').text(i18n.t('Existing Image'));
+			$('#images-dropdown').find('li').removeClass('active');
 		});
 		
 		// caption focus (for images)
@@ -49,12 +57,19 @@ respond.component.slideshow = {
 	
 	// adds an image to the slideshow
 	addImage:function(image){
+		
+		// set local vs external image
+		var location = 'local';
+		
+		if(image.isExternal == true){
+			location = 'external';
+		}
 	
 		// get current node
 		var node = $(respond.editor.currNode);
 		
 		// build html
-		var html = '<span class="image"><img src="' + image.fullUrl + '" title="">' +
+		var html = '<span class="image"><img src="' + image.fullUrl + '" title="" data-location="' + location + '">' +
 				   '<span class="caption"><input type="text" value="" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140"></span>' +
 				   '<a class="remove-image fa fa-minus-circle"></a></span>';
 				   
@@ -88,6 +103,8 @@ respond.component.slideshow = {
 		attrs['data-arrows'] = 'true';
 		attrs['data-interval'] = '5000';
 		attrs['data-wrap'] = 'true';
+		attrs['data-pauseonhover'] = 'true';
+		attrs['data-transition'] = 'slide';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -105,7 +122,12 @@ respond.component.slideshow = {
 	parse:function(node){
 	
 		// get params
-		var id = $(node).attr('id');
+		var id = $(node).attr('slideshowid');
+		
+		// get old formid
+		if(id == undefined){
+			id = $(node).attr('id');
+		}
 		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
@@ -119,8 +141,9 @@ respond.component.slideshow = {
 		
 			// get caption
 			var title = $(imgs[y]).attr('title');
-			var src = $(imgs[y]).attr('ng-src');
-		
+			var src = $(imgs[y]).attr('src');
+			var location = $(imgs[y]).attr('data-location');
+	
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
 			
@@ -129,9 +152,8 @@ respond.component.slideshow = {
 			
 			// replace the images URL with the URL from the site
 			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
-			src = utilities.replaceAll(src, '{{site.ImagesURL}}', url);
 			
-			var image = '<img src="' + src + '" title="' + title + '">';
+			var image = '<img src="' + src + '" title="' + title + '" data-location="' + location + '">';
 			
 			// build html
 			html +=	'<span class="image">' + image + 
@@ -156,6 +178,8 @@ respond.component.slideshow = {
 		attrs['data-arrows'] = $(node).attr('arrows');
 		attrs['data-interval'] = $(node).attr('interval');
 		attrs['data-wrap'] = $(node).attr('wrap');
+		attrs['data-pauseonhover'] = $(node).attr('pauseonhover');
+		attrs['data-transition'] = $(node).attr('transition');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -175,26 +199,39 @@ respond.component.slideshow = {
   		
   			var title = $(imgs[y]).attr('title');
   			var src = $(imgs[y]).attr('src');
-  		
-  			// removes the domain from the img
-	  		if(src != ''){
-		  		var parts = src.split('files/');
-		  		src = 'files/' + parts[1];
-	  		}
   			
-  			var image = '<img ng-src="{{site.ImagesURL}}' + src + '" title="' + title + '">';
+  			var location = $(imgs[y]).attr('data-location');
+  			
+  			if(location == undefined || location == null){
+	  			location = 'local';
+  			}
+  		
+  			if(location == 'local'){
+	  			// removes the domain from the img
+		  		if(src != ''){
+			  		var parts = src.split('files/');
+			  		src = 'files/' + parts[1];
+		  		}
+	  			
+	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" data-location="local">';
+  			}
+  			else{
+	  			var image = '<img src="' + src + '" title="' + title + '" data-location="external">';
+  			}
   			
 			html += '<div>' + image + '</div>';
 		}
   		
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
+		attrs['slideshowid'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['indicators'] = $(node).attr('data-indicators');
 		attrs['arrows'] = $(node).attr('data-arrows');
 		attrs['interval'] = $(node).attr('data-interval');
 		attrs['wrap'] = $(node).attr('data-wrap');
+		attrs['pauseonhover'] = $(node).attr('data-pauseonhover');
+		attrs['transition'] = $(node).attr('data-transition');
 		
 		// return element
 		return utilities.element('respond-slideshow', attrs, html);
@@ -214,9 +251,6 @@ respond.component.map = {
 	// creates map
 	create:function(){
 	
-		// generate uniqId
-		var id = respond.editor.generateUniqId('map', 'map');
-		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<i class="in-textbox fa fa-map-marker"></i>' +
@@ -224,8 +258,6 @@ respond.component.map = {
 					
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
-		attrs['data-id'] = id;
 		attrs['class'] = 'respond-map';
 		attrs['data-cssclass'] = '';
 		attrs['data-zoom'] = 'auto';
@@ -254,8 +286,6 @@ respond.component.map = {
 					
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
-		attrs['data-id'] = id;
 		attrs['class'] = 'respond-map';
 		attrs['data-cssclass'] = $(node).attr('class');
 		attrs['data-zoom'] = $(node).attr('zoom');
@@ -270,8 +300,6 @@ respond.component.map = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
-		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['address'] = $(node).find('input').val();
 		attrs['zoom'] = $(node).attr('data-zoom');
 		
@@ -356,154 +384,20 @@ respond.component.form = {
 
 	// builds a field
 	buildField:function(type, label, id, required, helper, placeholder, cssClass, options){
-	
-		// create model from id
-		var model = utilities.toTitleCase(id);
-	
-		// set label
-		var html = '<label for="' + id + '"'; 
-		var prefix = '';
-		
-		if(id != null){
-		
-			// get scope
-			var scope = angular.element($("section.main")).scope();
-			
-			// get pageId
-			prefix = scope.page.PageId + '.';
-		
-			html += 'id="' + id + '-label" ng-i18next="[html]' + prefix + id + '-label">';
-		}
-		else{
-			html += '>';
-		}
-		
-		html += label + '</label>';
-		
-		var req = '';
-		
-		if(required == 'true'){
-			req = ' required';
-		}
-
-		// create textbox
-		if(type=='text'){
-			html += '<input id="' + id + '" name="' + id + 
-					'" type="text" class="form-control" placeholder="'+placeholder+'"' + req +
-					' ng-model="temp.' + model + '"' +
-					'>';
-		}
-
-		// create textarea
-		if(type=='textarea'){
-			html += '<textarea id="' + id + '" name="' + id + '" class="form-control"' + req + 
-					' ng-model="temp.' + model + '"' +
-					'></textarea>';
-		}
-
-		// create select
-		if(type=='select'){
-			html += '<select id="' + id + '" name="' + id + '" class="form-control"' + req + 
-			' ng-model="temp.' + model + '"' +
-			'>';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-			
-				if(id != null){
-					html += '<option id="' + id + '-option' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-option' + (x+1) + '">' + $.trim(arr[x]) + '</option>';
-				}
-				else{
-	  				html += '<option>' + $.trim(arr[x]) + '</option>';
-	  			}
-			}
-
-			html += '</select>'
-		}
-
-		// create checkboxlist
-		if(type=='checkboxlist'){
-			html += '<span class="list">';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-				
-				var val = utilities.toTitleCase($.trim(arr[x]));
-			
-	  			html += '<label class="checkbox"><input name="' + id + '" type="checkbox" value="' + $.trim(arr[x]) + '"' + 
-	  				' ng-model="temp.' + model + '.' + val + 
-	  				'" ng-true-value="' + $.trim(arr[x]) + '"' +
-	  				'" ng-false-value=""' +
-	  				'>';
-	  			
-	  			if(id != null){
-		  			html += '<span id="' + id + '-checkbox' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-checkbox' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create radio list
-		if(type=='radiolist'){
-			html += '<span class="list">';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-	  			html += '<label class="radio"><input name="' + id + '" type="radio" value="' + $.trim(arr[x]) + '" name="' + id + '"' +
-	  				' ng-model="temp.' + model + '"' +
-	  				'>';
-	  			
-	  			if(id != null){
-		  			html += '<span id="' + id + '-radio' + (x+1) + '" ng-i18next="[html]' + prefix + id + '-radio' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create helper
-		if(helper != '') {
-		
-			if(id != null){
-	  			html += '<span id="' + id + '-help" ng-i18next="[html]' + prefix + id + '-help" class="help-block">' + helper + '</span>';
-			}
-			else{
-				html += '<span class="help-block">' + helper + '</span>';
-			}
-	  		
-		}
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
-		attrs['data-id'] = id;
-		attrs['data-model'] = model;
-		attrs['class'] = 'form-group';
-		attrs['data-type'] = type;
-		attrs['data-label'] = label;
-		attrs['data-required'] = required;
-		attrs['data-helper'] = helper;
-		attrs['data-placeholder'] = placeholder;
-		attrs['data-id'] = id;
-		attrs['data-cssclass'] = cssClass;
-		attrs['data-options'] = options;
+		attrs['fieldid'] = id;
+		attrs['type'] = type;
+		attrs['label'] = label;
+		attrs['required'] = required;
+		attrs['helper'] = helper;
+		attrs['placeholder'] = placeholder;
+		attrs['cssclass'] = cssClass;
+		attrs['options'] = options;
 		
 		// return element
-		return utilities.element('div', attrs, html);
+		return utilities.element('respond-form-field', attrs, '');
 		
 	},
 
@@ -545,11 +439,17 @@ respond.component.form = {
 	parse:function(node){
 	
 		// get params
-		var id = $(node).attr('id');
+		var id = $(node).attr('formid');
+		
+		// get old formid
+		if(id == undefined){
+			id = $(node).attr('id');
+		}
 		
 		// build html
 		var html = respond.editor.defaults.elementMenu + '<div class="field-list">';
 		
+		// support for legacy fields
 		var fields = $(node).find('div');
 		
 		for(y=0; y<fields.length; y++){
@@ -558,23 +458,62 @@ respond.component.form = {
 			var type = $(fields[y]).attr('data-type');
 			
 			if(type != null){
-					
 				
 				// get attributes
-				var label = $(fields[y]).attr('data-label') || '';
-				var required = $(fields[y]).attr('data-required') || '';
-				var helper = $(fields[y]).attr('data-helper') || '';
-				var placeholder = $(fields[y]).attr('data-placeholder') || '';
-				var id = $(fields[y]).attr('data-id') || '';
-				var cssClass = $(fields[y]).attr('data-cssclass') || '';
-				var options = $(fields[y]).attr('data-options') || '';
+				var fieldLabel = $(fields[y]).attr('data-label') || '';
+				var fieldRequired = $(fields[y]).attr('data-required') || '';
+				var fieldHelper = $(fields[y]).attr('data-helper') || '';
+				var fieldPlaceholder = $(fields[y]).attr('data-placeholder') || '';
+				var fieldId = $(fields[y]).attr('data-id') || '';
+				var fieldCssClass = $(fields[y]).attr('data-cssclass') || '';
+				var fieldOptions = $(fields[y]).attr('data-options') || '';
 				
 				// build mock element
-				html += respond.component.form.buildMock(type, label, id, required, helper, placeholder, cssClass, options)
+				html += respond.component.form.buildMock(type, fieldLabel, fieldId, fieldRequired, fieldHelper, fieldPlaceholder, fieldCssClass, fieldOptions)
 	
 			}
 			  	
 		}
+		
+		// support respond-form-field
+		var fields = $(node).find('respond-form-field');
+		
+		for(y=0; y<fields.length; y++){
+		
+			// get type
+			var type = $(fields[y]).attr('type');
+			
+			if(type != null){
+				
+				var required = $(fields[y]).get(0).getAttribute('required');
+				
+				if(required == 'required'){
+					required = 'false';
+				}
+				
+				// get params
+				var fieldId = $(fields[y]).attr('fieldid');
+				
+				// get old fieldid
+				if(fieldId == undefined){
+					fieldId = $(fields[y]).attr('id') || '';
+				}
+				
+				// get attributes
+				var fieldLabel = $(fields[y]).attr('label') || '';
+				var fieldRequired = required;
+				var fieldHelper = $(fields[y]).attr('helper') || '';
+				var fieldPlaceholder = $(fields[y]).attr('placeholder') || '';
+				var fieldCssClass = $(fields[y]).attr('cssclass') || '';
+				var fieldOptions = $(fields[y]).attr('options') || '';
+				
+				// build mock element
+				html += respond.component.form.buildMock(type, fieldLabel, fieldId, fieldRequired, fieldHelper, fieldPlaceholder, fieldCssClass, fieldOptions)
+	
+			}
+			  	
+		}
+		
 		
 		html += '</div>';
 		
@@ -597,9 +536,8 @@ respond.component.form = {
 	generate:function(node){
 	
 		var fields = $(node).find('.field-list>div');
-		var html = '<div class="respond-form-fields">';
+		var html = '';
 		    
-		  
   		for(var y=0; y<fields.length; y++){
   			field = $(fields[y]);
   			
@@ -612,14 +550,14 @@ respond.component.form = {
   				field.attr('data-helper') || '', 
   				field.attr('data-placeholder') || '', 
   				field.attr('data-cssclass') || '', 
-  				field.attr('data-options') || '');  				
+  				field.attr('data-options') || '');  			
   		}
   		
-  		html += '</div>';
-	
+  		html += '';
+  		
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
+		attrs['formid'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['type'] = $(node).attr('data-type');
 		attrs['action'] = $(node).attr('data-action');
@@ -717,17 +655,12 @@ respond.component.list = {
 	// creates list
 	create:function(){
 	
-		// generate uniqId
-		var id = respond.editor.generateUniqId('list', 'list');
-		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<div class="title respond-element"><i class="fa fa-cubes"></i> <span node-text="type">Not Selected</span></div>';		
 					
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
-		attrs['data-id'] = id;
 		attrs['class'] = 'respond-list';
 		attrs['data-cssclass'] = '';
 		attrs['data-type'] = '';
@@ -751,7 +684,6 @@ respond.component.list = {
 	parse:function(node){
 		
 		// get params
-		var id = $(node).attr('id');
 		var type = $(node).attr('type');
 		
 		// build html
@@ -760,8 +692,6 @@ respond.component.list = {
 		
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = id;
-		attrs['data-id'] = id;
 		attrs['class'] = 'respond-list';
 		attrs['data-cssclass'] = $(node).attr('class');
 		attrs['data-type'] = $(node).attr('type');
@@ -784,7 +714,6 @@ respond.component.list = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['type'] = $(node).attr('data-type');
 		attrs['display'] = $(node).attr('data-display');

@@ -1,0 +1,209 @@
+<polymer-element name="respond-form" attributes="formid type action success error submit">
+  <template>
+    <style>
+		button{
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+			font-size: 16px;
+		}
+		
+		.success, .error{
+			display: inline-block;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 15px;
+			font-size: 16px;
+			margin: 0 0 0 15px;
+		}
+		
+		.error{
+			border: 1px solid #CF4647;
+			color: #fff;
+			background-color: #CF4647;
+		}
+		
+		.success{
+			border: 1px solid #08B168;
+			color: #fff;
+			background-color: #08B168;
+		}
+		
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 15px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
+    </style>
+    
+    <div id="container">
+    	<form id="{{formid}}">
+    		<content id="content"></content>
+    	</form>
+    </div>
+
+	<button type="button" class="btn btn-primary" 
+		on-click="{{submitForm}}">{{action | i18n}}</button>
+		
+	<template if="{{loading == true}}">
+		<paper-spinner active></paper-spinner>
+	</template>
+	
+	<template if="{{showSuccess == true}}">
+	<span class="success">
+		{{success | i18n}}
+	</span>
+	</template>
+	
+	<template if="{{showError == true}}">
+	<span class="error">
+		{{error | i18n}}
+	</span>
+	</template>
+
+  </template>
+  
+  <script>
+
+  Polymer('respond-form', {
+	  
+	loading: false,
+	showSuccess: false,
+	showError: false,
+  
+	// messges
+	action: 'Submit',
+	success: 'Form submitted successfully',
+	error: 'There was an error submitting your form',
+	
+	// ready
+	ready: function() {
+	
+	},
+	
+	// handles the form submit
+	submitForm: function(event, detail, sender){
+		
+		// init messages
+		this.showSuccess = false;
+		this.showError = false;
+		this.loading = false;
+		
+		// query light DOM in the container
+		var container = this;
+		
+		// select all inputs in the light DOM
+		var groups = container.querySelectorAll('.form-group');
+		
+		// initialize params
+		var params = {};
+		
+		// get page information
+		var pageId = document.body.getAttribute('page');
+		var siteId = respond.site.settings.SiteId;
+		var api = respond.site.settings.API;
+		
+		// add page and site
+		params['pageId'] = pageId;
+		params['siteId'] = siteId;
+		
+		// walk through inputs
+		for(x=0; x<groups.length; x++){
+			
+			// get name, id, type
+			var label = groups[x].getAttribute('data-label');
+			var id = groups[x].getAttribute('data-id');
+			var type = groups[x].getAttribute('data-type');
+			var required = groups[x].getAttribute('data-required');
+			
+			// get value by type
+			var value = '';
+			
+			if(type == 'text'){
+				value = groups[x].querySelector('input').value;
+			}
+			else if(type == 'textarea'){
+				value = groups[x].querySelector('textarea').value;
+			}
+			else if(type == 'radiolist'){
+				var radio = groups[x].querySelector('input[type=radio]:checked');
+				
+				if(radio != null){
+					value = radio.value;
+				}
+			}
+			else if(type == 'select'){
+				value = groups[x].querySelector('select').value;
+			}
+			else if(type == 'checkboxlist'){
+				var checkboxes = groups[x].querySelectorAll('input[type=checkbox]:checked');
+				
+				// create comma separated list
+				for(y=0; y<checkboxes.length; y++){
+					value += checkboxes[y].value + ', ';
+				}
+				
+				// remove trailing comma and space
+				if(value != ''){
+					value = value.slice(0, -2);
+				}
+			}
+			
+			params[id] = value;
+			
+			// check requiref fields
+			if(required == 'true' && value == ''){
+				this.showError = true;
+				$(groups[x]).addClass('has-error');
+			}
+			
+		}
+		
+		// exit if error
+		if(this.showError == true){
+			return false;
+		}
+		
+		// set loading
+		this.loading = true;
+		
+		// set context
+		var context = this;
+		
+		// submit form
+		$.post(api + '/form', $.param(params), function(){
+			context.loading = false;
+			context.showSuccess = true;
+			
+			// clear the form after submit
+			context.clearForm();
+		});
+		
+	},
+	
+	// clears the form on submit
+	clearForm:function(){
+	
+		// query light DOM in the container
+		var container = this;
+		
+		// select all inputs in the light DOM
+		$(container).find('input[type=text]').val('');
+		$(container).find('textarea').val('');
+		$(container).find('input[type=checkbox]').attr('checked', '');
+		$(container).find('input[type=radio]').attr('checked', '');
+		
+	},
+      
+	i18n: function(text){
+		return respond.site.i18n(text);
+	}
+
+    
+  });
+  </script>
+</polymer-element>

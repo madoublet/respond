@@ -1,0 +1,76 @@
+body /deep/ h1, body /deep/ h2, body /deep/ h3, body /deep/ h4, body /deep/ h5{
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 400;
+}
+
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 300;
+}
+
+body /deep/ h1{
+	font-size: config(--h1-font-size);
+	color: config(--h1-color);
+}
+
+body /deep/ h2{
+	font-size: config(--h2-font-size);
+	color: config(--h2-color);
+}
+
+body /deep/ h3{
+	font-size: config(--h3-font-size);
+	color: config(--h3-color);
+}
+
+body /deep/ h4{
+	font-size: config(--h4-font-size);
+	color: config(--h4-color);
+}
+
+body /deep/ h5{
+	font-size: config(--h5-font-size);
+	color: config(--h5-color);
+	font-weight: bold;
+}
+
+body /deep/ p, body /deep/ td, body /deep/ th, body /deep/ small, body /deep/ li, body /deep/ label, body /deep/ input{
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 300;
+}
+
+body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
+	font-size: config(--default-font-size);
+	color: config(--default-color);
+}
+
+body /deep/ a, body /deep/ a:hover{
+  color: config(--default-link-color);
+  text-decoration: none;
+}
+
+body /deep/ a:hover{
+  color: config(--default-link-color);
+  text-decoration: underline;
+}
+
+/* toggle */
+body /deep/ .toggle{
+	float: right;
+  	width: 50px;
+  	height: 50px;
+  	line-height: 50px;
+  	text-align: center;
+  	color: config(--settings-icon-color);
+  	font-size: 18px;
+}
+
+  body /deep/ .toggle:hover{
+      color: config(--settings-icon-color);
+      background-color: #f8f8f8;
+  }
+  
+  	body /deep/ .toggle core-icon{
+      width: 20px;
+      height: 20px;
+    }

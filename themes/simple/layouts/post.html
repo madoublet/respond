@@ -1,22 +1,14 @@
-<respond-settings  ng-if="site.ShowSettings"></respond-settings>
+<respond-languages></respond-languages>
+<respond-cart></respond-cart>
+<respond-search></respond-search> 
 
 <header role="banner">
 
 	<nav class="navbar navbar-default" role="navigation">
       
-       <a 
-           ng-if="site.ShowSettings"
-           ng-click="toggleSettings()"
-           class="settings-toggle"><i class="fa fa-cog"></i></a>
-        
-        <a 
-           ng-if="site.ShowCart"
-           ng-click="toggleCart()"
-           class="cart-toggle"><i class="fa fa-shopping-cart"></i></a>
-        
-        <a 
-           ng-click="toggleSearch()"
-           class="search-toggle"><i class="fa fa-search"></i></a>
+      <respond-search-toggle></respond-search-toggle>
+      <respond-cart-toggle></respond-cart-toggle>
+      <respond-languages-toggle></respond-languages-toggle>
 	  
 	  <div class="navbar-header">
 	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -31,10 +23,7 @@
 	  <!-- /.navbar-header -->
 	
 	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-        <ul class="nav navbar-nav navbar-right">
-			<respond-menu type="primary"></respond-menu>
-	    </ul>
-        
+        <respond-menu type="primary" class="nav navbar-nav navbar-right" render="publish"></respond-menu>
 	  </div>
 	  <!-- /.navbar-collapse -->
       
@@ -42,77 +31,17 @@
 
 </header>
 
-<respond-cart ng-if="site.ShowCart"></respond-cart>
-<respond-search></respond-search> 
-  
 <div id="content" class="container" role="main">
     <respond-content id="main-content" url="{{page.Url}}"></respond-content>
 </div>
 
-<div class="container" role="main">  
-  <div class="blog-meta">
-      <p>
-        {{page.PhotoUrl}}
-        Last modified by
-        <span class="author">{{page.FirstName}} {{page.LastName}}</span>
-        <span class="last-modified-date">{{page.LastModifiedDate}}</span>
-      </p>
-    </div> 
+<div class="container" role="main">
+  	<respond-meta photo="{{page.PhotoUrl}}" first="{{page.FirstName}}" last="{{page.LastName}}" date="{{page.LastModifiedDate}}"></respond-meta>
 </div>
  
 <footer role="contentinfo">
-  
-  <div class="container">
-
-		<div class="row">
-		
-          <div class="col-md-6">
-            
-            <h4>Contact</h4>
-            
-            <p>
-              Call us at (555) 555-5555 or reach out via the website: <a ui-sref="page/contact">Contact</a>
-            </p>
-            
-            <p class="social">
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-google-plus"></i></a>
-              <a href="#"><i class="fa fa-envelope-o"></i></a>
-            </p>
-            
-          </div>
-          <!-- /.col-md-4 -->
-          
-          <div class="col-md-6">
-            
-            <h4>About</h4>
-            
-             <p>
-              {{site.Name}} powered by <a href="http://www.respondcms.com">Respond</a>. Respond is an open source, responsive content management system (CMS) built on AngularJS that you can use to build responsive sites.  The latest version features Bootstrap 3.0, robust themes, a complete REST API, and a beautiful UI.
-            </p>
-            
-          </div>
-			<!-- /.col-md-4 -->
-			
-		</div>
-		<!-- /.row -->
-    
-    	<div class="row">
-        
-          <div class="col-md-12 menu">
-              
-              <ul>
-                <li>Menu:</li>
-				<respond-menu type="footer"></respond-menu>
-              </ul>
-              
-          </div>
-          <!-- /.col-md-12 -->
-          
-    	</div>
-		
-  	</div>
+  	<div class="container">
+  		<respond-content url="component/footer" render="publish"></respond-content>
+	</div>
   	<!-- /.container -->
-  
 </footer>

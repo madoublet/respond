@@ -13,7 +13,7 @@ body h1, body h2, body h3, body h4, body h5{
   font-weight: 300;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input{
   color: #555;
   font-family: 'Roboto', sans-serif;
 }
@@ -44,7 +44,7 @@ body h5{
 	font-weight: bold;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input{
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
@@ -279,6 +279,10 @@ body .navbar{
   	border-radius: 0;
 }
 
+body .navbar ul.nav{
+	margin-right: 10px;
+}
+
 body .navbar-collapse{
 	padding: 0;
 }
@@ -388,104 +392,7 @@ div.map-container{
 	display: block;
 }
 
-/* respond-settings: language + welcome */
-.settings-toggle{
-	float: right;
-  	width: 50px;
-  	height: 50px;
-  	line-height: 50px;
-  	text-align: center;
-  	border-left: 1px solid config(--nav-icon-border-color);
-  	color: config(--nav-icon-color);
-}
-
-.settings-toggle:hover{
-	color: config(--nav-icon-hover-color);
-}
-
-.respond-settings{
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-	display: block;
-	background-color: config(--settings-background-color);
-  	border-bottom: 2px solid config(--settings-border-color);
-  	color: config(--settings-text-color);
-	text-align: right;
-	height: 50px;
-  	line-height: 50px;
-	padding: 0;
-	color: #ccc;
-	margin-top: 0;
-  	width: 100%;
-    font-size: 12px;
-    text-transform: uppercase;
-  	z-index: 5;
-}
-
-	.respond-settings .welcome-message a{
-		display: inline-block;
-		margin-left: 5px;
-	}
-
-	.show-settings .respond-settings{
-		margin-top: 50px;
-		transition: .35s all ease;
-	}
-
-	.respond-settings a{
-      	color: config(--settings-link-color);
-	}
-	
-	.respond-settings .language{
-		display: inline-block;
-		margin-left: 10px;
-	}
-	
-	.respond-settings .language label{
-		color: #888;
-		font-weight: normal;
-		font-size: 12px;
-		margin-right: 5px;
-		color: config(--settings-text-color);
-	}
-	
-	.respond-settings .language select{
-		display: inline-block;
-		width: 75px;
-		font-size: 12px;
-		height: 25px;
-	}
-	
-	.respond-settings ul.select-language{
-		display: inline-block;
-  		margin: 0 10px 0 15px;
-  		padding: 0;
-	}
-	
-	.respond-settings ul.select-language li{
-		display: inline-block;
-		margin: 0 0 0 5px;
-      	text-transform: uppercase;
-      	font-size: 12px;
-	  	color: config(--settings-text-color);
-	}
-
-	.respond-settings ul.select-language li.active a{
-     	background-color: config(--settings-active-background-color); 
-    }
-
-	.respond-settings ul.select-language li a{
-		display: inline-block;
-		cursor: pointer;
-      	padding: 0 10px;
-      	color: config(--settings-link-color);
-	}
-
-.settings-toggle{
-  	cursor: pointer;
-}
-
+/* video */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -502,17 +409,60 @@ div.map-container{
     height: 100%;
 }
 
-/* login, registration look and feel */
-.respond-login, .respond-registration{
-	border: 1px solid #ddd;
-  	border-radius: 20px;
-  	padding: 25px;
-  	max-width: 500px;
+/* fade carousel */
+body .carousel.fade {
+	opacity: 1;
 }
 
-  .respond-login button, .respond-registration button{
-      margin-top: 15px;
-  }
+body .carousel.fade .item {
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    left: 0;
+    opacity: 0;
+    top:0;
+    position:absolute;
+    display:block;
+    z-index:1;
+}
+
+body .carousel.fade .item:first-child {
+    top:auto;
+    position:relative;
+}
+
+body .carousel.fade .item.active {
+    opacity: 1;
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    z-index:2;
+}
+
+body .carousel.fade .left, body .carousel.fade .right{
+	z-index: 10;
+}
+
+/* rtl */
+html[dir=rtl] .navbar-brand{
+	left: auto;
+  	right: 5px;
+}
+
+html[dir=rtl] .navbar-left{
+  	float: right !important
+}
+
+html[dir=rtl] .navbar-right{
+  	float: left !important
+}
+
+html[dir=rtl] body .navbar-toggle{
+  	float: left !important;
+  	margin-left: 10px;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

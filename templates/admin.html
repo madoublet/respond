@@ -9,7 +9,7 @@
 
     <div>
     
-        <div class="listItem" ng-repeat="site in sites">
+        <div class="listItem {{site.Created | toStatusClass:site.Status:setup.trialLength}}" ng-repeat="site in sites">
 
     		<a class="remove"
     			ng-click="showRemoveSite(site)">
@@ -21,8 +21,8 @@
     		</h2>
     		<p><span class="domain"><a ng-href="{{site.Domain}}" target="_blank">{{site.Domain}}</a></span> <span class="domain">{{site.Bucket}}</span></p>
             <em>
-            	<span class="status">{{site.Status}} 
-            		<span ng-if="site.Status=='Trial'" class="days-left">({{site.Created | daysLeft}} {{'days left' | i18next}})</span>
+            	<span class="status">
+            		{{site.Created | toStatus:site.Status:setup.trialLength}}
             	</span>
             	{{'Created' | i18next}} {{site.Created | fromNow}}
             	
@@ -76,7 +76,6 @@
 							class="form-control">
 							<option value="Trial">{{'Trial' | i18next}}</option>
 					    	<option value="Active">{{'Active' | i18next}}</option>
-					    	<option value="Expired">{{'Expired' | i18next}}</option>
 						</select>
 					</div>
 				</div>
@@ -106,7 +105,9 @@
 							ng-model="temp.FileLimit"
 							class="form-control">
 							<option value="10">10 MB</option>
+					    	<option value="50">50 MB</option>
 					    	<option value="100">100 MB</option>
+					    	<option value="500">500 MB</option>
 					    	<option value="1000">1 GB</option>
 					    	<option value="10000">10 GB</option>
 						</select>

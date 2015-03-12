@@ -381,7 +381,7 @@ class Utilities
 		$mail->isHTML(true);
 		
 		$mail->Subject = $subject;
-		$mail->Body = html_entity_decode($content);
+		$mail->Body = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
     
 		if(!$mail->send()) {
 		   return true;
@@ -415,7 +415,7 @@ class Utilities
 		$mail->isHTML(true);
 		
 		$mail->Subject = $subject;
-		$mail->Body    = html_entity_decode($content);
+		$mail->Body    = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
 		
 		echo 'send email';
     

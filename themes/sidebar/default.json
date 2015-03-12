@@ -1,5 +1,16 @@
 [
 	{
+		"url" 			: "component/footer",
+		"source"		: "pages/footer.html",
+		"name"			: "Footer",
+		"description"	: "This is the footer used across pages for your site",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false,
+		"includeOnly"	: true
+	},
+	{
 		"url" 			: "index",
 		"source"		: "pages/home.html",
 		"name"			: "Home",
@@ -10,11 +21,31 @@
 		"footerMenu"	: true
 	},
 	{
+		"url" 			: "thank-you",
+		"source"		: "pages/thank-you.html",
+		"name"			: "Thank you",
+		"description"	: "You have successfully completed your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
+		"url" 			: "cancel",
+		"source"		: "pages/cancel.html",
+		"name"			: "Purchase Cancelled",
+		"description"	: "You have successfully cancelled your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
 		"url" 			: "blog",
 		"source"		: "pages/blog.html",
 		"name"			: "Blog",
 		"description"	: "Your blog contains a list of your blog posts",
-		"layout"		: "blog",
+		"layout"		: "content",
 		"stylesheet"	: "content",
 		"primaryMenu"	: true,
 		"footerMenu"	: true

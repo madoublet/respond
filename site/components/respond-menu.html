@@ -1,0 +1,92 @@
+<polymer-element name="respond-menu" attributes="type standalone">
+  <template>
+  	<content></content>
+  </template>
+  
+  <script>
+
+  Polymer('respond-menu', {
+
+	// ready
+	ready: function() {
+		
+		var context = this;
+		
+		$.get('data/menu-' + this.type + '.json', function(data){
+		
+			// update light DOM with HTML from request
+			var menu = '<ul>';
+			
+			var parentFlag = false;
+			var newParent = true;
+			var pageId = document.body.getAttribute('page');
+			
+			for(x=0; x<data.length; x++){
+				
+				var item = data[x];
+				var css = '';
+				var cssClass = '';
+				
+				// set parentFlage
+				if(data[x+1] != undefined){
+					if(data[x+1].IsNested == 1 && newParent){
+						parentFlag = true;
+					}
+				}
+				
+				// set active class
+				if(item.PageId == pageId){
+					css = 'active';
+				}
+				
+				css += ' ' + item.CssClass;
+			    
+				if(css != ''){
+					cssClass = ' class="' + css + '"';
+				}
+				
+				
+				if(newParent == true && parentFlag == true){
+					menu += '<li class="dropdown">' +
+								'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + item.Name +' <span class="caret"></span></a>' +
+								'<ul class="dropdown-menu">';
+								
+					 newParent = false;
+				}
+				else{
+			    	menu += '<li' + cssClass + '>' + 
+								'<a href="' + item.Url + '">' + item.Name + '</a>' +
+								'</li>';
+			    }
+			    
+			    // end parent
+				if(data[x+1] != undefined){
+					
+					if(data[x+1].IsNested == 0 && parentFlag == true){
+						menu += '</ul></li>'; // end parent if next item is not nested
+						parentFlag = false;
+						newParent = true;
+					}
+					
+				}
+				else{
+					if(parentFlag == true){
+						menu += '</ul></li>'; // end parent if next menu item is null
+						parentFlag = false;
+						newParent = true;
+					}
+				}
+				
+			}
+			
+			menu += '</ul>';
+			
+			context.innerHTML = menu;
+			
+		}); 
+	
+	}
+    
+  });
+  </script>
+</polymer-element>

@@ -65,42 +65,79 @@
 </section>
 <!-- /.main -->
 
-<div class="immersive" id="imagesDialog">
+<div class="modal fade" id="imagesDialog">
 
 	<!-- messages -->
 	<input id="msg-enter-caption" value="{{'Enter caption' | i18next}}" type="hidden">
 	<input id="msg-image-instructions" value="{{'add_content_change_image' | i18next}}" type="hidden">
-
-	<div class="immersive-header">
-		<h3>{{'Select or upload a new image' | i18next}}  <span class="size">{{totalSize}} / {{fileLimit}} MB</h3>
-		<button type="button" class="close" data-dismiss="modal">x</button>
-	</div>
-	<!-- /.modal-header -->
-
-	<div class="immersive-body">
 	
-		<div class="image-list">
+	<div class="modal-dialog">
+	
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>{{'Select or upload a new image' | i18next}} <small>{{totalSize}} / {{fileLimit}} MB</small></h3>
+			</div>
+			<!-- /.modal-header -->
+			
+			<menu>
+    
+		    	<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+				    <span id="load-image">{{'Existing Image' | i18next}}</span>
+				    <span class="caret"></span>
+				  </button>
+				  <ul id="images-dropdown" class="dropdown-menu dropdown-auto" role="menu" aria-labelledby="image-types" data-display="#load-image">
+			  		<li class="active" data-target=".add-existing-image"><a>{{'Existing Image' | i18next}}</a></li>
+					<li data-target=".upload-new-image"><a>{{'Upload new Image' | i18next}}</a></li>
+				  </ul>
+				</div>
+		    </menu>
 		
-		    <div class="image existing" ng-repeat="image in images">
-		        <img 
-		        	ng-src="{{image.thumbUrl}}"
-		        	ng-click="addImage(image)">
-		        <small>
-		            <span>{{image.filename}}</span><br>
-		            <span>{{image.width}}</span>px x <span>{{image.height}}</span>px
-		        </small>
-		    </div>
-		
+			<div class="modal-body">
+				
+				<div class="upload-new-image hidden">
+					<div id="drop" 
+						ng-if="totalSize <= fileLimit"
+						class="dropzone in-dialog" drop-zone target="branding" callback="updateImages()">
+					    <span class="dz-message">
+					        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
+					    </span>
+					</div>
+					<!-- /.dropzone -->
+				</div>
+				<!-- /.add-external-image -->
+			
+				<div class="add-existing-image">
+					<div id="select-image" class="select select-xl">
+						<ul>
+						    <li class="image existing" ng-repeat="image in images" ng-click="addImage(image)">
+						        <img 
+						        	ng-src="{{image.thumbUrl}}" width="100">
+						        <span class="select-block">
+						        	{{image.filename}}
+									<em>{{image.width}}px x {{image.height}}px</em>
+						        </span>
+						    </li>
+						</ul>
+					</div>
+					<!-- /.select -->
+					
+				</div>
+				<!-- /.add-existing-image -->
+				
+			</div>
+			<!-- /.modal-body -->
+			
+			<div class="modal-footer add-external-image hidden">
+				<button class="secondary-button" data-dismiss="modal">{{'Close' | i18next}}</button>
+				<button type="button" class="primary-button" ng-click="addExternalImage()">{{'Add' | i18next}}</button>
+			</div>   
+			 <!-- /.modal-footer -->
+			
 		</div>
-		
-		<div id="drop" 
-			ng-if="totalSize <= fileLimit"
-			class="dropzone in-dialog" drop-zone target="branding" callback="updateImages()">
-		    <span class="dz-message">
-		        <i class="fa fa-cloud-upload fa-4x"></i> {{'Drag file here or click to upload' | i18next}}</span>
-		    </span>
-		</div>
-		<!-- /.dropzone -->
+		<!-- /.modal-conten -->
 	
 	</div>
 	<!-- /.immersive-body -->

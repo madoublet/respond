@@ -1,0 +1,36 @@
+<polymer-element name="respond-video">
+  <template>
+  	
+  	<content></content>
+  	
+  </template>
+  
+  <script>
+
+  Polymer('respond-video', {
+
+	// ready
+	ready: function() {
+		
+		var container = '<div';
+		
+		if(this.id != '' && this.id != undefined){
+			container += ' id="' + this.id + '"';
+		}
+		
+		container += 'class="video-container"';
+		
+		// set class
+		if(this.className != '' && this.className != undefined){
+			container += ' ' + this.className;
+		}
+		
+		container += '>' + this.innerHTML + '</div>';
+		
+		this.innerHTML = container;
+		
+	}
+	
+  });
+  </script>
+</polymer-element>

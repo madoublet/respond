@@ -1,0 +1,171 @@
+<polymer-element name="respond-shelf-item" attributes="productid sku name price shipping">
+  <template>
+    <style>
+    
+    	table{
+	    	width: 100%;
+	    	border-bottom: 1px solid #f0f0f0;
+    	}
+    
+    	td{
+			padding: 10px 5px;
+    	}
+    	
+    	td:first-child{
+	    	padding-left: 0;
+    	}
+    	
+    	td:last-child{
+	    	padding-right: 0;
+    	}
+    
+		td small{
+			display: block;
+		}
+    
+    	button{
+	    	display: inline-block;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			padding: 10px 10px;
+			margin: 0;
+			font-size: 16px;
+			outline: none;
+			font-size: 0.95em;
+			color: #777;
+		}
+		
+		input[type=number]{
+			height: 36px;
+			line-height: 36px;
+			border: 1px solid #ddd;
+			width: 50px;
+			text-align: right;
+		}
+		
+		.name{
+		}
+		
+		.price{
+			text-align: right;
+			width: 100px;
+		}
+		
+		.quantity{
+			text-align: right;
+			width: 50px;
+		}
+		
+		.action{
+			text-align: right;
+			width: 150px;
+		}
+		
+	</style>
+
+	<table>
+		<tr>
+			<td class="name">
+				{{name}}
+			<template if="sku != ''">
+				<small class="sku">{{sku}}</small>
+			</template>
+			<template if="shipping != ''">
+				<small class="shipping">{{shipping}}</small>
+			</template>
+			</td>
+			<td class="price">{{mark}}{{price}} {{currency}}</td>
+			<td class="quantity"><input class="quantity" type="number" value="{{quantity}}"></td>
+			<td class="action"><button on-click="{{addToCart}}">{{label.addToCart | i18n}}</td>
+		</tr>
+	</table>
+
+  </template>
+  
+  <script>
+  Polymer('respond-shelf-item', {
+  
+	  cart: [],
+	  
+	  // labels
+	  label:{
+		  addToCart: 'Add to Cart'
+	  },
+	  
+	  currency: '',
+	  mark: '',
+	  quantity: 1,
+	  
+	  // ready
+	  ready: function(){
+	  
+	  		this.currency = respond.site.settings.Currency;
+	  		
+	  		// set mark
+			if(this.currency == 'USD'){
+				this.mark = '$';
+			}
+			else{
+				this.mark = ' ';
+			}
+	  },
+	  
+	  // adds an item to the cart
+	  addToCart: function(){
+	  
+	  		var cart = [];
+	  
+	  		// get cart from session
+			if(sessionStorage['respond-cart'] != null){
+				var str = sessionStorage['respond-cart'];
+			
+				cart = eval(str);
+			}
+		  
+		  	// create item
+			var item = {
+				sku: this.sku,
+				productid: this.productid,
+				name: this.name,
+				price: parseFloat(this.price),
+				shipping: this.shipping,
+				weight: parseFloat(this.weight),
+				quantity: this.quantity
+			};
+			
+			// has item
+			var newItem = true;
+			
+			// walkthrough quantity
+			for(x=0; x<cart.length; x++){
+				
+				// if it is a duplicate, increase the quantity
+				if(cart[x].productid == item.productid){
+					var quantity = cart[x].quantity;
+					cart[x].quantity = this.quantity + quantity;
+					newItem = false;
+				}
+				
+			}
+			
+			// push item to the cart
+			if(newItem == true){
+				cart.push(item);
+			}
+			
+			// save cart to local storage
+			var json = JSON.stringify(cart);
+			sessionStorage['respond-cart'] = json;
+			
+			// fire cart-updated event
+			this.fire('cart-updated');
+		  
+	  },
+	  
+      i18n: function(text){
+	      return respond.site.i18n(text);
+      }
+	
+  });
+  </script>
+</polymer-element>

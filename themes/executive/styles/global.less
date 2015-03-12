@@ -1,16 +1,3 @@
-/* menu border */
-@menu-background-color: #FFF;
-@menu-link-color: #111;
-
-/* link color */
-@link-color: #3299bb;
-
-/* h1,h2,h3 colors */
-@headline: #555;
-
-@settings-background-color: #aaa;
-@settings-toggle-color: #888;
-
 /* h1,h2,h3 colors */
 body{
 	background: config(--body-background-color) config(--body-background-image) config(--body-background-repeat) config(--body-background-position);
@@ -52,7 +39,7 @@ body h5{
 	color: config(--h5-color);
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
@@ -66,8 +53,14 @@ body p, body blockquote, body label, body td, body th, body li{
   	font-weight: 300;
 }
 
-body a{
+body a, body a:visited{
 	color: config(--default-link-color);	
+	text-decoration: none;
+}
+
+body a:hover{
+	color: config(--default-link-color);	
+	text-decoration: underline;
 }
 
 body input.form-control[type=text], 
@@ -91,8 +84,6 @@ body textarea.form-control{
 }
 
 body button{
-	height: 45px;
-  	line-height: 45px;
   	border-radius: 0 !important;
   	text-transform: uppercase;
   	border-color: #ddd !important;
@@ -101,39 +92,6 @@ body button{
 body button i{
 	color: #ccc;
   	margin-left: 5px;
-}
-
-body p, body td, body th, body li, body label, body input{	
-  font-size: 1.6rem;
-  line-height: 30px;
-}
-
-body h1 {
-  font-size: 40px;
-}
-
-body h2 {
-  font-size: 30px;
-}
-
-body h3 {
-  font-size: 25px;
-}
-
-body p {
-  color: #555;
-}
-
-body a, body a:hover {
-  color: @link-color;
-}
-
-b {
-  color: #3690ae !important;
-}
-
-header{
-	background-color: #3299bb;
 }
 
 /* footer */
@@ -197,6 +155,7 @@ footer{
 	footer p.social a:hover{
 		background-color: #fff;
 	}
+	
 /* navbar */
 body .navbar{
 	background-color: config(--nav-background-color);
@@ -271,6 +230,7 @@ body .navbar li.dropdown b.caret{
 }
 
 body .navbar-toggle{
+  	margin-top: 15px;
 }
 
 body .navbar-toggle span{
@@ -405,107 +365,8 @@ div.map-container{
 .tab-pane.active{
 	display: block;
 }
-	
-/* settings: language + welcome */
-.settings-toggle{
-	float: right;
-  	width: 65px;
-  	height: 65px;
-  	line-height: 65px;
-  	text-align: center;
-  	color: config(--nav-icon-color);
-	cursor: pointer;
-  	border-left: 1px solid config(--nav-border-color);
-}
 
-	.settings-toggle:hover{
-	  	color: config(--nav-icon-hover-color);
-	}
-	
-	.settings-toggle i{
-		font-size: 15px;
-	}
-
-.respond-settings{
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-	display: block;
-	background-color: @settings-background-color;
-  	border-bottom: 2px solid rgba(255,255,255,0.25);
-	text-align: right;
-	height: 50px;
-  	line-height: 50px;
-	padding: 0;
-	color: #ccc;
-	margin-top: 0;
-  	width: 100%;
-    font-size: 12px;
-    text-transform: uppercase;
-  	z-index: 5;
-}
-
-	.respond-settings .welcome-message a{
-		display: inline-block;
-		margin-left: 5px;
-	}
-
-	.show-settings .respond-settings{
-		margin-top: 65px;
-		transition: .35s all ease;
-	}
-
-	.respond-settings a{
-		color: #fff;
-	}
-	
-	.respond-settings .language{
-		display: inline-block;
-		margin-left: 10px;
-	}
-	
-	.respond-settings .language label{
-		color: #888;
-		font-weight: normal;
-		font-size: 12px;
-		margin-right: 5px;
-	}
-	
-	.respond-settings .language select{
-		display: inline-block;
-		width: 75px;
-		font-size: 12px;
-		height: 25px;
-	}
-	
-	.respond-settings ul.select-language{
-		display: inline-block;
-  		margin: 0 10px 0 15px;
-  		padding: 0;
-	}
-	
-	.respond-settings ul.select-language li{
-		display: inline-block;
-		margin: 0 0 0 5px;
-      	text-transform: uppercase;
-      	font-size: 12px;
-      	color: #fff;
-	}
-
-	.respond-settings ul.select-language li.active a{
-     	background-color: rgba(255,255,255,0.25); 
-    }
-
-	.respond-settings ul.select-language li a{
-		display: inline-block;
-		cursor: pointer;
-      	padding: 0 10px;
-	}
-
-.settings-toggle{
-  	cursor: pointer;
-}
-
+/* video settings */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -522,18 +383,60 @@ div.map-container{
     height: 100%;
 }
 
-/* login, registration look and feel */
-.respond-login, .respond-registration{
-	border: 1px solid #ddd;
-  	border-radius: 20px;
-  	padding: 25px;
-  	max-width: 500px;
+/* fade carousel */
+body .carousel.fade {
+	opacity: 1;
 }
 
-  .respond-login button, .respond-registration button{
-      margin-top: 15px;
-  }
+body .carousel.fade .item {
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    left: 0;
+    opacity: 0;
+    top:0;
+    position:absolute;
+    display:block;
+    z-index:1;
+}
 
+body .carousel.fade .item:first-child {
+    top:auto;
+    position:relative;
+}
+
+body .carousel.fade .item.active {
+    opacity: 1;
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    z-index:2;
+}
+
+body .carousel.fade .left, body .carousel.fade .right{
+	z-index: 10;
+}
+
+/* rtl */
+html[dir=rtl] .navbar-brand{
+	left: auto;
+  	right: 0;
+}
+
+html[dir=rtl] .navbar-left{
+  	float: right !important
+}
+
+html[dir=rtl] .navbar-right{
+  	float: left !important
+}
+
+html[dir=rtl] body .navbar-toggle{
+  	float: left !important;
+  	margin-left: 10px;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
@@ -548,8 +451,7 @@ div.map-container{
   		height: 65px;
   		line-height: 65px;
 	}
-
-
+	
 }
 
 /* Medium devices (desktops, 992px and up) */

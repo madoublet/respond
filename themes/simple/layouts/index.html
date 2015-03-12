@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html ng-app="respond.site" lang="{{site.Language}}" dir="{{site.Direction}}">
+<html lang="{{site.Language}}" dir="{{site.Direction}}">
   <head>
     
     <title>{{site.Name}} - {{page.Name}}</title>
@@ -12,54 +12,38 @@
 	<meta name="keywords" content="{{page.Keywords}}">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	
-	<!-- set base for HTML5 mode -->
+    
+    <!-- set base for HTML5 mode -->
     <base href="/">
     
     <!-- icons -->
-    <link rel="icon" 
-          ng-if="site.IconUrl != ''" 
-          href="{{site.IconUrl}}">
-	<meta name="msapplication-TileColor" 
-          ng-if="site.IconBg != ''"
-          content="{{site.IconBg}}">
-    <meta name="msapplication-TileImage" 
-          ng-if="site.IconUrl != ''" 
-          content="{{site.IconUrl}}">
-    <link rel="apple-touch-icon"
-          ng-if="site.IconUrl != ''"
-          href="{{site.IconUrl}}">
+    <link rel="icon" href="{{site.IconUrl}}">
+	<meta name="msapplication-TileColor" content="{{site.IconBg}}">
+    <meta name="msapplication-TileImage" content="{{site.IconUrl}}">
+    <meta name="theme-color" content="{{site.IconBg}}">
+    <link rel="apple-touch-icon" href="{{site.IconUrl}}">
+          
+    <!-- font -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,200,300,400,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
+	<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
     
 	<!-- css -->
-	<link type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
-    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/magnific-popup.css" rel="stylesheet">
-	<link type="text/css" href="css/respond.min.css" ng-href="css/respond.min.css{{timeStamp}}" rel="stylesheet">
- 
+    <link type="text/css" href="css/libs.min.css?t={{timestamp}}" rel="stylesheet">
+	<link type="text/css" href="css/respond.min.css?t={{timestamp}}" rel="stylesheet">
+	<link type="text/css" href="css/components.css?t={{timestamp}}" rel="stylesheet" shim-shadowdom>
+    
+    <!-- js -->
+    <script src="js/libs.min.js?t={{timestamp}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/respond.site.js"></script>
+    
+    <!-- web components -->
+    <script src="components/lib/webcomponentsjs-min/webcomponents.min.js"></script>
+    <link rel="import" href="components/respond-build.html">
+
   </head>
 
-  <!-- entry point for app -->
-  <body ui-view></body>
+  <!-- entry point for site -->
+  <body></body>
     
 </html>
-
- <!-- angular / ui-router -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.min.js"></script>
-
-<!-- jquery -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<!-- bootstrap -->
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-<!-- libs -->
-<!-- Google maps API (for geocoding)  -->
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/i18next/1.6.3/i18next-1.6.3.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment-with-langs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
-
-<!-- app js -->
-<script  src="js/respond.min.js"></script>

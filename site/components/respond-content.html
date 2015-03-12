@@ -1,0 +1,31 @@
+<polymer-element name="respond-content" attributes="url">
+  <template>
+  	<content></content>
+  </template>
+  
+  <script>
+
+  Polymer('respond-content', {
+
+	// ready
+	ready: function() {
+		
+		var url = this.url.replace('/', '.');
+		var context = this;
+		
+		$.get('templates/page/' + url + '.html', function(data){
+		
+			// replace imagesURL with url
+			data = respond.site.replaceAll(data, '{{site.ImagesUrl}}', respond.site.settings.ImagesUrl);
+			data = respond.site.replaceAll(data, '{{site.ImagesURL}}', respond.site.settings.ImagesUrl);
+		
+			// update light DOM with HTML from request
+			context.innerHTML = data;
+			
+		}); 
+	
+	}
+    
+  });
+  </script>
+</polymer-element>

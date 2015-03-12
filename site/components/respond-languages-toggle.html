@@ -1,0 +1,38 @@
+<polymer-element name="respond-languages-toggle">
+  <template>
+    <style>
+		.toggle{
+			display: block;
+			width: 65px;
+		  	height: 65px;
+		  	line-height: 65px;
+		  	text-align: center;
+		  	color: #555;
+		}
+    </style>
+    
+    <template if="{{showLanguages == true}}">
+		<a class="toggle" on-click="{{toggleLanguages}}"><core-icon icon="language"></core-icon></a>
+	</template>
+
+  </template>
+  
+  <script>
+  Polymer('respond-languages-toggle', {
+
+	  // ready
+	  ready: function() {
+		  this.showLanguages = respond.site.settings.ShowLanguages;
+      },
+      
+      // toggle search
+      toggleLanguages: function(){
+	      
+		  // fire search toggle
+		  this.fire('languages-toggled');
+		  
+      }
+	
+  });
+  </script>
+</polymer-element>

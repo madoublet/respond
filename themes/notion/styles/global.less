@@ -13,7 +13,7 @@ body h1, body h2, body h3, body h4, body h5{
   font-weight: 400;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input{
   color: #555;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
@@ -45,7 +45,7 @@ body h5{
 	font-weight: bold;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
+body p, body td, body th, body small, body li, body label, body input{
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
@@ -55,6 +55,12 @@ body p, body blockquote, body label, body td, body th, body li{
 	color: config(--default-color);
 	line-height: 25px;
 }
+
+body a, body a:hover{
+  color: config(--default-link-color);
+  text-decoration: none;
+}
+
 
 p, blockquote, li, button, label{
 	line-height: 25px;
@@ -437,105 +443,7 @@ div.map-container{
 	display: block;
 }
 
-/* settings: language + welcome */
-body .settings-toggle{
-	float: right;
-  	width: 50px;
-  	height: 60px;
-  	line-height: 60px;
-  	text-align: center;
-  	font-size: 18px;
-  	color: config(--nav-icon-color);
-}
-
-  body .settings-toggle:hover{
- 	color: config(--nav-icon-hover-color);
-      background-color: rgba(255,255,255,.25);
-  }
-
-.respond-settings{
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-	display: block;
-	background-color: config(--settings-background-color);
-  	border-bottom: 2px solid config(--settings-border-color);
-  	color: config(--settings-text-color);
-	text-align: right;
-	height: 50px;
-  	line-height: 50px;
-	padding: 0;
-	color: #ccc;
-	margin-top: -60px;
-  	width: 100%;
-    font-size: 12px;
-    text-transform: uppercase;
-  	z-index: 5;
-  	border-top: 1px solid rgba(255,255,255,.25);
-}
-
-	.respond-settings .welcome-message a{
-		display: inline-block;
-		margin-left: 5px;
-	}
-
-	.show-settings .respond-settings{
-		margin-top: 60px;
-		transition: .35s all ease;
-	}
-
-	.respond-settings a{
-      	color: config(--settings-link-color);
-	}
-	
-	.respond-settings .language{
-		display: inline-block;
-		margin-left: 10px;
-	}
-	
-	.respond-settings .language label{
-		color: config(--settings-text-color);
-		font-weight: normal;
-		font-size: 12px;
-		margin-right: 5px;
-	}
-	
-	.respond-settings .language select{
-		display: inline-block;
-		width: 75px;
-		font-size: 12px;
-		height: 25px;
-	}
-	
-	.respond-settings ul.select-language{
-		display: inline-block;
-  		margin: 0 10px 0 15px;
-  		padding: 0;
-	}
-	
-	.respond-settings ul.select-language li{
-		display: inline-block;
-		margin: 0 0 0 5px;
-      	text-transform: uppercase;
-      	font-size: 12px;
-      	color: config(--settings-text-color);
-	}
-
-	.respond-settings ul.select-language li.active a{
-     	background-color: rgba(255,255,255,0.25); 
-    }
-
-	.respond-settings ul.select-language li a{
-		display: inline-block;
-		cursor: pointer;
-      	padding: 0 10px;
-      	color: config(--settings-link-color);
-	}
-
-.settings-toggle{
-  	cursor: pointer;
-}
-
+/* video */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -552,17 +460,71 @@ body .settings-toggle{
     height: 100%;
 }
 
-/* login, registration look and feel */
-.respond-login, .respond-registration{
-	border: 1px solid #ddd;
-  	border-radius: 20px;
-  	padding: 25px;
-  	max-width: 500px;
+/* fade carousel */
+body .carousel.fade {
+	opacity: 1;
 }
 
-  .respond-login button, .respond-registration button{
-      margin-top: 15px;
-  }
+body .carousel.fade .item {
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    left: 0;
+    opacity: 0;
+    top:0;
+    position:absolute;
+    display:block;
+    z-index:1;
+}
+
+body .carousel.fade .item:first-child {
+    top:auto;
+    position:relative;
+}
+
+body .carousel.fade .item.active {
+    opacity: 1;
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    z-index:2;
+}
+
+body .carousel.fade .left, body .carousel.fade .right{
+	z-index: 10;
+}
+
+/* rtl */
+html[dir=rtl] header{
+  text-align: right;
+}
+
+html[dir=rtl] body .navbar-brand{
+  margin:5px 50px 0 0;
+  float: right;
+}
+
+html[dir=rtl] body .toggle-nav{
+  left:auto;
+  right:5px;
+}
+
+html[dir=rtl] body nav{
+  margin-left:0;
+  margin-right:-300px;
+  left:auto;
+  right:0;
+}
+
+html[dir=rtl] body.show-nav nav{
+  margin-right:0;
+}
+
+html[dir=rtl] footer div{
+	text-align: right;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

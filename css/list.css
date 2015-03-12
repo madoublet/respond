@@ -11,6 +11,22 @@ div.list.has-dropzone{
 	margin: 0;
 }
 
+	.listItem.expired{
+		background-color: rgba(201,44,41,.1);
+	}
+	
+	.listItem.expired h2 a, .listItem.expired span a, .listItem.expired span, .listItem.expired em{
+		color: rgba(201,44,41,1);
+	}
+	
+	.listItem.expired .remove{
+		background-color: rgba(201,44,41,1);
+	}
+	
+	.listItem.expired .status{
+		font-weight: bold;
+	}
+
 	div.list.has-photo .listItem{
 		min-height: 105px;
 		padding-left: 105px;

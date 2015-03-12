@@ -1,0 +1,36 @@
+<polymer-element name="respond-shelf" attributes="display">
+  <template>
+    <style>
+		
+		.respond-shelf{
+			margin-bottom: 25px;
+			border-top: 1px solid #f0f0f0;
+		}
+		
+		
+	</style>
+
+	<div class="respond-shelf">
+		<content></content>
+	</div>
+
+  </template>
+  
+  <script>
+  Polymer('respond-shelf', {
+	  
+	  // labels
+	  label:{},
+	  
+	  // ready
+	  ready: function(){
+	
+	  },
+	  
+      i18n: function(text){
+	      return respond.site.i18n(text);
+      }
+	
+  });
+  </script>
+</polymer-element>

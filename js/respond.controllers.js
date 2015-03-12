@@ -39,7 +39,8 @@ angular.module('respond.controllers', [])
 					
 					// set firstLogin
 					$rootScope.firstLogin = data.firstLogin;
-					$rootScope.introShown = false;
+					$rootScope.introTourShown = false;
+					$rootScope.editorTourShown = false;
 					
 					// retrieve site
 					Site.retrieve(function(data){
@@ -229,7 +230,19 @@ angular.module('respond.controllers', [])
 			Site.subscribeWithStripe(token, $scope.temp.plan, $scope.temp.domain,
 				function(data){		// success
 				
-					$state.go('app.thankyou');
+					// update the site
+					Site.retrieve(function(data){
+					
+						message.showMessage('success');
+					
+						// set site in $rootScope, session
+						$rootScope.site = data;
+						$window.sessionStorage.site = JSON.stringify(data);
+						
+						// go to start URL
+						$state.go('app.thankyou');
+							
+					});
 					
 					
 				},
@@ -273,7 +286,7 @@ angular.module('respond.controllers', [])
 		// make sure that x was found
 		if(x == -1){
 			 message.showMessage('error');
-			 console.log('[Respond.error] could not find plan');
+			 console.log('[Triangulate.error] could not find plan');
 			 return;
 		}
 		
@@ -284,7 +297,6 @@ angular.module('respond.controllers', [])
 		var email = $scope.setup.paypalEmail;
 		var currency = $scope.setup.paypalCurrency;
 		var returnUrl = $scope.setup.url + '/app/thankyou';
-		var cancelUrl = $scope.setup.url + '/app/signup';
 		var api = $scope.setup.api;
 		
 		// live url
@@ -297,7 +309,7 @@ angular.module('respond.controllers', [])
 	
 		// set data for transaction
 		var data = {
-			'item_name':		plan.desc + ' (' + $scope.temp.domain + ')',
+			'item_name':		'Triangulate Subscription - ' + plan.desc + ' (' + $scope.temp.domain + ')',
 			'email':			email,
 			'cmd':				'_xclick-subscriptions',
 			'currency_code': 	currency,
@@ -310,9 +322,9 @@ angular.module('respond.controllers', [])
 			'src':				'1',
 			'sra':				'1',
 			'return':			returnUrl + '?thank-you',
-			'cancel_return':	cancelUrl,
-			'notify_url':		api + '/site/subscribe/paypal',
-			'custom':			$rootScope.site.SiteId + '//' + plan.id
+			'cancel_return':	returnUrl + '?cancel',
+			'notify_url':		api + '/transaction/paypal/subscribe',
+			'custom':			$rootScope.site.SiteId
 		};
 	
 		// set logo
@@ -337,23 +349,12 @@ angular.module('respond.controllers', [])
 })
 
 // Thankyou controller
-.controller('ThankyouCtrl', function($scope, $window, $stateParams, $rootScope, $i18next, Setup, Site) {
+.controller('ThankyouCtrl', function($scope, $window, $stateParams, $rootScope, $i18next, Setup) {
 	
 	$rootScope.template = 'thankyou';
 	
 	// setup
 	$scope.setup = Setup;
-	
-	// update the site
-	Site.retrieve(function(data){
-	
-		message.showMessage('success');
-	
-		// set site in $rootScope, session
-		$rootScope.site = data;
-		$window.sessionStorage.site = JSON.stringify(data);
-			
-	});
 })
 
 
@@ -600,7 +601,7 @@ angular.module('respond.controllers', [])
 })
 
 // pages controller
-.controller('PagesCtrl', function($scope, $rootScope, $state, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
+.controller('PagesCtrl', function($scope, $rootScope, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
 
 	// retrieve user
 	$scope.user = $rootScope.user;
@@ -624,10 +625,6 @@ angular.module('respond.controllers', [])
 	
 	if($scope.user.Role == 'Admin'){
 		$scope.canEditTypes = true;
-	}
-	
-	$scope.signUp = function(){
-		$state.go('app.signup');
 	}
 	
 	// sets the pageTypeId
@@ -877,52 +874,21 @@ angular.module('respond.controllers', [])
 		$scope.layouts = data;
 	});
 	
-	// shows the tour
+	// show the intro tour automatically upon initial login
 	$scope.setupTour = function(){
 		
 		// show the intro tour
-		if($rootScope.firstLogin == true && $rootScope.introShown == false){
+		if($rootScope.firstLogin == true && $rootScope.introTourShown == false){
 			tour.intro();
-			$rootScope.introShown = true;
+			$rootScope.introTourShown = true;
 		}
-		
-		// show the expired tour
-		if($scope.isTrialOver() == true){
-			tour.expired();
-		}
-		
 	}
 	
-	// shows the tour
+	// shows the intro tour on demand
 	$scope.showIntro = function(){
 		tour.intro();
 	}
 	
-	// determines if the trial is over
-	$scope.isTrialOver = function(){
-		
-		if($scope.site.Status == 'Trial'){
-		
-			var length = $scope.setup.trialLength;
-			var now = moment.utc();
-	
-	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
-			
-			var difference = length - now.diff(st, 'days');
-			
-			// expired when the difference is less then 0
-			if(difference < 0){
-				return true;
-			}
-			else{
-				return false;
-			}
-			
-		}
-		
-		return false;
-		
-	}
 	
 })
 
@@ -949,7 +915,6 @@ angular.module('respond.controllers', [])
 	$scope.fileLimit = $rootScope.site.FileLimit;
 	$scope.isModified = false;
 	$scope.snippets = null;
-	$scope.site = $rootScope.site;
 	
 	// watch for changes in the block collection
     $scope.$watchCollection('block', function(newValues, oldValues){
@@ -1557,6 +1522,11 @@ angular.module('respond.controllers', [])
 	    			menu: $scope.editorItems
 				});
 
+	setTimeout(function(){
+		$scope.setupTour();
+	}, 1);
+
+
 	// list new images
 	$scope.updateImages = function(){
 		Image.list(function(data){
@@ -1590,6 +1560,60 @@ angular.module('respond.controllers', [])
 		
 		// execute method
 		utilities.executeFunctionByName(fn, window, image);
+	}
+	
+	// add external image
+	$scope.addExternalImage = function(image){
+		
+		var url = $.trim($('#external-image').val());
+		
+		if(url != ''){
+			
+			var fileName = '';
+			var ext = '';
+			
+			var arr = url.split('/');
+			
+			// get filename and extension
+			if(arr.length > 0){
+				var filename = arr[arr.length-1];
+				
+				var arr = filename.split('.');
+				
+				if(arr.length > 0){
+					var ext = arr[arr.length-1];
+				}
+			}
+			
+			// create image
+			var image = {
+				fileName: fileName,
+				fullUrl: url,
+				thumbUrl: url,
+				extension: ext,
+				isImage: true,
+				size: 0,
+				width: -1,
+				height: -1
+			}
+		
+			var plugin = $('#imagesDialog').attr('data-plugin');
+			var action= $('#imagesDialog').attr('data-action');
+			
+			// add or edit the image
+			if(action != undefined && action == 'edit'){
+				var fn = plugin + '.editImage';
+			}
+			else{
+				var fn = plugin + '.addImage';
+			}
+			
+			// set isExternal flag
+			image['isExternal'] = true;
+			
+			// execute method
+			utilities.executeFunctionByName(fn, window, image);
+		}
 	}
 	
 	// list icon
@@ -1646,43 +1670,22 @@ angular.module('respond.controllers', [])
 	$scope.clearProducts = function(){
 	
 		Product.clear($scope.pageId, function(data){});
-	}
-	
-	// enable/disable for trial
-	$scope.disableAfterTrial = function(){
-		
-		// disable after trial
-		if($scope.setup.disableAfterTrial == true){
-			
-			if($scope.site.Status == 'Trial'){
-			
-				var length = $scope.setup.trialLength;
-				var now = moment.utc();
-	    
-		    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
-				
-				var difference = length - now.diff(st, 'days');
-				
-				// expired when the difference is less then 0
-				if(difference < 0){
-					return true;
-				}
-				else{
-					return false;
-				}
-			
-			}
-			else{
-				return false;
-			}
-			
-		}
-		else{
-			return false;
-		}
-		
-		
 	}				
+
+	// show the editor tour automatically during initial user session
+	$scope.setupTour = function(){
+		
+		// show the editor tour
+		if($rootScope.firstLogin == true && $rootScope.editorTourShown == false){
+			tour.editor();
+			$rootScope.editorTourShown = true;
+		}
+	}
+
+	// shows the editor tour on demand
+	$scope.showIntro = function(){
+		tour.editor();
+	}
 
 })
 
@@ -2138,6 +2141,7 @@ angular.module('respond.controllers', [])
 	
 	// set name
 	$scope.setName = function(name){
+		
 		$scope.name = name;
 		
 		// retrieve content for layout
@@ -2184,7 +2188,7 @@ angular.module('respond.controllers', [])
 	
 	// shows the remove file dialog
 	$scope.showRemoveFile = function(file){
-	
+		
 		// set temporary model
 		$scope.temp = file;
 	
@@ -2340,9 +2344,6 @@ angular.module('respond.controllers', [])
 	        // set JSON for tiers
 	        shippingTiers = JSON.stringify(tiers);
 	        
-	        if(Setup.debug)console.log('[respond.debug] Set Shipping Tiers');
-	        console.log(shippingTiers);
-	        
 	        // update model
 	        $scope.site.ShippingTiers = shippingTiers;
         }
@@ -2352,9 +2353,6 @@ angular.module('respond.controllers', [])
         
         Site.save($scope.site, function(){
 	        message.showMessage('success');
-	        
-	        // update site
-	        $rootScope.site = $scope.site;
         },
         function(){
 	     	message.showMessage('error');   

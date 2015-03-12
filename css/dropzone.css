@@ -1,33 +1,39 @@
 .dropzone{
-    position: absolute;
-    top: 113px;
-    right: 0;
-    text-align: center;
-    z-index: 100;
-    width: 200px;
-    height: 100%;
-    border: none !important;
+    position: relative;
+	top: 0;
+	left: 0;
+	margin: 20px;
+	padding: 10px 20px;
+	text-align: center;
 }
-    
+
+.dropzone.in-dialog{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	margin: 0 0 20px 0;
+	padding: 10px 20px;
+}
+
 .dropzone .dz-message{
   cursor: pointer;
   display: block;
   color: #888;
   padding: 0 20px;	
-  color: #fff;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 1.1em;
+  font-size: 13px;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
 }
-
-	.dropzone.in-dialog .dz-message{
-		margin-top: 70px;
-	}
 
 	.dropzone .dz-message i{
 		display: block;
-		color: #fff;
+		color: #888 !important;
 		cursor: pointer;
+		font-size: 40px;
 	}
 
     .dropzone.dark .dz-message, .dropzone.dark .dz-message i{
@@ -195,11 +201,9 @@
 }
 .dropzone {
   border: 1px solid rgba(0,0,0,0.03);
-  min-height: 360px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);
-  padding: 23px;
 }
 .dropzone .dz-default.dz-message {
   opacity: 1;

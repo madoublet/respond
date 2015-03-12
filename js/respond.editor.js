@@ -178,6 +178,18 @@ respond.editor.setupPlugins = function(){
 		
 	});
 	
+	// remove parent of element
+	$(document).on('click', '.element-parent', function(){
+		
+		var el = $(respond.editor.currElement);
+			
+		if(el){
+			el.parent().remove();
+			respond.editor.currElement = null;
+		}
+		
+	});
+	
 	// remove plugin
 	$(document).on('click', '.block-remove', function(){
 	
@@ -725,7 +737,7 @@ respond.editor.setupPersistentEvents = function(){
 			cssClass = ' .block.row';
 		}
 		
-		$(clone).find('.block-actions span').texi18n.t('#'+blockid+cssClass);
+		$(clone).find('.block-actions span').text('#'+blockid+cssClass);
 		
 		// find all blocks in clone
 		var blocks = $(clone).find('.col>div');
@@ -886,7 +898,7 @@ respond.editor.getTranslations = function(content){
 	var temp = $.parseHTML(content);
 	
 	// find any element with the attribute, i18next
-	var els = $(temp).find('[ng-i18next]');
+	var els = $(temp).find('[data-i18n]');
 	
 	var translations = {};
 	

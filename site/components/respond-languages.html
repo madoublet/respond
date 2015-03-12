@@ -1,0 +1,235 @@
+<polymer-element name="respond-languages" attributes="display">
+  <template>
+    <style>
+		
+		.respond-languages{
+		  	position: fixed;
+		  	top: 0;
+		  	left: 0;
+		  	width: 100%;
+		  	padding: 0;
+		    text-transform: uppercase;
+		  	z-index: 100;
+		  	text-align: left;
+		  	margin-top: -350px;
+		  	z-index: 5;
+		  	background-color: #fff;
+		  	z-index: 10000;
+		  	min-height: 70px;
+		  	line-height: auto;
+			transition: .35s all ease;
+			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
+		}
+		
+			.respond-languages.active{
+				margin-top: 0;
+			}
+			
+		/* close search */
+		.respond-languages .close-languages{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			color: #ccc;
+			position: absolute;
+			top: 15px;
+			right: 10px;
+		  	background: none;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		}
+				
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 7px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
+	    
+	    .select-language{
+		    display: inline-block;
+		    padding-left: 15px;
+		    height: 70px;
+		    line-height: 70px;
+	    }
+	    
+	    .select-language label{
+		    display: inline-block;
+		    margin-right: 15px;
+			height: 50px;
+			line-height: 50px;
+			font-size: 0.95em;
+	    }
+	    
+	    .select-language label.direction{
+		    margin-left: 15px;
+	    }
+	    
+	    .select-language a{
+		    display: inline-block;
+			height: 50px;
+			line-height: 50px;
+			margin: 10px 10px 10px 0;
+			padding: 0 15px;
+		}
+		
+		.select-language a.active{
+			border: 1px solid #ddd;
+		}
+		
+		
+    </style>
+
+	<div class="respond-languages {{ {active: display == 'visible'} | tokenList}}">
+	
+		<button class="close-languages" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
+		
+		<div class="select-language">
+			<label>{{label.language | i18n}}</label>
+			
+			<template if="{{loading == true}}">
+				<span class="languages-loading">
+					<paper-spinner active></paper-spinner>
+				</span>
+			</template>
+			
+			<template repeat="{{language in languages}}">
+				<a class="{{ {active: language == currentLanguage } | tokenList}}" on-click="{{setLanguage}}">{{language | i18n}}</a>
+			</template>
+			
+			<label class="direction">{{label.direction | i18n}}</label>
+			
+			<a class="{{ {active: 'ltr' == currentDirection } | tokenList}}" on-click="{{setLtr}}">LTR</a>
+			<a class="{{ {active: 'rtl' == currentDirection } | tokenList}}" on-click="{{setRtl}}">RTL</a>
+		</div>
+		
+	</div>
+
+  </template>
+  
+  <script>
+  Polymer('respond-languages', {
+	  
+	  // labels
+	  label:{
+	  		language: 'Language',
+	  		direction: 'Direction'
+	  },
+	  
+	  // defaults
+	  languages: [],
+	  
+	  display: 'hidden',
+	  loading: false,
+	  
+	  currentLanguage: null,
+	  
+	  // ready
+	  ready: function(){
+		  
+		  	var context = this;
+		  	
+		  	this.currentLanguage = respond.site.settings.Language;
+		  	this.currentDirection = respond.site.settings.Direction;
+		  	
+		  	if(sessionStorage['respond-language'] != null){
+				this.currentLanguage = sessionStorage['respond-language'];
+			}
+			
+			if(sessionStorage['respond-direction'] != null){
+				this.currentDirection = sessionStorage['respond-direction'];
+			}
+			
+		  	// wait for toggle
+		  	var items = document.querySelectorAll('respond-languages-toggle');
+			
+		  	for(x=0; x<items.length; x++){
+			
+			items[x].addEventListener('languages-toggled', function(e) {
+					if(context.display == 'visible'){
+						context.close();
+					}
+					else{
+						context.open();
+					}
+				});
+				  
+			}
+			
+	  },
+	  
+	  // opens the languages
+	  open: function(){
+      
+      	  this.display = 'visible';
+	      this.setAttribute('display', 'visible');
+	      
+	      if(this.languages.length == 0){
+		      
+		      	this.loading = true;
+		      
+		      	// set context
+			  	var context = this;
+			
+				// set params
+				var params = {
+					siteId: respond.site.settings.SiteId
+				}
+				
+				// get languages
+				$.post(respond.site.settings.API + '/translation/list/locales', $.param(params), function(data){
+					
+					context.languages = data;
+					context.loading = false;
+					
+					});
+		  
+		      
+	      }
+	      
+      },
+      
+      // closes the languages
+      close: function(){
+      
+      	  this.display = 'hidden';
+	      this.setAttribute('display', 'hidden');
+	      
+      },
+      
+      // sets the language
+      setLanguage: function(e, d, s){
+	      
+	      var item = e.target.templateInstance.model;
+	      
+	      respond.site.setLanguage(item.language);
+	      
+	      location.reload();
+	      
+      },
+      
+      // set LTR direction
+      setLtr: function(){
+	      respond.site.setDirection('ltr');
+	      
+	      location.reload();
+      },
+      
+      // set RTL direction
+      setRtl: function(){
+	      respond.site.setDirection('rtl');
+	      
+	      location.reload();
+      },
+      
+      i18n: function(text){
+	      return respond.site.i18n(text);
+      }
+	
+  });
+  </script>
+</polymer-element>

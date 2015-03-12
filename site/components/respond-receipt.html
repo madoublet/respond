@@ -1,0 +1,102 @@
+<polymer-element name="respond-receipt">
+  <template>
+  
+  	<style>
+  		table{
+	  		width: 100%;
+	  		border: none;
+	  		border-collapse: collapse;
+  		}
+  		
+  		table thead th{
+  			padding: 5px;
+	  		border-bottom: 1px solid #ddd;
+  		}
+  		
+  		table tbody td{
+  			padding: 5px;
+	  		border-bottom: 1px solid #f0f0f0;
+  		}
+  		
+  		table tbody tr:last-child td{
+	  		border-bottom: none;
+  		}
+  		
+  		table thead th{
+	  		font-weight: bold;
+	  		text-align: left;
+  		}
+  		
+  		table thead th.text-right, table tbody td.text-right{
+	  		text-align: right;
+  		}
+  	</style>
+  	
+  	
+  	<table>
+		<thead>
+			<tr>
+				<th>{{label.item | i18n}}</td>
+				<th class="text-right">{{label.price | i18n}}</th>
+				<th class="text-right">{{label.quantity | i18n}}</th>
+				<th class="text-right">{{label.total | i18n}}</th>
+			</tr>
+		</thead>
+		<tbody id="receipt">
+			
+		</tbody>
+	</table>
+  	
+  </template>
+  
+  <script>
+
+  Polymer('respond-receipt', {
+  
+  	// labels
+	label:{
+	  		item: 'Item',
+	  		price: 'Price',
+	  		quantity: 'Quantity',
+	  		total: 'Total',
+	  		receiptNotAvailable: 'Receipt not available'
+	},
+	
+	receipt: '',
+
+	// ready
+	ready: function() {
+		
+		// get api
+		this.api = respond.site.settings.API;
+		this.processorTransactionId = respond.site.getQueryStringByName('tx');
+		
+		if(this.processorTransactionId != null){
+		
+			// set context
+			var context = this;
+			
+			var params = {
+				processorTransactionId: this.processorTransactionId
+			}
+			
+			// post to API
+			$.post(this.api + '/transaction/receipt', $.param(params), function(data){
+			
+				context.$.receipt.innerHTML = data;
+				
+			}, 'html');	
+			
+		}
+		else{
+			this.$.receipt.innerHTML = '<tr><td colspan="4">' + this.label.receiptNotAvailable + '</td></tr>';
+		}
+	},
+      
+	i18n: function(text){
+	  return respond.site.i18n(text);
+	}
+    
+  });
+  </script>
+</polymer-element>

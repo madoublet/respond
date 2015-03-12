@@ -1,0 +1,405 @@
+<polymer-element name="respond-search" attributes="display">
+  <template>
+    <style>
+		
+		.respond-search{
+		  	position: fixed;
+		  	top: 0;
+		  	left: 0;
+		  	width: 100%;
+		  	padding: 0;
+		    text-transform: uppercase;
+		  	z-index: 100;
+		  	text-align: left;
+		  	margin-top: -350px;
+		  	z-index: 5;
+		  	background-color: #fff;
+		  	z-index: 10000;
+			transition: .35s all ease;
+			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
+		}
+		
+			.respond-search.active{
+				margin-top: 0;
+			}
+			
+		/* close search */
+		.respond-search .close-search{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			color: #ccc;
+			position: absolute;
+			top: 15px;
+			right: 10px;
+		  	background: none;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		}
+		
+		/* close search */
+		.respond-search .search-loading{
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			position: absolute;
+			top: 15px;
+			right: 100px;
+		  	background: none;
+		  	border: none;
+		  	outline: none;
+		  	z-index: 10;
+		}
+		
+		paper-spinner{
+			vertical-align: top;
+			margin-top: 7px;
+			margin-left: 7px;
+		}
+		
+		paper-spinner::shadow .circle {
+	        border-color: #4285f4;
+	    }
+		
+		/* respond-search */
+		.respond-search .search-container{
+		  	position: relative;
+		  	display: block;
+		  	box-sizing: border-box;
+		  	margin: 10px 10px 10px 10px;
+		}
+		
+		.respond-search form{
+			padding: 5px;
+		  	background-color: config(--search-background-color);
+		    border-bottom: 1px solid #ddd;
+		}
+		
+		.respond-search input{
+			font-family: 'Open Sans', sans-serif;
+		  	font-size: 15px;
+			background-color: #fff;
+		  	width: calc(100% - 50px);
+		  	border: 1px solid #ddd;
+		  	height: 40px;
+		  	line-height: 40px;
+		  	outline: none;
+		  	text-indent: 10px;
+		}
+		
+		.respond-search .search-container button.search{
+			position: absolute;
+		  	top: 0;
+		  	right: 50px;
+		  	margin: 0;
+		  	padding: 0 10px;
+		  	background: none;
+		  	border: none;
+		  	color: #ccc;
+		  	height: 40px;
+		  	line-height: 40px;
+		  	outline: none;
+		}
+		
+		.respond-search h4{
+			font-size: 15px;
+		  	line-height: auto;
+		  	margin: 0;
+		  	padding: 10px 10px 2px 10px;
+		}
+		
+		.respond-search small{
+			font-size: 11px;
+		  	margin: 0;
+		  	padding: 0 10px 2px 10px;
+		  	text-transform: uppercase;
+		}
+		
+		.respond-search p{
+			font-size: 13px;
+		  	line-height: 19px;
+		  	margin: 0;
+		  	padding: 0 10px 10px 10px;
+		}
+		
+		.respond-search-results{
+		  	max-height: 275px;
+		  	overflow: auto;
+		  	display: none;
+		}
+		
+			.respond-search-results.active{
+				display: block;
+			}
+		
+		.respond-search ul{
+			margin: 0;
+		  	padding: 0;
+		}
+		
+		.respond-search li{
+		  	font-size: 13px;
+		  	text-transform: uppercase;
+		  	list-style: none;
+		  	text-align: left;
+		  	margin: 0;
+		  	padding: 5px;
+		  	border-bottom: 1px solid #ddd;
+		}
+		
+		.respond-search li p{
+			overflow: hidden;
+		  	text-overflow: ellipsis;
+		  	margin-bottom: 0 !important;
+		}
+		
+		.respond-search li.has-image a{
+			min-height: 70px;
+		}
+		
+		.respond-search li img{
+			float: left;
+		  	width: 50px;
+		  	height: 50px;
+		  	margin-right: 10px;
+		  	margin-top: 5px;
+		}
+		
+		.respond-search li.searching, 
+		.respond-search li.no-results{
+			padding: 10px 20px;
+		    border-top: none;
+		}
+		
+		.respond-search li.searching i{
+			color: config(--search-text-color);
+		}
+		
+		.respond-search li:last-child{
+			border-bottom: none;
+		}
+		
+		.respond-search li.no-results{
+			display: none;
+		}
+		
+		.respond-search li.no-results.active{
+			display: block;
+		}
+		
+		/* rtl */
+		.respond-search.rtl .search-container button.search{
+			right: auto;
+			left: 50px;
+		}
+		
+		.respond-search.rtl .close-search{
+			right: auto;
+			left: 10px;
+		}
+		
+		.respond-search.rtl .search-container input{
+			margin-left: 50px;
+		}
+
+    </style>
+
+	<div class="respond-search {{ {active: display == 'visible'} | tokenList}} {{ {rtl: dir == 'rtl'} | tokenList}}">
+	
+		<button class="close-search" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
+		
+		<template if="{{loading == true}}">
+			<span class="search-loading">
+				<paper-spinner active></paper-spinner>
+			</span>
+		</template>
+		
+		<form class="respond-search-form" on-submit="{{search}}">
+	      <div class="search-container">
+	        <input id="searchText" type="text" autocomplete="off">
+	        <button class="search"><core-icon icon="search"></core-icon></button>
+	      </div>  
+	    </form>  
+		  
+	  	<div class="respond-search-results {{ {active: showResults == true} | tokenList}}">
+		  	
+	  		<ul>
+			  	
+			<template repeat="{{result in results}}">
+				<li>
+					<h4><a href="{{result.Url}}" data-i18next="{{result.PageId}}.name">{{result.Name}}</a></h4>
+				  	<small><a href="{{result.Url}}">{{result.Url}}</a></small>
+				  	<p data-i18next="{{result.PageId}}.description">
+				  		{{result.Description}}
+				  	</p>
+				</li>
+			</template> 
+			 	
+			  	<li class="no-results {{ {active: noResults == true} | tokenList}}">{{label.noResults | i18n}}</li>
+		  	</ul>
+	  	</div>
+	</div>
+
+  </template>
+  
+  <script>
+  Polymer('respond-search', {
+	  
+	  // labels
+	  label:{
+	  		noResults: 'No results found'
+	  },
+	  
+	  // defaults
+	  results: [],
+	  
+	  display: 'hidden',
+	  dir: 'ltr',
+	  loading: false,
+	  showResults: false,
+	  noResults: false,
+	  
+	  // ready
+	  ready: function(){
+		  
+		  	var context = this;
+		  
+		  	// wait for toggle
+		  	var items = document.querySelectorAll('respond-search-toggle');
+			
+		  	for(x=0; x<items.length; x++){
+			
+			items[x].addEventListener('search-toggled', function(e) {
+					if(context.display == 'visible'){
+						context.close();
+					}
+					else{
+						context.open();
+					}
+				});
+				  
+			}
+			
+			// set direction
+			this.dir = respond.site.settings.Direction;
+			
+			if(sessionStorage['respond-direction'] != null){
+				this.dir = sessionStorage['respond-direction'];
+			}
+			
+	  },
+	  
+	  // opens the search
+	  open: function(){
+      
+      	  this.display = 'visible';
+	      this.results = [];
+	      this.showResults = false;
+	      this.$.searchText.value = '';
+	      this.noResults = false;
+	      respond.site.searchVisible = false;
+	      
+	      this.setAttribute('display', 'visible');
+	      
+      },
+      
+      // closes the search
+      close: function(){
+      
+      	  this.display = 'hidden';
+	      this.results = [];
+	      this.showResults = false;
+	      this.$.searchText.value = '';
+	      this.noResults = false;
+	      respond.site.searchVisible = false;
+	      
+	      this.setAttribute('display', 'hidden');
+	      
+      },
+      
+      // performs a search
+      search: function(e, d, s){
+	    
+	    // get search and language  
+	    this.text = this.$.searchText.value;
+	    this.siteId = respond.site.settings.SiteId;
+	    this.language = respond.site.settings.Language;
+	    this.api = respond.site.settings.API;
+	    this.loading = true;
+	    this.showResults = true;
+	    
+	    // set params
+		var params = {
+			siteId: this.siteId,
+			locale: this.language
+		}
+		
+		var context = this;
+		
+		// post to API to get translation file (we will use this to search
+		$.post(this.api + '/translation/retrieve', $.param(params), function(data){
+			
+			context.results = [];
+			
+			// set class for data
+			for(x in data){
+			
+				// pages are stored in objects
+				if(typeof(data[x]) == 'object'){
+				
+					// this is what will be returned
+					var result = {
+						PageId: x,
+						Name: data[x]['name'],
+						Url: data[x]['url'],
+						Description: data[x]['description']
+					}
+					
+					// walk through data[x]
+					for(y in data[x]){
+					
+						var text = data[x][y].toLowerCase();
+					
+						// searh for the term
+						if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
+							
+							// push found pages
+							context.results.push(result);
+							
+							break;
+								
+						}
+		
+					}
+					
+				}
+				
+			}
+			
+			// set noResults
+			if(context.results.length == 0){
+				context.noResults = true;
+			}
+			else{
+				context.noResults = false;
+			}
+			
+			
+			// set loading
+			context.loading = false;
+			
+		});
+	    
+	    e.preventDefault();
+	    return false;
+	    
+      },
+      
+      i18n: function(text){
+	      return respond.site.i18n(text);
+      }
+	
+  });
+  </script>
+</polymer-element>

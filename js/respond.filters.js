@@ -29,7 +29,7 @@ angular.module('respond.filters', [])
     	var now = moment.utc();
     
     	var st = moment.utc(text, 'YYYY-MM-DD HH:mm:ss');
-		
+    	
 		var difference = length - now.diff(st, 'days');
 		
 		if(difference < 0){
@@ -58,5 +58,55 @@ angular.module('respond.filters', [])
 		else return text;
 		
 	}	
+})
+
+.filter('toStatus', function() {
+    return function(text, status, length) {
+    
+    	if(status.toUpperCase() == 'TRIAL'){
+	    	
+	    	var now = moment.utc();
+    
+	    	var st = moment.utc(text, 'YYYY-MM-DD HH:mm:ss');
+	    	
+			var difference = length - now.diff(st, 'days');
+			
+			if(difference < 0){
+				difference = 0;
+				
+				return i18n.t('Expired');
+			}
+			
+			return i18n.t('Trial') + ' (' + difference + ' ' + i18n.t('days left') + ')';
+	    	
+    	}
+    	
+		return i18n.t(status);
+	}
+})
+
+.filter('toStatusClass', function() {
+    return function(text, status, length) {
+    
+    	if(status.toUpperCase() == 'TRIAL'){
+	    	
+	    	var now = moment.utc();
+    
+	    	var st = moment.utc(text, 'YYYY-MM-DD HH:mm:ss');
+	    	
+			var difference = length - now.diff(st, 'days');
+			
+			if(difference < 0){
+				difference = 0;
+				
+				return 'expired';
+			}
+			
+			return 'trial';
+	    	
+    	}
+    	
+		return status.toLowerCase();
+	}
 })
 ;

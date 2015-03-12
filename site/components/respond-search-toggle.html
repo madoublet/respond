@@ -1,0 +1,38 @@
+<polymer-element name="respond-search-toggle">
+  <template>
+    <style>
+		.toggle{
+			display: block;
+			width: 65px;
+		  	height: 65px;
+		  	line-height: 65px;
+		  	text-align: center;
+		  	color: #555;
+		}
+    </style>
+    
+    <template if="{{showSearch == true}}">
+		<a class="toggle" on-click="{{toggleSearch}}"><core-icon icon="search"></core-icon></a>
+	</template>
+
+  </template>
+  
+  <script>
+  Polymer('respond-search-toggle', {
+
+	  // ready
+	  ready: function() {
+		  this.showSearch = true;
+      },
+      
+      // toggle search
+      toggleSearch: function(){
+	      
+		  // fire search toggle
+		  this.fire('search-toggled');
+		  
+      }
+	
+  });
+  </script>
+</polymer-element>

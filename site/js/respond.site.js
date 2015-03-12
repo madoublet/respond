@@ -1,71 +1,145 @@
-// respond app
-// respond.controllers 	-> js/respond.controllers.js
-// respond.factories 	-> js/respond.factories.js
-// respond.directives	-> js/respond.directives.js
-angular.module('respond.site', ['ui.router', 'respond.site.controllers', 'respond.site.factories', 'respond.site.directives', 'jm.i18next'])
+var respond = respond || {};
 
-// disable header during development
-.config(['$httpProvider', function($httpProvider) {
-    //initialize get if not there
-    if (!$httpProvider.defaults.headers.get) {
-        $httpProvider.defaults.headers.get = {};    
-    }
-    //disable IE ajax request caching
-    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
-}])
-
-.config(function($stateProvider, $urlRouterProvider, $locationProvider, $i18nextProvider, $httpProvider) {
-
-	// config $il8nextProvider
-	$i18nextProvider.options = {
-        lng: '{{language}}',
-        getAsync : false,
-        useCookie: false,
-        useLocalStorage: false,
-        fallbackLng: 'en',
-        resGetPath: 'locales/__lng__/__ns__.json',
-        defaultLoadingValue: ''
-    };
-
-	// set authInterceptor
-	$httpProvider.interceptors.push('authInterceptor');
+respond.site = {
 	
-	// set html5 mode
-	{{html5mode}}
-
-	$stateProvider
-
-  	// #begin states
-  	{{states}};
-  	// #end states
-    
-  	// if none of the above states are matched, use this as the fallback
-  	$urlRouterProvider.otherwise('index');
-  	
-})
-
-.run(function($rootScope, $i18next, $window, Site) {
+	// site settings
+	settings: {},
 	
-	// get cart from sessionStorage
-	if(sessionStorage['respond-cart'] != null){
-		var str = sessionStorage['respond-cart'];
+	// options
+	options: null,
 
-		$rootScope.cart = eval(str);
-	}
-	else{
-		$rootScope.cart = [];
-	}
-	
-	// init user
-	$rootScope.user = null;
-	
-	// set user from session storage
-	if($window.sessionStorage.user != null){
-	
-		var str = $window.sessionStorage.user;
-		$rootScope.user = JSON.parse(str);
+	// init respond.site
+	init:function(){
 		
-	}
+		// translate if needed
+		if(sessionStorage['respond-language'] != null){
+			
+			var language = sessionStorage['respond-language'];
+			
+			// translate if the set language is not the default
+			if(language != respond.site.settings.Language){
+				respond.site.translate(language);
+			}
+			
+		}
+		else{
+			sessionStorage['respond-language'] = respond.site.settings.Language;
+		}
+		
+		// set direction
+		if(sessionStorage['respond-direction'] != null){
+			
+			var direction = sessionStorage['respond-direction'];
+			
+			// translate if the set language is not the default
+			if(direction != respond.site.settings.Direction){
+				// set language in html
+				$('html').attr('dir', direction);
+			}
+			
+		}
+		else{
+			sessionStorage['respond-direction'] = respond.site.settings.Direction;
+		}
+		
+		// setup prettyprint
+		prettyPrint();
+		
+	},
+	
+	// translates a page
+	translate:function(language){
+		
+		var els = $('[data-i18n]');
+		
+		for(x=0; x<els.length; x++){
+			var id = $(els[x]).attr('data-i18n');
+			
+			// set id to text if empty
+			if(id == ''){
+				id = $(els[x]).text();
+			}
+			
+			var html = respond.site.i18n(id);
+			
+			$(els[x]).html(html);
+		}
+		
+	},
+	
+	// translates a text string
+	i18n:function(text){
+		
+		// setup i18next (if not setup)
+		if(respond.site.options == null){
+			
+			var language = respond.site.settings.Language
+			
+			if(sessionStorage['respond-language'] != null){
+				language = sessionStorage['respond-language'];
+			}
+			
+			// set language
+			respond.site.options = {
+		        lng: language,
+		        getAsync : false,
+		        useCookie: false,
+		        useLocalStorage: false,
+		        fallbackLng: 'en',
+		        resGetPath: 'locales/__lng__/__ns__.json',
+		        defaultLoadingValue: ''
+		    };
+		
+			i18n.init(respond.site.options);
+			
+		}
+		
+		return i18n.t(text);	
+	},
+	
+	// set current language
+	setLanguage:function(language){
+		
+		i18n.setLng(language, function(t) { /* loading done */ 
+			sessionStorage['respond-language'] = language;
+			respond.site.translate(language);
+		});
+	},
+	
+	// set current direction
+	setDirection:function(direction){
+		
+		sessionStorage['respond-direction'] = direction;
+		
+	},
+	
+	// gets a QueryString by name
+	getQueryStringByName:function(name){
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + name + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if(results == null)
+		    return null;
+		  else
+		    return decodeURIComponent(results[1].replace(/\+/g, " "));
+	},
+	
+	// replaces all occurances for a string
+	replaceAll:function(src, stringToFind, stringToReplace){
+	  	var temp = src;
+	
+		var index = temp.indexOf(stringToFind);
+		
+		while(index != -1){
+			temp = temp.replace(stringToFind,stringToReplace);
+			index = temp.indexOf(stringToFind);
+		}
+		
+		return temp;
+	},
+	
+};
 
-});
-
+// fire init
+$(document).ready(function(){respond.site.init();});

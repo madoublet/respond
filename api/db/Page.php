@@ -371,6 +371,28 @@ class Page{
         }
 	}
 	
+	// edits IncludeOnly
+	public static function SetIncludeOnly($pageId, $includeOnly){
+	
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Pages 
+            		SET IncludeOnly = ? 
+					WHERE PageId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $includeOnly);
+            $s->bindParam(2, $pageId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Page::SetIncludeOnly] PDO Error: '.$e->getMessage());
+        }
+	}
+	
 	// removes a page
 	public static function Remove($pageId){
 		

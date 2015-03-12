@@ -317,7 +317,7 @@ var utilities = {
 		 return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 	},
 	
-	// replaces all occurances for a string
+	// replaces all occurences for a string
 	replaceAll:function(src, stringToFind, stringToReplace){
 	  	var temp = src;
 	
@@ -518,7 +518,7 @@ var utilities = {
 			// get pageId
 			var prefix = scope.page.PageId + '.';
 		
-			el += ' ng-i18next="[html]' + prefix + attrs['id'] + '">';
+			el += ' data-i18n="' + prefix + attrs['id'] + '">';
 		}
 		else{
 			el += '>';

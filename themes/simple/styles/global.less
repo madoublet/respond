@@ -38,6 +38,12 @@ body p, body blockquote, body label, body td, body th, body li{
 	line-height: 25px;
 }
 
+body a, body a:hover{
+  color: config(--default-link-color);
+  text-decoration: none;
+}
+
+
 blockquote{
 	background-color: #f0f0f0;
 }
@@ -252,111 +258,66 @@ div.map-container{
 	display: block;
 }
 
-/* respond-settings: language + welcome */
-.settings-toggle{
-	float: right;
-  	width: 50px;
-  	height: 50px;
-  	line-height: 50px;
-  	text-align: center;
-  	border-left: 1px solid config(--nav-border-color);
-  	color: config(--nav-icon-color);
+/* fade carousel */
+body .carousel.fade {
+	opacity: 1;
 }
 
-.respond-settings{
-	display: block;
-	background-color: config(--settings-background-color);
-	text-align: right;
-	height: 50px;
-  	line-height: 50px;
-	padding: 0 10px;
-	color: config(--settings-text-color);
-	margin-top: -50px;
-  	font-size: 13px;
-}
-
-	.respond-settings .welcome-message a{
-		display: inline-block;
-		margin-left: 5px;
-	}
-
-	.show-settings .respond-settings{
-		margin-top: 0;
-		transition: .35s all ease;
-	}
-
-	.respond-settings a{
-		color: config(--settings-link-color);
-	}
-	
-	.respond-settings .language{
-		display: inline-block;
-		margin-left: 10px;
-	}
-	
-	.respond-settings .language label{
-		color: config(--settings-text-color);
-		font-weight: normal;
-		font-size: 13px;
-		margin-right: 5px;
-	}
-	
-	.respond-settings .language select{
-		display: inline-block;
-		width: 75px;
-		font-size: 12px;
-		height: 25px;
-	}
-	
-	.respond-settings ul.select-language{
-		display: inline-block;
-  		margin: 0 0 0 15px;
-  		padding: 0;
-	}
-	
-	.respond-settings ul.select-language li{
-		display: inline-block;
-		margin: 0 0 0 5px;
-		color: config(--settings-text-color);
-	}
-
-	.respond-settings ul.select-language li.active a{
-     	background-color: config(--settings-active-background-color); 
-    }
-
-	.respond-settings ul.select-language li a{
-		display: inline-block;
-		cursor: pointer;
-      	padding: 0 10px;
-	}
-		
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
-}
- 
-.video-container iframe,
-.video-container object,
-.video-container embed {
-    position: absolute;
-    top: 0;
+body .carousel.fade .item {
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
     left: 0;
-    width: 100%;
-    height: 100%;
+    opacity: 0;
+    top:0;
+    position:absolute;
+    display:block;
+    z-index:1;
 }
 
-/* login, registration look and feel */
-.respond-login, .respond-registration{
-	border: 1px solid #ddd;
-  	border-radius: 20px;
-  	padding: 25px;
-  	max-width: 500px;
+body .carousel.fade .item:first-child {
+    top:auto;
+    position:relative;
 }
 
-  .respond-login button, .respond-registration button{
-      margin-top: 15px;
-  }
+body .carousel.fade .item.active {
+    opacity: 1;
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    z-index:2;
+}
+
+body .carousel.fade .left, body .carousel.fade .right{
+	z-index: 10;
+}
+
+/* rtl */
+html[dir=rtl] .navbar-left{
+  	float:right!important
+}
+
+html[dir=rtl] .navbar-right{
+  	float:left!important
+}
+
+html[dir=rtl] .navbar-brand{
+	position: absolute;
+	float: none;
+  	left: auto;
+  	right:0;
+}
+
+html[dir=rtl] body .navbar-toggle{
+  	float: left !important;
+  	margin-left: 10px;
+}
+
+html[dir=rtl] footer div{
+	text-align: right;
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

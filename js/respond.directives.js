@@ -289,19 +289,27 @@ angular.module('respond.directives', [])
 						}
 					    
 					    // get hex
-					    var hex = color.toHexString();
+					    var colorString = color.toHexString();
 					    
+					    var alpha = color.getAlpha();
+					    
+					    // use rgba for alpha channels
+					    if(alpha < 1){
+						 	var colorString = color.toRgbString();   
+					    }
+					    
+					    // apply
 					    scope.$apply(
 						    function(){
 							    
 							    if(scope.current !== undefined){
-							    	scope.current.selected = color;
+							    	scope.current.selected = colorString;
 							    }
 						    }
 					    )
 
-					    // execute forecolor
-					    document.execCommand('foreColor', false, hex);
+					    // execute forecolor (always hex)
+					    document.execCommand('foreColor', false, color.toHexString());
 					}
         	 	});          
         }

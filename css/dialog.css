@@ -80,30 +80,30 @@
 }
 
 /* images dialog */
-.immersive .image-list{
+.modal .image-list{
 	margin: 0;
 }
 
-.immersive .image-list .image{
+.modal .image-list .image{
     position: relative;
     display: inline-block;
-    margin: 5px;
+    margin: 0 5px 5px 0;
     padding: 0;
     text-align: center;
     color: #fff;
     cursor: pointer;
-    border: 5px solid #333;
+    border: 1px solid #f0f0f0;
 }
 
-    .immersive .image-list .image:hover{
-        border: 5px solid #fff;
+    .modal .image-list .image:hover{
+        border: 1px solid #fff;
     }
     
-    .immersive .image-list .image.existing:hover{
-        border: 5px solid #ff9900;
+    .modal .image-list .image.existing:hover{
+        border: 1px solid #ff9900;
     }
 
-    .immersive .image-list .image img{
+    .modal .image-list .image img{
         width: 200px;
         height: 200px;
         background-color: #fff;
@@ -111,7 +111,7 @@
         padding: 0;
     }
     
-    .immersive .image-list .image small{
+    .modal .image-list .image small{
         position: absolute;
         bottom: 0;
         left: 0;
@@ -124,7 +124,7 @@
         display: none;
     }
     
-        .immersive .image-list .image:hover small{
+        .modal .image-list .image:hover small{
             display: block;
         }
 
