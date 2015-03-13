@@ -13,16 +13,28 @@
 		var url = this.url.replace('/', '.');
 		var context = this;
 		
-		$.get('templates/page/' + url + '.html', function(data){
+		// xhr
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', encodeURI('templates/page/' + url + '.html'));
 		
-			// replace imagesURL with url
-			data = respond.site.replaceAll(data, '{{site.ImagesUrl}}', respond.site.settings.ImagesUrl);
-			data = respond.site.replaceAll(data, '{{site.ImagesURL}}', respond.site.settings.ImagesUrl);
-		
-			// update light DOM with HTML from request
-			context.innerHTML = data;
+		xhr.onload = function() {
+		    if (xhr.status === 200) {
+		    
+		    	var data = xhr.responseText;
+		    
+		        // replace imagesURL with url
+				data = respond.site.replaceAll(data, '{{site.ImagesUrl}}', respond.site.settings.ImagesUrl);
+				data = respond.site.replaceAll(data, '{{site.ImagesURL}}', respond.site.settings.ImagesUrl);
 			
-		}); 
+				// update light DOM with HTML from request
+				context.innerHTML = data;
+				
+		    }
+		    else {
+		        console.log('[respond.error] respond-form component: failed post, xhr.status='+xhr.status);
+		    }
+		};
+		xhr.send(); 
 	
 	}
     

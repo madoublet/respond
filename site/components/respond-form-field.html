@@ -68,10 +68,10 @@
 			for(x=0; x<arr.length; x++){
 			
 				if(id != null){
-					html += '<option id="' + this.fieldid + '-option' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-option' + (x+1) + '">' + $.trim(arr[x]) + '</option>';
+					html += '<option id="' + this.fieldid + '-option' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-option' + (x+1) + '">' + arr[x].trim() + '</option>';
 				}
 				else{
-	  				html += '<option>' + $.trim(arr[x]) + '</option>';
+	  				html += '<option>' + arr[x].trim() + '</option>';
 	  			}
 			}
 
@@ -86,9 +86,9 @@
 
 			for(x=0; x<arr.length; x++){
 				
-				var val = $.trim(arr[x]);
+				var val = arr[x].trim();
 			
-	  			html += '<label class="checkbox"><input name="' + this.fieldid + '" type="checkbox" value="' + $.trim(arr[x]) + '">';
+	  			html += '<label class="checkbox"><input name="' + this.fieldid + '" type="checkbox" value="' + arr[x].trim() + '">';
 	  			
 	  			if(this.fieldid != null){
 		  			html += '<span id="' + this.fieldid + '-checkbox' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-checkbox' + (x+1) + '">';
@@ -97,7 +97,7 @@
 					html += '<span>';
 				}
 	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
+	  			html += arr[x].trim() + '</span></label>';
 			}
 
 			html += '</span>';
@@ -110,7 +110,7 @@
 			var arr = options.split(',');
 
 			for(x=0; x<arr.length; x++){
-	  			html += '<label class="radio"><input name="' + this.fieldid + '" type="radio" value="' + $.trim(arr[x]) + '" name="' + id + '">';
+	  			html += '<label class="radio"><input name="' + this.fieldid + '" type="radio" value="' + arr[x].trim() + '" name="' + id + '">';
 	  			
 	  			if(this.fieldid != null){
 		  			html += '<span id="' + this.fieldid + '-radio' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-radio' + (x+1) + '">';
@@ -119,7 +119,7 @@
 					html += '<span>';
 				}
 	  				
-	  			html += $.trim(arr[x]) + '</span></label>';
+	  			html += arr[x].trim() + '</span></label>';
 			}
 
 			html += '</span>';

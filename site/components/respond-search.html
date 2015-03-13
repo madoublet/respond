@@ -337,59 +337,84 @@
 		
 		var context = this;
 		
-		// post to API to get translation file (we will use this to search
-		$.post(this.api + '/translation/retrieve', $.param(params), function(data){
-			
-			context.results = [];
-			
-			// set class for data
-			for(x in data){
-			
-				// pages are stored in objects
-				if(typeof(data[x]) == 'object'){
-				
-					// this is what will be returned
-					var result = {
-						PageId: x,
-						Name: data[x]['name'],
-						Url: data[x]['url'],
-						Description: data[x]['description']
-					}
-					
-					// walk through data[x]
-					for(y in data[x]){
-					
-						var text = data[x][y].toLowerCase();
-					
-						// searh for the term
-						if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
-							
-							// push found pages
-							context.results.push(result);
-							
-							break;
-								
-						}
+		// submit form
+		var xhr = new XMLHttpRequest();
 		
+		// set URI
+		var uri = this.api + '/translation/retrieve';
+		
+		xhr.open('POST', encodeURI(uri));
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		    if(xhr.status === 200){
+		    	context.results = [];
+			
+				var data = JSON.parse(xhr.responseText);
+			
+				// set class for data
+				for(x in data){
+				
+					// pages are stored in objects
+					if(typeof(data[x]) == 'object'){
+					
+						// this is what will be returned
+						var result = {
+							PageId: x,
+							Name: data[x]['name'],
+							Url: data[x]['url'],
+							Description: data[x]['description']
+						}
+						
+						// walk through data[x]
+						for(y in data[x]){
+						
+							var text = data[x][y].toLowerCase();
+						
+							// searh for the term
+							if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
+								
+								// push found pages
+								context.results.push(result);
+								
+								break;
+									
+							}
+			
+						}
+						
 					}
 					
 				}
 				
-			}
-			
-			// set noResults
-			if(context.results.length == 0){
-				context.noResults = true;
-			}
-			else{
-				context.noResults = false;
-			}
-			
-			
-			// set loading
-			context.loading = false;
-			
-		});
+				// set noResults
+				if(context.results.length == 0){
+					context.noResults = true;
+				}
+				else{
+					context.noResults = false;
+				}
+				
+				
+				// set loading
+				context.loading = false;
+		    }
+		    else if(xhr.status !== 200){
+		    	context.loading = false;
+		        console.log('[respond.error] respond-search component: failed post, xhr.status='+xhr.status);
+		    }
+		};
+		
+		// serialize the data
+	    var qs = [];
+	    
+	    for(p in params){
+		    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+	    }
+	    
+	    qs = qs.join("&");
+	    
+		// send serialized data
+		xhr.send(encodeURI(qs));
 	    
 	    e.preventDefault();
 	    return false;

@@ -78,12 +78,25 @@
 			wrap = true;
 		}
 		
-		// initialize the carousel
-		$('#carousel-' + id).carousel({
-			interval: this.interval,
-			pause: pause,
-			wrap: wrap
+		// defer until jquery is ready
+		function defer(method) {
+		    if(window.$){
+		        method();
+		    }
+		    else{
+		        setTimeout(function() { defer(method) }, 50);
+			}
+		}
+		
+		// initialize the carousel when $ is ready
+		defer(function(){
+			$('#carousel-' + id).carousel({
+				interval: this.interval,
+				pause: pause,
+				wrap: wrap
+			});
 		});
+
 		
 	}
     

@@ -180,14 +180,35 @@
 					siteId: respond.site.settings.SiteId
 				}
 				
-				// get languages
-				$.post(respond.site.settings.API + '/translation/list/locales', $.param(params), function(data){
-					
-					context.languages = data;
-					context.loading = false;
-					
-					});
-		  
+				// set URI
+				var uri = respond.site.settings.API + '/translation/list/locales';
+				
+				var xhr = new XMLHttpRequest();
+				
+				xhr.open('POST', encodeURI(uri));
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.onload = function() {
+				    if(xhr.status === 200){
+				    	context.languages = JSON.parse(xhr.responseText);
+						context.loading = false;
+				    }
+				    else if(xhr.status !== 200){
+				    	context.loading = false;
+				        console.log('[respond.error] respond-languages component: failed post, xhr.status='+xhr.status);
+				    }
+				};
+				
+				// serialize the data
+			    var qs = [];
+			    
+			    for(p in params){
+				    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+			    }
+			    
+			    qs = qs.join("&");
+			    
+				// send serialized data
+				xhr.send(encodeURI(qs));
 		      
 	      }
 	      

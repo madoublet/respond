@@ -25,8 +25,7 @@
 
 	<div class="respond-map">
 		<div id="mapContainer" class="map-container"></div>
-			<p class="map-address"><span>{{address}}</span> 
-			<a id="directions" href="http://maps.google.com/?q={{address}}">{{label.getDirections | i18n}}</a></p>
+			<p class="map-address"><span>{{address}}</span>&nbsp;<a id="directions" href="http://maps.google.com/?q={{address}}">{{label.getDirections | i18n}}</a></p>
 		</div>
 	</div>
 
@@ -88,8 +87,8 @@
 				    });
 		            
 		             // create marker				    
-		            var marktext = $("<div/>").html(content).text();
-				    
+		            var marktext = '<div>' + content + '</div>';
+		            
 				    var marker = new google.maps.Marker({
 				        position: coords,
 				        map: map,

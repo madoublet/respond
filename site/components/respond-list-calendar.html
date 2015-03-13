@@ -359,26 +359,51 @@
 		var context = this;
 		
 		// set params
-		var params2 = {
+		var params = {
 			siteId: this.siteId,
 			type: this.type
 		}
+
+		// submit form
+		var xhr = new XMLHttpRequest();
 		
-		// post to API to get the count of pages
-		$.post(this.api + '/page/published/count', $.param(params2), function(data){
-			
-			context.count = data.count;
-			context.numberOfPages = Math.ceil(data.count / context.pagesize);
-			
-			// show/hide buttons
-			context.showPreviousNext();
-			
-			// build pager
-			for(x = 0; x < (context.count-1); x++){
-				context.pager.push({'title': (x+1)});
-			}
-			
-		});
+		// set URI
+		var uri = this.api + '/page/published/count';
+		
+		xhr.open('POST', encodeURI(uri));
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		    if(xhr.status === 200){
+		    	var data = JSON.parse(xhr.responseText);
+		    
+		    	context.count = data.count;
+				context.numberOfPages = Math.ceil(data.count / context.pagesize);
+				
+				// show/hide buttons
+				context.showPreviousNext();
+				
+				// build pager
+				for(x = 0; x < (context.count-1); x++){
+					context.pager.push({'title': (x+1)});
+				}
+		    }
+		    else if(xhr.status !== 200){
+		    	context.loading = false;
+		        console.log('[respond.error] respond-list-blog component: failed post, xhr.status='+xhr.status);
+		    }
+		};
+		
+		// serialize the data
+	    var qs = [];
+	    
+	    for(p in params){
+		    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+	    }
+	    
+	    qs = qs.join("&");
+	    
+		// send serialized data
+		xhr.send(encodeURI(qs));
 	
 	},
 	
@@ -507,46 +532,75 @@
 		// show/hide buttons
 		context.showPreviousNext();
 		
-		// post to API
-		$.post(this.api + '/page/published/list', $.param(this.params), function(data){
-			
-			// set class for data
-			for(x=0; x<data.length; x++){
+		// set params
+		var params = this.params;
+		
+		// submit form
+		var xhr = new XMLHttpRequest();
+		
+		// set URI
+		var uri = this.api + '/page/published/list';
+		
+		xhr.open('POST', encodeURI(uri));
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		    if(xhr.status === 200){
+		    	var data = JSON.parse(xhr.responseText);
+		    
+		    	// set class for data
+				for(x=0; x<data.length; x++){
+					
+					// set CssClass
+					if(data[x].HasImage == true){
+						data[x].CssClass = 'has-image';
+					}
+					else{
+						data[x].CssClass = '';
+					}
+					
+					// create begin and end
+					var m_begin = moment(data[x].BeginDate, "YYYY-MM-DD HH:mm:ss");
+					var m_end = moment(data[x].EndDate, "YYYY-MM-DD HH:mm:ss");
 				
-				// set CssClass
-				if(data[x].HasImage == true){
-					data[x].CssClass = 'has-image';
+					// create time display
+					var time = m_begin.format('h:mm a') + ' - ' + m_end.format('h:mm a');
+					
+					// create content for event
+					var content = '<div class="event content">' +
+											'<h4><a href="' + data[x].Url + '">' + data[x].Name + '</a></h4>' +
+											'<h5>' + time + '</h5>' +
+											'<p>' + data[x].Description + '</p>' +
+											'</div>';
+					
+					// add a point to the calendar
+					context.addEvent(context.calendar, data[x].BeginDate, data[x].EndDate, content);
+					
 				}
-				else{
-					data[x].CssClass = '';
-				}
 				
-				// create begin and end
-				var m_begin = moment(data[x].BeginDate, "YYYY-MM-DD HH:mm:ss");
-				var m_end = moment(data[x].EndDate, "YYYY-MM-DD HH:mm:ss");
-			
-				// create time display
-				var time = m_begin.format('h:mm a') + ' - ' + m_end.format('h:mm a');
+				// update pages
+				context.pages = data;
 				
-				// create content for event
-				var content = '<div class="event content">' +
-										'<h4><a href="' + data[x].Url + '">' + data[x].Name + '</a></h4>' +
-										'<h5>' + time + '</h5>' +
-										'<p>' + data[x].Description + '</p>' +
-										'</div>';
-				
-				// add a point to the calendar
-				context.addEvent(context.calendar, data[x].BeginDate, data[x].EndDate, content);
-				
-			}
-			
-			// update pages
-			context.pages = data;
-			
-			// set loading
-			context.loading = false;
-			
-		});
+				// set loading
+				context.loading = false;
+		    }
+		    else if(xhr.status !== 200){
+		    	context.loading = false;
+		        console.log('[respond.error] respond-list-blog component: failed post, xhr.status='+xhr.status);
+		    }
+		};
+		
+		// serialize the data
+	    var qs = [];
+	    
+	    for(p in params){
+		    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+	    }
+	    
+	    qs = qs.join("&");
+	    
+		// send serialized data
+		xhr.send(encodeURI(qs));
+		
 		
 	},
 	

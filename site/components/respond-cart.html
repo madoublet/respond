@@ -448,11 +448,10 @@
 			// walk through cart
 			for(x=0; x<this.cart.length; x++){
 			
-				if($.trim(this.cart[x].shipping) == 'shipped'){
+				if(this.cart[x].shipping.trim() == 'shipped'){
 					count = count + this.cart[x].quantity;
-					
 				}
-			
+		
 			}
 		
 			return count;
@@ -644,17 +643,20 @@
 			}
 			
 			// create form with data values
-			var form = $('<form id="paypal-form" action="' + url + '" method="POST"></form');
+			var form = '<form id="paypal-form" action="' + url + '" method="POST">';
 			
 			for(x in data){
-				form.append('<input type="hidden" name="'+x+'" value="'+data[x]+'" />');
+				form += '<input type="hidden" name="'+x+'" value="'+data[x]+'" />';
 			}
 			
-			// append form
-			$('body').append(form);
+			form += '</form>';
+			
+			// append form to body
+			var body = document.querySelector('body');
+			body.insertAdjacentHTML('beforeend', form);
 			
 			// submit form
-			$('#paypal-form').submit();
+			document.getElementById('paypal-form').submit();
 	      
       },
       

@@ -80,12 +80,35 @@
 				processorTransactionId: this.processorTransactionId
 			}
 			
-			// post to API
-			$.post(this.api + '/transaction/receipt', $.param(params), function(data){
+			// submit form
+			var xhr = new XMLHttpRequest();
 			
-				context.$.receipt.innerHTML = data;
-				
-			}, 'html');	
+			// set URI
+			var uri = this.api + '/transaction/receipt';
+			
+			xhr.open('POST', encodeURI(uri));
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+			    if(xhr.status === 200){
+			    	context.$.receipt.innerHTML = xhr.responseText;
+			    }
+			    else if(xhr.status !== 200){
+			    	context.loading = false;
+			        console.log('[respond.error] respond-receipt component: failed post, xhr.status='+xhr.status);
+			    }
+			};
+			
+			// serialize the data
+		    var qs = [];
+		    
+		    for(p in params){
+			    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+		    }
+		    
+		    qs = qs.join("&");
+		    
+			// send serialized data
+			xhr.send(encodeURI(qs));
 			
 		}
 		else{
