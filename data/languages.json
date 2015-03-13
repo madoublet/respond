@@ -14,5 +14,9 @@
 	{
 		"code": "es-ES",
 		"text": "Spanish (es-ES)"
+	},
+	{
+		"code": "sq",
+		"text": "Albanian (sq)"
 	}
 ]
