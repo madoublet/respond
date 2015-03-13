@@ -12,7 +12,7 @@
   "Shipping": "Envío",
   "Total": "Total",
   "Checkout with PayPal": "Pago con PayPal",
-  "Get Directions": "Get Directions",
+  "Get Directions": "Obtener Indicaciones",
   "Submit": "Enviar",
   "Form submitted successfully": "Formulario enviado correctamente",
   "There was an error submitting your form": "Se ha producido un error al enviar el formulario",
@@ -36,7 +36,7 @@
   "Welcome": "Bienvenido",
   "Logout": "Cerrar sesión",
   "Sign In": "Registrarse",
-  "Last modified by": "Última modificación por",
+  "Last modified by": "Ultima modificación por",
   "Direction": "Dirección",
-  "Clear Cart": "claro carrito"
+  "Clear Cart": "Vaciar Cesta"
 }
