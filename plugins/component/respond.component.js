@@ -1493,7 +1493,7 @@ respond.component.menu = {
 		attrs['id'] = id;
 		attrs['data-id'] = $(node).attr('menuid');
 		attrs['data-type'] = $(node).attr('type');
-		attrs['class'] = 'respond-html';
+		attrs['class'] = 'respond-menu';
 		attrs['data-cssclass'] = $(node).attr('class');
 		
 		utilities.element('div', attrs, html)

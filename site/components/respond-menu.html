@@ -24,7 +24,7 @@
 		        // update light DOM with HTML from request
 				var menu = '<ul' +
 						( context.menuid ? ' id="' + context.menuid + '"' : '') +
-						( context.class ? ' class="' + context.class + '"' : '') +
+						( context.className ? ' class="' + context.className + '"' : '') +
 						'>';
  				
 				var parentFlag = false;
@@ -37,7 +37,7 @@
 					var css = '';
 					var cssClass = '';
 					
-					// set parentFlage
+					// set parentFlag
 					if(data[x+1] != undefined){
 						if(data[x+1].IsNested == 1 && newParent){
 							parentFlag = true;
