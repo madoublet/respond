@@ -1,4 +1,4 @@
-<polymer-element name="respond-video">
+<polymer-element name="respond-video" attributes="videoid class">
   <template>
   	
   	<content></content>
@@ -14,18 +14,19 @@
 		
 		var container = '<div';
 		
-		if(this.id != '' && this.id != undefined){
-			container += ' id="' + this.id + '"';
+		// set id
+		if(this.videoid != '' && this.videoid != undefined){
+			container += ' id="' + this.videoid + '"';
 		}
 		
-		container += 'class="video-container"';
+		container += 'class="video-container';
 		
 		// set class
-		if(this.className != '' && this.className != undefined){
-			container += ' ' + this.className;
+		if(this.class != '' && this.class != undefined){
+			container += ' ' + this.class;
 		}
 		
-		container += '>' + this.innerHTML + '</div>';
+		container += '">' + this.innerHTML + '</div>';
 		
 		this.innerHTML = container;
 		

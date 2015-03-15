@@ -1,4 +1,4 @@
-<polymer-element name="respond-menu" attributes="type standalone">
+<polymer-element name="respond-menu" attributes="menuid class type">
   <template>
   	<content></content>
   </template>
@@ -22,8 +22,11 @@
 		    	var data = JSON.parse(xhr.responseText);
 		    
 		        // update light DOM with HTML from request
-				var menu = '<ul>';
-				
+				var menu = '<ul' +
+						( context.menuid ? ' id="' + context.menuid + '"' : '') +
+						( context.class ? ' class="' + context.class + '"' : '') +
+						'>';
+ 				
 				var parentFlag = false;
 				var newParent = true;
 				var pageId = document.body.getAttribute('page');
@@ -92,7 +95,7 @@
 				
 		    }
 		    else {
-		        console.log('[respond.error] respond-form component: failed post, xhr.status='+xhr.status);
+		        console.log('[respond.error] respond-menu component: failed post, xhr.status='+xhr.status);
 		    }
 		};
 		

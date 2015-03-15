@@ -1224,7 +1224,7 @@ respond.component.video = {
 	parse:function(node){
 	
 		// get params
-		var id = $(node).attr('id');
+		var id = $(node).attr('videoid');
 		var description = $(node).attr('description');
 		var code = $(node).html();
 		
@@ -1257,7 +1257,7 @@ respond.component.video = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
+		attrs['videoid'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
 		attrs['description'] = $(node).attr('data-description');
 		
@@ -1465,6 +1465,7 @@ respond.component.menu = {
 		attrs['id'] = id;
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-menu';
+		attrs['data-cssclass'] = '';
 		attrs['data-type'] = '';
 		
 		// append element to the editor
@@ -1490,9 +1491,10 @@ respond.component.menu = {
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = id;
-		attrs['data-id'] = id;
+		attrs['data-id'] = $(node).attr('menuid');
 		attrs['data-type'] = $(node).attr('type');
-		attrs['class'] = 'respond-menu';
+		attrs['class'] = 'respond-html';
+		attrs['data-cssclass'] = $(node).attr('class');
 		
 		utilities.element('div', attrs, html)
 		
@@ -1506,8 +1508,9 @@ respond.component.menu = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
+		attrs['menuid'] = $(node).attr('data-id');
 		attrs['type'] = $(node).attr('data-type');
+		attrs['class'] = $(node).attr('data-cssclass');	
 		attrs['standalone'] = 'true';
 		
 		// return element
