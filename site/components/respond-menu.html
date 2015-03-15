@@ -22,7 +22,7 @@
 		    	var data = JSON.parse(xhr.responseText);
 		    
 		        // update light DOM with HTML from request
-				var menu = '<ul>';
+				var menu = '<ul ' + ( context.className ? 'class="' + context.className + '"' : '')+'>';
 				
 				var parentFlag = false;
 				var newParent = true;
