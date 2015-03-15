@@ -141,6 +141,12 @@ body.home .nested-container.welcome-block a{
 	color: config(--welcome-link-color);
 }
 
+/* rtl */
+html[dir=rtl] body.home .jumbotron a, body .jumbotron a:hover{
+  	margin-left: 0;
+	margin-right: 10px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
