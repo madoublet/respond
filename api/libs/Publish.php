@@ -111,6 +111,7 @@ class Publish
 				'RewriteEngine On'.PHP_EOL.
 				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
 				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
+				'ErrorDocument 404 /page/error'.PHP_EOL.
 				'</IfModule>'.PHP_EOL.
 				'<IfModule mod_expires.c>'.PHP_EOL.
 				'ExpiresActive On '.PHP_EOL.
