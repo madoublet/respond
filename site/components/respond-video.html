@@ -18,14 +18,14 @@
 			container += ' id="' + this.id + '"';
 		}
 		
-		container += 'class="video-container"';
+		container += 'class="video-container';
 		
 		// set class
 		if(this.className != '' && this.className != undefined){
 			container += ' ' + this.className;
 		}
 		
-		container += '>' + this.innerHTML + '</div>';
+		container += '">' + this.innerHTML + '</div>';
 		
 		this.innerHTML = container;
 		
