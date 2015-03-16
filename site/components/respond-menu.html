@@ -20,73 +20,62 @@
 		    if (xhr.status === 200) {
 		    
 		    	var data = JSON.parse(xhr.responseText);
-		    
-		        // update light DOM with HTML from request
-				var menu = '<ul' +
-						( context.menuid ? ' id="' + context.menuid + '"' : '') +
-						( context.className ? ' class="' + context.className + '"' : '') +
-						'>';
- 				
-				var parentFlag = false;
-				var newParent = true;
 				var pageId = document.body.getAttribute('page');
+				var menu = '<ul ' + 
+								( context.className ? 'id="' + context.menuid + '"' : '') +
+								( context.className ? 'class="' + context.className + '"' : '') +
+								'>';
 				
-				for(x=0; x<data.length; x++){
-					
+				var flagActive = false;
+				var flagParent = false;
+				
+				for(x=0; x<data.length; x++) {				
 					var item = data[x];
-					var css = '';
-					var cssClass = '';
 					
-					// set parentFlag
-					if(data[x+1] != undefined){
-						if(data[x+1].IsNested == 1 && newParent){
-							parentFlag = true;
-						}
+					if(data[x+1] != undefined) {
+						if (data[x+1].IsNested == 1) 	flagParent = true;		
 					}
+					if (item.PageId == pageId) 		flagActive = true;
 					
-					// set active class
-					if(item.PageId == pageId){
-						css = 'active';
-					}
-					
-					css += ' ' + item.CssClass;
-				    
-					if(css != ''){
-						cssClass = ' class="' + css + '"';
-					}
-					
-					
-					if(newParent == true && parentFlag == true){
-						menu += '<li class="dropdown">' +
-									'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + item.Name +' <span class="caret"></span></a>' +
-									'<ul class="dropdown-menu">';
-									
-						 newParent = false;
-					}
-					else{
-				    	menu += '<li' + cssClass + '>' + 
+					if (!flagParent) {
+						menu += '<li ' + ( flagActive ? 'class="active"' : '' ) + '>' +
 									'<a href="' + item.Url + '">' + item.Name + '</a>' +
-									'</li>';
-				    }
-				    
-				    // end parent
-					if(data[x+1] != undefined){
-						
-						if(data[x+1].IsNested == 0 && parentFlag == true){
-							menu += '</ul></li>'; // end parent if next item is not nested
-							parentFlag = false;
-							newParent = true;
+								'</li>';
+					} else {
+						var nestedMenu = '';
+
+						for (y=x+1; y<data.length; y++) {
+							var flagNestedActive = false;
+							x=y;
+							var nestedItem = data[y];
+							
+							if (nestedItem.PageId == pageId) {
+								flagNestedActive = true;
+								flagActive = true;
+							}
+
+							nestedMenu += 	'<li ' + ( flagNestedActive ? 'class="active"' : '' ) + '>' +
+										  		'<a href="' + nestedItem.Url + '">' + nestedItem.Name + '</a>' +
+											'</li>';							
+							
+							if(data[y+1] != undefined) {
+								if (data[y+1].IsNested != 1) break;	
+							}
+							
+							flagNestedActive = false;
 						}
+
+						menu += '<li class="dropdown ' + ( flagActive ? 'active' : '' ) + '">' +
+									'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + item.Name +' <span class="caret"></span></a>' +
+									'<ul class="dropdown-menu">' +
+										nestedMenu +
+									'</ul>' +					
+								'</li>';						
 						
 					}
-					else{
-						if(parentFlag == true){
-							menu += '</ul></li>'; // end parent if next menu item is null
-							parentFlag = false;
-							newParent = true;
-						}
-					}
-					
+					 
+					flagActive = false;
+					flagParent = false;						
 				}
 				
 				menu += '</ul>';
