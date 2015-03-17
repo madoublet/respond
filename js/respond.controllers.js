@@ -12,6 +12,13 @@ angular.module('respond.controllers', [])
 	$scope.friendlyId = $stateParams.id;
 	$window.sessionStorage.loginId = $stateParams.id;
 	
+	// set system message
+	$scope.showSystemMessage = false;
+	
+	if(Setup.systemMessage != ''){
+		$scope.showSystemMessage = true;
+	}
+	
 	// login
 	$scope.login = function(user){
 	
@@ -454,6 +461,13 @@ angular.module('respond.controllers', [])
 		interval: false,
 		wrap: true
 	});
+	
+	// set system message
+	$scope.showSystemMessage = false;
+	
+	if(Setup.systemMessage != ''){
+		$scope.showSystemMessage = true;
+	}
 	
 	// determine timezone
 	var tz = jstz.determine();
@@ -1136,6 +1150,7 @@ angular.module('respond.controllers', [])
 			Translation.add(pageId, 'name', $scope.page.Name);
 			Translation.add(pageId, 'url', $scope.page.Url);
 			Translation.add(pageId, 'description', $scope.page.Description);
+			Translation.add(pageId, 'includeOnly', $scope.page.IncludeOnly);
 			
 			// walkthrough translations
 			for(var key in translations){
@@ -1475,9 +1490,17 @@ angular.module('respond.controllers', [])
 	// retrieve pre-cached editor items
 	$scope.editorItems = $rootScope.editorItems;
 	
-	// setup flipsnap
-	var fs = Flipsnap('.editor-actions div', {distance: 400, maxPoint:3});
-    
+	// setup fs
+	var fs = null;
+		
+	// for ltr
+	if($('html[dir=rtl]').length > 0){
+		fs = Flipsnap('.editor-actions div', {distance: -400, maxPoint:3});
+	}
+	else{
+		fs = Flipsnap('.editor-actions div', {distance: 400, maxPoint:3});
+	}
+	
     $('.fs-next').on('click', function(){
         fs.toNext(); 
         
@@ -1512,7 +1535,8 @@ angular.module('respond.controllers', [])
         else{
             $('.fs-next').hide();
         }
-    }); 
+    });
+	 
     
     // setup editor
 	var editor = respond.editor.setup({

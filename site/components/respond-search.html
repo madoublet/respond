@@ -357,29 +357,45 @@
 					// pages are stored in objects
 					if(typeof(data[x]) == 'object'){
 					
-						// this is what will be returned
-						var result = {
-							PageId: x,
-							Name: data[x]['name'],
-							Url: data[x]['url'],
-							Description: data[x]['description']
+						var includeOnly = false;
+					
+						// set include only
+						if(data[x]['includeOnly'] != undefined && data[x]['includeOnly'] != null){
+							
+							if(data[x]['includeOnly'] == 1){
+								includeOnly = true;
+							}
+							
 						}
 						
-						// walk through data[x]
-						for(y in data[x]){
-						
-							var text = data[x][y].toLowerCase();
-						
-							// searh for the term
-							if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
-								
-								// push found pages
-								context.results.push(result);
-								
-								break;
-									
+						// check for results in non-includeOnly pages
+						if(includeOnly == false){
+					
+							// this is what will be returned
+							var result = {
+								PageId: x,
+								Name: data[x]['name'],
+								Url: data[x]['url'],
+								Description: data[x]['description']
 							}
-			
+							
+							// walk through data[x]
+							for(y in data[x]){
+							
+								var text = data[x][y].toLowerCase();
+							
+								// searh for the term
+								if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
+									
+									// push found pages
+									context.results.push(result);
+									
+									break;
+										
+								}
+				
+							}
+						
 						}
 						
 					}
