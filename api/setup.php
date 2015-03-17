@@ -16,6 +16,9 @@
 	// Copyright and default email
 	define('COPY', 'Made by Matthew Smith in Manchester, MO');
 	define('EMAIL', 'sample@adminemail.com');
+	
+	// system message (shown at login if not blank)
+	define('SYSTEM_MESSAGE', '');
 
 	// DB connection parameters
 	define('DB_HOST', 'localhost');

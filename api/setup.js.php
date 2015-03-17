@@ -2,7 +2,16 @@
 	include 'app.php';
 	
 	$arr = Array(false => 'false', true => 'true');
+	
+	// get plans
 	$plans = file_get_contents(APP_LOCATION.'data/plans.json');
+	
+	// get system message
+	$system_message = '';
+	
+	if(defined('SYSTEM_MESSAGE')){
+		$system_message = SYSTEM_MESSAGE;
+	}
 	
 	header("content-type: application/javascript"); 
 	
@@ -63,6 +72,9 @@ angular.module('respond.setup', [])
 	disableAfterTrial:		<?php print $arr[DISABLE_AFTER_TRIAL]; ?>,
 	
 	// themes 
-	themes:					'<?php print THEMES_FOLDER; ?>'
+	themes:					'<?php print THEMES_FOLDER; ?>',
+	
+	// system message
+	systemMessage:			'<?php print $system_message; ?>'
 	
 });
