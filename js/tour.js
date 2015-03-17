@@ -435,7 +435,7 @@ var tour = {
 		  classes: 'pull-front no-arrow',
 		  buttons: [
 		    {
-		      text: i18n.t('Let\'s Do This!'),
+		      text: i18n.t("Let's Do This!"),
 		      classes: 'shepherd-button-primary',
 		      action: function() {
 		        return tour.hide();

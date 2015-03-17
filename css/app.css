@@ -1622,6 +1622,22 @@ body.configure > .ng-scope, body.configure > .ng-scope > div.ng-scope {
 .allow-breaks{
 	white-space: pre;
 }	
+
+/* system message */
+.system-message{
+	display: block;
+	text-align: center;
+	background-color: #8FBE00;
+	color: #fff;
+	padding: 10px 0;
+}
+
+	.system-message p{
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+		font-size: 13px;
+	}
 	
 /* Large desktop */
 @media (min-width: 1200px) { }

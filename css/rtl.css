@@ -373,19 +373,6 @@ html[dir=rtl] .immersive-header button.close{
 	left: 0;
 }
 
-html[dir=rtl] body.files .dropzone{
-	top: 113px;
-	right: auto;
-	left: 0;
-	background: rgba(0,0,0,0.08);
-	width: 220px;
-}
-
-html[dir=rtl] body.files div.list.has-dropzone{
-	margin-right: 0;
-	margin-left: 220px;
-}
-
 html[dir=rtl] body.files section.main nav h2{
 	direction: ltr;
 }
