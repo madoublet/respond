@@ -1,4 +1,7 @@
 {
+    "config": {
+        "vendor-dir": "api/vendor"
+    },
     "require": {
     	"phpmailer/phpmailer": "5.2.8",
     	"peej/tonic": "3.2",
