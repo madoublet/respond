@@ -25,7 +25,30 @@
 				active = ' active';
 			}
 			
-			imagesHtml += '<div class="item' + active + '"><img src="' + images[x].src + '"></div>';
+			// get caption
+			var headline = images[x].getAttribute('data-headline') || '';
+			var caption = images[x].getAttribute('data-caption') || '';
+			var button = images[x].getAttribute('data-button') || '';
+			var link = images[x].getAttribute('data-link') || '';
+			
+			// set caption
+			var container = '<div class="contaner"><div class="carousel-caption">';
+			
+			if(headline != ''){
+				container += '<h1>' + headline + '</h1>';
+			}
+			
+			if(caption != ''){
+				container += '<p>' + caption + '</p>';
+			}
+			
+			if(button != ''){
+				container += '<p><a class="btn btn-lg btn-default" href="' + link + '">' + button + '</a></p>';
+			}
+			
+			container += '</div></div>';
+			
+			imagesHtml += '<div class="item' + active + '"><img src="' + images[x].src + '">' + container + '</div>';
 			indicatorsHtml += '<li data-target="#carousel-' + this.slideshowid + '" data-slide-to="' + x + '" class="' + active + '"></li>';
 			
 			if(Boolean(this.indicators) == false){

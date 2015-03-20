@@ -846,8 +846,8 @@
 	
 	.editor .block .respond-slideshow button{
 		vertical-align: top;
-		width: 87px;
-		height: 110px;
+		width: 202px;
+		height: 202px;
 		background: #fff;
 		border: 1px solid #f0f0f0;
 		cursor: pointer;
@@ -873,9 +873,7 @@
 	.editor .block .respond-slideshow span.image{
 		display: inline-block;
 		margin: 0 5px 5px 5px;
-		padding: 5px 5px 30px 5px;
 		margin: 0 5px 0 0;
-		border: 1px solid #f0f0f0;
 		background: #f8f8f8;
 		position: relative;
 		vertical-align: top;
@@ -887,8 +885,13 @@
 	}
 	
 	.editor .block .respond-slideshow span.image img{
-		width: 75px;
-		height: 75px;
+		border: 1px solid #f0f0f0;
+		width: 200px;
+		height: 200px;
+	}
+	
+	.editor .block .respond-slideshow span.image img.current-element{
+		border: 1px solid #3299bb;
 	}
 	
 	.editor .block .respond-slideshow span.image span.caption{
@@ -921,43 +924,6 @@
 	.editor .block .respond-slideshow span.image span.caption input:focus{
 		width: 220px;
 		font-size: 13px;
-	}
-	
-	.editor .block .respond-slideshow span.editor-highlight{
-		display: inline-block;
-		width: 75px;
-		height: 75px;
-		margin: 0 5px;
-		padding: 5px 5px 20px 5px;
-		margin: 0 5px 0 0;
-		border: 1px solid #fbec5d !important;
-		background: #fbec5d !important;
-		vertical-align: top;
-	} 
-	
-	.editor .block .respond-slideshow span.image .remove-image{
-		position: absolute;
-		top: 5px;
-		right: 5px;  
-		width: 25px !important;
-		height: 25px !important;
-		border: none !important;
-		background: #f8f8f8;
-		text-align: center;
-		line-height: 25px;
-		font-size: 1.0em;
-		color: #fff;
-		text-decoration: none;
-		border: none !important;
-	}
-	
-	.editor .block .respond-slideshow span.image .remove-image:hover{
-		color: #B11623;
-	}
-	
-	.editor .block .respond-slideshow>div{
-		color: #808080;
-		border: none;
 	}
 	
 	/* handle hr */

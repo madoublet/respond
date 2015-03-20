@@ -76,6 +76,71 @@
 	
 	</div>
 	<!-- /.context-block -->
+	
+	<div class="context-body">
+
+	<h2>{{'Slide' | i18next}} <a class="element-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		
+		<div class="form-group">
+			<label for="field-headline">{{'Headline' | i18next}}</label>
+			<input name="field-headline" type="text" maxlength="128" class="form-control" 
+				ng-model="element.headline">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-caption">{{'Caption' | i18next}}</label>
+			<input name="field-caption" type="text" maxlength="128" class="form-control" 
+				ng-model="element.caption">
+		</div>
+		
+		<div class="form-group">
+			<label for="field-button">{{'Button' | i18next}}</label>
+			<input name="field-button" type="text" maxlength="128" class="form-control" 
+				ng-model="element.button">
+		</div>
+		
+		<div class="form-group">
+			<label for="link">{{'Link' | i18next}}</label>
+			<input name="link" type="text" maxlength="128" class="form-control" 
+				ng-model="element.link">
+			
+			
+				<div class="input-select">
+				    <button class="btn dropdown-toggle" data-toggle="dropdown">
+				      <i class="fa fa-file"></i>
+				    </button>
+				    <ul class="dropdown-menu dropdown-menu-right">
+				    	<li ng-repeat="page in pages">
+				    		<a data-value="{{page.Url}}">
+							{{page.Name}}
+							<small>{{page.Url}}</small>
+				    		</a>
+						</li>
+				    </ul>
+				</div>
+				
+				<!--
+				<div class="input-select option2">
+				    <button class="btn dropdown-toggle" data-toggle="dropdown">
+				      <i class="fa fa-folder-open"></i>
+				    </button>
+				    <ul class="dropdown-menu dropdown-menu-right">
+				    	<li ng-repeat="file in files">
+				    		<a data-value="{{file.fullUrl}}" title="{{file.fullUrl}}">
+							{{file.filename}}
+							<small>{{file.fullUrl}}</small>
+				    		</a>
+						</li>
+				    </ul>
+				</div> -->
+		</div>
+			
+	</div>
+	<!-- /.context-block -->
+
 
 </div>
 <!-- /.context-body -->

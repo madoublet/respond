@@ -69,9 +69,7 @@ respond.component.slideshow = {
 		var node = $(respond.editor.currNode);
 		
 		// build html
-		var html = '<span class="image"><img src="' + image.fullUrl + '" title="" data-location="' + location + '">' +
-				   '<span class="caption"><input type="text" value="" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140"></span>' +
-				   '<a class="remove-image fa fa-minus-circle"></a></span>';
+		var html = '<span class="image"><img class="respond-element" src="' + image.fullUrl + '" title="" data-location="' + location + '"></span>';
 				   
 		$(node).find('.images').append(html);
 		
@@ -143,6 +141,10 @@ respond.component.slideshow = {
 			var title = $(imgs[y]).attr('title');
 			var src = $(imgs[y]).attr('src');
 			var location = $(imgs[y]).attr('data-location');
+			var headline = $(imgs[y]).attr('data-headline') || '';
+			var caption = $(imgs[y]).attr('data-caption') || '';
+			var button = $(imgs[y]).attr('data-button') || '';
+			var link = $(imgs[y]).attr('data-link') || '';
 	
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
@@ -153,15 +155,15 @@ respond.component.slideshow = {
 			// replace the images URL with the URL from the site
 			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
 			
-			var image = '<img src="' + src + '" title="' + title + '" data-location="' + location + '">';
+			var image = '<img class="respond-element" src="' + src + '" title="' + title + '" ' + 
+				'data-headline="' + headline + '" ' +
+				'data-caption="' + caption + '" ' +
+				'data-button="' + button + '" ' +
+				'data-link="' + link + '" ' +
+				'data-location="' + location + '">';
 			
 			// build html
-			html +=	'<span class="image">' + image + 
-					'<span class="caption">' +
-					'<input type="text" value="' + title + '" placeholder="' + i18n.t('Enter caption') + '" maxwidth="140">' +
-					'</span>' +
-					'<a class="remove-image fa fa-minus-circle"></a>' +
-					'</span>';
+			html +=	'<span class="image">' + image + '</span>';
 		
 		}			
 
@@ -205,6 +207,11 @@ respond.component.slideshow = {
   			if(location == undefined || location == null){
 	  			location = 'local';
   			}
+  			
+  			var headline = $(imgs[y]).attr('data-headline');
+  			var caption = $(imgs[y]).attr('data-caption');
+  			var button = $(imgs[y]).attr('data-button');
+  			var link = $(imgs[y]).attr('data-link');
   		
   			if(location == 'local'){
 	  			// removes the domain from the img
@@ -213,10 +220,20 @@ respond.component.slideshow = {
 			  		src = 'files/' + parts[1];
 		  		}
 	  			
-	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" data-location="local">';
+	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" ' + 
+	  							'data-headline="' + headline + '" ' +
+								'data-caption="' + caption + '" ' +
+								'data-button="' + button + '" ' +
+								'data-link="' + link + '" ' +
+	  							'data-location="local">';
   			}
   			else{
-	  			var image = '<img src="' + src + '" title="' + title + '" data-location="external">';
+	  			var image = '<img src="' + src + '" title="' + title + '" ' + 
+	  							'data-headline="' + headline + '" ' +
+								'data-caption="' + caption + '" ' +
+								'data-button="' + button + '" ' +
+								'data-link="' + link + '" ' +
+	  							'" data-location="external">';
   			}
   			
 			html += '<div>' + image + '</div>';
