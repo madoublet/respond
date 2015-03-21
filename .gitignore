@@ -9,8 +9,8 @@ info.php
 themes/premium
 themes/premium/*
 
-api/composer.lock
-api/composer.phar
+composer.lock
+composer.phar
 api/vendor
 api/vendor/*
 
