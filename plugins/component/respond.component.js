@@ -145,6 +145,7 @@ respond.component.slideshow = {
 			var caption = $(imgs[y]).attr('data-caption') || '';
 			var button = $(imgs[y]).attr('data-button') || '';
 			var link = $(imgs[y]).attr('data-link') || '';
+			var cssclass = $(imgs[y]).attr('class') || '';
 	
 			// get scope from page
 			var scope = angular.element($("section.main")).scope();
@@ -160,6 +161,7 @@ respond.component.slideshow = {
 				'data-caption="' + caption + '" ' +
 				'data-button="' + button + '" ' +
 				'data-link="' + link + '" ' +
+				'data-cssclass="' + cssclass + '" ' +
 				'data-location="' + location + '">';
 			
 			// build html
@@ -208,10 +210,11 @@ respond.component.slideshow = {
 	  			location = 'local';
   			}
   			
-  			var headline = $(imgs[y]).attr('data-headline');
-  			var caption = $(imgs[y]).attr('data-caption');
-  			var button = $(imgs[y]).attr('data-button');
-  			var link = $(imgs[y]).attr('data-link');
+  			var headline = $(imgs[y]).attr('data-headline') || '';
+  			var caption = $(imgs[y]).attr('data-caption')|| '';
+  			var button = $(imgs[y]).attr('data-button')|| '';
+  			var link = $(imgs[y]).attr('data-link')|| '';
+  			var cssclass = $(imgs[y]).attr('data-cssclass')|| '';
   		
   			if(location == 'local'){
 	  			// removes the domain from the img
@@ -220,7 +223,8 @@ respond.component.slideshow = {
 			  		src = 'files/' + parts[1];
 		  		}
 	  			
-	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" ' + 
+	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" ' +
+	  							'class="' + cssclass + '" ' + 
 	  							'data-headline="' + headline + '" ' +
 								'data-caption="' + caption + '" ' +
 								'data-button="' + button + '" ' +
@@ -229,6 +233,7 @@ respond.component.slideshow = {
   			}
   			else{
 	  			var image = '<img src="' + src + '" title="' + title + '" ' + 
+	  							'class="' + cssclass + '" ' +
 	  							'data-headline="' + headline + '" ' +
 								'data-caption="' + caption + '" ' +
 								'data-button="' + button + '" ' +
