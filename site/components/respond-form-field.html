@@ -63,11 +63,11 @@
 			html += '<select id="' + this.fieldid + '" name="' + this.fieldid + '" class="form-control"' + req + 
 			'>';
 
-			var arr = options.split(',');
+			var arr = this.options.split(',');
 
 			for(x=0; x<arr.length; x++){
 			
-				if(id != null){
+				if(this.id != null){
 					html += '<option id="' + this.fieldid + '-option' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-option' + (x+1) + '">' + arr[x].trim() + '</option>';
 				}
 				else{
