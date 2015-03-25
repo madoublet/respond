@@ -103,6 +103,7 @@ respond.component.slideshow = {
 		attrs['data-wrap'] = 'true';
 		attrs['data-pauseonhover'] = 'true';
 		attrs['data-transition'] = 'slide';
+		attrs['data-position'] = 'default';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -184,6 +185,7 @@ respond.component.slideshow = {
 		attrs['data-wrap'] = $(node).attr('wrap');
 		attrs['data-pauseonhover'] = $(node).attr('pauseonhover');
 		attrs['data-transition'] = $(node).attr('transition');
+		attrs['data-position'] = $(node).attr('position') || 'default';
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -254,6 +256,7 @@ respond.component.slideshow = {
 		attrs['wrap'] = $(node).attr('data-wrap');
 		attrs['pauseonhover'] = $(node).attr('data-pauseonhover');
 		attrs['transition'] = $(node).attr('data-transition');
+		attrs['position'] = $(node).attr('data-position') || 'default';
 		
 		// return element
 		return utilities.element('respond-slideshow', attrs, html);

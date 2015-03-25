@@ -1,4 +1,4 @@
-<polymer-element name="respond-slideshow" attributes="slideshowid indicators arrows interval wrap pauseonhover transition">
+<polymer-element name="respond-slideshow" attributes="slideshowid indicators arrows interval wrap pauseonhover transition position">
   <template>
   	<content></content>
   </template>
@@ -33,7 +33,7 @@
 			var cssclass = images[x].getAttribute('class') || '';
 			
 			// set caption
-			var container = '<div class="contaner"><div class="carousel-caption">';
+			var container = '<div class="container"><div class="carousel-caption">';
 			
 			if(headline != ''){
 				container += '<h1>' + headline + '</h1>';
@@ -49,7 +49,13 @@
 			
 			container += '</div></div>';
 			
-			imagesHtml += '<div class="item ' + cssclass + active + '"><img src="' + images[x].src + '">' + container + '</div>';
+			if(this.position == 'default'){
+				imagesHtml += '<div class="item ' + cssclass + active + '"><img src="' + images[x].src + '">' + container + '</div>';
+			}
+			else{
+				imagesHtml += '<div class="item ' + cssclass + active + '" style="background-image: url(' + images[x].src + ')">' + container + '</div>';
+			}
+			
 			indicatorsHtml += '<li data-target="#carousel-' + this.slideshowid + '" data-slide-to="' + x + '" class="' + active + '"></li>';
 			
 			if(Boolean(this.indicators) == false){
