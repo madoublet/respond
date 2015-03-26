@@ -38,4 +38,33 @@ class AppSetupResource extends Tonic\Resource {
 
         return $response;
     }
+    
 }
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /app/validate/passcode
+ */
+class AppValidatePasscode extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+    
+    	parse_str($this->request->data, $request); // parse request
+
+        $new_passcode = $request['passcode'];
+    
+	    // set passcode
+	    if($new_passcode == PASSCODE){
+	    	return new Tonic\Response(Tonic\Response::OK);
+        }
+        else{
+	        return new Tonic\Response(Tonic\Response::BADREQUEST);
+        }
+        
+    }
+    
+}
+

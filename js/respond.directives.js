@@ -134,7 +134,7 @@ angular.module('respond.directives', [])
     };
 })
 
-.directive('respondValidatePasscode', function(Setup) {
+.directive('respondValidatePasscode', function(App) {
     return {
         // attribute
         restrict: 'A',
@@ -155,16 +155,17 @@ angular.module('respond.directives', [])
 	       
 				var passcode = $el.val();
 				
-				if(passcode !== Setup.passcode){
-					$validating.hide();
-					$invalid.show();
-					return;
-				}
-				else{
-					$validating.hide();
-					$valid.show();
-				}
-					        	
+				// validate the passcode
+				App.validatePasscode(passcode, 
+					function(){ // valid 
+						$validating.hide();
+						$valid.show();
+					},
+					function(){ // in-valid
+						$validating.hide();
+						$invalid.show();
+						return;
+					});
 	        	
         	}); 	
           

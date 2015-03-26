@@ -1411,6 +1411,7 @@ body .CodeMirror{
 
 	.branding .placeholder img{
 		max-height: 200px;
+		max-width: 500px;
 	}
 
 	.branding .placeholder{

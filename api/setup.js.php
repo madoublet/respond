@@ -50,9 +50,6 @@ angular.module('respond.setup', [])
 	paypalCurrency:			'<?php print PAYPAL_CURRENCY; ?>',
 	paypalLogo:				'<?php print PAYPAL_LOGO; ?>',
 	
-	// pascode used by create (must match value set in API)
-	passcode: 				'<?php print PASSCODE; ?>',
-	
 	// app branding
 	app:					'<?php print BRAND; ?>',
 	version:				'<?php print VERSION; ?>',
