@@ -45,6 +45,9 @@ respond.site = {
 		// setup prettyprint
 		prettyPrint();
 		
+		// setup lightbox
+		respond.site.setupLightbox(document);
+		
 	},
 	
 	// translates a page
@@ -141,6 +144,35 @@ respond.site = {
 		
 		return temp;
 	},
+	
+	// sets up the lightbox for a given node
+	setupLightbox:function(node){
+		
+		var els = $(node).find('[respond-lightbox]');
+		
+		// walk through elements
+		for(x=0; x<els.length; x++){
+			
+			var href = $(els[x]).attr('href');
+			
+			var ext = href.split('.').pop().toUpperCase();
+			
+			if(ext == 'JPG' || ext == 'PNG' || ext == 'GIF'){
+				popupType = 'image';
+			}
+			else{
+				popupType = 'iframe';
+			}
+			
+			if(jQuery().magnificPopup){
+				$(els[x]).magnificPopup({ 
+				  type: popupType
+				});
+			}
+			
+		}
+		
+	}
 	
 };
 
