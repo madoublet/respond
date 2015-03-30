@@ -146,6 +146,12 @@
 			font-weight: normal;
 		}
 		
+		core-icon{
+			margin-left: 10px;
+			color: #aaa;
+			height: 20px !important;
+		}
+		
 		
 	</style>
 
@@ -169,6 +175,9 @@
 					<tr class="item">
 						<td class="name">
 							{{item.name}}
+							<template if="{{item.shipping == 'shipped'}}">
+								<core-icon icon="maps:local-shipping"></core-icon>
+							</template>
 							<small>{{item.sku}}</small>
 						</td>
 						<td class="quantity number">
@@ -177,8 +186,8 @@
 								on-click="{{removeItem}}">
 								<core-icon icon="close"></core-icon>
 							</button>
-						<td class="price number">{{mark}}{{item.price}} {{currency}}</td>
-						<td class="total number">{{mark}}{{(item.price * item.quantity)}} {{currency}}</td>
+						<td class="price number">{{mark}}{{item.price | formatCurrency}} {{currency}}</td>
+						<td class="total number">{{mark}}{{(item.price * item.quantity) | formatCurrency}} {{currency}}</td>
 					</tr>
 				<!-- /.item -->
 			</template>
@@ -188,26 +197,26 @@
 							{{label.subtotal | i18n}}
 						</th>
 						<td class="number">
-							{{mark}}{{subtotal}} {{currency}}
+							{{mark}}{{subtotal | formatCurrency}} {{currency}}
 						</td>
 					</tr>
-				<template if="tax != 0">
+				<template if="{{tax != 0}}">
 					<tr class="tax">
 						<th colspan="3">
 							{{label.tax | i18n}}
 						</th>
 						<td class="number">
-							{{mark}}{{tax}} {{currency}}
+							{{mark}}{{tax | formatCurrency}} {{currency}}
 						</td>
 					</tr>
 				</template>
-				<template if="shipping != 0">
+				<template if="{{shipping != 0}}">
 					<tr class="shipping">
 						<th colspan="3">
 							{{label.shipping | i18n}}
 						</th>
 						<td class="number">
-							{{mark}}{{shipping}} {{currency}}
+							{{mark}}{{shipping | formatCurrency}} {{currency}}
 						</td>
 					</tr>
 				</template>
@@ -216,7 +225,7 @@
 							{{label.total | i18n}}
 						</th>
 						<td class="number">
-							{{mark}}{{total}} {{currency}}
+							{{mark}}{{total | formatCurrency}} {{currency}}
 						</td>
 					</tr>
 				</tfoot>
@@ -230,7 +239,7 @@
 			
 			<span class="total">
 				<span>{{label.total | i18n}}</span>
-				{{mark}}{{total}} {{currency}}
+				{{mark}}{{total | formatCurrency}} {{currency}}
 			</span>
 			
 			<button on-click="{{checkoutWithPayPal}}">{{label.checkoutWithPayPal | i18n}}</button>
@@ -365,7 +374,7 @@
 			this.shipping = this.calculateShipping();
 			
 			// set total
-			this.total = parseFloat(this.subtotal + this.tax + this.shipping).toFixed(2);
+			this.total = parseFloat(this.subtotal + this.tax + this.shipping);
 			
 			// set count
 			this.count = this.calculateCount();
@@ -404,7 +413,7 @@
 			
 			}
 			
-			return st.toFixed(2);
+			return st;
 	  },
 	  
 	  // calculates the count
@@ -620,7 +629,7 @@
 			
 				data['item_name_'+c] = item.name;
 				data['quantity_'+c] = item.quantity;
-				data['amount_'+c] = parseFloat(item.price).toFixed(2);
+				data['amount_'+c] = parseFloat(item.price);
 				data['item_number_'+c] = item.sku;
 			
 				if($.trim(item.shipping.toUpperCase()) == 'SHIPPED'){
@@ -631,8 +640,8 @@
 			
 			data['no_shipping'] = noshipping; // 1 = do not prompt, 2 = prompt for address and require it
 			data['weight_unit'] = weightUnit;
-			data['handling_cart'] = parseFloat(this.shipping).toFixed(2);
-			data['tax_cart'] = parseFloat(this.tax).toFixed(2);
+			data['handling_cart'] = parseFloat(this.shipping);
+			data['tax_cart'] = parseFloat(this.tax);
 			
 			// live url
 			var url = 'https://www.paypal.com/cgi-bin/webscr';
@@ -662,6 +671,10 @@
       
       i18n: function(text){
 	      return respond.site.i18n(text);
+      },
+      
+      formatCurrency: function(number){
+	      return accounting.formatNumber(number, 2, ' ');
       }
 	
   });

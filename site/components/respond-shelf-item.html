@@ -61,17 +61,23 @@
 			width: 150px;
 		}
 		
+		core-icon{
+			margin-left: 10px;
+			color: #aaa;
+			height: 20px !important;
+		}
+		
 	</style>
 
 	<table>
 		<tr>
 			<td class="name">
 				{{name}}
-			<template if="sku != ''">
+				<template if="{{shipping == 'shipped'}}">
+					<core-icon icon="maps:local-shipping"></core-icon>
+				</template>
+			<template if="{{sku != ''}}">
 				<small class="sku">{{sku}}</small>
-			</template>
-			<template if="shipping != ''">
-				<small class="shipping">{{shipping}}</small>
 			</template>
 			</td>
 			<td class="price">{{mark}}{{price}} {{currency}}</td>
