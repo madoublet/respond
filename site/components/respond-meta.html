@@ -5,7 +5,11 @@
 	  	.respond-meta{
 		  	position: relative;
 		  	height: 40px;
-		  	padding: 5px 5px 5px 60px;
+		  	padding: 5px 5px 5px 0;
+	  	}
+	  	
+	  	.respond-meta.photo{
+		  	padding-left: 60px;
 	  	}
 	  	
   		img{
@@ -30,7 +34,7 @@
   		}
   	</style>
   	
-  	<div class="respond-meta">
+  	<div class="respond-meta {{ {photo: photo != '' } | tokenList}}">
   		<p>
   		<template if="{{photo != ''}}">
   			<img src="{{photo}}">
@@ -51,6 +55,7 @@
   Polymer('respond-meta', {
   
   	url: '',
+  	photo: '',
   
   	// labels
 	label:{
@@ -62,7 +67,7 @@
 	ready: function() {
 		
 		// set photo
-		if(this.photo != '' && this.photo != undefined){
+		if(this.photo != '' && this.photo != undefined && this.photo != null){
 			this.photo = respond.site.settings.ImagesUrl + 'files/thumbs/' + this.photo;
 		}
 		
