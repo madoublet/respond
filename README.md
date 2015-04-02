@@ -7,22 +7,14 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/learn
 
-New in version 4.5:
-- Improved site rendering powered by Polymer-based web components
-- Server side rendering for Menu (respond-menu) and Content (respond-content) components
-- Improved look-and-feel for search, language selection, and the cart
-- Miscellaneous bug fixes
-- Editable footers in themes
+New in version 4.6:
+- Improved slideshows (support for headlines, captions, and link buttons)
+- Improved CSS class support for site components
+- Support for a system message (see setup.php)
+- Bug fixes
+- Moved composer.json to top level directory
+- Secured passcode for site creation
+- Fixed shipping/taxes in cart
 
-Upgrading from 4.0+:
+Upgrading from 4.5:
 - Pull latest version
-- Update dependencies using Composer (php composer.phar update)
-- Reset themes
-- Re-publish sites
-- Update Transaction table (bugfix)
-
-ALTER TABLE  `Transactions` ADD `Receipt` TEXT AFTER `Data`;
-
-Migrating custom themes to 4.5:
-- A guide is available here: http://respondcms.com/documentation/migrating-to-respond-4-5 
-- The themes in the build have been updated to support Respond 4.5.  Use these as a reference for upgrading your own themes.

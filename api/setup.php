@@ -1,7 +1,7 @@
 <?php
 
 	// Version
-	define('VERSION', '4.5');
+	define('VERSION', '4.6');
 
 	// Brand name
 	define('BRAND', 'Respond');
