@@ -561,7 +561,7 @@ class Utilities
 				try{
 				
 					// decode token
-					$jwt_decoded = JWT::decode($jwt, JWT_KEY);
+					$jwt_decoded = JWT::decode($jwt, JWT_KEY, array('HS256'));
 					
 					if($jwt_decoded != NULL){
 						

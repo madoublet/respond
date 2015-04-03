@@ -18,3 +18,5 @@ New in version 4.6:
 
 Upgrading from 4.5:
 - Pull latest version
+- Update dependencies (php composer.phar update) from /app
+- Republish sites
