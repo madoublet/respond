@@ -1,0 +1,242 @@
+<dom-module id="respond-list-item">
+
+	<style>
+		/* respond-list-item */
+		:host:last-child .respond-list-item{
+			border-bottom: 1px solid #ddd;
+		}
+	
+		.respond-list-item{
+		  	position: relative;
+		  	border-top: 1px solid #ddd;
+		  	border-left: 1px solid #ddd;
+		  	border-right: 1px solid #ddd;
+		  	padding: 10px;
+		}
+		
+		.respond-list-item h4, .respond-list-item h5, .respond-list-item p{
+			margin: 0 0 5px 0;
+		  	padding: 0;
+		}
+				
+		.respond-list-item p{
+			margin-bottom: 0;
+		}
+		
+		.respond-list-item a, .respond-list-item a:visited, .respond-list-item a:hover{
+			text-decoration: none;
+		}
+		
+		.respond-list-item img{
+		  	position: absolute;
+		  	top: 10px;
+		  	left: 10px;
+		  	width: 100px;
+		}
+		
+		.respond-list-item.has-image{
+			padding-left: 120px;
+		  	min-height: 120px;
+		}
+		
+		/* respond-thumbnail */
+		.respond-thumbnail{
+			vertical-align: top;
+			display: inline-block;
+			width: 200px;
+			height: 235px;
+		  	position: relative;
+		  	border: 1px solid #f0f0f0;
+		  	padding: 0;
+		  	margin: 0 10px 10px 0;
+		}
+		
+		.respond-thumbnail h4, .respond-thumbnail h5{
+			margin: 0 0 5px 0;
+		  	padding: 0;
+		}
+			
+		.respond-thumbnail a, .respond-thumbnail a:visited, .respond-thumbnail a:hover{
+			text-decoration: none;
+		}
+		
+		.respond-thumbnail img{
+		  	position: absolute;
+		  	top: 5px;
+		  	left: 5px;
+		  	width: 190px;
+		  	height: 190px;
+		}
+		
+		.respond-thumbnail h4{
+			margin-top: 7px;
+			text-align: center;
+			font-size: 14px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 190px;
+			padding: 5px 0;
+			margin: 0;
+		}
+		
+		.respond-thumbnail h5{
+			background-color: #888;
+			color: #fff;
+			position: absolute;
+			left: 5px;
+			bottom: 30px;
+			padding: 5px 0;
+			margin: 0;
+			width: 190px;
+			text-align: center;
+			font-size: 13px;
+			font-weight: normal;
+		}
+
+	</style>
+
+	<template></template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-list-item",
+	
+	  	// element attributes
+	  	properties: {
+	  		display: { type: String },
+	  		thumb: { type: String },
+	  		url: { type: String },
+	  		name: { type: String },
+	  		callout: { type: String },
+	  		description: { type: String },
+	  		photo: { type: String },
+	  		first: { type: String },
+	  		last: { type: String },
+	  		date: { type: String },
+	  		fullurl: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+			
+			if(this.display == 'list-blog'){
+			
+				// create a post
+				var div = document.createElement('div');
+				div.setAttribute('class', 'blog-post');
+			
+				// create the content element
+				var content = document.createElement('respond-content');
+				content.setAttribute('url', this.url);
+				
+				// create meta element
+				var meta = document.createElement('respond-meta');
+				meta.setAttribute('photo', this.photo);
+				meta.setAttribute('first', this.first);
+				meta.setAttribute('last', this.last);
+				meta.setAttribute('date', this.date);
+				meta.setAttribute('fullurl', this.fullurl);
+				
+				// append content and meta
+				div.appendChild(content);
+				div.appendChild(meta);
+			
+				// append the div
+				Polymer.dom(this.root).appendChild(div);
+				
+			}
+			else if(this.display == 'list-thumbnails'){
+				
+				// create a thumbnail
+				var a = document.createElement('a');
+				a.setAttribute('class', 'respond-thumbnail');
+				
+				// create image
+				if(this.thumb != '' && this.thumb != undefined){
+					cssClass += ' has-image';
+					
+					var img = document.createElement('img');
+					img.setAttribute('src', respond.site.settings.ImagesUrl + this.thumb);
+					
+					a.appendChild(img);
+				}
+				
+				// set title
+				var h4 = document.createElement('h4');
+				h4.innerHTML = this.name;
+				
+				// append h4
+				a.appendChild(h4);
+				
+				// set h5
+				if(this.callout != '' && this.callout != undefined){
+					var h5 = document.createElement('h5');
+					h5.innerHTML = this.callout;
+					
+					a.appendChild(h5);
+				}
+				
+				// append the thumbnail
+				Polymer.dom(this.root).appendChild(a);
+				
+			}
+			else{
+			
+				// create a list item (<respond-list-item>)
+				var div = document.createElement('div');
+				var cssClass = 'respond-list-item'
+				
+				// setup thumb
+				if(this.thumb != '' && this.thumb != undefined){
+					cssClass += ' has-image';
+					
+					var img = document.createElement('img');
+					img.setAttribute('src', respond.site.settings.ImagesUrl + this.thumb);
+					
+					div.appendChild(img);
+				}
+				
+				// set title
+				var h4 = document.createElement('h4');
+				
+				// set link
+				var a = document.createElement('a');
+				a.setAttribute('href', this.url);
+				a.innerHTML = this.name;
+				
+				// append a
+				h4.appendChild(a);
+				
+				// append h4
+				div.appendChild(h4);
+				
+				// set h5
+				if(this.callout != '' && this.callout != undefined){
+					var h5 = document.createElement('h5');
+					h5.innerHTML = this.callout;
+					
+					div.appendChild(h5);
+				}
+				
+				// set p
+				if(this.description != '' && this.description != undefined){
+					var p = document.createElement('p');
+					p.innerHTML = this.description;
+					
+					div.appendChild(p);
+				}
+				
+				// set class
+				div.setAttribute('class', cssClass);
+				
+				// append the div
+				Polymer.dom(this.root).appendChild(div);
+				
+			}
+		
+		}
+	
+	});
+</script>

@@ -1,27 +1,767 @@
-<polymer-element name="respond-list" attributes="type display pagesize orderby pageresults">
-  <template>
-  	<content></content>
-  </template>
-  
-  <script>
+<dom-module id="respond-list">
+	
+	<style>
+		.list-actions{
+			margin: 15px 0 25px 0;
+		  	padding: 0;
+		  	vertical-align: top;
+		}
+		
+		.list-actions .pager{
+		  	margin: 0 15px 0 0;
+		  	padding: 0;
+			display: none;
+		}
+		
+			.list-actions .pager[visible]{
+				display: inline-block;
+			}
+		
+		.list-actions button{
+		  	font-size: 14px;
+		  	display: inline-block;
+		    box-sizing: border-box;
+		  	background-color: #fff;
+		  	border: 1px solid #ddd;
+		  	padding: 0 15px;
+		  	font-size: 16px;
+		    height: 45px;
+		    line-height: 45px;
+		    vertical-align: top;
+		    outline: none;
+		}
+		
+		.list-actions a{
+		  	display: inline-block;
+		    box-sizing: border-box;
+		    text-decoration: none;
+			background-color: #fff;
+		  	border: 1px solid #ddd;
+		  	padding: 0 15px;
+		  	margin: 0 1px;
+		  	font-size: 16px;
+		    cursor: pointer;
+		    height: 45px;
+		    line-height: 45px;
+		    vertical-align: top;
+		}
+		
+		.list-actions a[active]{
+			background-color: #f0f0f0;
+		}
+		
+		.list-actions button{
+			display: none;
+		}
+		
+			.list-actions button[visible]{
+				display: inline-block;
+			}
+			
+		/* map */
+		.respond-map{
+			width: 100%;
+		  	height: 200px;
+		  	border: 1px solid #ddd;
+		  	margin-bottom: 20px;
+		}
+		
+		/* calendar */
+		.respond-calendar{ 
+		  margin: 0px 0px 20px 0px;
+		  border: 1px solid #ddd;
+		  overflow: hidden;
+		}
+		
+			.respond-calendar a, .respond-calendar a:visited, .respond-calendar a:hover{
+		        text-decoration: none;
+		    }
+		
+			.respond-calendar .header, .respond-calendar .week{
+				clear: both;
+		  		width: 100.1%;
+			}
+		
+			.respond-calendar .title{
+		  		position: relative;
+				color: #aaa;
+		  		text-transform: uppercase;
+		  		font-size: 12px;
+		  		text-align: center;
+		  		padding: 10px 0;
+			}
+		
+			.respond-calendar .title .prev{
+				position: absolute;
+		  		top: 8px;
+		  		left: 10px;
+		  		font-size: 20px;
+		  		cursor: pointer;
+			}
+		
+			.respond-calendar .title .next{
+				position: absolute;
+		  		top: 8px;
+		  		right: 10px;
+		  		font-size: 20px;
+		  		cursor: pointer;
+			}
+		
+		    .respond-calendar .week{
+		        height: 150px;
+		  		width: 100.1%;
+		  		display: block;
+		    }
+		
+		    .respond-calendar .day{
+		  		position: relative;
+		        display: block;
+		  		box-sizing: border-box;
+		        margin: -1px 0 0 0;
+		        padding: 35px 0 0 0;
+		        width: 14.28%;
+		        height: 150px;
+		        text-align: left;
+		        font-size: 0.8em;
+		        color: #ddd;
+		        float: left;
+		        color: #888;
+		        border-right: 1px solid #ddd;
+		        border-bottom: 1px solid #ddd;
+		    }
+		
+		    .respond-calendar .day:nth-child(7){
+		        border-right: 0;
+		    }
+		
+			.respond-calendar .week:last-child .day{
+		        border-bottom: 0;
+		    }
+		
+			.respond-calendar .header span{
+		        display: block;
+		  		box-sizing: border-box;
+		        width: 14.28571428571429%;
+		        font-size: 0.8em;
+		  		background-color: #ccc;
+		        float: left;
+		        color: #fff;
+				height: 25px;
+				line-height: 25px;
+		  		text-align: center;
+		        cursor: pointer;
+		    }
+		
+			.respond-calendar .day{
+				background-color: #f8f8f8;
+			}
+		
+		    .respond-calendar .day.active{
+		        background-color: #fff;
+		    }
+		
+				.respond-calendar .day .day-number{
+					position: absolute;
+		  			top: 0;
+		  			left: 0;
+		  			color: #222;
+		  			text-align: center;
+		  			line-height: 30px;
+		  			width: 30px;
+		  			height: 30px;
+		  			border-right: 1px solid #f0f0f0;
+		  			border-bottom: 1px solid #f0f0f0;
+		  			color: #ccc;
+				}
+		
+				.respond-calendar .day.active .day-number{
+					background-color: #fff;
+		  			border-right: 1px solid #ddd;
+		  			border-bottom: 1px solid #ddd;
+		  			color: #222;
+				}
+		    
+				.respond-calendar .day.today .day-number{
+		      		background-color: #CBE86B;
+		  			border-right: 1px solid #CBE86B;
+		  			border-bottom: 1px solid #CBE86B;
+		      		color: #fff;
+		    	}
+		        
+			.respond-calendar .event{
+				margin: 0 5px 5px 5px;
+			  	padding: 0 0 5px 0;
+			  	border-bottom: 1px solid #f0f0f0;
+			}
+			
+			.respond-calendar .event:last-child{
+				border-bottom: none;
+			}
+			
+			.respond-calendar .event h4{
+			  font-weight: normal;
+			  font-size: 14px;
+			  margin: 0 0 5px 0;
+			  padding: 0;
+			}
+			
+				.respond-calendar .event h5{
+			      color: #aaa;
+			      font-weight: normal;
+			      text-transform: uppercase;
+			      font-size: 12px;
+			 	  margin: 0;
+			      padding: 0;
+			  	}
+	</style>
 
-  Polymer('respond-list', {
+	<template>
+	
+		<div id="items"></div>
+		<!-- /#items -->
+		
+		<div id="actions" class="list-actions">
+		
+			<span class="pager" visible$="{{showPager}}">
+				<template id="pager" is="x-repeat" items="{{list}}">
+					<a on-click="gotoPage" active$="{{item.isActive}}">{{item.title}}</a>
+				</template>
+			</span>	
+				
+			<button on-click="previousPage" visible$="{{showPrevious}}" title=$="{{label.previous}}"><core-icon icon="chevron-left"></core-icon></button>
+					
+			<button on-click="nextPage" visible$="{{showNext}}" title=$="{{label.next}}"><core-icon icon="chevron-right"></core-icon></button>	
 
-	// ready
-	ready: function() {
+		</div>
+		<!-- /#actions -->
+		
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-list",
+	  	
+	  	// element attributes
+	  	properties: {
+	  		type: { type: String },
+	  		display: { type: String },
+	  		pagesize: { type: String },
+	  		orderby: { type: String },
+	  		pageresults: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+			
+			// set labels
+			this.label = {
+				previous: this.i18n('Previous'),
+				next: this.i18n('Next'),
+			};
+			
+			// get page information
+			this.pageId = document.body.getAttribute('page');
+			this.siteId = respond.site.settings.SiteId;
+			this.api = respond.site.settings.API;
+			this.images = respond.site.settings.ImagesUrl;
+			this.pageResults = (this.pageresults === 'true');
+			this.currentIndex = 0;
+			this.list = [];
+			this.count = 0;
+			this.numberOfPages = 1;
+			
+			// set display
+			this.showPager = false;
+			this.showPrevious = false;
+			this.showNext = false;
+			
+			// show pager
+			if(this.pageresults === 'true'){
+				this.showPager = true;
+			}
+			
+			// setup map
+			if(this.display == 'list-map'){
+			
+				// add map	
+				var container = document.createElement('div');
+				container.setAttribute('class', 'respond-map');
+				
+				// add map to local dom
+				Polymer.dom(this.root).insertBefore(container, this.$.items);
+				
+				// create google map
+				var options = {
+			      center: new google.maps.LatLng(38.6272, 90.1978),
+			      zoom: 8,
+			      mapTypeId: google.maps.MapTypeId.ROADMAP
+			    };
+			    
+			    // setup map and bounds
+				this.map = new google.maps.Map(container, options);
+				this.bounds = new google.maps.LatLngBounds();
+				
+			}
+			
+			// setup calendar
+			if(this.display == 'list-calendar'){
+				
+				// add calendar	
+				var container = document.createElement('div');
+				container.setAttribute('class', 'respond-calendar');
+				
+				// add map to local dom
+				Polymer.dom(this.root).insertBefore(container, this.$.items);
+				
+				// set calendar
+				this.calendar = container;
+				
+				// build calendar
+				var now = moment();
+		
+				this.buildCalendar(now, 2);
+				
+			}
+			
+			// get the # of pages and build the list
+			this.getNumberOfPages();
+			
+			// build the list of pages
+			this.buildList(this.currentIndex);
+			
+		},
+		
+		// navigates to a page when clicked
+		gotoPage:function(e){
+			var index = this.$.pager.itemForElement(e.target).title;
+			
+			this.buildList(index-1);
+		},
+		
+		// navigate to previous page
+		previousPage:function(){
+			this.buildList(this.currentIndex-1);
+		},
+		
+		// navigate to next page
+		nextPage:function(){
+			this.buildList(this.currentIndex+1);
+		},
+		
+		// show previous and next buttons
+		showPreviousNext:function(){
+		
+			// set next and previous
+			if(this.pageresults === 'true'){
+			
+				// set next
+				if(this.currentIndex < (this.numberOfPages - 1)){
+					this.showNext = true;
+				}
+				else{
+					this.showNext = false;
+				}
+				
+				// set previous
+				if(this.currentIndex != 0){
+					this.showPrevious = true;
+				}
+				else{
+					this.showPrevious = false;
+				}
+				
+			}
+		},
+		
+		// gets the number of pages
+		getNumberOfPages:function(current){
+			
+			// set context
+			var context = this;
+			
+			// set params
+			var params = {
+				siteId: this.siteId,
+				type: this.type
+			}
+			
+			// submit form
+			var xhr = new XMLHttpRequest();
+			
+			// set URI
+			var uri = this.api + '/page/published/count';
+			
+			xhr.open('POST', encodeURI(uri));
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+			    if(xhr.status === 200){
+			    	var data = JSON.parse(xhr.responseText);
+			    	
+			    	context.count = data.count;
+					context.numberOfPages = Math.ceil(data.count / context.pagesize);
+				
+					// build the pager
+					context.buildPager();
+			    }
+			    else if(xhr.status !== 200){
+			    	context.loading = false;
+			        console.log('[respond.error] respond-list-blog component: failed post, xhr.status='+xhr.status);
+			    }
+			    
+			};
+			
+			// serialize the data
+		    var qs = [];
+		    
+		    for(p in params){
+			    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+		    }
+		    
+		    qs = qs.join("&");
+		    
+			// send serialized data
+			xhr.send(encodeURI(qs));
+			
+			
+		},
+		
+		// build pager
+		buildPager:function(){
+		
+			// clear list
+			this.list = [];
+		
+			// build pager
+			for(x = 0; x < this.count; x++){
+			
+				isActive = false;
+			
+				if(x == this.currentIndex){
+					isActive = true;
+				}
+			
+				this.list.push({
+					'title': (x+1),
+					'isActive': isActive
+					});
+			}
+			
+			// show previous/next
+			this.showPreviousNext();
+			
+		},
 		
 		// build list
-		var list = '<respond-' + this.display + 
-							' type="' + this.type + '"' +
-							' pagesize="' + this.pagesize + '"' +
-							' orderby="' + this.orderby + '"' +
-							' pageresults="' + this.pageresults + '"></respond-' + this.display + '>';
+		buildList:function(currentIndex){
+			
+			// set params
+			var params = {
+				siteId: this.siteId,
+				type: this.type,
+				pagesize: this.pagesize,
+				current: this.current,
+				orderby: this.orderby
+			}
+			
+			// set current index
+			this.currentIndex = currentIndex;
+			params.current = currentIndex;
+			
+			// re-build the pager
+			this.buildPager();
+			
+			// clear items in the list
+			var items = Polymer.dom(this.$.items).querySelectorAll('respond-list-item');
+			
+			for(x = 0; x<items.length; x++){
+				Polymer.dom(this.$.items).removeChild(items[x]);
+			}
+						
+			// show previous and next
+			this.showPreviousNext();
+			
+			// set loading
+			this.loading = true;
+			
+			var context = this;
+			
+			// submit form
+			var xhr = new XMLHttpRequest();
+			
+			// set URI
+			var uri = this.api + '/page/published/list';
+			
+			xhr.open('POST', encodeURI(uri));
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+			    if(xhr.status === 200){
+			    	var data = JSON.parse(xhr.responseText);
+			    	
+			    	// set class for data
+					for(x=0; x<data.length; x++){
+						
+						// setup callout
+						var callout = data[x].Callout;
+					
+						// set photo	
+						var photo = '';
+					
+						if(data[x].Photo != null){
+							photo = data[x].Photo;
+						}
+						
+						// add location the map
+						if(context.display == 'list-map'){
+						
+							// setup callout
+							callout = data[x].Location + ' ' + callout; 
+						
+							// add point to the map
+							context.addPoint(data[x].Name, data[x].Location, data[x].Description, data[x].Url, data[x].LatLong);
+						
+						}
+						
+						// add event to calendar
+						if(context.display == 'list-calendar'){
+						
+							// add event to the calendar\
+							var m_begin = moment(data[x].BeginDate, "YYYY-MM-DD HH:mm:ss");
+							var m_end = moment(data[x].EndDate, "YYYY-MM-DD HH:mm:ss");
+						
+							// create time display
+							var time = m_begin.format('h:mm a') + ' - ' + m_end.format('h:mm a');
+							
+							// create content for event
+							var content = '<h4><a href="' + data[x].Url + '">' + data[x].Name + '</a></h4>' +
+													'<h5>' + time + '</h5>' +
+													'<p>' + data[x].Description + '</p>';
+						
+							// add a point to the calendar
+							context.addEvent(data[x].BeginDate, data[x].EndDate, content);
+							
+						}
+						
+						// create a list item
+						var item = document.createElement('respond-list-item');
+						item.setAttribute('display', context.display);
+						item.setAttribute('thumb', data[x].Thumb);
+						item.setAttribute('url', data[x].Url);
+						item.setAttribute('name', data[x].Name);
+						item.setAttribute('callout', callout);
+						item.setAttribute('description', data[x].Description);
+						item.setAttribute('photo', photo);
+						item.setAttribute('first', data[x].FirstName);
+						item.setAttribute('last', data[x].LastName);
+						item.setAttribute('date', data[x].LastModified);
+						item.setAttribute('fullurl', respond.site.settings.Domain +  '/' + data[x].Url);
+						
+						// append list item to the dom
+						Polymer.dom(context.$.items).appendChild(item);
+						
+					}
+					
+					// set loading
+					context.loading = false;
+					
+			    }
+			    else if(xhr.status !== 200){
+			    	context.loading = false;
+			        console.log('[respond.error] respond-list-blog component: failed post, xhr.status='+xhr.status);
+			    }
+			};
+			
+			// serialize the data
+		    var qs = [];
+		    
+		    for(p in params){
+			    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+		    }
+		    
+		    qs = qs.join("&");
+		    
+			// send serialized data
+			xhr.send(encodeURI(qs));
+			
+		},
 		
-		// set list in Light DOM
-		this.innerHTML = list;
+		// adds a point to the map
+		addPoint: function(name, location, description, url, latLong){
+			
+			// defaults
+			var latitude = null;
+			var longitude = null;
+			
+			// get latitude and longitude
+			if(latLong != null){
 	
-	}
-    
-  });
-  </script>
-</polymer-element>
+				var point = latLong.replace('POINT(', '').replace(')', '');
+				var arr = point.split(' ');
+	
+				// set latitude and longitude
+				latitude = arr[0];
+				longitude = arr[1];
+			}
+			
+			if(latitude != null && longitude != null){
+				
+				// create content for map
+				var content = '<div class="map-marker-content content">' +
+									'<h4><a href="' + url + '">' + name + '</a></h4>' +
+									'<h5>' + location + '</h5>' +
+									'<p>' + description + '</p>' +
+									'</div>';
+				
+				// create coords
+			    var coords = new google.maps.LatLng(latitude, longitude);
+			    
+			    // create info window
+			    var infowindow = new google.maps.InfoWindow({
+			        content: content
+			    });
+			    
+			    // create marker
+			    var marktext = $("<div/>").html(content).text();
+			    
+			    // create marker
+			    var marker = new google.maps.Marker({
+			        position: coords,
+			        map: this.map,
+			        title: marktext
+			    });
+			   
+				// handle click of marker (future)
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(this.map, marker);
+					});
+	
+				// extend the bounds of the amp
+			    this.bounds.extend(marker.position);
+			    this.map.fitBounds(this.bounds);
+				
+			}
+			
+		},
+		
+		// builds a calendar
+		buildCalendar:function(m_start, weeks){
+	
+			// set begin and end
+			var m_start = m_start.startOf('day');
+			var m_end = moment(m_start).startOf('day').add('days', weeks*7);
+		
+			// build weekdays
+			var days = moment.weekdaysShort();
+		
+			var container = '<div class="respond-calendar-container">';
+		
+			var day = parseInt(m_start.format('d'));
+		
+			// create title
+			var title = '<div class="title">' +
+						 m_start.format('dddd, MMMM Do') + ' - ' + m_end.format('dddd, MMMM Do') +
+						 '<i class="prev fa fa-angle-left" ' +
+						 'data-start="' + m_start.format('YYYY-MM-DD HH:mm:ss') + '" data-weeks="' + weeks + '" ' +
+						 '></i>' +
+						 '<i class="next fa fa-angle-right" ' +
+						 'data-start="' + m_start.format('YYYY-MM-DD HH:mm:ss') + '" data-weeks="' + weeks + '" ' +
+						 '></i>' +
+						 '</div>'
+		
+			// create header (weeks)
+			var header =  '<div class="header">';
+		
+			for(x=0; x<days.length; x++){
+				header += '<span>' + days[x] + '</span>';
+			}
+		
+			header += '</div>';
+		
+			container += '<div class="week">';
+		
+			var pastDate = true;
+			var cssClass = '';
+		
+		
+			for(x=0; x<(7*weeks)+day+1; x++){
+		
+				// create offset
+				var offset = x - day;
+		
+				// get date
+				var curr_date = moment(m_start).add('days', offset);
+		
+				// current day
+				var curr_day = parseInt(curr_date.format('d'));
+		
+				// difference b/w days
+		        var diff = curr_date.diff(m_start, 'days');
+		        
+				if(diff >= 0){
+					cssClass = ' active';
+				}
+		
+				if(moment(curr_date).isSame(moment(), 'day')){
+					cssClass += ' today';
+				}
+		        
+				if(offset==0){
+					container += '<span class="day'+cssClass+'" data-date="'+curr_date.format('YYYY-MM-DD')+'">';
+					pastDate = true;
+				}
+				else{
+					container += '<span class="day'+cssClass+'" data-date="'+curr_date.format('YYYY-MM-DD')+'">';
+				}
+		
+				container += '<span class="day-number">'+curr_date.format('D') + '</span>';
+		
+				container += '</span>';
+		
+				if((x+1)%7==0){
+					container+='</div><div class="week">';
+				}
+		
+		    }
+		
+		    container += '</div></div>';
+		    
+		    var div = document.createElement('div');
+		    div.innerHTML = title+header+container;
+		    
+		    // append the contents to the calendar
+		    Polymer.dom(this.calendar).appendChild(div);
+		
+		},
+		
+		// adds an event to the calendar
+		addEvent:function(beginDate, endDate, content){
+	
+			if(beginDate != null){
+	
+				// create begin and end from moment
+				var m_begin = moment(beginDate, "YYYY-MM-DD HH:mm:ss");
+				var m_end = moment(endDate, "YYYY-MM-DD HH:mm:ss");
+			
+				var el = Polymer.dom(this.calendar).querySelector('[data-date="'+m_begin.format('YYYY-MM-DD')+'"]');
+			
+				if(el != undefined){
+					
+					// create element
+					var div = document.createElement('div');
+					div.setAttribute('class', 'event');
+					div.innerHTML = content;
+					
+					Polymer.dom(el).appendChild(div);
+				}
+			
+			}
+						
+		},
+		
+		// translations
+		i18n: function(text){
+		  return respond.site.i18n(text);
+		}
+	
+	});
+</script>

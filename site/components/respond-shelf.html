@@ -1,36 +1,28 @@
-<polymer-element name="respond-shelf" attributes="display">
-  <template>
-    <style>
-		
+<dom-module id="respond-shelf">
+
+	<style>
 		.respond-shelf{
 			margin-bottom: 25px;
 			border-top: 1px solid #f0f0f0;
 		}
-		
-		
-	</style>
+    </style>
 
-	<div class="respond-shelf">
-		<content></content>
-	</div>
+	<template>
+		<div class="respond-shelf">
+			<content></content>
+		</div>
+	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-shelf', {
-	  
-	  // labels
-	  label:{},
-	  
-	  // ready
-	  ready: function(){
+<script>
+  Polymer({
+	  	is: "respond-shelf",
 	
-	  },
-	  
-      i18n: function(text){
-	      return respond.site.i18n(text);
-      }
+	  	// element attributes
+	  	properties: {},
+		
+		// attached
+		attached: function() {}
 	
-  });
-  </script>
-</polymer-element>
+	});
+</script>

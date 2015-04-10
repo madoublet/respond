@@ -1,135 +1,241 @@
-<polymer-element name="respond-slideshow" attributes="slideshowid indicators arrows interval wrap pauseonhover transition position">
-  <template>
-  	<content></content>
-  </template>
-  
-  <script>
+<dom-module id="respond-slideshow">
+	<style>
+	
+		.carousel{
+			margin-bottom: 25px;
+		}
+	
+		/* support for fade */
+		.carousel.fade {
+			opacity: 1;
+		}
+		
+		.carousel.fade .item {
+		    -moz-transition: opacity ease-in-out .7s;
+		    -o-transition: opacity ease-in-out .7s;
+		    -webkit-transition: opacity ease-in-out .7s;
+		    transition: opacity ease-in-out .7s;
+		    left: 0;
+		    opacity: 0;
+		    top:0;
+		    position:absolute;
+		    display:block;
+		    z-index:1;
+		}
+		
+		.carousel.fade .item:first-child {
+		    top:auto;
+		    position:relative;
+		}
+		
+		.carousel.fade .item.active {
+		    opacity: 1;
+		    -moz-transition: opacity ease-in-out .7s;
+		    -o-transition: opacity ease-in-out .7s;
+		    -webkit-transition: opacity ease-in-out .7s;
+		    transition: opacity ease-in-out .7s;
+		    z-index:2;
+		}
+		
+		.carousel.fade .left, body .carousel.fade .right{
+			z-index: 10;
+		}
+	
+		/* carousel control */
+		.carousel-control core-icon{
+			position: absolute;
+			top: 50%;
+			color: #fff;
+			width: 40px;
+			height: 40px;
+		}
+		
+		/* indicators */
+		.carousel-indicators li{
+			margin: 0 2.5px;
+		}
+		
+		
+	</style>
 
-  Polymer('respond-slideshow', {
+	<template>
+		<content id="content"></content>
+	</template>
+</dom-module>
 
-	// ready
-	ready: function() {
+<script>
+  Polymer({
+	  	is: "respond-slideshow",
+	
+	  	// element attributes
+	  	properties: {
+	  		slideshowid: { type: String },
+	  		indicators: { type: String },
+	  		arrows: { type: String },
+	  		interval: { type: String },
+	  		wrap: { type: String },
+	  		pauseonhover: { type: String },
+	  		transition: { type: String },
+	  		position: { type: String }
+		},
 		
-		var id = this.slideshowid;
-		var images = $(this).find('img');
-		var imagesHtml = '';
-		var indicatorsHtml = '<ol class="carousel-indicators">';
+		// attached
+		attached: function() {
 		
-		// walk through images
-		for(x=0; x<images.length; x++){
+			var id = this.slideshowid;
 			
-			var active = '';
+			// create indicators
+			var indicators = document.createElement('ol');
+			indicators.setAttribute('class', 'carousel-indicators');
 			
-			// set active
-			if(x==0){
-				active = ' active';
+			// create inner
+			var inner = document.createElement('div');
+			inner.setAttribute('class', 'carousel-inner');
+			inner.setAttribute('role', 'listbox');
+			
+			// get images
+			var images = Polymer.dom(this).querySelectorAll('img');
+			
+			for(x=0; x<images.length; x++){
+			
+				// set active
+				var active = '';
+			
+				if(x==0){
+					active = ' active';
+				}
+				
+				// get caption
+				var headline = images[x].getAttribute('data-headline') || '';
+				var caption = images[x].getAttribute('data-caption') || '';
+				var button = images[x].getAttribute('data-button') || '';
+				var link = images[x].getAttribute('data-link') || '';
+				var cssclass = images[x].getAttribute('class') || '';
+				
+				// create an slide
+				var slide = document.createElement('div');
+				
+				// image can either be a background image or a default image
+				if(this.position == 'default'){
+					slide.setAttribute('class', 'item ' + cssclass + active);
+					
+					// create an image for the slide
+					var image = document.createElement('img');
+					image.setAttribute('src', images[x].src);
+					
+					// attach image
+					Polymer.dom(slide).appendChild(image);
+				}
+				else{
+					slide.setAttribute('class', 'item ' + cssclass + active);
+					
+					// set background image
+					slide.setAttribute('style', 'background-image: url(' + images[x].src + ')');
+					
+				}
+				
+				// create a caption
+				var container = document.createElement('div');
+				container.setAttribute('class', 'container');
+				
+				// create caption
+				var text = '<div class="carousel-caption">';
+				
+				if(headline != ''){
+					text += '<h1>' + headline + '</h1>';
+				}
+				
+				if(caption != ''){
+					text += '<p>' + caption + '</p>';
+				}
+				
+				if(button != ''){
+					text += '<p><a class="btn btn-lg btn-default" href="' + link + '">' + button + '</a></p>';
+				}
+				
+				text += '</div>';
+				
+				container.innerHTML = text;
+				
+				// attach container to slide
+				Polymer.dom(slide).appendChild(container);
+				
+				// append slide to inner
+				Polymer.dom(inner).appendChild(slide);
+				
+				// create indicator
+				var indicator = document.createElement('li');
+				indicator.setAttribute('data-target', '#carousel-' + this.slideshowid);
+				indicator.setAttribute('data-slide-to', x);
+				indicator.setAttribute('class', active);
+				
+				Polymer.dom(indicators).appendChild(indicator);
+				
 			}
 			
-			// get caption
-			var headline = images[x].getAttribute('data-headline') || '';
-			var caption = images[x].getAttribute('data-caption') || '';
-			var button = images[x].getAttribute('data-button') || '';
-			var link = images[x].getAttribute('data-link') || '';
-			var cssclass = images[x].getAttribute('class') || '';
+			// create carousel		
+			var carousel = document.createElement('div');
+			carousel.setAttribute('id', 'carousel-' + this.slideshowid);
+			carousel.setAttribute('class', 'carousel ' + this.transition);		
+			carousel.setAttribute('data-ride', 'carousel');
 			
-			// set caption
-			var container = '<div class="container"><div class="carousel-caption">';
-			
-			if(headline != ''){
-				container += '<h1>' + headline + '</h1>';
+			// attach indicators
+			if(Boolean(this.indicators) == true){
+				Polymer.dom(carousel).appendChild(indicators);
 			}
 			
-			if(caption != ''){
-				container += '<p>' + caption + '</p>';
+			// attach slides
+			Polymer.dom(carousel).appendChild(inner);
+		
+			// create previous arrow
+			var prev = document.createElement('a');
+			prev.setAttribute('class', 'left carousel-control');
+			prev.setAttribute('href', '#carousel-' + this.slideshowid);
+			prev.setAttribute('role', 'button');
+			prev.setAttribute('data-slide', 'prev');
+			
+			// create icon
+			var left = document.createElement('core-icon');
+			left.setAttribute('icon', 'chevron-left');
+			
+			// append left
+			Polymer.dom(prev).appendChild(left);
+			
+			// create next arrow
+			var next = document.createElement('a');
+			next.setAttribute('class', 'right carousel-control');
+			next.setAttribute('href', '#carousel-' + this.slideshowid);
+			next.setAttribute('role', 'button');
+			next.setAttribute('data-slide', 'next');
+			
+			// create icon
+			var right = document.createElement('core-icon');
+			right.setAttribute('icon', 'chevron-right');
+			
+			// append left
+			Polymer.dom(next).appendChild(right);
+			
+			// attach arrows
+			if(Boolean(this.arrows) == true){
+				Polymer.dom(carousel).appendChild(prev);
+				Polymer.dom(carousel).appendChild(next);
 			}
 			
-			if(button != ''){
-				container += '<p><a class="btn btn-lg btn-default" href="' + link + '">' + button + '</a></p>';
+			// remove all children
+			var children = Polymer.dom(this).childNodes;
+			
+			while(children[0]){
+				Polymer.dom(this).removeChild(children[0]);
 			}
 			
-			container += '</div></div>';
-			
-			if(this.position == 'default'){
-				imagesHtml += '<div class="item ' + cssclass + active + '"><img src="' + images[x].src + '">' + container + '</div>';
-			}
-			else{
-				imagesHtml += '<div class="item ' + cssclass + active + '" style="background-image: url(' + images[x].src + ')">' + container + '</div>';
-			}
-			
-			indicatorsHtml += '<li data-target="#carousel-' + this.slideshowid + '" data-slide-to="' + x + '" class="' + active + '"></li>';
-			
-			if(Boolean(this.indicators) == false){
-				indicatorsHtml = '';
-			}
-			
+			// append carousel
+			Polymer.dom(this).appendChild(carousel);
+		
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
 		}
-		
-		indicatorsHtml += '</ol>';
-		
-		// hide indicators
-		if(this.indicators === 'false'){
-			indicatorsHtml = '';
-		}
-		
-		// set arrows
-		var arrowsHtml = '<a class="left carousel-control" href="#carousel-' + this.slideshowid + '" role="button" data-slide="prev">' +
-							'<i class="icon-prev fa fa-3x fa-chevron-left"></i>' +
-							'<span class="sr-only">Previous</span>' +
-						'</a>' +
-						'<a class="right carousel-control" href="#carousel-' + this.slideshowid + '" role="button" data-slide="next">' +
-							'<i class="icon-next fa fa-3x fa-chevron-right"></i>' +
-							'<span class="sr-only">Next</span>' +
-						'</a>';
-		
-		// hide arrows
-		if(this.arrows === 'false'){
-			arrowsHtml = '';
-		}
-		
-		// build a carousel
-		html = '<div id="carousel-' + this.slideshowid + '" class="carousel ' + this.transition + '" data-ride="carousel">' +
-						indicatorsHtml + 
-						'<div class="carousel-inner" role="listbox">' + imagesHtml + '</div>' +
-						arrowsHtml +
-					'</div>';
-		
-		// update light DOM		
-		this.innerHTML = html;
-		
-		// set default
-		var pause = '';
-		var wrap = false;
-		
-		if(this.pauseonhover === 'true'){
-			pause = 'hover';
-		}
-		
-		if(this.wrap === 'true'){
-			wrap = true;
-		}
-		
-		// defer until jquery is ready
-		function defer(method) {
-		    if(window.$){
-		        method();
-		    }
-		    else{
-		        setTimeout(function() { defer(method) }, 50);
-			}
-		}
-		
-		// initialize the carousel when $ is ready
-		defer(function(){
-			$('#carousel-' + id).carousel({
-				interval: this.interval,
-				pause: pause,
-				wrap: wrap
-			});
-		});
-
-		
-	}
-    
-  });
-  </script>
-</polymer-element>
+	
+	});
+</script>

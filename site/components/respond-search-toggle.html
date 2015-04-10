@@ -1,38 +1,48 @@
-<polymer-element name="respond-search-toggle">
-  <template>
-    <style>
+<dom-module id="respond-search-toggle">
+
+	<style>
 		.toggle{
-			display: block;
+			display: none;
 			width: 65px;
 		  	height: 65px;
 		  	line-height: 65px;
 		  	text-align: center;
 		  	color: #555;
 		}
+		
+			.toggle[visible]{
+				display: block;
+			}
     </style>
-    
-    <template if="{{showSearch == true}}">
-		<a class="toggle" on-click="{{toggleSearch}}"><core-icon icon="search"></core-icon></a>
-	</template>
 
-  </template>
-  
-  <script>
-  Polymer('respond-search-toggle', {
-
-	  // ready
-	  ready: function() {
-		  this.showSearch = true;
-      },
-      
-      // toggle search
-      toggleSearch: function(){
-	      
-		  // fire search toggle
-		  this.fire('search-toggled');
-		  
-      }
+	<template>
 	
-  });
-  </script>
-</polymer-element>
+		<a class="toggle" 
+			visible$="{{showSearch}}"
+			on-click="toggleSearch"><core-icon icon="search"></core-icon></a>
+	
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-search-toggle",
+	
+	  	// element attributes
+	  	properties: {},
+		
+		// attached
+		attached: function() {
+			this.showSearch = true;		
+		},
+		
+		// toggle search
+		toggleSearch: function(){
+		
+			// fire search toggle
+			this.fire('search-toggled');
+		  
+		}
+	
+	});
+</script>

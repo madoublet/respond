@@ -1,97 +1,110 @@
-<polymer-element name="respond-menu" attributes="menuid class type">
-  <template>
-  	<content></content>
-  </template>
-  
-  <script>
+<dom-module id="respond-menu">
+	<style></style>
 
-  Polymer('respond-menu', {
+	<template></template>
+</dom-module>
 
-	// ready
-	ready: function() {
+<script>
+  Polymer({
+	  	is: "respond-menu",
+	
+	  	// element attributes
+	  	properties: {
+	  		menuid: { type: String },
+	  		class: { type: String },
+	  		type: { type: String }
+		},
 		
-		var context = this;
+		// attached
+		attached: function() {
 		
-		// xhr
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', encodeURI('data/menu-' + this.type + '.json'));
+			var context = this;
 		
-		xhr.onload = function() {
-		    if (xhr.status === 200) {
-		    
-		    	var data = JSON.parse(xhr.responseText);
-				var pageId = document.body.getAttribute('page');
-				var menu = '<ul ' + 
-								( context.className ? 'id="' + context.menuid + '"' : '') +
-								( context.className ? 'class="' + context.className + '"' : '') +
-								'>';
-				
-				var flagActive = false;
-				var flagParent = false;
-				
-				for(x=0; x<data.length; x++) {				
-					var item = data[x];
+			// xhr
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', encodeURI('data/menu-' + this.type + '.json'));
+			
+			xhr.onload = function() {
+			    if (xhr.status === 200) {
+			    
+			    	var data = JSON.parse(xhr.responseText);
+					var pageId = document.body.getAttribute('page');
+					var menu = '';
 					
-					if(data[x+1] != undefined) {
-						if (data[x+1].IsNested == 1) 	flagParent = true;		
-					}
-					if (item.PageId == pageId) 		flagActive = true;
+					var flagActive = false;
+					var flagParent = false;
 					
-					if (!flagParent) {
-						menu += '<li ' + ( flagActive ? 'class="active"' : '' ) + '>' +
-									'<a href="' + item.Url + '">' + item.Name + '</a>' +
-								'</li>';
-					} else {
-						var nestedMenu = '';
-
-						for (y=x+1; y<data.length; y++) {
-							var flagNestedActive = false;
-							x=y;
-							var nestedItem = data[y];
-							
-							if (nestedItem.PageId == pageId) {
-								flagNestedActive = true;
-								flagActive = true;
-							}
-
-							nestedMenu += 	'<li ' + ( flagNestedActive ? 'class="active"' : '' ) + '>' +
-										  		'<a href="' + nestedItem.Url + '">' + nestedItem.Name + '</a>' +
-											'</li>';							
-							
-							if(data[y+1] != undefined) {
-								if (data[y+1].IsNested != 1) break;	
-							}
-							
-							flagNestedActive = false;
-						}
-
-						menu += '<li class="dropdown ' + ( flagActive ? 'active' : '' ) + '">' +
-									'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + item.Name +' <span class="caret"></span></a>' +
-									'<ul class="dropdown-menu">' +
-										nestedMenu +
-									'</ul>' +					
-								'</li>';						
+					for(x=0; x<data.length; x++) {				
+						var item = data[x];
 						
+						if(data[x+1] != undefined) {
+							if (data[x+1].IsNested == 1) 	flagParent = true;		
+						}
+						if (item.PageId == pageId) 		flagActive = true;
+						
+						if (!flagParent) {
+							menu += '<li ' + ( flagActive ? 'class="active"' : '' ) + '>' +
+										'<a href="' + item.Url + '">' + item.Name + '</a>' +
+									'</li>';
+						} else {
+							var nestedMenu = '';
+	
+							for (y=x+1; y<data.length; y++) {
+								var flagNestedActive = false;
+								x=y;
+								var nestedItem = data[y];
+								
+								if (nestedItem.PageId == pageId) {
+									flagNestedActive = true;
+									flagActive = true;
+								}
+	
+								nestedMenu += 	'<li ' + ( flagNestedActive ? 'class="active"' : '' ) + '>' +
+											  		'<a href="' + nestedItem.Url + '">' + nestedItem.Name + '</a>' +
+												'</li>';							
+								
+								if(data[y+1] != undefined) {
+									if (data[y+1].IsNested != 1) break;	
+								}
+								
+								flagNestedActive = false;
+							}
+	
+							menu += '<li class="dropdown ' + ( flagActive ? 'active' : '' ) + '">' +
+										'<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' + item.Name +' <span class="caret"></span></a>' +
+										'<ul class="dropdown-menu">' +
+											nestedMenu +
+										'</ul>' +					
+									'</li>';						
+							
+						}
+						 
+						flagActive = false;
+						flagParent = false;						
 					}
-					 
-					flagActive = false;
-					flagParent = false;						
-				}
-				
-				menu += '</ul>';
-				
-				context.innerHTML = menu;
-				
-		    }
-		    else {
-		        console.log('[respond.error] respond-menu component: failed post, xhr.status='+xhr.status);
-		    }
-		};
+					
+					// create menu
+					var ul = document.createElement('ul');
+					ul.setAttribute('id', context.menuid);
+					ul.setAttribute('class', context.class);
+					ul.innerHTML = menu;
+					
+					// set in local dom
+					Polymer.dom(context).appendChild(ul);
+					
+			    }
+			    else {
+			        console.log('[respond.error] respond-menu component: failed post, xhr.status='+xhr.status);
+			    }
+			};
+			
+			xhr.send(); 
+			
+		},
 		
-		xhr.send(); 
-		
-	}
-    
-  });
-  </script>
-</polymer-element>
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>

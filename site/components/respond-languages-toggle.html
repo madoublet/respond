@@ -1,38 +1,48 @@
-<polymer-element name="respond-languages-toggle">
-  <template>
-    <style>
+<dom-module id="respond-languages-toggle">
+
+	<style>
 		.toggle{
-			display: block;
+			display: none;
 			width: 65px;
 		  	height: 65px;
 		  	line-height: 65px;
 		  	text-align: center;
 		  	color: #555;
 		}
+		
+			.toggle[visible]{
+				display: block;
+			}
     </style>
-    
-    <template if="{{showLanguages == true}}">
-		<a class="toggle" on-click="{{toggleLanguages}}"><core-icon icon="language"></core-icon></a>
-	</template>
 
-  </template>
-  
-  <script>
-  Polymer('respond-languages-toggle', {
-
-	  // ready
-	  ready: function() {
-		  this.showLanguages = respond.site.settings.ShowLanguages;
-      },
-      
-      // toggle search
-      toggleLanguages: function(){
-	      
-		  // fire search toggle
-		  this.fire('languages-toggled');
-		  
-      }
+	<template>
 	
-  });
-  </script>
-</polymer-element>
+		<a class="toggle" 
+			visible$="{{showLanguages}}"
+			on-click="toggleLanguages"><core-icon icon="language"></core-icon></a>
+	
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-languages-toggle",
+	
+	  	// element attributes
+	  	properties: {},
+		
+		// attached
+		attached: function() {
+		  	this.showLanguages = respond.site.settings.ShowLanguages;
+		},
+		
+		// toggle languages
+		toggleLanguages: function(){
+		
+			// fire language toggle
+			this.fire('languages-toggled');
+		  
+		}
+	
+	});
+</script>

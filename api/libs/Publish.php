@@ -509,8 +509,8 @@ class Publish
 	public static function PublishPlugins($site){
 		
 		// copy polyfills
-		$components_src = APP_LOCATION.'/site/components/lib/webcomponentsjs-min';
-		$components_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/components/lib/webcomponentsjs-min';
+		$components_src = APP_LOCATION.'/site/components/lib/webcomponentsjs';
+		$components_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/components/lib/webcomponentsjs';
 		
 		// create polyfills directory if it does not exist
 		if(!file_exists($components_dest)){

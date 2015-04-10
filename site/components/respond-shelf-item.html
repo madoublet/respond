@@ -1,8 +1,8 @@
-<polymer-element name="respond-shelf-item" attributes="productid sku name price shipping">
-  <template>
-    <style>
-    
-    	table{
+<dom-module id="respond-shelf-item">
+
+	<style>
+	
+		table{
 	    	width: 100%;
 	    	border-bottom: 1px solid #f0f0f0;
     	}
@@ -43,9 +43,6 @@
 			text-align: right;
 		}
 		
-		.name{
-		}
-		
 		.price{
 			text-align: right;
 			width: 100px;
@@ -66,68 +63,119 @@
 			color: #aaa;
 			height: 20px !important;
 		}
+
+		.sku, .shipping{
+			display: none;
+		}
 		
-	</style>
+		.sku[visible], .shipping[visible]{
+			display: block;
+		}
+    </style>
 
-	<table>
-		<tr>
-			<td class="name">
-				{{name}}
-				<template if="{{shipping == 'shipped'}}">
-					<core-icon icon="maps:local-shipping"></core-icon>
-				</template>
-			<template if="{{sku != ''}}">
-				<small class="sku">{{sku}}</small>
-			</template>
-			</td>
-			<td class="price">{{mark}}{{price}} {{currency}}</td>
-			<td class="quantity"><input class="quantity" type="number" value="{{quantity}}"></td>
-			<td class="action"><button on-click="{{addToCart}}">{{label.addToCart | i18n}}</td>
-		</tr>
-	</table>
+	<template>
+		<table>
+			<tr>
+				<td class="name">
+					<span>{{name}}</span>
+					<span class="shipping" visible$="{{isShipped}}"><core-icon icon="maps:local-shipping"></core-icon></span>
+					<span class="sku" visible$="{{hasSKU}}">{{sku}}</span>
+					
+				</td>
+				<td class="price">{{priceDisplay}}</td>
+				<td class="quantity"><input class="quantity" type="number" value$="{{quantity}}"></td>
+				<td class="action"><button on-click="addToCart">{{label.addToCart}}</td>
+			</tr>
+		</table>
+	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-shelf-item', {
-  
-	  cart: [],
-	  
-	  // labels
-	  label:{
-		  addToCart: 'Add to Cart'
-	  },
-	  
-	  currency: '',
-	  mark: '',
-	  quantity: 1,
-	  
-	  // ready
-	  ready: function(){
-	  
-	  		this.currency = respond.site.settings.Currency;
-	  		
-	  		// set mark
-			if(this.currency == 'USD'){
-				this.mark = '$';
+<script>
+  Polymer({
+	  	is: "respond-shelf-item",
+	
+	  	// element attributes
+	  	properties: {
+		  	productid: { type: String },
+	  		sku: { type: String },
+	  		name: { type: String },
+	  		price: { type: String },
+	  		shipping: { type: String },
+	  		quantity: { type: Number }
+	  	},
+		
+		// attached
+		attached: function() {
+		
+			// default quantity
+			this.quantity = 1;
+		
+			// set labels
+			this.label = {
+				  	addToCart: this.i18n('Add to Cart')
+				  };
+		
+			// show shipping
+			this.isShipped = false;
+			
+			if(this.shipping == 'shipped'){
+				this.isShipped = true;
 			}
-			else{
-				this.mark = ' ';
+			
+			// show sku
+			this.hasSKU = false;
+			
+			if(this.sku != ''){
+				this.hasSKU = true;
 			}
-	  },
-	  
-	  // adds an item to the cart
-	  addToCart: function(){
-	  
-	  		var cart = [];
-	  
-	  		// get cart from session
+			
+			// set currency
+			this.currency = respond.site.settings.Currency;
+			
+			// common symbols
+			var symbols = {
+			    'USD': '$', // US Dollar
+			    'EUR': '€', // Euro
+			    'CRC': '₡', // Costa Rican Colón
+			    'GBP': '£', // British Pound Sterling
+			    'ILS': '₪', // Israeli New Sheqel
+			    'INR': '₹', // Indian Rupee
+			    'JPY': '¥', // Japanese Yen
+			    'KRW': '₩', // South Korean Won
+			    'NGN': '₦', // Nigerian Naira
+			    'PHP': '₱', // Philippine Peso
+			    'PLN': 'zł', // Polish Zloty
+			    'PYG': '₲', // Paraguayan Guarani
+			    'THB': '฿', // Thai Baht
+			    'UAH': '₴', // Ukrainian Hryvnia
+			    'VND': '₫', // Vietnamese Dong
+			};
+			
+			// set mark
+			if(symbols[this.currency] !== undefined) {
+				this.mark = symbols[this.currency];
+			}
+			
+			// set price display
+			this.priceDisplay = this.mark + this.formatCurrency(this.price) + ' ' + this.currency;
+			
+		},
+		
+		// adds an item to the cart
+		addToCart: function(){
+		
+			var cart = [];
+		
+			// get cart from session
 			if(sessionStorage['respond-cart'] != null){
 				var str = sessionStorage['respond-cart'];
 			
 				cart = eval(str);
 			}
-		  
+			
+			// get quantity
+			var q = parseInt(Polymer.dom(this.root).querySelector('input.quantity').value);
+			
 		  	// create item
 			var item = {
 				sku: this.sku,
@@ -136,7 +184,7 @@
 				price: parseFloat(this.price),
 				shipping: this.shipping,
 				weight: parseFloat(this.weight),
-				quantity: this.quantity
+				quantity: q
 			};
 			
 			// has item
@@ -147,8 +195,8 @@
 				
 				// if it is a duplicate, increase the quantity
 				if(cart[x].productid == item.productid){
-					var quantity = cart[x].quantity;
-					cart[x].quantity = this.quantity + quantity;
+					var quantity = parseInt(cart[x].quantity);
+					cart[x].quantity = q + quantity;
 					newItem = false;
 				}
 				
@@ -166,12 +214,15 @@
 			// fire cart-updated event
 			this.fire('cart-updated');
 		  
-	  },
-	  
-      i18n: function(text){
-	      return respond.site.i18n(text);
-      }
+		},
+		
+		i18n: function(text){
+			return respond.site.i18n(text);
+		},
+		
+		formatCurrency: function(number){
+		  return accounting.formatNumber(number, 2, ' ');
+		}
 	
-  });
-  </script>
-</polymer-element>
+	});
+</script>

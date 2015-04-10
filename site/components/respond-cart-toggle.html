@@ -1,8 +1,9 @@
-<polymer-element name="respond-cart-toggle">
-  <template>
-    <style>
+<dom-module id="respond-cart-toggle">
+
+	<style>
 		.toggle{
-			display: block;
+			position: relative;
+			display: none;
 			width: 65px;
 		  	height: 65px;
 		  	line-height: 65px;
@@ -10,56 +11,115 @@
 		  	color: #555;
 		}
 		
-		.toggle.active{
-			background-color: rgba(255,255,255,.5);
+			.toggle[visible]{
+				display: block;
+			}
+			
+		.count{
+			display: none;
+			top: 4px;
+			right: 4px;
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			background-color: #33B5E5;
+			color: #fff;
+			border-radius: 50%;
+			font-size: 12px;
+			margin: 0;
+			padding: 0;
 		}
+			
+			.count[visible]{
+				display: block;
+			}
     </style>
-    
-    <template if="{{showCart == true}}">
-		<a class="toggle {{ {active: count > 0 } | tokenList}}" on-click="{{toggleCart}}">
-			<core-icon icon="shopping-cart"></core-icon> 
-		<template if="{{count > 0}}">
-			<span class="count">{{count}}</span>
-		</template>
-		</a>
+
+	<template>
+	
+		<a class="toggle" 
+			visible$="{{showCart}}"
+			on-click="toggleCart"><core-icon icon="shopping-cart"></core-icon><span class="count" visible$="{{showCount}}">{{count}}</span></a>
+	
 	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-cart-toggle', {
-  
-  	  count: 0,
-
-	  // ready
-	  ready: function() {
-		  this.showCart = respond.site.settings.ShowCart;
-		  
-		  // set context
-		  var context = this;
-		  
-		  // wait for updated
-		  var items = document.querySelectorAll('respond-cart');
+<script>
+  Polymer({
+	  	is: "respond-cart-toggle",
+	
+	  	// element attributes
+	  	properties: {},
 		
-		  for(x=0; x<items.length; x++){
-		
+		// attached
+		attached: function() {
+		  	this.showCart = respond.site.settings.ShowCart;
+		  	this.count = 0;
+		  	this.showCount = false;
+		  	
+		  	// get length of cart from session
+		  	if(sessionStorage['respond-cart'] != null){
+				var str = sessionStorage['respond-cart'];
+				this.cart = eval(str);
+				
+				// calculate a quantity
+				var q = 0;
+						
+				for(x=0; x<this.cart.length; x++){
+					q += parseInt(this.cart[x].quantity);
+				}
+				
+				this.count = q;
+			}
+			
+			// show count
+			if(this.count > 0){
+				this.showCount = true;
+			}
+		  	
+		  	// set context
+		  	var context = this;
+		  	
+		  	// wait for updated
+			var items = document.querySelectorAll('respond-cart');
+			
+			for(x=0; x<items.length; x++){
+			
 				items[x].addEventListener('cart-updated', function(e) {
 				
-					context.count = $(this).attr('count');
+					// get length of cart from session
+				  	if(sessionStorage['respond-cart'] != null){
+						var str = sessionStorage['respond-cart'];
+						context.cart = eval(str);
+						
+						// calculate a quantity
+						var q = 0;
+						
+						for(x=0; x<context.cart.length; x++){
+							q += parseInt(context.cart[x].quantity);
+						}
+						
+						context.count = q;
+					}
+					
+					// show count
+					if(context.count > 0){
+						context.showCount = true;
+					}
 					
 				});
+			
+			}
+		},
 		
-		  }
-      },
-      
-      // toggle cart
-      toggleCart: function(){
-	      
-		  // fire search toggle
-		  this.fire('cart-toggled');
+		// toggle cart
+		toggleCart: function(){
+		
+			// fire cart toggle
+			this.fire('cart-toggled');
 		  
-      }
+		}
 	
-  });
-  </script>
-</polymer-element>
+	});
+</script>

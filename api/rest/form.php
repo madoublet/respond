@@ -49,7 +49,7 @@ class FormResource extends Tonic\Resource {
          		if($key != 'siteId' && $key != 'pageId'){
          	
 		 			// clean up title
-	         		$title = urldecode($title);
+	         		$title = urldecode($key);
 	         		$title = preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]|[0-9]{1,}/', ' $0', $key);
 		         	$title = ucwords($title);
 		         	

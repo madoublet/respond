@@ -1,21 +1,20 @@
-<polymer-element name="respond-form" attributes="formid type action success error submit">
-  <template>
-    <style>
-		button{
-			background-color: #fff;
-			border: 1px solid #ddd;
-			padding: 10px 15px;
-			font-size: 16px;
-		}
-		
+<dom-module id="respond-form">
+
+	<style>
+
+		/* messages */
 		.success, .error{
-			display: inline-block;
+			display: none;
 			background-color: #fff;
 			border: 1px solid #ddd;
 			padding: 10px 15px;
 			font-size: 16px;
 			margin: 0 0 0 15px;
 		}
+		
+			.success[visible], .error[visible]{
+				display: inline-block;
+			}
 		
 		.error{
 			border: 1px solid #CF4647;
@@ -29,232 +28,251 @@
 			background-color: #08B168;
 		}
 		
-		paper-spinner{
-			vertical-align: top;
-			margin-top: 7px;
-			margin-left: 15px;
+		/* loading */
+		.loading{
+			display: none;
 		}
 		
-		paper-spinner::shadow .circle {
-	        border-color: #4285f4;
-	    }
-    </style>
-    
-    <div id="container">
-    	<form id="{{formid}}">
-    		<content id="content"></content>
-    	</form>
-    </div>
-
-	<button type="button" class="btn btn-primary" 
-		on-click="{{submitForm}}">{{action | i18n}}</button>
-		
-	<template if="{{loading == true}}">
-		<paper-spinner active></paper-spinner>
-	</template>
-	
-	<template if="{{showSuccess == true}}">
-	<span class="success">
-		{{success | i18n}}
-	</span>
-	</template>
-	
-	<template if="{{showError == true}}">
-	<span class="error">
-		{{error | i18n}}
-	</span>
-	</template>
-
-  </template>
-  
-  <script>
-
-  Polymer('respond-form', {
-	  
-	loading: false,
-	showSuccess: false,
-	showError: false,
-  
-	// messges
-	action: 'Submit',
-	success: 'Form submitted successfully',
-	error: 'There was an error submitting your form',
-	
-	// ready
-	ready: function() {
-	
-	},
-	
-	// handles the form submit
-	submitForm: function(event, detail, sender){
-		
-		// init messages
-		this.showSuccess = false;
-		this.showError = false;
-		this.loading = false;
-		
-		// query light DOM in the container
-		var container = this;
-		
-		// select all inputs in the light DOM
-		var groups = container.querySelectorAll('.form-group');
-		
-		// initialize params
-		var params = {};
-		
-		// get page information
-		var pageId = document.body.getAttribute('page');
-		var siteId = respond.site.settings.SiteId;
-		var api = respond.site.settings.API;
-		
-		// add page and site
-		params['pageId'] = pageId;
-		params['siteId'] = siteId;
-		params['formId'] = this.formid;
-		
-		// walk through inputs
-		for(x=0; x<groups.length; x++){
-			
-			// get name, id, type
-			var label = groups[x].getAttribute('data-label');
-			var id = groups[x].getAttribute('data-id');
-			var type = groups[x].getAttribute('data-type');
-			var required = groups[x].getAttribute('data-required');
-			
-			// get value by type
-			var value = '';
-			
-			if(type == 'text'){
-				value = groups[x].querySelector('input').value;
+			.loading[visible]{
+				display: inline-block;
 			}
-			else if(type == 'textarea'){
-				value = groups[x].querySelector('textarea').value;
-			}
-			else if(type == 'radiolist'){
-				var radio = groups[x].querySelector('input[type=radio]:checked');
-				
-				if(radio != null){
-					value = radio.value;
-				}
-			}
-			else if(type == 'select'){
-				value = groups[x].querySelector('select').value;
-			}
-			else if(type == 'checkboxlist'){
-				var checkboxes = groups[x].querySelectorAll('input[type=checkbox]:checked');
-				
-				// create comma separated list
-				for(y=0; y<checkboxes.length; y++){
-					value += checkboxes[y].value + ', ';
-				}
-				
-				// remove trailing comma and space
-				if(value != ''){
-					value = value.slice(0, -2);
-				}
+		
+			.loading paper-spinner{
+				vertical-align: top;
+				margin-top: 7px;
+				margin-left: 15px;
 			}
 			
-			params[id] = value;
-			
-			// check required fields
-			if(required == 'true' && value == ''){
-				this.showError = true;
-				groups[x].className += ' has-error';
-			}
-			
-		}
-		
-		// exit if error
-		if(this.showError == true){
-			return false;
-		}
-		
-		// set loading
-		this.loading = true;
-		
-		// set context
-		var context = this;
-		
-		// submit form
-		var xhr = new XMLHttpRequest();
-		
-		// set URI
-		var uri = api + '/form';
-		
-		xhr.open('POST', encodeURI(uri));
-		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhr.onload = function() {
-		    if(xhr.status === 200){
-		    	// clear form, hide loading
-		    	context.loading = false;
-		    	context.showSuccess = true;
-		    	context.clearForm();
+			.loading paper-spinner::shadow .circle {
+		        border-color: #4285f4;
 		    }
-		    else if(xhr.status !== 200){
-		    	context.loading = false;
-		        console.log('[respond.error] respond-form component: failed post, xhr.status='+xhr.status);
-		    }
-		};
 		
-		// serialize the data
-	    var qs = [];
-	    
-	    for(p in params){
-		    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
-	    }
-	    
-	    qs = qs.join("&");
-	    
-		// send serialized data
-		xhr.send(encodeURI(qs));
-		
-	},
-	
-	// clears the form on submit
-	clearForm:function(){
-	
-		// clear text fields
-		var els = this.querySelectorAll('input[type=text]');
-		
-		for(x=0; x<els.length; x++){
-			els[x].value = '';
-		}
-		
-		// clear text ares
-		var els = this.querySelectorAll('textarea');
-		
-		for(x=0; x<els.length; x++){
-			els[x].value = '';
-		}
-		
-		// clear checkboxes
-		var els = this.querySelectorAll('input[type=checkbox]');
-		
-		for(x=0; x<els.length; x++){
-			els[x].checked = false;
-		}
-		
-		// clear radios
-		var els = this.querySelectorAll('input[type=radio]');
-		
-		for(x=0; x<els.length; x++){
-			els[x].checked = false;
-		}
-		
-		// reset selects
-		var els = this.querySelectorAll('select');
-		
-		for(x=0; x<els.length; x++){
-			els[x].selectedIndex = 0;
-		}
-		
-	},
-      
-	i18n: function(text){
-		return respond.site.i18n(text);
-	}
+	</style>
 
-    
-  });
-  </script>
-</polymer-element>
+	<template>
+	
+		<div id="container">
+	    	<form id$="{{formid}}">
+	    		<content id="content"></content>
+	    	</form>
+	    </div>
+	
+		<button type="button" class="btn btn-primary" 
+			on-click="submitForm">{{submit}}</button>
+			
+		<span class="loading" visible$="{{loading}}">
+			<paper-spinner active></paper-spinner>
+		</span>
+		
+		<span class="success" visible$="{{showSuccess}}">{{success}}</span>
+		
+		<span class="error" visible$="{{showError}}">{{error}}</span>
+	
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-form",
+	
+	  	// element attributes
+	  	properties: {
+	  		formid: { type: String },
+	  		type: { type: String },
+	  		action: { type: String },
+	  		success: { 
+	  			type: String, 
+	  			value: 'Form submitted successfully'
+	  		},
+	  		error: { 
+	  			type: String, 
+	  			value: 'There was an error submitting your form' 
+	  		},
+	  		submit: { 
+	  			type: String,
+	  			value: 'Submit'
+	  		}
+		},
+		
+		// attached
+		attached: function() {
+		
+			// defaults
+			this.loading = false;
+			this.showSuccess = false;
+			this.showError = false;
+		
+			// translate messages
+			this.success = this.i18n(this.success);
+			this.error = this.i18n(this.error);
+			this.submit = this.i18n(this.submit);
+		},
+		
+		// handles the form submit
+		submitForm: function(event, detail, sender){
+			
+			// init messages
+			this.showSuccess = false;
+			this.showError = false;
+			this.loading = false;
+			
+			// select all inputs in the local DOM
+			var groups = Polymer.dom(this).querySelectorAll('.form-group');
+			
+			// initialize params
+			var params = {};
+			
+			// get page information
+			var pageId = document.body.getAttribute('page');
+			var siteId = respond.site.settings.SiteId;
+			var api = respond.site.settings.API;
+			
+			// add page and site
+			params['pageId'] = pageId;
+			params['siteId'] = siteId;
+			params['formId'] = this.formid;
+			
+			// walk through inputs
+			for(x=0; x<groups.length; x++){
+				
+				// get name, id, type
+				var label = groups[x].getAttribute('data-label');
+				var id = groups[x].getAttribute('data-id');
+				var type = groups[x].getAttribute('data-type');
+				var required = groups[x].getAttribute('data-required');
+				
+				// get value by type
+				var value = '';
+				
+				if(type == 'text'){
+					value = groups[x].querySelector('input').value;
+				}
+				else if(type == 'textarea'){
+					value = groups[x].querySelector('textarea').value;
+				}
+				else if(type == 'radiolist'){
+					var radio = groups[x].querySelector('input[type=radio]:checked');
+					
+					if(radio != null){
+						value = radio.value;
+					}
+				}
+				else if(type == 'select'){
+					value = groups[x].querySelector('select').value;
+				}
+				else if(type == 'checkboxlist'){
+					var checkboxes = groups[x].querySelectorAll('input[type=checkbox]:checked');
+					
+					// create comma separated list
+					for(y=0; y<checkboxes.length; y++){
+						value += checkboxes[y].value + ', ';
+					}
+					
+					// remove trailing comma and space
+					if(value != ''){
+						value = value.slice(0, -2);
+					}
+				}
+				
+				params[id] = value;
+				
+				// check required fields
+				if(required == 'true' && value == ''){
+					this.showError = true;
+					groups[x].className += ' has-error';
+				}
+				
+			}
+			
+			// exit if error
+			if(this.showError == true){
+				return false;
+			}
+			
+			// set loading
+			this.loading = true;
+			
+			// set context
+			var context = this;
+			
+			// submit form
+			var xhr = new XMLHttpRequest();
+			
+			// set URI
+			var uri = api + '/form';
+			
+			xhr.open('POST', encodeURI(uri));
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+			    if(xhr.status === 200){
+			    	// clear form, hide loading
+			    	context.loading = false;
+			    	context.showSuccess = true;
+			    	context.clearForm();
+			    }
+			    else if(xhr.status !== 200){
+			    	context.loading = false;
+			        console.log('[respond.error] respond-form component: failed post, xhr.status='+xhr.status);
+			    }
+			};
+			
+			// serialize the data
+		    var qs = [];
+		    
+		    for(p in params){
+			    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+		    }
+		    
+		    qs = qs.join("&");
+		    
+			// send serialized data
+			xhr.send(encodeURI(qs));
+			
+		},
+		
+		// clears the form on submit
+		clearForm:function(){
+		
+			// clear text fields
+			var els = Polymer.dom(this).querySelectorAll('input[type=text]');
+			
+			for(x=0; x<els.length; x++){
+				els[x].value = '';
+			}
+			
+			// clear text ares
+			var els = this.querySelectorAll('textarea');
+			
+			for(x=0; x<els.length; x++){
+				els[x].value = '';
+			}
+			
+			// clear checkboxes
+			var els = Polymer.dom(this).querySelectorAll('input[type=checkbox]');
+			
+			for(x=0; x<els.length; x++){
+				els[x].checked = false;
+			}
+			
+			// clear radios
+			var els = Polymer.dom(this).querySelectorAll('input[type=radio]');
+			
+			for(x=0; x<els.length; x++){
+				els[x].checked = false;
+			}
+			
+			// reset selects
+			var els = Polymer.dom(this).querySelectorAll('select');
+			
+			for(x=0; x<els.length; x++){
+				els[x].selectedIndex = 0;
+			}
+			
+		},
+		
+		i18n: function(text){
+			return respond.site.i18n(text);
+		}
+	
+	});
+</script>

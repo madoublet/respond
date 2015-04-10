@@ -1,6 +1,5 @@
-<polymer-element name="respond-map" attributes="address zoom">
-  <template>
-    <style>
+<dom-module id="respond-map">
+	<style>
 		.respond-map{
 			margin: 0 0 25px 0;
 		  	padding: 0;
@@ -23,98 +22,110 @@
 		}
     </style>
 
-	<div class="respond-map">
-		<div id="mapContainer" class="map-container"></div>
-			<p class="map-address"><span>{{address}}</span>&nbsp;<a id="directions" href="http://maps.google.com/?q={{address}}">{{label.getDirections | i18n}}</a></p>
+	<template>
+		
+		<div class="respond-map">
+			<div id="mapContainer" class="map-container"></div>
+				<p class="map-address">
+					<span>{{address}}</span>&nbsp;
+					<a id="directions" href$="{{url}}">{{label.getDirections}}</a>
+				</p>
+			</div>
 		</div>
-	</div>
+		
+	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-map', {
-	  
-	  // labels
-	  label:{
-	  		getDirections: 'Get Directions'
-	  },
-	  
-	  // defaults
-	  address: '',
-	  
-	  // ready
-	  ready: function() {
-        
-        var defaultZoom = 8;	
+<script>
+  Polymer({
+	  	is: "respond-map",
 	
-		if(this.zoom != 'auto' && this.zoom != undefined){
-			defaultZoom = parseInt(this.zoom);
-		}
+	  	// element attributes
+	  	properties: {
+	  		address: { type: String },
+	  		zoom: { type: String }
+		},
 		
-		// create the map
-		var mapOptions = {
-	      center: new google.maps.LatLng(38.6272, 90.1978),
-	      zoom: defaultZoom,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    };
+		// attached
+		attached: function() {
+		
+			// labels
+			this.label = {
+				getDirections: this.i18n('Get Directions')
+			};
+			
+			// set url
+			this.url = 'http://maps.google.com/?q=' + this.address;
+		
+			// set zoom
+			var defaultZoom = 8;	
 	
-		// create the map              
-		var container = this.$.mapContainer;
+			if(this.zoom != 'auto' && this.zoom != undefined){
+				defaultZoom = parseInt(this.zoom);
+			}
+			
+			// create the map
+			var mapOptions = {
+				center: new google.maps.LatLng(38.6272, 90.1978),
+				zoom: defaultZoom,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
 		
-		// create map and bounds
-	    var map = new google.maps.Map(container, mapOptions);
-	    
-		// look for a default address
-		if(this.address != null && this.address != undefined){
-		
-		    // geo-code the address
-		    var geocoder = new google.maps.Geocoder();
+			// create the map              
+			var container = this.$.mapContainer;
+			
+			// create map and bounds
+		    var map = new google.maps.Map(container, mapOptions);
 		    
-		    var context = this;
-		    
-		    geocoder.geocode({'address': this.address}, function(results, status){
+			// look for a default address
+			if(this.address != null && this.address != undefined){
+			
+			    // geo-code the address
+			    var geocoder = new google.maps.Geocoder();
 			    
-		        if (status == google.maps.GeocoderStatus.OK){
-			        
-		            var latitude = results[0].geometry.location.lat();
-		            var longitude = results[0].geometry.location.lng();
-		            var content = results[0].formatted_address;
-		            
-		            var coords = new google.maps.LatLng(latitude, longitude);
-		            
-		            var infowindow = new google.maps.InfoWindow({
-				        content: content
-				    });
-		            
-		             // create marker				    
-		            var marktext = '<div>' + content + '</div>';
-		            
-				    var marker = new google.maps.Marker({
-				        position: coords,
-				        map: map,
-				        title: marktext
-				    });
+			    var context = this;
+			    
+			    geocoder.geocode({'address': this.address}, function(results, status){
 				    
-				    google.maps.event.addListener(marker, 'click', function() {
-				    	infowindow.open(map, marker);
-						});
+			        if (status == google.maps.GeocoderStatus.OK){
+				        
+			            var latitude = results[0].geometry.location.lat();
+			            var longitude = results[0].geometry.location.lng();
+			            var content = results[0].formatted_address;
+			            
+			            var coords = new google.maps.LatLng(latitude, longitude);
+			            
+			            var infowindow = new google.maps.InfoWindow({
+					        content: content
+					    });
+			            
+			             // create marker				    
+			            var marktext = '<div>' + content + '</div>';
+			            
+					    var marker = new google.maps.Marker({
+					        position: coords,
+					        map: map,
+					        title: marktext
+					    });
+					    
+					    google.maps.event.addListener(marker, 'click', function() {
+					    	infowindow.open(map, marker);
+							});
+							
 						
-					
-					map.setCenter(coords);
-
-		        }
-		    
-		    });
-		    
-	    }
-        
-        
-      },
-      
-      i18n: function(text){
-	      return respond.site.i18n(text);
-      }
+						map.setCenter(coords);
 	
-  });
-  </script>
-</polymer-element>
+			        }
+			    
+			    });
+			    
+		    }
+		
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>

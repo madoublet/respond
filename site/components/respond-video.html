@@ -1,37 +1,80 @@
-<polymer-element name="respond-video" attributes="videoid class">
-  <template>
-  	
-  	<content></content>
-  	
-  </template>
-  
-  <script>
-
-  Polymer('respond-video', {
-
-	// ready
-	ready: function() {
-		
-		var container = '<div';
-		
-		// set id
-		if(this.videoid != '' && this.videoid != undefined){
-			container += ' id="' + this.videoid + '"';
+<dom-module id="respond-video">
+	<style>
+		.video-container {
+		    position: relative;
+		    padding-bottom: 56.25%;
+		    padding-top: 30px; 
+		    height: 0; 
+		    overflow: hidden;
+		    margin-bottom: 25px;
 		}
-		
-		container += 'class="video-container';
-		
-		// set class
-		if(this.className != '' && this.className != undefined){
-			container += ' ' + this.className;
+		 
+		.video-container iframe,
+		.video-container object,
+		.video-container embed {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
 		}
-		
-		container += '">' + this.innerHTML + '</div>';
-		
-		this.innerHTML = container;
-		
-	}
+	</style>
+
+	<template>
+		<content id="content"></content>
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-video",
 	
-  });
-  </script>
-</polymer-element>
+	  	// element attributes
+	  	properties: {
+	  		videoid: { type: String },
+	  		class: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+		
+			var video = document.createElement('div');
+			var cssClass = 'video-container';
+			
+			if(this.class != '' && this.class != undefined){
+				cssClass += ' ' + this.class;
+			}
+			
+			video.setAttribute('class', cssClass);
+			
+			var html = '';
+			
+			// get distributed nodes
+			var nodes = Polymer.dom(this.$.content).getDistributedNodes();
+			
+			if(nodes.length > 0){
+				html = nodes[0].innerHTML;
+			}
+			
+			// set html
+			video.innerHTML = html;
+			
+			// get children
+			var children = Polymer.dom(this).childNodes;
+			
+			// clear children
+			for(x=0; x<children.length; x++){
+				Polymer.dom(this).removeChild(children[x]);
+			}
+			
+			// append video
+			Polymer.dom(this).appendChild(video);
+		
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>

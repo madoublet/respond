@@ -1,7 +1,7 @@
-<polymer-element name="respond-cart" attributes="display">
-  <template>
-    <style>
-    
+<dom-module id="respond-cart">
+
+	<style>
+	
 		.respond-cart{
 		  	position: fixed;
 		  	top: 0;
@@ -10,7 +10,7 @@
 		  	padding: 0;
 		  	z-index: 100;
 		  	text-align: left;
-		  	margin-top: -350px;
+		  	margin-top: -400px;
 		  	z-index: 5;
 		  	background-color: #fff;
 		  	z-index: 10000;
@@ -19,7 +19,7 @@
 			min-height: 350px;
 		}
 		
-			.respond-cart.active{
+			.respond-cart[visible]{
 				margin-top: 0;
 			}
 			
@@ -152,148 +152,129 @@
 			height: 20px !important;
 		}
 		
+		/* tax and shipping */
+		.tax, .shipping, .local-shipping{
+			display: none;
+		}
 		
-	</style>
+		.tax[visible], .shipping[visible], .local-shipping[visible]{
+			display: block;
+		}
+		
+    </style>
 
-	<div class="respond-cart {{ {active: display == 'visible'} | tokenList}}">
+	<template>
 	
-		<button class="close-cart" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
-		
-		<div class="cart-container">
-		
-			<table>
-				<thead>
-					<tr>
-						<th>{{label.item | i18n}}</th>
-						<th class="number">{{label.quantity | i18n}}</th>
-						<th class="number">{{label.price | i18n}}</th>
-						<th class="number">{{label.total | i18n}}</th>
-					</tr>
-				</thead>
-				<tbody>
-			<template repeat="{{item in cart}}">
-					<tr class="item">
-						<td class="name">
-							{{item.name}}
-							<template if="{{item.shipping == 'shipped'}}">
-								<core-icon icon="maps:local-shipping"></core-icon>
-							</template>
-							<small>{{item.sku}}</small>
-						</td>
-						<td class="quantity number">
-							<input type="number" value="{{item.quantity}}" on-change="{{changeItem}}">
-							<button class="remove"
-								on-click="{{removeItem}}">
-								<core-icon icon="close"></core-icon>
-							</button>
-						<td class="price number">{{mark}}{{item.price | formatCurrency}} {{currency}}</td>
-						<td class="total number">{{mark}}{{(item.price * item.quantity) | formatCurrency}} {{currency}}</td>
-					</tr>
-				<!-- /.item -->
-			</template>
-				<tfoot>
-					<tr class="subtotal">
-						<th colspan="3">
-							{{label.subtotal | i18n}}
-						</th>
-						<td class="number">
-							{{mark}}{{subtotal | formatCurrency}} {{currency}}
-						</td>
-					</tr>
-				<template if="{{tax != 0}}">
-					<tr class="tax">
-						<th colspan="3">
-							{{label.tax | i18n}}
-						</th>
-						<td class="number">
-							{{mark}}{{tax | formatCurrency}} {{currency}}
-						</td>
-					</tr>
+		<div class="respond-cart" visible$="{{showCart}}" dir$="{{dir}}">
+	
+			<button class="close-cart" on-click="close"><core-icon icon="close"></core-icon></button>
+			
+			<div class="cart-container">
+			
+				<table>
+					<thead>
+						<tr>
+							<th>{{label.item}}</th>
+							<th class="number">{{label.quantity}}</th>
+							<th class="number">{{label.price}}</th>
+							<th class="number">{{label.total}}</th>
+						</tr>
+					</thead>
+					<tbody>
+				<template id="cartList" is="x-repeat" items="{{cart}}">
+						<tr class="item">
+							<td class="name">
+								<span>{{item.name}}</span>
+								<span class="local-shipping" visible$="{{item.isShipped}}">
+									<core-icon icon="maps:local-shipping"></core-icon>
+								</span>
+								<small>{{item.sku}}</small>
+							</td>
+							<td class="quantity number">
+								<input type="number" value$="{{item.quantity}}" on-change="changeItem">
+								<button class="remove"
+									on-click="removeItem">
+									<core-icon icon="close"></core-icon>
+								</button>
+							</td>
+							<td class="price number">{{item.priceDisplay}}</td>
+							<td class="total number">{{item.totalDisplay}}</td>	
+						</tr>
+					<!-- /.item -->
 				</template>
-				<template if="{{shipping != 0}}">
-					<tr class="shipping">
-						<th colspan="3">
-							{{label.shipping | i18n}}
-						</th>
-						<td class="number">
-							{{mark}}{{shipping | formatCurrency}} {{currency}}
-						</td>
-					</tr>
-				</template>
-					<tr class="total">
-						<th colspan="3">
-							{{label.total | i18n}}
-						</th>
-						<td class="number">
-							{{mark}}{{total | formatCurrency}} {{currency}}
-						</td>
-					</tr>
-				</tfoot>
-			</table>
-		
-		</div>
-		<!-- /.cart-container -->
+					<tfoot>
+						<tr class="subtotal">
+							<th colspan="3">{{label.subtotal}}</th>
+							<td class="number">{{subtotalDisplay}}</td>
+						</tr>
+						<tr class="tax" visible$="{{showTax}}">
+							<th colspan="3">{{label.tax}}</th>
+							<td class="number">{{taxDisplay}}</td>
+						</tr>
+						<tr class="shipping" visible$="{{showShipping}}">
+							<th colspan="3">{{label.shipping}}</th>
+							<td class="number">{{shippingDisplay}}</td>
+						</tr>
+						<tr class="total">
+							<th colspan="3">{{label.total}}</th>
+							<td class="number">{{totalDisplay}}</td>
+						</tr>
+					</tfoot>
+				</table>
+			
+			</div>
+			<!-- /.cart-container -->
+					
+			<div class="checkout">
+				<a on-click="clearCart">{{label.clear}}</a>
 				
-		<div class="checkout">
-			<a on-click="{{clearCart}}">{{label.clear | i18n}}</a>
+				<span class="total">
+					<span>{{label.total}}</span>
+					<span>{{totalDisplay}}</span>
+				</span>
+				
+				<button on-click="checkoutWithPayPal">{{label.checkoutWithPayPal}}</button>
+			</div>
 			
-			<span class="total">
-				<span>{{label.total | i18n}}</span>
-				{{mark}}{{total | formatCurrency}} {{currency}}
-			</span>
-			
-			<button on-click="{{checkoutWithPayPal}}">{{label.checkoutWithPayPal | i18n}}</button>
 		</div>
-		
-	</div>
+	
+	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-cart', {
-	  
-	  // labels
-	  label:{
-	  		clear: 'Clear Cart',
-			item: 'Item', 
-			quantity: 'Quantity',
-			price: 'Price',
-			subtotal: 'Subtotal',
-			tax: 'Tax',
-			shipping: 'Shipping',
-			total: 'Total',
-			checkoutWithPayPal: 'Checkout with PayPal'
-	  },
-	  
-	  // defaults
-	  cart: [],
-	  display: 'hidden',
-	  currency: '',
-	  mark: '',
-	  subtotal: 0.00,
-	  tax: 0.00,
-	  taxRate: 0,
-	  shipping: 0.00,
-	  total: 0.00,
-	  numberShipped: 0,
-	  count: 0,
-	  
-	  // ready
-	  ready: function(){
-		  
+<script>
+  Polymer({
+	  	is: "respond-cart",
+	
+	  	// element attributes
+	  	properties: {},
+		
+		// attached
+		attached: function() {
+		
+			// set labels
+			this.label = {
+			  		clear: this.i18n('Clear Cart'),
+					item: this.i18n('Item'), 
+					quantity: this.i18n('Quantity'),
+					price: this.i18n('Price'),
+					subtotal: this.i18n('Subtotal'),
+					tax: this.i18n('Tax'),
+					shipping: this.i18n('Shipping'),
+					total: this.i18n('Total'),
+					checkoutWithPayPal: this.i18n('Checkout with PayPal')
+				};
+				
+			
+			// set cart
+			this.cart = [];
+
+			// set defaults
+			this.showCart = false;
+			this.showShipping = false;
+			this.showTax = false;
 			this.currency = respond.site.settings.Currency;
 			this.taxRate = parseFloat(respond.site.settings.TaxRate);
 			this.pageId = document.body.getAttribute('page');
-			
-			// get cart from session
-			if(sessionStorage['respond-cart'] != null){
-				var str = sessionStorage['respond-cart'];
-			
-				this.cart = eval(str);
-			}
-			else{
-				this.cart = [];
-			}
 			
 			// common symbols
 			var symbols = {
@@ -318,6 +299,15 @@
 			if(symbols[this.currency] !== undefined) {
 				this.mark = symbols[this.currency];
 			}
+			
+			// set totals
+			this.subtotal = 0;
+			this.tax = 0;
+			this.taxRate = 0;
+			this.shipping = 0;
+			this.total = 0;
+			this.numberShipped = 0;
+			this.count = 0;
 			
 			// refresh the totals in the cart
 			this.refreshCart();
@@ -358,13 +348,13 @@
 			if(this.processorTransactionId != null){
 				this.clearCart();
 			}
-
-	  },
-	  
-	  // refreshes the cart
-	  refreshCart: function(){
-	  
-	  		// get cart from session
+			
+		},
+		
+		// refreshes the cart
+		refreshCart: function(){
+		
+			// get cart from session
 			if(sessionStorage['respond-cart'] != null){
 				var str = sessionStorage['respond-cart'];
 			
@@ -373,24 +363,49 @@
 			else{
 				this.cart = [];
 			}	
-	  
+		
+			// create display values
+			for(x=0; x<this.cart.length; x++){
+			
+				this.cart[x].isShipped = false;
+				
+				if(this.cart[x].shipping == 'shipped'){
+					this.cart[x].isShipped = true;
+				}
+			
+				this.cart[x].priceDisplay = this.mark + this.formatCurrency(this.cart[x].price) + ' ' + this.currency;
+				this.cart[x].totalDisplay = this.mark + this.formatCurrency(this.cart[x].price * this.cart[x].quantity) + ' ' + this.currency;
+			}
+			
 			// calculate subtotal
 			this.subtotal = this.calculateSubtotal();
+			this.subtotalDisplay = this.mark + this.formatCurrency(this.subtotal) + ' ' + this.currency;
 			
 			// calculate totalweight
 			this.totalWeight = this.calculateTotalWeight();  
 			
 			// set tax
 			this.tax =  this.subtotal * this.taxRate;
+			this.taxDisplay = this.mark + this.formatCurrency(this.tax) + ' ' + this.currency;
+			
+			if(this.tax > 0){
+				this.showTax = true;
+			}
 			
 			// set # shipped
 			this.numberShipped = this.calculateNumberShipped();
 			
 			// set shipping $
 			this.shipping = this.calculateShipping();
+			this.shippingDisplay = this.mark + this.formatCurrency(this.shipping) + ' ' + this.currency;
+			
+			if(this.shipping > 0){
+				this.showShipping = true;
+			}
 			
 			// set total
 			this.total = parseFloat(this.subtotal + this.tax + this.shipping);
+			this.totalDisplay = this.mark + this.formatCurrency(this.total) + ' ' + this.currency;
 			
 			// set count
 			this.count = this.calculateCount();
@@ -400,10 +415,11 @@
 			
 			// fire updated event
 			this.fire('cart-updated');
-	  },
-	  
-	  // clears the cart
-	  clearCart: function(){
+			
+		},
+		
+		// clears the cart
+		clearCart: function(){
 		  
 		  	// clear the cart and save it to localstorage
 		  	this.cart = [];
@@ -416,24 +432,22 @@
 			// recalculate
 			this.refreshCart();
 		  
-	  },
-	  
-	  // calculates the subtotal
-	  calculateSubtotal: function(){
+		},
+		
+		// calculates the subtotal
+		calculateSubtotal: function(){
 		  	var st = 0;
 			
 			// subtotal the items in the cart
 			for(x=0; x<this.cart.length; x++){
-			
 				st = st + (this.cart[x].price * this.cart[x].quantity);
-			
 			}
 			
 			return st;
-	  },
-	  
-	  // calculates the count
-	  calculateCount: function(){
+		},
+		
+		// calculates the count
+		calculateCount: function(){
 		  	var q = 0;
 			
 			// subtotal the items in the cart
@@ -444,10 +458,10 @@
 			}
 			
 			return q;
-	  },
-	  
-	  // calculates the total weight
-	  calculateTotalWeight: function(){
+		},
+		
+		// calculates the total weight
+		calculateTotalWeight: function(){
 		  
 		  	var w = 0;
 			
@@ -461,12 +475,11 @@
 			}
 			
 			return w;
-	  
-	  
-	  },
-	  
-	  // calculate the number shipped
-	  calculateNumberShipped: function(){
+		
+		},
+		
+		// calculate the number shipped
+		calculateNumberShipped: function(){
 		
 			var count = 0;
 			
@@ -481,10 +494,10 @@
 		
 			return count;
 		  
-	  },
-	  
-	  // calculate shipping
-	  calculateShipping: function(){
+		},
+		
+		// calculate shipping
+		calculateShipping: function(){
 		  
 		  	// set default stop
 			var stop = 0;
@@ -546,32 +559,36 @@
 			// default is 0
 			return 0;
 		  
-	  },	
-	  
-	  // opens the cart
-      open: function(){
-      
-			this.display = 'visible';
-			this.setAttribute('display', 'visible');
-	      
-      },
-      
-      // closes the cart
-      close: function(){
-      
-			this.display = 'hidden';
-			this.setAttribute('display', 'hidden');
-	      
-      },
-      
-      // change item in the cart
-      changeItem: function(e, d, s){
-	      
-      		var item = e.target.templateInstance.model.item;
-      		
-      		if(item.quantity <= 0){
-				var index = this.cart.indexOf(item);
+		},	
+		
+		// opens the cart
+		open: function(){
+		
+			this.showCart = true;
+		  
+		},
+		
+		// closes the cart
+		close: function(){
+		
+			this.showCart = false;
+		  
+		},
+		
+		// change item in the cart
+		changeItem: function(e){
+		  
+			var item = this.$.cartList.itemForElement(e.target);
+			var q = parseInt(e.target.value);
+			
+			var index = this.cart.indexOf(item);
+			
+			// remove or update	
+			if(q <= 0){
 				this.cart.splice(index, 1);   
+			}
+			else{
+				this.cart[index].quantity = q;
 			}
 			
 			// save cart to local storage
@@ -580,13 +597,13 @@
 			
 			// recalculate
 			this.refreshCart();
-      },
-      
-      // remove item from the cart
-      removeItem: function(e, d, s){
-      
-      		var item = e.target.templateInstance.model.item;
-      		
+		},
+		
+		// remove item from the cart
+		removeItem: function(e){
+			
+			var item = this.$.cartList.itemForElement(e.target);
+				
 			var index = this.cart.indexOf(item);
 			this.cart.splice(index, 1);
 			
@@ -596,11 +613,11 @@
 			
 			// recalculate
 			this.refreshCart();
-      },
-      
-      // checkout with PayPal
-      checkoutWithPayPal: function(){
-	      
+		},
+		
+		// checkout with PayPal
+		checkoutWithPayPal: function(){
+		  
 			var email = respond.site.settings.PayPalId;
 			var logo = respond.site.ImagesUrl + respond.site.settings.LogoUrl;
 			var currency = respond.site.settings.Currency;
@@ -682,17 +699,16 @@
 			
 			// submit form
 			document.getElementById('paypal-form').submit();
-	      
-      },
-      
-      i18n: function(text){
-	      return respond.site.i18n(text);
-      },
-      
-      formatCurrency: function(number){
-	      return accounting.formatNumber(number, 2, ' ');
-      }
+		  
+		},
+		
+		i18n: function(text){
+		  return respond.site.i18n(text);
+		},
+		
+		formatCurrency: function(number){
+		  return accounting.formatNumber(number, 2, ' ');
+		}
 	
-  });
-  </script>
-</polymer-element>
+	});
+</script>

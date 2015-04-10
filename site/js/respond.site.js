@@ -186,6 +186,9 @@ if (!String.prototype.trim) {
    String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
 }
 
+// set polymer to use shady dom
+Polymer = {dom: 'shady'};
+
 // load i18next and moment
 
 // i18next, v1.6.3

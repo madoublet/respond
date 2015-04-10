@@ -1,151 +1,173 @@
-<polymer-element name="respond-form-field" attributes="fieldid type label required helper placeholder cssclass options">
-  <template>
-  	<content></content>
-  </template>
-  
-  <script>
+<dom-module id="respond-form-field">
+	<template></template>
+</dom-module>
 
-  Polymer('respond-form-field', {
-	  
-	id: '',
-	type: '',
-	label: '',
-	required: '',
-	helper: '',
-	placeholder: '',
-	cssclass: '',
-	options: '',  
-
-	// ready
-	ready: function() {
-		
-		var html = '';
-		
-		// set label
-		var html = '<label for="' + this.fieldid + '"'; 
-		var prefix = '';
-		var pageId = document.body.getAttribute('page');
+<script>
+  Polymer({
+	  	is: "respond-form-field",
 	
-		if(this.fieldid != null){
-
-			// get pageId
-			prefix = pageId + '.';
+	  	// element attributes
+	  	properties: {
+	  		fieldid: { type: String },
+	  		type: { type: String },
+	  		label: { 
+	  			type: String,
+	  			value: ''
+	  		},
+	  		required: {
+	  			type: String,
+	  			value: ''
+	  		},
+	  		helper: {
+	  			type: String,
+	  			value: ''
+	  		},
+	  		placeholder: { 
+	  			type: String,
+	  			value: ''
+	  		},
+	  		cssclass: { 
+	  			type: String,
+	  			value: ''
+	  		},
+	  		options: { 
+	  			type: String,
+	  			value: ''
+	  		}
+		},
 		
-			html += 'id="' + this.fieldid + '-label" class="control-label" data-i18n="' + prefix + this.fieldid + '-label">';
-		}
-		else{
-			html += '>';
-		}
+		// attached
+		attached: function() {
 		
-		html += this.label + '</label>';
-		
-		var req = '';
-		
-		if(this.required == 'true'){
-			req = ' required';
-		}
-
-		// create textbox
-		if(this.type=='text'){
-			html += '<input id="' + this.fieldid + '" name="' + this.fieldid + 
-					'" type="text" class="form-control" placeholder="'+this.placeholder+'"' + req +
-					'>';
-		}
-
-		// create textarea
-		if(this.type=='textarea'){
-			html += '<textarea id="' + this.fieldid + '" name="' + this.fieldid + '" class="form-control"' + req + 
-					'></textarea>';
-		}
-
-		// create select
-		if(this.type=='select'){
-			html += '<select id="' + this.fieldid + '" name="' + this.fieldid + '" class="form-control"' + req + 
-			'>';
-
-			var arr = this.options.split(',');
-
-			for(x=0; x<arr.length; x++){
-			
-				if(this.id != null){
-					html += '<option id="' + this.fieldid + '-option' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-option' + (x+1) + '">' + arr[x].trim() + '</option>';
-				}
-				else{
-	  				html += '<option>' + arr[x].trim() + '</option>';
-	  			}
-			}
-
-			html += '</select>'
-		}
-
-		// create checkboxlist
-		if(this.type=='checkboxlist'){
-			html += '<span class="checkbox list">';
-
-			var arr = this.options.split(',');
-
-			for(x=0; x<arr.length; x++){
-				
-				var val = arr[x].trim();
-			
-	  			html += '<label class="checkbox"><input name="' + this.fieldid + '" type="checkbox" value="' + arr[x].trim() + '">';
-	  			
-	  			if(this.fieldid != null){
-		  			html += '<span id="' + this.fieldid + '-checkbox' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-checkbox' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += arr[x].trim() + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create radio list
-		if(this.type=='radiolist'){
-			html += '<span class="list">';
-
-			var arr = options.split(',');
-
-			for(x=0; x<arr.length; x++){
-	  			html += '<label class="radio"><input name="' + this.fieldid + '" type="radio" value="' + arr[x].trim() + '" name="' + id + '">';
-	  			
-	  			if(this.fieldid != null){
-		  			html += '<span id="' + this.fieldid + '-radio' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-radio' + (x+1) + '">';
-				}
-				else{
-					html += '<span>';
-				}
-	  				
-	  			html += arr[x].trim() + '</span></label>';
-			}
-
-			html += '</span>';
-		}
-
-		// create helper
-		if(this.helper != '') {
+			// set label
+			var html = '<label for="' + this.fieldid + '"'; 
+			var prefix = '';
+			var pageId = document.body.getAttribute('page');
 		
 			if(this.fieldid != null){
-	  			html += '<span id="' + this.fieldid + '-help" data-i18n="' + prefix + this.fieldid + '-help" class="help-block">' + this.helper + '</span>';
+	
+				// get pageId
+				prefix = pageId + '.';
+			
+				html += 'id="' + this.fieldid + '-label" class="control-label" data-i18n="' + prefix + this.fieldid + '-label">';
 			}
 			else{
-				html += '<span class="help-block">' + this.helper + '</span>';
+				html += '>';
 			}
-	  		
+			
+			html += this.label + '</label>';
+			
+			var req = '';
+			
+			if(this.required == 'true'){
+				req = ' required';
+			}
+	
+			// create textbox
+			if(this.type=='text'){
+				html += '<input id="' + this.fieldid + '" name="' + this.fieldid + 
+						'" type="text" class="form-control" placeholder="'+this.placeholder+'"' + req +
+						'>';
+			}
+	
+			// create textarea
+			if(this.type=='textarea'){
+				html += '<textarea id="' + this.fieldid + '" name="' + this.fieldid + '" class="form-control"' + req + 
+						'></textarea>';
+			}
+	
+			// create select
+			if(this.type=='select'){
+				html += '<select id="' + this.fieldid + '" name="' + this.fieldid + '" class="form-control"' + req + 
+				'>';
+	
+				var arr = this.options.split(',');
+	
+				for(x=0; x<arr.length; x++){
+				
+					if(this.id != null){
+						html += '<option id="' + this.fieldid + '-option' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-option' + (x+1) + '">' + arr[x].trim() + '</option>';
+					}
+					else{
+		  				html += '<option>' + arr[x].trim() + '</option>';
+		  			}
+				}
+	
+				html += '</select>'
+			}
+	
+			// create checkboxlist
+			if(this.type=='checkboxlist'){
+				html += '<span class="checkbox list">';
+	
+				var arr = this.options.split(',');
+	
+				for(x=0; x<arr.length; x++){
+					
+					var val = arr[x].trim();
+				
+		  			html += '<label class="checkbox"><input name="' + this.fieldid + '" type="checkbox" value="' + arr[x].trim() + '">';
+		  			
+		  			if(this.fieldid != null){
+			  			html += '<span id="' + this.fieldid + '-checkbox' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-checkbox' + (x+1) + '">';
+					}
+					else{
+						html += '<span>';
+					}
+		  				
+		  			html += arr[x].trim() + '</span></label>';
+				}
+	
+				html += '</span>';
+			}
+	
+			// create radio list
+			if(this.type=='radiolist'){
+				html += '<span class="radio list">';
+	
+				var arr = this.options.split(',');
+	
+				for(x=0; x<arr.length; x++){
+		  			html += '<label class="radio"><input name="' + this.fieldid + '" type="radio" value="' + arr[x].trim() + '" name="' + this.fieldid + '">';
+		  			
+		  			if(this.fieldid != null){
+			  			html += '<span id="' + this.fieldid + '-radio' + (x+1) + '" data-i18n="' + prefix + this.fieldid + '-radio' + (x+1) + '">';
+					}
+					else{
+						html += '<span>';
+					}
+		  				
+		  			html += arr[x].trim() + '</span></label>';
+				}
+	
+				html += '</span>';
+			}
+	
+			// create helper
+			if(this.helper != '') {
+			
+				if(this.fieldid != null){
+		  			html += '<span id="' + this.fieldid + '-help" data-i18n="' + prefix + this.fieldid + '-help" class="help-block">' + this.helper + '</span>';
+				}
+				else{
+					html += '<span class="help-block">' + this.helper + '</span>';
+				}
+		  		
+			}
+			
+			// create field
+			var div = document.createElement('div');
+			div.setAttribute('data-id', this.fieldid);
+			div.setAttribute('data-label', this.label);
+			div.setAttribute('data-type', this.type);
+			div.setAttribute('data-required', this.required);
+			div.setAttribute('class', 'form-group');
+			div.innerHTML = html;
+			
+			// append to the light dom
+			Polymer.dom(this).appendChild(div);
+			
 		}
-		
-		// update light DOM		
-		this.innerHTML = '<div data-id="' + this.fieldid + 
-							'" data-label="' + this.label +
-							'" data-type="' + this.type + 
-							'" data-required="' + this.required + 
-							'" class="form-group">' + html + '</div>';
-		
-	}
-    
-  });
-  </script>
-</polymer-element>
+	
+	});
+</script>

@@ -1,5 +1,2 @@
-@ECHO NPM INSTALL
-@call npm install
-@ECHO .
-@ECHO GRUNT
-@call grunt
+START /B vulcanize polymer-simplex.html --inline --strip -output dist/polymer-simplex.html
+START /B vulcanize polymer.html --inline  --strip -output dist/polymer.html
