@@ -1,41 +1,5 @@
-body /deep/ h1{
-	font-size: config(--h1-font-size);
-	color: config(--h1-color);
-}
-
-body /deep/ h2{
-	font-size: config(--h2-font-size);
-	color: config(--h2-color);
-}
-
-body /deep/ h3{
-	font-size: config(--h3-font-size);
-	color: config(--h3-color);
-}
-
-body /deep/ h4{
-	font-size: config(--h4-font-size);
-	color: config(--h4-color);
-}
-
-body /deep/ h5{
-	font-size: config(--h1-font-size);
-	color: config(--h1-color);
-}
-
-body /deep/ p, body /deep/ blockquote, body /deep/ label, body /deep/ td, body /deep/ th, body /deep/ li{
-	font-size: config(--default-font-size);
-	color: config(--default-color);
-	line-height: 25px;
-}
-
-body /deep/ a, body /deep/ a:hover{
-  color: config(--default-link-color);
-  text-decoration: none;
-}
-
 /* toggles (search, cart, languages, etc) */
-body /deep/ .toggle{
+body .toggle{
   	display: block;
 	float: right;
   	width: 50px;
@@ -46,19 +10,19 @@ body /deep/ .toggle{
 	cursor: pointer;
 }
 
-	body /deep/ .toggle:hover{
+	body .toggle:hover{
 	  	color: config(--nav-icon-hover-color);
 	}
 	
-	body /deep/ .toggle.active{
+	body .toggle.active{
         color: config(--nav-icon-active-color) !important;
     }
 
-	body /deep/ .toggle core-icon{
+	body .toggle core-icon{
       width: 20px;
       height: 20px;
     }
 
-html[dir=rtl] body /deep/ .toggle{
+html[dir=rtl] body .toggle{
 	float: left; 
 }
