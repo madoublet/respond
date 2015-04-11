@@ -1,6 +1,6 @@
-<polymer-element name="respond-languages" attributes="display">
-  <template>
-    <style>
+<dom-module id="respond-languages">
+
+	<style>
 		
 		.respond-languages{
 		  	position: fixed;
@@ -11,7 +11,7 @@
 		    text-transform: uppercase;
 		  	z-index: 100;
 		  	text-align: left;
-		  	margin-top: -350px;
+		  	margin-top: -400px;
 		  	z-index: 5;
 		  	background-color: #fff;
 		  	z-index: 10000;
@@ -21,7 +21,7 @@
 			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
 		}
 		
-			.respond-languages.active{
+			.respond-languages[visible]{
 				margin-top: 0;
 			}
 			
@@ -39,17 +39,27 @@
 		  	outline: none;
 		  	z-index: 10;
 		}
-				
-		paper-spinner{
-			vertical-align: top;
-			margin-top: 7px;
-			margin-left: 7px;
+		
+		/* loading */
+		.languages-loading{
+			display: none;
 		}
 		
-		paper-spinner::shadow .circle {
-	        border-color: #4285f4;
-	    }
+		.languages-loading[visible]{
+			display: inline-block;
+		}
+				
+			.languages-loading paper-spinner{
+				vertical-align: top;
+				margin-top: 7px;
+				margin-left: 7px;
+			}
+			
+			.languages-loading paper-spinner::shadow .circle{
+		        border-color: #4285f4;
+		    }
 	    
+	    /* select language */
 	    .select-language{
 		    display: inline-block;
 		    padding-left: 15px;
@@ -77,180 +87,218 @@
 			padding: 0 15px;
 		}
 		
-		.select-language a.active{
+		.select-language a[active]{
 			border: 1px solid #ddd;
 		}
 		
-		
     </style>
 
-	<div class="respond-languages {{ {active: display == 'visible'} | tokenList}}">
+	<template>
 	
-		<button class="close-languages" on-click="{{close}}"><core-icon icon="close"></core-icon></button>
-		
-		<div class="select-language">
-			<label>{{label.language | i18n}}</label>
+		<div class="respond-languages" visible$="{{showLanguages}}">
+	
+			<button class="close-languages" on-click="close"><core-icon icon="close"></core-icon></button>
 			
-			<template if="{{loading == true}}">
-				<span class="languages-loading">
+			<div class="select-language">
+				<label>{{label.language}}</label>
+				
+				<span class="languages-loading" visible$="{{loading}}">
 					<paper-spinner active></paper-spinner>
 				</span>
-			</template>
+				
+				<template id="languagesList" is="x-repeat" items="{{languages}}">
+					<a active$="{{item.isCurrentLanguage}}" on-click="setLanguage">{{item.language}}</a>
+				</template>
+				
+				<label class="direction">{{label.direction}}</label>
+				
+				<a active$="{{isLTR}}" on-click="setLtr">LTR</a>
+				<a active$="{{isRTL}}" on-click="setRtl">RTL</a>
+			</div>
 			
-			<template repeat="{{language in languages}}">
-				<a class="{{ {active: language == currentLanguage } | tokenList}}" on-click="{{setLanguage}}">{{language | i18n}}</a>
-			</template>
-			
-			<label class="direction">{{label.direction | i18n}}</label>
-			
-			<a class="{{ {active: 'ltr' == currentDirection } | tokenList}}" on-click="{{setLtr}}">LTR</a>
-			<a class="{{ {active: 'rtl' == currentDirection } | tokenList}}" on-click="{{setRtl}}">RTL</a>
 		</div>
-		
-	</div>
+	
+	</template>
+</dom-module>
 
-  </template>
-  
-  <script>
-  Polymer('respond-languages', {
-	  
-	  // labels
-	  label:{
-	  		language: 'Language',
-	  		direction: 'Direction'
-	  },
-	  
-	  // defaults
-	  languages: [],
-	  
-	  display: 'hidden',
-	  loading: false,
-	  
-	  currentLanguage: null,
-	  
-	  // ready
-	  ready: function(){
-		  
-		  	var context = this;
+<script>
+  Polymer({
+	  	is: "respond-languages",
+	
+	  	// element attributes
+	  	properties: {},
+		
+		// attached
+		attached: function() {
+		
+			// labels
+			this.label = {
+				language: this.i18n('Language'),
+				direction: this.i18n('Direction')
+			};
+			
+			// defaults
+			this.languages = [];
+			this.showLanguages = false;
+			this.isLTR = true;
+			this.isRTL = false;
+			  
+			// set context  
+			var context = this;
 		  	
 		  	this.currentLanguage = respond.site.settings.Language;
 		  	this.currentDirection = respond.site.settings.Direction;
 		  	
+		  	// get current language from session
 		  	if(sessionStorage['respond-language'] != null){
 				this.currentLanguage = sessionStorage['respond-language'];
 			}
 			
+			// get current direction from session
 			if(sessionStorage['respond-direction'] != null){
 				this.currentDirection = sessionStorage['respond-direction'];
 			}
+			
+			// set LTR/RTL
+		  	if(this.currentDirection = 'ltr'){
+			  	this.isLTR = true;
+			  	this.isRTL = false;
+		  	}
+		  	else{
+			  	this.isLTR = false;
+			  	this.isRTL = true;
+		  	}
 			
 		  	// wait for toggle
 		  	var items = document.querySelectorAll('respond-languages-toggle');
 			
 		  	for(x=0; x<items.length; x++){
-			
-			items[x].addEventListener('languages-toggled', function(e) {
-					if(context.display == 'visible'){
+				
+				items[x].addEventListener('languages-toggled', function(e) {
+					
+					if(context.showLanguages == true){
 						context.close();
 					}
 					else{
 						context.open();
 					}
+					
 				});
 				  
-			}
+			}  
+			  
+		
+		},
+		
+		// opens the languages
+		open: function(){
+		
+			this.showLanguages = true;
 			
-	  },
-	  
-	  // opens the languages
-	  open: function(){
-      
-      	  this.display = 'visible';
-	      this.setAttribute('display', 'visible');
-	      
-	      if(this.languages.length == 0){
-		      
-		      	this.loading = true;
-		      
-		      	// set context
-			  	var context = this;
+			if(this.languages.length == 0){
+				this.loading = true;
+			
+				// set context
+				var context = this;
 			
 				// set params
 				var params = {
 					siteId: respond.site.settings.SiteId
 				}
-				
+			
 				// set URI
 				var uri = respond.site.settings.API + '/translation/list/locales';
-				
+			
 				var xhr = new XMLHttpRequest();
 				
 				xhr.open('POST', encodeURI(uri));
 				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				xhr.onload = function() {
-				    if(xhr.status === 200){
-				    	context.languages = JSON.parse(xhr.responseText);
+					if(xhr.status === 200){
+						var data = JSON.parse(xhr.responseText);
+						context.languages = [];
+						
+						// set current language
+						for(x=0; x<data.length; x++){
+							
+							if(data[x] == context.currentLanguage){
+								
+								context.languages.push({
+									'language': data[x],
+									'isCurrentLanguage': true
+								});
+								
+							}
+							else{
+								
+								context.languages.push({
+									'language': data[x],
+									'isCurrentLanguage': false
+								})
+								
+							}
+						}
+						
+						
 						context.loading = false;
-				    }
-				    else if(xhr.status !== 200){
-				    	context.loading = false;
-				        console.log('[respond.error] respond-languages component: failed post, xhr.status='+xhr.status);
-				    }
+					}
+					else if(xhr.status !== 200){
+						context.loading = false;
+						console.log('[respond.error] respond-languages component: failed post, xhr.status='+xhr.status);
+					}
 				};
-				
+			
 				// serialize the data
-			    var qs = [];
-			    
-			    for(p in params){
-				    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
-			    }
-			    
-			    qs = qs.join("&");
-			    
+				var qs = [];
+			
+				for(p in params){
+					qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+				}
+			
+				qs = qs.join("&");
+			
 				// send serialized data
 				xhr.send(encodeURI(qs));
-		      
-	      }
-	      
-      },
-      
-      // closes the languages
-      close: function(){
-      
-      	  this.display = 'hidden';
-	      this.setAttribute('display', 'hidden');
-	      
-      },
-      
-      // sets the language
-      setLanguage: function(e, d, s){
-	      
-	      var item = e.target.templateInstance.model;
-	      
-	      respond.site.setLanguage(item.language);
-	      
-	      location.reload();
-	      
-      },
-      
-      // set LTR direction
-      setLtr: function(){
-	      respond.site.setDirection('ltr');
-	      
-	      location.reload();
-      },
-      
-      // set RTL direction
-      setRtl: function(){
-	      respond.site.setDirection('rtl');
-	      
-	      location.reload();
-      },
-      
-      i18n: function(text){
-	      return respond.site.i18n(text);
-      }
+			
+			}
+		  
+		},
+		
+		// closes the languages
+		close: function(){
+		
+			this.showLanguages = false;
+		  
+		},
+		
+		// sets the language
+		setLanguage: function(e){
+		  
+		  	var item = this.$.languagesList.itemForElement(e.target);
+		  
+		  	respond.site.setLanguage(item.language);
+		  
+		  	location.reload();
+		  
+		},
+		
+		// set LTR direction
+		setLtr: function(){
+		  	respond.site.setDirection('ltr');
+		  
+		  	location.reload();
+		},
+		
+		// set RTL direction
+		setRtl: function(){
+		  	respond.site.setDirection('rtl');
+		  
+		  	location.reload();
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
 	
-  });
-  </script>
-</polymer-element>
+	});
+</script>

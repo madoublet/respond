@@ -1,7 +1,6 @@
-<polymer-element name="respond-receipt">
-  <template>
-  
-  	<style>
+<dom-module id="respond-receipt">
+
+	<style>
   		table{
 	  		width: 100%;
 	  		border: none;
@@ -30,96 +29,103 @@
   		table thead th.text-right, table tbody td.text-right{
 	  		text-align: right;
   		}
-  	</style>
-  	
-  	
-  	<table>
-		<thead>
-			<tr>
-				<th>{{label.item | i18n}}</td>
-				<th class="text-right">{{label.price | i18n}}</th>
-				<th class="text-right">{{label.quantity | i18n}}</th>
-				<th class="text-right">{{label.total | i18n}}</th>
-			</tr>
-		</thead>
-		<tbody id="receipt">
-			
-		</tbody>
-	</table>
-  	
-  </template>
-  
-  <script>
+    </style>
 
-  Polymer('respond-receipt', {
-  
-  	// labels
-	label:{
-	  		item: 'Item',
-	  		price: 'Price',
-	  		quantity: 'Quantity',
-	  		total: 'Total',
-	  		receiptNotAvailable: 'Receipt not available'
-	},
+	<template>
 	
-	receipt: '',
+		<table>
+			<thead>
+				<tr>
+					<th>{{label.item}}</td>
+					<th class="text-right">{{label.price}}</th>
+					<th class="text-right">{{label.quantity}}</th>
+					<th class="text-right">{{label.total}}</th>
+				</tr>
+			</thead>
+			<tbody id="receipt">
+				
+			</tbody>
+		</table>
+	
+	</template>
+</dom-module>
 
-	// ready
-	ready: function() {
+<script>
+  Polymer({
+	  	is: "respond-receipt",
+	
+	  	// element attributes
+	  	properties: {},
 		
-		// get api
-		this.api = respond.site.settings.API;
-		this.processorTransactionId = respond.site.getQueryStringByName('tx');
-		
-		if(this.processorTransactionId != null){
-		
-			// set context
-			var context = this;
-			
-			var params = {
-				processorTransactionId: this.processorTransactionId
-			}
-			
-			// submit form
-			var xhr = new XMLHttpRequest();
-			
-			// set URI
-			var uri = this.api + '/transaction/receipt';
-			
-			xhr.open('POST', encodeURI(uri));
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.onload = function() {
-			    if(xhr.status === 200){
-			    	context.$.receipt.innerHTML = xhr.responseText;
-			    }
-			    else if(xhr.status !== 200){
-			    	context.loading = false;
-			        console.log('[respond.error] respond-receipt component: failed post, xhr.status='+xhr.status);
-			    }
+		// attached
+		attached: function() {
+		  	
+		  	// labels
+			this.label = {
+			  		item: this.i18n('Item'),
+			  		price: this.i18n('Price'),
+			  		quantity: this.i18n('Quantity'),
+			  		total: this.i18n('Total'),
+			  		receiptNotAvailable: this.i18n('Receipt not available')
 			};
 			
-			// serialize the data
-		    var qs = [];
-		    
-		    for(p in params){
-			    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
-		    }
-		    
-		    qs = qs.join("&");
-		    
-			// send serialized data
-			xhr.send(encodeURI(qs));
+			// receipt
+			this.receipt = '';
 			
-		}
-		else{
-			this.$.receipt.innerHTML = '<tr><td colspan="4">' + this.label.receiptNotAvailable + '</td></tr>';
-		}
-	},
+			// get api
+			this.api = respond.site.settings.API;
+			this.processorTransactionId = respond.site.getQueryStringByName('tx');
+			
+			if(this.processorTransactionId != null){
+			
+				// set context
+				var context = this;
+				
+				var params = {
+					processorTransactionId: this.processorTransactionId
+				}
+				
+				// submit form
+				var xhr = new XMLHttpRequest();
+				
+				// set URI
+				var uri = this.api + '/transaction/receipt';
+				
+				xhr.open('POST', encodeURI(uri));
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.onload = function() {
+				    if(xhr.status === 200){
+				    	context.$.receipt.innerHTML = xhr.responseText;
+				    }
+				    else if(xhr.status !== 200){
+				    	context.loading = false;
+				        console.log('[respond.error] respond-receipt component: failed post, xhr.status='+xhr.status);
+				    }
+				};
+				
+				// serialize the data
+			    var qs = [];
+			    
+			    for(p in params){
+				    qs.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p]));
+			    }
+			    
+			    qs = qs.join("&");
+			    
+				// send serialized data
+				xhr.send(encodeURI(qs));
+				
+			}
+			else{
+				this.$.receipt.innerHTML = '<tr><td colspan="4">' + this.label.receiptNotAvailable + '</td></tr>';
+			}
+		  	
+		  	
+		},
       
-	i18n: function(text){
-	  return respond.site.i18n(text);
-	}
-    
-  });
-  </script>
-</polymer-element>
+		i18n: function(text){
+			return respond.site.i18n(text);
+		}
+	
+	});
+</script>
