@@ -42,24 +42,72 @@
 		}
 	
 		/* carousel control */
-		.carousel-control core-icon{
-			position: absolute;
-			top: 50%;
-			color: #fff;
-			width: 40px;
-			height: 40px;
+		.carousel-control{
+			display: none;
 		}
 		
+			.carousel-control[visible]{
+				display: inline-block;
+			}
+		
+			.carousel-control core-icon{
+				position: absolute;
+				top: 50%;
+				color: #fff;
+			}
+			
+			.carousel-control core-icon, .carousel-control core-icon svg{
+				width: 40px;
+				height: 40px;
+			  	margin: 0;
+			  	padding: 0;
+			  	line-height: 40px;
+			  	display: inline-block;
+			  	vertical-align: middle;
+			}
+		
 		/* indicators */
-		.carousel-indicators li{
-			margin: 0 2.5px;
+		.carousel-indicators{
+			display: none;	
 		}
+		
+			.carousel-indicators[visible]{
+				display: inline-block;
+			}
+		
+			.carousel-indicators li{
+				margin: 0 2.5px;
+			}
 		
 		
 	</style>
 
 	<template>
-		<content id="content"></content>
+		
+		<div id$="{{fullid}}" class$="{{cssClass}}">
+			
+			<ol id="indicatorsList" 
+				class="carousel-indicators" 
+				visible$="{{showIndicators}}"></ol>
+			<!-- /.carousel-indicators -->
+			
+			<div id="slidesList" class="carousel-inner" role="listbox"></div>
+			<!-- /.carousel-inner -->
+			
+			<a class="left carousel-control" href$="{{targetid}}" role="button" data-slide="prev" 
+				visible$="{{showArrows}}">
+				<core-icon icon="chevron-left"></core-icon>
+			</a>
+			<a class="right carousel-control" href$="{{targetid}}" role="button" data-slide="next"
+				visible$="{{showArrows}}">
+				<core-icon icon="chevron-right"></core-icon>
+			</a>
+			<!-- /.carousel-control -->
+			
+		</div>
+		<!-- /.carousel -->
+		
+		
 	</template>
 </dom-module>
 
@@ -84,14 +132,22 @@
 		
 			var id = this.slideshowid;
 			
-			// create indicators
-			var indicators = document.createElement('ol');
-			indicators.setAttribute('class', 'carousel-indicators');
+			// set hashid
+			this.fullid = 'carousel-' + this.slideshowid;
+			this.targetid = '#carousel-' + this.slideshowid;
+			this.cssClass = 'carousel ' + this.transition;
 			
-			// create inner
-			var inner = document.createElement('div');
-			inner.setAttribute('class', 'carousel-inner');
-			inner.setAttribute('role', 'listbox');
+			// set toggles
+			this.showIndicators = false;
+			this.showArrows = false;
+			
+			if(Boolean(this.indicators) == true){
+				this.showIndicators = true;
+			}
+			
+			if(Boolean(this.arrows) == true){
+				this.showArrows = true;
+			}
 			
 			// get images
 			var images = Polymer.dom(this).querySelectorAll('img');
@@ -161,7 +217,7 @@
 				Polymer.dom(slide).appendChild(container);
 				
 				// append slide to inner
-				Polymer.dom(inner).appendChild(slide);
+				Polymer.dom(this.$.slidesList).appendChild(slide);
 				
 				// create indicator
 				var indicator = document.createElement('li');
@@ -169,67 +225,9 @@
 				indicator.setAttribute('data-slide-to', x);
 				indicator.setAttribute('class', active);
 				
-				Polymer.dom(indicators).appendChild(indicator);
+				Polymer.dom(this.$.indicatorsList).appendChild(indicator);
 				
 			}
-			
-			// create carousel		
-			var carousel = document.createElement('div');
-			carousel.setAttribute('id', 'carousel-' + this.slideshowid);
-			carousel.setAttribute('class', 'carousel ' + this.transition);		
-			carousel.setAttribute('data-ride', 'carousel');
-			
-			// attach indicators
-			if(Boolean(this.indicators) == true){
-				Polymer.dom(carousel).appendChild(indicators);
-			}
-			
-			// attach slides
-			Polymer.dom(carousel).appendChild(inner);
-		
-			// create previous arrow
-			var prev = document.createElement('a');
-			prev.setAttribute('class', 'left carousel-control');
-			prev.setAttribute('href', '#carousel-' + this.slideshowid);
-			prev.setAttribute('role', 'button');
-			prev.setAttribute('data-slide', 'prev');
-			
-			// create icon
-			var left = document.createElement('core-icon');
-			left.setAttribute('icon', 'chevron-left');
-			
-			// append left
-			Polymer.dom(prev).appendChild(left);
-			
-			// create next arrow
-			var next = document.createElement('a');
-			next.setAttribute('class', 'right carousel-control');
-			next.setAttribute('href', '#carousel-' + this.slideshowid);
-			next.setAttribute('role', 'button');
-			next.setAttribute('data-slide', 'next');
-			
-			// create icon
-			var right = document.createElement('core-icon');
-			right.setAttribute('icon', 'chevron-right');
-			
-			// append left
-			Polymer.dom(next).appendChild(right);
-			
-			// attach arrows
-			if(Boolean(this.arrows) == true){
-				Polymer.dom(carousel).appendChild(prev);
-				Polymer.dom(carousel).appendChild(next);
-			}
-			
-			// remove all children
-			var children = Polymer.dom(this).childNodes;
-			
-			while(children[0]){
-				Polymer.dom(this).removeChild(children[0]);
-			}
-			
-			// append carousel
-			Polymer.dom(this).appendChild(carousel);
 		
 		},
 		
