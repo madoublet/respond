@@ -33,7 +33,7 @@
 				margin-top: 0;
 			}
 			
-		/* close search */
+		/* close cart */
 		.respond-cart .close-cart{
 			height: 40px;
 			width: 40px;
@@ -127,6 +127,16 @@
 			border-top: 1px solid #ddd;
 		}
 		
+		/* clear-cart */
+		.respond-cart .clear-cart{
+			position: absolute;
+			top: 22px;
+			left: 10px;
+		  	z-index: 10;
+		  	cursor: pointer;
+		}
+		
+		/* checkout */
 		.checkout{
 			position: absolute;
 			bottom: 0;
@@ -141,23 +151,26 @@
 			background-color: #fff;
 			border: 1px solid #ddd;
 			padding: 10px 15px;
-			margin: 10px 15px 10px 0;
-			font-size: 16px;
+			margin: 10px 10px 10px 0;
+			font-size: 15px;
 			outline: none;
+			text-transform: none;
 		}
+		
+			.checkout button i{
+				color: #009cde;
+			}
 		
 		.checkout a{
 			cursor: pointer;
 			position: absolute;
 			top: 19px;
-			left: 15px;
-			text-transform: uppercase;
+			left: 10px;
+			text-transform: none;
 		}
 		
 		.checkout .total{
-			display: inline-block;
-			font-weight: bold;
-			margin-right: 10px;
+			display: none;
 		}
 		
 		.checkout .total span{
@@ -181,12 +194,21 @@
 			display: block;
 		}
 		
+		/* Small devices (tablets, 768px and up) */
+		@media (min-width: 768px) {
+		
+			.checkout .total{
+				display: inline-block;
+			}
+			
+		}
+		
     </style>
 
 	<template>
 	
 		<div class="respond-cart" visible$="{{showCart}}" dir$="{{dir}}">
-	
+		
 			<button class="close-cart" on-click="close"><core-icon icon="close"></core-icon></button>
 			
 			<div class="cart-container">
@@ -241,19 +263,20 @@
 						</tr>
 					</tfoot>
 				</table>
-			
+				
 			</div>
 			<!-- /.cart-container -->
 					
 			<div class="checkout">
-				<a on-click="clearCart">{{label.clear}}</a>
+				
+				<a class="clear-cart" on-click="clearCart">{{label.clear}}</a>
 				
 				<span class="total">
 					<span>{{label.total}}</span>
 					<span>{{totalDisplay}}</span>
 				</span>
 				
-				<button on-click="checkoutWithPayPal">{{label.checkoutWithPayPal}}</button>
+				<button on-click="checkoutWithPayPal"><span>{{label.checkoutWithPaypal}}</span></button>
 			</div>
 			
 		</div>
@@ -281,7 +304,7 @@
 					tax: this.i18n('Tax'),
 					shipping: this.i18n('Shipping'),
 					total: this.i18n('Total'),
-					checkoutWithPayPal: this.i18n('Checkout with PayPal')
+					checkoutWithPaypal: this.i18n('Checkout with Paypal')
 				};
 				
 			
@@ -637,9 +660,15 @@
 		
 		// checkout with PayPal
 		checkoutWithPayPal: function(){
+		
+			var logo = respond.site.ImagesUrl + respond.site.settings.LogoUrl;
+		
+			// set logo
+			if(respond.site.settings.PayPalLogoUrl != ''){
+				logo = respond.site.ImagesUrl + respond.site.settings.PayPalLogoUrl;
+			}
 		  
 			var email = respond.site.settings.PayPalId;
-			var logo = respond.site.ImagesUrl + respond.site.settings.LogoUrl;
 			var currency = respond.site.settings.Currency;
 			var returnUrl = respond.site.settings.Domain;
 			var api = respond.site.settings.API;

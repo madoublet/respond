@@ -182,7 +182,7 @@ angular.module('respond.factories', [])
 	
 	// saves settings for the site
 	site.save = function(site, successCallback, failureCallback){
-			
+	
 		// set params
 		var params = { 
 			name: site.Name, 
@@ -196,6 +196,7 @@ angular.module('respond.factories', [])
 			showSettings: site.ShowSettings,
 			showLanguages: site.ShowLanguages,
 			showLogin: site.ShowLogin,
+			showSearch: site.ShowSearch,
 			urlMode: site.UrlMode,
 			weightUnit: site.WeightUnit,
 			shippingCalculation: site.ShippingCalculation,

@@ -7,16 +7,23 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/learn
 
-New in version 4.6:
-- Improved slideshows (support for headlines, captions, and link buttons)
-- Improved CSS class support for site components
-- Support for a system message (see setup.php)
-- Bug fixes
-- Moved composer.json to top level directory
-- Secured passcode for site creation
-- Fixed shipping/taxes in cart
+New in version 4.8:
+- Support for Polymer 0.8
+- Better mobile support for Language and Cart components
+- ShowSearch toggle
+- Site version tracking
+- Alternative Logo URL (for smaller mobile logos)
+- PayPal Logo URL (for smaller mobile logos)
 
-Upgrading from 4.5:
+
+Upgrading from 4.6:
+
 - Pull latest version
-- Update dependencies (php composer.phar update) from /app
-- Republish sites
+
+- Add new fields to the Database
+ALTER TABLE `Sites` ADD `ShowSearch` INT NOT NULL DEFAULT '1' AFTER `ShowLogin`;
+ALTER TABLE `Sites` ADD `Version` VARCHAR(10) NOT NULL DEFAULT '4.8' AFTER `LastLogin`;
+ALTER TABLE `Sites` ADD `AltLogoUrl` varchar(512) DEFAULT NULL AFTER `LogoUrl`;
+ALTER TABLE `Sites` ADD `PayPalLogoUrl` varchar(512) DEFAULT NULL AFTER `AltLogoUrl`;
+
+- Upgrade site

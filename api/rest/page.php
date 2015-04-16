@@ -290,15 +290,6 @@ class PageRemoveResource extends Tonic\Resource {
 		        // remove page from the DB
 		        Page::Remove($pageId);
 		        
-		        if($site['UrlMode'] == 'static'){
-		        	// update controllers
-		        	Publish::InjectControllers($site);
-		        }
-		        else{
-		        	// update states
-					Publish::InjectStates($site);
-				}
-		        
 				return new Tonic\Response(Tonic\Response::OK);
 			
 	        }
@@ -790,12 +781,9 @@ class PageContentSaveResource extends Tonic\Resource {
                 // edit image
                 Page::EditImage($page['PageId'], $image, $token->UserId);
                 
-                // republish common JS
-				Publish::PublishCommonJS($page['SiteId']);
-				
-				// if page is include only, republish site
+				// if page is include only, republish content
 				if($page['IncludeOnly'] == 1){
-					Publish::PublishSite($page['SiteId']);
+					Publish::PublishContent($page['SiteId']);
 				}
 				
             }

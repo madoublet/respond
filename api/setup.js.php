@@ -53,6 +53,7 @@ angular.module('respond.setup', [])
 	// app branding
 	app:					'<?php print BRAND; ?>',
 	version:				'<?php print VERSION; ?>',
+	updateLink:				'<?php print UPDATE_LINK; ?>',
 	copy: 					'<?php print COPY; ?>',
 	email:					'<?php print EMAIL; ?>',
 	

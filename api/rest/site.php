@@ -166,6 +166,7 @@ class SiteCreateResource extends Tonic\Resource {
     	$domain = str_replace('{{friendlyId}}', $friendlyId, $domain);
     	
 		$logoUrl = 'sample-logo.png';
+		$altLogoUrl = 'sample-logo-sm.png';
 		
         if($s_passcode == PASSCODE){
            
@@ -211,7 +212,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$urlMode = DEFAULT_URL_MODE;
     		
             // add the site
-    	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
+    	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $altLogoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
     	                
             // add the admin
             if($email != ''){
@@ -515,6 +516,7 @@ class SiteSaveResource extends Tonic\Resource {
             $showSettings = $request['showSettings'];
             $showLanguages = $request['showLanguages'];
             $showLogin = $request['showLogin'];
+            $showSearch = $request['showSearch'];
             
             $urlMode = $request['urlMode'];
             
@@ -564,7 +566,7 @@ class SiteSaveResource extends Tonic\Resource {
 
 			// edit site
             Site::Edit($token->SiteId, $name, $domain, $primaryEmail, $timeZone, $language, $direction, 
-            	$showCart, $showSettings, $showLanguages, $showLogin, $urlMode,
+            	$showCart, $showSettings, $showLanguages, $showLogin, $showSearch, $urlMode,
             	$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, 
             	$taxRate, $payPalId, $payPalUseSandbox, 
             	$welcomeEmail, $receiptEmail,
@@ -572,7 +574,7 @@ class SiteSaveResource extends Tonic\Resource {
             	$formPublicId, $formPrivateId);
             
        
-            Publish::PublishSite($token->SiteId);
+            Publish::PublishContent($token->SiteId);
             	
             return new Tonic\Response(Tonic\Response::OK);
         
@@ -664,6 +666,12 @@ class SiteBrandingResource extends Tonic\Resource {
 			if($type == 'logo'){
             	Site::EditLogo($token->SiteId, $url);
             }
+            else if($type == 'alt'){
+            	Site::EditAltLogo($token->SiteId, $url);
+            }
+            else if($type == 'paypal'){
+            	Site::EditPayPalLogo($token->SiteId, $url);
+            }
             else if($type == 'icon'){
 	            Site::EditIcon($token->SiteId, $url);
 	            
@@ -686,8 +694,8 @@ class SiteBrandingResource extends Tonic\Resource {
 				
             }
             
-            // publish site JSON
-            Publish::PublishSiteJSON($token->SiteId);
+            // publish site content
+            Publish::PublishContent($token->SiteId);
 
             return new Tonic\Response(Tonic\Response::OK);
         
@@ -723,6 +731,9 @@ class SiteBrandingIconBackgroundResource extends Tonic\Resource {
             $color = $request['color'];
 
 			Site::EditIconBg($token->SiteId, $color);
+			
+			 // republish site
+            Publish::PublishContent($token->SiteId);
                         
             return new Tonic\Response(Tonic\Response::OK);
         

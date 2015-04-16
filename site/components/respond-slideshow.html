@@ -56,6 +56,14 @@
 				color: #fff;
 			}
 			
+				.carousel-control.left core-icon{
+					left: 15px;
+				}
+				
+				.carousel-control.right core-icon{
+					right: 15px;
+				}
+			
 			.carousel-control core-icon, .carousel-control core-icon svg{
 				width: 40px;
 				height: 40px;
@@ -69,6 +77,9 @@
 		/* indicators */
 		.carousel-indicators{
 			display: none;	
+			bottom: 10px;
+			margin-bottom: 0;
+			padding-bottom: 0;
 		}
 		
 			.carousel-indicators[visible]{
@@ -77,6 +88,33 @@
 		
 			.carousel-indicators li{
 				margin: 0 2.5px;
+			}
+			
+		/* caption */
+		.carousel-caption{
+			bottom: 40px;
+			padding: 10px;
+			background-color: rgba(255,255,255,.8);
+		}
+		
+			.carousel-caption h1{
+				font-size: 22px;
+				font-weight: bold;
+			}
+			
+			.carousel-caption p{
+				font-size: 14px;
+			}
+		
+			.carousel-caption h1, .carousel-caption p{
+				margin: 0 0 10px 0;
+				padding: 0;
+				line-height: auto;
+				text-shadow: none;
+			}
+			
+			.carousel-caption p:last-child{
+				margin-bottom: 0;
 			}
 		
 		
@@ -168,6 +206,11 @@
 				var link = images[x].getAttribute('data-link') || '';
 				var cssclass = images[x].getAttribute('class') || '';
 				
+				// set link
+				if(link != '' && (link.indexOf('http') == -1)){
+					link = respond.site.settings.ImagesUrl + link;
+				}
+				
 				// create an slide
 				var slide = document.createElement('div');
 				
@@ -187,29 +230,33 @@
 					
 					// set background image
 					slide.setAttribute('style', 'background-image: url(' + images[x].src + ')');
-					
 				}
 				
 				// create a caption
 				var container = document.createElement('div');
 				container.setAttribute('class', 'container');
 				
+				// default text
+				var text = '';
+				
 				// create caption
-				var text = '<div class="carousel-caption">';
-				
-				if(headline != ''){
-					text += '<h1>' + headline + '</h1>';
+				if(headline != '' || caption != '' || button != ''){ 
+					var text = '<div class="carousel-caption">';
+					
+					if(headline != ''){
+						text += '<h1>' + headline + '</h1>';
+					}
+					
+					if(caption != ''){
+						text += '<p>' + caption + '</p>';
+					}
+					
+					if(button != ''){
+						text += '<p><a class="btn btn-lg btn-default" href="' + link + '">' + button + '</a></p>';
+					}
+					
+					text += '</div>';
 				}
-				
-				if(caption != ''){
-					text += '<p>' + caption + '</p>';
-				}
-				
-				if(button != ''){
-					text += '<p><a class="btn btn-lg btn-default" href="' + link + '">' + button + '</a></p>';
-				}
-				
-				text += '</div>';
 				
 				container.innerHTML = text;
 				

@@ -123,7 +123,7 @@ class LayoutPublishResource extends Tonic\Resource {
             
             // republish pages for static mode
             if($site['UrlMode'] == 'static'){
-	            Publish::PublishAllPages($site['SiteId']);
+	            Publish::PublishAllPages($site);
             }
 
             // return a json response

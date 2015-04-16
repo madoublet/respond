@@ -337,7 +337,7 @@ class ThemeConfigurationsApplyResource extends Tonic\Resource {
             file_put_contents($configure_file, $configurations);
             
             // republish css
-            Publish::PublishAllCSS($token->SiteId);
+            Publish::PublishAllCSS($site);
             
             // get index
             $page = Page::GetByFriendlyId('index', '-1', $token->SiteId);

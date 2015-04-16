@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `Bucket` varchar(255) DEFAULT NULL,
   `Name` varchar(255) NOT NULL,
   `LogoUrl` varchar(512) DEFAULT NULL,
+  `AltLogoUrl` varchar(512) DEFAULT NULL,
   `IconUrl` varchar(512) DEFAULT NULL,
   `IconBg` varchar(10) DEFAULT '#FFFFFF',
   `Theme` varchar(50) DEFAULT NULL,
@@ -108,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `ShowSettings` INT NOT NULL DEFAULT '0',
   `ShowLanguages` INT NOT NULL DEFAULT '0',
   `ShowLogin` INT NOT NULL DEFAULT '0',
+  `ShowSearch` INT NOT NULL DEFAULT '1',
   `UrlMode` VARCHAR(10) NOT NULL DEFAULT 'hash',
   `Currency` varchar(10) NOT NULL DEFAULT 'USD',
   `WeightUnit` varchar(10) NOT NULL DEFAULT 'kgs',
@@ -137,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `UserLimit` INT NOT NULL DEFAULT '1',
   `FileLimit` INT NOT NULL DEFAULT '100',
   `LastLogin` datetime DEFAULT NULL,
+  `Version` varchar(10) DEFAULT '4.8',
   `Created` datetime NOT NULL,
   PRIMARY KEY (`SiteId`),
   UNIQUE KEY `Domain` (`Domain`)

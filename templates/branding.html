@@ -23,6 +23,32 @@
 		</div>
 		
 		<div class="form-group">
+			<label class="control-label">{{'Mobile Logo' | i18next}}</label>
+
+			<div>
+                <span
+                	ng-click="showAddImage('alt')"
+                	class="placeholder">
+                    <img ng-if="altLogoUrl != null" 
+                    	ng-src="{{altLogoUrl}}">
+                </span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label">{{'PayPal Logo' | i18next}}</label>
+
+			<div>
+                <span
+                	ng-click="showAddImage('paypal')"
+                	class="placeholder">
+                    <img ng-if="payPalLogoUrl != null" 
+                    	ng-src="{{payPalLogoUrl}}">
+                </span>
+			</div>
+		</div>
+		
+		<div class="form-group">
 			<label class="control-label">{{'Touch / Tile / Favorite' | i18next}}</label>
 
 			<div>

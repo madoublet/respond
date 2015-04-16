@@ -438,6 +438,33 @@ html[dir=rtl] body .navbar-toggle{
   	margin-left: 10px;
 }
 
+/* toggles (search, cart, languages, etc) */
+body .toggle{
+  	display: block;
+	float: right;
+  	width: 65px;
+  	height: 65px;
+  	line-height: 65px;
+  	text-align: center;
+  	color: config(--nav-icon-color);
+	cursor: pointer;
+  	border-left: 1px solid config(--nav-border-color);
+}
+
+	body .toggle:hover{
+	  	color: config(--nav-icon-hover-color);
+	}
+	
+	body .toggle.active{
+        color: config(--nav-icon-active-color) !important;
+    }
+
+  	html[dir=rtl] body .toggle{
+    	float: left; 
+      	border-left: none;
+    	border-right: 1px solid config(--nav-border-color);
+    }
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 

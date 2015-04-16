@@ -568,6 +568,7 @@ angular.module('respond.controllers', [])
 	$scope.user = $rootScope.user;
 	$scope.site = $rootScope.site;
 	$scope.sites = Setup.sites;
+	$scope.setup = Setup;
 	
 	// logs a user out of the site
 	$scope.logout = function(){
@@ -678,7 +679,12 @@ angular.module('respond.controllers', [])
 	$scope.showAddPageType = function(){
 	
 		// set temporary model
-		$scope.temp = null;
+		$scope.temp = {
+			'FriendlyId': '',
+			'Layout': '',
+			'Stylesheet': '',
+			'IsSecure': 0,
+		};
 	
 		$('#pageTypeDialog').modal('show');
     	
@@ -2642,6 +2648,7 @@ angular.module('respond.controllers', [])
 	$scope.type = null;
 	$scope.site = null;
 	$scope.logoUrl = null;
+	$scope.altLogoUrl = null;
 	$scope.payPalLogoUrl = null;
 	$scope.iconUrl = null;
 	$scope.totalSize = 0;
@@ -2656,6 +2663,10 @@ angular.module('respond.controllers', [])
     
     if($scope.site.PayPalLogoUrl != null){
 		$scope.payPalLogoUrl = $scope.site.ImagesUrl + 'files/' + $scope.site.PayPalLogoUrl;
+	}
+	
+	if($scope.site.AltLogoUrl != null){
+		$scope.altLogoUrl = $scope.site.ImagesUrl + 'files/' + $scope.site.AltLogoUrl;
 	}
 	
 	if($scope.site.IconUrl != null){
@@ -2717,6 +2728,9 @@ angular.module('respond.controllers', [])
 			}
 			else if($scope.type == 'paypal'){
 				$scope.payPalLogoUrl = $scope.site.ImagesUrl + 'files/' + image.filename;
+			}
+			else if($scope.type == 'alt'){
+				$scope.altLogoUrl = $scope.site.ImagesUrl + 'files/' + image.filename;
 			}
 			else if($scope.type == 'icon'){
 				$scope.iconUrl = $scope.site.ImagesUrl + 'files/' + image.filename;

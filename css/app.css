@@ -557,7 +557,7 @@ header.slideout{
         border-top: 1px solid #ccc;
     }
     
-    header.slideout li a{
+    header.slideout li>a{
     	font-family: "Roboto", sans-serif;
     	font-weight: 300;
         font-size: 16px;
@@ -567,7 +567,7 @@ header.slideout{
         font-size: 1.1em;
     }
     
-        header.slideout li a i{
+        header.slideout li>a i{
             display: inline-block !important;
             color: #aaa;
             margin-right: 10px;
@@ -583,7 +583,7 @@ header.slideout{
 	        	color: #fff;
         	}
     
-        header.slideout li a:hover{
+        header.slideout li>a:hover{
             list-style: none;
             color: #fff;
             text-decoration: none;
@@ -593,6 +593,20 @@ header.slideout{
             header.slideout li a:hover i{
                 color: #fff;
             }
+            
+	    header.slideout li small{
+		    display: block;
+		    padding: 0 5px 0 50px;
+	    }
+	    
+	    header.slideout li small.spacer{
+		    margin-top: 2px;
+	    }
+	    
+	    header.slideout li small label{
+		     color: #888;
+		     margin-right: 5px;
+	    }
 
 /* .main */
 section.main{

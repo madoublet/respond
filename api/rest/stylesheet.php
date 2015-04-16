@@ -120,7 +120,7 @@ class StylesheetPublishResource extends Tonic\Resource {
             if($errors == NULL){
             
             	// publishes all css
-            	Publish::PublishAllCSS($site['SiteId']);
+            	Publish::PublishAllCSS($site);
             
             	// send success
             	$response = new Tonic\Response(Tonic\Response::OK);

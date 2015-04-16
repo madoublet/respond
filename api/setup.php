@@ -1,10 +1,13 @@
 <?php
 
 	// Version
-	define('VERSION', '4.6');
+	define('VERSION', '4.8');
 
 	// Brand name
 	define('BRAND', 'Respond');
+	
+	// Information on upgrading site to latest versino
+	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
 	
 	// Location of custom css for your brand (e.g. css/custom.css)
 	define('BRAND_CSS', '');

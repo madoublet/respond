@@ -68,8 +68,8 @@
 	    }
 	    
 	    .select-language label{
-		    display: inline-block;
-		    margin-right: 15px;
+		    display: none;
+		    margin-right: 5px;
 			height: 50px;
 			line-height: 50px;
 			font-size: 0.95em;
@@ -78,17 +78,18 @@
 	    .select-language label.direction{
 		    margin-left: 15px;
 	    }
-	    
-	    .select-language a{
-		    display: inline-block;
-			height: 50px;
-			line-height: 50px;
-			margin: 10px 10px 10px 0;
-			padding: 0 15px;
+
+		.select-language a[active]{
+			background-color: #f0f0f0;
 		}
 		
-		.select-language a[active]{
-			border: 1px solid #ddd;
+		/* Small devices (tablets, 768px and up) */
+		@media (min-width: 600px) {
+		
+			.select-language label{
+			    display: inline-block;
+		    }
+			
 		}
 		
     </style>
@@ -106,14 +107,31 @@
 					<paper-spinner active></paper-spinner>
 				</span>
 				
-				<template id="languagesList" is="x-repeat" items="{{languages}}">
-					<a active$="{{item.isCurrentLanguage}}" on-click="setLanguage">{{item.language}}</a>
-				</template>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<span>{{currentLanguageDisplay}}</span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<template id="languagesList" is="x-repeat" items="{{languages}}">
+							<li><a active$="{{item.isCurrentLanguage}}" on-click="setLanguage">{{item.language}}</a></li>
+						</template>
+					</ul>
+				</div>
 				
 				<label class="direction">{{label.direction}}</label>
 				
-				<a active$="{{isLTR}}" on-click="setLtr">LTR</a>
-				<a active$="{{isRTL}}" on-click="setRtl">RTL</a>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<span>{{currentDirection}}</span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li><a active$="{{isLTR}}" on-click="setLtr">LTR</a></li>
+						<li><a active$="{{isRTL}}" on-click="setRtl">RTL</a></li>
+					</ul>
+				</div>
+				
+				
+				
 			</div>
 			
 		</div>
@@ -160,7 +178,7 @@
 			}
 			
 			// set LTR/RTL
-		  	if(this.currentDirection = 'ltr'){
+		  	if(this.currentDirection == 'ltr'){
 			  	this.isLTR = true;
 			  	this.isRTL = false;
 		  	}
@@ -168,6 +186,9 @@
 			  	this.isLTR = false;
 			  	this.isRTL = true;
 		  	}
+			
+			// create a display for languages
+		  	this.currentLanguageDisplay = this.i18n(this.currentLanguage);
 			
 		  	// wait for toggle
 		  	var items = document.querySelectorAll('respond-languages-toggle');

@@ -6,59 +6,67 @@ class Publish
 	// publishes the entire site
 	public static function PublishSite($siteId){
 		
-		// publish sitemap
-		Publish::PublishSiteMap($siteId);
+		// repbulish Content
+		Publish::PublishContent($siteId);
 		
-		// publish all pages
-		Publish::PublishAllPages($siteId);
-
-		// publish rss for page types
-		Publish::PublishRssForPageTypes($siteId);
-		
-		// publish menu
-		Publish::PublishMenuJSON($siteId);
-		
-		// publish common js (also combines JS and publishes plugins)
-		Publish::PublishCommonJS($siteId);
-		
-		// publish common css
-		Publish::PublishCommonCSS($siteId);
-		
-		// publish controller
-		Publish::PublishCommon($siteId);
-		
-		// publish all CSS
-		Publish::PublishAllCSS($siteId);
-		
-		// publish locales
-		Publish::PublishLocales($siteId);
+		// repbulish engine
+		Publish::PublishEngine($siteId);
 		
 	}
 	
-	// publishes common site files
-	public static function PublishCommon($siteId){
-        
-        $site = Site::GetBySiteId($siteId);
-      	
-		// copy templates/respond
-		$templates_src = APP_LOCATION.'/site/templates/';
-		$templates_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/';
+	// publishes the content for the site (Pages, Current Theme CSS, Menu JSON, Sitemap, RSS)
+	public static function PublishContent($siteId){
+	
+		$site = Site::GetBySiteId($siteId);
 		
-		// create libs directory if it does not exist
-		if(!file_exists($templates_dest)){
-			mkdir($templates_dest, 0755, true);	
-		}
+		// inject site settings
+		Publish::InjectSiteSettings($site);
+	
+		// publish all pages
+		Publish::PublishAllPages($site);
+		
+		// publish menu JSON
+		Publish::PublishMenuJSON($site);
+		
+		// publish CSS
+		Publish::PublishAllCSS($site);
+		
+		// publish sitemap
+		Publish::PublishSiteMap($site);
+		
+		// publish RSS
+		Publish::PublishRssForPageTypes($site);
+	
+	}
+	
+	// publishes the engine for the site (JS libs, CSS libs, Plugins, Locales, Htaccess)
+	public static function PublishEngine($siteId){
+		
+		$site = Site::GetBySiteId($siteId);
+		
+		// publish common JS (libs)
+		Publish::PublishCommonJS($site);
+		
+		// publish common css (libs)
+		Publish::PublishCommonCSS($site);
+		
+		// publish plugins
+		Publish::PublishPlugins($site);
+		
+		// publish locales
+		Publish::PublishLocales($site);
 		
 		// setup htaccess
 		Publish::SetupHtaccess($site);
 		
+		
+		// #todo update version
+		
 	}
 	
 	// publishes locales for the site
-	public static function PublishLocales($siteId){
+	public static function PublishLocales($site){
         
-        $site = Site::GetBySiteId($siteId);
-      	
 		// copy templates/respond
 		$locales_src = APP_LOCATION.'/site/locales';
 		$locales_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/locales';
@@ -383,9 +391,7 @@ class Publish
 	}
 	
 	// publishes common js
-	public static function PublishCommonJS($siteId, $env = 'local'){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishCommonJS($site, $env = 'local'){
 		
 		$src = APP_LOCATION.'/site/js';
 		$dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/js';
@@ -398,11 +404,33 @@ class Publish
 		// copies a directory
 		Utilities::CopyDirectory($src, $dest);
 		
+		// inject site information
+		Publish::InjectSiteSettings($site);
+		
+	}
+	
+	// injects site information into the respond.site.js file
+	public static function InjectSiteSettings($site, $env = 'local'){
+		
 		// set logoUrl
 		$logoUrl = '';
 		
 		if($site['LogoUrl'] != ''){
 			$logoUrl = 'files/'.$site['LogoUrl'];
+		}
+		
+		// set altLogoUrl
+		$altLogoUrl = '';
+		
+		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
+			$altLogoUrl = 'files/'.$site['AltLogoUrl'];
+		}
+		
+		// set payPalLogoUrl
+		$payPalLogoUrl = '';
+		
+		if($site['PayPalLogoUrl'] != '' && $site['PayPalLogoUrl'] != NULL){
+			$payPalLogoUrl = 'files/'.$site['PayPalLogoUrl'];
 		}
 		
 		// set imagesURL
@@ -434,6 +462,7 @@ class Publish
 		$showSettings = false;
 		$showLanguages = false;
 		$showLogin = false;
+		$showSearch = false;
 		
 		if($site['ShowCart'] == 1){
 			$showCart = true;
@@ -451,6 +480,10 @@ class Publish
 			$showLogin = true;
 		}
 		
+		if($site['ShowSearch'] == 1){
+			$showSearch = true;
+		}
+		
 		// create settings
 		$settings = array(
 			'SiteId' => $site['SiteId'],
@@ -460,6 +493,8 @@ class Publish
 			'ImagesUrl' => $imagesURL,
 			'UrlMode' => $site['UrlMode'],
 			'LogoUrl' => $logoUrl,
+			'AltLogoUrl' => $altLogoUrl,
+			'PayPalLogoUrl' => $payPalLogoUrl,
 			'IconUrl' => $iconUrl,
 			'IconBg' => $site['IconBg'],
 			'Theme' => $site['Theme'],
@@ -470,6 +505,7 @@ class Publish
 			'ShowSettings' => $showSettings,
 			'ShowLanguages' => $showLanguages,
 			'ShowLogin' => $showLogin,
+			'ShowSearch' => $showSearch,
 			'Currency' => $site['Currency'],
 			'WeightUnit' => $site['WeightUnit'],
 			'ShippingCalculation' => $site['ShippingCalculation'],
@@ -487,21 +523,30 @@ class Publish
 		// get site file
 		$file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.site.js';
 		
+		echo 'pre-check, file='.$file;
+		
 		if(file_exists($file)){
 			
 			// get contents
 			$content = file_get_contents($file);
 			
+			$start = 'settings: {';
+			$end = '}';
+			
+			// remove { }
+			$new = str_replace('{', '', $str_settings);
+			$new = str_replace('}', '', $new);
+			
+			// replace
+			$content = preg_replace('#('.preg_quote($start).')(.*?)('.preg_quote($end).')#si', '$1'.$new.'$3', $content);			
+			
 			// add settings
-			$content = str_replace('settings: {},', 'settings: '.$str_settings.',', $content);
+			//$content = str_replace('settings: {},', 'settings: '.$str_settings.',', $content);
 			
 			// publish updates
 			file_put_contents($file, $content);
 			
 		}
-				
-		// publish plugins
-		Publish::PublishPlugins($site);
 		
 	}
 	
@@ -536,9 +581,7 @@ class Publish
 	}
 		
 	// publishes common css
-	public static function PublishCommonCSS($siteId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishCommonCSS($site){
 		
 		$src = APP_LOCATION.'/site/css';
 		$dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/css';
@@ -553,10 +596,8 @@ class Publish
 	}
 	
 	// publishes all the pages in the site
-	public static function PublishAllPages($siteId){
+	public static function PublishAllPages($site){
 	
-		$site = Site::GetBySiteId($siteId);
-		
 		// Get all pages
 		$list = Page::GetPagesForSite($site['SiteId']);
 		
@@ -567,9 +608,7 @@ class Publish
 	}
 	
 	// publish menu
-	public static function PublishMenuJSON($siteId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishMenuJSON($site){
 		
 		$types = MenuType::GetMenuTypes($site['SiteId']);
 		
@@ -605,21 +644,17 @@ class Publish
 	}
 		
 	// publish rss for all page types
-	public static function PublishRssForPageTypes($siteId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishRssForPageTypes($site){
 		
 		$list = PageType::GetPageTypes($site['SiteId']);
 		
 		foreach ($list as $row){
-			Publish::PublishRssForPageType($siteId, $row['PageTypeId']);
+			Publish::PublishRssForPageType($site, $row['PageTypeId']);
 		}
 	}
 	
 	// publish rss for pages
-	public static function PublishRssForPageType($siteId, $pageTypeId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishRssForPageType($site, $pageTypeId){
 		
 		$dest = SITES_LOCATION.'/'.$site['FriendlyId'];
 		
@@ -632,9 +667,7 @@ class Publish
 	}
 	
 	// publish sitemap
-	public static function PublishSiteMap($siteId){
-		
-		$site = Site::GetBySiteId($siteId);
+	public static function PublishSiteMap($site){
 		
 		$dest = SITES_LOCATION.'/'.$site['FriendlyId'];
 		
@@ -814,9 +847,7 @@ class Publish
 	}
 
 	// publishes all css
-	public static function PublishAllCSS($siteId){
-
-		$site = Site::GetBySiteId($siteId); // test for now
+	public static function PublishAllCSS($site){
 
 		$lessDir = SITES_LOCATION.'/'.$site['FriendlyId'].'/themes/'.$site['Theme'].'/styles/';
 		
@@ -857,7 +888,7 @@ class Publish
 			
 			$site = Site::GetBySiteId($page['SiteId']); // test for now
 			
-			Publish::PublishDynamicPage($page, $site, $preview, $remove_draft);
+			Publish::PublishTemplate($page, $site, $preview, $remove_draft);
 				
 			// do not publish a static page for include only pages
 			if($page['IncludeOnly'] == 0){
@@ -869,8 +900,8 @@ class Publish
 		}
 	}
 	
-	// publishes a dymanic version of the page
-	public static function PublishDynamicPage($page, $site, $preview = false, $remove_draft = false){
+	// publishes a template for the page
+	public static function PublishTemplate($page, $site, $preview = false, $remove_draft = false){
 		
 		$dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/templates/';
 		$imageurl = $dest.'files/';
@@ -1113,8 +1144,18 @@ class Publish
 		$html = str_replace('ng-src', 'src', $html);
 		$html = str_replace('{{site.ImagesUrl}}', $imagesURL, $html);
 		$html = str_replace('{{site.ImagesURL}}', $imagesURL, $html);
-		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
 		$html = str_replace('{{site.IconUrl}}', $iconURL, $html);
+		
+		// set fullLogo
+		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		
+		// set altLogo (defaults to full logo if not available)
+		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
+		}
+		else{
+			$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		}
 		
 		// update base
 		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
