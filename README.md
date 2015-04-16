@@ -21,9 +21,16 @@ Upgrading from 4.6:
 - Pull latest version
 
 - Add new fields to the Database
+
+```
+// update schema
 ALTER TABLE `Sites` ADD `ShowSearch` INT NOT NULL DEFAULT '1' AFTER `ShowLogin`;
 ALTER TABLE `Sites` ADD `Version` VARCHAR(10) NOT NULL DEFAULT '4.8' AFTER `LastLogin`;
 ALTER TABLE `Sites` ADD `AltLogoUrl` varchar(512) DEFAULT NULL AFTER `LogoUrl`;
 ALTER TABLE `Sites` ADD `PayPalLogoUrl` varchar(512) DEFAULT NULL AFTER `AltLogoUrl`;
+
+// set version to last updated version
+UPDATE Sites SET Version = '4.6'
+```
 
 - Upgrade site
