@@ -51,8 +51,8 @@ angular.module('respond', ['ui.router',
 	// set authInterceptor
 	$httpProvider.interceptors.push('authInterceptor');
 	
-	// set html5 mode
-	$locationProvider.html5Mode(true);
+	// set html5 mode #HTML5MODE
+	// $locationProvider.html5Mode(true);
 	
 	// set states
 	$stateProvider
@@ -60,6 +60,12 @@ angular.module('respond', ['ui.router',
 		  url: "/login/:id",
 		  templateUrl: "templates/login.html",
 		  controller: 'LoginCtrl'
+		})
+		
+		.state('info', {
+		  url: "/info/:id",
+		  templateUrl: "templates/info.html",
+		  controller: 'InfoCtrl'
 		})
 		
 		.state('forgot', {

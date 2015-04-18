@@ -13,7 +13,7 @@ New in version 4.8:
 - ShowSearch toggle
 - Site version tracking
 - Alternative Logo URL (for smaller mobile logos)
-- PayPal Logo URL (for smaller mobile logos)
+- PayPal Logo URL
 
 
 Upgrading from 4.6:

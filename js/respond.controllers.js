@@ -117,6 +117,29 @@ angular.module('respond.controllers', [])
 	
 })
 
+// info controller
+.controller('InfoCtrl', function($scope, $window, $state, $stateParams, $rootScope, $i18next, Setup, User, Site, Editor) {
+	
+	$rootScope.template = 'login';
+	
+	// setup
+	$scope.setup = Setup;
+	
+	// get friendlyId
+	$scope.friendlyId = $stateParams.id;
+	$window.sessionStorage.loginId = $stateParams.id;
+	$scope.loginLink = utilities.replaceAll(Setup.login, '{{friendlyId}}', $scope.friendlyId);
+	$scope.siteLink = utilities.replaceAll(Setup.site, '{{friendlyId}}', $scope.friendlyId);
+	
+	// set system message
+	$scope.showSystemMessage = false;
+	
+	if(Setup.systemMessage != ''){
+		$scope.showSystemMessage = true;
+	}
+	
+})
+
 // forgot controller
 .controller('ForgotCtrl', function($scope, $window, $stateParams, $rootScope, $i18next, Setup, User, Site, Editor) {
 	
@@ -447,8 +470,45 @@ angular.module('respond.controllers', [])
 	
 })
 
+// install controller
+.controller('InstallCtrl', function($scope, $rootScope, Setup, App) {
+	
+	$rootScope.template = 'login';
+	
+	// setup
+	$scope.setup = Setup;
+	$scope.appurl = 'http://app.myrespond.com';
+	$scope.dbname = 'respondtest';
+	$scope.dbuser = '';
+	$scope.dbpass = '';
+	
+	// default
+	$('#install-form').removeClass('hidden');
+	$('#install-confirmation').addClass('hidden');
+		
+	// installs a site
+	$scope.install = function(){
+		
+		message.showMessage('progress');
+		
+		// create the site
+		App.install($scope.appurl, $scope.dbname, $scope.dbuser, $scope.dbpass,
+			function(){  // success
+			
+				$('#install-form').addClass('hidden');
+				$('#install-confirmation').removeClass('hidden');
+			
+				message.showMessage('success');
+			},
+			function(){  // failure
+				message.showMessage('error');
+			});
+	}
+	
+})
+
 // create controller
-.controller('CreateCtrl', function($scope, $rootScope, Setup, Theme, Language, Site) {
+.controller('CreateCtrl', function($scope, $rootScope, $state, Setup, Theme, Language, Site) {
 	
 	$rootScope.template = 'login';
 	
@@ -548,11 +608,9 @@ angular.module('respond.controllers', [])
 			$scope.siteLanguage, $scope.userLanguage, $scope.themeId, $scope.firstName, $scope.lastName,
 			function(){  // success
 				message.showMessage('success');
-				
-				$scope.siteLink = utilities.replaceAll(Setup.site, '{{friendlyId}}', $scope.friendlyId);
-				
-				$('#create-form').addClass('hidden');
-				$('#create-confirmation').removeClass('hidden');
+		
+				// go to info
+				$state.go('info', {'id': $scope.friendlyId});
 			},
 			function(){  // failure
 				message.showMessage('error');

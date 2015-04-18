@@ -1,0 +1,35 @@
+<div ng-if="showSystemMessage" class="system-message"><p>{{setup.systemMessage}}</p></div>
+
+<!-- begin content -->
+<section id="create" class="main">
+
+	<h1><span class="brand"><img src="{{setup.logo}}" title="{{setup.brand}}"></span></h1>
+
+	<div id="create-confirmation">
+
+	<fieldset>
+		<p>
+			{{'account_created_click_login' | i18next}}
+		</p>	
+
+		<p>
+			{{'Login here to update your site' | i18next}}<br>
+			<a id="loginLink" ui-sref="login({ id: friendlyId })">{{loginLink}}</a>
+		</p>
+		
+		<p>
+			{{'view_site_here' | i18next}} <br>
+			<a id="siteLink" href="{{siteLink}}">{{siteLink}}</a>
+		</p>
+		
+		<p>
+			{{'bookmark_links' | i18next}}
+		</p>
+	</fieldset>
+	
+	</div>
+
+	<small>{{setup.app}} {{setup.version}} &mdash; {{setup.copy}}</small>
+
+</div>
+<!-- /.content -->

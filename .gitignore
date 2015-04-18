@@ -11,8 +11,6 @@ themes/premium/*
 
 composer.lock
 composer.phar
-api/vendor
-api/vendor/*
 
 sites/*
 

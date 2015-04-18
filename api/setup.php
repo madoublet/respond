@@ -1,13 +1,39 @@
 <?php
 
+	/*********************************/
+	/*  BASIC SETUP                  */
+	/*********************************/
+
+	// DB connection parameters
+	define('DB_HOST', 'localhost');
+	define('DB_NAME', 'respond');
+	define('DB_USER', 'dbuser');
+	define('DB_PASSWORD', 'dbpass');
+	
+	// APP URL
+	define('APP_URL', 'http://app.myrespond.com');
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - LANGUAGES      */
+	/************************************/
+	
+	// Setup default language for the site
+	define('DEFAULT_LANGUAGE', 'en');
+	
+	// Setup the default text direction for the site (ltr, rtl, auto)
+	define('DEFAULT_DIRECTION', 'ltr');
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - BRANDING       */
+	/************************************/
+
 	// Version
 	define('VERSION', '4.8');
 
 	// Brand name
 	define('BRAND', 'Respond');
-	
-	// Information on upgrading site to latest versino
-	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
 	
 	// Location of custom css for your brand (e.g. css/custom.css)
 	define('BRAND_CSS', '');
@@ -20,22 +46,21 @@
 	define('COPY', 'Made by Matthew Smith in Manchester, MO');
 	define('EMAIL', 'sample@adminemail.com');
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - MESSAGING      */
+	/************************************/
+	
+	// Information on upgrading site to latest versino
+	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
+	
 	// system message (shown at login if not blank)
 	define('SYSTEM_MESSAGE', '');
-
-	// DB connection parameters
-	define('DB_HOST', 'localhost');
-	define('DB_NAME', 'respond');
-	define('DB_USER', 'dbuser');
-	define('DB_PASSWORD', 'dbpass');
 	
-	// Debugging
-	define('DEBUG', true);
-
-	if(DEBUG){
-		error_reporting(E_ALL);
-		ini_set('display_errors', '1');
-	}
+	
+	/************************************/
+	/*  ADVANCED SETUP - AMAZON S3      */
+	/************************************/
 	
 	// Enables copying site to S3 for deployment
 	define('ENABLE_S3_DEPLOYMENT', false);
@@ -50,11 +75,16 @@
 	define('S3_KEY', 'AWS ACCESS KEY');
 	define('S3_SECRET', 'AWS SECRET KEY');
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - URLS           */
+	/************************************/
+	
 	// URLs
-	define('APP_URL', 'http://app.myrespond.com');
-	define('API_URL', 'http://app.myrespond.com/api');
-	define('SITES_URL', 'http://app.myrespond.com/sites');
-	define('SITE_URL', 'http://{{friendlyId}}.myrespond.com');
+	define('API_URL', APP_URL.'/api');
+	define('SITES_URL', APP_URL.'/sites');
+	define('SITE_URL', APP_URL.'/sites/{{friendlyId}}');
+	define('LOGIN_URL', APP_URL.'/#/login/{{friendlyId}}');
 	define('TERMS_URL', 'http://myrespond.com/page/terms-of-service');
 	define('PRICING_URL', 'http://myrespond.com/page/terms-of-service');
 	
@@ -66,22 +96,22 @@
 	
 	// Image prefix (the protocol to use for accessing images, prefixes the domain name)
 	define('IMAGE_PREFIX', 'http://');
-
-	// Locations of apps and sites
-	define('APP_LOCATION', '../');
-	define('SITES_LOCATION', '../sites');
 	
-	// Setup default language for the site
-	define('DEFAULT_LANGUAGE', 'en');
+	
+	/************************************/
+	/*  ADVANCED SETUP - CREATE         */
+	/************************************/
 	
 	// Default the name on create
 	define('DEFAULT_NAME_ON_CREATE', true);
 	
-	// Setup the default text direction for the site (ltr, rtl, auto)
-	define('DEFAULT_DIRECTION', 'ltr');
-	
 	// Determines whether the user can change the default language while creating the site
 	define('CHANGE_DEFAULT_LANGUAGE', false);
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - PASSCODE/KEYS  */
+	/************************************/
 	
 	// Passcode
 	define('PASSCODE', 'iloverespond');
@@ -89,15 +119,30 @@
 	// JWT key
 	define('JWT_KEY', 'iloverespond');
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - PAYPAL         */
+	/************************************/
+	
 	// Paypal
 	define('PAYPAL_EMAIL', '');
 	define('PAYPAL_USE_SANDBOX', false);
 	define('PAYPAL_CURRENCY', 'USD');
 	define('PAYPAL_LOGO', '/images/respond-icon.png');
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - STRIPE         */
+	/************************************/
+	
 	// Stripe keys
 	define('STRIPE_SECRET_KEY', '');
 	define('STRIPE_PUBLISHABLE_KEY', '');
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - ACCOUNTS       */
+	/************************************/
 	
 	// Default account status (Trial for subscription based sites, or Active for non-subscription based sites)
 	define('DEFAULT_STATUS', 'Trial');
@@ -117,10 +162,20 @@
 	// default file limit (in MBs)
 	define('DEFAULT_FILE_LIMIT', 100);
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - CORS           */
+	/************************************/
+	
 	// Cross Origin Resource Sharing (CORS)
 	define ('CORS', serialize (array (
 	    'http://sites.myrespond.com'
 	    )));
+	    
+	    
+	/************************************/
+	/*  ADVANCED SETUP - EMAIL          */
+	/************************************/
 	    
 	// Advanced SMTP settings (see https://github.com/Synchro/PHPMailer)
 	define('IS_SMTP', false);
@@ -156,12 +211,27 @@
 	define('SITE_RECEIPT_EMAIL_SUBJECT', '[{{site}}] Receipt for your purchase (Transaction #: {{transactionId}})');
 	define('SITE_WELCOME_EMAIL_SUBJECT', 'Welcome to {{site}}');
 	
+	
+	/************************************/
+	/*  ADVANCED SETUP - START PAGE     */
+	/************************************/
+	
     // Start page (sets the default page (route state) a user sees after logon)
 	define('START_PAGE', 'app.pages');
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - THEMES         */
+	/************************************/
 	
 	// Set the default theme (directory name: themes/simple => simple)
 	define('DEFAULT_THEME', 'simple');
 	define('THEMES_FOLDER', 'themes');
+	
+	
+	/************************************/
+	/*  ADVANCED SETUP - FILES          */
+	/************************************/
 	
 	// Allowed filetypes (NOTE: gif, png, jpg, and svg are enabled by default)
 	define('ALLOWED_FILETYPES', 'ico, css, js, pdf, doc, docx, zip');

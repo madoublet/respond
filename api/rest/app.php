@@ -68,3 +68,43 @@ class AppValidatePasscode extends Tonic\Resource {
     
 }
 
+
+/**
+ * This class defines an example resource that is wired into the URI /example
+ * @uri /app/install
+ */
+class AppInstallResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+    
+    	/* WIP
+    	// location of SCHEMA file
+    	$sql_file = APP_LOCATION.'schema.sql';
+    
+		// PDO
+		$pdo = new PDO("mysql:host=$host;", $dbuser, $dbpass);
+        $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // create a database
+        $pdo->query('CREATE DATABASE '.$dbname);  
+        $pdo->query('use '.$dbname);
+        
+        // load schema
+        $sql = file_get_contents($sql_file);
+        $pdo->exec($sql);
+    
+		// return OK
+        $response = new Tonic\Response(Tonic\Response::OK);
+        
+        return $response;
+		*/
+ 
+    }
+    
+}
+
+?>
+
