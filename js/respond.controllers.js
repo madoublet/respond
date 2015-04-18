@@ -648,6 +648,12 @@ angular.module('respond.controllers', [])
 		
 		Site.publish(
 			function(){  // success
+				
+				// set version
+				$rootScope.site.Version = Setup.version;
+				$scope.site.Version = Setup.version;
+				
+				// show success
 				message.showMessage('success');
 			},
 			function(){  // failure

@@ -208,6 +208,29 @@ class Site{
         }
         
 	}
+	
+	// edits the version
+    public static function EditVersion($siteId, $version){
+        
+        try{
+            
+            $db = DB::get();
+            
+            $q = "UPDATE Sites SET 
+                	Version = ?
+                	WHERE SiteId = ?";
+     
+            $s = $db->prepare($q);
+            $s->bindParam(1, $version);
+            $s->bindParam(2, $siteId);
+            
+            $s->execute();
+            
+		} catch(PDOException $e){
+            die('[Site::EditVersion] PDO Error: '.$e->getMessage());
+        }
+        
+	}
     
     // edits the logo
     public static function EditLogo($siteId, $logoUrl){

@@ -59,8 +59,8 @@ class Publish
 		// setup htaccess
 		Publish::SetupHtaccess($site);
 		
-		
-		// #todo update version
+		// update version
+		Site::EditVersion($site['SiteId'], VERSION);
 		
 	}
 	
