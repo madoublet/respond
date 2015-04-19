@@ -11,6 +11,8 @@ respond.site = {
 	// init respond.site
 	init:function(){
 		
+		var language = respond.site.settings.Language;
+		
 		// translate if needed
 		if(sessionStorage['respond-language'] != null){
 			
@@ -47,6 +49,33 @@ respond.site = {
 		
 		// setup lightbox
 		respond.site.setupLightbox(document);
+		
+		// load Facebook API
+		var fbroot = document.createElement('div');
+		fbroot.setAttribute('id', 'fb-root');
+		
+		document.body.appendChild(fbroot);
+		
+		// create Facebook language code
+		var parts = language.split('-');
+		
+		var fblang = 'en_US';
+		
+		if(parts.length == 1){
+			fblang = parts[0];
+		}
+		else if(parts.length == 2){
+			fblang = parts[0] + '_' + parts[0].toUpperCase();
+		}
+		
+		// setup Facebook sdk
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = '//connect.facebook.net/' + fblang + '/sdk.js#xfbml=1&version=v2.3';
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 		
 	},
 	

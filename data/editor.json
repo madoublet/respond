@@ -170,6 +170,16 @@
 		"script":	"plugins/component/respond.component.js"
 	},
 	{
+		"action":	"respond.component.share",
+		"tag":		"RESPOND-SHARE",
+		"title":	"Share",
+		"class":	"respond-share",
+		"icon":		"fa fa-share-alt draggable",
+		"text":		"",
+		"config":	"plugins/component/config/share.html",
+		"script":	"plugins/component/respond.component.js"
+	},
+	{
 		"action":	"respond.component.content",
 		"tag":		"RESPOND-CONTENT",
 		"title":	"Content",

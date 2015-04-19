@@ -1,0 +1,105 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Facebook' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="fbshow">{{'Show' | i18next}}</label>
+			<select name="fbshow" class="form-control" 
+				ng-model="node.fbshow">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="layout">{{'Layout' | i18next}}</label>
+			<select name="layout" class="form-control" 
+				ng-model="node.fblayout">
+				<option value="standard">{{'standard' | i18next}}</option>
+				<option value="box_count">{{'box_count' | i18next}}</option>
+				<option value="button_count">{{'button_count' | i18next}}</option>
+				<option value="button">{{'button' | i18next}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="action">{{'Action Type' | i18next}}</label>
+			<select name="action" class="form-control" 
+				ng-model="node.fbaction">
+				<option value="like">{{'like' | i18next}}</option>
+				<option value="recommend">{{'recommend' | i18next}}</option>
+			</select>
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Twitter' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="twshow">{{'Show' | i18next}}</label>
+			<select name="twshow" class="form-control" 
+				ng-model="node.twshow">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="twvia">{{'Via' | i18next}}</label>
+			<input name="twvia" type="number" maxlength="128" class="form-control" 
+				ng-model="node.twvia">
+		</div>
+		
+		<div class="form-group">
+			<label for="twhash">{{'Hashtag' | i18next}}</label>
+			<input name="twhash" type="number" maxlength="128" class="form-control" 
+				ng-model="node.twhash">
+		</div>
+		
+		
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Pinterest' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="twshow">{{'Show' | i18next}}</label>
+			<select name="pinshow" class="form-control" 
+				ng-model="node.pinshow">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+	
+</div>
+<!-- /.context-body -->
+	

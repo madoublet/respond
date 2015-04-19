@@ -1548,7 +1548,6 @@ respond.component.menu = {
 	
 };
 
-
 // gallery component
 respond.component.gallery = {
 
@@ -1777,6 +1776,110 @@ respond.component.gallery = {
 };
 
 respond.component.gallery.init();
+
+// share component
+respond.component.share = {
+
+	// create share
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('share', 'share');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-share-alt"></i> ' + 
+					i18n.t('Share') + '</div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-share';
+		attrs['data-cssclass'] = '';
+		
+		attrs['data-fbshow'] = 'true';
+		attrs['data-fblayout'] = 'standard';
+		attrs['data-fbaction'] = 'like';
+		
+		attrs['data-twshow'] = 'true';
+		attrs['data-twvia'] = '';
+		attrs['data-twhash'] = '';
+		
+		attrs['data-pinshow'] = 'true';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+	
+		return true;
+		
+	},
+	
+	// parse share
+	parse:function(node){
+		
+		// get params
+		var id = $(node).attr('id');
+		var type = $(node).attr('type');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-share-alt"></i> ' + 
+					i18n.t('Share') + '</div>';
+		
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = $(node).attr('shareid');
+		attrs['class'] = 'respond-share';
+		attrs['data-cssclass'] = $(node).attr('cssclass');
+		
+		attrs['data-fbshow'] = $(node).attr('fbshow');
+		attrs['data-fblayout'] = $(node).attr('fblayout');
+		attrs['data-fbaction'] = $(node).attr('fbaction');
+		
+		attrs['data-twshow'] = $(node).attr('twshow');
+		attrs['data-twvia'] = $(node).attr('twvia');
+		attrs['data-twhash'] = $(node).attr('twhash');
+		
+		attrs['data-pinshow'] = $(node).attr('pinshow');
+		
+		utilities.element('div', attrs, html)
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate share
+	generate:function(node){
+
+		// tag attributes
+		var attrs = [];
+		attrs['shareid'] = $(node).attr('data-id');
+		attrs['cssclass'] = $(node).attr('data-cssclass');
+		
+		attrs['fbshow'] = $(node).attr('data-fbshow');
+		attrs['fblayout'] = $(node).attr('data-fblayout');
+		attrs['fbaction'] = $(node).attr('data-fbaction');	
+		
+		attrs['twshow'] = $(node).attr('data-twshow');
+		attrs['twvia'] = $(node).attr('data-twvia');
+		attrs['twhash'] = $(node).attr('data-twhash');	
+		
+		attrs['pinshow'] = $(node).attr('data-pinshow');	
+		
+		// return element
+		return utilities.element('respond-share', attrs, '');
+		
+	},
+	
+	// config list
+	config:function(node, form){}
+	
+};
 
 
 

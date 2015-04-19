@@ -14,8 +14,9 @@ New in version 4.8:
 - Site version tracking
 - Alternative Logo URL (for smaller mobile logos)
 - PayPal Logo URL
+- Gallery widget
+- Share (Facebook, Twitter, Pinterest) widget
 - Easier installation
-
 
 Upgrading from 4.6:
 
