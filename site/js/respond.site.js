@@ -172,6 +172,16 @@ respond.site = {
 			
 		}
 		
+		// setup lightbox
+		if(jQuery().magnificPopup){
+			$('[respond-gallery]').magnificPopup({ 
+			  type: 'image',
+			  gallery:{
+				  enabled: true
+			  }
+			});
+		}
+		
 	}
 	
 };

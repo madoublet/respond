@@ -831,20 +831,20 @@
 		}
 		
 	/* .respond-slideshow */
-	.editor .block .respond-slideshow{
+	.editor .block .respond-slideshow, .editor .block .respond-gallery{
 		padding: 0 0 20px 0 !important;	
 	}
 	
-	.editor .block .respond-slideshow div.images{
+	.editor .block .respond-slideshow div.images, .editor .block .respond-gallery div.images{
 		min-height: 115px;
 		margin: 0 10px 0 0;
 	}
 	
-	.editor .block .respond-slideshow div.images{
+	.editor .block .respond-slideshow div.images, .editor .block .respond-gallery div.images{
 		vertical-align: top;
 	}
 	
-	.editor .block .respond-slideshow button{
+	.editor .block .respond-slideshow button, .editor .block .respond-gallery button{
 		vertical-align: top;
 		width: 202px;
 		height: 202px;
@@ -862,15 +862,15 @@
 			color: #aaa;
 		}
 	
-	.editor .block .respond-slideshow button:hover{
+	.editor .block .respond-slideshow button:hover, .editor .block .respond-gallery button:hover{
 		border: 1px solid #3299BB;
 	}
 	
-		.block .respond-slideshow button:hover i{
+		.block .respond-slideshow button:hover i, .block .respond-gallery button:hover i{
 			color: #3299BB;
 		}
 	
-	.editor .block .respond-slideshow span.image{
+	.editor .block .respond-slideshow span.image, .editor .block .respond-slideshow span.image{
 		display: inline-block;
 		margin: 0 5px 5px 5px;
 		margin: 0 5px 0 0;
@@ -880,21 +880,21 @@
 		cursor: move;
 	}
 	
-	.editor .block .respond-slideshow span.image.edit{
+	.editor .block .respond-slideshow span.image.edit, .editor .block .respond-gallery span.image.edit{
 		z-index: 50;
 	}
 	
-	.editor .block .respond-slideshow span.image img{
+	.editor .block .respond-slideshow span.image img, .editor .block .respond-gallery span.image img{
 		border: 1px solid #f0f0f0;
 		width: 200px;
 		height: 200px;
 	}
 	
-	.editor .block .respond-slideshow span.image img.current-element{
+	.editor .block .respond-slideshow span.image img.current-element, .editor .block .respond-gallery span.image img.current-element{
 		border: 1px solid #3299bb;
 	}
 	
-	.editor .block .respond-slideshow span.image span.caption{
+	.editor .block .respond-slideshow span.image span.caption, .editor .block .respond-gallery span.image span.caption{
 		display: block;
 		margin: 0;
 		padding: 0;
@@ -902,30 +902,7 @@
 		bottom: 5px;
 		left: 5px;
 	}
-	
-	.editor .block .respond-slideshow span.image.edit span.caption{
-		left: 0;
-		bottom: -2px;
-		background: #fff;
-		padding: 10px;
-		border: 1px solid #f0f0f0;
-	}
-	
-	.editor .block .respond-slideshow span.image span.caption input{
-		width: 75px;
-		height: 30px;
-		font-size: 11px;
-		margin: 0;
-		border-radius: 0;
-		padding: 2px;
-		outline: none;
-	}
-	
-	.editor .block .respond-slideshow span.image span.caption input:focus{
-		width: 220px;
-		font-size: 13px;
-	}
-	
+		
 	/* handle hr */
 	.editor .block div.respond-hr .line{
 		border: 0;

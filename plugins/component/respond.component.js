@@ -1549,4 +1549,234 @@ respond.component.menu = {
 };
 
 
+// gallery component
+respond.component.gallery = {
+
+	// init gallery
+	init:function(){
+		
+		$(document).on('click', '.add-gallery-image', function(){
+		
+			// get scope from page
+			var scope = angular.element($("section.main")).scope();
+			
+			scope.retrieveImages();
+		
+			$('#imagesDialog').attr('data-plugin', 'respond.component.gallery');
+			$('#imagesDialog').modal('show');
+			
+			// reset modal
+			$('#imagesDialog .add-existing-image').removeClass('hidden');
+			$('#imagesDialog .upload-new-image').addClass('hidden');
+			$('#imagesDialog .add-external-image').addClass('hidden');
+			$('#external-image').val('');
+			$('#load-image').text(i18n.t('Existing Image'));
+			$('#images-dropdown').find('li').removeClass('active');
+		});
+		
+		// caption focus (for images)
+		$(document).on('focus', '.caption input', function(){
+			$(this.parentNode.parentNode).addClass('edit');
+		});
+	
+		// caption blur (for images)
+		$(document).on('blur', '.caption input', function(){
+			var caption = $(this).val();
+			$(this.parentNode.parentNode).find('img').attr('title', caption);
+			$(this.parentNode.parentNode).removeClass('edit');
+		});
+		
+		// remove-image click
+		$(document).on('click', '.remove-image', function(){
+			$(this.parentNode).remove();
+			context.find('a.'+this.parentNode.className).show();
+			return false;
+		}); 
+	
+		// make parsed elements sortable
+		$(document).on('respond.editor.contentLoaded', function(){	
+			// make the elements sortable
+			$('.respond-gallery div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
+			
+		});
+		
+	},
+	
+	// adds an image to the gallery
+	addImage:function(image){
+		
+		// set local vs external image
+		var location = 'local';
+		
+		if(image.isExternal == true){
+			location = 'external';
+		}
+	
+		// get current node
+		var node = $(respond.editor.currNode);
+		
+		// build html
+		var html = '<span class="image"><img class="respond-element" src="' + image.fullUrl + '" title="" data-location="' + location + '" data-thumb="' + image.thumbUrl + '"></span>';
+				   
+		$(node).find('.images').append(html);
+		
+		$('#imagesDialog').modal('hide');
+		
+		return true;
+	
+	},
+
+	// creates gallery
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('gallery', 'gallery');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="images">' +
+					'<button type="button" class="add-gallery-image"><i class="fa fa-picture-o"></i></button>' +
+					'</div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-gallery';
+		attrs['data-cssclass'] = '';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+		
+		// make the elements sortable
+		$('.respond-gallery div').sortable({handle:'img', items:'span.image', placeholder: 'editor-highlight', opacity:'0.6', axis:'x'});
+		
+		return true;
+		
+	},
+	
+	// parse gallery
+	parse:function(node){
+	
+		// get params
+		var id = $(node).attr('galleryid');
+		
+		// get old formid
+		if(id == undefined){
+			id = $(node).attr('id');
+		}
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="images">' +
+					'<button type="button" class="add-gallery-image"><i class="fa fa-picture-o"></i></button>';
+		
+		// get images			
+		var imgs = $(node).find('img');	
+				
+		for(var y=0; y<imgs.length; y++){
+		
+			// get caption
+			var title = $(imgs[y]).attr('title');
+			var src = $(imgs[y]).attr('src');
+			var caption = $(imgs[y]).attr('data-caption') || '';
+			var thumb = $(imgs[y]).attr('data-thumb') || '';
+	
+			// get scope from page
+			var scope = angular.element($("section.main")).scope();
+			
+			// get domain from scope
+			var url = scope.site.ImagesUrl;
+			
+			// replace the images URL with the URL from the site
+			src = utilities.replaceAll(src, '{{site.ImagesUrl}}', url);
+			
+			var image = '<img class="respond-element" src="' + src + '" title="' + title + '" ' + 
+				'data-caption="' + caption + '" data-thumb="' + thumb + '">';
+			
+			// build html
+			html +=	'<span class="image">' + image + '</span>';
+		
+		}			
+
+		// add button				  	
+		html += '</div>';				
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-gallery';
+		attrs['data-cssclass'] = $(node).attr('class');
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate gallery
+	generate:function(node){
+		
+  		// html for tag
+  		var html = '';
+  		
+  		// get images
+  		var imgs = $(node).find('img');
+  		
+  		for(var y=0; y<imgs.length; y++){
+  		
+  			var title = $(imgs[y]).attr('title');
+  			var src = $(imgs[y]).attr('src');
+  			
+  			var location = $(imgs[y]).attr('data-location');
+  			
+  			if(location == undefined || location == null){
+	  			location = 'local';
+  			}
+  			
+  			var caption = $(imgs[y]).attr('data-caption')|| '';
+  			var thumb = $(imgs[y]).attr('data-thumb')|| '';
+  			
+  			if(location == 'local'){
+	  			// removes the domain from the img
+		  		if(src != ''){
+			  		var parts = src.split('files/');
+			  		src = 'files/' + parts[1];
+		  		}
+	  			
+	  			var image = '<img src="{{site.ImagesUrl}}' + src + '" title="' + title + '" ' +
+	  							'data-caption="' + caption + '" ' +
+	  							'data-thumb="' + thumb + '" ' +
+								'data-location="local">';
+  			}
+  			else{
+	  			var image = '<img src="' + src + '" title="' + title + '" ' + 
+	  							'data-caption="' + caption + '" ' +
+	  							'data-thumb="' + thumb + '" ' +
+								'data-location="external">';
+  			}
+  			
+			html += '<div>' + image + '</div>';
+		}
+  		
+		// tag attributes
+		var attrs = [];
+		attrs['galleryid'] = $(node).attr('data-id');
+		attrs['class'] = $(node).attr('data-cssclass');
+		
+		// return element
+		return utilities.element('respond-gallery', attrs, html);
+		
+	},
+	
+	// config gallery
+	config:function(node, form){}
+	
+};
+
+respond.component.gallery.init();
+
+
 

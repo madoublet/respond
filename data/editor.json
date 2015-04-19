@@ -140,6 +140,16 @@
 		"script":	"plugins/component/respond.component.js"
 	},
 	{
+		"action":	"respond.component.gallery",
+		"tag":		"RESPOND-GALLERY",
+		"title":	"Gallery",
+		"class":	"respond-gallery",
+		"icon":		"fa fa-th draggable",
+		"text":		"",
+		"config":	"plugins/component/config/gallery.html",
+		"script":	"plugins/component/respond.component.js"
+	},
+	{
 		"action":	"respond.component.video",
 		"tag":		"RESPOND-VIDEO",
 		"title":	"Video",

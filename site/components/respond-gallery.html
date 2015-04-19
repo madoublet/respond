@@ -1,0 +1,95 @@
+<dom-module id="respond-gallery">
+	<style>
+		
+		.gallery{
+			margin-bottom: 25px;
+		}
+	
+		.gallery a{
+			display: inline-block;
+			width: 200px;
+			height: 200px;
+			margin: 0 10px 10px 0;
+		}
+		
+		.gallery a img{
+			width: 200px;
+			height: 200px;
+		}
+		
+	</style>
+
+	<template>
+		
+		<div id$="{{galleryid}}" class$="{{cssClass}}">
+			
+			<div id="galleryList" class="" role="listbox"></div>
+			<!-- /.carousel-inner -->
+			
+		</div>
+		<!-- /.gallery -->
+		
+		
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-gallery",
+	
+	  	// element attributes
+	  	properties: {
+	  		galleryid: { type: String },
+	  		class: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+		
+			// set hashid
+			this.cssClass = 'gallery ' + this.class;
+			
+			// get images
+			var images = Polymer.dom(this).querySelectorAll('img');
+			
+			for(x=0; x<images.length; x++){
+			
+				// set active
+				var active = '';
+			
+				if(x==0){
+					active = ' active';
+				}
+				
+				// get caption
+				var caption = images[x].getAttribute('data-caption') || '';
+				
+				// get thumb
+				var thumb = images[x].getAttribute('data-thumb') || '';
+				
+				// create a gallery image
+				var a = document.createElement('a');
+				
+				a.setAttribute('title', caption);
+				a.setAttribute('class', 'gallery-item');
+				a.setAttribute('respond-gallery', '');
+				a.setAttribute('href', images[x].src);
+				
+				var img = document.createElement('img');
+				img.setAttribute('src', thumb);
+				
+				a.appendChild(img);
+					
+				// append gallery image to list
+				Polymer.dom(this.$.galleryList).appendChild(a);
+				
+			}
+		
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>
