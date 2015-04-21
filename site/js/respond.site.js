@@ -11,22 +11,7 @@ respond.site = {
 	// init respond.site
 	init:function(){
 		
-		var language = respond.site.settings.Language;
-		
-		// translate if needed
-		if(sessionStorage['respond-language'] != null){
-			
-			var language = sessionStorage['respond-language'];
-			
-			// translate if the set language is not the default
-			if(language != respond.site.settings.Language){
-				respond.site.translate(language);
-			}
-			
-		}
-		else{
-			sessionStorage['respond-language'] = respond.site.settings.Language;
-		}
+		var language = respond.site.getLanguage();
 		
 		// set direction
 		if(sessionStorage['respond-direction'] != null){
@@ -56,9 +41,8 @@ respond.site = {
 		
 		document.body.appendChild(fbroot);
 		
-		// create Facebook language code
 		var parts = language.split('-');
-		
+	
 		var fblang = 'en_US';
 		
 		if(parts.length == 1){
@@ -76,6 +60,7 @@ respond.site = {
 		  js.src = '//connect.facebook.net/' + fblang + '/sdk.js#xfbml=1&version=v2.3';
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
+		
 		
 	},
 	
@@ -211,6 +196,29 @@ respond.site = {
 			});
 		}
 		
+	},
+	
+	// get language
+	getLanguage: function(){
+		
+		var language = respond.site.settings.Language;
+		
+		// translate if needed
+		if(sessionStorage['respond-language'] != null){
+			
+			var language = sessionStorage['respond-language'];
+			
+			// translate if the set language is not the default
+			if(language != respond.site.settings.Language){
+				respond.site.translate(language);
+			}
+			
+		}
+		else{
+			sessionStorage['respond-language'] = respond.site.settings.Language;
+		}
+		
+		return language;
 	}
 	
 };
@@ -219,6 +227,7 @@ respond.site = {
 document.addEventListener("DOMContentLoaded", function(event) { 
   respond.site.init();
 });
+
 
 // shims for old browsers
 if (!String.prototype.trim) {

@@ -1,0 +1,177 @@
+<dom-module id="respond-badge">
+	<style>
+		.respond-badge{
+			margin-bottom: 25px;
+		}
+		
+		.respond-badge a{
+			display: none;
+			vertical-align: top;
+			margin-right: 10px;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			font-size: 20px;
+			text-align: center;
+			border: 1px solid #ddd;
+			border-radius: 50%;
+			color: #888;
+			background-color: #fff;
+		}
+		
+		.respond-badge a[visible]{
+			display: inline-block;
+		}
+		
+		/* hover branding colors */
+		.respond-badge.colorful a.badge-facebook{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #3b5998;
+		}
+		
+		.respond-badge.colorful a.badge-twitter{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #4099ff;
+		}
+		
+		.respond-badge.colorful a.badge-github{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #333;
+		}
+		
+		.respond-badge.colorful a.badge-pinterest{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #c92228;
+		}
+		
+		.respond-badge.colorful a.badge-tumblr{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #35465c;
+		}
+		
+	</style>
+
+	<template>
+		
+		<div id$="{{badgeid}}" class$="{{cssclass}}">
+			
+			<a class="badge-facebook"
+				visible$="{{facebookshow}}" 
+				href$="{{facebookurl}}"><i class="fa fa-facebook"></i></a>
+			<!-- /.badge-facebook -->
+			
+			<a class="badge-twitter"
+				visible$="{{twittershow}}" 
+				href$="{{twitterurl}}"><i class="fa fa-twitter"></i></a>
+			<!-- /.badge-twitter -->
+			
+			<a class="badge-github"
+				visible$="{{githubshow}}" 
+				href$="{{githuburl}}"><i class="fa fa-github"></i></a>
+			<!-- /.badge-github -->
+			
+			<a class="badge-pinterest"
+				visible$="{{pinterestshow}}" 
+				href$="{{pinteresturl}}"><i class="fa fa-pinterest"></i></a>
+			<!-- /.badge-pinterest -->
+	
+			<a class="badge-tumblr"
+				visible$="{{tumblrshow}}" 
+				href$="{{tumblrurl}}"><i class="fa fa-tumblr"></i></a>
+			<!-- /.badge-tumbler -->
+			
+		</div>
+		<!-- /.respond-share -->
+		
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-badge",
+	
+	  	// element attributes
+	  	properties: {
+	  		badgeid: { type: String },
+	  		cssclass: { type: String },
+	  		display: { type: String },
+	  		facebook: { type: String },
+	  		twitter: { type: String },
+	  		github: { type: String },
+	  		pinterest: { type: String },
+	  		tumblr: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+			
+			if(this.cssclass != undefined){
+				this.cssclass = 'respond-badge ' + this.cssclass;
+			}
+			else{
+				this.cssclass = 'respond-badge';
+			}
+			
+			// set display
+			if(this.display != undefined){
+				
+				if(this.display == 'colorful'){
+					this.cssclass += ' colorful';
+				}
+				
+			}
+			
+			this.facebookshow = false;
+			this.facebookurl = '';
+			
+			this.twittershow = false;
+			this.twitterurl = '';
+			
+			this.githubshow = false;
+			this.githuburl = '';
+			
+			this.pinterestshow = false;
+			this.pinteresturl = '';
+			
+			this.tumblershow = false;
+			this.tumblerurl = '';
+		
+			// show and set urls
+			if(this.facebook != '' && this.facebook != undefined){
+				this.facebookshow = true;
+				this.facebookurl = 'https://facebook.com/' + this.facebook;
+			}
+			
+			if(this.twitter != '' && this.twitter != undefined){
+				this.twittershow = true;
+				this.twitterurl = 'https://twitter.com/' + this.twitter;
+			}
+			
+			if(this.github != '' && this.github != undefined){
+				this.githubshow = true;
+				this.githuburl = 'https://github.com/' + this.github;
+			}
+			
+			if(this.pinterest != '' && this.pinterest != undefined){
+				this.pinterestshow = true;
+				this.pinteresturl = 'https://pinterest.com/' + this.pinterest;
+			}
+			
+			if(this.tumblr != '' && this.tumblr != undefined){
+				this.tumblrshow = true;
+				this.tumblrurl = 'http://' + this.tumblr + '.tumbler.com/';
+			}
+				
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>

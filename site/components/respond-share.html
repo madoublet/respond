@@ -63,17 +63,21 @@
 	  	properties: {
 	  		shareid: { type: String },
 	  		cssclass: { type: String },
-	  		fbshow: { type: Boolean },
+	  		fbshow: { type: String },
 	  		fblayout: { type: String },
 	  		fbaction: { type: String },
-	  		twshow: { type: Boolean },
+	  		twshow: { type: String },
 	  		twvia: { type: String },
 	  		twhash: { type: String },
-	  		pinshow: { type: Boolean }
+	  		pinshow: { type: String }
 		},
 		
 		// attached
 		attached: function() {
+			
+			this.fbshow = (this.fbshow === 'true');
+			this.twshow = (this.twshow === 'true');
+			this.pinshow = (this.pinshow === 'true');
 		
 			// set url
 			this.url = window.location.href;	

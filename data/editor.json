@@ -180,6 +180,26 @@
 		"script":	"plugins/component/respond.component.js"
 	},
 	{
+		"action":	"respond.component.badge",
+		"tag":		"RESPOND-BADGE",
+		"title":	"Badge",
+		"class":	"respond-badge",
+		"icon":		"fa fa-shield draggable",
+		"text":		"",
+		"config":	"plugins/component/config/badge.html",
+		"script":	"plugins/component/respond.component.js"
+	},
+	{
+		"action":	"respond.component.comments",
+		"tag":		"RESPOND-COMMENTS",
+		"title":	"Comments",
+		"class":	"respond-comments",
+		"icon":		"fa fa-comments draggable",
+		"text":		"",
+		"config":	"plugins/component/config/comments.html",
+		"script":	"plugins/component/respond.component.js"
+	},
+	{
 		"action":	"respond.component.content",
 		"tag":		"RESPOND-CONTENT",
 		"title":	"Content",

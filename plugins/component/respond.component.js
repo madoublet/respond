@@ -1881,5 +1881,185 @@ respond.component.share = {
 	
 };
 
+// badge component
+respond.component.badge = {
+
+	// create share
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('badge', 'badge');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-shield"></i> ' + 
+					i18n.t('Badge') + '</div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-badge';
+		attrs['data-cssclass'] = '';
+		attrs['data-display'] = 'monochrome';
+		
+		attrs['data-facebook'] = '';
+		attrs['data-twitter'] = '';
+		attrs['data-pinterest'] = '';
+		attrs['data-github'] = '';
+		attrs['data-tumblr'] = '';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+	
+		return true;
+		
+	},
+	
+	// parse badge
+	parse:function(node){
+		
+		// get params
+		var id = $(node).attr('id');
+		var type = $(node).attr('type');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-shield"></i> ' + 
+					i18n.t('Badge') + '</div>';
+		
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = $(node).attr('badgeid');
+		attrs['class'] = 'respond-badge';
+		attrs['data-cssclass'] = $(node).attr('cssclass');
+		attrs['data-display'] = $(node).attr('display');
+		
+		attrs['data-facebook'] = $(node).attr('facebook');
+		attrs['data-twitter'] = $(node).attr('twitter');
+		attrs['data-pinterest'] = $(node).attr('pinterest');
+		attrs['data-github'] = $(node).attr('github');
+		attrs['data-tumblr'] = $(node).attr('tumblr');
+		
+		utilities.element('div', attrs, html)
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate badge
+	generate:function(node){
+
+		// tag attributes
+		var attrs = [];
+		attrs['badgeid'] = $(node).attr('data-id');
+		attrs['cssclass'] = $(node).attr('data-cssclass');
+		attrs['display'] = $(node).attr('data-display');
+		
+		attrs['facebook'] = $(node).attr('data-facebook');
+		attrs['twitter'] = $(node).attr('data-twitter');
+		attrs['pinterest'] = $(node).attr('data-pinterest');
+		attrs['github'] = $(node).attr('data-github');
+		attrs['tumblr'] = $(node).attr('data-tumblr');
+		
+		// return element
+		return utilities.element('respond-badge', attrs, '');
+		
+	},
+	
+	// config list
+	config:function(node, form){}
+	
+};
+
+// comments component
+respond.component.comments = {
+
+	// create comments
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('comments', 'comments');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-comments"></i> ' + 
+					i18n.t('Comments') + '</div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-comments';
+		attrs['data-cssclass'] = '';
+		
+		attrs['data-showfacebook'] = 'true';
+		attrs['data-showdisqus'] = 'false';
+		attrs['data-disqusshortname'] = '';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+	
+		return true;
+		
+	},
+	
+	// parse comments
+	parse:function(node){
+		
+		// get params
+		var id = $(node).attr('id');
+		var type = $(node).attr('type');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-comments"></i> ' + 
+					i18n.t('Comments') + '</div>';
+		
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = $(node).attr('commentsid');
+		attrs['class'] = 'respond-comments';
+		attrs['data-cssclass'] = $(node).attr('cssclass');
+		
+		attrs['data-showfacebook'] = $(node).attr('showfacebook');
+		attrs['data-showdisqus'] = $(node).attr('showdisqus');
+		attrs['data-disqusshortname'] = $(node).attr('disqusshortname');
+		
+		utilities.element('div', attrs, html)
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate comments
+	generate:function(node){
+
+		// tag attributes
+		var attrs = [];
+		attrs['commentsid'] = $(node).attr('data-id');
+		attrs['cssclass'] = $(node).attr('data-cssclass');
+		
+		attrs['showfacebook'] = $(node).attr('data-showfacebook');
+		attrs['showdisqus'] = $(node).attr('data-showdisqus');
+		attrs['disqusshortname'] = $(node).attr('data-disqusshortname');
+		
+		// return element
+		return utilities.element('respond-comments', attrs, '');
+		
+	},
+	
+	// config list
+	config:function(node, form){}
+	
+};
 
 

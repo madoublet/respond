@@ -1,0 +1,103 @@
+<dom-module id="respond-comments">
+	<style>
+		.respond-comments{
+			margin-bottom: 25px;
+		}
+		
+		.respond-comments>div{
+			display: none;
+		}
+		
+		.respond-comments>div[visible]{
+			display: block;
+		}
+	</style>
+
+	<template>
+		
+		<div id$="{{commentsid}}" class$="{{cssclass}}">
+		
+			<div id="facebookComments" visible$="{{showfacebook}}"></div>
+
+			<div id="disqusComments" visible$="{{showdisqus}}"></div>
+			
+		</div>
+		<!-- /.respond-comments -->
+		
+	</template>
+</dom-module>
+
+<script>
+  Polymer({
+	  	is: "respond-comments",
+	
+	  	// element attributes
+	  	properties: {
+	  		commentsid: { type: String },
+	  		cssclass: { type: String },
+	  		showfacebook: { type: String },
+	  		showdisqus: { type: String },
+	  		disqusshortname: { type: String }
+		},
+		
+		// attached
+		attached: function() {
+			
+			this.showfacebook = (this.showfacebook === 'true');
+			this.showdisqus = (this.showdisqus === 'true');
+			
+			// set class
+			if(this.cssclass != undefined){
+				this.cssclass = 'respond-comments ' + this.cssclass;
+			}
+			else{
+				this.cssclass = 'respond-comments';
+			}
+			
+			this.url = window.location.href;
+			
+			// show facebook
+			if(this.showfacebook == true){
+				
+				var div = document.createElement('div');
+				div.setAttribute('class', 'fb-comments');
+				div.setAttribute('data-width', '100%');
+				div.setAttribute('data-href', this.url);
+				div.setAttribute('data-numposts', '5');
+				div.setAttribute('data-colorscheme', 'light');
+				
+				Polymer.dom(this.$.facebookComments).appendChild(div);
+				
+			}
+			
+			// show discuss
+			if(this.showdisqus == true){
+				
+				var div = document.createElement('div');
+				div.setAttribute('id', 'disqus_thread');
+				
+				Polymer.dom(this.$.disqusComments).appendChild(div);
+				
+				// setup js
+				var shortname = this.disqusshortname;
+    
+				 /* * * DON'T EDIT BELOW THIS LINE * * */
+			    (function() {
+			        var dsq = document.createElement('script'); 
+			        dsq.type = 'text/javascript'; dsq.async = true;
+			        dsq.src = '//' + shortname + '.disqus.com/embed.js';
+			        
+			        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			       
+			    })();
+				
+			}
+				
+		},
+		
+		i18n: function(text){
+		  	return respond.site.i18n(text);
+		}
+	
+	});
+</script>

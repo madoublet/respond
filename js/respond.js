@@ -52,7 +52,9 @@ angular.module('respond', ['ui.router',
 	$httpProvider.interceptors.push('authInterceptor');
 	
 	// set html5 mode #HTML5MODE
-	// $locationProvider.html5Mode(true);
+	if(Setup.urlMode.toUpperCase() == 'HTML5'){
+		$locationProvider.html5Mode(true);
+	}
 	
 	// set states
 	$stateProvider
@@ -293,6 +295,7 @@ angular.module('respond', ['ui.router',
 	$rootScope.title = Setup.app;
 	$rootScope.direction = Setup.direction;
 	$rootScope.css = Setup.css;
+	$rootScope.urlMode = Setup.urlMode;
 	$rootScope.firstLogin = false;
 	$rootScope.introShown = true;
 	

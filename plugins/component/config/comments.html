@@ -1,0 +1,62 @@
+<div class="context-body">
+
+	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control" 
+				ng-model="node.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control" 
+				ng-model="node.cssclass">
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Facebook' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="showfacebook">{{'Show' | i18next}}</label>
+			<select name="showfacebook" class="form-control" 
+				ng-model="node.showfacebook">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Disqus' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="showdisqus">{{'Show' | i18next}}</label>
+			<select name="showdisqus" class="form-control" 
+				ng-model="node.showdisqus">
+				<option value="true">{{'Yes' | i18next}}</option>
+				<option value="false">{{'No' | i18next}}</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="disqusshortname">{{'Short Name' | i18next}}</label>
+			<input name="disqusshortname" type="text" maxlength="128" class="form-control" 
+				ng-model="node.disqusshortname">
+		</div>
+		
+	</div>
+	<!-- /.context-block -->
+	
+</div>
+<!-- /.context-body -->
+	
