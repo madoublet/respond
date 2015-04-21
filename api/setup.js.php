@@ -73,7 +73,8 @@ angular.module('respond.setup', [])
 	// themes 
 	themes:					'<?php print THEMES_FOLDER; ?>',
 	
-	// system message
-	systemMessage:			'<?php print $system_message; ?>'
+	// app
+	systemMessage:			'<?php print $system_message; ?>',
+	urlMode:			 	'<?php print URL_MODE; ?>'
 	
 });

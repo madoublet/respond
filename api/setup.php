@@ -91,8 +91,8 @@
 	// Webhooks URL
 	define('WEBHOOKS_URL', '');
 
-	// Default URL mode (hash, hashbang, html5, static)
-	define('DEFAULT_URL_MODE', 'static');
+	// Default URL mode for the application (#, html5)
+	define('URL_MODE', '#');
 	
 	// Image prefix (the protocol to use for accessing images, prefixes the domain name)
 	define('IMAGE_PREFIX', 'http://');

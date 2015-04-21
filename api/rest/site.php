@@ -209,7 +209,7 @@ class SiteCreateResource extends Tonic\Resource {
     		$bucket = str_replace('{{site}}', $friendlyId, BUCKET_NAME);
     		
     		// set default URL mode
-    		$urlMode = DEFAULT_URL_MODE;
+    		$urlMode = 'static';
     		
             // add the site
     	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $altLogoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
