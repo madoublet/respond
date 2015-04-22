@@ -445,6 +445,33 @@ body .carousel.fade .left, body .carousel.fade .right{
 	z-index: 10;
 }
 
+/* toggles (search, cart, languages, etc) */
+body .toggle{
+  	display: block;
+	float: right;
+  	width: 50px;
+  	height: 50px;
+  	line-height: 50px;
+  	text-align: center;
+  	color: config(--nav-icon-color);
+	cursor: pointer;
+    border-left: 1px solid #ddd;
+}
+
+	body .toggle:hover{
+	  	color: config(--nav-icon-hover-color);
+	}
+	
+	body .toggle.active{
+        color: config(--nav-icon-active-color) !important;
+    }
+    
+html[dir=rtl] body .toggle{
+  	float: left; 
+ 	border-left: none;
+  	border-right: 1px solid config(--nav-border-color);
+}  
+
 /* rtl */
 html[dir=rtl] .navbar-brand{
 	left: auto;

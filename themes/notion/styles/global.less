@@ -526,6 +526,30 @@ html[dir=rtl] footer div{
 	text-align: right;
 }
 
+/* toggles (search, cart, languages, etc) */
+body .toggle{
+  	display: block;
+	float: right;
+  	width: 60px;
+  	height: 60px;
+  	line-height: 60px;
+  	text-align: center;
+  	color: config(--nav-icon-color);
+	cursor: pointer;
+}
+
+	body .toggle:hover{
+	  	color: config(--nav-icon-hover-color);
+	}
+	
+	body .toggle.active{
+        color: config(--nav-icon-active-color) !important;
+    }
+
+	html[dir=rtl] body .toggle{
+    	float: left; 
+    }
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
