@@ -39,8 +39,8 @@
 	define('BRAND_CSS', '');
 	
 	// Brand logos (should be fully qualified (e.g. http://) to support emails, paypal)
-	define('BRAND_LOGO', '/images/respond-icon.png');
-	define('BRAND_ICON', '/images/respond-icon.png');
+	define('BRAND_LOGO', 'images/respond-icon.png');
+	define('BRAND_ICON', 'images/respond-icon.png');
 	
 	// Copyright and default email
 	define('COPY', 'Made by Matthew Smith in Manchester, MO');
