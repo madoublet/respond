@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `Name` varchar(255) NOT NULL,
   `LogoUrl` varchar(512) DEFAULT NULL,
   `AltLogoUrl` varchar(512) DEFAULT NULL,
+  `PayPalLogoUrl` varchar(512) DEFAULT NULL,
   `IconUrl` varchar(512) DEFAULT NULL,
   `IconBg` varchar(10) DEFAULT '#FFFFFF',
   `Theme` varchar(50) DEFAULT NULL,
