@@ -5,11 +5,11 @@
 	/************************************/
 
     // include optional local setup
-    if(file_exists(__DIR__.'/setup.local.php')){
-    	include 'setup.local.php';
+    if(file_exists('../setup.local.php')){
+    	include '../setup.local.php';
     }
     else{
-    	include 'setup.php';
+    	include '../setup.php';
     }
     
     
@@ -63,6 +63,7 @@
 	require_once 'libs/PasswordHash.php';
 	require_once 'libs/class-php-ico.php';
 	require_once 'libs/IpnListener.php';
+	require_once 'libs/simple_html_dom.php';
 	
 	// include libs
 	require_once 'libs/Utilities.php';

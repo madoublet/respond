@@ -6,13 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
-    'BeforeValidException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/BeforeValidException.php',
-    'ExpiredException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/ExpiredException.php',
-    'JWT' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Authentication/JWT.php',
+    'BeforeValidException' => $vendorDir . '/firebase/php-jwt/Exceptions/BeforeValidException.php',
+    'ExpiredException' => $vendorDir . '/firebase/php-jwt/Exceptions/ExpiredException.php',
+    'JWT' => $vendorDir . '/firebase/php-jwt/Authentication/JWT.php',
     'PHPMailer' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
     'POP3' => $vendorDir . '/phpmailer/phpmailer/class.pop3.php',
     'SMTP' => $vendorDir . '/phpmailer/phpmailer/class.smtp.php',
-    'SignatureInvalidException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/SignatureInvalidException.php',
+    'SignatureInvalidException' => $vendorDir . '/firebase/php-jwt/Exceptions/SignatureInvalidException.php',
     'Stripe' => $vendorDir . '/stripe/stripe-php/lib/Stripe/Stripe.php',
     'Stripe_Account' => $vendorDir . '/stripe/stripe-php/lib/Stripe/Account.php',
     'Stripe_ApiConnectionError' => $vendorDir . '/stripe/stripe-php/lib/Stripe/ApiConnectionError.php',
@@ -57,6 +57,4 @@ return array(
     'lessc_formatter_lessjs' => $vendorDir . '/leafo/lessphp/lessc.inc.php',
     'lessc_parser' => $vendorDir . '/leafo/lessphp/lessc.inc.php',
     'phpmailerException' => $vendorDir . '/phpmailer/phpmailer/class.phpmailer.php',
-    'simple_html_dom' => $vendorDir . '/shark/simple_html_dom/simple_html_dom.php',
-    'simple_html_dom_node' => $vendorDir . '/shark/simple_html_dom/simple_html_dom.php',
 );

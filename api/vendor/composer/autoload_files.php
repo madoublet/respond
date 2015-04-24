@@ -7,5 +7,4 @@ $baseDir = dirname(dirname($vendorDir));
 
 return array(
     $vendorDir . '/react/promise/src/functions_include.php',
-    $vendorDir . '/shark/simple_html_dom/simple_html_dom.php',
 );

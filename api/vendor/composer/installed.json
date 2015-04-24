@@ -377,98 +377,6 @@
         "homepage": "http://leafo.net/lessphp/"
     },
     {
-        "name": "firebase/php-jwt",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Firebase/PHP-JWT",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/firebase/php-jwt.git",
-            "reference": "0cb1d5a8c4efd6576814247617fc8463042c6fc7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/0cb1d5a8c4efd6576814247617fc8463042c6fc7",
-            "reference": "0cb1d5a8c4efd6576814247617fc8463042c6fc7",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.0"
-        },
-        "time": "2015-04-01 18:56:25",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "classmap": [
-                "Authentication/",
-                "Exceptions/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Neuman Vong",
-                "email": "neuman+pear@twilio.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Anant Narayanan",
-                "email": "anant@php.net",
-                "role": "Developer"
-            }
-        ],
-        "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
-        "homepage": "https://github.com/firebase/php-jwt"
-    },
-    {
-        "name": "shark/simple_html_dom",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/samacs/simple_html_dom.git",
-            "reference": "842b3fc1f9f0c70b8c1b2e93fc451834c42e384d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/samacs/simple_html_dom/zipball/842b3fc1f9f0c70b8c1b2e93fc451834c42e384d",
-            "reference": "842b3fc1f9f0c70b8c1b2e93fc451834c42e384d",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*",
-            "php": ">=5.2.4"
-        },
-        "time": "2014-10-17 00:16:28",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "classmap": [
-                "simple_html_dom.php"
-            ],
-            "files": [
-                "simple_html_dom.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "S.C. Chen",
-                "email": "me578022@gmail.com",
-                "homepage": "http://simplehtmldom.sourceforge.net/"
-            }
-        ],
-        "description": "Simple HTML DOM package.",
-        "homepage": "http://simplehtmldom.sourceforge.net/",
-        "keywords": [
-            "dom",
-            "php dom"
-        ]
-    },
-    {
         "name": "react/promise",
         "version": "v2.2.0",
         "version_normalized": "2.2.0.0",
@@ -728,5 +636,51 @@
             "payment processing",
             "stripe"
         ]
+    },
+    {
+        "name": "firebase/php-jwt",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/firebase/php-jwt.git",
+            "reference": "652f3c62094b2447a0c4cad6b11541bef19ebfaa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/firebase/php-jwt/zipball/652f3c62094b2447a0c4cad6b11541bef19ebfaa",
+            "reference": "652f3c62094b2447a0c4cad6b11541bef19ebfaa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "time": "2015-04-13 18:10:21",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "Authentication/",
+                "Exceptions/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Neuman Vong",
+                "email": "neuman+pear@twilio.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Anant Narayanan",
+                "email": "anant@php.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+        "homepage": "https://github.com/firebase/php-jwt"
     }
 ]
