@@ -35,4 +35,6 @@ ALTER TABLE `Sites` ADD `PayPalLogoUrl` varchar(512) DEFAULT NULL AFTER `AltLogo
 UPDATE Sites SET Version = '4.6'
 ```
 
+- Update /setup.php (or create /setup.local.php) in root of application
+
 - Upgrade site
