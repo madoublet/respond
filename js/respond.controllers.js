@@ -3299,7 +3299,7 @@ angular.module('respond.controllers', [])
 		
 		// get permissions 
 		if($('.chk-'+type+'-all').prop('checked')){
-			canView = 'All';
+			canDo = 'All';
 		}
 		else{
 			var checks = $('.chk-' + type);
