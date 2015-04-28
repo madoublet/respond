@@ -232,3 +232,78 @@ respond.utility.layout = {
 };
 
 respond.utility.layout.init();
+
+// fetch component
+respond.utility.fetch = {
+
+	// creates fetch
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('fetch', 'fetch');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-magnet"></i> <span node-text="url">Not Selected</span></div>';		
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-fetch';
+		attrs['data-cssclass'] = '';
+		attrs['data-url'] = '';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, html)
+		);
+	
+		return true;
+		
+	},
+	
+	// parse fetch
+	parse:function(node){
+	
+		// get params
+		var id = $(node).attr('fetchid');
+		var url = $(node).attr('url');
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu +
+					'<div class="title respond-element"><i class="fa fa-magnet"></i> <span node-text="url">' + url + '</span></div>';
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-fetch';
+		attrs['data-cssclass'] = $(node).attr('cssclass');
+		attrs['data-url'] = $(node).attr('url');
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate fetch
+	generate:function(node){
+
+		// tag attributes
+		var attrs = [];
+		attrs['fetchid'] = $(node).attr('data-id');
+		attrs['cssclass'] = $(node).attr('data-cssclass');
+		attrs['url'] = $(node).attr('data-url');
+		
+		// return element
+		return utilities.element('respond-fetch', attrs, '');
+		
+	},
+	
+	// config fetch
+	config:function(node, form){
+		
+	}
+	
+};

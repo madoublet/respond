@@ -633,7 +633,7 @@ respond.component.content = {
 	parse:function(node){
 	
 		// get params
-		var id = $(node).attr('id');
+		var id = $(node).attr('contentid');
 		var url = $(node).attr('url');
 		
 		// build html
@@ -645,7 +645,7 @@ respond.component.content = {
 		attrs['id'] = id;
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-content';
-		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-cssclass'] = $(node).attr('cssclass');
 		attrs['data-url'] = $(node).attr('url');
 		
 		// return element
@@ -658,8 +658,8 @@ respond.component.content = {
 
 		// tag attributes
 		var attrs = [];
-		attrs['id'] = $(node).attr('data-id');
-		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['contentid'] = $(node).attr('data-id');
+		attrs['cssclass'] = $(node).attr('data-cssclass');
 		attrs['url'] = $(node).attr('data-url');
 		
 		// return element

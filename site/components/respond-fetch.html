@@ -1,42 +1,37 @@
-<dom-module id="respond-content">
+<dom-module id="respond-fetch">
   <template></template>
 </dom-module>
 
 <script>
   Polymer({
-	  	is: "respond-content",
+	  	is: "respond-fetch",
 	
 	  	// element attributes
 	  	properties: {
 	  		url: { type: String },
-	  		contentid: { type: String },
+	  		fetchid: { type: String },
 	  		cssclass: { type: String }
 		},
 		
 		// attached
 		attached: function() {
 			
-			var url = this.url.replace('/', '.');
 			var context = this;
 			
 			// xhr
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', encodeURI('templates/page/' + url + '.html'));
+			xhr.open('GET', encodeURI(this.url));
 			
 			xhr.onload = function() {
 			    if (xhr.status === 200) {
 			    
 			    	var data = xhr.responseText;
-			    
-			        // replace imagesURL with url
-					data = respond.site.replaceAll(data, '{{site.ImagesUrl}}', respond.site.settings.ImagesUrl);
-					data = respond.site.replaceAll(data, '{{site.ImagesURL}}', respond.site.settings.ImagesUrl);
-				
+			    	
 					// place returned HTML into a node
 					var div = document.createElement('div');
 					
-					if(this.contentid != '' && this.contentid != undefined){
-						div.setAttribute('id', this.contentid);
+					if(this.fetchid != '' && this.fetchid != undefined){
+						div.setAttribute('id', this.fetchid);
 					}
 					
 					if(this.cssclass != '' && this.cssclass != undefined){
@@ -50,7 +45,7 @@
 					
 			    }
 			    else {
-			        console.log('[respond.error] respond-content component: failed post, xhr.status='+xhr.status);
+			        console.log('[respond.error] respond-fetch component: failed post, xhr.status='+xhr.status);
 			    }
 			};
 			xhr.send(); 

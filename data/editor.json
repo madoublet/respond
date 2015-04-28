@@ -270,6 +270,16 @@
 		"script":	"plugins/component/respond.component.js"
 	},
 	{
+		"action":	"respond.utility.fetch",
+		"tag":		"RESPOND-FETCH",
+		"title":	"Fetch",
+		"class":	"respond-fetch",
+		"icon":		"fa fa-magnet draggable",
+		"text":		"",
+		"config":	"plugins/utility/config/fetch.html",
+		"script":	"plugins/utility/respond.utility.js"
+	},
+	{
 		"action":	"respond.utility.load",
 		"tag":		"n/a",
 		"title":	"Load Content",
