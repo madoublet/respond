@@ -264,6 +264,11 @@ respond.text.link = {
 			// restore selection
 			utilities.restoreSelection(respond.text.link.selection);
 
+			// get scope
+			var scope = angular.element($("section.main")).scope();
+			
+			var prefix = '';
+
 			// create link
 			var text = utilities.getSelectedText();
 			
@@ -273,7 +278,7 @@ respond.text.link = {
 				
 				// external links should have http
 				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					html += '<a href="/'+url+'"';
+					html += '<a href="'+url+'"';
 				}
 				else{
 					html += '<a href="'+url+'"';
