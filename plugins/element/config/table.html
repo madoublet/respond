@@ -22,7 +22,7 @@
 
 <div class="context-body">
 
-	<h2>{{'Table' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
+	<h2>{{'Table' | i18next}}<a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
 	
 	<div class="context-block">
 	
@@ -49,6 +49,10 @@
 			<input name="columns" type="number" maxlength="128" class="form-control"
 				ng-model="node.columns">
 		</div>
+		
+		<div class="form-group">
+			
+		</div>
 	
 	</div>
 	<!-- /.context-block -->
@@ -58,7 +62,30 @@
 
 <div class="context-body">
 
-	<h2>{{'Element' | i18next}} <a class="element-parent">{{'Remove' | i18next}}</a></h2>
+	<h2>{{'Row' | i18next}} <a class="element-parent">{{'Remove' | i18next}}</a> <a class="add-below">{{'Add' | i18next}}</a></h2>
+	
+	<div class="context-block">
+	
+		<div class="form-group">
+			<label for="id">{{'Id' | i18next}}</label>
+			<input name="id" type="text" maxlength="128" class="form-control"
+				ng-model="parent.id">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'CSS Class' | i18next}}</label>
+			<input name="cssClass" type="text" maxlength="128" class="form-control"
+				ng-model="parent.cssclass">
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+	
+</div>
+
+<div class="context-body">
+
+	<h2>{{'Cell' | i18next}}</h2>
 	
 	<div class="context-block">
 	

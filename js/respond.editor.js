@@ -644,6 +644,7 @@ respond.editor.setupPersistentEvents = function(){
   			// reset scope.element
 	  		scope.$apply(function(){
 			    scope.element = {};
+			    scope.parent = {};
 			});
   		
   			// setup check for data attributes
@@ -663,6 +664,24 @@ respond.editor.setupPersistentEvents = function(){
 				   	// apply the nvp to ContentCtrl scope
 			  		scope.$apply(function(){
 					    scope.element[key] = value;
+					});
+		        }
+			});
+			
+			// set attributes for parent
+	  		$.each($(element).parent().get(0).attributes, function(index, attr) {
+		        if (expr.test(attr.nodeName)) {
+		            var key = attr.nodeName.replace('data-', '');
+		           	var value = attr.nodeValue;
+		           	
+				   	// this enables binding to type=number fields for numeric values
+		           	if($.isNumeric(value) === true){
+			           	value = parseFloat(value);
+		           	}
+	  		
+				   	// apply the nvp to ContentCtrl scope
+			  		scope.$apply(function(){
+					    scope.parent[key] = value;
 					});
 		        }
 			});

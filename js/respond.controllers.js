@@ -988,6 +988,7 @@ angular.module('respond.controllers', [])
 	$scope.sites = Setup.sites;
 	$scope.node = {};
 	$scope.element = {};
+	$scope.parent = {};
 	$scope.block = {};
 	$scope.container = {};
 	$scope.column1 = {};
@@ -1142,7 +1143,6 @@ angular.module('respond.controllers', [])
 		  		// set new values
 		  		if(index != 'sortableItem'){
 		  		
-		  			console.log('$watch, set index=' + index +' to attr=' + attr);
 		  		
 		  			// set corresponding data attribute
 		  			$(respond.editor.currElement).attr('data-' + index, attr);
@@ -1153,6 +1153,37 @@ angular.module('respond.controllers', [])
 		  			if(respond.editor.currConfig){
 		  				// create eventName
 		  				var eventName = respond.editor.currConfig.attr('data-action') + '.element.' + index + '.change';
+		  			
+		  				// trigger change
+		  				$(respond.editor.el).trigger(eventName, {index: index, attr: attr});
+		  			}
+		  		}
+	  		}
+	  		
+  		});
+    	
+    });
+    
+    // watch for changes in the parent collection
+    $scope.$watchCollection('parent', function(newValues, oldValues){
+    	
+    	$.each(newValues, function(index, attr){	
+	  		
+	  		// check for changes
+	  		if(newValues[index] != oldValues[index]){
+	  		
+		  		// set new values
+		  		if(index != 'sortableItem'){
+		  		
+		  			// set corresponding data attribute
+		  			$(respond.editor.currElement).parent().attr('data-' + index, attr);
+		  			
+		  			// set config-text convenience method
+		  			$(respond.editor.currElement).parent().find('[parent-text="' + index + '"]').text(attr);
+		  			
+		  			if(respond.editor.currConfig){
+		  				// create eventName
+		  				var eventName = respond.editor.currConfig.attr('data-action') + '.parent.' + index + '.change';
 		  			
 		  				// trigger change
 		  				$(respond.editor.el).trigger(eventName, {index: index, attr: attr});

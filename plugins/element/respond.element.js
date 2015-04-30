@@ -853,41 +853,66 @@ respond.element.ol.init();
 // table element
 respond.element.table = {
 
+	// adds a row
+	addRowBelow:function(el){
+	
+		var node = $(respond.editor.currNode);
+		var form = $('.config[data-action="respond.element.table"]');
+		var table = node.find('table');
+		var columns = $(form).find('input[name=columns]').val();
+		el = $(el);
+		
+		// add row
+		var html = '<tr>';
+
+		for(var x=0; x<columns; x++){
+			html += '<td contentEditable="true"></td>';
+		}
+
+		html += '</tr>';
+		
+		// for headers (TH) prepend the row to the tbody
+		if($(this).get(0).nodeName == 'TH'){
+		
+			table.find('tbody').prepend(html);
+			table.find('tbody').find('[contentEditable=true]').get(0).focus();
+		}
+		else{ // for non-headers, insert the row after the current row
+			var tr = el.parents('tr')[0];
+			
+			$(tr).after(html);
+	
+			$(tr).next().find('[contentEditable=true]').get(0).focus();
+			
+		}
+		
+		var scope = angular.element($("section.main")).scope();
+		
+		scope.$apply(function(){
+			scope.node.rows = scope.node.rows + 1;
+		});
+		
+		
+		
+		return true;
+		
+	},
+
 	// initialize table
 	init:function(){
 	
 		// keydown event
 		$(document).on('keydown', '.table [contentEditable=true]', function(event){
 		
+			var node = $(respond.editor.currNode);
+			var form = $('.config[data-action="respond.element.table"]');
+			var el = $(this);
+			var table = node.find('table');
+			
 			// ENTER KEY
 			if(event.keyCode == '13'){
-				
-				// add row
-				var table = $(el).find('table');
-				var cols = $(table).attr('data-columns');
-		
-				var html = '<tr>';
-		
-				for(var x=0; x<cols; x++){
-					html += '<td contentEditable="true"></td>';
-				}
-		
-				html += '</tr>';
-				
-				// for headers (TH) prepend the row to the tbody
-				if($(this).get(0).nodeName == 'TH'){
-				
-					$(el).find('tbody').prepend(html);
-					$(el).find('tbody').find('[contentEditable=true]').get(0).focus();
-				}
-				else{ // for non-headers, insert the row after the current row
-					var tr = $(this).parents('tr')[0];
-					
-					$(tr).after(html);
 			
-					$(tr).next().find('[contentEditable=true]').get(0).focus();
-					
-				}
+				respond.element.table.addRowBelow(el);
 				
 				event.preventDefault();
 				return false;
@@ -914,6 +939,13 @@ respond.element.table = {
 				}	
 			}
 
+		});
+		
+		// handle add above
+		$(document).on('click', '.config[data-action="respond.element.table"] .add-below', function(){
+			var el = $('.current-element');
+			
+			respond.element.table.addRowBelow(el);
 		});
 		
 		// handle remove
@@ -1100,8 +1132,10 @@ respond.element.table = {
 
        	var tr = $(node).find('thead tr');
     
-       	rows += '<thead><tr>';
+       	rows += '<thead>';
 
+	   	// create cells
+	   	var cells = '';
        	var ths = $(tr).find('th');
 
 		for(var d=0; d<ths.length; d++){
@@ -1112,18 +1146,28 @@ respond.element.table = {
 			attrs['contentEditable'] = 'true';
 			
 			// return element
-			rows += utilities.element('th', attrs, $(ths[d]).html());
+			cells += utilities.element('th', attrs, $(ths[d]).html());
 		}
+		
+		// create row
+		var attrs = [];
+		attrs['data-id'] = $(tr).attr('id');
+		attrs['data-cssclass'] = $(tr).attr('class');
 
-       	rows += '</tr></thead>';
+		rows += utilities.element('tr', attrs, cells);
+
+       	rows += '</thead>';
        	
         var trs = $(node).find('tbody tr');
 
         rows += '<tbody>';
 
         for(var t=0; t<trs.length; t++){
-			rows += '<tr>';
+        
+        	// create cells
 			var tds = $(trs[t]).find('td');
+			
+			var cells = '';
 
 			for(var d=0; d<tds.length; d++){
 				
@@ -1133,16 +1177,21 @@ respond.element.table = {
 				attrs['contentEditable'] = 'true';
 				
 				// return element
-				rows += utilities.element('td', attrs, $(tds[d]).html());
+				cells += utilities.element('td', attrs, $(tds[d]).html());
 			}
 
-			rows += '</tr>';
+			// create row
+			var attrs = [];
+			attrs['data-id'] = $(trs[t]).attr('id');
+			attrs['data-cssclass'] = $(trs[t]).attr('class');
+			
+			rows += utilities.element('tr', attrs, cells);
 		}
 
 		rows += '</tbody>';
 		
         html += '<table class="table table-striped table-bordered col-'+columns+'">' + rows + '</table>';
-       
+        
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = $(node).attr('id');
@@ -1174,7 +1223,8 @@ respond.element.table = {
 
 		var tr = $(table).find('thead tr');		
 
-		html += '<tr>';
+		// get cells
+		var cells = '';
 		var ths = $(tr).find('th');
 		
 		for(var d=0; d<ths.length; d++){
@@ -1188,15 +1238,24 @@ respond.element.table = {
 			html += utilities.element('th', attrs, $(ths[d]).html(), true);
 			
 		}
-		html += '</tr>';		
+		
+		// generate row
+		var attrs = [];
+		attrs['data-id'] = $(tr).attr('id');
+		attrs['data-cssclass'] = $(tr).attr('class');
+
+		html += utilities.element('tr', attrs, cells);
+				
 
 		html+='</thead>';
 		html+='<tbody>';
 
 		var trs = $(table).find('tbody tr');
-
+		
 		for(var t=0; t<trs.length; t++){
-			html += '<tr>';
+		
+			// generate cells
+			var cells = '';
 			var tds = $(trs[t]).find('td');
 
 			for(var d=0; d<tds.length; d++){
@@ -1207,10 +1266,17 @@ respond.element.table = {
 				attrs['class'] = $(tds[d]).attr('data-cssclass');
 			
 				// create td
-				html += utilities.element('td', attrs, $(tds[d]).html(), true);
+				cells += utilities.element('td', attrs, $(tds[d]).html(), true);
 		
 			}
-			html += '</tr>';
+			
+			// create row
+			var attrs = [];
+			attrs['id'] = $(trs[t]).attr('data-id');
+			attrs['class'] = $(trs[t]).attr('data-cssclass');
+
+			html += utilities.element('tr', attrs, cells);
+			
 		}
 
 		html += '</tbody>';
