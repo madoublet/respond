@@ -316,7 +316,7 @@ angular.module('respond.controllers', [])
 		// make sure that x was found
 		if(x == -1){
 			 message.showMessage('error');
-			 console.log('[Triangulate.error] could not find plan');
+			 console.log('[Respond.error] could not find plan');
 			 return;
 		}
 		
@@ -339,7 +339,7 @@ angular.module('respond.controllers', [])
 	
 		// set data for transaction
 		var data = {
-			'item_name':		'Triangulate Subscription - ' + plan.desc + ' (' + $scope.temp.domain + ')',
+			'item_name':		plan.desc + ' (' + $scope.temp.domain + ')',
 			'email':			email,
 			'cmd':				'_xclick-subscriptions',
 			'currency_code': 	currency,
