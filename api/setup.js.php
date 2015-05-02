@@ -75,6 +75,9 @@ angular.module('respond.setup', [])
 	
 	// app
 	systemMessage:			'<?php print $system_message; ?>',
-	urlMode:			 	'<?php print URL_MODE; ?>'
+	urlMode:			 	'<?php print URL_MODE; ?>',
+
+	// passcode
+	passcode:			 	'<?php print PASSCODE; ?>'
 	
 });
