@@ -13,7 +13,7 @@
 	
 		<div ng-class="{'future': step != 1}">
 	
-			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}} 
+			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}}
 				<a id="toggle-advanced"
 					ng-show="setup.changeDefaultLanguage">{{'Language and Timezone' | i18next}}</a>
 			</h2>
@@ -26,6 +26,7 @@
 						<div class="form-group">
 							<label for="name">{{'Site Name' | i18next}}</label>
 							<input id="name" type="text" 
+								restrict="[^A-Za-z0-9\-\s]"
 								ng-model="name"
 								ng-focus="setStep(1)"
 								ng-minlength="3"

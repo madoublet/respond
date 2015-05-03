@@ -529,6 +529,12 @@ angular.module('respond.controllers', [])
 		$scope.showSystemMessage = true;
 	}
 	
+	$scope.loginUrl = function(){
+		
+		return utilities.replaceAll(Setup.login, '{{friendlyId}}', $scope.friendlyId);
+		
+	}
+	
 	// determine timezone
 	var tz = jstz.determine();
     $scope.name = '';

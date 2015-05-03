@@ -317,6 +317,21 @@ angular.module('respond.directives', [])
     };
 })
 
+.directive('restrict', function($parse) {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, iElement, iAttrs, controller) {
+            scope.$watch(iAttrs.ngModel, function(value) {
+                if (!value) {
+                    return;
+                }
+                $parse(iAttrs.ngModel).assign(scope, value.replace(new RegExp(iAttrs.restrict, 'g'), ''));
+            });
+        }
+    }
+})
+
 .directive('qrcode', ['$window', function($window) {
 
     var canvas2D = !!$window.CanvasRenderingContext2D,
