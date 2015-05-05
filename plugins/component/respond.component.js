@@ -817,7 +817,7 @@ respond.component.html = {
 					'<div class="title respond-element"><i class="fa fa-html5"></i> '+
 					'<span node-text="description">' + description + '</span>' +
 					'<i class="fa fa-angle-down"></i></div>' +
-					'<textarea>' + code + '</textarea>';
+					'<textarea>' + pretty + '</textarea>';
 					
 		// tag attributes
 		var attrs = [];
