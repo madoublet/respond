@@ -269,17 +269,8 @@ respond.text.link = {
 			
 			if(respond.text.link.element == null){
 			
-				var html = '';
+				var html = '<a href="'+url+'"';
 				
-				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					html += '<a href="/'+url+'"';
-				}
-				else{
-					html += '<a href="'+url+'"';
-				}
-				
-			
 				// insert css class into link
 				if(cssClass != ''){
 					html += ' class="'+cssClass+'"';
@@ -321,13 +312,7 @@ respond.text.link = {
 					link.removeAttr('respond-lightbox');
 				}
 				
-				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					link.attr('href', '/'+url);
-				}
-				else{
-					link.attr('href', url);
-				}
+				link.attr('href', url);
 				
 				
 			}
