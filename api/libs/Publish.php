@@ -1154,7 +1154,7 @@ class Publish
 			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
 		}
 		else{
-			$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
 		}
 		
 		// update base
