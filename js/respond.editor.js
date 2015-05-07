@@ -216,8 +216,6 @@ respond.editor.setupPlugins = function(){
 	  	$(respond.editor.el).find('.current-element').removeClass('current-element');
 	  	$(respond.editor.el).find('.current-node').removeClass('current-node');
 	  	
-	  	console.log(respond.editor.currBlock);
-	  	
 	  	// set layout/container
 	  	var id = respond.editor.currBlock.attr('id') || '';
 	  	var cssClass = respond.editor.currBlock.attr('data-cssclass') || '';
@@ -364,6 +362,7 @@ respond.editor.parseHTML = function(){
 				// build custom class
 				var customColClassName = colClassName;
 				customColClassName = utilities.replaceAll(customColClassName, 'ui-sortable', '');
+				customColClassName = utilities.replaceAll(customColClassName, 'sortable', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-12', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-11', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-10', '');
@@ -376,7 +375,7 @@ respond.editor.parseHTML = function(){
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-7', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-8', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-9', '');
-				customColClassName = utilities.replaceAll(customColClassName, 'col', '');
+				customColClassName = utilities.replaceAll(customColClassName, 'col ', '');
 				
 				// allowed columns 12, 6, 3, 4, 9
 		  		if(colClassName.indexOf('col-md-12') != -1){
