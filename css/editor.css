@@ -627,6 +627,8 @@
 	/* quote */
 	.editor .block .respond-q div[contentEditable=true]{
 		padding-left: 60px !important;
+		padding-top: 15px !important;
+		min-height: 55px !important;
 	}
 		
 	/* handle image */

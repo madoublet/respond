@@ -48,7 +48,7 @@ respond.editor.setupSortable = function(){
 }
 
 // set debug for the editor
-respond.editor.debug = true;
+respond.editor.debug = false;
 
 // defaults
 respond.editor.defaults = {
@@ -237,6 +237,10 @@ respond.editor.setupPlugins = function(){
 	  	
 	  	var numColumns = respond.editor.currBlock.find('.col').length;
 	  	
+	  	
+	  	var backgroundColor = respond.editor.currBlock.attr('data-backgroundcolor') || '';
+	  	var backgroundImage = respond.editor.currBlock.attr('data-backgroundimage') || '';
+	  	
 	  	// set scope
   		var scope = angular.element($("section.main")).scope();
   		
@@ -245,6 +249,8 @@ respond.editor.setupPlugins = function(){
 		    scope.block.id = id;
 		    scope.block.cssClass = cssClass;
 		    scope.block.nested = nested;
+		    scope.block.backgroundColor = backgroundColor;
+		    scope.block.backgroundImage = backgroundImage;
 		    scope.container.id = containerId;
 		    scope.container.cssClass = containerCssClass;
 		    
@@ -262,7 +268,7 @@ respond.editor.setupPlugins = function(){
 		    
 		    scope.numColumns = numColumns;
 		});
-	
+		
 	});
 	
 }
@@ -295,7 +301,9 @@ respond.editor.parseHTML = function(){
 		  			response += html;
 		  		}
 		  		catch(e){
-			  		console.log('[respond.Editor.error] could not execute the parse method on the plugin');
+		  			if(respond.editor.debug == true){
+			  			console.log('[respond.Editor.error] could not execute the parse method on the plugin');
+			  		}
 		  		}
 	  		}
 		 
@@ -311,7 +319,7 @@ respond.editor.parseHTML = function(){
   	if(blocks.length==0){
 		html += '<div id="block-000" class="block sortable">';
 		html += parseModules(top);
-		html += '<span class="block-actions"><span>#block-000 .block.row</span>' +
+		html += '<span class="block-actions"><span>#block-000</span>' +
 					respond.editor.defaults.blockMenu + '</span></div>'; 
 	}
 	else{
@@ -323,6 +331,9 @@ respond.editor.parseHTML = function(){
 		  	
 		  	// get nested
 		  	var nested = $(blocks[y]).attr('data-nested');
+		  	var color = $(blocks[y]).attr('backgroundcolor') || '';
+		  	var image = $(blocks[y]).attr('backgroundimage') || '';
+		  	
 		  	var containerId = $(blocks[y]).attr('data-containerid');
 		  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
 		  	
@@ -348,6 +359,8 @@ respond.editor.parseHTML = function(){
 		  				'data-id="' + id + '" ' +
 		  				'data-cssclass="' + cssclass + '" ' +
 		  				'data-nested="' + nested + '" ' +
+		  				'data-backgroundcolor="' + color + '" ' +
+		  				'data-backgroundimage="' + image + '" ' +
 		  				'data-containerid="' + containerId + '" ' +
 		  				'data-containercssclass="' + containerCssClass + '" ' +
 		  				'>';        
@@ -403,7 +416,7 @@ respond.editor.parseHTML = function(){
 		  		html += '</div>';
 		  }
 
-		  html += '<span class="block-actions"><span>#'+ id + ' ' + cssclass_readable + '</span>' +
+		  html += '<span class="block-actions"><span>#'+ id + '</span>' +
 		  			respond.editor.defaults.blockMenu + '</span></div>';
 		}
 	}
@@ -494,6 +507,7 @@ respond.editor.setupPersistentEvents = function(){
 		var target = '';
 		var title = '';
 		var hasLightbox = false;
+		var textColor = '';
 
 		// get link from selected text
 		var link = utilities.getLinkFromSelection();
@@ -511,6 +525,7 @@ respond.editor.setupPersistentEvents = function(){
 			cssClass = link.className;
 			target = link.target;
 			title = link.title;
+			textColor = $(link).attr('textcolor') || '';
 			
 			if($(link).attr('respond-lightbox') != undefined){
 				hasLightbox = true;
@@ -522,6 +537,15 @@ respond.editor.setupPersistentEvents = function(){
 	    $('#linkCssClass').val(cssClass);
 	    $('#linkTarget').val(target);
 	    $('#linkTitle').val(title);
+	    $('#linkTextColor').val(textColor);
+	    
+	    if(textColor != ''){
+		    $('#linkTextColorPicker').attr('color', textColor);
+	    }
+	    else{
+		    $('#linkTextColorPicker').attr('color', '#FFFFFF');
+	    }
+	    
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 	    
@@ -571,10 +595,14 @@ respond.editor.setupPersistentEvents = function(){
 	  		var action = respond.editor.menu[i].action;
 	  		var form = $('.context-menu').find('[data-action="'+action+'"]');
 	  		
+	  		//var action = $(this).attr('data-action') + '.create';
+	  		//utilities.executeFunctionByName(action, window);
+	  		
 	  		// hide config
 	  		$('.context-menu').find('.config').removeClass('active');
 	  		
 	  		if(form){
+	  		
 	  			// add activate
 		  		form.addClass('active');
 		  		respond.editor.currConfig = form;
@@ -607,6 +635,14 @@ respond.editor.setupPersistentEvents = function(){
 						});
 			        }
 			    });
+			    
+			    // execute configure event
+			    action = action + '.configure';
+			    
+				try{
+					utilities.executeFunctionByName(action, window, respond.editor.currNode, form);
+				}
+				catch(e){}
 			  
 	  		}
   		}
@@ -990,7 +1026,9 @@ respond.editor.getContent = function(){
 			  			newhtml += html;
 			  		}
 			  		catch(e){
-				  		console.log('[respond.Editor.generate] parse, error=' + e.message);
+			  			if(respond.editor.debug == true){
+				  			console.log('[respond.Editor.generate] parse, error=' + e.message);
+				  		}
 			  		}
 		  		}
 		  		
@@ -1007,19 +1045,42 @@ respond.editor.getContent = function(){
 	for(var y=0; y<blocks.length; y++){
 	  	var id = $(blocks[y]).attr('id');
 	  	var cssclass = $(blocks[y]).attr('data-cssclass');
+	  	
+	  	// cleanup css class
+	  	cssclass = utilities.cleanEditorCssClass(cssclass);
 	
 	  	if(cssclass==undefined || cssclass=='')cssclass = '';
 	
 	  	if(cssclass!=''){
 	  		cssclass = ' ' + cssclass;
 	  	}
-	  
+	  	
 	  	if(id==undefined || id=='')id='block-'+y;
 	  	
 	  	// set nested
 	  	var nested = $(blocks[y]).attr('data-nested');
+	  	var color = $(blocks[y]).attr('data-backgroundcolor');
+	  	var image = $(blocks[y]).attr('data-backgroundimage');
 	  	var containerId = $(blocks[y]).attr('data-containerid');
 	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
+	  	
+	  	// cleanup css class
+	  	containerCssClass = utilities.cleanEditorCssClass(containerCssClass);
+	  	
+	  	// set bg color
+	  	bgcolor = '';
+	  	
+	  	if(color != '' && color != undefined){
+		  	var bgcolor = 'backgroundcolor="' + color + '" ';
+	  	}
+	  	
+	  	// set bg image
+	  	bgimage = '';
+	  	
+	  	if(image != '' && image != undefined){
+		  	var bgimage = 'backgroundimage="' + image + '" ';
+	  	}
+	  	
 	  	
 	  	// check undefined
 	  	if(nested == undefined){
@@ -1050,15 +1111,25 @@ respond.editor.getContent = function(){
 		
 		// add container for nested blocks
 	  	if(nested == 'nested'){
-		  	html += '<div' + containerIdHtml + ' class="container' + containerClassHtml + '">';
-	  	}
-	  	
-	  	// row HTML
-	  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' +
+		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + ' class="container' + containerClassHtml + '">';
+		  	
+		  	// row HTML
+		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
+	  	}
+	  	else{
+		  	// row HTML
+		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage +
+	  			'data-containerid="' + containerId + '" ' +
+	  			'data-containercssclass="' + containerCssClass + '"' +
+	  			'>';
+	  	}
+	  	
+	  	
 	  
 	  	// determine if there are columns
 	  	var cols = $(blocks[y]).find('.col');
@@ -1091,6 +1162,9 @@ respond.editor.getContent = function(){
 		  		
 		  		// append custom class to class
 		  		className = $.trim(className + ' ' + customClass);
+		  		
+		  		// cleanup css class
+		  		className = utilities.cleanEditorCssClass(className);
 		  		
 		  		var id = '';
 		  		

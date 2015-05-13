@@ -220,13 +220,44 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="blockNested" class="control-label">{{'Nesting' | i18next}}</label>
+					<label for="blockNested" class="control-label">{{'Wrap in Container?' | i18next}}</label>
 					<select name="blockNested" 
 						ng-model="block.nested"
 						class="form-control">
-						<option value="not-nested">{{'Not Nested' | i18next}}</option>
-						<option value="nested">{{'Nested' | i18next}}</option>
+						<option value="not-nested">{{'No' | i18next}}</option>
+						<option value="nested">{{'Yes' | i18next}}</option>
 					</select>
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+				
+			<h2>{{'Background' | i18next}}</h2>
+			
+			<div class="context-block">	
+				
+				<div class="form-group">
+					<label for="blockBackgroundColor" class="control-label">{{'Color' | i18next}}</label>
+					<input name="blockCssClass" type="text" maxlength="128" value="" 
+						ng-model="block.backgroundColor"
+						class="form-control">
+					<input id="block-bg-spectrum" type="color" maxlength="128"
+						respond-spectrum
+						ng-model="block.backgroundColor"
+						color="{{block.backgroundColor}}"
+						action="editor.block.backgroundcolor"
+						value="#FFFFFF"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockBackgroundImage" class="control-label">{{'Image' | i18next}}</label>
+					<input name="blockBackgroundImage" type="text" maxlength="128"
+						ng-model="block.backgroundImage"
+						class="form-control">
+						
+					<button ng-click="showAddImage('block')"
+								class="image-picker"><i class="fa fa-image"></i></button>
 				</div>
 				
 			</div>
@@ -534,6 +565,18 @@
 			<div class="form-group">
 				<label for="linkCssClass">{{'CSS Class' | i18next}}</label>
 				<input id="linkCssClass" type="text" maxlength="128" data-bind="" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label for="class">{{'Color' | i18next}}</label>
+				<input id="linkTextColor" type="text" maxlength="128" value="" 
+					class="form-control">
+				<input id="linkTextColorPicker" type="color" maxlength="128"
+					color="#fff"
+					respond-spectrum
+					action="target"
+					target="#linkTextColor"
+					class="form-control">
 			</div>
 			
 			<div class="form-group">

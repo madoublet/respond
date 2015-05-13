@@ -1294,6 +1294,112 @@ class Publish
 			
 		}
 		/* foreach */
+		
+		// replace background color
+		foreach($html->find('[backgroundcolor]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->{'data-nested'})){
+				
+				if($el->{'data-nested'} != 'nested'){
+					$el->style = 'background-color: '.$el->backgroundcolor;
+				}
+				
+			}
+			else{
+				$el->style = 'background-color: '.$el->backgroundcolor;
+			}
+			
+			
+		}
+		/* foreach */
+		
+		
+		// replace background image
+		foreach($html->find('[backgroundimage]') as $el){
+			
+			$backgroundimage = $el->backgroundimage;
+			
+			// add site url for files that start with files
+			if(substr( $backgroundimage, 0, 5 ) === "files"){
+				$backgroundimage = $imagesURL.$el->backgroundimage;
+			}
+		
+			// if it is nested, break
+			if(isset($el->{'data-nested'})){
+				
+				if($el->{'data-nested'} != 'nested'){
+					$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+				}
+				
+			}
+			else{
+				$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+			}
+		
+			
+		}
+		/* foreach */
+		
+		// replace textcolor
+		foreach($html->find('[textcolor]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' color: '.$el->textcolor.';';
+			}
+			else{
+				$el->style = 'color: '.$el->textcolor.';';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace textcolor
+		foreach($html->find('[textshadowcolor]') as $el){
+		
+		
+			$color = $el->textshadowcolor;
+			$horizontal = '1px';
+			$vertical = '1px';
+			$blur = '1px';
+			
+			if(isset($el->textshadowhorizontal)){
+				$horizontal = $el->textshadowhorizontal;
+			}
+			
+			if(isset($el->textshadowvertical)){
+				$vertical = $el->textshadowblur;
+			}
+			
+			if(isset($el->textshadowvertical)){
+				$blur = $el->textshadowblur;
+			}
+			
+			// build shadow
+			$textshadow = $horizontal.' '.$vertical.' '.$blur.' '.$color.';';
+		
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' text-shadow: '.$textshadow;
+			}
+			else{
+				$el->style = 'text-shadow: '.$textshadow;
+			}
+		
+		}
+		/* foreach */
+		
+		// replace textsize
+		foreach($html->find('[textsize]') as $el){
+		
+			$textsize = $el->textsize;
+		
+			$el->innertext = '<span style="font-size:'.$textsize.'">'.$el->innertext.'</span>';
+		
+		}
+		/* foreach */
 	
 		// save the content to the published file
 		Utilities::SaveContent($dest, $file, $html);

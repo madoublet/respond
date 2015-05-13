@@ -397,6 +397,25 @@ body .modal-header{
 				padding-bottom: 5px;
 			}
 			
+		body .modal .form-group .sp-replacer{
+			position: absolute;
+			top: 25px;
+			right: 0;
+			border: 1px solid #ddd;
+			background-color: #fff;
+			border-left: 1px solid transparent;
+			background-color: #f8f8f8;
+			padding: 12px 0 12px 5px;
+		}	
+		
+			body .modal .form-group .sp-replacer .sp-dd{
+				display: none;	
+			}
+		
+			body .modal .form-group .sp-preview{
+				border: 1px solid #aaa;
+			}
+			
 	body .modal .modal-lg .modal-content{
 		min-height: 500px;
 	}

@@ -104,7 +104,7 @@ angular.module('respond.controllers', [])
 					
 				}
 				else{
-					console.log('[respond.error] user does not have admin privileges');
+					if(Setup.debug)console.log('[respond.error] user does not have admin privileges');
 					message.showMessage('error');
 				}
 				
@@ -316,7 +316,7 @@ angular.module('respond.controllers', [])
 		// make sure that x was found
 		if(x == -1){
 			 message.showMessage('error');
-			 console.log('[Respond.error] could not find plan');
+			 if(Setup.debug)console.log('[Respond.error] could not find plan');
 			 return;
 		}
 		
@@ -417,7 +417,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Site.listAll');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.sites = data;
 	});
@@ -585,7 +585,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Theme.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.themes = data;
 	});
@@ -595,7 +595,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Language.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.languages = data;
 	});
@@ -913,7 +913,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] PageType.listAllowed');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.pageTypes = data;
 		
@@ -1017,6 +1017,7 @@ angular.module('respond.controllers', [])
 	  		
 	  			if(index.toLowerCase() == 'id'){
 		  			$(respond.editor.currBlock).prop('id', attr);
+		  			$(respond.editor.currBlock).find('.block-actions span').text('#' + attr);
 	  			}
 	  		
 	  			$(respond.editor.currBlock).attr('data-' + index.toLowerCase(), attr);
@@ -1118,7 +1119,7 @@ angular.module('respond.controllers', [])
 		  		// set new values
 		  		if(index != 'sortableItem'){
 		  		
-		  			console.log('$watch, set index=' + index +' to attr=' + attr);
+		  			if(Setup.debug)console.log('$watch, set index=' + index +' to attr=' + attr);
 		  		
 		  			// set corresponding data attribute
 		  			$(respond.editor.currNode).attr('data-' + index, attr);
@@ -1212,6 +1213,14 @@ angular.module('respond.controllers', [])
     
 	// get pageId
 	$scope.pageId = $stateParams.id;
+	
+	// shows the images dialog
+	$scope.showAddImage = function(action){
+	
+		$scope.retrieveImages();
+		$('#imagesDialog').attr('data-action', action);
+		$('#imagesDialog').modal('show');
+	}
 	
 	// save & publish
 	$scope.saveAndPublish = function(){
@@ -1484,7 +1493,7 @@ angular.module('respond.controllers', [])
 		
 				// debugging
 				if(Setup.debug)console.log('[respond.debug] PageType.listAll');
-				console.log(data);
+				if(Setup.debug)console.log(data);
 				
 				$scope.pageTypes = data;
 			}
@@ -1505,7 +1514,7 @@ angular.module('respond.controllers', [])
 			
 				// debugging
 				if(Setup.debug)console.log('[respond.debug] Image.list');
-				console.log(data);
+				if(Setup.debug)console.log(data);
 				
 				$scope.images = data;
 			});
@@ -1515,7 +1524,7 @@ angular.module('respond.controllers', [])
 			
 				// debugging
 				if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
-				console.log(data);
+				if(Setup.debug)console.log(data);
 				
 				$scope.totalSize = parseFloat(data);
 			});
@@ -1549,7 +1558,7 @@ angular.module('respond.controllers', [])
 		
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] File.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.files = data;
 			$scope.loading = false;
@@ -1560,7 +1569,7 @@ angular.module('respond.controllers', [])
 		
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.totalSize = parseFloat(data);
 		});
@@ -1574,7 +1583,7 @@ angular.module('respond.controllers', [])
 		
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] File.listDownloads');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.downloads = data;
 			$scope.loading = false;
@@ -1589,7 +1598,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] MenuType.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.menuTypes = data;
 	});
@@ -1663,7 +1672,7 @@ angular.module('respond.controllers', [])
 		Image.list(function(data){
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] Image.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.images = data;
 		});
@@ -1679,18 +1688,41 @@ angular.module('respond.controllers', [])
 	$scope.addImage = function(image){
 	
 		var plugin = $('#imagesDialog').attr('data-plugin');
-		var action= $('#imagesDialog').attr('data-action');
+		var action = $('#imagesDialog').attr('data-action');
+		
+		if(action == undefined){
+			action = '';
+		}
 		
 		// add or edit the image
-		if(action != undefined && action == 'edit'){
+		if(action == 'edit'){
 			var fn = plugin + '.editImage';
+			
+			// execute method
+			utilities.executeFunctionByName(fn, window, image);
 		}
-		else{
+		else if(action == 'add'){
 			var fn = plugin + '.addImage';
+			
+			// execute method
+			utilities.executeFunctionByName(fn, window, image);
+		}
+		else if(action == 'block'){
+			
+			var src = image.fullUrl;
+			
+			// removes the domain from the img
+	  		if(src != ''){
+		  		var parts = src.split('files/');
+		  		src = 'files/' + parts[1];
+	  		}
+		
+			$scope.block.backgroundImage = src;
+			
+			$('#imagesDialog').modal('hide');
 		}
 		
-		// execute method
-		utilities.executeFunctionByName(fn, window, image);
+		
 	}
 	
 	// add external image
@@ -1752,7 +1784,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Image.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.icons = data;
 	});
@@ -1762,7 +1794,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Layout.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.layouts = data;
 	});
@@ -1772,7 +1804,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Stylesheet.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.stylesheets = data;
 	});
@@ -1853,7 +1885,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] MenuType.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.menuTypes = data;
 	});
@@ -1863,7 +1895,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] MenuItem.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.menuItems = data;
 		$scope.loading = false;
@@ -2082,7 +2114,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Layout.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.files = data;
 		
@@ -2182,7 +2214,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Script.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.files = data;
 		
@@ -2286,7 +2318,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Stylesheet.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.files = data;
 		
@@ -2394,8 +2426,6 @@ angular.module('respond.controllers', [])
 		
 		if(prev){
 			prev = Number($(prev).val().replace(/[^0-9\.]+/g, ''));
-			
-			console.log(prev);
 			
 			if(to < prev){
 				$(this).addClass('error');
@@ -2539,7 +2569,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Theme.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.themes = data;
 	});
@@ -2695,7 +2725,7 @@ angular.module('respond.controllers', [])
 		Image.list(function(data){
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] Image.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.images = data;
 		});
@@ -2706,7 +2736,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.totalSize = parseFloat(data);
 	});
@@ -2786,7 +2816,7 @@ angular.module('respond.controllers', [])
 		Image.list(function(data){
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] Image.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.images = data;
 		});
@@ -2797,7 +2827,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.totalSize = parseFloat(data);
 	});
@@ -2876,7 +2906,7 @@ angular.module('respond.controllers', [])
 	
 	$scope.updateFiles = function(){
 	
-		console.log('[respond.test] updateFiles(), folder = ' + $scope.folder);
+		if(Setup.debug)console.log('[respond.test] updateFiles(), folder = ' + $scope.folder);
 	
 		if($scope.folder == 'files'){
 		
@@ -2885,7 +2915,7 @@ angular.module('respond.controllers', [])
 			
 				// debugging
 				if(Setup.debug)console.log('[respond.debug] File.list');
-				console.log(data);
+				if(Setup.debug)console.log(data);
 				
 				$scope.files = data;
 				$scope.loading = false;
@@ -2898,7 +2928,7 @@ angular.module('respond.controllers', [])
 			
 				// debugging
 				if(Setup.debug)console.log('[respond.debug] Download.list');
-				console.log(data);
+				if(Setup.debug)console.log(data);
 				
 				$scope.files = data;
 				$scope.loading = false;
@@ -2911,7 +2941,7 @@ angular.module('respond.controllers', [])
 		
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.totalSize = parseFloat(data);
 		});
@@ -2976,7 +3006,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] User.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.users = data;
 		$scope.loading = false;
@@ -2991,7 +3021,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Language.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.languages = data;
 	});
@@ -3001,7 +3031,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Role.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		// push admin, contributor and member
 		data.push({
@@ -3124,7 +3154,7 @@ angular.module('respond.controllers', [])
 		Image.list(function(data){
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] Image.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.images = data;
 		});
@@ -3205,7 +3235,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Role.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.roles = data;
 		$scope.loading = false;
@@ -3216,7 +3246,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] PageType.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.pageTypes = data;
 	});
@@ -3470,7 +3500,7 @@ angular.module('respond.controllers', [])
 		
 			// debugging
 			if(Setup.debug)console.log('[respond.debug] Translation.list');
-			console.log(data);
+			if(Setup.debug)console.log(data);
 			
 			$scope.locales = data;
 			
@@ -3574,7 +3604,7 @@ angular.module('respond.controllers', [])
 	
 		// debugging
 		if(Setup.debug)console.log('[respond.debug] Language.list');
-		console.log(data);
+		if(Setup.debug)console.log(data);
 		
 		$scope.languages = data;
 	});

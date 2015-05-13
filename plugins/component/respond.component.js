@@ -16,6 +16,7 @@ respond.component.slideshow = {
 			scope.retrieveImages();
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.slideshow');
+			$('#imagesDialog').attr('data-action', 'add');
 			$('#imagesDialog').modal('show');
 			
 			// reset modal

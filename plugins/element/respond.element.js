@@ -4,7 +4,7 @@ respond.element = respond.element || {};
 
 // h1 element
 respond.element.h1 = {
-
+	
 	// creates h1
 	create:function(){
 	
@@ -21,6 +21,12 @@ respond.element.h1 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h1';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -50,6 +56,12 @@ respond.element.h1 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h1';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -66,9 +78,20 @@ respond.element.h1 = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('h1', attrs, html, true);
+		
+	},
+	
+	// configure
+	configure:function(node, form){
 		
 	}
 	
@@ -93,6 +116,12 @@ respond.element.h2 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h2';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -122,6 +151,12 @@ respond.element.h2 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h2';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -138,6 +173,12 @@ respond.element.h2 = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('h2', attrs, html, true);
@@ -165,6 +206,12 @@ respond.element.h3 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h3';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -194,6 +241,12 @@ respond.element.h3 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h3';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -210,6 +263,12 @@ respond.element.h3 = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('h3', attrs, html, true);
@@ -237,6 +296,12 @@ respond.element.h4 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h4';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -266,6 +331,12 @@ respond.element.h4 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h4';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -282,6 +353,12 @@ respond.element.h4 = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('h4', attrs, html, true);
@@ -309,6 +386,12 @@ respond.element.h5 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h5';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -338,6 +421,12 @@ respond.element.h5 = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-h5';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -354,6 +443,12 @@ respond.element.h5 = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('h5', attrs, html, true);
@@ -411,6 +506,12 @@ respond.element.p = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-p';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -440,6 +541,12 @@ respond.element.p = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-p';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// setup paste filter
 		$('#'+id+' [contentEditable=true]').paste();
@@ -459,6 +566,12 @@ respond.element.p = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('p', attrs, html, true);
@@ -489,6 +602,12 @@ respond.element.q = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-q';
 		attrs['data-cssclass'] = '';
+		attrs['data-textcolor'] = '';
+		attrs['data-textsize'] = '';
+		attrs['data-textshadowcolor'] = '';
+		attrs['data-textshadowhorizontal'] = '';
+		attrs['data-textshadowvertical'] = '';
+		attrs['data-textshadowblur'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -519,6 +638,12 @@ respond.element.q = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-q';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-textcolor'] = $(node).attr('textcolor');
+		attrs['data-textsize'] = $(node).attr('textsize');
+		attrs['data-textshadowcolor'] = $(node).attr('textshadowcolor');
+		attrs['data-textshadowhorizontal'] = $(node).attr('textshadowhorizontal');
+		attrs['data-textshadowvertical'] = $(node).attr('textshadowvertical');
+		attrs['data-textshadowblur'] = $(node).attr('textshadowblur');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -535,6 +660,12 @@ respond.element.q = {
 		var attrs = [];
 		attrs['id'] = $(node).attr('data-id');
 		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['textcolor'] = $(node).attr('data-textcolor');
+		attrs['textsize'] = $(node).attr('data-textsize');
+		attrs['textshadowcolor'] = $(node).attr('data-textshadowcolor');
+		attrs['textshadowhorizontal'] = $(node).attr('data-textshadowhorizontal');
+		attrs['textshadowvertical'] = $(node).attr('data-textshadowvertical');
+		attrs['textshadowblur'] = $(node).attr('data-textshadowblur');
 		
 		// return element
 		return utilities.element('blockquote', attrs, html, true);
@@ -1819,4 +1950,3 @@ respond.element.pre = {
 };
 
 respond.element.pre.init();
-
