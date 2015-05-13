@@ -214,11 +214,6 @@
 				var link = images[x].getAttribute('data-link') || '';
 				var cssclass = images[x].getAttribute('class') || '';
 				
-				// set link
-				if(link != '' && (link.indexOf('http') == -1)){
-					link = respond.site.settings.ImagesUrl + link;
-				}
-				
 				// create an slide
 				var slide = document.createElement('div');
 				
