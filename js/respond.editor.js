@@ -10,6 +10,7 @@ respond.editor.currConfig = null;
 respond.editor.prefix = '';
 respond.editor.menu = null;
 respond.editor.api = '';
+respond.editor.imagesUrl = '';
 respond.editor.isModified = false;
 
 // reference to the editor
@@ -69,6 +70,7 @@ respond.editor.setup = function(config){
 	respond.editor.el = config.el;
 	respond.editor.pageId = config.pageId;
 	respond.editor.api = config.api;
+	respond.editor.imagesUrl = config.imagesUrl;
 	
 	// set namespaced globals
 	respond.editor.menu = config.menu;
@@ -240,6 +242,7 @@ respond.editor.setupPlugins = function(){
 	  	
 	  	var backgroundColor = respond.editor.currBlock.attr('data-backgroundcolor') || '';
 	  	var backgroundImage = respond.editor.currBlock.attr('data-backgroundimage') || '';
+	  	var backgroundStyle = respond.editor.currBlock.attr('data-backgroundstyle') || 'cover';
 	  	
 	  	// set scope
   		var scope = angular.element($("section.main")).scope();
@@ -251,6 +254,7 @@ respond.editor.setupPlugins = function(){
 		    scope.block.nested = nested;
 		    scope.block.backgroundColor = backgroundColor;
 		    scope.block.backgroundImage = backgroundImage;
+		    scope.block.backgroundStyle = backgroundStyle;
 		    scope.container.id = containerId;
 		    scope.container.cssClass = containerCssClass;
 		    
@@ -333,6 +337,7 @@ respond.editor.parseHTML = function(){
 		  	var nested = $(blocks[y]).attr('data-nested');
 		  	var color = $(blocks[y]).attr('backgroundcolor') || '';
 		  	var image = $(blocks[y]).attr('backgroundimage') || '';
+		  	var style = $(blocks[y]).attr('backgroundstyle') || '';
 		  	
 		  	var containerId = $(blocks[y]).attr('data-containerid');
 		  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
@@ -361,6 +366,7 @@ respond.editor.parseHTML = function(){
 		  				'data-nested="' + nested + '" ' +
 		  				'data-backgroundcolor="' + color + '" ' +
 		  				'data-backgroundimage="' + image + '" ' +
+		  				'data-backgroundstyle="' + style + '" ' +
 		  				'data-containerid="' + containerId + '" ' +
 		  				'data-containercssclass="' + containerCssClass + '" ' +
 		  				'>';        
@@ -415,8 +421,23 @@ respond.editor.parseHTML = function(){
 		  		html += parseModules(cols[z]);
 		  		html += '</div>';
 		  }
+		  
+		  var callout = '';
+		  
+		  /* WIP
+		  // set color indicator
+		  if(color != ''){
+			  callout = '<div class="block-callout" style="background-color: ' + color + ';"></div>';
+		  }
+		  
+		  // set image indicator
+		  if(image != ''){
+			  callout = '<div class="block-callout" style="background: url(' + 
+			  				respond.editor.imagesUrl + image + '); background-size: cover;"></div>';
+		  }
+		  */
 
-		  html += '<span class="block-actions"><span>#'+ id + '</span>' +
+		  html += '<span class="block-actions"><span>#'+ id + '</span>' + callout +
 		  			respond.editor.defaults.blockMenu + '</span></div>';
 		}
 	}
@@ -1044,7 +1065,7 @@ respond.editor.getContent = function(){
 	// walk through blocks
 	for(var y=0; y<blocks.length; y++){
 	  	var id = $(blocks[y]).attr('id');
-	  	var cssclass = $(blocks[y]).attr('data-cssclass');
+	  	var cssclass = $(blocks[y]).attr('data-cssclass') || '';
 	  	
 	  	// cleanup css class
 	  	cssclass = utilities.cleanEditorCssClass(cssclass);
@@ -1061,24 +1082,33 @@ respond.editor.getContent = function(){
 	  	var nested = $(blocks[y]).attr('data-nested');
 	  	var color = $(blocks[y]).attr('data-backgroundcolor');
 	  	var image = $(blocks[y]).attr('data-backgroundimage');
+	  	var style = $(blocks[y]).attr('data-backgroundstyle');
 	  	var containerId = $(blocks[y]).attr('data-containerid');
-	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
+	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass') || '';
 	  	
 	  	// cleanup css class
 	  	containerCssClass = utilities.cleanEditorCssClass(containerCssClass);
 	  	
 	  	// set bg color
-	  	bgcolor = '';
+	  	var bgcolor = '';
 	  	
 	  	if(color != '' && color != undefined){
-		  	var bgcolor = 'backgroundcolor="' + color + '" ';
+		  	bgcolor = 'backgroundcolor="' + color + '" ';
 	  	}
 	  	
 	  	// set bg image
-	  	bgimage = '';
+	  	var bgimage = '';
+	  	var bgstyle = '';
 	  	
 	  	if(image != '' && image != undefined){
-		  	var bgimage = 'backgroundimage="' + image + '" ';
+		  	bgimage = 'backgroundimage="' + image + '" ';
+		  	
+		  	if(style != '' && style != undefined){
+		  		bgstyle = 'backgroundstyle="' + style + '" ';
+		  	}
+		  	else{
+		  		bgstyle = 'backgroundstyle="cover" ';
+			}
 	  	}
 	  	
 	  	
@@ -1111,11 +1141,11 @@ respond.editor.getContent = function(){
 		
 		// add container for nested blocks
 	  	if(nested == 'nested'){
-		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + ' class="container' + containerClassHtml + '">';
+		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="container' + containerClassHtml + '">';
 		  	
 		  	// row HTML
 		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' + bgcolor + bgimage +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
@@ -1123,7 +1153,7 @@ respond.editor.getContent = function(){
 	  	else{
 		  	// row HTML
 		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' + bgcolor + bgimage +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';

@@ -1319,22 +1319,51 @@ class Publish
 		foreach($html->find('[backgroundimage]') as $el){
 			
 			$backgroundimage = $el->backgroundimage;
+			$backgroundstyle = 'cover';
 			
 			// add site url for files that start with files
 			if(substr( $backgroundimage, 0, 5 ) === "files"){
 				$backgroundimage = $imagesURL.$el->backgroundimage;
+			}
+			
+			// set background style
+			if(isset($el->backgroundstyle)){
+				$backgroundstyle = $el->backgroundstyle;
 			}
 		
 			// if it is nested, break
 			if(isset($el->{'data-nested'})){
 				
 				if($el->{'data-nested'} != 'nested'){
-					$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+				
+					if($backgroundstyle == 'parallax'){
+						$el->{'data-parallax'} = 'scroll';
+						$el->{'data-image-src'} = $backgroundimage;
+					}
+					else if($backgroundstyle == 'repeat'){
+						$el->style = 'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+					}
+					else{
+						$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+
+					}
+				
+					
 				}
 				
 			}
 			else{
-				$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+				if($backgroundstyle == 'parallax'){
+					$el->{'data-parallax'} = 'scroll';
+					$el->{'data-image-src'} = $backgroundimage;
+				}
+				else if($backgroundstyle == 'repeat'){
+					$el->style = 'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+				}
+				else{
+					$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+
+				}
 			}
 		
 			

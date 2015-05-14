@@ -1659,7 +1659,8 @@ angular.module('respond.controllers', [])
 	    			el: $('#respond-editor'),
 	    			pageId: $stateParams.id,
 	    			api: Setup.api,
-	    			menu: $scope.editorItems
+	    			menu: $scope.editorItems,
+	    			imagesUrl: $scope.site.ImagesUrl
 				});
 
 	setTimeout(function(){

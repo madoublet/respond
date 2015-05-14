@@ -711,6 +711,18 @@
 		padding-left: 5px;
 	}
 	
+	.editor .block-actions .block-callout{
+		position: absolute;
+		top: 5px;
+		right: 40px;
+		display: block;
+		width: 28px;
+		height: 28px;
+		border: 1px solid #ddd;
+		border-radius: 50%;
+		padding-left: 5px;
+	}
+	
 	/* begin block actions */
 	.editor .block a.up.disabled, 
 	.editor .block a.up.disabled:hover{

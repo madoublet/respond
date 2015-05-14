@@ -268,8 +268,6 @@ angular.module('respond.directives', [])
 		        	defaultColor = '#FFFFFF';
 	        	}
 	        	
-	        	console.log('default='+defaultColor);
-	        	
 	        	var action = 'default';
 	        	
 	        	// set action

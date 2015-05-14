@@ -260,6 +260,17 @@
 								class="image-picker"><i class="fa fa-image"></i></button>
 				</div>
 				
+				<div class="form-group">
+					<label for="blockBackgroundStyle" class="control-label">{{'Style' | i18next}}</label>
+					<select name="blockBackgroundStyle" 
+						ng-model="block.backgroundStyle"
+						class="form-control">
+						<option value="">{{'Cover' | i18next}}</option>
+						<option value="repeat">{{'Repeat' | i18next}}</option>
+						<option value="parallax">{{'Parallax' | i18next}}</option>
+					</select>
+				</div>
+				
 			</div>
 			<!-- /.context-block -->
 				
