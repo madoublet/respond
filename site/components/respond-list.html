@@ -234,7 +234,7 @@
 		<div id="actions" class="list-actions">
 		
 			<span class="pager" visible$="{{showPager}}">
-				<template id="pager" is="x-repeat" items="{{list}}">
+				<template id="pager" is="dom-repeat" items="{{list}}">
 					<a on-click="gotoPage" active$="{{item.isActive}}">{{item.title}}</a>
 				</template>
 			</span>	

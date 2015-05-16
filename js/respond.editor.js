@@ -243,6 +243,10 @@ respond.editor.setupPlugins = function(){
 	  	var backgroundColor = respond.editor.currBlock.attr('data-backgroundcolor') || '';
 	  	var backgroundImage = respond.editor.currBlock.attr('data-backgroundimage') || '';
 	  	var backgroundStyle = respond.editor.currBlock.attr('data-backgroundstyle') || 'cover';
+	  	var paddingTop = respond.editor.currBlock.attr('data-paddingtop') || '';
+	  	var paddingRight = respond.editor.currBlock.attr('data-paddingright') || '';
+	  	var paddingBottom = respond.editor.currBlock.attr('data-paddingbottom') || '';
+	  	var paddingLeft = respond.editor.currBlock.attr('data-paddingleft') || '';
 	  	
 	  	// set scope
   		var scope = angular.element($("section.main")).scope();
@@ -252,9 +256,16 @@ respond.editor.setupPlugins = function(){
 		    scope.block.id = id;
 		    scope.block.cssClass = cssClass;
 		    scope.block.nested = nested;
+		    
 		    scope.block.backgroundColor = backgroundColor;
 		    scope.block.backgroundImage = backgroundImage;
 		    scope.block.backgroundStyle = backgroundStyle;
+		    
+		    scope.block.paddingTop = paddingTop;
+		    scope.block.paddingRight = paddingRight;
+		    scope.block.paddingBottom = paddingBottom;
+		    scope.block.paddingLeft = paddingLeft;
+		    
 		    scope.container.id = containerId;
 		    scope.container.cssClass = containerCssClass;
 		    
@@ -339,6 +350,11 @@ respond.editor.parseHTML = function(){
 		  	var image = $(blocks[y]).attr('backgroundimage') || '';
 		  	var style = $(blocks[y]).attr('backgroundstyle') || '';
 		  	
+		  	var paddingtop = $(blocks[y]).attr('paddingtop') || '';
+		  	var paddingright = $(blocks[y]).attr('paddingright') || '';
+		  	var paddingbottom = $(blocks[y]).attr('paddingbottom') || '';
+		  	var paddingleft = $(blocks[y]).attr('paddingleft') || '';
+		  	
 		  	var containerId = $(blocks[y]).attr('data-containerid');
 		  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
 		  	
@@ -367,6 +383,10 @@ respond.editor.parseHTML = function(){
 		  				'data-backgroundcolor="' + color + '" ' +
 		  				'data-backgroundimage="' + image + '" ' +
 		  				'data-backgroundstyle="' + style + '" ' +
+		  				'data-paddingtop="' + paddingtop + '" ' +
+		  				'data-paddingright="' + paddingright + '" ' +
+		  				'data-paddingbottom="' + paddingbottom + '" ' +
+		  				'data-paddingleft="' + paddingleft + '" ' +
 		  				'data-containerid="' + containerId + '" ' +
 		  				'data-containercssclass="' + containerCssClass + '" ' +
 		  				'>';        
@@ -514,6 +534,18 @@ respond.editor.setupPersistentEvents = function(){
 	// make blocks sortable
 	setupSortable();
 	
+	$('#blockBackgroundStyle').on('change', function(){
+		
+		if($(this).val() == 'parallax'){
+			var scope = angular.element($("section.main")).scope();
+			
+			scope.$apply(function(){
+				scope.block.backgroundColor = 'transparent';
+			});
+			
+		}
+		
+	});
 	
 	// handle link clicks
 	$(el).on('click', '[contentEditable=true] a', function(){
@@ -1080,9 +1112,15 @@ respond.editor.getContent = function(){
 	  	
 	  	// set nested
 	  	var nested = $(blocks[y]).attr('data-nested');
-	  	var color = $(blocks[y]).attr('data-backgroundcolor');
-	  	var image = $(blocks[y]).attr('data-backgroundimage');
-	  	var style = $(blocks[y]).attr('data-backgroundstyle');
+	  	var color = $(blocks[y]).attr('data-backgroundcolor') || '';
+	  	var image = $(blocks[y]).attr('data-backgroundimage') || '';
+	  	var style = $(blocks[y]).attr('data-backgroundstyle') || '';
+	  	
+	  	var paddingTop = $(blocks[y]).attr('data-paddingtop') || '';
+	  	var paddingRight = $(blocks[y]).attr('data-paddingright') || '';
+	  	var paddingBottom = $(blocks[y]).attr('data-paddingbottom' || '');
+	  	var paddingLeft = $(blocks[y]).attr('data-paddingleft') || '';
+	  	
 	  	var containerId = $(blocks[y]).attr('data-containerid');
 	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass') || '';
 	  	
@@ -1099,6 +1137,7 @@ respond.editor.getContent = function(){
 	  	// set bg image
 	  	var bgimage = '';
 	  	var bgstyle = '';
+	  	var padding = '';
 	  	
 	  	if(image != '' && image != undefined){
 		  	bgimage = 'backgroundimage="' + image + '" ';
@@ -1111,6 +1150,22 @@ respond.editor.getContent = function(){
 			}
 	  	}
 	  	
+	  	// set padding
+	  	if(paddingTop != ''){
+		  	padding += 'paddingtop="' + paddingTop + '" '
+	  	}
+	  	
+	  	if(paddingRight != ''){
+		  	padding += 'paddingright="' + paddingRight + '" '
+	  	}
+	  	
+	  	if(paddingBottom != ''){
+		  	padding += 'paddingbottom="' + paddingBottom + '" '
+	  	}
+	  	
+	  	if(paddingLeft != ''){
+		  	padding += 'paddingleft="' + paddingLeft + '" '
+	  	}
 	  	
 	  	// check undefined
 	  	if(nested == undefined){
@@ -1145,7 +1200,7 @@ respond.editor.getContent = function(){
 		  	
 		  	// row HTML
 		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';

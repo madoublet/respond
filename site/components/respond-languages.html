@@ -2,7 +2,7 @@
 
 	<style>
 		
-		.respond-languages{
+		.respond-languages-container{
 		  	position: fixed;
 		  	top: 0;
 		  	left: 0;
@@ -21,12 +21,12 @@
 			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
 		}
 		
-			.respond-languages[visible]{
+			.respond-languages-container[visible]{
 				margin-top: 0;
 			}
 			
 		/* close search */
-		.respond-languages .close-languages{
+		.respond-languages-container .close-languages{
 			height: 40px;
 			width: 40px;
 			text-align: center;
@@ -96,7 +96,7 @@
 
 	<template>
 	
-		<div class="respond-languages" visible$="{{showLanguages}}">
+		<div class="respond-languages-container" visible$="{{showLanguages}}">
 	
 			<button class="close-languages" on-click="close"><core-icon icon="close"></core-icon></button>
 			
@@ -112,7 +112,7 @@
 						<span>{{currentLanguageDisplay}}</span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<template id="languagesList" is="x-repeat" items="{{languages}}">
+						<template id="languagesList" is="dom-repeat" items="{{languages}}">
 							<li><a active$="{{item.isCurrentLanguage}}" on-click="setLanguage">{{item.language}}</a></li>
 						</template>
 					</ul>

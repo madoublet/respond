@@ -1,14 +1,14 @@
 <dom-module id="respond-comments">
 	<style>
-		.respond-comments{
+		.respond-comments-container{
 			margin-bottom: 25px;
 		}
 		
-		.respond-comments>div{
+		.respond-comments-container>div{
 			display: none;
 		}
 		
-		.respond-comments>div[visible]{
+		.respond-comments-container>div[visible]{
 			display: block;
 		}
 	</style>
@@ -48,10 +48,10 @@
 			
 			// set class
 			if(this.cssclass != undefined){
-				this.cssclass = 'respond-comments ' + this.cssclass;
+				this.cssclass = 'respond-comments-container ' + this.cssclass;
 			}
 			else{
-				this.cssclass = 'respond-comments';
+				this.cssclass = 'respond-comments-container';
 			}
 			
 			this.url = window.location.href;

@@ -238,7 +238,7 @@
 				
 				<div class="form-group">
 					<label for="blockBackgroundColor" class="control-label">{{'Color' | i18next}}</label>
-					<input name="blockCssClass" type="text" maxlength="128" value="" 
+					<input id="blockBackgroundColor" type="text" maxlength="128" value="" 
 						ng-model="block.backgroundColor"
 						class="form-control">
 					<input id="block-bg-spectrum" type="color" maxlength="128"
@@ -262,13 +262,52 @@
 				
 				<div class="form-group">
 					<label for="blockBackgroundStyle" class="control-label">{{'Style' | i18next}}</label>
-					<select name="blockBackgroundStyle" 
+					<select id="blockBackgroundStyle" 
 						ng-model="block.backgroundStyle"
 						class="form-control">
 						<option value="">{{'Cover' | i18next}}</option>
 						<option value="repeat">{{'Repeat' | i18next}}</option>
 						<option value="parallax">{{'Parallax' | i18next}}</option>
 					</select>
+				</div>
+				
+			</div>
+			<!-- /.context-block -->
+			
+			<h2>{{'Padding (in PX)' | i18next}}</h2>
+			
+			<div class="context-block">	
+				
+				<div class="form-group">
+					<label for="blockPaddingTop" class="control-label">{{'Top' | i18next}}</label>
+					<input id="blockPaddingTop" type="text" maxlength="128" value="" 
+						placeholder="inherit"
+						ng-model="block.paddingTop"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockPaddingRight" class="control-label">{{'Right' | i18next}}</label>
+					<input id="blockPaddingRight" type="text" maxlength="128" value="" 
+						placeholder="inherit"
+						ng-model="block.paddingRight"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockPaddingBottom" class="control-label">{{'Bottom' | i18next}}</label>
+					<input id="blockPaddingBottom" type="text" maxlength="128" value="" 
+						placeholder="inherit"
+						ng-model="block.paddingBottom"
+						class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="blockPaddingBottom" class="control-label">{{'Left' | i18next}}</label>
+					<input id="blockPaddingLeft" type="text" maxlength="128" value="" 
+						placeholder="inherit"
+						ng-model="block.paddingLeft"
+						class="form-control">
 				</div>
 				
 			</div>

@@ -1384,7 +1384,63 @@ class Publish
 		}
 		/* foreach */
 		
-		// replace textcolor
+		// replace paddingtop
+		foreach($html->find('[paddingtop]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-top: '.$el->paddingtop.'px;';
+			}
+			else{
+				$el->style = 'padding-top: '.$el->paddingtop.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingright
+		foreach($html->find('[paddingright]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-right: '.$el->paddingright.'px;';
+			}
+			else{
+				$el->style = 'padding-right: '.$el->paddingright.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingbottom
+		foreach($html->find('[paddingbottom]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-bottom: '.$el->paddingbottom.'px;';
+			}
+			else{
+				$el->style = 'padding-bottom: '.$el->paddingbottom.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingleft
+		foreach($html->find('[paddingleft]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-left: '.$el->paddingleft.'px;';
+			}
+			else{
+				$el->style = 'padding-left: '.$el->paddingleft.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace textshadowcolor
 		foreach($html->find('[textshadowcolor]') as $el){
 		
 		

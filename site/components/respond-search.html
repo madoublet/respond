@@ -2,7 +2,7 @@
 
 	<style>
 		
-		.respond-search{
+		.respond-search-container{
 		  	position: fixed;
 		  	top: 0;
 		  	left: 0;
@@ -18,12 +18,12 @@
 			box-shadow: 1px 2px 3px rgba(119,119,119,0.25);
 		}
 		
-			.respond-search[visible]{
+			.respond-search-container[visible]{
 				margin-top: 0;
 			}
 			
 			
-			.respond-search core-icon, .respond-search core-icon svg{
+			.respond-search-container core-icon, .respond-search-container core-icon svg{
 				width: 25px;
 			    height: 25px;
 			  	margin: 0;
@@ -34,7 +34,7 @@
 			}
 			
 		/* close search */
-		.respond-search .close-search{
+		.respond-search-container .close-search{
 			height: 40px;
 			width: 40px;
 			text-align: center;
@@ -49,7 +49,7 @@
 		}
 		
 		/* close search */
-		.respond-search .search-loading{
+		.respond-search-container .search-loading{
 			height: 40px;
 			width: 40px;
 			text-align: center;
@@ -63,7 +63,7 @@
 		  	display: none;
 		}
 		
-			.respond-search .search-loading[visible]{
+			.respond-search-container .search-loading[visible]{
 				display: block;
 			}
 		
@@ -78,20 +78,20 @@
 		    }
 		
 		/* respond-search */
-		.respond-search .search-container{
+		.respond-search-container .search-container{
 		  	position: relative;
 		  	display: block;
 		  	box-sizing: border-box;
 		  	margin: 10px 10px 10px 10px;
 		}
 		
-		.respond-search form{
+		.respond-search-container form{
 			padding: 5px;
 		  	background-color: #fff;
 		    border-bottom: 1px solid #ddd;
 		}
 		
-		.respond-search input{
+		.respond-search-container input{
 			font-family: 'Open Sans', sans-serif;
 		  	font-size: 15px;
 			background-color: #fff;
@@ -103,7 +103,7 @@
 		  	text-indent: 10px;
 		}
 		
-		.respond-search .search-container button.search{
+		.respond-search-container .search-container button.search{
 			position: absolute;
 		  	top: 0;
 		  	right: 50px;
@@ -117,42 +117,42 @@
 		  	outline: none;
 		}
 		
-		.respond-search h4{
+		.respond-search-container h4{
 			font-size: 15px;
 		  	line-height: auto;
 		  	margin: 0;
 		  	padding: 10px 10px 2px 10px;
 		}
 		
-		.respond-search small{
+		.respond-search-container small{
 			font-size: 11px;
 		  	margin: 0;
 		  	padding: 0 10px 2px 10px;
 		}
 		
-		.respond-search p{
+		.respond-search-container p{
 			font-size: 13px;
 		  	line-height: 19px;
 		  	margin: 0;
 		  	padding: 0 10px 10px 10px;
 		}
 		
-		.respond-search-results{
+		.respond-search-container-results{
 		  	max-height: 275px;
 		  	overflow: auto;
 		  	display: none;
 		}
 		
-			.respond-search-results[visible]{
+			.respond-search-container-results[visible]{
 				display: block;
 			}
 		
-		.respond-search ul{
+		.respond-search-container ul{
 			margin: 0;
 		  	padding: 0;
 		}
 		
-		.respond-search li{
+		.respond-search-container li{
 		  	font-size: 13px;
 		  	list-style: none;
 		  	text-align: left;
@@ -161,17 +161,17 @@
 		  	border-bottom: 1px solid #ddd;
 		}
 		
-		.respond-search li p{
+		.respond-search-container li p{
 			overflow: hidden;
 		  	text-overflow: ellipsis;
 		  	margin-bottom: 0 !important;
 		}
 		
-		.respond-search li.has-image a{
+		.respond-search-container li.has-image a{
 			min-height: 70px;
 		}
 		
-		.respond-search li img{
+		.respond-search-container li img{
 			float: left;
 		  	width: 50px;
 		  	height: 50px;
@@ -179,40 +179,40 @@
 		  	margin-top: 5px;
 		}
 		
-		.respond-search li.searching, 
-		.respond-search li.no-results{
+		.respond-search-container li.searching, 
+		.respond-search-container li.no-results{
 			padding: 10px 20px;
 		    border-top: none;
 		}
 		
-		.respond-search li.searching i{
+		.respond-search-container li.searching i{
 			color: config(--search-text-color);
 		}
 		
-		.respond-search li:last-child{
+		.respond-search-container li:last-child{
 			border-bottom: none;
 		}
 		
-		.respond-search li.no-results{
+		.respond-search-container li.no-results{
 			display: none;
 		}
 		
-		.respond-search li.no-results[visible]{
+		.respond-search-container li.no-results[visible]{
 			display: block;
 		}
 		
 		/* rtl */
-		.respond-search[dir="rtl"] .search-container button.search{
+		.respond-search-container[dir="rtl"] .search-container button.search{
 			right: auto;
 			left: 50px;
 		}
 		
-		.respond-search[dir="rtl"] .close-search{
+		.respond-search-container[dir="rtl"] .close-search{
 			right: auto;
 			left: 10px;
 		}
 		
-		.respond-search[dir="rtl"] .search-container input{
+		.respond-search-container[dir="rtl"] .search-container input{
 			margin-left: 50px;
 		}
 
@@ -220,7 +220,7 @@
 
 	<template>
 	
-		<div class="respond-search" visible$="{{showSearch}}" dir$="{{dir}}">
+		<div class="respond-search-container" visible$="{{showSearch}}" dir$="{{dir}}">
 	
 			<button class="close-search" on-click="close"><core-icon icon="close"></core-icon></button>
 			
@@ -239,7 +239,7 @@
 			  	
 		  		<ul>
 				
-				<template id="resultsList" is="x-repeat" items="{{results}}">  	
+				<template id="resultsList" is="dom-repeat" items="{{results}}">  	
 					<li>
 						<h4><a href="{{item.Url}}">{{item.Name}}</a></h4>
 					  	<small><a href="{{item.Url}}">{{item.Url}}</a></small>
@@ -360,10 +360,11 @@
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
 			    if(xhr.status === 200){
+				    
 			    	context.results = [];
 				
 					var data = JSON.parse(xhr.responseText);
-				
+					
 					// set class for data
 					for(x in data){
 					
@@ -401,7 +402,9 @@
 									if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
 										
 										// push found pages
-										context.results.push(result);
+										//context.results.push(result);
+										
+										context.push('results', result);
 										
 										break;
 											
@@ -415,6 +418,7 @@
 						
 					}
 					
+				
 					// set noResults
 					if(context.results.length == 0){
 						context.showNoResults = true;

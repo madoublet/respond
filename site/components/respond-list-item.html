@@ -2,11 +2,11 @@
 
 	<style>
 		/* respond-list-item */
-		:host:last-child .respond-list-item{
+		:host:last-child .respond-list-item-container{
 			border-bottom: 1px solid #ddd;
 		}
 	
-		.respond-list-item{
+		.respond-list-item-container{
 		  	position: relative;
 		  	border-top: 1px solid #ddd;
 		  	border-left: 1px solid #ddd;
@@ -14,27 +14,27 @@
 		  	padding: 10px;
 		}
 		
-		.respond-list-item h4, .respond-list-item h5, .respond-list-item p{
+		.respond-list-item-container h4, .respond-list-item-container h5, .respond-list-item-container p{
 			margin: 0 0 5px 0;
 		  	padding: 0;
 		}
 				
-		.respond-list-item p{
+		.respond-list-item-container p{
 			margin-bottom: 0;
 		}
 		
-		.respond-list-item a, .respond-list-item a:visited, .respond-list-item a:hover{
+		.respond-list-item-container a, .respond-list-item-container a:visited, .respond-list-item-container a:hover{
 			text-decoration: none;
 		}
 		
-		.respond-list-item img{
+		.respond-list-item-container img{
 		  	position: absolute;
 		  	top: 10px;
 		  	left: 10px;
 		  	width: 100px;
 		}
 		
-		.respond-list-item.has-image{
+		.respond-list-item-container.has-image{
 			padding-left: 120px;
 		  	min-height: 120px;
 		}
@@ -94,11 +94,11 @@
 			font-weight: normal;
 		}
 		
-		html[dir=rtl] .respond-list-item.has-image[style-scope=respond-list-item]{
+		html[dir=rtl] .respond-list-item-container.has-image[style-scope=respond-list-item]{
 		    padding-left: 10px;
 		    padding-right: 120px;
 		}
-		html[dir=rtl] .respond-list-item[style-scope=respond-list-item] img[style-scope=respond-list-item]{
+		html[dir=rtl] .respond-list-item-container[style-scope=respond-list-item] img[style-scope=respond-list-item]{
 		    left: auto;    right: 10px;
 		}
 
@@ -195,7 +195,7 @@
 			
 				// create a list item (<respond-list-item>)
 				var div = document.createElement('div');
-				var cssClass = 'respond-list-item'
+				var cssClass = 'respond-list-item-container'
 				
 				// setup thumb
 				if(this.thumb != '' && this.thumb != undefined){
