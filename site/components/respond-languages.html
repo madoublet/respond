@@ -243,8 +243,7 @@
 						for(x=0; x<data.length; x++){
 							
 							if(data[x] == context.currentLanguage){
-								
-								context.languages.push({
+								context.push('languages', {
 									'language': data[x],
 									'isCurrentLanguage': true
 								});
@@ -252,7 +251,7 @@
 							}
 							else{
 								
-								context.languages.push({
+								context.push('languages', {
 									'language': data[x],
 									'isCurrentLanguage': false
 								})

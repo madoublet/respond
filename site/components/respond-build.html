@@ -8422,8 +8422,6 @@ Polymer.Base._initFeatures.call(this);
 									if(text.search(new RegExp(context.text.toLowerCase(), 'i')) != -1){
 										
 										// push found pages
-										//context.results.push(result);
-										
 										context.push('results', result);
 										
 										break;
@@ -11087,8 +11085,7 @@ Polymer.Base._initFeatures.call(this);
 						for(x=0; x<data.length; x++){
 							
 							if(data[x] == context.currentLanguage){
-								
-								context.languages.push({
+								context.push('languages', {
 									'language': data[x],
 									'isCurrentLanguage': true
 								});
@@ -11096,7 +11093,7 @@ Polymer.Base._initFeatures.call(this);
 							}
 							else{
 								
-								context.languages.push({
+								context.push('languages', {
 									'language': data[x],
 									'isCurrentLanguage': false
 								})

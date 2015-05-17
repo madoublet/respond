@@ -7,34 +7,7 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/learn
 
-New in version 4.8:
-- Support for Polymer 0.8
-- Better mobile support for Language and Cart components
-- ShowSearch toggle
-- Site version tracking
-- Alternative Logo URL (for smaller mobile logos)
-- PayPal Logo URL
-- Gallery widget
-- Share (Facebook, Twitter, Pinterest) widget
-- Easier installation
-
-Upgrading from 4.6:
-
-- Pull latest version
-
-- Add new fields to the Database
-
-```
-// update schema
-ALTER TABLE `Sites` ADD `ShowSearch` INT NOT NULL DEFAULT '1' AFTER `ShowLogin`;
-ALTER TABLE `Sites` ADD `Version` VARCHAR(10) NOT NULL DEFAULT '4.8' AFTER `LastLogin`;
-ALTER TABLE `Sites` ADD `AltLogoUrl` varchar(512) DEFAULT NULL AFTER `LogoUrl`;
-ALTER TABLE `Sites` ADD `PayPalLogoUrl` varchar(512) DEFAULT NULL AFTER `AltLogoUrl`;
-
-// set version to last updated version
-UPDATE Sites SET Version = '4.6'
-```
-
-- Update /setup.php (or create /setup.local.php) in root of application
-
-- Upgrade site
+New in version 4.9:
+- Support for Polymer 0.9
+- Editor updates - background color, image, padding on blocks
+- Editor updates - color, shadow on text elements
