@@ -656,11 +656,8 @@
 	  	cursor: pointer;
 	  	display: inline-block;
 		width: calc(100% - 20px);
-	}
-	
-	.editor .block div.respond-image img{
 		box-sizing: border-box;
-		max-width: 100%;
+		max-width: 200px;
 		margin: 0 0 5px 0;
 		margin-right: 10px !important;
 	}
