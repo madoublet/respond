@@ -764,6 +764,8 @@ respond.component.html = {
 
 	init:function(){
 		
+		$(document).off('click', '.respond-html div');
+		
 		// handle html div click
 		$(document).on('click', '.respond-html div', function(){
 			$(this).parent().toggleClass('active');	

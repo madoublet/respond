@@ -1862,6 +1862,8 @@ respond.element.pre = {
 
 	init:function(){
 		
+		$(document).off('click', '.respond-pre div');
+		
 		// handle html div click
 		$(document).on('click', '.respond-pre div', function(){
 			$(this).parent().toggleClass('active');	
