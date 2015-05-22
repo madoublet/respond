@@ -657,7 +657,7 @@
 	  	display: inline-block;
 		width: calc(100% - 20px);
 		box-sizing: border-box;
-		max-width: 200px;
+		max-width: 100%;
 		margin: 0 0 5px 0;
 		margin-right: 10px !important;
 	}
