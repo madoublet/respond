@@ -11,3 +11,7 @@ New in version 4.9:
 - Support for Polymer 0.9
 - Editor updates - background color, image, padding on blocks
 - Editor updates - color, shadow on text elements
+
+Upgrading from version 4.8:
+- Pull (or download) the latest version
+- Upgrade sites
