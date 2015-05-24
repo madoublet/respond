@@ -1565,6 +1565,7 @@ respond.component.gallery = {
 			scope.retrieveImages();
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.gallery');
+			$('#imagesDialog').attr('data-action', 'add');
 			$('#imagesDialog').modal('show');
 			
 			// reset modal
