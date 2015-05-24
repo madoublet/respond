@@ -1,17 +1,17 @@
 <dom-module id="respond-meta">
 
 	<style>
-	  	.respond-meta{
+	  	.respond-meta-container{
 		  	position: relative;
 		  	height: 40px;
 		  	padding: 5px 5px 5px 0;
 	  	}
 	  	
-	  	.respond-meta.photo{
+	  	.respond-meta-container.has-photo{
 		  	padding-left: 60px;
 	  	}
 	  	
-  		img{
+  		.respond-meta-container img{
 	  		position: absolute;
 	  		top: 5px;
 	  		left: 5px;
@@ -22,7 +22,7 @@
   			border-radius: 50%;
   		}
   		
-  		.respond-meta p{
+  		.respond-meta-container p{
 	  		height: 40px;
 	  		line-height: 40px;
 	  		text-transform: uppercase;
@@ -69,7 +69,7 @@
 			
 			// create meta
 			var div = document.createElement('div');
-			var cssClass = 'respond-meta';
+			var cssClass = 'respond-meta-container';
 			
 			// add image
 			if(this.hasPhoto == true){

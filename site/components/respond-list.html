@@ -444,7 +444,7 @@
 			this.list = [];
 		
 			// build pager
-			for(x = 0; x < this.count; x++){
+			for(x = 0; x < this.numberOfPages; x++){
 			
 				isActive = false;
 			
@@ -452,7 +452,7 @@
 					isActive = true;
 				}
 			
-				this.list.push({
+				this.push('list', {
 					'title': (x+1),
 					'isActive': isActive
 					});

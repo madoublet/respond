@@ -6831,17 +6831,17 @@ Polymer.Base._initFeatures.call(this);
 </script><dom-module id="respond-meta" assetpath="../../../../../../../">
 
 	<style>
-	  	.respond-meta{
+	  	.respond-meta-container{
 		  	position: relative;
 		  	height: 40px;
 		  	padding: 5px 5px 5px 0;
 	  	}
 	  	
-	  	.respond-meta.photo{
+	  	.respond-meta-container.has-photo{
 		  	padding-left: 60px;
 	  	}
 	  	
-  		img{
+  		.respond-meta-container img{
 	  		position: absolute;
 	  		top: 5px;
 	  		left: 5px;
@@ -6852,7 +6852,7 @@ Polymer.Base._initFeatures.call(this);
   			border-radius: 50%;
   		}
   		
-  		.respond-meta p{
+  		.respond-meta-container p{
 	  		height: 40px;
 	  		line-height: 40px;
 	  		text-transform: uppercase;
@@ -6899,7 +6899,7 @@ Polymer.Base._initFeatures.call(this);
 			
 			// create meta
 			var div = document.createElement('div');
-			var cssClass = 'respond-meta';
+			var cssClass = 'respond-meta-container';
 			
 			// add image
 			if(this.hasPhoto == true){
@@ -7387,7 +7387,7 @@ Polymer.Base._initFeatures.call(this);
 			this.list = [];
 		
 			// build pager
-			for(x = 0; x < this.count; x++){
+			for(x = 0; x < this.numberOfPages; x++){
 			
 				isActive = false;
 			
@@ -7395,7 +7395,7 @@ Polymer.Base._initFeatures.call(this);
 					isActive = true;
 				}
 			
-				this.list.push({
+				this.push('list', {
 					'title': (x+1),
 					'isActive': isActive
 					});
