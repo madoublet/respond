@@ -2991,7 +2991,7 @@ angular.module('respond.controllers', [])
 })
 
 // users controller
-.controller('UsersCtrl', function($scope, $rootScope, Setup, User, Role, Language, Image) {
+.controller('UsersCtrl', function($scope, $rootScope, Setup, User, Role, Language, Image, File) {
 	
 	$rootScope.template = 'users';
 	
@@ -3001,6 +3001,8 @@ angular.module('respond.controllers', [])
 	$scope.temp = null;
 	$scope.userLimit = $rootScope.site.UserLimit;
 	$scope.canAdd = false;
+	$scope.totalSize = 0;
+	$scope.fileLimit = $rootScope.site.FileLimit;
 	
 	// list users
 	User.list(function(data){
@@ -3158,6 +3160,16 @@ angular.module('respond.controllers', [])
 			if(Setup.debug)console.log(data);
 			
 			$scope.images = data;
+		});
+		
+		// get file size
+		File.retrieveSize(function(data){
+		
+			// debugging
+			if(Setup.debug)console.log('[respond.debug] File.retrieveSize');
+			if(Setup.debug)console.log(data);
+			
+			$scope.totalSize = parseFloat(data);
 		});
 	}
 	
