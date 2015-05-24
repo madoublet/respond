@@ -1297,17 +1297,24 @@ class Publish
 		
 		// replace background color
 		foreach($html->find('[backgroundcolor]') as $el){
+			
+			// set existing style
+			$style = '';
+			
+			if(isset($el->style)){
+				$style = $el->style.' ';
+			}
 		
 			// if it is nested, break
 			if(isset($el->{'data-nested'})){
 				
 				if($el->{'data-nested'} != 'nested'){
-					$el->style = 'background-color: '.$el->backgroundcolor;
+					$el->style = $style.'background-color: '.$el->backgroundcolor.';';
 				}
 				
 			}
 			else{
-				$el->style = 'background-color: '.$el->backgroundcolor;
+				$el->style = $style.'background-color: '.$el->backgroundcolor.';';
 			}
 			
 			
@@ -1317,6 +1324,13 @@ class Publish
 		
 		// replace background image
 		foreach($html->find('[backgroundimage]') as $el){
+			
+			// set existing style
+			$style = '';
+			
+			if(isset($el->style)){
+				$style = $el->style.' ';
+			}
 			
 			$backgroundimage = $el->backgroundimage;
 			$backgroundstyle = 'cover';
@@ -1341,10 +1355,10 @@ class Publish
 						$el->{'data-image-src'} = $backgroundimage;
 					}
 					else if($backgroundstyle == 'repeat'){
-						$el->style = 'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+						$el->style = $style.'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
 					}
 					else{
-						$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+						$el->style = $style.'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
 
 					}
 				
@@ -1358,10 +1372,10 @@ class Publish
 					$el->{'data-image-src'} = $backgroundimage;
 				}
 				else if($backgroundstyle == 'repeat'){
-					$el->style = 'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+					$el->style = $style.'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
 				}
 				else{
-					$el->style = 'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+					$el->style = $style.'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
 
 				}
 			}
