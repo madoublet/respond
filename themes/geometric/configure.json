@@ -214,19 +214,6 @@
 		"name": 			"Jumbotron",
 		"controls":	[
 			{
-				"name": 		"Background Color",
-				"replace": 		"config(--jumbotron-background-color)",
-				"control":		"color",
-				"selected":		"#556270"
-			},
-			{
-				"name": 		"Background Image",
-				"replace": 		"config(--jumbotron-background-image)",
-				"control":		"image",
-				"selected":		"../themes/geometric/resources/cubes-bg.png",
-				"cssFormat":	"url(%1)"
-			},
-			{
 				"name": 		"Alternate Background Color",
 				"replace": 		"config(--jumbotron-alternate-background-color)",
 				"control":		"color",
