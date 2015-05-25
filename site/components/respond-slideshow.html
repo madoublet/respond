@@ -122,7 +122,7 @@
 
 	<template>
 		
-		<div id$="{{fullid}}" class$="{{cssClass}}">
+		<div id$="{{fullid}}" class$="{{cssClass}}" data-interval$="{{interval}}" data-pause$="{{pause}}" data-wrap$="{{wrap}}">
 			
 			<ol id="indicatorsList" 
 				class="carousel-indicators" 
@@ -179,11 +179,19 @@
 			this.showIndicators = false;
 			this.showArrows = false;
 			
-			if(Boolean(this.indicators) == true){
+			// set pause
+			this.pause = '';
+			
+			if(this.pauseonhover == 'true' && this.pauseonhover != undefined){
+				this.pause = 'hover';
+			}
+			
+			// set indicators and arrows
+			if(this.indicators == 'true' && this.indicators != undefined){
 				this.showIndicators = true;
 			}
 			
-			if(Boolean(this.arrows) == true){
+			if(this.arrows == 'true' && this.arrows != undefined){
 				this.showArrows = true;
 			}
 			
@@ -205,11 +213,6 @@
 				var button = images[x].getAttribute('data-button') || '';
 				var link = images[x].getAttribute('data-link') || '';
 				var cssclass = images[x].getAttribute('class') || '';
-				
-				// set link
-				if(link != '' && (link.indexOf('http') == -1)){
-					link = respond.site.settings.ImagesUrl + link;
-				}
 				
 				// create an slide
 				var slide = document.createElement('div');

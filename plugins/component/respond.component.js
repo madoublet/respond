@@ -16,6 +16,7 @@ respond.component.slideshow = {
 			scope.retrieveImages();
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.slideshow');
+			$('#imagesDialog').attr('data-action', 'add');
 			$('#imagesDialog').modal('show');
 			
 			// reset modal
@@ -763,6 +764,8 @@ respond.component.html = {
 
 	init:function(){
 		
+		$(document).off('click', '.respond-html div');
+		
 		// handle html div click
 		$(document).on('click', '.respond-html div', function(){
 			$(this).parent().toggleClass('active');	
@@ -817,7 +820,7 @@ respond.component.html = {
 					'<div class="title respond-element"><i class="fa fa-html5"></i> '+
 					'<span node-text="description">' + description + '</span>' +
 					'<i class="fa fa-angle-down"></i></div>' +
-					'<textarea>' + code + '</textarea>';
+					'<textarea>' + pretty + '</textarea>';
 					
 		// tag attributes
 		var attrs = [];
@@ -1562,6 +1565,7 @@ respond.component.gallery = {
 			scope.retrieveImages();
 		
 			$('#imagesDialog').attr('data-plugin', 'respond.component.gallery');
+			$('#imagesDialog').attr('data-action', 'add');
 			$('#imagesDialog').modal('show');
 			
 			// reset modal

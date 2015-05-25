@@ -166,7 +166,7 @@ class SiteCreateResource extends Tonic\Resource {
     	$domain = str_replace('{{friendlyId}}', $friendlyId, $domain);
     	
 		$logoUrl = 'sample-logo.png';
-		$altLogoUrl = 'sample-logo-sm.png';
+		$altLogoUrl = '';
 		
         if($s_passcode == PASSCODE){
            

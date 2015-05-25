@@ -51,7 +51,8 @@
 							
 							<input 
 								ng-if="control.control=='color'"
-								respond-spectrum type="color" ng-value="control.selected" color="{{control.selected}}" current="control">
+								action="configure.current"
+								respond-spectrum type="color" ng-model="control.selected" color="{{control.selected}}" current="control">
 								
 							<button 
 								ng-if="control.control=='image'"

@@ -652,6 +652,19 @@ var utilities = {
 	  }
 	
 	  return retId;
+	},
+	
+	// cleans editor css classes
+	cleanEditorCssClass:function(cssclass){
+		
+		// clean css of sortable, ui-sortable
+	  	cssclass = utilities.replaceAll(cssclass, 'sortable', '');
+	  	cssclass = utilities.replaceAll(cssclass, 'ui-sortable', '');
+	  	
+	  	// remove extra whitespace
+	  	cssclass = cssclass.replace(/\s{2,}/g, ' ');
+	  	
+	  	return cssclass;
 	}
 }
 

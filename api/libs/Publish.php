@@ -1154,7 +1154,7 @@ class Publish
 			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
 		}
 		else{
-			$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
 		}
 		
 		// update base
@@ -1292,6 +1292,211 @@ class Publish
 				}
 			}
 			
+		}
+		/* foreach */
+		
+		// replace background color
+		foreach($html->find('[backgroundcolor]') as $el){
+			
+			// set existing style
+			$style = '';
+			
+			if(isset($el->style)){
+				$style = $el->style.' ';
+			}
+		
+			// if it is nested, break
+			if(isset($el->{'data-nested'})){
+				
+				if($el->{'data-nested'} != 'nested'){
+					$el->style = $style.'background-color: '.$el->backgroundcolor.';';
+				}
+				
+			}
+			else{
+				$el->style = $style.'background-color: '.$el->backgroundcolor.';';
+			}
+			
+			
+		}
+		/* foreach */
+		
+		
+		// replace background image
+		foreach($html->find('[backgroundimage]') as $el){
+			
+			// set existing style
+			$style = '';
+			
+			if(isset($el->style)){
+				$style = $el->style.' ';
+			}
+			
+			$backgroundimage = $el->backgroundimage;
+			$backgroundstyle = 'cover';
+			
+			// add site url for files that start with files
+			if(substr( $backgroundimage, 0, 5 ) === "files"){
+				$backgroundimage = $imagesURL.$el->backgroundimage;
+			}
+			
+			// set background style
+			if(isset($el->backgroundstyle)){
+				$backgroundstyle = $el->backgroundstyle;
+			}
+		
+			// if it is nested, break
+			if(isset($el->{'data-nested'})){
+				
+				if($el->{'data-nested'} != 'nested'){
+				
+					if($backgroundstyle == 'parallax'){
+						$el->{'data-parallax'} = 'scroll';
+						$el->{'data-image-src'} = $backgroundimage;
+					}
+					else if($backgroundstyle == 'repeat'){
+						$el->style = $style.'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+					}
+					else{
+						$el->style = $style.'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+
+					}
+				
+					
+				}
+				
+			}
+			else{
+				if($backgroundstyle == 'parallax'){
+					$el->{'data-parallax'} = 'scroll';
+					$el->{'data-image-src'} = $backgroundimage;
+				}
+				else if($backgroundstyle == 'repeat'){
+					$el->style = $style.'background-image: url('.$backgroundimage.'); background-repeat: repeat;';
+				}
+				else{
+					$el->style = $style.'background-image: url('.$backgroundimage.'); background-size: cover; background-position: center center;';
+
+				}
+			}
+		
+			
+		}
+		/* foreach */
+		
+		// replace textcolor
+		foreach($html->find('[textcolor]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' color: '.$el->textcolor.';';
+			}
+			else{
+				$el->style = 'color: '.$el->textcolor.';';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingtop
+		foreach($html->find('[paddingtop]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-top: '.$el->paddingtop.'px;';
+			}
+			else{
+				$el->style = 'padding-top: '.$el->paddingtop.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingright
+		foreach($html->find('[paddingright]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-right: '.$el->paddingright.'px;';
+			}
+			else{
+				$el->style = 'padding-right: '.$el->paddingright.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingbottom
+		foreach($html->find('[paddingbottom]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-bottom: '.$el->paddingbottom.'px;';
+			}
+			else{
+				$el->style = 'padding-bottom: '.$el->paddingbottom.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace paddingleft
+		foreach($html->find('[paddingleft]') as $el){
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' padding-left: '.$el->paddingleft.'px;';
+			}
+			else{
+				$el->style = 'padding-left: '.$el->paddingleft.'px;';
+			}
+		
+		}
+		/* foreach */
+		
+		// replace textshadowcolor
+		foreach($html->find('[textshadowcolor]') as $el){
+		
+		
+			$color = $el->textshadowcolor;
+			$horizontal = '1px';
+			$vertical = '1px';
+			$blur = '1px';
+			
+			if(isset($el->textshadowhorizontal)){
+				$horizontal = $el->textshadowhorizontal;
+			}
+			
+			if(isset($el->textshadowvertical)){
+				$vertical = $el->textshadowblur;
+			}
+			
+			if(isset($el->textshadowvertical)){
+				$blur = $el->textshadowblur;
+			}
+			
+			// build shadow
+			$textshadow = $horizontal.' '.$vertical.' '.$blur.' '.$color.';';
+		
+		
+			// if it is nested, break
+			if(isset($el->style)){
+				$el->style = $el->style.' text-shadow: '.$textshadow;
+			}
+			else{
+				$el->style = 'text-shadow: '.$textshadow;
+			}
+		
+		}
+		/* foreach */
+		
+		// replace textsize
+		foreach($html->find('[textsize]') as $el){
+		
+			$textsize = $el->textsize;
+		
+			$el->innertext = '<span style="font-size:'.$textsize.'">'.$el->innertext.'</span>';
+		
 		}
 		/* foreach */
 	

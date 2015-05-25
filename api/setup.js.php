@@ -13,6 +13,13 @@
 		$system_message = SYSTEM_MESSAGE;
 	}
 	
+	// hide/show passcode
+	$showPasscode = true;
+	
+	if(PASSCODE == ''){
+		$showPasscode = false;
+	}
+	
 	header("content-type: application/javascript"); 
 	
 	?>
@@ -75,6 +82,9 @@ angular.module('respond.setup', [])
 	
 	// app
 	systemMessage:			'<?php print $system_message; ?>',
-	urlMode:			 	'<?php print URL_MODE; ?>'
+	urlMode:			 	'<?php print URL_MODE; ?>',
+	
+	// show passcode
+	showPasscode: 			<?php print $arr[$showPasscode]; ?>
 	
 });

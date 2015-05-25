@@ -12,7 +12,7 @@
 		  	vertical-align: middle;
 		}
 	
-		.respond-cart{
+		.respond-cart-container{
 		  	position: fixed;
 		  	top: 0;
 		  	left: 0;
@@ -34,7 +34,7 @@
 			}
 			
 		/* close cart */
-		.respond-cart .close-cart{
+		.respond-cart-container .close-cart{
 			height: 40px;
 			width: 40px;
 			text-align: center;
@@ -48,13 +48,13 @@
 		  	background-color: #fff;
 		}
 		
-		.respond-cart .cart-container{
+		.respond-cart-container .cart-container{
 			height: 300px;
 			overflow: auto;
 		}
 		
 		/* table */
-		.respond-cart table{
+		.respond-cart-container table{
 			border: none;
 			padding: 0;
 			margin: 50px 0 0 0;
@@ -62,35 +62,35 @@
 			border-collapse: collapse;
 		}
 		
-		.respond-cart table th{
+		.respond-cart-container table th{
 			font-weight: bold;
 		}
 		
-		.respond-cart table th, .respond-cart table td{
+		.respond-cart-container table th, .respond-cart-container table td{
 			padding: 5px;
 			margin: 0;
 			border-bottom: 1px solid #ddd;
 		}
 		
-		.respond-cart table th small, .respond-cart table td small{
+		.respond-cart-container table th small, .respond-cart-container table td small{
 			display: block;
 			color: #888;
 			text-transform: uppercase;
 		}
 		
-		.respond-cart table th:first-child, .respond-cart table td:first-child{
+		.respond-cart-container table th:first-child, .respond-cart-container table td:first-child{
 			padding-left: 10px;
 		}
 		
-		.respond-cart table th:last-child, .respond-cart table td:last-child{
+		.respond-cart-container table th:last-child, .respond-cart-container table td:last-child{
 			padding-right: 10px;
 		}
 		
-		.respond-cart table th.number, .respond-cart table td.number{
+		.respond-cart-container table th.number, .respond-cart-container table td.number{
 			text-align: right;
 		}
 		
-		.respond-cart td button{
+		.respond-cart-container td button{
 			background-color: #fff;
 			border: 1px solid #ddd;
 			padding: 7px 10px;
@@ -103,17 +103,17 @@
 			color: #CF4647;
 		}
 		
-		.respond-cart td button.remove{
+		.respond-cart-container td button.remove{
 			margin: 0;
 			padding: 0;
 			width: 25px;
 		}
 		
-			.respond-cart td button.remove core-icon{
+			.respond-cart-container td button.remove core-icon{
 				margin-left: 0;
 			}
 		
-		.respond-cart td input[type=number]{
+		.respond-cart-container td input[type=number]{
 			height: 36px;
 			line-height: 36px;
 			border: 1px solid #ddd;
@@ -122,13 +122,13 @@
 		}
 		
 		/* header */
-		.respond-cart table thead th{
+		.respond-cart-container table thead th{
 			background-color: #f0f0f0;
 			border-top: 1px solid #ddd;
 		}
 		
 		/* clear-cart */
-		.respond-cart .clear-cart{
+		.respond-cart-container .clear-cart{
 			position: absolute;
 			top: 22px;
 			left: 10px;
@@ -207,7 +207,7 @@
 
 	<template>
 	
-		<div class="respond-cart" visible$="{{showCart}}" dir$="{{dir}}">
+		<div class="respond-cart-container" visible$="{{showCart}}" dir$="{{dir}}">
 		
 			<button class="close-cart" on-click="close"><core-icon icon="close"></core-icon></button>
 			
@@ -223,7 +223,7 @@
 						</tr>
 					</thead>
 					<tbody>
-				<template id="cartList" is="x-repeat" items="{{cart}}">
+				<template id="cartList" is="dom-repeat" items="{{cart}}">
 						<tr class="item">
 							<td class="name">
 								<span>{{item.name}}</span>

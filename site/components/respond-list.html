@@ -234,7 +234,7 @@
 		<div id="actions" class="list-actions">
 		
 			<span class="pager" visible$="{{showPager}}">
-				<template id="pager" is="x-repeat" items="{{list}}">
+				<template id="pager" is="dom-repeat" items="{{list}}">
 					<a on-click="gotoPage" active$="{{item.isActive}}">{{item.title}}</a>
 				</template>
 			</span>	
@@ -444,7 +444,7 @@
 			this.list = [];
 		
 			// build pager
-			for(x = 0; x < this.count; x++){
+			for(x = 0; x < this.numberOfPages; x++){
 			
 				isActive = false;
 			
@@ -452,7 +452,7 @@
 					isActive = true;
 				}
 			
-				this.list.push({
+				this.push('list', {
 					'title': (x+1),
 					'isActive': isActive
 					});

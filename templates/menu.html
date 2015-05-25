@@ -51,8 +51,8 @@
          	<a ng-click="republish()" ng-if="site.Version == setup.version"><i class="fa fa-refresh"></i> 
 	         	{{'Reload system files' | i18next}}
          	</a> 
-         	<small class="spacer"><label>{{'Site version:' | i18next}}</label> {{site.Version}}</small>
-		 	<small><label>{{'Current version:' | i18next}}</label> {{setup.version}}</small>
+         	<small class="spacer"><label>{{'Site version' | i18next}}</label> {{site.Version}}</small>
+		 	<small><label>{{'Current version' | i18next}}</label> {{setup.version}}</small>
 		 	<small ng-if="site.Version != setup.version"><a ng-href="{{setup.updateLink}}" target="_blank">{{'Upgrade Information' | i18next}}</a></small>
          </li>
         <li class="menu-deploy"

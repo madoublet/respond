@@ -223,19 +223,6 @@
 		"name": 			"Jumbotron",
 		"controls":	[
 			{
-				"name": 		"Background Color",
-				"replace": 		"config(--jumbotron-background-color)",
-				"control":		"color",
-				"selected":		"transparent"
-			},
-			{
-				"name": 		"Background Image",
-				"replace": 		"config(--jumbotron-background-image)",
-				"control":		"image",
-				"selected":		"../themes/notion/resources/field.jpg",
-				"cssFormat":	"url(%1)"
-			},
-			{
 				"name": 		"Headline Color",
 				"replace": 		"config(--jumbotron-headline-color)",
 				"control":		"color",

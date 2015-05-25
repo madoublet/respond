@@ -89,13 +89,6 @@
 				"selected":		"#ddd"
 			},
 			{
-				"name": 		"Background Image",
-				"replace": 		"config(--jumbotron-background-image)",
-				"control":		"image",
-				"selected":		"../themes/executive/resources/desktop.png",
-				"cssFormat":	"url(%1)"
-			},
-			{
 				"name": 		"Panel Color",
 				"replace": 		"config(--jumbotron-panel-background-color)",
 				"control":		"color",
@@ -118,42 +111,6 @@
 				"replace": 		"config(--jumbotron-link-color)",
 				"control":		"color",
 				"selected":		"#888"
-			}
-		]
-	},
-	{
-		"name": 			"Backdrop Panel",
-		"controls":	[
-			{
-				"name": 		"Background Color",
-				"replace": 		"config(--backdrop-background-color)",
-				"control":		"color",
-				"selected":		"rgba(0,0,0,.25)"
-			},
-			{
-				"name": 		"Background Image",
-				"replace": 		"config(--backdrop-background-image)",
-				"control":		"image",
-				"selected":		"../themes/executive/resources/bridge.png",
-				"cssFormat":	"url(%1)"
-			},
-			{
-				"name": 		"Headline Color",
-				"replace": 		"config(--backdrop-headline-color)",
-				"control":		"color",
-				"selected":		"#fff"
-			},
-			{
-				"name": 		"Text Color",
-				"replace": 		"config(--backdrop-text-color)",
-				"control":		"color",
-				"selected":		"#fff"
-			},
-			{
-				"name": 		"Link Color",
-				"replace": 		"config(--backdrop-link-color)",
-				"control":		"color",
-				"selected":		"#fff"
 			}
 		]
 	},

@@ -46,15 +46,8 @@
 			}
 			
 			video.setAttribute('class', cssClass);
-			
-			var html = '';
-			
-			// get distributed nodes
-			var nodes = Polymer.dom(this.$.content).getDistributedNodes();
-			
-			if(nodes.length > 0){
-				html = nodes[0].innerHTML;
-			}
+		
+			var html = this.innerHTML;
 			
 			// set html
 			video.innerHTML = html;

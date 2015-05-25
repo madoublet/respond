@@ -257,6 +257,7 @@ respond.text.link = {
 			var url = $('#linkUrl').val();
 			
 			var cssClass = $('#linkCssClass').val().trim();
+			var textColor = $('#linkTextColor').val().trim();
 			var target = $('#linkTarget').val().trim();
 			var title = $('#linkTitle').val().trim();
 			var lightbox = $('#linkLightbox').is(':checked');
@@ -274,17 +275,8 @@ respond.text.link = {
 			
 			if(respond.text.link.element == null){
 			
-				var html = '';
+				var html = '<a href="'+url+'"';
 				
-				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					html += '<a href="'+url+'"';
-				}
-				else{
-					html += '<a href="'+url+'"';
-				}
-				
-			
 				// insert css class into link
 				if(cssClass != ''){
 					html += ' class="'+cssClass+'"';
@@ -305,6 +297,11 @@ respond.text.link = {
 					html += ' respond-lightbox';
 				}
 				
+				// set texstyle
+				if(textColor != ''){
+					html += ' textcolor="'+textColor+'"';
+				}
+				
 				html += '>'+text+'</a>';
 				
 				// insert HTML
@@ -317,6 +314,7 @@ respond.text.link = {
 				link.attr('class', cssClass);
 				link.attr('target', target);
 				link.attr('title', title);
+				link.attr('textcolor', textColor);
 				
 				// set lightbox
 				if(lightbox == true){
@@ -326,13 +324,7 @@ respond.text.link = {
 					link.removeAttr('respond-lightbox');
 				}
 				
-				// external links should have http
-				if(url.indexOf('http') == -1 && url.indexOf('mailto:') == -1 && url.indexOf('tel:') == -1){
-					link.attr('href', '/'+url);
-				}
-				else{
-					link.attr('href', url);
-				}
+				link.attr('href', url);
 				
 				
 			}
@@ -354,6 +346,7 @@ respond.text.link = {
 		var cssClass = '';
 		var target = '';
 		var title = '';
+		var textColor = '';
 		var hasLightbox = false;
 
 		// get link from selected text
@@ -369,17 +362,26 @@ respond.text.link = {
 			cssClass = link.className;
 			target = link.target;
 			title = link.title;
+			textColor = $(link).attr('textcolor');
 			
 			if($(link).attr('respond-lightbox') != undefined){
 				hasLightbox = true;
 			}
 		}
-		
 
 	    $('#linkUrl').val(url);
 	    $('#linkCssClass').val(cssClass);
 	    $('#linkTarget').val(target);
 	    $('#linkTitle').val(title);
+	    $('#linkTextColor').val(textColor);
+	    
+	    if(textColor != ''){
+		    $('#linkTextColorPicker').attr('color', textColor);
+	    }
+	    else{
+		    $('#linkTextColorPicker').attr('color', '#FFFFFF');
+	    }
+	    
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 	    

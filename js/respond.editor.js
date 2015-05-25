@@ -10,6 +10,7 @@ respond.editor.currConfig = null;
 respond.editor.prefix = '';
 respond.editor.menu = null;
 respond.editor.api = '';
+respond.editor.imagesUrl = '';
 respond.editor.isModified = false;
 
 // reference to the editor
@@ -48,7 +49,7 @@ respond.editor.setupSortable = function(){
 }
 
 // set debug for the editor
-respond.editor.debug = true;
+respond.editor.debug = false;
 
 // defaults
 respond.editor.defaults = {
@@ -69,6 +70,7 @@ respond.editor.setup = function(config){
 	respond.editor.el = config.el;
 	respond.editor.pageId = config.pageId;
 	respond.editor.api = config.api;
+	respond.editor.imagesUrl = config.imagesUrl;
 	
 	// set namespaced globals
 	respond.editor.menu = config.menu;
@@ -216,8 +218,6 @@ respond.editor.setupPlugins = function(){
 	  	$(respond.editor.el).find('.current-element').removeClass('current-element');
 	  	$(respond.editor.el).find('.current-node').removeClass('current-node');
 	  	
-	  	console.log(respond.editor.currBlock);
-	  	
 	  	// set layout/container
 	  	var id = respond.editor.currBlock.attr('id') || '';
 	  	var cssClass = respond.editor.currBlock.attr('data-cssclass') || '';
@@ -239,6 +239,15 @@ respond.editor.setupPlugins = function(){
 	  	
 	  	var numColumns = respond.editor.currBlock.find('.col').length;
 	  	
+	  	
+	  	var backgroundColor = respond.editor.currBlock.attr('data-backgroundcolor') || '';
+	  	var backgroundImage = respond.editor.currBlock.attr('data-backgroundimage') || '';
+	  	var backgroundStyle = respond.editor.currBlock.attr('data-backgroundstyle') || 'cover';
+	  	var paddingTop = respond.editor.currBlock.attr('data-paddingtop') || '';
+	  	var paddingRight = respond.editor.currBlock.attr('data-paddingright') || '';
+	  	var paddingBottom = respond.editor.currBlock.attr('data-paddingbottom') || '';
+	  	var paddingLeft = respond.editor.currBlock.attr('data-paddingleft') || '';
+	  	
 	  	// set scope
   		var scope = angular.element($("section.main")).scope();
   		
@@ -247,6 +256,16 @@ respond.editor.setupPlugins = function(){
 		    scope.block.id = id;
 		    scope.block.cssClass = cssClass;
 		    scope.block.nested = nested;
+		    
+		    scope.block.backgroundColor = backgroundColor;
+		    scope.block.backgroundImage = backgroundImage;
+		    scope.block.backgroundStyle = backgroundStyle;
+		    
+		    scope.block.paddingTop = paddingTop;
+		    scope.block.paddingRight = paddingRight;
+		    scope.block.paddingBottom = paddingBottom;
+		    scope.block.paddingLeft = paddingLeft;
+		    
 		    scope.container.id = containerId;
 		    scope.container.cssClass = containerCssClass;
 		    
@@ -264,7 +283,7 @@ respond.editor.setupPlugins = function(){
 		    
 		    scope.numColumns = numColumns;
 		});
-	
+		
 	});
 	
 }
@@ -297,7 +316,9 @@ respond.editor.parseHTML = function(){
 		  			response += html;
 		  		}
 		  		catch(e){
-			  		console.log('[respond.Editor.error] could not execute the parse method on the plugin');
+		  			if(respond.editor.debug == true){
+			  			console.log('[respond.Editor.error] could not execute the parse method on the plugin');
+			  		}
 		  		}
 	  		}
 		 
@@ -313,7 +334,7 @@ respond.editor.parseHTML = function(){
   	if(blocks.length==0){
 		html += '<div id="block-000" class="block sortable">';
 		html += parseModules(top);
-		html += '<span class="block-actions"><span>#block-000 .block.row</span>' +
+		html += '<span class="block-actions"><span>#block-000</span>' +
 					respond.editor.defaults.blockMenu + '</span></div>'; 
 	}
 	else{
@@ -325,6 +346,15 @@ respond.editor.parseHTML = function(){
 		  	
 		  	// get nested
 		  	var nested = $(blocks[y]).attr('data-nested');
+		  	var color = $(blocks[y]).attr('backgroundcolor') || '';
+		  	var image = $(blocks[y]).attr('backgroundimage') || '';
+		  	var style = $(blocks[y]).attr('backgroundstyle') || '';
+		  	
+		  	var paddingtop = $(blocks[y]).attr('paddingtop') || '';
+		  	var paddingright = $(blocks[y]).attr('paddingright') || '';
+		  	var paddingbottom = $(blocks[y]).attr('paddingbottom') || '';
+		  	var paddingleft = $(blocks[y]).attr('paddingleft') || '';
+		  	
 		  	var containerId = $(blocks[y]).attr('data-containerid');
 		  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
 		  	
@@ -350,6 +380,13 @@ respond.editor.parseHTML = function(){
 		  				'data-id="' + id + '" ' +
 		  				'data-cssclass="' + cssclass + '" ' +
 		  				'data-nested="' + nested + '" ' +
+		  				'data-backgroundcolor="' + color + '" ' +
+		  				'data-backgroundimage="' + image + '" ' +
+		  				'data-backgroundstyle="' + style + '" ' +
+		  				'data-paddingtop="' + paddingtop + '" ' +
+		  				'data-paddingright="' + paddingright + '" ' +
+		  				'data-paddingbottom="' + paddingbottom + '" ' +
+		  				'data-paddingleft="' + paddingleft + '" ' +
 		  				'data-containerid="' + containerId + '" ' +
 		  				'data-containercssclass="' + containerCssClass + '" ' +
 		  				'>';        
@@ -364,6 +401,7 @@ respond.editor.parseHTML = function(){
 				// build custom class
 				var customColClassName = colClassName;
 				customColClassName = utilities.replaceAll(customColClassName, 'ui-sortable', '');
+				customColClassName = utilities.replaceAll(customColClassName, 'sortable', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-12', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-11', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-10', '');
@@ -376,7 +414,7 @@ respond.editor.parseHTML = function(){
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-7', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-8', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-9', '');
-				customColClassName = utilities.replaceAll(customColClassName, 'col', '');
+				customColClassName = utilities.replaceAll(customColClassName, 'col ', '');
 				
 				// allowed columns 12, 6, 3, 4, 9
 		  		if(colClassName.indexOf('col-md-12') != -1){
@@ -403,8 +441,23 @@ respond.editor.parseHTML = function(){
 		  		html += parseModules(cols[z]);
 		  		html += '</div>';
 		  }
+		  
+		  var callout = '';
+		  
+		  /* WIP
+		  // set color indicator
+		  if(color != ''){
+			  callout = '<div class="block-callout" style="background-color: ' + color + ';"></div>';
+		  }
+		  
+		  // set image indicator
+		  if(image != ''){
+			  callout = '<div class="block-callout" style="background: url(' + 
+			  				respond.editor.imagesUrl + image + '); background-size: cover;"></div>';
+		  }
+		  */
 
-		  html += '<span class="block-actions"><span>#'+ id + ' ' + cssclass_readable + '</span>' +
+		  html += '<span class="block-actions"><span>#'+ id + '</span>' + callout +
 		  			respond.editor.defaults.blockMenu + '</span></div>';
 		}
 	}
@@ -481,6 +534,18 @@ respond.editor.setupPersistentEvents = function(){
 	// make blocks sortable
 	setupSortable();
 	
+	$('#blockBackgroundStyle').on('change', function(){
+		
+		if($(this).val() == 'parallax'){
+			var scope = angular.element($("section.main")).scope();
+			
+			scope.$apply(function(){
+				scope.block.backgroundColor = 'transparent';
+			});
+			
+		}
+		
+	});
 	
 	// handle link clicks
 	$(el).on('click', '[contentEditable=true] a', function(){
@@ -495,6 +560,7 @@ respond.editor.setupPersistentEvents = function(){
 		var target = '';
 		var title = '';
 		var hasLightbox = false;
+		var textColor = '';
 
 		// get link from selected text
 		var link = utilities.getLinkFromSelection();
@@ -512,6 +578,7 @@ respond.editor.setupPersistentEvents = function(){
 			cssClass = link.className;
 			target = link.target;
 			title = link.title;
+			textColor = $(link).attr('textcolor') || '';
 			
 			if($(link).attr('respond-lightbox') != undefined){
 				hasLightbox = true;
@@ -523,6 +590,15 @@ respond.editor.setupPersistentEvents = function(){
 	    $('#linkCssClass').val(cssClass);
 	    $('#linkTarget').val(target);
 	    $('#linkTitle').val(title);
+	    $('#linkTextColor').val(textColor);
+	    
+	    if(textColor != ''){
+		    $('#linkTextColorPicker').attr('color', textColor);
+	    }
+	    else{
+		    $('#linkTextColorPicker').attr('color', '#FFFFFF');
+	    }
+	    
 	    $('#pageUrl li').removeClass('selected');
 	    $('#existing').attr('checked','checked');
 	    
@@ -572,10 +648,14 @@ respond.editor.setupPersistentEvents = function(){
 	  		var action = respond.editor.menu[i].action;
 	  		var form = $('.context-menu').find('[data-action="'+action+'"]');
 	  		
+	  		//var action = $(this).attr('data-action') + '.create';
+	  		//utilities.executeFunctionByName(action, window);
+	  		
 	  		// hide config
 	  		$('.context-menu').find('.config').removeClass('active');
 	  		
 	  		if(form){
+	  		
 	  			// add activate
 		  		form.addClass('active');
 		  		respond.editor.currConfig = form;
@@ -608,6 +688,14 @@ respond.editor.setupPersistentEvents = function(){
 						});
 			        }
 			    });
+			    
+			    // execute configure event
+			    action = action + '.configure';
+			    
+				try{
+					utilities.executeFunctionByName(action, window, respond.editor.currNode, form);
+				}
+				catch(e){}
 			  
 	  		}
   		}
@@ -644,6 +732,7 @@ respond.editor.setupPersistentEvents = function(){
   			// reset scope.element
 	  		scope.$apply(function(){
 			    scope.element = {};
+			    scope.parent = {};
 			});
   		
   			// setup check for data attributes
@@ -663,6 +752,24 @@ respond.editor.setupPersistentEvents = function(){
 				   	// apply the nvp to ContentCtrl scope
 			  		scope.$apply(function(){
 					    scope.element[key] = value;
+					});
+		        }
+			});
+			
+			// set attributes for parent
+	  		$.each($(element).parent().get(0).attributes, function(index, attr) {
+		        if (expr.test(attr.nodeName)) {
+		            var key = attr.nodeName.replace('data-', '');
+		           	var value = attr.nodeValue;
+		           	
+				   	// this enables binding to type=number fields for numeric values
+		           	if($.isNumeric(value) === true){
+			           	value = parseFloat(value);
+		           	}
+	  		
+				   	// apply the nvp to ContentCtrl scope
+			  		scope.$apply(function(){
+					    scope.parent[key] = value;
 					});
 		        }
 			});
@@ -972,7 +1079,9 @@ respond.editor.getContent = function(){
 			  			newhtml += html;
 			  		}
 			  		catch(e){
-				  		console.log('[respond.Editor.generate] parse, error=' + e.message);
+			  			if(respond.editor.debug == true){
+				  			console.log('[respond.Editor.generate] parse, error=' + e.message);
+				  		}
 			  		}
 		  		}
 		  		
@@ -988,20 +1097,75 @@ respond.editor.getContent = function(){
 	// walk through blocks
 	for(var y=0; y<blocks.length; y++){
 	  	var id = $(blocks[y]).attr('id');
-	  	var cssclass = $(blocks[y]).attr('data-cssclass');
+	  	var cssclass = $(blocks[y]).attr('data-cssclass') || '';
+	  	
+	  	// cleanup css class
+	  	cssclass = utilities.cleanEditorCssClass(cssclass);
 	
 	  	if(cssclass==undefined || cssclass=='')cssclass = '';
 	
 	  	if(cssclass!=''){
 	  		cssclass = ' ' + cssclass;
 	  	}
-	  
+	  	
 	  	if(id==undefined || id=='')id='block-'+y;
 	  	
 	  	// set nested
 	  	var nested = $(blocks[y]).attr('data-nested');
+	  	var color = $(blocks[y]).attr('data-backgroundcolor') || '';
+	  	var image = $(blocks[y]).attr('data-backgroundimage') || '';
+	  	var style = $(blocks[y]).attr('data-backgroundstyle') || '';
+	  	
+	  	var paddingTop = $(blocks[y]).attr('data-paddingtop') || '';
+	  	var paddingRight = $(blocks[y]).attr('data-paddingright') || '';
+	  	var paddingBottom = $(blocks[y]).attr('data-paddingbottom' || '');
+	  	var paddingLeft = $(blocks[y]).attr('data-paddingleft') || '';
+	  	
 	  	var containerId = $(blocks[y]).attr('data-containerid');
-	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass');
+	  	var containerCssClass = $(blocks[y]).attr('data-containercssclass') || '';
+	  	
+	  	// cleanup css class
+	  	containerCssClass = utilities.cleanEditorCssClass(containerCssClass);
+	  	
+	  	// set bg color
+	  	var bgcolor = '';
+	  	
+	  	if(color != '' && color != undefined){
+		  	bgcolor = 'backgroundcolor="' + color + '" ';
+	  	}
+	  	
+	  	// set bg image
+	  	var bgimage = '';
+	  	var bgstyle = '';
+	  	var padding = '';
+	  	
+	  	if(image != '' && image != undefined){
+		  	bgimage = 'backgroundimage="' + image + '" ';
+		  	
+		  	if(style != '' && style != undefined){
+		  		bgstyle = 'backgroundstyle="' + style + '" ';
+		  	}
+		  	else{
+		  		bgstyle = 'backgroundstyle="cover" ';
+			}
+	  	}
+	  	
+	  	// set padding
+	  	if(paddingTop != ''){
+		  	padding += 'paddingtop="' + paddingTop + '" '
+	  	}
+	  	
+	  	if(paddingRight != ''){
+		  	padding += 'paddingright="' + paddingRight + '" '
+	  	}
+	  	
+	  	if(paddingBottom != ''){
+		  	padding += 'paddingbottom="' + paddingBottom + '" '
+	  	}
+	  	
+	  	if(paddingLeft != ''){
+		  	padding += 'paddingleft="' + paddingLeft + '" '
+	  	}
 	  	
 	  	// check undefined
 	  	if(nested == undefined){
@@ -1032,15 +1196,25 @@ respond.editor.getContent = function(){
 		
 		// add container for nested blocks
 	  	if(nested == 'nested'){
-		  	html += '<div' + containerIdHtml + ' class="container' + containerClassHtml + '">';
-	  	}
-	  	
-	  	// row HTML
-	  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' +
+		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="container' + containerClassHtml + '">';
+		  	
+		  	// row HTML
+		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
+	  	}
+	  	else{
+		  	// row HTML
+		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
+	  			'data-containerid="' + containerId + '" ' +
+	  			'data-containercssclass="' + containerCssClass + '"' +
+	  			'>';
+	  	}
+	  	
+	  	
 	  
 	  	// determine if there are columns
 	  	var cols = $(blocks[y]).find('.col');
@@ -1073,6 +1247,9 @@ respond.editor.getContent = function(){
 		  		
 		  		// append custom class to class
 		  		className = $.trim(className + ' ' + customClass);
+		  		
+		  		// cleanup css class
+		  		className = utilities.cleanEditorCssClass(className);
 		  		
 		  		var id = '';
 		  		

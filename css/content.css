@@ -564,7 +564,8 @@ body.content{}
 	.context-menu h2 a{
 		float: right;
 		text-transform: none;
-		margin-left: 5px;
+		margin-left: 15px; 
+		text-transform: uppercase;
 	}
 	
 	.context-menu h2 i{

@@ -13,7 +13,7 @@
 	
 		<div ng-class="{'future': step != 1}">
 	
-			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}} 
+			<h2 class="title"><span class="step">1</span> {{'Create Site' | i18next}}
 				<a id="toggle-advanced"
 					ng-show="setup.changeDefaultLanguage">{{'Language and Timezone' | i18next}}</a>
 			</h2>
@@ -26,6 +26,7 @@
 						<div class="form-group">
 							<label for="name">{{'Site Name' | i18next}}</label>
 							<input id="name" type="text" 
+								restrict="[^A-Za-z0-9\-\s]"
 								ng-model="name"
 								ng-focus="setStep(1)"
 								ng-minlength="3"
@@ -45,7 +46,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="email">{{'Email' | i18next}}</label>
-							<input id="email" type="email"
+							<input id="email" type="text"
 								ng-minlength="3"
 								ng-maxlength="255"
 								ng-model="email"
@@ -475,7 +476,7 @@
 		<!-- /.future -->
 		
 		<div 
-			ng-show="setup.passcode != ''"
+			ng-show="setup.showPasscode"
 			ng-class="{'future': step != 3}">
 		
 			<h2 class="title"><span class="step">3</span> {{'Passcode' | i18next}}</h2>

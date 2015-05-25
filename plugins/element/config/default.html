@@ -1,33 +1,3 @@
-<div class="context-text-events">
-
-	<h2>{{'Text' | i18next}} 
-		<a data-action="respond.text.undo"><i class="fa fa-undo"></i></a></h2>
-	
-	<div class="context-block">
-	
-		<a data-action="respond.text.bold"><i class="fa fa-bold"></i></a>
-		<a data-action="respond.text.italic"><i class="fa fa-italic"></i></a>
-		<a data-action="respond.text.strike"><i class="fa fa-strikethrough"></i></a>
-		<a data-action="respond.text.subscript"><i class="fa fa-subscript"></i></a>
-		<a data-action="respond.text.superscript"><i class="fa fa-superscript"></i></a>
-		<a data-action="respond.text.underline"><i class="fa fa-underline"></i></a>
-		<a data-action="respond.text.link"><i class="fa fa-link"></i></a>
-		<a data-action="respond.text.code"><i class="fa fa-code"></i></a>
-		<a data-action="respond.text.icon"><i class="fa fa-flag"></i></a>
-		<a data-action="respond.text.alignLeft"><i class="fa fa-align-left"></i></a>
-		<a data-action="respond.text.alignCenter"><i class="fa fa-align-center"></i></a>
-		<a data-action="respond.text.alignRight"><i class="fa fa-align-right"></i></a>
-		<a data-action="respond.text.increaseFont"><i class="fa fa-font"></i> <i class="fa fa-caret-up font-up"></i></a>
-		<a data-action="respond.text.decreaseFont"><i class="fa fa-font"></i> <i class="fa fa-caret-down font-down"></i></a>
-		
-		<input type="text" class="spectrum" respond-spectrum>
-		
-	</div>
-	<!-- /.context-block -->
-
-</div>
-<!-- /.context-text-events -->
-
 <div class="context-body">
 
 	<h2>{{'Element' | i18next}} <a class="plugin-remove">{{'Remove' | i18next}}</a></h2>
@@ -44,6 +14,165 @@
 			<label for="class">{{'CSS Class' | i18next}}</label>
 			<input name="cssClass" type="text" maxlength="128" class="form-control" 
 				ng-model="node.cssclass">
+		</div>
+	
+	</div>
+
+</div>
+
+<div class="context-text-events">
+
+	<h2>{{'Text' | i18next}} 
+		<a data-action="respond.text.undo"><i class="fa fa-undo"></i></a></h2>
+	
+	<div class="context-block">
+	
+		<a data-action="respond.text.bold"><i class="fa fa-bold"></i></a>
+		<a data-action="respond.text.italic"><i class="fa fa-italic"></i></a>
+		<a data-action="respond.text.strike"><i class="fa fa-strikethrough"></i></a>
+		<a data-action="respond.text.subscript"><i class="fa fa-subscript"></i></a>
+		<a data-action="respond.text.superscript"><i class="fa fa-superscript"></i></a>
+		<a data-action="respond.text.underline"><i class="fa fa-underline"></i></a>
+		<a data-action="respond.text.link"><i class="fa fa-link"></i></a>
+		<a data-action="respond.text.code"><i class="fa fa-code"></i></a>
+		<a data-action="respond.text.icon"><i class="fa fa-flag"></i></a>
+		<input type="text" class="spectrum" respond-spectrum>
+	
+	</div>
+	<!-- /.context-block -->
+	
+	<h2>{{'Alignment' | i18next}}</h2>
+	
+	<div class="context-block">
+		<a data-action="respond.text.alignLeft"><i class="fa fa-align-left"></i></a>
+		<a data-action="respond.text.alignCenter"><i class="fa fa-align-center"></i></a>
+		<a data-action="respond.text.alignRight"><i class="fa fa-align-right"></i></a>
+	</div>
+
+</div>
+<!-- /.context-text-events -->
+
+<div class="context-body">
+	
+	<h2>{{'Style' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="color" class="control-label">{{'Color' | i18next}}</label>
+			<input name="textColor" type="text" maxlength="128" value="" 
+				ng-model="node.textcolor"
+				class="form-control">
+			<input type="color" maxlength="128"
+				ng-model="node.textcolor"
+				color="{{node.textcolor}}"
+				respond-spectrum
+				action="editor.element.textcolor"
+				class="form-control">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'Size' | i18next}}</label>
+			<select name="textsize" class="form-control"
+				ng-model="node.textsize">
+				<option value="0.5em">{{'-5' | i18next}}</option>
+				<option value="0.6em">{{'-4' | i18next}}</option>
+				<option value="0.7em">{{'-3' | i18next}}</option>
+				<option value="0.8em">{{'-2' | i18next}}</option>
+				<option value="0.9em">{{'-1' | i18next}}</option>	
+				<option value="">{{'Default' | i18next}}</option>
+				<option value="1.1em">{{'+1' | i18next}}</option>
+				<option value="1.2em">{{'+2' | i18next}}</option>
+				<option value="1.3em">{{'+3' | i18next}}</option>
+				<option value="1.4em">{{'+4' | i18next}}</option>
+				<option value="1.5em">{{'+5' | i18next}}</option>
+				<option value="1.6em">{{'+6' | i18next}}</option>
+				<option value="1.7em">{{'+7' | i18next}}</option>
+				<option value="1.8em">{{'+8' | i18next}}</option>
+				<option value="1.9em">{{'+9' | i18next}}</option>
+				<option value="2.0em">{{'+10' | i18next}}</option>
+				<option value="2.5em">{{'+15' | i18next}}</option>
+				<option value="3.0em">{{'+20' | i18next}}</option>
+			</select>
+		</div>
+	
+	</div>
+	<!-- /.context-block -->
+
+</div>
+<!-- /.context-body -->
+
+<div class="context-body">
+	
+	<h2>{{'Text Shadow' | i18next}}</h2>
+	
+	<div class="context-block">
+		
+		<div class="form-group">
+			<label for="color" class="control-label">{{'Color' | i18next}}</label>
+			<input name="shadowColor" type="text" maxlength="128" value="" 
+				ng-model="node.textshadowcolor"
+				class="form-control">
+			<input type="color" maxlength="128"
+				ng-value="node.textshadowcolor"
+				respond-spectrum
+				color="{{node.textshadowcolor}}"
+				action="editor.element.textshadowcolor"
+				class="form-control">
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'Horizontal' | i18next}}</label>
+			<select name="textshadowhorizontal" class="form-control"
+				ng-model="node.textshadowhorizontal">	
+				<option value=""></option>
+				<option value="1px">1</option>
+				<option value="2px">2</option>
+				<option value="3px">3</option>
+				<option value="4px">4</option>
+				<option value="5px">5</option>
+				<option value="6px">6</option>
+				<option value="7px">7</option>
+				<option value="8px">8</option>
+				<option value="9px">9</option>
+				<option value="10px">10</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'Vertical' | i18next}}</label>
+			<select name="textshadowvertical" class="form-control"
+				ng-model="node.textshadowvertical">	
+				<option value=""></option>
+				<option value="1px">1</option>
+				<option value="2px">2</option>
+				<option value="3px">3</option>
+				<option value="4px">4</option>
+				<option value="5px">5</option>
+				<option value="6px">6</option>
+				<option value="7px">7</option>
+				<option value="8px">8</option>
+				<option value="9px">9</option>
+				<option value="10px">10</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="class">{{'Blur' | i18next}}</label>
+			<select name="textshadowblur" class="form-control"
+				ng-model="node.textshadowblur">	
+				<option value=""></option>
+				<option value="1px">1</option>
+				<option value="2px">2</option>
+				<option value="3px">3</option>
+				<option value="4px">4</option>
+				<option value="5px">5</option>
+				<option value="6px">6</option>
+				<option value="7px">7</option>
+				<option value="8px">8</option>
+				<option value="9px">9</option>
+				<option value="10px">10</option>
+			</select>
 		</div>
 	
 	</div>
