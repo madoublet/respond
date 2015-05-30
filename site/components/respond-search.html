@@ -23,7 +23,7 @@
 			}
 			
 			
-			.respond-search-container core-icon, .respond-search-container core-icon svg{
+			.respond-search-container iron-icon, .respond-search-container iron-icon svg{
 				width: 25px;
 			    height: 25px;
 			  	margin: 0;
@@ -222,7 +222,7 @@
 	
 		<div class="respond-search-container" visible$="{{showSearch}}" dir$="{{dir}}">
 	
-			<button class="close-search" on-click="close"><core-icon icon="close"></core-icon></button>
+			<button class="close-search" on-click="close"><iron-icon icon="close"></iron-icon></button>
 			
 			<span class="search-loading" visible$="loading">
 				<paper-spinner active></paper-spinner>
@@ -231,7 +231,7 @@
 			<form class="respond-search-form" on-submit="search">
 		      <div class="search-container">
 		        <input id="searchText" type="text" autocomplete="off">
-		        <button class="search"><core-icon icon="search"></core-icon></button>
+		        <button class="search"><iron-icon icon="search"></iron-icon></button>
 		      </div>  
 		    </form>  
 			  

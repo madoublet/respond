@@ -2,7 +2,7 @@
 
 	<style>
 		
-		core-icon, core-icon svg{
+		iron-icon, iron-icon svg{
 			width: 25px;
 		    height: 25px;
 		  	margin: 0;
@@ -109,7 +109,7 @@
 			width: 25px;
 		}
 		
-			.respond-cart-container td button.remove core-icon{
+			.respond-cart-container td button.remove iron-icon{
 				margin-left: 0;
 			}
 		
@@ -179,7 +179,7 @@
 			font-weight: normal;
 		}
 		
-		core-icon{
+		iron-icon{
 			margin-left: 10px;
 			color: #aaa;
 			height: 20px !important;
@@ -209,7 +209,7 @@
 	
 		<div class="respond-cart-container" visible$="{{showCart}}" dir$="{{dir}}">
 		
-			<button class="close-cart" on-click="close"><core-icon icon="close"></core-icon></button>
+			<button class="close-cart" on-click="close"><iron-icon icon="close"></iron-icon></button>
 			
 			<div class="cart-container">
 			
@@ -228,7 +228,7 @@
 							<td class="name">
 								<span>{{item.name}}</span>
 								<span class="local-shipping" visible$="{{item.isShipped}}">
-									<core-icon icon="maps:local-shipping"></core-icon>
+									<iron-icon icon="maps:local-shipping"></iron-icon>
 								</span>
 								<small>{{item.sku}}</small>
 							</td>
@@ -236,7 +236,7 @@
 								<input type="number" value$="{{item.quantity}}" on-change="changeItem">
 								<button class="remove"
 									on-click="removeItem">
-									<core-icon icon="close"></core-icon>
+									<iron-icon icon="close"></iron-icon>
 								</button>
 							</td>
 							<td class="price number">{{item.priceDisplay}}</td>
