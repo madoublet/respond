@@ -623,6 +623,7 @@ angular.module('respond.controllers', [])
 			});
 	}
 	
+	
 })
 
 // menu controller
@@ -686,7 +687,7 @@ angular.module('respond.controllers', [])
 })
 
 // pages controller
-.controller('PagesCtrl', function($scope, $rootScope, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
+.controller('PagesCtrl', function($scope, $rootScope, $state, $i18next, Setup, PageType, Page, Stylesheet, Layout, User, Translation) {
 
 	// retrieve user
 	$scope.user = $rootScope.user;
@@ -712,6 +713,10 @@ angular.module('respond.controllers', [])
 		$scope.canEditTypes = true;
 	}
 	
+	$scope.signUp = function(){
+		$state.go('app.signup');
+	}
+	
 	// sets the pageTypeId
 	$scope.setPageType = function(pageType){
 		$scope.current = pageType;
@@ -721,6 +726,11 @@ angular.module('respond.controllers', [])
 		// set canremove for pagetype
 		if($scope.user.CanRemove == 'All' || $scope.user.CanRemove.indexOf($scope.pageTypeId) != -1){
 			$scope.canRemovePage = true;
+		}
+		
+		// show the expired tour
+		if($scope.isTrialOver() == true){
+			tour.expired();
 		}
 		
 	}
@@ -979,6 +989,26 @@ angular.module('respond.controllers', [])
 		tour.intro();
 	}
 	
+	// determines if the trial is over
+	$scope.isTrialOver = function(){
+		
+		var length = $scope.setup.trialLength;
+		var now = moment.utc();
+
+    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+		
+		var difference = length - now.diff(st, 'days');
+		
+		// expired when the difference is less then 0
+		if(difference < 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+	}
+	
 	
 })
 
@@ -1006,6 +1036,7 @@ angular.module('respond.controllers', [])
 	$scope.fileLimit = $rootScope.site.FileLimit;
 	$scope.isModified = false;
 	$scope.snippets = null;
+	$scope.site = $rootScope.site;
 	
 	// watch for changes in the block collection
     $scope.$watchCollection('block', function(newValues, oldValues){
@@ -1835,6 +1866,34 @@ angular.module('respond.controllers', [])
 	
 		Product.clear($scope.pageId, function(data){});
 	}				
+
+	// enable/disable for trial
+	$scope.disableAfterTrial = function(){
+		
+		// disable after trial
+		if($scope.setup.disableAfterTrial == true){
+			
+			var length = $scope.setup.trialLength;
+			var now = moment.utc();
+    
+	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+			
+			var difference = length - now.diff(st, 'days');
+			
+			// expired when the difference is less then 0
+			if(difference < 0){
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
+		else{
+			return false;
+		}
+		
+	}
 
 	// show the editor tour automatically during initial user session
 	$scope.setupTour = function(){
