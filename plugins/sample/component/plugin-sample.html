@@ -4,21 +4,32 @@
 	    :host {
 	      display: block;
 	      position: relative;
-	      background-color: red;
+	      background-color: #f0f0f0;
 	      padding: 20px;
 	      width: 100%;
 	      font-size: 1.2rem;
 	      font-weight: 300;
+	      margin-bottom: 25px;
+	      color: #333;
 	    }
-	    .h3{
+	    
+	    h3{
 		    font-weight: bold;
-		    color: yellow;
+		    color: #333;
+	    }
+	    
+	    p{
+		    font-weight: normal;
+		    color: #777;
 	    }
     </style>
 
 	<template>
 	
-		<h3>This is a sample plugin using polymer</h3>
+		<h3>This is a sample plugin using Respond + Polymer</h3>
+		
+		<p>attr1 = <span>{{attr1}}</span></p>
+		<p>attr2 = <span>{{attr2}}</span></p>
 	
 	</template>
 </dom-module>
@@ -28,7 +39,10 @@
 	  	is: "plugin-sample",
 	
 	  	// element attributes
-	  	properties: {},
+	  	properties: {
+	  		attr1: { type: String },
+	  		attr2: { type: String }
+		},
 		
 		// attached
 		attached: function() {}
