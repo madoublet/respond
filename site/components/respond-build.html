@@ -9277,21 +9277,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				display: inline-block;
 			}
 		
-			.carousel-control iron-icon{
+			.carousel-control svg{
 				position: absolute;
 				top: 50%;
 				color: #fff;
 			}
 			
-				.carousel-control.left iron-icon{
+				.carousel-control.left svg{
 					left: 15px;
 				}
 				
-				.carousel-control.right iron-icon{
+				.carousel-control.right svg{
 					right: 15px;
 				}
 			
-			.carousel-control iron-icon, .carousel-control iron-icon svg{
+			.carousel-control svg{
 				width: 40px;
 				height: 40px;
 			  	margin: 0;
@@ -9299,6 +9299,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			  	line-height: 40px;
 			  	display: inline-block;
 			  	vertical-align: middle;
+			  	fill: currentColor;
 			}
 		
 		/* indicators */
@@ -9358,10 +9359,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 			
 			
 			<a class="left carousel-control" href$="{{targetid}}" role="button" data-slide="prev" visible$="{{showArrows}}">
-				<iron-icon icon="chevron-left"></iron-icon>
+				<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></g></svg>
 			</a>
 			<a class="right carousel-control" href$="{{targetid}}" role="button" data-slide="next" visible$="{{showArrows}}">
-				<iron-icon icon="chevron-right"></iron-icon>
+				<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></g></svg>
 			</a>
 			
 			
