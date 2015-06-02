@@ -25,6 +25,17 @@
 				margin-top: 0;
 			}
 			
+			.respond-languages-container svg{
+				width: 25px;
+			    height: 25px;
+			  	margin: 0;
+			  	padding: 0;
+			  	line-height: 25px;
+			  	display: inline-block;
+			  	vertical-align: middle;
+			  	fill: currentColor;
+			}
+			
 		/* close search */
 		.respond-languages-container .close-languages{
 			height: 40px;
@@ -98,7 +109,7 @@
 	
 		<div class="respond-languages-container" visible$="{{showLanguages}}">
 	
-			<button class="close-languages" on-click="close"><iron-icon icon="close"></iron-icon></button>
+			<button class="close-languages" on-click="close"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></g></svg></button>
 			
 			<div class="select-language">
 				<label>{{label.language}}</label>
