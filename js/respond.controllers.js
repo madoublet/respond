@@ -692,6 +692,7 @@ angular.module('respond.controllers', [])
 
 	// retrieve user
 	$scope.user = $rootScope.user;
+	$scope.site = $rootScope.site;
 	$rootScope.template = 'pages';
 	$scope.canEditTypes = false;
 	$scope.canRemovePage = false;
@@ -730,9 +731,11 @@ angular.module('respond.controllers', [])
 		}
 		
 		// show the expired tour
-		if($scope.isTrialOver() == true && $rootScope.expiredTourShown == false){
-			tour.expired();
-			$rootScope.expiredTourShown = true;
+		if($scope.site.Status == 'Trial'){
+			if($scope.isTrialOver() == true && $rootScope.expiredTourShown == false){
+				tour.expired();
+				$rootScope.expiredTourShown = true;
+			}
 		}
 		
 	}
