@@ -51,8 +51,6 @@
 		
 		/* close search */
 		.respond-search-container .search-loading{
-			height: 40px;
-			width: 40px;
 			text-align: center;
 			position: absolute;
 			top: 15px;
@@ -62,21 +60,31 @@
 		  	outline: none;
 		  	z-index: 10;
 		  	display: none;
+		  	color: #888;
+			vertical-align: top;
+			width: 25px;
+			height: 25px;
+			margin-top: 8px;
+			margin-right: 5px;
 		}
 		
 			.respond-search-container .search-loading[visible]{
 				display: block;
 			}
-		
-			paper-spinner{
-				vertical-align: top;
-				margin-top: 7px;
-				margin-left: 7px;
-			}
 			
-			paper-spinner::shadow .circle {
-		        border-color: #4285f4;
-		    }
+			.respond-search-container .search-loading svg{
+				display: block;
+				vertical-align: top;
+				width: 25px;
+			    height: 25px;
+			  	margin: 0;
+			  	padding: 0;
+			  	line-height: 25px;
+			  	display: inline-block;
+			  	vertical-align: middle;
+			  	text-align: center;
+			  	fill: currentColor;
+			}
 		
 		/* respond-search */
 		.respond-search-container .search-container{
@@ -226,7 +234,8 @@
 			<button class="close-search" on-click="close"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></g></svg></button>
 			
 			<span class="search-loading" visible$="loading">
-				<paper-spinner active></paper-spinner>
+				<!-- ack: https://github.com/jxnblk/loading --> 
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g><path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/><path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z"><animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite" /></path></g></svg>
 			</span>
 			
 			<form class="respond-search-form" on-submit="search">

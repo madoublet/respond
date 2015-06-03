@@ -31,21 +31,31 @@
 		/* loading */
 		.loading{
 			display: none;
+			color: #888;
+			vertical-align: top;
+			width: 25px;
+			height: 25px;
+			margin-top: 5px;
+			margin-left: 5px;
 		}
 		
 			.loading[visible]{
 				display: inline-block;
 			}
 		
-			.loading paper-spinner{
+			.loading svg{
+				display: block;
 				vertical-align: top;
-				margin-top: 7px;
-				margin-left: 15px;
+				width: 25px;
+			    height: 25px;
+			  	margin: 0;
+			  	padding: 0;
+			  	line-height: 25px;
+			  	display: inline-block;
+			  	vertical-align: middle;
+			  	text-align: center;
+			  	fill: currentColor;
 			}
-			
-			.loading paper-spinner::shadow .circle {
-		        border-color: #4285f4;
-		    }
 		
 	</style>
 
@@ -61,7 +71,8 @@
 			on-click="submitForm">{{submit}}</button>
 			
 		<span class="loading" visible$="{{loading}}">
-			<paper-spinner active></paper-spinner>
+			<!-- ack: https://github.com/jxnblk/loading --> 
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g><path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/><path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z"><animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite" /></path></g></svg>
 		</span>
 		
 		<span class="success" visible$="{{showSuccess}}">{{success}}</span>

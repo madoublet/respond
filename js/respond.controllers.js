@@ -47,6 +47,7 @@ angular.module('respond.controllers', [])
 					// set firstLogin
 					$rootScope.firstLogin = data.firstLogin;
 					$rootScope.introTourShown = false;
+					$rootScope.expiredTourShown = false;
 					$rootScope.editorTourShown = false;
 					
 					// retrieve site
@@ -729,8 +730,9 @@ angular.module('respond.controllers', [])
 		}
 		
 		// show the expired tour
-		if($scope.isTrialOver() == true){
+		if($scope.isTrialOver() == true && $rootScope.expiredTourShown == false){
 			tour.expired();
+			$rootScope.expiredTourShown = true;
 		}
 		
 	}
