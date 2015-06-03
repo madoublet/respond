@@ -1,5 +1,7 @@
 <dom-module id="respond-content">
-  <template></template>
+	<template>
+  		<content></content>
+	</template>
 </dom-module>
 
 <script>
@@ -47,6 +49,7 @@
 					
 					// apply to light dom
 					Polymer.dom(context).appendChild(div);
+					Polymer.dom.flush()
 					
 			    }
 			    else {

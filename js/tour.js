@@ -5,7 +5,7 @@ var tour = {
 		// setup a tour
 		var tour = new Shepherd.Tour({
 		  defaults: {
-		    classes: 'shephed-element',
+		    classes: 'shepherd-element',
 		    scrollTo: true
 		  }
 		});
@@ -156,7 +156,7 @@ var tour = {
 		// setup a tour
 		var tour = new Shepherd.Tour({
 		  defaults: {
-		    classes: 'shephed-element',
+		    classes: 'shepherd-element',
 		    scrollTo: true
 		  }
 		});

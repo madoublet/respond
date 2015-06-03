@@ -50,21 +50,21 @@
 				display: inline-block;
 			}
 		
-			.carousel-control core-icon{
+			.carousel-control svg{
 				position: absolute;
 				top: 50%;
 				color: #fff;
 			}
 			
-				.carousel-control.left core-icon{
+				.carousel-control.left svg{
 					left: 15px;
 				}
 				
-				.carousel-control.right core-icon{
+				.carousel-control.right svg{
 					right: 15px;
 				}
 			
-			.carousel-control core-icon, .carousel-control core-icon svg{
+			.carousel-control svg{
 				width: 40px;
 				height: 40px;
 			  	margin: 0;
@@ -72,6 +72,7 @@
 			  	line-height: 40px;
 			  	display: inline-block;
 			  	vertical-align: middle;
+			  	fill: currentColor;
 			}
 		
 		/* indicators */
@@ -122,7 +123,7 @@
 
 	<template>
 		
-		<div id$="{{fullid}}" class$="{{cssClass}}" data-interval$="{{interval}}" data-pause$="{{pause}}" data-wrap$="{{wrap}}">
+		<div id$="{{fullid}}" class$="{{cssClass}}" data-interval$="{{interval}}" data-pause$="{{pause}}" data-wrap$="{{wrap}}" data-ride="carousel">
 			
 			<ol id="indicatorsList" 
 				class="carousel-indicators" 
@@ -134,11 +135,11 @@
 			
 			<a class="left carousel-control" href$="{{targetid}}" role="button" data-slide="prev" 
 				visible$="{{showArrows}}">
-				<core-icon icon="chevron-left"></core-icon>
+				<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></g></svg>
 			</a>
 			<a class="right carousel-control" href$="{{targetid}}" role="button" data-slide="next"
 				visible$="{{showArrows}}">
-				<core-icon icon="chevron-right"></core-icon>
+				<svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></g></svg>
 			</a>
 			<!-- /.carousel-control -->
 			

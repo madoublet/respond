@@ -1,0 +1,10 @@
+{
+	"action":	"plugin.sample",
+	"tag":		"PLUGIN-SAMPLE",
+	"title":	"Sample Plugin",
+	"class":	"plugin-sample",
+	"icon":		"fa fa-certificate draggable",
+	"text":		"",
+	"config":	"plugins/sample/config/sample.html",
+	"script":	"plugins/sample/plugin.sample.js"
+}
