@@ -1876,23 +1876,30 @@ angular.module('respond.controllers', [])
 	$scope.disableAfterTrial = function(){
 		
 		// disable after trial
-		if($scope.setup.disableAfterTrial == true){
-			
-			var length = $scope.setup.trialLength;
-			var now = moment.utc();
-    
-	    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
-			
-			var difference = length - now.diff(st, 'days');
-			
-			// expired when the difference is less then 0
-			if(difference < 0){
-				return true;
+		if($scope.site.Status == 'Trial'){
+		
+			if($scope.setup.disableAfterTrial == true){
+				
+				var length = $scope.setup.trialLength;
+				var now = moment.utc();
+	    
+		    	var st = moment.utc($scope.site.Created, 'YYYY-MM-DD HH:mm:ss');
+				
+				var difference = length - now.diff(st, 'days');
+				
+				// expired when the difference is less then 0
+				if(difference < 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+				
 			}
 			else{
 				return false;
 			}
-			
+		
 		}
 		else{
 			return false;
