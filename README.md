@@ -7,11 +7,13 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/learn
 
-New in version 4.9:
-- Support for Polymer 0.9
-- Editor updates - background color, image, padding on blocks
-- Editor updates - color, shadow on text elements
+New in version 5.0:
+- Support for Polymer 1.0
+- Support for Angular 1.4
+- Simplified plugins
 
-Upgrading from version 4.8:
+Upgrading from version 4.9:
 - Pull (or download) the latest version
 - Upgrade sites
+
+License Information: http://respondcms.com/page/license

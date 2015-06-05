@@ -1,33 +1,33 @@
 BUILD LOG
 ---------
-Build Time: 2015-05-13T18:16:38-0700
+Build Time: 2015-06-03T16:30:51-0700
 
 NODEJS INFORMATION
 ==================
-nodejs: v0.12.0
-gulp: 3.8.11
+nodejs: v2.0.2
+gulp: 3.9.0
 gulp-audit: 1.0.0
 gulp-concat: 2.5.2
 gulp-header: 1.2.2
 gulp-uglify: 1.2.0
 run-sequence: 1.1.0
-web-component-tester: 3.1.3
+web-component-tester: 3.1.4
 
 REPO REVISIONS
 ==============
-webcomponentsjs: ae3533859ab57edcd3a88a0092660bd970c94de4
+webcomponentsjs: da802598acc91d10d0205cf6130d15bd75fa12d1
 
 BUILD HASHES
 ============
-CustomElements.js: 2292abfeeb0ca0e03314f35edc50867c89b2dc93
-CustomElements.min.js: 131750c5b4297103b7702bb9123498bd5d4113a3
-HTMLImports.js: 5488833312a155d45744190715c0a702ba4d1340
-HTMLImports.min.js: 3d3cc90f2ff3fd718cb80253b4dc18ac54157411
-MutationObserver.js: 0ca30f350afe701a04d1c541430ada0a38183ed6
-MutationObserver.min.js: a40d2bacdd218c2268ba81da112ba82e1dbc5cb2
-ShadowDOM.js: f054a0ffe44dadf0435699edf1a824f0c731a413
-ShadowDOM.min.js: d9d342dbc43e45abba401b64f023657fc871336d
-webcomponents-lite.js: 1ce1cd2cc25e40252ac8f335a4849a30a20465a8
-webcomponents-lite.min.js: 65c4e97fded2f7f557a5288a39b3b0fb8fd7cf88
-webcomponents.js: 548655e6763e0cdcdebe5b67dea6d452b12079a2
-webcomponents.min.js: 29c327541658cc2cf2d0838db1dcbf34eb4a5ce0
+CustomElements.js: 89978a89cdf96d509b8e399bf8e6aff4431c41ea
+CustomElements.min.js: e8d9ac81e56720cccef8e1ba01400d4f403531b1
+HTMLImports.js: 5a393509ce18b7ee605cd4474750e783a6afa5a5
+HTMLImports.min.js: 6ce4c8c1340b3ceea4a2c05942cf4e8ef685fae3
+MutationObserver.js: 60074504bbdf487e192215647375bffb70888997
+MutationObserver.min.js: 76658a548e3785ee931d45fad4a0bd2b81594aa3
+ShadowDOM.js: 35dceaf9eca85b593764a05b5324173e84f07608
+ShadowDOM.min.js: 80ab65804971765c3450864b24f108efd8bd6086
+webcomponents-lite.js: 94a081e93a4b2c65e645787b6e69c2a0aac204ff
+webcomponents-lite.min.js: 80158c463eb7fda32995d908b9fbabcf95595c0e
+webcomponents.js: de93a7fee51ce01dd61546598f12e481755c44ca
+webcomponents.min.js: 0a70cae0a9589e463aa36d1ec9c1fbc87c1b1c5c
