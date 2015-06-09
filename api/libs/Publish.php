@@ -577,6 +577,46 @@ class Publish
 			file_put_contents($build_dest, $content);
 			
 		}
+		
+		
+		// open plugins direcotry
+        if($handle = opendir(APP_LOCATION.'plugins')){
+        
+		    $blacklist = array('.', '..');
+		    
+		    // walk through directories
+		    while (false !== ($file = readdir($handle))) {
+		    
+		        if (!in_array($file, $blacklist)) {
+		            $dir = $file;
+		            
+		            // source resources directory
+		            $src_dir = APP_LOCATION.'plugins/'.$dir.'/component';
+		            
+		            // add templates
+		            if(file_exists($src_dir)){
+		            
+		            	// destination templates directory
+		            	$dest_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/components';
+		            
+						// create destination directory
+						if(!file_exists($dest_dir)){
+							mkdir($dest_dir, 0755, true);	
+						}
+					
+						// copies the directory
+						Utilities::CopyDirectory($src_dir, $dest_dir);
+		            }
+		            
+		            
+		        }
+		        
+		    }
+		    
+		    closedir($handle);
+		}
+		
+		
 				
 	}
 		

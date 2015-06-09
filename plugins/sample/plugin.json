@@ -5,6 +5,6 @@
 	"class":	"plugin-sample",
 	"icon":		"fa fa-certificate draggable",
 	"text":		"",
-	"config":	"plugins/plugin/config/sample.html",
-	"script":	"plugins/plugin/plugin.sample.js"
+	"config":	"plugins/sample/config/sample.html",
+	"script":	"plugins/sample/plugin.sample.js"
 }

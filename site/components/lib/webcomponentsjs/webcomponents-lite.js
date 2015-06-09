@@ -7,7 +7,7 @@
  * Code distributed by Google as part of the polymer project is also
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
-// @version 0.6.1
+// @version 0.7.3
 window.WebComponents = window.WebComponents || {};
 
 (function(scope) {
@@ -52,7 +52,7 @@ window.WebComponents = window.WebComponents || {};
     window.CustomElements.flags.register = flags.register;
   }
   scope.flags = flags;
-})(WebComponents);
+})(window.WebComponents);
 
 (function(scope) {
   "use strict";
@@ -164,7 +164,7 @@ window.WebComponents = window.WebComponents || {};
 
        case "scheme data":
         if ("?" == c) {
-          query = "?";
+          this._query = "?";
           state = "query";
         } else if ("#" == c) {
           this._fragment = "#";
@@ -204,6 +204,8 @@ window.WebComponents = window.WebComponents || {};
           this._port = base._port;
           this._path = base._path.slice();
           this._query = base._query;
+          this._username = base._username;
+          this._password = base._password;
           break loop;
         } else if ("/" == c || "\\" == c) {
           if ("\\" == c) err("\\ is an invalid code point.");
@@ -213,6 +215,8 @@ window.WebComponents = window.WebComponents || {};
           this._port = base._port;
           this._path = base._path.slice();
           this._query = "?";
+          this._username = base._username;
+          this._password = base._password;
           state = "query";
         } else if ("#" == c) {
           this._host = base._host;
@@ -220,6 +224,8 @@ window.WebComponents = window.WebComponents || {};
           this._path = base._path.slice();
           this._query = base._query;
           this._fragment = "#";
+          this._username = base._username;
+          this._password = base._password;
           state = "fragment";
         } else {
           var nextC = input[cursor + 1];
@@ -227,6 +233,8 @@ window.WebComponents = window.WebComponents || {};
           if ("file" != this._scheme || !ALPHA.test(c) || nextC != ":" && nextC != "|" || EOF != nextNextC && "/" != nextNextC && "\\" != nextNextC && "?" != nextNextC && "#" != nextNextC) {
             this._host = base._host;
             this._port = base._port;
+            this._username = base._username;
+            this._password = base._password;
             this._path = base._path.slice();
             this._path.pop();
           }
@@ -249,6 +257,8 @@ window.WebComponents = window.WebComponents || {};
           if ("file" != this._scheme) {
             this._host = base._host;
             this._port = base._port;
+            this._username = base._username;
+            this._password = base._password;
           }
           state = "relative path";
           continue;
@@ -1042,7 +1052,7 @@ window.HTMLImports = window.HTMLImports || {
   scope.rootDocument = rootDocument;
   scope.whenReady = whenReady;
   scope.isIE = isIE;
-})(HTMLImports);
+})(window.HTMLImports);
 
 (function(scope) {
   var modules = [];
@@ -1056,9 +1066,9 @@ window.HTMLImports = window.HTMLImports || {
   };
   scope.addModule = addModule;
   scope.initializeModules = initializeModules;
-})(HTMLImports);
+})(window.HTMLImports);
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var CSS_URL_REGEXP = /(url\()([^)]*)(\))/g;
   var CSS_IMPORT_REGEXP = /(@import[\s]+(?!url\())([^;]*)(;)/g;
   var path = {
@@ -1088,7 +1098,7 @@ HTMLImports.addModule(function(scope) {
   scope.path = path;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var xhr = {
     async: true,
     ok: function(request) {
@@ -1120,7 +1130,7 @@ HTMLImports.addModule(function(scope) {
   scope.xhr = xhr;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var xhr = scope.xhr;
   var flags = scope.flags;
   var Loader = function(onLoad, onComplete) {
@@ -1213,7 +1223,7 @@ HTMLImports.addModule(function(scope) {
   scope.Loader = Loader;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var Observer = function(addCallback) {
     this.addCallback = addCallback;
     this.mo = new MutationObserver(this.handler.bind(this));
@@ -1246,7 +1256,7 @@ HTMLImports.addModule(function(scope) {
   scope.Observer = Observer;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var path = scope.path;
   var rootDocument = scope.rootDocument;
   var flags = scope.flags;
@@ -1255,7 +1265,7 @@ HTMLImports.addModule(function(scope) {
   var IMPORT_SELECTOR = "link[rel=" + IMPORT_LINK_TYPE + "]";
   var importParser = {
     documentSelectors: IMPORT_SELECTOR,
-    importsSelectors: [ IMPORT_SELECTOR, "link[rel=stylesheet]", "style", "script:not([type])", 'script[type="text/javascript"]' ].join(","),
+    importsSelectors: [ IMPORT_SELECTOR, "link[rel=stylesheet]", "style", "script:not([type])", 'script[type="application/javascript"]', 'script[type="text/javascript"]' ].join(","),
     map: {
       link: "parseLink",
       script: "parseScript",
@@ -1391,9 +1401,11 @@ HTMLImports.addModule(function(scope) {
           }
         }
         if (fakeLoad) {
-          elt.dispatchEvent(new CustomEvent("load", {
-            bubbles: false
-          }));
+          setTimeout(function() {
+            elt.dispatchEvent(new CustomEvent("load", {
+              bubbles: false
+            }));
+          });
         }
       }
     },
@@ -1476,7 +1488,7 @@ HTMLImports.addModule(function(scope) {
   scope.IMPORT_SELECTOR = IMPORT_SELECTOR;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var flags = scope.flags;
   var IMPORT_LINK_TYPE = scope.IMPORT_LINK_TYPE;
   var IMPORT_SELECTOR = scope.IMPORT_SELECTOR;
@@ -1575,7 +1587,7 @@ HTMLImports.addModule(function(scope) {
   scope.importLoader = importLoader;
 });
 
-HTMLImports.addModule(function(scope) {
+window.HTMLImports.addModule(function(scope) {
   var parser = scope.parser;
   var importer = scope.importer;
   var dynamic = {
@@ -1631,7 +1643,7 @@ HTMLImports.addModule(function(scope) {
   } else {
     document.addEventListener("DOMContentLoaded", bootstrap);
   }
-})(HTMLImports);
+})(window.HTMLImports);
 
 window.CustomElements = window.CustomElements || {
   flags: {}
@@ -1652,9 +1664,9 @@ window.CustomElements = window.CustomElements || {
   scope.initializeModules = initializeModules;
   scope.hasNative = Boolean(document.registerElement);
   scope.useNative = !flags.register && scope.hasNative && !window.ShadowDOMPolyfill && (!window.HTMLImports || HTMLImports.useNative);
-})(CustomElements);
+})(window.CustomElements);
 
-CustomElements.addModule(function(scope) {
+window.CustomElements.addModule(function(scope) {
   var IMPORT_LINK_TYPE = window.HTMLImports ? HTMLImports.IMPORT_LINK_TYPE : "none";
   function forSubtree(node, cb) {
     findAllElements(node, function(e) {
@@ -1709,7 +1721,7 @@ CustomElements.addModule(function(scope) {
   scope.forSubtree = forSubtree;
 });
 
-CustomElements.addModule(function(scope) {
+window.CustomElements.addModule(function(scope) {
   var flags = scope.flags;
   var forSubtree = scope.forSubtree;
   var forDocumentTree = scope.forDocumentTree;
@@ -1905,7 +1917,7 @@ CustomElements.addModule(function(scope) {
   scope.takeRecords = takeRecords;
 });
 
-CustomElements.addModule(function(scope) {
+window.CustomElements.addModule(function(scope) {
   var flags = scope.flags;
   function upgrade(node) {
     if (!node.__upgraded__ && node.nodeType === Node.ELEMENT_NODE) {
@@ -1965,7 +1977,7 @@ CustomElements.addModule(function(scope) {
   scope.implementPrototype = implementPrototype;
 });
 
-CustomElements.addModule(function(scope) {
+window.CustomElements.addModule(function(scope) {
   var isIE11OrOlder = scope.isIE11OrOlder;
   var upgradeDocumentTree = scope.upgradeDocumentTree;
   var upgradeAll = scope.upgradeAll;
@@ -2097,6 +2109,12 @@ CustomElements.addModule(function(scope) {
     }
   }
   function createElement(tag, typeExtension) {
+    if (tag) {
+      tag = tag.toLowerCase();
+    }
+    if (typeExtension) {
+      typeExtension = typeExtension.toLowerCase();
+    }
     var definition = getRegisteredDefinition(typeExtension || tag);
     if (definition) {
       if (tag == definition.tag && typeExtension == definition.is) {
@@ -2247,10 +2265,10 @@ if (typeof HTMLTemplateElement === "undefined") {
     HTMLTemplateElement.decorate = function(template) {
       if (!template.content) {
         template.content = template.ownerDocument.createDocumentFragment();
-        var child;
-        while (child = template.firstChild) {
-          template.content.appendChild(child);
-        }
+      }
+      var child;
+      while (child = template.firstChild) {
+        template.content.appendChild(child);
       }
     };
     HTMLTemplateElement.bootstrap = function(doc) {
@@ -2262,6 +2280,15 @@ if (typeof HTMLTemplateElement === "undefined") {
     addEventListener("DOMContentLoaded", function() {
       HTMLTemplateElement.bootstrap(document);
     });
+    var createElement = document.createElement;
+    document.createElement = function() {
+      "use strict";
+      var el = createElement.apply(document, arguments);
+      if (el.localName == "template") {
+        HTMLTemplateElement.decorate(el);
+      }
+      return el;
+    };
   })();
 }
 
