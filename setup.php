@@ -51,7 +51,7 @@
 	/*  ADVANCED SETUP - MESSAGING      */
 	/************************************/
 	
-	// Information on upgrading site to latest versino
+	// Information on upgrading site to latest version
 	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
 	
 	// system message (shown at login if not blank)
