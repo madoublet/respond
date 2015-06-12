@@ -1514,10 +1514,11 @@ respond.element.image = {
 		
 			var display = $(this).val();
 			var src = $(node).find('img').attr('src');
+			var alt = $(node).attr('data-alt');
 			var html = $(node).find('[contentEditable=true]').html() || '';
 			
 			// update html
-			$(node).html(respond.element.image.html(display, src, html));
+			$(node).html(respond.element.image.html(display, src, html, alt));
 			
 		});
 		
@@ -1549,28 +1550,29 @@ respond.element.image = {
 	},
 	
 	// helper method to get HTML for the image based on alignment
-	html:function(display, src, html, isExternal){
+	html:function(display, src, html, isExternal, alt){
 		
 		// set local vs external image
 		var location = 'local';
+		var alt_src = ' alt="' + alt + '"';
 		
 		if(isExternal == true){
 			location = 'external';
 		}
 		
 		var content = respond.editor.defaults.elementMenu +
-					'<img src="' + src + '" data-location="' + location + '">' +
+					'<img src="' + src + '" data-location="' + location + '" ' + alt_src + ' >' +
 					'<div class="editable-content" contentEditable="true">' + html + '</div>';
 		
 		// build html
 		if(display=='standalone'){
 			content = respond.editor.defaults.elementMenu +
-					'<img src="' + src + '" data-location="' + location + '">';
+					'<img src="' + src + '" data-location="' + location + '" ' + alt_src + ' >';
 		}
 		else if(display=='right'){
 			content = respond.editor.defaults.elementMenu +
 					'<div class="editable-content" contentEditable="true">' + html + '</div>' +
-					'<img src="' + src + '" data-location="' + location + '">';
+					'<img src="' + src + '" data-location="' + location + '" ' + alt_src + ' >';
 		}
 		
 		return content;
@@ -1591,6 +1593,7 @@ respond.element.image = {
 		
 		$(node).find('img').attr('src', image.fullUrl);
 		$(node).find('img').attr('data-location', location);
+		$(node).find('img').attr('alt', '');
 		
 		// hide dialog
 		$('#imagesDialog').modal('hide');
@@ -1614,7 +1617,7 @@ respond.element.image = {
 		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
-					'<img src="' + image.fullUrl + '" data-location="' + location +'">' +
+					'<img src="' + image.fullUrl + '" data-location="' + location +'" alt="">' +
 					'<div class="editable-content" contentEditable="true"></div>';
 					
 		// tag attributes
@@ -1623,6 +1626,7 @@ respond.element.image = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-image';
 		attrs['data-cssclass'] = 'respond-image';
+		attrs['data-alt'] = '';
 		attrs['data-display'] = 'left';
 		attrs['data-link'] = '';
 		attrs['data-title'] = '';
@@ -1695,6 +1699,7 @@ respond.element.image = {
 		}
 		
 		var location = $(node).find('img').attr('data-location') || '';
+		var alt = $(node).find('img').attr('alt') || '';
 		var link = $(node).find('a').attr('href') || $(node).find('a').attr('ui-sref') || '';
 		var title = $(node).find('a').attr('title') || '';
 		var target = $(node).find('a').attr('target') || '';
@@ -1725,7 +1730,7 @@ respond.element.image = {
 		var display = $(node).attr('data-display') || 'left';
 		
 		// set html
-		var html = respond.element.image.html(display, src, $(node).find('p').html(), isExternal);
+		var html = respond.element.image.html(display, src, $(node).find('p').html(), isExternal, alt);
 		
 		// tag attributes
 		var attrs = [];
@@ -1733,6 +1738,7 @@ respond.element.image = {
 		attrs['data-id'] = id;
 		attrs['class'] = 'respond-image';
 		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-alt'] = alt;
 		attrs['data-display'] = display;
 		attrs['data-link'] = link;
 		attrs['data-title'] = title;
@@ -1751,6 +1757,7 @@ respond.element.image = {
 		var id = $(node).attr('data-id');
   		var display = $(node).attr('data-display');
   		var cssClass = $(node).attr('data-cssclass');
+  		var alt = $(node).attr('data-alt') || '';
   		var link = $(node).attr('data-link') || '';
   		var title = $(node).attr('data-title') || '';
   		var target = $(node).attr('data-target') || '';
@@ -1819,12 +1826,12 @@ respond.element.image = {
 	  		}
 	  		
 	  		// set image tag
-	  		img = '<img src="{{site.ImagesUrl}}' + src + '" data-location="local">';
+	  		img = '<img src="{{site.ImagesUrl}}' + src + '" alt="' + alt + '" data-location="local">';
 	  		
 	  	}
 	  	else{
 		  	// set image tag
-	  		img = '<img src="' + src + '" data-location="external">'; 	
+	  		img = '<img src="' + src + '" alt="' + alt + '" data-location="external">'; 	
 	  	}
   		
   		var html = startLink + img + endLink;
