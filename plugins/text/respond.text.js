@@ -265,6 +265,11 @@ respond.text.link = {
 			// restore selection
 			utilities.restoreSelection(respond.text.link.selection);
 
+			// get scope
+			var scope = angular.element($("section.main")).scope();
+			
+			var prefix = '';
+
 			// create link
 			var text = utilities.getSelectedText();
 			
