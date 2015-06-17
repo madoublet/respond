@@ -1,5 +1,6 @@
 // setup helper modules
 angular.module('respond.controllers', []);
+angular.module('respond.factories', []);
 
 // set application module
 angular.module('respond', ['ui.router', 
