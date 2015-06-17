@@ -15,5 +15,12 @@ gulp.task('factories', function() {
     .pipe(gulp.dest('js/'));
 });
 
-gulp.task('default', ['controllers', 'factories']);
+// concat directives
+gulp.task('directives', function() {
+  return gulp.src('js/directives/*.js')
+    .pipe(concat('respond.directives.js'))
+    .pipe(gulp.dest('js/'));
+});
+
+gulp.task('default', ['controllers', 'factories', 'directives']);
 
