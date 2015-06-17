@@ -1,6 +1,10 @@
+body.content{
+	background-color: #f0f0f0;
+}
+
 /* editor actions */
 .editable-content:empty{
-	background-color: #f0f0f0;
+	background-color: #fff;
 	height: 40px;
 	line-height: 40px;
 }
@@ -10,10 +14,9 @@
 	cursor: pointer;
 }
 
-.current-element{
+.current-node{
 	background-color: rgba(200, 227, 237, .15) !important;
 }
-
 
 /* #editor-menu */
 #editor-menu{
@@ -112,6 +115,8 @@
 	    }
 
 
+
+
 /* editor */
 .editor{
 	text-align: left;
@@ -131,25 +136,54 @@
 	
 	.editor.container{
 		margin: 0;
-	    padding-top: 20px;
-	    padding-bottom: 100px;
 	    z-index: 100;
-	    width: calc(100% - 250px);
+	    margin-left: 10px;
+	    margin-top: 10px;
+	    width: calc(100% - 270px);
+	    border: 1px solid #ddd;
+	    background-color: #fff;  
+	    box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
+	    padding: 0;
+	    z-index: 999;
+	    min-height: 1000px;
 	}
 	
 	.editor.container .row{
 		margin-right: 0;
 		margin-left: 0;
-		margin-bottom: 10px;
 	}
 	
-		
+	
+	/* block */	
 	.editor .block{
 		position: relative;
 		min-height: 50px;
 		padding-bottom: 0;
-		padding-top: 50px;
+		padding-top: 38px;
+		border-bottom: 1px solid #ddd !important;
+		display: flex;
 	}
+	
+		/* flex widths */
+		.editor .block .flex-100{
+			width: 100%;
+		}
+		
+		.editor .block .flex-50{
+			width: 50%;
+		}
+		
+		.editor .block .flex-33{
+			width: 33.33333%;
+		}
+		
+		.editor .block .flex-66{
+			width: 66.66666%;
+		}
+	
+		.editor .block .flex-25{
+			width: 25%;
+		}
 	
 		.editor .block div.respond-p[data-cssclass~=text-center] div, 
 		.editor .block div.respond-h1[data-cssclass~=text-center] div, 
@@ -183,15 +217,15 @@
 		margin-bottom: 0;
 		vertical-align: top;
 		min-height: 40px;
-		border-right: 2px solid #fff;
+		border-left: 1px solid #ddd;
 	}
 	
-		.editor .block .col:last-child{
-			border-right: 0;
+		.editor .block .col:first-child{
+			border-left: 0;
 		}
 	
 		.editor .block .col:empty{
-			background-color: #f0f0f0 !important;
+			background-color: #fff !important;
 			height: 40px;
 			line-height: 40px;
 		}
@@ -238,12 +272,17 @@
 	.editor .block div.col>div{
 		position: relative;
 		margin: 0 !important;
-		padding: 0 0 2px 0;
+		padding: 0;
 		border: 0;
 		font-size: 13px;
 		line-height: 18px;
 		background: #fff;
 		overflow: hidden;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	.editor .block div.col>div:last-child{
+		border-bottom: none;
 	}
 	
 	.editor .block div.col div div{
@@ -255,8 +294,8 @@
 	}
 	
 	.editor .block div.col>div div[contentEditable=true]{
-		margin: 0 0 15px 0;
-		padding: 5px;
+		margin: 0;
+		padding: 20px;
 		min-height: 25px;
 	}
 	
@@ -466,8 +505,8 @@
 	.editor .block .respond-map input{
 		display: block;
 		width: 100%;
-		padding: 18px 10px 18px 60px;
-		margin: 0 0 10px 0;
+		padding: 28px 10px 28px 70px;
+		margin: 0;
 		outline: none !important;
 		color: #555;
 		font-size: 14px;
@@ -477,8 +516,8 @@
 	/* facebook, featured, etc */
 	.editor .block .title{
 		color: #555;
-		padding: 5px 0 5px 0 !important;
-		margin: 0 0 15px 0 !important;
+		padding: 5px 0 15px 0 !important;
+		margin: 0 !important;
 		font-size: 14px;
 	}
 		
@@ -488,8 +527,10 @@
 			height: 40px;
 			line-height: 40px;
 			text-align: center;
-			margin-right: 15px;
+			margin-right: 20px;
+			margin-left: 20px;
 			border-radius: 50%;
+			margin-top: 10px;
 		}
 		
 		.editor .block .title i{
@@ -593,8 +634,8 @@
 	.editor .block .respond-map i, 
 	.editor .block .respond-q i{
 		position: absolute;
-		top: 6px;
-		left: 0;
+		top: 20px;
+		left: 20px;
 		background-color: #94D237;
 		color: #fff;
 		width: 40px;
@@ -626,7 +667,7 @@
 		
 	/* quote */
 	.editor .block .respond-q div[contentEditable=true]{
-		padding-left: 60px !important;
+		padding-left: 70px !important;
 		padding-top: 15px !important;
 		min-height: 55px !important;
 	}
@@ -655,10 +696,10 @@
 	.editor .block div.respond-image img{
 	  	cursor: pointer;
 	  	display: inline-block;
-		width: calc(100% - 20px);
+		width: calc(100% - 40px);
 		box-sizing: border-box;
 		max-width: 100%;
-		margin: 0 0 5px 0;
+		margin: 20px;
 		margin-right: 10px !important;
 	}
 	
@@ -692,20 +733,24 @@
 		width: 100%;
 		line-height: 40px;
 		display: inline-block;
-		margin: 0;
+		margin-top: -1px;
 		text-align: right;
-		color: #888;
+		color: #fff;
 		overflow: hidden;
-		border: 1px solid #ddd;
-		background-color: #f8f8f8;
+		border-bottom: 1px solid #ddd;
+		border-top: 1px solid #ddd;
 		cursor: pointer;
+		background-color: #f8f8f8;
 	}
 	
 	.editor span.block-actions span{
 		position: absolute;
-		left: 10px;
+		left: 20px;
 		display: inline-block;
 		padding-left: 5px;
+		text-transform: uppercase;
+		font-size: 13px;
+		color: #aaa;
 	}
 	
 	.editor .block-actions .block-callout{
@@ -842,7 +887,7 @@
 		
 	/* .respond-slideshow */
 	.editor .block .respond-slideshow, .editor .block .respond-gallery{
-		padding: 0 0 20px 0 !important;	
+		padding: 20px !important;	
 	}
 	
 	.editor .block .respond-slideshow div.images, .editor .block .respond-gallery div.images{
@@ -859,7 +904,7 @@
 		width: 202px;
 		height: 202px;
 		background: #fff;
-		border: 1px solid #f0f0f0;
+		border: 1px solid #ddd;
 		cursor: pointer;
 		margin-right: 5px;
 		margin-bottom: 5px;
@@ -895,7 +940,7 @@
 	}
 	
 	.editor .block .respond-slideshow span.image img, .editor .block .respond-gallery span.image img{
-		border: 1px solid #f0f0f0;
+		border: 1px solid #ddd;
 		width: 200px;
 		height: 200px;
 	}

@@ -84,20 +84,27 @@ body textarea.form-control{
 
 .primary-button, .secondary-button, .tertiary-button{
     display: inline-block;
-    background-color: #3299bb;
-    border: 1px solid #3299bb;
-    font-family: "Ubuntu", sans-serif;
+    border: 1px solid #f0f0f0;
     font-weight: normal;
     color: #fff;
-    font-size: 14px;
-    margin: 0;
-    padding: 0 20px;
+    font-size: 13px;
+    margin: 0 5px 0 0;
+    padding: 10px 20px;
     cursor: pointer; 
     padding: 8px 20px;
     font-weight: 300;
     outline: none;
-    border-radius: 20px;
+    border-radius: 0;
+    background-color: #fff;
+    color: #3299bb;
+    text-transform: uppercase;
 }
+
+	.primary-button{
+		background-color: #3299bb;
+		color: #fff;
+		font-weight: bold;
+	}
 
 	.primary-button[disabled=disabled]{
 		background-color: #f8f8f8;
@@ -106,34 +113,7 @@ body textarea.form-control{
 	}
 
     .primary-button:hover{
-        background-color: #1d7b9a;
-        border-color: #1d7b9a;
-    }
-    
-.secondary-button{
-    background-color: #fff;
-    color: #3299bb;
-    border-color: #ddd;
-}
-
-	.secondary-button[disabled=disabled]{
-		background-color: #f8f8f8;
-		border-color: #ddd;
-		color: #ddd;
-	}
-
-    .secondary-button:hover{
-        border-color: #3299bb;
-    }
-    
-.tertiary-button{
-    background-color: #fff;
-    color: #3299bb;
-    border-color: #ddd;
-    color: #888;
-}
-    .tertiary-button: hover{
-        background-color: #f0f0f0;
+        background-color: #f8f8f8;
     }
     
     .primary-button i, .secondary-button i, .tertiary-button i{

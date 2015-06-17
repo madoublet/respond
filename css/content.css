@@ -511,6 +511,26 @@ body.content{}
 	body.content .alternate a:last-child{
 		padding-right: 20px;
 	}
+	
+/* .content-actions */
+.content-actions{
+	position: fixed;
+    width: calc(100% - 250px);
+	bottom: 0;
+	background-color: #f0f0f0;
+    z-index: 1000;
+    padding-right: 10px;
+}
+
+.content-actions div{
+	margin: 0 0 5px 0;
+    margin-left: 10px;
+    margin-top: -3px;
+    border: 1px solid #ddd;
+    background-color: #fff;  
+	box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
+    padding: 10px 10px;
+}
 
 /* aside */
 .context-menu{
@@ -521,10 +541,10 @@ body.content{}
 	width: 250px;
 	height: 100%;
 	height: calc(100% - 114px);
-	border-left: 1px solid #ddd;
-	background-color: #f8f8f8;
+	background-color: #f0f0f0;
 	overflow: scroll;
 	padding-bottom: 100px;
+	margin-top: 10px;
 }
 
 	.configure .context-menu{
