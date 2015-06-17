@@ -372,11 +372,11 @@ respond.editor.parseHTML = function(){
 			}
 		  	
 		  	// replace row and block
-		  	cssclass = jQuery.trim(utilities.replaceAll(cssclass, 'block row', ''));
+		  	cssclass = jQuery.trim(utilities.replaceAll(cssclass, 'block', ''));
 
 			if(id==undefined || id=='')id='undefined';
 
-		  	html += '<div id="'+id+'" class="block row" ' +
+		  	html += '<div id="'+id+'" class="block" ' +
 		  				'data-id="' + id + '" ' +
 		  				'data-cssclass="' + cssclass + '" ' +
 		  				'data-nested="' + nested + '" ' +
@@ -418,19 +418,19 @@ respond.editor.parseHTML = function(){
 				
 				// allowed columns 12, 6, 3, 4, 9
 		  		if(colClassName.indexOf('col-md-12') != -1){
-			  		colClassName = 'col col-md-12';
+			  		colClassName = 'col flex-100';
 		  		}
 		  		else if(colClassName.indexOf('col-md-6') != -1){
-			  		colClassName = 'col col-md-6';
+			  		colClassName = 'col flex-50';
 		  		}
 		  		else if(colClassName.indexOf('col-md-3') != -1){
-			  		colClassName = 'col col-md-3';
+			  		colClassName = 'col flex-33';
 		  		}
 		  		else if(colClassName.indexOf('col-md-4') != -1){
-			  		colClassName = 'col col-md-4';
+			  		colClassName = 'col flex-25';
 		  		}
 		  		else if(colClassName.indexOf('col-md-9') != -1){
-			  		colClassName = 'col col-md-9';
+			  		colClassName = 'col flex-66';
 		  		}
 				
 				// trim whitespace
@@ -1199,7 +1199,7 @@ respond.editor.getContent = function(){
 		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="container' + containerClassHtml + '">';
 		  	
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="block' + cssclass + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
@@ -1207,7 +1207,7 @@ respond.editor.getContent = function(){
 	  	}
 	  	else{
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block row' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="block' + cssclass + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
@@ -1228,20 +1228,20 @@ respond.editor.getContent = function(){
 		  		var customClass = $.trim($(cols[z]).attr('data-cssclass'));
 		  		var customId = $.trim($(cols[z]).attr('data-id'));
 		  		
-		  		// allowed columns 12, 6, 3, 4, 9
-		  		if(className.indexOf('col-md-12') != -1){
+		  		// parse FLEX columns into Bootstrap columns
+		  		if(className.indexOf('flex-100') != -1){
 			  		className = 'col col-md-12';
 		  		}
-		  		else if(className.indexOf('col-md-6') != -1){
+		  		else if(className.indexOf('flex-50') != -1){
 			  		className = 'col col-md-6';
 		  		}
-		  		else if(className.indexOf('col-md-3') != -1){
+		  		else if(className.indexOf('flex-33') != -1){
 			  		className = 'col col-md-3';
 		  		}
-		  		else if(className.indexOf('col-md-4') != -1){
+		  		else if(className.indexOf('flex-25') != -1){
 			  		className = 'col col-md-4';
 		  		}
-		  		else if(className.indexOf('col-md-9') != -1){
+		  		else if(className.indexOf('flex-66') != -1){
 			  		className = 'col col-md-9';
 		  		}
 		  		
