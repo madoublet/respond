@@ -195,6 +195,13 @@ respond.utility.layout = {
 				html = utilities.replaceAll(html, '{{id}}', uniqId);
 				html = utilities.replaceAll(html, '{{menu}}', respond.editor.defaults.blockMenu);
 				
+				// replace with flexbox classes for columns
+				html = utilities.replaceAll(html, 'col-md-12', 'flex-100');
+				html = utilities.replaceAll(html, 'col-md-6', 'flex-50');
+				html = utilities.replaceAll(html, 'col-md-3', 'flex-33');
+				html = utilities.replaceAll(html, 'col-md-4', 'flex-25');
+				html = utilities.replaceAll(html, 'col-md-9', 'flex-66');
+				
 				// append to editor
 				$(respond.editor.el).append(
 					html
