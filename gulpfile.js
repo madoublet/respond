@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var minifyCss = require('gulp-minify-css');
+var rename = require('gulp-rename');
 
 // concat controllers
 gulp.task('controllers', function() {
@@ -22,5 +24,16 @@ gulp.task('directives', function() {
     .pipe(gulp.dest('js/'));
 });
 
-gulp.task('default', ['controllers', 'factories', 'directives']);
+// concat css
+gulp.task('css', function() {
+  return gulp.src('css/src/*.css')
+    .pipe(concat('respond.css'))
+    .pipe(gulp.dest('css/'))
+    .pipe(minifyCss())
+    .pipe(rename('respond.min.css'))
+    .pipe(gulp.dest('css/'));
+});
+
+
+gulp.task('default', ['controllers', 'factories', 'directives', 'css']);
 

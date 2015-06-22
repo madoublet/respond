@@ -626,6 +626,23 @@ class Utilities
         }
 	 	
     }
+    
+    // handles response from the API
+    public static function SendHTTPResponse($code, $text = '', $type = 'text/html'){
+	    
+	    // set response code
+	    http_response_code($code);  
+	    
+	    // set type
+     	header($type);
+     	
+     	// set text if provided
+     	if($text != ''){
+	     	print $text;
+     	}
+     	
+     	exit();
+    }
 
 }
 	

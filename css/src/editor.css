@@ -18,6 +18,10 @@ body.content{
 	background-color: rgba(200, 227, 237, .15) !important;
 }
 
+.current-node input[type=text]{
+	background-color: rgba(200, 227, 237, .15) !important;
+}
+
 /* #editor-menu */
 #editor-menu{
 	background-color: #aaa;
