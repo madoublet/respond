@@ -145,10 +145,10 @@
 	/************************************/
 	
 	// Default account status (Trial for subscription based sites, or Active for non-subscription based sites)
-	define('DEFAULT_STATUS', 'Trial');
+	define('DEFAULT_STATUS', 'Active');
 	
 	// Default plan (Typically Trial or blank for non-subscription based sites)
-	define('DEFAULT_PLAN', 'Trial');
+	define('DEFAULT_PLAN', '');
 	
 	// Trial length
 	define('TRIAL_LENGTH', 30);
@@ -157,7 +157,7 @@
 	define('DISABLE_AFTER_TRIAL', true);
 	
 	// Default user limit
-	define('DEFAULT_USER_LIMIT', 1);
+	define('DEFAULT_USER_LIMIT', 5);
 	
 	// default file limit (in MBs)
 	define('DEFAULT_FILE_LIMIT', 100);
