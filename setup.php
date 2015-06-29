@@ -59,24 +59,6 @@
 	
 	
 	/************************************/
-	/*  ADVANCED SETUP - AMAZON S3      */
-	/************************************/
-	
-	// Enables copying site to S3 for deployment
-	define('ENABLE_S3_DEPLOYMENT', false);
-	
-	// Stores all uploaded files on S3
-	define('FILES_ON_S3', false);
-	
-	// Default bucket
-	define('BUCKET_NAME', 'yourdomain.com');
-	define('S3_LOCATION', 'us-east-1');
-	define('S3_URL', 'http://{{bucket}}.s3-website-us-east-1.amazonaws.com/{{site}}');
-	define('S3_KEY', 'AWS ACCESS KEY');
-	define('S3_SECRET', 'AWS SECRET KEY');
-	
-	
-	/************************************/
 	/*  ADVANCED SETUP - URLS           */
 	/************************************/
 	
@@ -118,27 +100,7 @@
 	
 	// JWT key
 	define('JWT_KEY', 'iloverespond');
-	
-	
-	/************************************/
-	/*  ADVANCED SETUP - PAYPAL         */
-	/************************************/
-	
-	// Paypal
-	define('PAYPAL_EMAIL', '');
-	define('PAYPAL_USE_SANDBOX', false);
-	define('PAYPAL_CURRENCY', 'USD');
-	define('PAYPAL_LOGO', '/images/respond-icon.png');
-	
-	
-	/************************************/
-	/*  ADVANCED SETUP - STRIPE         */
-	/************************************/
-	
-	// Stripe keys
-	define('STRIPE_SECRET_KEY', '');
-	define('STRIPE_PUBLISHABLE_KEY', '');
-	
+		
 	
 	/************************************/
 	/*  ADVANCED SETUP - ACCOUNTS       */
@@ -148,20 +110,7 @@
 	define('DEFAULT_STATUS', 'Active');
 	
 	// Default plan (Typically Trial or blank for non-subscription based sites)
-	define('DEFAULT_PLAN', '');
-	
-	// Trial length
-	define('TRIAL_LENGTH', 30);
-	
-	// Disable after trial
-	define('DISABLE_AFTER_TRIAL', true);
-	
-	// Default user limit
-	define('DEFAULT_USER_LIMIT', 5);
-	
-	// default file limit (in MBs)
-	define('DEFAULT_FILE_LIMIT', 100);
-	
+	define('DEFAULT_PLAN', '');	
 	
 	/************************************/
 	/*  ADVANCED SETUP - CORS           */
@@ -171,7 +120,6 @@
 	define ('CORS', serialize (array (
 	    'http://sites.myrespond.com'
 	    )));
-	    
 	    
 	/************************************/
 	/*  ADVANCED SETUP - EMAIL          */
@@ -197,19 +145,8 @@
 	define('WELCOME_EMAIL_SUBJECT', 'Respond: Welcome to Respond!');
 	define('WELCOME_EMAIL_FILE', '../emails/new-user.html');
 	
-	// New subscription email (to user)
-	define('NEW_SUBSCRIPTION_EMAIL', true);
-	define('NEW_SUBSCRIPTION_EMAIL_SUBJECT', 'Respond: Thank you for subscribing!');
-	define('NEW_SUBSCRIPTION_EMAIL_FILE', '../emails/subscribe-success.html');
-	
-	// New subscriber email (to admin)
-	define('NEW_SUBSCRIBER_EMAIL', true);
-	define('NEW_SUBSCRIBER_EMAIL_SUBJECT', 'Respond: We have a new subscriber!');
-	define('NEW_SUBSCRIBER_EMAIL_FILE', '../emails/subscribe-details.html');
-	
 	// Site emails
 	define('SITE_RECEIPT_EMAIL_SUBJECT', '[{{site}}] Receipt for your purchase (Transaction #: {{transactionId}})');
-	define('SITE_WELCOME_EMAIL_SUBJECT', 'Welcome to {{site}}');
 	
 	
 	/************************************/

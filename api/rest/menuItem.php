@@ -12,7 +12,7 @@ class MenuItemAddResource extends Tonic\Resource {
     function add() {
 
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -57,7 +57,7 @@ class MenuItemListResource extends Tonic\Resource {
     function get() {
         
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -93,7 +93,7 @@ class MenuItemListAllResource extends Tonic\Resource {
     function get() {
         
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -127,7 +127,7 @@ class MenuItemSavePrioritiesResource extends Tonic\Resource {
     function updateOrder() {
 
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -168,7 +168,7 @@ class MenuItemNestedResource extends Tonic\Resource {
     function updateIsNested() {
 
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -204,7 +204,7 @@ class MenuItemEditResource extends Tonic\Resource {
     function post() {
 
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -244,7 +244,7 @@ class MenuItemRemoveResource extends Tonic\Resource {
     function post() {
         
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -276,7 +276,7 @@ class MenuItemPublishResource extends Tonic\Resource {
     function post() {
         
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

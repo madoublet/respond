@@ -58,7 +58,7 @@
 			request:function (config) {
 				config.headers = config.headers || {};
 				if($window.sessionStorage.token){
-					config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+					config.headers['X-Auth'] = 'Bearer ' + $window.sessionStorage.token;
 				}
 				
 				return config || $q.when(config);

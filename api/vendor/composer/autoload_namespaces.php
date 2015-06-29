@@ -7,8 +7,4 @@ $baseDir = dirname(dirname($vendorDir));
 
 return array(
     'Tonic' => array($vendorDir . '/peej/tonic/src'),
-    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
-    'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
-    'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
-    'Aws' => array($vendorDir . '/aws/aws-sdk-php/src'),
 );

@@ -129,15 +129,8 @@ class UserLoginResource extends Tonic\Resource {
             		$site = Site::GetBySiteId($user['SiteId']);
             		
             		// set images URL
-					if(FILES_ON_S3 == true){
-						$bucket = $site['Bucket'];
-						$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-						$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-					}
-					else{
-						$imagesURL = $site['Domain'];
-					}
-            		
+					$imagesURL = $site['Domain'];
+					
 	            	$fullPhotoUrl = $imagesURL.'/files/thumbs/'.$user['PhotoUrl'];
 	            	
             	}
@@ -306,7 +299,7 @@ class UserAddResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -400,7 +393,7 @@ class UserCurrentResource extends Tonic\Resource {
     function get() {
 
 		// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -433,7 +426,7 @@ class UserPhotoResource extends Tonic\Resource {
     function add() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -449,14 +442,7 @@ class UserPhotoResource extends Tonic\Resource {
 			$site = Site::GetBySiteId($token->SiteId);
 			
 			// set images URL
-			if(FILES_ON_S3 == true){
-				$bucket = $site['Bucket'];
-				$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-				$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-			}
-			else{
-				$imagesURL = $site['Domain'];
-			}
+			$imagesURL = $site['Domain'];
 			
 			$fullPhotoUrl = $imagesURL.'/files/thumbs/'.$photoUrl;
            
@@ -488,7 +474,7 @@ class UserRetrieveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -526,7 +512,7 @@ class UserEditResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -576,7 +562,7 @@ class UserRemoveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -609,7 +595,7 @@ class UserList extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -630,15 +616,8 @@ class UserList extends Tonic\Resource {
             		$hasPhoto = true;
             		
             		// set images URL
-					if(FILES_ON_S3 == true){
-						$bucket = $site['Bucket'];
-						$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-						$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-					}
-					else{
-						$imagesURL = $site['Domain'];
-					}
-            		
+					$imagesURL = $site['Domain'];
+					
 	            	$fullPhotoUrl = $imagesURL.'/files/thumbs/'.$user['PhotoUrl'];
             	}
             	

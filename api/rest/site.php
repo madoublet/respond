@@ -312,7 +312,7 @@ class SiteRetrieveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -320,14 +320,7 @@ class SiteRetrieveResource extends Tonic\Resource {
             $site = Site::GetBySiteId($token->SiteId);
             
             // set images URL
-			if(FILES_ON_S3 == true){
-				$bucket = $site['Bucket'];
-				$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-				$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-			}
-			else{
-				$imagesURL = $site['Domain'];
-			}
+			$imagesURL = $site['Domain'];
 			
 			// set the ImagesURL
 			$site['ImagesUrl'] = $imagesURL.'/';
@@ -367,41 +360,12 @@ class SitePublishResource extends Tonic\Resource {
     function get() {
         
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
 
             Publish::PublishSite($token->SiteId);
-
-            $response = new Tonic\Response(Tonic\Response::OK);
-       
-            return $response;
-        }
-        else{
-            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
-        }
-    }
-}
-
-/**
- * A protected API call to publish the site
- * @uri /site/deploy
- */
-class SiteDeployResource extends Tonic\Resource {
-
-    /**
-     * @method GET
-     */
-    function get() {
-        
-        // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
-
-		// check if token is not null
-        if($token != NULL){ 
-
-            S3::DeploySite($token->SiteId);
 
             $response = new Tonic\Response(Tonic\Response::OK);
        
@@ -425,7 +389,7 @@ class SiteRemoveResource extends Tonic\Resource {
     function remove() {
 
         // get an authuser
-        $token = Utilities::ValidateJWTToken(apache_request_headers());
+        $token = Utilities::ValidateJWTToken();
 
         if($token != NULL){  // check if authorized
 
@@ -451,16 +415,6 @@ class SiteRemoveResource extends Tonic\Resource {
 				if(file_exists($oldname)){
 					// Renames the directory
 					rename($oldname, $newname);
-				}
-				
-				// remove site from Amazon S3
-				if(FILES_ON_S3 == true){
-					
-					// get site
-					$site = Site::GetBySiteId($siteId);
-					
-					// remove site
-					S3::RemoveSite($site);
 				}
 				
 				// remove site from DB
@@ -496,7 +450,7 @@ class SiteSaveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -601,7 +555,7 @@ class SiteEditAdminResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -651,7 +605,7 @@ class SiteBrandingResource extends Tonic\Resource {
     function update() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -675,16 +629,7 @@ class SiteBrandingResource extends Tonic\Resource {
             else if($type == 'icon'){
 	            Site::EditIcon($token->SiteId, $url);
 	            
-	            if(FILES_ON_S3 == true){
-					$bucket = $site['Bucket'];
-					$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-					$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-					
-					$source = $imagesURL.'/files/'.$url;
-				}
-				else{
-					$source = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/'.$url;
-				}
+				$source = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/'.$url;
 				
 	            // create the icon
 	            $destination = SITES_LOCATION.'/'.$site['FriendlyId'].'/favicon.ico';
@@ -721,7 +666,7 @@ class SiteBrandingIconBackgroundResource extends Tonic\Resource {
     function update() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -758,8 +703,8 @@ class SiteListAllResource extends Tonic\Resource {
      */
     function get() {
 
-         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+        // get token
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -792,312 +737,6 @@ class SiteListAllResource extends Tonic\Resource {
     }
 
 }
-
-/**
- * API call to pay for a subscription
- * @uri /site/subscribe/stripe
- */
-class SiteSubscribeStripeResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function post() {
-    
-    	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
-
-		// check if token is not null
-        if($token != NULL){ 
-
-        	// parse request
-        	parse_str($this->request->data, $request);
-        	
-        	$site = Site::GetBySiteId($token->SiteId);
-
-			$siteId = $site['SiteId'];
-			$email = $site['PrimaryEmail'];
-			$status = 'Active';
-        	$stripe_token = $request['token'];
-			$plan = $request['plan'];
-        	$domain = $request['domain'];
-			$provider = 'Stripe';
-    
-			// set API key
-			Stripe::setApiKey(STRIPE_SECRET_KEY);
-
-            // create a new customer and subscribe them to the plan
-            $customer = Stripe_Customer::create(
-            	array(
-					"card" => $stripe_token,
-					"plan" => $plan,
-					"email" => $email)
-            );
-
-			// get back the id and the end period for the plan
-            $customerId = $customer->id;
-            
-            // get subscription information
-            $subscription = $customer->subscriptions->data[0];
-			
-			$subscriptionId = $subscription->id;			
-			$stripe_status = $subscription->status;
-			$stripe_plan = $subscription->plan->id;
-			$stripe_planname  = $subscription->plan->name;
-			
-			// subscribe to a plan
-			Site::Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId);
-			
-			// send email to user
-			if(NEW_SUBSCRIPTION_EMAIL == true){
-			
-				// send success email to user
-				$to = $site['PrimaryEmail'];
-	    		$from = REPLY_TO;
-	    		$fromName = REPLY_TO_NAME;
-	    		$subject = NEW_SUBSCRIPTION_EMAIL_SUBJECT;
-	    		$file = NEW_SUBSCRIPTION_EMAIL_FILE;
-	 
-	    		$replace = array(
-	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-	    			'{{brand}}' => BRAND,
-	    			'{{reply-to}}' => REPLY_TO
-	    		);
-	    		
-	    		// send 
-	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		}
-    		
-    		// send email to admin
-			if(NEW_SUBSCRIBER_EMAIL == true){
-			
-	    		// send details email to admin
-				$to = REPLY_TO;
-	    		$from = REPLY_TO;
-	    		$fromName = REPLY_TO_NAME;
-	    		$subject = NEW_SUBSCRIBER_EMAIL_SUBJECT;
-	    		$file = NEW_SUBSCRIBER_EMAIL_FILE;
-	 
-	    		$replace = array(
-	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-	    			'{{brand}}' => BRAND,
-	    			'{{reply-to}}' => REPLY_TO,
-	    			'{{domain}}' => $domain,
-	    			'{{siteid}}' => $site['SiteId'],
-	    			'{{friendlyid}}' => $site['FriendlyId'],
-	    			'{{provider}}' => $provider,
-	    			'{{customerid}}' => $customerId
-	    		);
-	    		
-	    		// send email from file
-	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		}
-    		    		
-    		// send email from file
-    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-        
-            // return a json response
-            return new Tonic\Response(Tonic\Response::OK); 
-                
-        }
-        else{
-            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
-        }
-    }
-}
-
-/**
- * API call to pay for a subscription
- * @uri /site/unsubscribe/stripe
- */
-class SiteUnsubscribeStripeResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function post() {
-    
-    	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
-
-		// check if token is not null
-        if($token != NULL){ 
-
-        	// parse request
-        	parse_str($this->request->data, $request);
-        	
-        	$site = Site::GetBySiteId($token->SiteId);
-
-			$siteId = $site['SiteId'];
-			$email = $site['PrimaryEmail'];
-			$status = 'Unsubscribed';
-			$plan = '';
-        	$provider = '';
-        	$subscriptionId = '';
-        	$customerId = $site['CustomerId'];
-    
-			// set API key
-			Stripe::setApiKey(STRIPE_SECRET_KEY);
-
-            // retrieve customer
-            $customer = Stripe_Customer::retrieve($site['CustomerId']);
-			
-			// unsubscribe
-			$cu->subscriptions->retrieve($site['SubscriptionId'])->cancel();
-            			
-			// unsubscribe to a plan
-			Site::Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId);
-			
-			// send success email to user
-			$to = $site['PrimaryEmail'];
-    		$from = REPLY_TO;
-    		$fromName = REPLY_TO_NAME;
-    		$subject = BRAND.': You have successfully unsubscribed to '.BRAND;
-    		$file = APP_LOCATION.'/emails/unsubscribe-success.html';
- 
-    		$replace = array(
-    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-    			'{{brand}}' => BRAND,
-    			'{{reply-to}}' => REPLY_TO
-    		);
-    		
-    		// send 
-    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		
-    		// send details email to admin
-			$to = REPLY_TO;
-    		$from = REPLY_TO;
-    		$fromName = REPLY_TO_NAME;
-    		$subject = BRAND.': Unsubscribed';
-    		$file = APP_LOCATION.'/emails/unsubscribe-details.html';
- 
-    		$replace = array(
-    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-    			'{{brand}}' => BRAND,
-    			'{{reply-to}}' => REPLY_TO,
-    			'{{domain}}' => $domain,
-    			'{{siteid}}' => $site['SiteId'],
-    			'{{friendlyid}}' => $site['FriendlyId'],
-    			'{{provider}}' => $site['Provider'],
-    			'{{customerid}}' => $site['CustomerId']
-    		);
-    		
-    		// send email from file
-    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-        
-            // return a json response
-            return new Tonic\Response(Tonic\Response::OK); 
-                
-        }
-        else{
-            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
-        }
-    }
-}
-
-/**
- * This class defines an example resource that is wired into the URI /example
- * @uri /site/subscribe/paypal
- */
-class SiteSubscribePaypalResource extends Tonic\Resource {
-
-    /**
-     * @method POST
-     */
-    function post() {
-    
-    	parse_str($this->request->data, $request);
-    	
-    	$txn_type = $request['txn_type'];
-    	$status = $request['payer_status'];
-    	
-    	$email = $request['payer_email'];
-		$payerId = $request['payer_id'];
-		$item_name = $request['item_name'];
-		
-		// explode custom (siteId-plan)
-		$custom = explode('//', $request['custom']);
-		
-		// get site and plan
-		$siteId = $custom[0];
-		$plan = $custom[1];
-		
-		// parse domain
-		preg_match('#\((.*?)\)#', $item_name, $match);
-		$domain = $match[1];
-				
-	    // get reference to site
-	    $site = Site::GetBySiteId($siteId);
-
-		// response was "VERIFIED"
-		if($status == 'verified' && $txn_type == 'subscr_signup'){
-			
-		    $provider = 'PayPal';
-		    $status = 'Active';
-		    $subscriptionId = $payerId;
-		    $customerId = $email;
-		    
-		    // subscribe to a plan
-			Site::Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId);
-			
-			// send email to user
-			if(NEW_SUBSCRIPTION_EMAIL == true){
-			
-				// send success email to user
-				$to = $site['PrimaryEmail'];
-	    		$from = REPLY_TO;
-	    		$fromName = REPLY_TO_NAME;
-	    		$subject = NEW_SUBSCRIPTION_EMAIL_SUBJECT;
-	    		$file = NEW_SUBSCRIPTION_EMAIL_FILE;
-	 
-	    		$replace = array(
-	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-	    			'{{brand}}' => BRAND,
-	    			'{{reply-to}}' => REPLY_TO
-	    		);
-	    		
-	    		// send 
-	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		}
-    		
-    		// send email to admin
-			if(NEW_SUBSCRIBER_EMAIL == true){
-			
-	    		// send details email to admin
-				$to = REPLY_TO;
-	    		$from = REPLY_TO;
-	    		$fromName = REPLY_TO_NAME;
-	    		$subject = NEW_SUBSCRIBER_EMAIL_SUBJECT;
-	    		$file = NEW_SUBSCRIBER_EMAIL_FILE;
-	 
-	    		$replace = array(
-	    			'{{brand-logo}}' => '<img src="'.BRAND_LOGO.'" style="max-height:50px">',
-	    			'{{brand}}' => BRAND,
-	    			'{{reply-to}}' => REPLY_TO,
-	    			'{{domain}}' => $domain,
-	    			'{{siteid}}' => $site['SiteId'],
-	    			'{{friendlyid}}' => $site['FriendlyId'],
-	    			'{{provider}}' => $provider,
-	    			'{{customerid}}' => $customerId
-	    		);
-	    		
-	    		// send email from file
-	    		Utilities::SendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-    		}
-    		
-  
-		} else {
-		    // IPN response was "INVALID"\
-		}
-
-        $response = new Tonic\Response(Tonic\Response::OK);
-        $response->contentType = 'text/HTML';
-        $response->body = 'Yah!!!';
-
-        return $response;
-    }
-}
-
 
 
 ?>

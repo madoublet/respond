@@ -360,23 +360,13 @@ class Publish
 			copy($configure_src, $configure_dest);
 		}
 		
-		// copy files
-		if(FILES_ON_S3 == true){  // copy files to S3
+		// copy files locally
+		$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files/';
 		
-			$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files';
-			
-			// deploy directory to S3
-			S3::DeployDirectory($site, $files_src, 'files/');
-		
-		}
-		else{ // copy files locally
-			$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files/';
-			
-			if(file_exists($files_src)){
-				$files_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/';
-	
-				Utilities::CopyDirectory($files_src, $files_dest);
-			}
+		if(file_exists($files_src)){
+			$files_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/';
+
+			Utilities::CopyDirectory($files_src, $files_dest);
 		}
 		
 		// copy resources
@@ -434,22 +424,8 @@ class Publish
 		}
 		
 		// set imagesURL
-		if($env == 'local'){  // if it is locally deployed
-		
-			$imagesURL = $site['Domain'].'/';
+		$imagesURL = $site['Domain'].'/';
 			
-			// if files are stored on S3
-			if(FILES_ON_S3 == true){
-				$bucket = $site['Bucket'];
-				$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL).'/';
-				$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-			}
-			
-		}
-		else{ // if the deployment is on S3
-			$imagesURL = '/';
-		}
-		
 		// set iconUrl
 		$iconUrl = '';
 		
@@ -1165,13 +1141,6 @@ class Publish
 		
 		// set imaages URL
 		$imagesURL = $site['Domain'].'/';
-			
-		// if files are stored on S3
-		if(FILES_ON_S3 == true){
-			$bucket = $site['Bucket'];
-			$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL).'/';
-			$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-		}
 		
 		// set iconURL
 		$iconURL = '';

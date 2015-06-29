@@ -83,7 +83,7 @@ respond.editor.setup = function(config){
 		url: config.api + '/page/content/retrieve',
 		type: 'POST',
 		beforeSend : function(xhr) {
-		 	xhr.setRequestHeader('Authorization', 'Bearer ' + window.sessionStorage.token);
+		 	xhr.setRequestHeader('X-Auth', 'Bearer ' + window.sessionStorage.token);
 	    },
 		data: {pageId: this.pageId},
 		success: function(data){
