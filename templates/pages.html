@@ -40,7 +40,7 @@
     </nav>
   
     <section id="trial-notice" class="notice" ng-if="site.Status == 'Trial'">
-    	<a>{{'trial_message' | i18next}}</a>
+    	<a href="{{setup.subscribeLink}}">{{setup.trialMessage | i18next}}</a>
     </section>
     
     <menu>

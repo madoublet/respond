@@ -205,14 +205,8 @@ class SiteCreateResource extends Tonic\Resource {
     			
     		}
     		
-    		// create the bucket name
-    		$bucket = str_replace('{{site}}', $friendlyId, BUCKET_NAME);
-    		
-    		// set default URL mode
-    		$urlMode = 'static';
-    		
             // add the site
-    	    $site = Site::Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $altLogoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
+    	    $site = Site::Add($domain, $name, $friendlyId, $logoUrl, $altLogoUrl, $theme, $email, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail);
     	                
             // add the admin
             if($email != ''){
@@ -472,8 +466,6 @@ class SiteSaveResource extends Tonic\Resource {
             $showLogin = $request['showLogin'];
             $showSearch = $request['showSearch'];
             
-            $urlMode = $request['urlMode'];
-            
             $weightUnit = $request['weightUnit'];
             $shippingCalculation = $request['shippingCalculation'];
             $shippingRate = $request['shippingRate'];
@@ -520,7 +512,7 @@ class SiteSaveResource extends Tonic\Resource {
 
 			// edit site
             Site::Edit($token->SiteId, $name, $domain, $primaryEmail, $timeZone, $language, $direction, 
-            	$showCart, $showSettings, $showLanguages, $showLogin, $showSearch, $urlMode,
+            	$showCart, $showSettings, $showLanguages, $showLogin, $showSearch,
             	$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, 
             	$taxRate, $payPalId, $payPalUseSandbox, 
             	$welcomeEmail, $receiptEmail,
@@ -568,13 +560,12 @@ class SiteEditAdminResource extends Tonic\Resource {
 	
 	            $siteId = $request['siteId'];
 	            $domain = $request['domain'];
-	            $bucket = $request['bucket'];
 	            $status = $request['status'];
 	            $fileLimit = $request['fileLimit'];
 	            $userLimit = $request['userLimit'];
 	            
 	            // edit site
-	            Site::EditAdmin($siteId, $domain, $bucket, $status, $fileLimit, $userLimit);
+	            Site::EditAdmin($siteId, $domain, $status, $fileLimit, $userLimit);
 	            
 	            return new Tonic\Response(Tonic\Response::OK);
 			
@@ -736,6 +727,50 @@ class SiteListAllResource extends Tonic\Resource {
 
     }
 
+}
+
+/**
+ * API call to pay for a subscription
+ * @uri /site/subscription
+ */
+class SiteSubscriptionResource extends Tonic\Resource {
+
+    /**
+     * @method POST
+     */
+    function post() {
+    
+    	// get token
+		$token = Utilities::ValidateJWTToken();
+
+		// check if token is not null
+        if($token != NULL){ 
+
+        	// parse request
+        	parse_str($this->request->data, $request);
+        	
+        	$site = Site::GetBySiteId($token->SiteId);
+
+			$siteId = $site['siteId'];
+			$status =  $site['status'];
+			$plan = $request['plan'];
+			$provider = $request['provider'];
+			$subscriptionId = $request['subscriptionId'];
+			$customerId = $request['customerId'];
+			$userLimit = $request['userLimit'];
+			$fileLimit = $request['fileLimit'];
+			
+			// subscribe to a plan
+			Site::EditSubscription($siteId, $status, $plan, $provider, $subscriptionId, $customerId, $userLimit, $fileLimit);
+			
+            // return a json response
+            return new Tonic\Response(Tonic\Response::OK); 
+                
+        }
+        else{
+            return new Tonic\Response(Tonic\Response::UNAUTHORIZED);
+        }
+    }
 }
 
 

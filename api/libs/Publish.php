@@ -99,42 +99,28 @@ class Publish
 	public static function SetupHtaccess($site){
 	
 		$htaccess = SITES_LOCATION.'/'.$site['FriendlyId'].'/.htaccess';
-	
-		if($site['UrlMode'] == 'html5'){
-			
-			$contents = 'Options -Indexes'.PHP_EOL.
-				'RewriteEngine On'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-				'RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)'.PHP_EOL.
-				'RewriteRule (.*) index.html [L]';
-			
-
-			file_put_contents($htaccess, $contents); // save to file			
-		}
-		else if($site['UrlMode'] == 'static'){
-						
-			$contents = 'Options -Indexes'.PHP_EOL.
-				'<IfModule mod_rewrite.c>'.PHP_EOL.
-				'RewriteEngine On'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
-				'ErrorDocument 404 /page/error'.PHP_EOL.
-				'</IfModule>'.PHP_EOL.
-				'<IfModule mod_expires.c>'.PHP_EOL.
-				'ExpiresActive On '.PHP_EOL.
-				'ExpiresDefault "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/x-icon "access plus 1 year"'.PHP_EOL.
-				'ExpiresByType image/gif "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/png "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/jpg "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/jpeg "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType text/css "access 1 month"'.PHP_EOL.
-				'ExpiresByType application/javascript "access plus 1 year"'.PHP_EOL.
-				'</IfModule>';	
-			
-			file_put_contents($htaccess, $contents); // save to file
-		}
+					
+		$contents = 'Options -Indexes'.PHP_EOL.
+			'<IfModule mod_rewrite.c>'.PHP_EOL.
+			'RewriteEngine On'.PHP_EOL.
+			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+			'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
+			'ErrorDocument 404 /page/error'.PHP_EOL.
+			'</IfModule>'.PHP_EOL.
+			'<IfModule mod_expires.c>'.PHP_EOL.
+			'ExpiresActive On '.PHP_EOL.
+			'ExpiresDefault "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/x-icon "access plus 1 year"'.PHP_EOL.
+			'ExpiresByType image/gif "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/png "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/jpg "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/jpeg "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType text/css "access 1 month"'.PHP_EOL.
+			'ExpiresByType application/javascript "access plus 1 year"'.PHP_EOL.
+			'</IfModule>';	
+		
+		file_put_contents($htaccess, $contents); // save to file
+		
 		
 	}
 	
@@ -467,7 +453,6 @@ class Publish
 			'API' => API_URL,
 			'Name' => $site['Name'],
 			'ImagesUrl' => $imagesURL,
-			'UrlMode' => $site['UrlMode'],
 			'LogoUrl' => $logoUrl,
 			'AltLogoUrl' => $altLogoUrl,
 			'PayPalLogoUrl' => $payPalLogoUrl,

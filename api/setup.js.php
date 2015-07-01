@@ -1,5 +1,12 @@
 <?php 
-	include 'app.php';
+
+	// include setup
+    if(file_exists('../setup.local.php')){
+    	include '../setup.local.php';
+    }
+    else{
+    	include '../setup.php';
+    }
 	
 	$arr = Array(false => 'false', true => 'true');
 	
@@ -53,6 +60,9 @@ angular.module('respond.setup', [])
 	updateLink:				'<?php print UPDATE_LINK; ?>',
 	copy: 					'<?php print COPY; ?>',
 	email:					'<?php print EMAIL; ?>',
+	updateLink:				'<?php print SUBSCRIBE_LINK; ?>',
+	subscribeLink:			'<?php print SUBSCRIBE_LINK; ?>',
+	trialMessage:			'<?php print TRIAL_MESSAGE; ?>',
 	
 	// themes 
 	themes:					'<?php print THEMES_FOLDER; ?>',

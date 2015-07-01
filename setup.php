@@ -51,11 +51,17 @@
 	/*  ADVANCED SETUP - MESSAGING      */
 	/************************************/
 	
-	// Information on upgrading site to latest versino
+	// Information on upgrading site to latest version
 	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
 	
-	// system message (shown at login if not blank)
+	// System message (shown at login if not blank)
 	define('SYSTEM_MESSAGE', '');
+	
+	// A link to direct trial accounts where to subscribe
+	define('SUBSCRIBE_LINK', '');
+	
+	// Information on upgrading site to latest version
+	define('TRIAL_MESSAGE', 'Thank you for trying Respond. Click to subscribe!');
 	
 	
 	/************************************/
@@ -184,5 +190,18 @@
 	
 	// Set default as UTC
 	date_default_timezone_set('UTC');
+	
+	
+	/************************************/
+	/*  DEBUGGING                       */
+	/************************************/
+    
+    // Debugging
+	define('DEBUG', true);
+
+	if(DEBUG){
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+	}
 	
 ?>
