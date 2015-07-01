@@ -271,14 +271,7 @@ class Utilities
 		  }
 		  
 		  // set URL divider based on URL mode
-		  $divider = '/#/';
-		  
-		  if($site['UrlMode'] == 'hashbang'){
-			  $divider = '/!#/';
-		  }
-		  else if($site['UrlMode'] == 'html5' || $site['UrlMode'] == 'static') {
-		  		$divider = '/';
-		  }
+		  $divider = '/';
 		  
 		  // build url
           if($row['PageTypeId']==-1){
