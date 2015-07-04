@@ -1208,7 +1208,7 @@ respond.editor.getContent = function(){
 	  	else{
 		  	// row HTML
 		  	html += '<div id="'+id+'" class="block' + cssclass + '" ' +
-	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle +
+	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
