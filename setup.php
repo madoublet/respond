@@ -122,7 +122,7 @@
 	define('DEFAULT_USER_LIMIT', 5);
 	
 	// default file limit (in MBs)
-	define('DEFAULT_FILE_LIMIT', 250)
+	define('DEFAULT_FILE_LIMIT', 250);
 	
 	/************************************/
 	/*  ADVANCED SETUP - CORS           */
