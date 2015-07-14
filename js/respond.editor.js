@@ -423,10 +423,10 @@ respond.editor.parseHTML = function(){
 		  		else if(colClassName.indexOf('col-md-6') != -1){
 			  		colClassName = 'col flex-50';
 		  		}
-		  		else if(colClassName.indexOf('col-md-3') != -1){
+		  		else if(colClassName.indexOf('col-md-4') != -1){
 			  		colClassName = 'col flex-33';
 		  		}
-		  		else if(colClassName.indexOf('col-md-4') != -1){
+		  		else if(colClassName.indexOf('col-md-3') != -1){
 			  		colClassName = 'col flex-25';
 		  		}
 		  		else if(colClassName.indexOf('col-md-9') != -1){
@@ -1235,10 +1235,10 @@ respond.editor.getContent = function(){
 		  		else if(className.indexOf('flex-50') != -1){
 			  		className = 'col col-md-6';
 		  		}
-		  		else if(className.indexOf('flex-33') != -1){
+		  		else if(className.indexOf('flex-25') != -1){
 			  		className = 'col col-md-3';
 		  		}
-		  		else if(className.indexOf('flex-25') != -1){
+		  		else if(className.indexOf('flex-33') != -1){
 			  		className = 'col col-md-4';
 		  		}
 		  		else if(className.indexOf('flex-66') != -1){
