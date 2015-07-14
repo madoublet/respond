@@ -2521,8 +2521,8 @@ body.content{}
 		display: none;
 	}
 	
-	body.content .editor.container{
-		width: 100%;
+	.content-actions{
+	    width: calc(100%);
 	}
   
 }
@@ -4347,9 +4347,6 @@ body.content{
 			color: #99B2B7;
 		}
 
-@media (min-width: 768px){
-
-}
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) { 
@@ -4364,6 +4361,11 @@ body.content{
 	
 	.editor .block div.col{
 		margin-bottom: 10px !important;
+	}
+	
+	.editor.container{
+		width: calc(100% - 20px);
+		margin-right: 10px;
 	}
   
 }
