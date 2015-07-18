@@ -1173,19 +1173,19 @@ respond.editor.getContent = function(){
 	  	
 	  	// set padding
 	  	if(paddingTop != '' && paddingTop != 'undefined'){
-		  	padding += 'paddingtop="' + paddingTop + '" '
+		  	padding += 'paddingtop="' + paddingTop + '" ';
 	  	}
 	  	
 	  	if(paddingRight != '' && paddingRight != 'undefined'){
-		  	padding += 'paddingright="' + paddingRight + '" '
+		  	padding += 'paddingright="' + paddingRight + '" ';
 	  	}
 	  	
 	  	if(paddingBottom != '' && paddingBottom != 'undefined'){
-		  	padding += 'paddingbottom="' + paddingBottom + '" '
+		  	padding += 'paddingbottom="' + paddingBottom + '" ';
 	  	}
 	  	
 	  	if(paddingLeft != '' && paddingLeft != 'undefined'){
-		  	padding += 'paddingleft="' + paddingLeft + '" '
+		  	padding += 'paddingleft="' + paddingLeft + '" ';
 	  	}
 	  	
 	  	// check undefined
