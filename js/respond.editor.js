@@ -1040,8 +1040,6 @@ respond.editor.getTranslations = function(content){
 		
 			// get content to be translated
 			var html = $(els[x]).html();
-			
-			//alert('id=' + id + ' html=' + html);
 		
 			// trim content
 			html = $.trim(html);
