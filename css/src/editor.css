@@ -168,25 +168,64 @@ body.content{
 		display: flex;
 	}
 	
-		/* flex widths */
+		/* flex width - .col-md-12 */
 		.editor .block .flex-100{
 			width: 100%;
 		}
 		
+		/* flex width - .col-md-11 */
+		.editor .block .flex-91{
+			width: 91.666%;
+		}
+		
+		/* flex width - .col-md-10 */
+		.editor .block .flex-83{
+			width: 83.333%;
+		}
+		
+		/* flex width - .col-md-9 */
+		.editor .block .flex-75{
+			width: 75%;
+		}
+		
+		/* flex width - .col-md-8 */
+		.editor .block .flex-66{
+			width: 66.666%;
+		}
+		
+		/* flex width - .col-md-7 */
+		.editor .block .flex-58{
+			width: 58.333%;
+		}
+		
+		/* flex width - .col-md-6 */
 		.editor .block .flex-50{
 			width: 50%;
 		}
 		
+		/* flex width - .col-md-5 */
+		.editor .block .flex-41{
+			width: 41.666%;
+		}
+		
+		/* flex width - .col-md-4 */
 		.editor .block .flex-33{
 			width: 33.33333%;
 		}
 		
-		.editor .block .flex-66{
-			width: 66.66666%;
-		}
-	
+		/* flex width - .col-md-3 */
 		.editor .block .flex-25{
 			width: 25%;
+		}
+		
+		/* flex width - .col-md-2 */
+		.editor .block .flex-16{
+			width: 16.666%;
+		}
+		
+		/* flex width - .col-md-1 */
+		.editor .block .flex-8{
+			width: 8.333%;
 		}
 	
 		.editor .block div.respond-p[data-cssclass~=text-center] div, 

@@ -197,10 +197,17 @@ respond.utility.layout = {
 				
 				// replace with flexbox classes for columns
 				html = utilities.replaceAll(html, 'col-md-12', 'flex-100');
+				html = utilities.replaceAll(html, 'col-md-11', 'flex-91');
+				html = utilities.replaceAll(html, 'col-md-10', 'flex-83');
+				html = utilities.replaceAll(html, 'col-md-9', 'flex-75');
+				html = utilities.replaceAll(html, 'col-md-8', 'flex-66');
+				html = utilities.replaceAll(html, 'col-md-7', 'flex-58');
 				html = utilities.replaceAll(html, 'col-md-6', 'flex-50');
-				html = utilities.replaceAll(html, 'col-md-3', 'flex-25');
+				html = utilities.replaceAll(html, 'col-md-5', 'flex-41');
 				html = utilities.replaceAll(html, 'col-md-4', 'flex-33');
-				html = utilities.replaceAll(html, 'col-md-9', 'flex-66');
+				html = utilities.replaceAll(html, 'col-md-3', 'flex-25');
+				html = utilities.replaceAll(html, 'col-md-2', 'flex-16');
+				html = utilities.replaceAll(html, 'col-md-1', 'flex-8');
 				
 				// append to editor
 				$(respond.editor.el).append(

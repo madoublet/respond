@@ -416,12 +416,30 @@ respond.editor.parseHTML = function(){
 				customColClassName = utilities.replaceAll(customColClassName, 'col-md-9', '');
 				customColClassName = utilities.replaceAll(customColClassName, 'col ', '');
 				
-				// allowed columns 12, 6, 3, 4, 9
+				// convert Bootstrap classes to Flex columns
 		  		if(colClassName.indexOf('col-md-12') != -1){
 			  		colClassName = 'col flex-100';
 		  		}
+		  		else if(colClassName.indexOf('col-md-11') != -1){
+			  		colClassName = 'col flex-91';
+		  		}
+		  		else if(colClassName.indexOf('col-md-10') != -1){
+			  		colClassName = 'col flex-83';
+		  		}
+		  		else if(colClassName.indexOf('col-md-9') != -1){
+			  		colClassName = 'col flex-75';
+		  		}
+		  		else if(colClassName.indexOf('col-md-8') != -1){
+			  		colClassName = 'col flex-66';
+		  		}
+		  		else if(colClassName.indexOf('col-md-7') != -1){
+			  		colClassName = 'col flex-58';
+		  		}
 		  		else if(colClassName.indexOf('col-md-6') != -1){
 			  		colClassName = 'col flex-50';
+		  		}
+		  		else if(colClassName.indexOf('col-md-5') != -1){
+			  		colClassName = 'col flex-41';
 		  		}
 		  		else if(colClassName.indexOf('col-md-4') != -1){
 			  		colClassName = 'col flex-33';
@@ -429,8 +447,11 @@ respond.editor.parseHTML = function(){
 		  		else if(colClassName.indexOf('col-md-3') != -1){
 			  		colClassName = 'col flex-25';
 		  		}
-		  		else if(colClassName.indexOf('col-md-9') != -1){
-			  		colClassName = 'col flex-66';
+		  		else if(colClassName.indexOf('col-md-2') != -1){
+			  		colClassName = 'col flex-16';
+		  		}
+		  		else if(colClassName.indexOf('col-md-1') != -1){
+			  		colClassName = 'col flex-8';
 		  		}
 				
 				// trim whitespace
@@ -1151,19 +1172,19 @@ respond.editor.getContent = function(){
 	  	}
 	  	
 	  	// set padding
-	  	if(paddingTop != ''){
+	  	if(paddingTop != '' && paddingTop != 'undefined'){
 		  	padding += 'paddingtop="' + paddingTop + '" '
 	  	}
 	  	
-	  	if(paddingRight != ''){
+	  	if(paddingRight != '' && paddingRight != 'undefined'){
 		  	padding += 'paddingright="' + paddingRight + '" '
 	  	}
 	  	
-	  	if(paddingBottom != ''){
+	  	if(paddingBottom != '' && paddingBottom != 'undefined'){
 		  	padding += 'paddingbottom="' + paddingBottom + '" '
 	  	}
 	  	
-	  	if(paddingLeft != ''){
+	  	if(paddingLeft != '' && paddingLeft != 'undefined'){
 		  	padding += 'paddingleft="' + paddingLeft + '" '
 	  	}
 	  	
@@ -1198,16 +1219,26 @@ respond.editor.getContent = function(){
 	  	if(nested == 'nested'){
 		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="container' + containerClassHtml + '">';
 		  	
+		  	// remove any duplicate row or block tags
+		  	cssclass = utilities.replaceAll(cssclass, 'block', '');
+		  	cssclass = utilities.replaceAll(cssclass, 'row', '');
+		  	cssclass = $.trim(cssclass);
+		  	
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="block row ' + cssclass + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
 	  	}
 	  	else{
+		  	// remove any duplicate row or block tags
+		  	cssclass = utilities.replaceAll(cssclass, 'block', '');
+		  	cssclass = utilities.replaceAll(cssclass, 'row', '');
+		  	cssclass = $.trim(cssclass);
+		  	
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="block row ' + cssclass + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
@@ -1232,17 +1263,38 @@ respond.editor.getContent = function(){
 		  		if(className.indexOf('flex-100') != -1){
 			  		className = 'col col-md-12';
 		  		}
+		  		else if(className.indexOf('flex-91') != -1){
+			  		className = 'col col-md-11';
+		  		}
+		  		else if(className.indexOf('flex-83') != -1){
+			  		className = 'col col-md-10';
+		  		}
+		  		else if(className.indexOf('flex-75') != -1){
+			  		className = 'col col-md-9';
+		  		}
+		  		else if(className.indexOf('flex-66') != -1){
+			  		className = 'col col-md-8';
+		  		}
+		  		else if(className.indexOf('flex-58') != -1){
+			  		className = 'col col-md-7';
+		  		}
 		  		else if(className.indexOf('flex-50') != -1){
 			  		className = 'col col-md-6';
 		  		}
-		  		else if(className.indexOf('flex-25') != -1){
-			  		className = 'col col-md-3';
+		  		else if(className.indexOf('flex-41') != -1){
+			  		className = 'col col-md-5';
 		  		}
 		  		else if(className.indexOf('flex-33') != -1){
 			  		className = 'col col-md-4';
 		  		}
-		  		else if(className.indexOf('flex-66') != -1){
-			  		className = 'col col-md-9';
+		  		else if(className.indexOf('flex-25') != -1){
+			  		className = 'col col-md-3';
+		  		}
+		  		else if(className.indexOf('flex-16') != -1){
+			  		className = 'col col-md-2';
+		  		}
+		  		else if(className.indexOf('flex-8') != -1){
+			  		className = 'col col-md-1';
 		  		}
 		  		
 		  		// append custom class to class
