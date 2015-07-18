@@ -237,7 +237,6 @@
 		
 		// shows the images dialog
 		$scope.showAddImage = function(action){
-		
 			$scope.retrieveImages();
 			$('#imagesDialog').attr('data-action', action);
 			$('#imagesDialog').modal('show');

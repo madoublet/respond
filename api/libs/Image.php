@@ -14,32 +14,19 @@ class Image
 		$thumb = Image::CreateThumb($site, $image, $filename, $folder); 
 		
 		// save the image to S3
-		if(FILES_ON_S3 == true){
+		$directory = SITES_LOCATION.'/'.$site['FriendlyId'].'/'.$folder.'/';
+	
+		$full = $directory.$filename;
 		
-			$meta = array(
-				'width'		=> $curr_w,
-				'height'	=> $curr_h
-				);
-		
-			// save file with meta-data
-			S3::SaveFile($site, $type, $filename, $image, $meta, $folder);
-		
+		// create a directory
+		if(!file_exists($directory)){
+			mkdir($directory, 0777, true);	
 		}
-		else{ // save the image locally
 		
-			$directory = SITES_LOCATION.'/'.$site['FriendlyId'].'/'.$folder.'/';
+		// just copy the image
+		copy($image, $full);
+			
 		
-			$full = $directory.$filename;
-			
-			// create a directory
-			if(!file_exists($directory)){
-				mkdir($directory, 0777, true);	
-			}
-			
-			// just copy the image
-			copy($image, $full);
-			
-		}
 		
 		// return meta data
 		return array(
@@ -136,88 +123,28 @@ class Image
 		switch($ext){ 
 			case 'jpg':{
 			
-				// save file on S3
-				if(FILES_ON_S3 == true){
-				
-					// write image and copy buffer
-					ob_start();
-				
-					imagejpeg($dst_img, NULL, 100);
-				
-					$contents = ob_get_contents();
-					ob_end_clean();
-				
-					$meta = array(
-						'width'		=> $target_w,
-						'height'	=> $target_h
-						);
-				
-					S3::SaveContents($site, $type, 'thumbs/'.$filename, $contents, $meta, $folder);
-				}
-				else{  // save file locally
-					imagejpeg($dst_img, $full, 100);
-				}
+				imagejpeg($dst_img, $full, 100);
 			
 				break;
 			}
 			case 'png':{
 			
-				// save file on S3
-				if(FILES_ON_S3 == true){
+				// save file locally
+				imagepng($dst_img, $full);
 				
-					// write image and copy buffer
-					ob_start();
-				
-					imagepng($dst_img, NULL);
-				
-					$contents = ob_get_contents();
-					ob_end_clean();
-					
-					$meta = array(
-						'width'		=> $target_w,
-						'height'	=> $target_h
-						);
-				
-					S3::SaveContents($site, $type, 'thumbs/'.$filename, $contents, $meta, $folder);
-				}
-				else{  // save file locally
-					imagepng($dst_img, $full);
-				}
-		
 				break;
 			}
 			case 'gif':{
 			
-				// save file on S3
-				if(FILES_ON_S3 == true){
-				
-					// write image and copy buffer
-					ob_start();
-				
-					imagegif($dst_img, null);
-					
-					$meta = array();
-				
-					$contents = ob_get_contents();
-					ob_end_clean();
-				
-					S3::SaveContents($site, $type, 'thumbs/'.$filename, $contents, $meta, $folder);
-				}
-				else{  // save file locally
-					imagegif($dst_img, $full);
-				}
+				// save file locally
+				imagegif($dst_img, $full);
 			
 				break;
 			}
 			case 'svg':{
 			
-				// save file on S3
-				if(FILES_ON_S3 == true){
-					S3::SaveFile($site, $type, 'thumbs/'.$filename, $image, $folder);
-				}
-				else{  // save file locally
-					copy($image, $full);
-				}
+				// save file locally
+				copy($image, $full);
 			
 				break;
 			}

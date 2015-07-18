@@ -9,7 +9,7 @@
 	 
 		  	$(element).dropzone({ 
 	            url: Setup.api + '/file/post',
-	            headers: { 'Authorization': 'Bearer ' + window.sessionStorage.token},
+	            headers: { 'X-Auth': 'Bearer ' + window.sessionStorage.token},
 	            clickable: true,
 	            sending: function(file, xhr, formData){
 	            
@@ -32,7 +32,7 @@
 					File.invalidateCache();
 	            
 	                var image = response;
-	                
+	          
 	                if(attrs.target == 'editor'){
 	                
 	                	scope.image = response;
