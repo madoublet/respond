@@ -1121,8 +1121,11 @@ class Publish
 		$html = str_replace('{{page.LastName}}', $lastName, $html);
 		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
 		
-		// add a timestamp
+		// replace timestamp
 		$html = str_replace('{{timestamp}}', time(), $html);
+		
+		// replace year
+		$html = str_replace('{{year}}', date('Y'), $html);
 		
 		// set imaages URL
 		$imagesURL = $site['Domain'].'/';
