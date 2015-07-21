@@ -895,9 +895,6 @@ class Publish
 			if($page['IncludeOnly'] == 0){
 				Publish::PublishStaticPage($page, $site, $preview, $remove_draft);
 			}
-				
-			
-			
 		}
 	}
 	
@@ -1091,6 +1088,8 @@ class Publish
 		$html = str_replace('{{site.Language}}', $site['Language'], $html);
 		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
 		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
+		$html = str_replace('{{site.EmbeddedCodeHead}}', $site['EmbeddedCodeHead'], $html);
+		$html = str_replace('{{site.EmbeddedCodeBottom}}', $site['EmbeddedCodeBottom'], $html);
 		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
 		
 		// meta data
@@ -1127,7 +1126,7 @@ class Publish
 		// replace year
 		$html = str_replace('{{year}}', date('Y'), $html);
 		
-		// set imaages URL
+		// set images URL
 		$imagesURL = $site['Domain'].'/';
 		
 		// set iconURL

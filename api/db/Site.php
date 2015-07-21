@@ -79,7 +79,7 @@ class Site{
 		$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox,
 		$welcomeEmail, $receiptEmail,
 		$isSMTP, $SMTPHost, $SMTPAuth, $SMTPUsername, $SMTPSecure, 
-		$formPublicId, $formPrivateId){
+		$formPublicId, $formPrivateId, $embeddedCodeHead, $embeddedCodeBottom){
 
 		try{
             
@@ -113,7 +113,9 @@ class Site{
 					SMTPUsername = ?, 
 					SMTPSecure = ?,
             		FormPublicId=?,
-            		FormPrivateId=?
+            		FormPrivateId=?,
+                    EmbeddedCodeHead=?,
+                    EmbeddedCodeBottom=?
         			WHERE SiteId = ?";
      
             $s = $db->prepare($q);
@@ -145,7 +147,9 @@ class Site{
 			$s->bindParam(26, $SMTPSecure); 
             $s->bindParam(27, $formPublicId);
             $s->bindParam(28, $formPrivateId);
-            $s->bindParam(29, $siteId);
+            $s->bindParam(29, $embeddedCodeHead);
+            $s->bindParam(30, $embeddedCodeBottom);
+            $s->bindParam(31, $siteId);
             
             $s->execute();
             
@@ -629,7 +633,8 @@ class Site{
 							FormPublicId, FormPrivateId,
 							Status, Plan, Provider, SubscriptionId, CustomerId,
 							CanDeploy, UserLimit, FileLimit,
-							LastLogin, Version, Created
+							LastLogin, Version, Created, 
+                            EmbeddedCodeHead, EmbeddedCodeBottom
 							FROM Sites WHERE Siteid = ?";
                     
             $s = $db->prepare($q);

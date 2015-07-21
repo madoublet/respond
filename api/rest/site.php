@@ -486,6 +486,9 @@ class SiteSaveResource extends Tonic\Resource {
             $formPublicId = $request['formPublicId'];
             $formPrivateId = $request['formPrivateId'];
             
+            $embeddedCodeHead = $request['embeddedCodeHead'];
+            $embeddedCodeBottom = $request['embeddedCodeBottom'];
+            
             $SMTPPasswordIV = '';
             
             // encyrpt password, #ref: http://stackoverflow.com/questions/10916284/how-to-encrypt-decrypt-data-in-php
@@ -517,7 +520,7 @@ class SiteSaveResource extends Tonic\Resource {
             	$taxRate, $payPalId, $payPalUseSandbox, 
             	$welcomeEmail, $receiptEmail,
 				$isSMTP, $SMTPHost, $SMTPAuth, $SMTPUsername, $SMTPSecure,
-            	$formPublicId, $formPrivateId);
+            	$formPublicId, $formPrivateId, $embeddedCodeHead, $embeddedCodeBottom);
             
        
             Publish::PublishContent($token->SiteId);
