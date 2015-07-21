@@ -159,7 +159,9 @@
 				SMTPPassword: site.SMTPPassword,
 				SMTPSecure: site.SMTPSecure,
 				formPublicId: site.FormPublicId,
-				formPrivateId: site.FormPrivateId
+				formPrivateId: site.FormPrivateId,
+				embeddedCodeHead: site.EmbeddedCodeHead,
+				embeddedCodeBottom: site.EmbeddedCodeBottom
 			}
 		
 			// set post to URL Encoded

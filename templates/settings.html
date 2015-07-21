@@ -19,8 +19,7 @@
 			<li data-target="#section-display"><a>{{'Display' | i18next}}</a></li>
 			<li data-target="#section-payments"><a>{{'Payments' | i18next}}</a></li>
 			<li data-target="#section-email"><a>{{'Email' | i18next}}</a></li>
-			<!-- future functionality
-			<li data-target="#section-advanced"><a>{{'Advanced' | i18next}}</a></li>-->
+			<li data-target="#section-advanced"><a>{{'Advanced' | i18next}}</a></li>
 		  </ul>
 		</div>
     </menu>
@@ -699,7 +698,8 @@
 		
 		<div id="section-advanced" class="hidden">
 			
-			<div class="form-group">
+			<!-- following recaptcha fields are reserved for future use -->
+			<!-- div class="form-group">
 				<label for="formPublicId" class="control-label">{{'reCaptcha Public ID' | i18next}}</label>
 				<div>
 					<input id="formPublicId" type="text" 
@@ -707,17 +707,39 @@
 						class="form-control">
 					<span class="help-block">{{'recaptcha_field_on_forms' | i18next}} <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
 				</div>
-			</div>
+			</div -->
 			
-			<div class="form-group">
+			<!-- div class="form-group">
 				<label for="formPrivateId" class="control-label">{{'reCaptcha Private ID' | i18next}}</label>
 				<div>
 					<input id="formPrivateId" type="text" 
 						ng-model="site.FormPrivateId" class="form-control">
 					<span class="help-block">{{'recaptcha_validate_field' | i18next}} <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a></span>
 				</div>
-			</div>
+			</div -->
 			
+			<div class="form-group">
+				<label for="embeddedCodeHead" class="control-label">{{'Additional Code to Output in Document Head' | i18next}}</label>
+				<div>
+					<textarea id="embeddedCodeHead" 
+						ng-model="site.EmbeddedCodeHead"
+						class="form-control large">
+					</textarea>
+					<span class="help-block">{{'Code entered here will be output in the &lt;head&gt; section of all pages. Make sure to enclose any JavaScript code in &lt;script&gt;&lt;/script&gt; tags.' | i18next}}</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="embeddedCodeBottom" class="control-label">{{'Additional Code to Output at End of Document' | i18next}}</label>
+				<div>
+					<textarea id="embeddedCodeBottom" 
+						ng-model="site.EmbeddedCodeBottom"
+						class="form-control large">
+					</textarea>
+					<span class="help-block">{{'Code entered here (such as Google Analytics code) will be output at the bottom of all pages. Make sure to enclose any JavaScript code in &lt;script&gt;&lt;/script&gt; tags.' | i18next}}</span>
+				</div>
+			</div>
+
 		</div>	
 		<!-- /.section-advanced -->
 		
