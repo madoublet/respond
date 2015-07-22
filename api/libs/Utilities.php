@@ -368,8 +368,9 @@ class Utilities
 			
 		}
 		
-		$mail->From = $from;
-		$mail->FromName = $fromName;
+		$mail->addReplyTo($from, $fromName); 		// Set Reply-To: header to the primary site email
+		$mail->From = EMAILS_FROM; 					// Set From: header to address specified in setup.php
+		$mail->FromName = EMAILS_FROM_NAME;
 		$mail->addAddress($to, '');
 		$mail->isHTML(true);
 		
@@ -410,8 +411,6 @@ class Utilities
 		$mail->Subject = $subject;
 		$mail->Body    = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
 		
-		echo 'send email';
-    
 		if(!$mail->send()) {
 		   return true;
 		}
