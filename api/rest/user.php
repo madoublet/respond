@@ -221,8 +221,8 @@ class UserForgotResource extends Tonic\Resource {
             
             // send email
             $to = $email;
-    		$from = REPLY_TO;
-    		$fromName = REPLY_TO_NAME;
+    		$from = EMAILS_FROM;
+    		$fromName = EMAILS_FROM_NAME;
     		$subject = BRAND.': Reset Password';
     		$file = APP_LOCATION.'/emails/reset-password.html';
     		
@@ -231,7 +231,7 @@ class UserForgotResource extends Tonic\Resource {
     		
     		$replace = array(
     			'{{brand}}' => BRAND,
-    			'{{reply-to}}' => REPLY_TO,
+    			'{{reply-to}}' => EMAILS_FROM,
     			'{{reset-url}}' => $resetUrl
     		);
     		
