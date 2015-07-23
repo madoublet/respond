@@ -16,7 +16,9 @@ Upgrading from version 5.0
 - Pull (or download) the latest version
 - Upgrade sites
 - Update SQL
+```
 alter table Sites add Column EmbeddedCodeHead text NULL default '';
 alter table Sites add Column EmbeddedCodeBottom text NULL default '';
+```
 
 License Information: http://respondcms.com/page/license
