@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `Sites` (
   `FormPrivateId` VARCHAR(240) DEFAULT '',
   `FormPublicId` VARCHAR(240) DEFAULT '',
   `EmbeddedCodeHead` TEXT DEFAULT '',
-  `EmbeddedCodeBottom` TEXT DEFAULT ''
+  `EmbeddedCodeBottom` TEXT DEFAULT '',
   `Status` varchar(10) DEFAULT 'Trial',
   `Plan` varchar(50) DEFAULT 'Trial',
   `Provider` varchar(50) DEFAULT '',
