@@ -20,9 +20,22 @@
 		// add a pagetype
 		pageType.add = function(toBeAdded){
 			
+			// get friendlyId
+			var friendlyId = toBeAdded.FriendlyId;
+			
+			// remove leading / (if exists)
+			if(friendlyId.charAt(0) == "/"){
+				friendlyId = friendlyId.substr(1);
+			}
+			
+			// remove trailing / (if exists)
+			if(friendlyId.charAt(friendlyId.length - 1) == "/"){
+				friendlyId = friendlyId.substr(0, friendlyId.length - 1);
+			}
+			
 			// set params
 			var params = {
-				friendlyId: toBeAdded.FriendlyId,
+				friendlyId: friendlyId,
 				layout: toBeAdded.Layout, 
 				stylesheet: toBeAdded.Stylesheet, 
 				isSecure: toBeAdded.IsSecure};
