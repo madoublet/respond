@@ -18,7 +18,12 @@
 		// attached
 		attached: function() {
 			
-			var url = this.url.replace('/', '.');
+			// replace '/' with '.'
+			var find = '/';
+			var re = new RegExp(find, 'g');
+			var url = this.url.replace(re, '.');
+			
+			
 			var context = this;
 			
 			// xhr

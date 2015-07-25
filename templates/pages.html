@@ -18,7 +18,7 @@
 		  	<li role="presentation"> 
     			<a ng-click="showAddPageType()"
     				tabindex="-1">
-    				{{'Add Type' | i18next}}
+    				{{'Add Path' | i18next}}
     			</a>
 		  	</li>
 		  	<li ng-if="current.PageTypeId != -1"
@@ -291,7 +291,7 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>{{'Remove Page Type' | i18next}}</h3>
+				<h3>{{'Remove Path' | i18next}}</h3>
 			</div>
 			
 			<div class="modal-body">
@@ -331,8 +331,8 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3 class="add">{{'Add Page Type' | i18next}}</h3>
-				<h3 class="edit">{{'Update Page Type' | i18next}}</h3>
+				<h3 class="add">{{'Add Path' | i18next}}</h3>
+				<h3 class="edit">{{'Update Path' | i18next}}</h3>
 			</div>
 			<!-- /.modal-header -->
 
@@ -341,11 +341,11 @@
 			<form name="pageTypeForm" novalidate>
 				
 				<div class="add form-group">
-					<label for="typeFriendlyId" class="control-label">{{'Friendly URL' | i18next}}</label>
+					<label for="typeFriendlyId" class="control-label">{{'Path' | i18next}}</label>
 					<input id="typeFriendlyId" type="text" 
 						ng-model="temp.FriendlyId"
-						value="" maxlength="50" class="form-control" required>
-					<span class="add help-block">e.g. http://respond.io/[friendly-url]/. {{'Must be lowercase with no spaces' | i18next}}</span>
+						value="" placeholder="sample/path" maxlength="50" class="form-control" required>
+					
 				</div>
 				
 				<div class="form-group">

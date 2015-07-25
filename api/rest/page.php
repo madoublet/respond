@@ -1504,10 +1504,11 @@ class PageListResource extends Tonic\Resource {
 
         parse_str($this->request->data, $request); // parse request
         $siteId = $request['siteId'];
-        $friendlyId = $request['type'];
+        $friendlyId = urldecode($request['type']);
         $pageSize = $request['pagesize'];
         $orderBy = $request['orderby'];
-        $current= $request['current'];        
+        $current= $request['current'];  
+        $tag = $request['tag'];           
 
         // get language
         $language = 'en';
@@ -1612,7 +1613,20 @@ class PageListResource extends Tonic\Resource {
                     'Tags' => $page['Tags']
                 );
             
-            array_push($pages, $item);
+            if($tag != ''){
+	            
+	           // echo 'tags='.$page['Tags'].' and tag='.$tag;
+	           // echo ' and pos='.strpos($page['Tags'], $tag);
+	            
+	            if(strpos($page['Tags'], $tag) !== false){
+		            array_push($pages, $item); 
+	            }
+	            
+            }
+            else{
+	           array_push($pages, $item); 
+            }
+            
         }
 
         // return a json response

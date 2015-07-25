@@ -936,7 +936,10 @@ class Publish
 			
 			// prepend the friendlyId to the fullname
 			if($pageType!=null){
-				$file = strtolower($pageType['FriendlyId']).'.'.$file;
+				
+				$path = str_replace('/', '.', $pageType['FriendlyId']);
+				
+				$file = strtolower($path).'.'.$file;
 			}
 			else{
 				$file = 'uncategorized.'.$file;
@@ -1007,8 +1010,13 @@ class Publish
 				$ctrl = str_replace('-', '', $ctrl);
 			}
 			
-			// set $base to the root of the director
-			$base = '../';
+			// explode friendlyid by '/'
+			$parts = explode('/', $pageType['FriendlyId']);
+			
+			// set base based on the depth
+			foreach($parts as $part){
+				$base .= '../';
+			}
 
 		}
         
@@ -1078,83 +1086,6 @@ class Publish
 			Page::RemoveDraft($page['PageId']);
 		
 		}
-
-		// replace mustaches syntax {{page.Description}} {{site.Name}}
-		$html = str_replace('{{page.Name}}', $page['Name'], $html);
-		$html = str_replace('{{page.Description}}', $page['Description'], $html);
-		$html = str_replace('{{page.Keywords}}', $page['Keywords'], $html);
-		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
-		$html = str_replace('{{site.Name}}', $site['Name'], $html);
-		$html = str_replace('{{site.Language}}', $site['Language'], $html);
-		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
-		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
-		$html = str_replace('{{site.EmbeddedCodeHead}}', $site['EmbeddedCodeHead'], $html);
-		$html = str_replace('{{site.EmbeddedCodeBottom}}', $site['EmbeddedCodeBottom'], $html);
-		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
-		
-		// meta data
-		$photo = '';
-		$firstName = '';
-		$lastName = '';
-		$lastModifiedDate = $page['LastModifiedDate'];
-		
-		// replace last modified
-		if($page['LastModifiedBy'] != NULL){
-			
-			// get user
-			$user = User::GetByUserId($page['LastModifiedBy']);
-			
-			// set user infomration
-			if($user != NULL){
-				$photo = $user['PhotoUrl'];
-				$firstName = $user['FirstName'];
-				$lastName = $user['LastName'];
-			}
-			
-		}
-		
-		
-		// set page information
-		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
-		$html = str_replace('{{page.FirstName}}', $firstName, $html);
-		$html = str_replace('{{page.LastName}}', $lastName, $html);
-		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
-		
-		// replace timestamp
-		$html = str_replace('{{timestamp}}', time(), $html);
-		
-		// replace year
-		$html = str_replace('{{year}}', date('Y'), $html);
-		
-		// set images URL
-		$imagesURL = $site['Domain'].'/';
-		
-		// set iconURL
-		$iconURL = '';
-		
-		if($site['IconUrl'] != ''){
-			$iconURL = $imagesURL.'files/'.$site['IconUrl'];
-		}
-		
-		// replace
-		$html = str_replace('ng-src', 'src', $html);
-		$html = str_replace('{{site.ImagesUrl}}', $imagesURL, $html);
-		$html = str_replace('{{site.ImagesURL}}', $imagesURL, $html);
-		$html = str_replace('{{site.IconUrl}}', $iconURL, $html);
-		
-		// set fullLogo
-		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
-		
-		// set altLogo (defaults to full logo if not available)
-		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
-			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
-		}
-		else{
-			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
-		}
-		
-		// update base
-		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
 		
 		// parse the html for menus
 		$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
@@ -1495,6 +1426,82 @@ class Publish
 		
 		}
 		/* foreach */
+		
+		// set page information
+		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
+		$html = str_replace('{{page.FirstName}}', $firstName, $html);
+		$html = str_replace('{{page.LastName}}', $lastName, $html);
+		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
+		
+		// replace timestamp
+		$html = str_replace('{{timestamp}}', time(), $html);
+		
+		// replace year
+		$html = str_replace('{{year}}', date('Y'), $html);
+		
+		// set images URL
+		$imagesURL = $site['Domain'].'/';
+		
+		// set iconURL
+		$iconURL = '';
+		
+		if($site['IconUrl'] != ''){
+			$iconURL = $imagesURL.'files/'.$site['IconUrl'];
+		}
+		
+		// replace
+		$html = str_replace('ng-src', 'src', $html);
+		$html = str_replace('{{site.ImagesUrl}}', $imagesURL, $html);
+		$html = str_replace('{{site.ImagesURL}}', $imagesURL, $html);
+		$html = str_replace('{{site.IconUrl}}', $iconURL, $html);
+		
+		// set fullLogo
+		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		
+		// set altLogo (defaults to full logo if not available)
+		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
+		}
+		else{
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		}
+		
+		// update base
+		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
+		
+		// replace mustaches syntax {{page.Description}} {{site.Name}}
+		$html = str_replace('{{page.Name}}', $page['Name'], $html);
+		$html = str_replace('{{page.Description}}', $page['Description'], $html);
+		$html = str_replace('{{page.Keywords}}', $page['Keywords'], $html);
+		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
+		$html = str_replace('{{site.Name}}', $site['Name'], $html);
+		$html = str_replace('{{site.Language}}', $site['Language'], $html);
+		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
+		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
+		$html = str_replace('{{site.EmbeddedCodeHead}}', $site['EmbeddedCodeHead'], $html);
+		$html = str_replace('{{site.EmbeddedCodeBottom}}', $site['EmbeddedCodeBottom'], $html);
+		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
+		
+		// meta data
+		$photo = '';
+		$firstName = '';
+		$lastName = '';
+		$lastModifiedDate = $page['LastModifiedDate'];
+		
+		// replace last modified
+		if($page['LastModifiedBy'] != NULL){
+			
+			// get user
+			$user = User::GetByUserId($page['LastModifiedBy']);
+			
+			// set user infomration
+			if($user != NULL){
+				$photo = $user['PhotoUrl'];
+				$firstName = $user['FirstName'];
+				$lastName = $user['LastName'];
+			}
+			
+		}
 	
 		// save the content to the published file
 		Utilities::SaveContent($dest, $file, $html);
