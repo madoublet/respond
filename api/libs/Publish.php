@@ -957,6 +957,25 @@ class Publish
 			$html = $page['Content'];
 		}
 		
+		if($html !== NULL){
+		
+			// parse the html for menus
+			$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+			
+			// generate the [render=publish] components
+			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
+			
+			// applies the style attributes to the $html
+			$html = Publish::ApplyStyleAttributes($html);
+			
+			// applies the mustache syntax
+			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
+		
+		}
+		else{
+			$html = '';
+		}
+		
 		// remove any drafts associated with the page
 		if($remove_draft==true){
 		
@@ -1017,7 +1036,7 @@ class Publish
 			foreach($parts as $part){
 				$base .= '../';
 			}
-
+			
 		}
         
         // create directory if it does not exist
@@ -1087,8 +1106,40 @@ class Publish
 		
 		}
 		
-		// parse the html for menus
-		$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+		if($html !== NULL){
+			
+			// parse the html for menus
+			$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+			
+			// generate the [render=publish] components
+			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
+			
+			// applies the style attributes to the $html
+			$html = Publish::ApplyStyleAttributes($html);
+			
+			// applies the mustache syntax
+			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
+		
+		}
+		else{
+			$html = '';
+		}
+		
+		// update base
+		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
+	
+		// save the content to the published file
+		Utilities::SaveContent($dest, $file, $html);
+		
+        return $dest.$file;
+        
+	}
+	
+	// generate the [render=publish] components
+	public static function GenerateRenderAtPublish($html, $site, $page){
+		
+		// set images URL
+		$imagesURL = $site['Domain'].'/';
 		
 		// build out the menus where render is set to publish
 		foreach($html->find('respond-menu[render=publish]') as $el){
@@ -1221,6 +1272,13 @@ class Publish
 			
 		}
 		/* foreach */
+		
+		return $html;
+		
+	}
+	
+	// applies the style attributes
+	public static function ApplyStyleAttributes($html){
 		
 		// replace background color
 		foreach($html->find('[backgroundcolor]') as $el){
@@ -1427,6 +1485,35 @@ class Publish
 		}
 		/* foreach */
 		
+		return $html;
+		
+	}
+	
+	
+	// applies the mustache syntax
+	public static function ApplyMustacheSyntax($html, $site, $page){
+		
+		// meta data
+		$photo = '';
+		$firstName = '';
+		$lastName = '';
+		$lastModifiedDate = $page['LastModifiedDate'];
+		
+		// replace last modified
+		if($page['LastModifiedBy'] != NULL){
+			
+			// get user
+			$user = User::GetByUserId($page['LastModifiedBy']);
+			
+			// set user infomration
+			if($user != NULL){
+				$photo = $user['PhotoUrl'];
+				$firstName = $user['FirstName'];
+				$lastName = $user['LastName'];
+			}
+			
+		}
+		
 		// set page information
 		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
 		$html = str_replace('{{page.FirstName}}', $firstName, $html);
@@ -1466,9 +1553,6 @@ class Publish
 			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
 		}
 		
-		// update base
-		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
-		
 		// replace mustaches syntax {{page.Description}} {{site.Name}}
 		$html = str_replace('{{page.Name}}', $page['Name'], $html);
 		$html = str_replace('{{page.Description}}', $page['Description'], $html);
@@ -1482,32 +1566,8 @@ class Publish
 		$html = str_replace('{{site.EmbeddedCodeBottom}}', $site['EmbeddedCodeBottom'], $html);
 		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
 		
-		// meta data
-		$photo = '';
-		$firstName = '';
-		$lastName = '';
-		$lastModifiedDate = $page['LastModifiedDate'];
+		return $html;
 		
-		// replace last modified
-		if($page['LastModifiedBy'] != NULL){
-			
-			// get user
-			$user = User::GetByUserId($page['LastModifiedBy']);
-			
-			// set user infomration
-			if($user != NULL){
-				$photo = $user['PhotoUrl'];
-				$firstName = $user['FirstName'];
-				$lastName = $user['LastName'];
-			}
-			
-		}
-	
-		// save the content to the published file
-		Utilities::SaveContent($dest, $file, $html);
-		
-        return $dest.$file;
-        
 	}
 	
 	// removes a draft of the page
