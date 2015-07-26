@@ -1,30 +1,28 @@
 <section class="main">
 
-	<nav>
+<nav>
         <a class="show-menu"></a>
-        
         <h1>{{'Roles' | i18next}}</h1>
         
         <button ng-click="showAddRole()"
        		class="primary-action">
 	   		{{'Add Role' | i18next}}
        </button>  
-        
-        <div class="dropdown more">
-		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
-		    <i class="fa fa-ellipsis-v"></i>
-		  </button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
-		  	<li role="presentation"> 
-    			<a ui-sref="app.users"
-    				tabindex="-1">
-    				{{'Users' | i18next}}
-    			</a>
-		  	</li>
-		  </ul>
-		</div>
     </nav>
     <!-- /nav -->
+    <menu>
+    	<div class="dropdown">
+    		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+		    <span id="settings-text">{{'Roles' | i18next}}</span>
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu dropdown-auto" role="menu" aria-labelledby="page-types" data-display="#settings-text">
+	  		<li><a ui-sref="app.users">{{'Users' | i18next}}</a></li>
+	  		<li class="active"><a>{{'Roles' | i18next}}</a></li>
+		</ul>
+	</div>
+    </menu>
+    <!-- /menu -->
 
     <div id="rolesList" class="list">
     	<div class="listItem" data-id="Admin">
