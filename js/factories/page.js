@@ -213,7 +213,6 @@
 				.then(function(res){
 					page.data.push(res.data);
 					
-					console.log(page.data);
 					return;
 				}, failureCallback)
 				.then(successCallback);

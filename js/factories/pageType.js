@@ -18,7 +18,7 @@
 		}
 		
 		// add a pagetype
-		pageType.add = function(toBeAdded){
+		pageType.add = function(toBeAdded, successCallback, failureCallback){
 			
 			// get friendlyId
 			var friendlyId = toBeAdded.FriendlyId;
@@ -40,18 +40,25 @@
 				stylesheet: toBeAdded.Stylesheet, 
 				isSecure: toBeAdded.IsSecure};
 			
-				
+			// set page type	
+			if(toBeAdded.PageTypeId != ''){
+				params['pageTypeId'] = toBeAdded.PageTypeId;
+			}
+			
 			// set post to URL Encoded
 			$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-		
+				
 			// post to API
 			$http.post(Setup.api + '/pagetype/add', $.param(params))
 				.then(function(res){
-					
+				
 					// push data to factory
 					pageType.data.push(res.data);
 					
-				});
+					return;
+				}, failureCallback)
+				.then(successCallback);
+	
 				
 			// invalidate cache
 			pageType.invalidateCache();

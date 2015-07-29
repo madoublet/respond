@@ -373,6 +373,17 @@
 						<option value="1">{{'Yes' | i18next}}</option>
 					</select>
 				</div>
+				
+				<div class="form-group">
+					<label for="pageTypes" class="control-label">{{'Duplicate Pages from Path' | i18next}}</label>
+					<select name="pageTypes" class="form-control"
+						ng-model="temp.PageTypeId">
+						<option value="">{{'Not Selected' | i18next}}</option>
+						<option ng-repeat="pageType in pageTypes" value="{{pageType.PageTypeId}}">
+							/{{pageType.FriendlyId}}
+						</option>
+					</select>
+				</div>
 			
 			</form>
 			
