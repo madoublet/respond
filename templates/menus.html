@@ -68,7 +68,7 @@
 	<div id="menuItemsList" class="list">
     
 		<div class="listItem" 
-    		ng-repeat="item in menuItems | filter: {Type: friendlyId}"
+    		ng-repeat="item in menuItems | filter: {Type: friendlyId}: true"
     		ng-class="{'is-nested': (item.IsNested == 1)}"
     		data-id="{{item.MenuItemId}}">
     		
