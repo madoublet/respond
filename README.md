@@ -14,6 +14,7 @@ New in version 5.1:
 
 Upgrading from version 5.0
 - Pull (or download) the latest version
+- Update setup.php (or setup.local.php)
 - Upgrade sites
 - Update SQL
 ```

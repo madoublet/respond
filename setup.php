@@ -30,7 +30,7 @@
 	/************************************/
 
 	// Version
-	define('VERSION', '5.0');
+	define('VERSION', '5.1');
 
 	// Brand name
 	define('BRAND', 'Respond');
