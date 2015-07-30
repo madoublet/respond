@@ -272,11 +272,10 @@ class FileListAllResource extends Tonic\Resource {
                     
                     array_push($arr, $file); 
                 }
-                else if($is_thumb==false){
+                else{
                     $file = array(
                         'filename' => $filename,
                         'fullUrl' => $site['Domain'].'/files/'.$filename,
-                        'thumbUrl' => $site['Domain'].'/files/thumbs/'.$filename,
                         'thumbUrl' => 'n/a',
                         'extension' => $ext,
                         'isImage' => $isImage,
