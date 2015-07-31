@@ -205,6 +205,11 @@
 				friendlyId: toBeAdded.FriendlyId, 
 				description: toBeAdded.Description};
 				
+			// set page type	
+			if(toBeAdded.PageId != ''){
+				params['pageId'] = toBeAdded.PageId;
+			}
+				
 			// set post to URL Encoded
 			$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 		
