@@ -5,11 +5,8 @@
     "require": {
     	"phpmailer/phpmailer": "5.2.8",
     	"peej/tonic": "3.2",
-    	"guzzle/guzzle": "3.8",
-    	"guzzlehttp/guzzle": "~5.0",
-        "aws/aws-sdk-php": "2.7.12",
         "leafo/lessphp": "0.4.0",
-        "firebase/php-jwt": "dev-master",
-        "stripe/stripe-php": "1.*"
+    	"guzzlehttp/guzzle": "~5.0",
+        "firebase/php-jwt": "dev-master"
     }
 }

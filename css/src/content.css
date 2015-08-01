@@ -1,0 +1,830 @@
+body.content{}
+
+	body.content .inline-status{
+		display: inline-block;
+	}
+	
+	/* begin settings */
+	body.content span.config{
+		display: block;
+	}
+	
+	body.content span.config textarea{
+		width: 510px !important;
+		height: 200px;
+	}
+	
+	/* begin checklist */
+	body.content span.checklist{
+		display: block;
+		padding: 0;
+		margin: -5px 0 -5px 0;
+	}
+	
+		body.content span.checklist body.content .checkbox:last-child{
+			margin-bottom: 5px;
+		}
+	
+		body.content span.checklist label.checkbox{
+			display: block;
+		}
+	
+	body.content span.list label.checkbox.inline{
+		display: inline-block;
+		width: auto !important;
+	}
+	
+	body.content p.message{
+		color: #808080;
+	}
+	
+	body.content p.noResults{
+		padding: 15px;
+		color: #606060;
+		font-style: italic;
+	}
+	
+	body.content fieldset{
+		margin: 0;
+		padding: 15px 0 0 0;
+		border: none;
+		border-bottom: 1px solid #f0f0f0;	
+	}
+	
+	body.content fieldset:last-child, body.content fieldset.last{
+		border-bottom: none !important;
+	}
+	
+	body.content div.formGroup fieldset:first-child {
+		padding-top: 0;
+	}
+	
+	body.content div.formGroup fieldset:last-child{
+		border-bottom: none;	
+	}
+	
+	/* handle files */
+	body.content p.fileUrls{
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	
+	body.content p#UploadedSizes.fileUrls{
+		padding-left: 30px;
+	}
+	
+	body.content p.fileUrls a.switch{
+	 	display: inline-block;
+		width: 16px;
+		height: 16px;
+		border: 1px solid #ccc;
+		color: #ccc;
+		text-align: center;
+		line-height: 16px;
+		margin: 0 5px 0 0;
+		font-size: 10px;
+	}
+	
+	body.content p.fileUrls a.switch.selected{
+		border: 1px solid #aaa;
+		color: #fff;
+		background: #aaa;
+	}
+	
+	body.content span.filter{
+		position: absolute;
+		top: 45px;
+		right: 15px;
+	}
+	
+	body.content div#editorContainer div.formGroup{
+		margin-top: 0;
+		padding-top: 0;
+	}
+	
+	body.content div#advancedContainer{
+		display: none;
+	}
+	
+	body.content div#previewMessage{
+	    position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #fbec5d;
+	    background-color: rgba(251, 236, 93, 0.9);
+	    width: 100%;
+	    height: 50px;
+	    z-index: 51;
+	    text-align: center;
+	    display: none;
+	}
+	
+		body.content div#previewMessage button{
+			margin-top: 5px;
+		}
+	
+	body.content div#previewMessage button{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	body.content div#previewContainer{
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0;	
+		width: 100%;
+		height: 100%;
+	    overflow: scroll;
+		background: #fff;
+		z-index: 50;
+		display: none;
+	}
+	
+	body.content iframe#preview{
+	    width: 100%;
+		height: 1000px;
+		z-index: 50;
+	}
+	
+	body.content div#previewContainer.mobile iframe#preview{
+		position: absolute;
+		top: 97px;
+		left: 30px;
+		margin: 0;
+		width: 400px;
+		height: 648px;
+	}
+	
+	body.content div#UploadedImage img{
+		height: 75px;
+	}
+	
+	body.content div#showContentOptions label{
+		vertical-align: middle;
+	}
+	
+	body.content span#changeImage{
+		padding: 10px;
+		display: block;
+		margin-top: 20px;
+		background: rgba(0, 0, 0, 0.3);
+	}
+	
+	body.content span#changeImage label{
+		display: block;
+		color: #fff;
+	}
+	
+	body.content span#changeImage a{
+		color: #fff;
+		font-style: italic;
+	}
+	
+	body.content div#ImageOptions span.field{
+		vertical-align: top;
+	}
+	
+	body.content input#ImageWidth, input#ImageHeight{
+		width: 50px;
+		margin-right: 2px;
+		text-align: right;
+	}
+	
+	body.content span.featured{
+	  display: inline-block;
+	  width: 14px;
+	  height: 14px;
+	  background: url('../images/app-sprite.png') no-repeat -150px -4px;
+	  margin-left: 5px;
+	  cursor: pointer;
+	}
+	
+	body.content span.featured.yes{
+	  background: url('../images/app-sprite.png') no-repeat -129px -4px;
+	}
+	
+	
+	/* begin addImage dialog */
+	
+	/* begin tabs */
+	body.content ul.tabs{
+		margin: -15px 0 15px 0;
+		padding: 0;
+	  background: #f8f8f8;
+	  border-bottom: 2px solid #f0f0f0;
+	}
+	
+	body.content ul.tabs li{
+	  border-bottom: none;
+	  margin: 0;
+	  padding: 10px 15px;
+	  display: inline-block;
+	}
+	
+	body.content ul.tabs li a{
+	  display: block;
+	  margin: 0 0;
+	  padding: 0 5px 0 0;
+	  text-decoration: none;
+	  font-size: 12px !important;
+	}
+	
+	body.content ul.tabs li:hover a{
+	  text-decoration: underline;
+	}
+	
+	body.content ul.tabs li.selected a{
+	  font-weight: bold;
+	  color: #707070;
+	  padding-right: 15px;
+	  background: url('../images/submenu-arrow.png') no-repeat right 5px;
+	}
+	
+	/* begin image list */
+	body.content #linkImageList{
+	  margin-top: 5px;
+	  margin-bottom: 2px;
+	}
+	
+	body.content span.imageList,
+	body.content span#addFileList{
+		display: block;
+		border: 1px solid #ccc;
+		width: 100%;
+		height: 200px;
+		overflow: auto;
+	}
+	
+	body.content span.imageList li span.icon{
+		display: block;
+		padding-left: 42px;
+		padding-top: 22px;
+	}
+	
+	body.content span.imageList li.file span.icon{
+		padding-left: 0;
+		padding-top: 0;
+	}
+	
+	body.content span.imageList ul, 
+	body.content span#addFileList ul{
+		margin: 0;
+		padding: 0;
+	}
+	
+	body.content span.imageList li, 
+	body.content span#addFileList li{
+		position: relative;
+		display: block;
+		margin: 0;
+		padding: 5px;
+		border-bottom: 1px dashed #ccc;
+		cursor: pointer;
+		min-height: 75px;
+	}
+	
+	body.content span.imageList li.file{
+		min-height: 40px;
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+	
+	body.content span.imageList li:last-child, 
+	body.content span#addFileList li:last-child{
+		border-bottom: none;
+	}
+	
+	body.content span.imageList li:hover, 
+	body.content span#addFileList li:hover{
+		background: #f8f8f8;
+	}
+	
+	body.content span.imageList li.selected, 
+	body.content span#addFileList li.selected{
+		background: #fbec5d;
+	}
+	
+	body.content span.imageList li span.filename{
+		position: absolute;
+		left: 90px;
+		top: 20px;
+	}
+	
+	body.content span.imageList li span.size{
+		position: absolute;
+		left: 90px;
+		top: 40px;
+		font-size: 12px;
+		color: #888;
+	}
+	
+	body.content span.imageList li.file span.filename{
+		position: absolute;
+		left: 50px;
+		top: 18px;
+	}
+	
+	body.content span.imageList p.fileUrls, 
+	body.content span#addFileList p.fileUrls{
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		left: 90px;
+		top: 54px;
+	}
+	
+	body.content label#ResizeImageLabel{
+		display: block;
+		margin: 0 0 15px 30px;
+		padding: 0;
+		color: #606060;
+		font-style: italic;
+	}
+	
+	body.content div#UploadedImage{
+		display: block;
+		margin: 0 0 5px 30px;
+		padding: 0;
+		width: 75px !important;
+		height: 75px;
+	}
+		
+	/* begin slideshow */
+	body.content div#slideshow{
+		background: #f8f8f8;
+		display:none;
+		padding:20px;
+		position:absolute;
+		width:400px;
+		height: 390px;
+		z-index:50;
+		top: 170px;
+		left: 470px;
+	}
+	body.content div#slideshow h2{
+		color:#FFFFFF;
+		font-size:12px;
+		font-weight:bold;
+		margin:0;
+		padding:10px;
+		text-align:left;
+		width:auto;
+	}
+	body.content div#slideshow a.close{
+		cursor:pointer;
+		position:absolute;
+		right:15px;
+		top:5px;
+	}
+	body.content a#left{
+		position: absolute;
+		bottom: 25px;
+		left: 23px;
+	}
+	
+	body.content a#right{
+		position: absolute;
+		bottom: 25px;
+		right: 25px;
+	}
+	
+	body.content div#slideshow.single a#left, div#slideshow.single a#right{
+		display: none;
+	}
+	
+	/* begin slider */
+	body.content div#slider{
+	  position: relative;
+	  width: 400px;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  background: #F8F8F8;
+	}
+	
+	body.content div#slider ul{
+	  list-style: none;
+	  margin:  0;
+	  padding: 0;	
+	}
+	
+	body.content div#slider li{
+	  position: relative;
+	  width: 400px;
+	  margin: 0;
+	  padding: 0;
+	  float: left;
+	}
+	
+	/* slider */
+	body.content div#slider-container{
+		position: absolute;
+		right: 0;
+		top: 50px;
+		width: 250px;
+		background: rgba(0, 0, 0, 0.3);
+		padding: 10px;
+	}
+	
+	body.content div#slider{
+		width: 200px;
+		overflow: visible;
+		display: inline-block;
+	}
+	
+	body.content div#slider a.ui-slider-handle{
+		background: #ccc;
+		border: 1px solid #aaa;
+		cursor: e-resize;
+	}
+	
+	body.content div#slider a.ui-slider-handle.ui-state-hover{
+		background: #f0f0f0;
+		border: 1px solid #aaa;
+	}
+	
+	body.content div#slider-display{
+		display: inline-block;
+		width: 40px;
+		margin-left: 5px;
+		color: #fff;
+		text-align: right;
+	}
+	
+	body.content div#slideshow div#slider ul li p{
+		display: block;
+		margin: 0;
+		padding: 15px 45px 15px 45px;
+		width: 400px;
+		text-align: left;
+	}
+	
+	body.content div#slideshow.single div#slider ul li p{
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	/* end slideshow */
+	
+	
+	/* begin load layout dialog */
+	body.content div#selectLayout li em{
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	
+	/* load layout dialog */
+	body.content #load-code{
+		border-color: #ccc;
+		width: 100%;
+		height: 350px;
+	}
+	
+	/* alternate buttons (live and preview) */
+	body.content .alternate{
+	    border: 1px solid #ccc;
+	    border-radius: 25px; 
+	    height: 38px;
+	    line-height: 38px;
+	    text-align: center;
+	    margin: 0;
+	    padding: 0;
+	}
+	
+	body.content .alternate a{
+		display: inline-block;
+		margin: 0 !important;
+		padding: 0 10px;
+		height: 36px;
+		min-width: 70px;
+		font-size: 13px;
+		text-align: center;
+	}
+	
+	body.content .alternate a:first-child{
+		border-right: 1px solid #ccc;
+		padding-left: 20px;
+	}
+	
+	body.content .alternate a:last-child{
+		padding-right: 20px;
+	}
+	
+/* .content-actions */
+.content-actions{
+	position: fixed;
+    width: calc(100% - 250px);
+	bottom: 0;
+	background-color: #f0f0f0;
+    z-index: 1000;
+    padding-right: 10px;
+}
+
+.content-actions div{
+	margin: 0 0 5px 0;
+    margin-left: 10px;
+    margin-top: -3px;
+    border: 1px solid #ccc;
+    background-color: #fff;  
+	box-shadow: 2px 3px 4px rgba(119,119,119,0.4);
+    padding: 10px 10px;
+}
+
+/* aside */
+.context-menu{
+	position: absolute;
+	box-sizing: border-box;
+	top: 114px;
+	right: 0;
+	width: 250px;
+	height: 100%;
+	height: calc(100% - 114px);
+	background-color: #f0f0f0;
+	overflow: scroll;
+	padding-bottom: 100px;
+	margin-top: 10px;
+}
+
+	.configure .context-menu{
+		top: 65px;
+		height: calc(100% - 65px);
+	}
+
+	.context-menu .font-up, .context-menu .font-down{
+		font-size: 12px;
+		color: #888;
+		margin-left: -2px;
+	}
+
+	.context-menu .text-block{
+		display: inline-block;
+		padding-top: 7px;
+	}
+
+	.context-menu.sticky{
+	    position: fixed;
+	    top: 50px;
+	    right: 0;
+		height: calc(100% - 50px);
+	}
+
+	.context-menu h2{
+		margin: -1px 0 0 0;
+		padding: 11px 5px;
+		font-size: 13px;
+		color: #aaa;
+		border-bottom: 1px solid #ddd;
+		border-top: 1px solid #ddd;
+		text-transform: uppercase;
+		font-weight: 300;
+	}
+	
+	.context-menu h2 a{
+		float: right;
+		text-transform: none;
+		margin-left: 15px; 
+		text-transform: uppercase;
+	}
+	
+	.context-menu h2 i{
+		color: #888;
+	}
+	
+	
+	/* toggles context menu */
+	.context-menu .config{
+		display: none;
+	}
+	
+	.context-menu .config.active{
+		display: block;
+	}
+	
+	.content .context-text-events .context-block a{
+		display: inline-block;
+		position: relative;
+		width: 35px; 
+		height: 35px;
+		margin: 0 0 5px 0;
+		padding: 0;
+		text-align: center;
+		line-height: 35px;
+		color: #555;
+		font-size: 13px;
+		vertical-align: top;
+		border-radius: 50%;
+		background-color: transparent;
+	}	
+	
+	.content .context-text-events{
+		padding-bottom: 10px;
+	}
+	
+	.content .context-text-events .context-block  a:hover{
+		background-color: #f0f0f0;
+	}
+	
+	.context-menu label, .context-menu .form-control{
+		display: inline-block;
+	}
+	
+	.context-menu .form-group{
+		position: relative;
+	}
+	
+	/* spectrum */
+	.context-menu .sp-replacer{
+		border-color: #ccc;
+	}
+	
+	.context-menu .sp-dd{
+		display: none;
+	}
+	
+	.context-menu .sp-preview{
+		margin-right: 0;
+	}
+	
+	/* input selection */
+	.context-menu .input-select{
+		position: absolute;
+		top: 1px;
+		right: 2px;
+	}
+		
+		.context-menu .input-select.option2{
+			right: 25px;
+		}
+	
+		.context-menu .input-select button{
+			display: inline-block;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			height: 25px;
+			width: 25px;
+			font-size: 12px;
+			text-align: center;
+			line-height: 25px;
+			border-radius: 0;	
+			background-color: #fff;
+			color: #888;
+			border-left: 1px solid #f0f0f0;
+		}
+		
+		.context-menu .input-select .dropdown-menu{
+			border-radius: 0;
+			border: 1px solid #ddd;
+		}
+		
+		.context-menu .input-select .dropdown-menu li{
+			border-bottom: 1px solid #f0f0f0;
+		}
+		
+		.context-menu .input-select .dropdown-menu li a{
+			color: #222;
+			font-size: 13px;
+		}
+		
+		.context-menu .input-select .dropdown-menu li small{
+			display: block;
+			color: #888;
+			font-size: 11px;
+			max-width: 150px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.context-menu .input-select .dropdown-menu{
+			height: 150px;
+			overflow: auto;
+		}
+	
+	.context-menu label{
+		width: 75px;
+		color: #555;
+		font-size: 12px;
+		vertical-align: top;
+		margin-top: 7px;
+	}
+	
+	.context-menu .help-block{
+		display: block;
+		font-size: 11px;
+		padding-left: 80px;
+		color: #888;
+		text-transform: uppercase;
+	}
+
+	body .context-menu .form-control{
+		width: 160px;
+		background-color: #fff !important;
+		border-radius: 0 !important;
+		padding: 0 5px !important;
+		height: 30px !important;
+		line-height: 30px !important;
+		border: 1px solid #ddd;
+		border-radius: 0 !important;
+		outline: none !important;
+	}
+	
+	.context-menu textarea.form-control{
+		height: 75px !important;
+		line-height: 20px !important;
+		padding-top: 5px !important;	
+	}
+	
+	body .context-menu .context-block{
+		padding: 10px 5px 0 5px;
+	}
+	
+	.context-menu .context-footer{
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		width: 250px;
+		text-align: right;
+	}
+	
+	.context-menu .context-footer button{
+		float:left;
+		box-sizing: border-box;
+		padding: 10px 0;
+		margin: 10px 10px;
+		color: #888;
+		width: 100%;
+		width: calc(100% - 20px);
+		border: none;
+		font-size: 13px;
+		outline: none;
+		background-color: #fff;
+		border: 1px solid #ddd;
+	}
+	
+	.context-menu .context-footer button:hover{
+		border-color: #888;
+	}
+	
+	body .context-menu select.form-control{
+		background: url('../images/down.png') no-repeat right 6px;
+		background-size: 20px;
+	}
+	
+	body .context-menu .form-group{
+		position: relative;
+	}
+	
+	body .context-menu .form-group .sp-replacer{
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		border-left: 1px solid transparent;
+		background-color: #f8f8f8;
+	}	
+	
+		body .context-menu .form-group .sp-preview{
+			border: 1px solid #aaa;
+		}
+	
+	body .context-menu .form-group .image-picker{
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		width: 35px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		border: 1px solid #ddd;
+		background-color: #f8f8f8;
+		border-left: 1px solid #f8f8f8;
+		outline: none;
+	}
+
+	body .context-menu .form-group .image-picker i{
+		color: #777;
+	}
+	
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+
+	body.content div.container-fluid{
+		margin: 10px 0 0 0 !important;
+	}
+	
+	body.context-menu{
+		display: none;
+	}
+	
+	.content-actions{
+	    width: calc(100%);
+	}
+  
+}

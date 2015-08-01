@@ -4,7 +4,7 @@
 class Site{
 	
 	// adds a Site
-	public static function Add($domain, $bucket, $name, $friendlyId, $urlMode, $logoUrl, $altLogoUrl, $theme, $primaryEmail, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail){
+	public static function Add($domain, $name, $friendlyId, $logoUrl, $altLogoUrl, $theme, $primaryEmail, $timeZone, $language, $direction, $welcomeEmail, $receiptEmail){
         
         try{
             
@@ -25,40 +25,36 @@ class Site{
   
     		$timestamp = gmdate("Y-m-d H:i:s", time());
 
-            $q = "INSERT INTO Sites (SiteId, FriendlyId, UrlMode, Domain, Bucket, Name, LogoUrl, AltLogoUrl, Theme, PrimaryEmail, TimeZone, Language, Direction, WelcomeEmail, ReceiptEmail, Status, Plan, UserLimit, FileLimit, Version, Created) 
-    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $q = "INSERT INTO Sites (SiteId, FriendlyId, Domain, Name, LogoUrl, AltLogoUrl, Theme, PrimaryEmail, TimeZone, Language, Direction, WelcomeEmail, ReceiptEmail, Status, Plan, UserLimit, FileLimit, Version, Created) 
+    			    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $siteId);
             $s->bindParam(2, $friendlyId);
-            $s->bindParam(3, $urlMode);
-            $s->bindParam(4, $domain);
-            $s->bindParam(5, $bucket);
-            $s->bindParam(6, $name);
-            $s->bindParam(7, $logoUrl);
-            $s->bindParam(8, $altLogoUrl);
-            $s->bindParam(9, $theme);
-            $s->bindParam(10, $primaryEmail);
-            $s->bindParam(11, $timeZone);
-            $s->bindParam(12, $language);
-            $s->bindParam(13, $direction);
-            $s->bindParam(14, $welcomeEmail);
-            $s->bindParam(15, $receiptEmail);
-            $s->bindParam(16, $status);
-            $s->bindParam(17, $plan);
-            $s->bindParam(18, $userLimit);
-            $s->bindParam(19, $fileLimit);
-            $s->bindParam(20, $version);
-            $s->bindParam(21, $timestamp);
+            $s->bindParam(3, $domain);
+            $s->bindParam(4, $name);
+            $s->bindParam(5, $logoUrl);
+            $s->bindParam(6, $altLogoUrl);
+            $s->bindParam(7, $theme);
+            $s->bindParam(8, $primaryEmail);
+            $s->bindParam(9, $timeZone);
+            $s->bindParam(10, $language);
+            $s->bindParam(11, $direction);
+            $s->bindParam(12, $welcomeEmail);
+            $s->bindParam(13, $receiptEmail);
+            $s->bindParam(14, $status);
+            $s->bindParam(15, $plan);
+            $s->bindParam(16, $userLimit);
+            $s->bindParam(17, $fileLimit);
+            $s->bindParam(18, $version);
+            $s->bindParam(19, $timestamp);
             
             $s->execute();
             
             return array(
                 'SiteId' => $siteId,
                 'FriendlyId' => $friendlyId,
-                'UrlMode' => $urlMode,
                 'Domain' => $domain,
-                'Bucket' => $bucket,
                 'Name' => $name,
                 'LogoUrl' => $logoUrl,
                 'AltLogoUrl' => $altLogoUrl,
@@ -79,11 +75,11 @@ class Site{
 	
 	// edits the site information
 	public static function Edit($siteId, $name, $domain, $primaryEmail, $timeZone, $language, $direction, 
-		$showCart, $showSettings, $showLanguages, $showLogin, $showSearch, $urlMode,
+		$showCart, $showSettings, $showLanguages, $showLogin, $showSearch,
 		$currency, $weightUnit, $shippingCalculation, $shippingRate, $shippingTiers, $taxRate, $payPalId, $payPalUseSandbox,
 		$welcomeEmail, $receiptEmail,
 		$isSMTP, $SMTPHost, $SMTPAuth, $SMTPUsername, $SMTPSecure, 
-		$formPublicId, $formPrivateId){
+		$formPublicId, $formPrivateId, $embeddedCodeHead, $embeddedCodeBottom){
 
 		try{
             
@@ -102,7 +98,6 @@ class Site{
         			ShowLanguages = ?,
         			ShowLogin = ?,
         			ShowSearch = ?,
-        			UrlMode = ?,
         			WeightUnit = ?,
         			ShippingCalculation = ?, 
         			ShippingRate = ?,
@@ -118,7 +113,9 @@ class Site{
 					SMTPUsername = ?, 
 					SMTPSecure = ?,
             		FormPublicId=?,
-            		FormPrivateId=?
+            		FormPrivateId=?,
+                    EmbeddedCodeHead=?,
+                    EmbeddedCodeBottom=?
         			WHERE SiteId = ?";
      
             $s = $db->prepare($q);
@@ -134,24 +131,25 @@ class Site{
             $s->bindParam(10, $showLanguages);
             $s->bindParam(11, $showLogin);
             $s->bindParam(12, $showSearch);
-            $s->bindParam(13, $urlMode);
-            $s->bindParam(14, $weightUnit);
-            $s->bindParam(15, $shippingCalculation);
-            $s->bindValue(16, strval($shippingRate), PDO::PARAM_STR);
-            $s->bindParam(17, $shippingTiers);
-            $s->bindParam(18, $taxRate);
-            $s->bindParam(19, $payPalId);
-            $s->bindParam(20, $payPalUseSandbox);
-            $s->bindParam(21, $welcomeEmail); 
-            $s->bindParam(22, $receiptEmail);
-			$s->bindParam(23, $isSMTP); 
-			$s->bindParam(24, $SMTPHost); 
-			$s->bindParam(25, $SMTPAuth); 
-			$s->bindParam(26, $SMTPUsername);  
-			$s->bindParam(27, $SMTPSecure); 
-            $s->bindParam(28, $formPublicId);
-            $s->bindParam(29, $formPrivateId);
-            $s->bindParam(30, $siteId);
+            $s->bindParam(13, $weightUnit);
+            $s->bindParam(14, $shippingCalculation);
+            $s->bindValue(15, strval($shippingRate), PDO::PARAM_STR);
+            $s->bindParam(16, $shippingTiers);
+            $s->bindParam(17, $taxRate);
+            $s->bindParam(18, $payPalId);
+            $s->bindParam(19, $payPalUseSandbox);
+            $s->bindParam(20, $welcomeEmail); 
+            $s->bindParam(21, $receiptEmail);
+			$s->bindParam(22, $isSMTP); 
+			$s->bindParam(23, $SMTPHost); 
+			$s->bindParam(24, $SMTPAuth); 
+			$s->bindParam(25, $SMTPUsername);  
+			$s->bindParam(26, $SMTPSecure); 
+            $s->bindParam(27, $formPublicId);
+            $s->bindParam(28, $formPrivateId);
+            $s->bindParam(29, $embeddedCodeHead);
+            $s->bindParam(30, $embeddedCodeBottom);
+            $s->bindParam(31, $siteId);
             
             $s->execute();
             
@@ -348,7 +346,7 @@ class Site{
 	}
 	
 	// edits the administrative portion of the site
-    public static function EditAdmin($siteId, $domain, $bucket, $status, $fileLimit, $userLimit){
+    public static function EditAdmin($siteId, $domain, $status, $fileLimit, $userLimit){
         
         try{
             
@@ -356,7 +354,6 @@ class Site{
             
             $q = "UPDATE Sites SET 
                 	Domain = ?,
-                	Bucket = ?,
                 	Status = ?,
                 	FileLimit = ?,
                 	UserLimit = ?
@@ -364,11 +361,10 @@ class Site{
      
             $s = $db->prepare($q);
             $s->bindParam(1, $domain);
-            $s->bindParam(2, $bucket);
-            $s->bindParam(3, $status);
-            $s->bindParam(4, $fileLimit);
-            $s->bindParam(5, $userLimit);
-            $s->bindParam(6, $siteId);
+            $s->bindParam(2, $status);
+            $s->bindParam(3, $fileLimit);
+            $s->bindParam(4, $userLimit);
+            $s->bindParam(5, $siteId);
             
             $s->execute();
             
@@ -432,7 +428,7 @@ class Site{
 	}
 		
 	// subscribes a site (change status, plan, and set customer)
-	public static function Subscribe($siteId, $status, $plan, $provider, $subscriptionId, $customerId){
+	public static function EditSubscription($siteId, $status, $plan, $provider, $subscriptionId, $customerId, $userLimit, $fileLimit){
         
         try{
         
@@ -440,7 +436,7 @@ class Site{
             
             $timestamp = gmdate("Y-m-d H:i:s", time());
             
-            $q = "UPDATE Sites SET Status = ?, Plan = ?, Provider = ?, SubscriptionId = ?, CustomerId = ? WHERE SiteId = ?";
+            $q = "UPDATE Sites SET Status = ?, Plan = ?, Provider = ?, SubscriptionId = ?, CustomerId = ?, UserLimit = ?, FileLimit = ? WHERE SiteId = ?";
      
             $s = $db->prepare($q);
             $s->bindParam(1, $status);
@@ -448,50 +444,14 @@ class Site{
             $s->bindParam(3, $provider);
             $s->bindParam(4, $subscriptionId);
             $s->bindParam(5, $customerId);
-            $s->bindParam(6, $siteId);
+            $s->bindParam(6, $userLimit);
+            $s->bindParam(7, $fileLimit);
+            $s->bindParam(8, $siteId);
             
             $s->execute();
             
-            // unserialize plans
-            $plans_json = file_get_contents(APP_LOCATION.'data/plans.json');
-            
-            // decode json
-            $plans = json_decode($plans_json, true);
-            
-            // set test defaults
-            $userLimit = -1;
-            $fileLimit = -1;
-            
-            // walkthrough plans
-            foreach ($plans as $item) {
-	            
-	            //$ids .= $item['id'].' ';
-			    
-			    if($item['id'] == $plan){
-				    
-				    // get user and file limit from plan
-				    $userLimit = $item['userLimit'];
-				    $fileLimit = $item['fileLimit'];
-				    
-			    }
-			    
-			}
-
-			// set the user and file limit if found
-			if($userLimit != -1){
-				
-				$q = "UPDATE Sites SET UserLimit = ?, FileLimit = ? WHERE SiteId = ?";
-     
-	            $s = $db->prepare($q);
-	            $s->bindParam(1, $userLimit);
-	            $s->bindParam(2, $fileLimit);
-	            $s->bindParam(3, $siteId);
-				
-				$s->execute();
-			}
-            
 		} catch(PDOException $e){
-            die('[Site::Subscribe] PDO Error: '.$e->getMessage());
+            die('[Site::EditSubscription] PDO Error: '.$e->getMessage());
         }
 	}
 	
@@ -501,9 +461,9 @@ class Site{
         try{
             $db = DB::get();
             
-            $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
+            $q = "SELECT SiteId, FriendlyId, Domain, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
     						PrimaryEmail, TimeZone, Language, Direction, Currency, 
-    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch, UrlMode,
+    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
 							WelcomeEmail, ReceiptEmail,
@@ -550,12 +510,9 @@ class Site{
         		$www = str_replace('http://', 'http://www.', $row['Domain']);
         		$www_s = str_replace('https://', 'https://www.', $row['Domain']);
         		
-        		$s3 = str_replace('{{site}}', $row['FriendlyId'], S3_URL);
-        		        	
                 array_push($arr, $domain);
                 array_push($arr, $www);
                 array_push($arr, $www_s);
-                array_push($arr, $s3);
             } 
             
             return $arr;
@@ -592,9 +549,9 @@ class Site{
         
     		$db = DB::get();
             
-            $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
+            $q = "SELECT SiteId, FriendlyId, Domain, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
     						PrimaryEmail, TimeZone, Language, Direction, Currency, 
-    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch, UrlMode,
+    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
 							WelcomeEmail, ReceiptEmail,
@@ -629,9 +586,9 @@ class Site{
         
         	$db = DB::get();
             
-            $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
+            $q = "SELECT SiteId, FriendlyId, Domain, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
     						PrimaryEmail, TimeZone, Language, Direction, Currency, 
-    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch, UrlMode,
+    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
 							WelcomeEmail, ReceiptEmail,
@@ -666,9 +623,9 @@ class Site{
         
             $db = DB::get();
             
-            $q = "SELECT SiteId, FriendlyId, Domain, Bucket, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
+            $q = "SELECT SiteId, FriendlyId, Domain, Name, LogoUrl, AltLogoUrl, PayPalLogoUrl, IconUrl, IconBg, Theme,
     						PrimaryEmail, TimeZone, Language, Direction, Currency, 
-    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch, UrlMode,
+    						ShowCart, ShowSettings, ShowLanguages, ShowLogin, ShowSearch,
     						WeightUnit, ShippingCalculation, ShippingRate, ShippingTiers, TaxRate, 
 							PayPalId, PayPalUseSandbox,
 							WelcomeEmail, ReceiptEmail,
@@ -676,7 +633,8 @@ class Site{
 							FormPublicId, FormPrivateId,
 							Status, Plan, Provider, SubscriptionId, CustomerId,
 							CanDeploy, UserLimit, FileLimit,
-							LastLogin, Version, Created
+							LastLogin, Version, Created, 
+                            EmbeddedCodeHead, EmbeddedCodeBottom
 							FROM Sites WHERE Siteid = ?";
                     
             $s = $db->prepare($q);

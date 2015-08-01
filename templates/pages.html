@@ -18,7 +18,7 @@
 		  	<li role="presentation"> 
     			<a ng-click="showAddPageType()"
     				tabindex="-1">
-    				{{'Add Type' | i18next}}
+    				{{'Add Path' | i18next}}
     			</a>
 		  	</li>
 		  	<li ng-if="current.PageTypeId != -1"
@@ -40,10 +40,7 @@
     </nav>
   
     <section id="trial-notice" class="notice" ng-if="site.Status == 'Trial'">
-    	<a ui-sref="app.signup">
-    		<span class="days-left">{{site.Created | daysLeft:setup.trialLength}} {{'days left' | i18next}}</span>
-    		{{'trial_message' | i18next}} <i class="fa fa-chevron-right"></i> 
-    	</a>
+    	<a href="{{setup.subscribeLink}}">{{setup.trialMessage | i18next}}</a>
     </section>
     
     <menu>
@@ -189,6 +186,17 @@
 						class="form-control"></textarea>
 				</div>
 				
+				<div class="form-group">
+					<label for="page" class="control-label">{{'Create from Existing Page' | i18next}}</label>
+					<select name="page" class="form-control"
+						ng-model="temp.PageId">
+						<option value="">{{'Not Selected' | i18next}}</option>
+						<option ng-repeat="page in pages | orderBy:'Url'" value="{{page.PageId}}">
+							/{{page.Url}}
+						</option>
+					</select>
+				</div>
+				
 			</div>
 			
 			<div class="modal-footer">
@@ -294,7 +302,7 @@
 		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h3>{{'Remove Page Type' | i18next}}</h3>
+				<h3>{{'Remove Path' | i18next}}</h3>
 			</div>
 			
 			<div class="modal-body">
@@ -334,8 +342,8 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">x</button>
-				<h3 class="add">{{'Add Page Type' | i18next}}</h3>
-				<h3 class="edit">{{'Update Page Type' | i18next}}</h3>
+				<h3 class="add">{{'Add Path' | i18next}}</h3>
+				<h3 class="edit">{{'Update Path' | i18next}}</h3>
 			</div>
 			<!-- /.modal-header -->
 
@@ -344,11 +352,11 @@
 			<form name="pageTypeForm" novalidate>
 				
 				<div class="add form-group">
-					<label for="typeFriendlyId" class="control-label">{{'Friendly URL' | i18next}}</label>
+					<label for="typeFriendlyId" class="control-label">{{'Path' | i18next}}</label>
 					<input id="typeFriendlyId" type="text" 
 						ng-model="temp.FriendlyId"
-						value="" maxlength="50" class="form-control" required>
-					<span class="add help-block">e.g. http://respond.io/[friendly-url]/. {{'Must be lowercase with no spaces' | i18next}}</span>
+						value="" placeholder="sample/path" maxlength="50" class="form-control" required>
+					
 				</div>
 				
 				<div class="form-group">
@@ -374,6 +382,17 @@
 						class="form-control" required>
 						<option value="0">{{'No' | i18next}}</option>
 						<option value="1">{{'Yes' | i18next}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="pageTypes" class="control-label">{{'Duplicate Pages from Existing Path' | i18next}}</label>
+					<select name="pageTypes" class="form-control"
+						ng-model="temp.PageTypeId">
+						<option value="">{{'Not Selected' | i18next}}</option>
+						<option ng-repeat="pageType in pageTypes" value="{{pageType.PageTypeId}}">
+							/{{pageType.FriendlyId}}
+						</option>
 					</select>
 				</div>
 			

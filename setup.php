@@ -30,7 +30,7 @@
 	/************************************/
 
 	// Version
-	define('VERSION', '5.0');
+	define('VERSION', '5.1');
 
 	// Brand name
 	define('BRAND', 'Respond');
@@ -51,29 +51,17 @@
 	/*  ADVANCED SETUP - MESSAGING      */
 	/************************************/
 	
-	// Information on upgrading site to latest versino
+	// Information on upgrading site to latest version
 	define('UPDATE_LINK', 'https://github.com/madoublet/respond/blob/master/README.md');
 	
-	// system message (shown at login if not blank)
+	// System message (shown at login if not blank)
 	define('SYSTEM_MESSAGE', '');
 	
+	// A link to direct trial accounts where to subscribe
+	define('SUBSCRIBE_LINK', '');
 	
-	/************************************/
-	/*  ADVANCED SETUP - AMAZON S3      */
-	/************************************/
-	
-	// Enables copying site to S3 for deployment
-	define('ENABLE_S3_DEPLOYMENT', false);
-	
-	// Stores all uploaded files on S3
-	define('FILES_ON_S3', false);
-	
-	// Default bucket
-	define('BUCKET_NAME', 'yourdomain.com');
-	define('S3_LOCATION', 'us-east-1');
-	define('S3_URL', 'http://{{bucket}}.s3-website-us-east-1.amazonaws.com/{{site}}');
-	define('S3_KEY', 'AWS ACCESS KEY');
-	define('S3_SECRET', 'AWS SECRET KEY');
+	// Information on upgrading site to latest version
+	define('TRIAL_MESSAGE', 'Thank you for trying Respond. Click to subscribe!');
 	
 	
 	/************************************/
@@ -118,50 +106,23 @@
 	
 	// JWT key
 	define('JWT_KEY', 'iloverespond');
-	
-	
-	/************************************/
-	/*  ADVANCED SETUP - PAYPAL         */
-	/************************************/
-	
-	// Paypal
-	define('PAYPAL_EMAIL', '');
-	define('PAYPAL_USE_SANDBOX', false);
-	define('PAYPAL_CURRENCY', 'USD');
-	define('PAYPAL_LOGO', '/images/respond-icon.png');
-	
-	
-	/************************************/
-	/*  ADVANCED SETUP - STRIPE         */
-	/************************************/
-	
-	// Stripe keys
-	define('STRIPE_SECRET_KEY', '');
-	define('STRIPE_PUBLISHABLE_KEY', '');
-	
+		
 	
 	/************************************/
 	/*  ADVANCED SETUP - ACCOUNTS       */
 	/************************************/
 	
 	// Default account status (Trial for subscription based sites, or Active for non-subscription based sites)
-	define('DEFAULT_STATUS', 'Trial');
+	define('DEFAULT_STATUS', 'Active');
 	
 	// Default plan (Typically Trial or blank for non-subscription based sites)
-	define('DEFAULT_PLAN', 'Trial');
-	
-	// Trial length
-	define('TRIAL_LENGTH', 30);
-	
-	// Disable after trial
-	define('DISABLE_AFTER_TRIAL', true);
+	define('DEFAULT_PLAN', '');	
 	
 	// Default user limit
-	define('DEFAULT_USER_LIMIT', 1);
+	define('DEFAULT_USER_LIMIT', 5);
 	
 	// default file limit (in MBs)
-	define('DEFAULT_FILE_LIMIT', 100);
-	
+	define('DEFAULT_FILE_LIMIT', 250);
 	
 	/************************************/
 	/*  ADVANCED SETUP - CORS           */
@@ -171,7 +132,6 @@
 	define ('CORS', serialize (array (
 	    'http://sites.myrespond.com'
 	    )));
-	    
 	    
 	/************************************/
 	/*  ADVANCED SETUP - EMAIL          */
@@ -188,28 +148,17 @@
 	// Key used to encrypt site SMTP passwords
 	define('SMTPENC_KEY', 'iloverespond');
 	    
-    // Set what emails should be sent out and a reply-to email address
-	define('REPLY_TO', '');
-	define('REPLY_TO_NAME', '');
+    // Set the From: address and name for outgoing emails
+	define('EMAILS_FROM', '');
+	define('EMAILS_FROM_NAME', '');
 	
 	// Welcome email
 	define('SEND_WELCOME_EMAIL', true);
 	define('WELCOME_EMAIL_SUBJECT', 'Respond: Welcome to Respond!');
 	define('WELCOME_EMAIL_FILE', '../emails/new-user.html');
 	
-	// New subscription email (to user)
-	define('NEW_SUBSCRIPTION_EMAIL', true);
-	define('NEW_SUBSCRIPTION_EMAIL_SUBJECT', 'Respond: Thank you for subscribing!');
-	define('NEW_SUBSCRIPTION_EMAIL_FILE', '../emails/subscribe-success.html');
-	
-	// New subscriber email (to admin)
-	define('NEW_SUBSCRIBER_EMAIL', true);
-	define('NEW_SUBSCRIBER_EMAIL_SUBJECT', 'Respond: We have a new subscriber!');
-	define('NEW_SUBSCRIBER_EMAIL_FILE', '../emails/subscribe-details.html');
-	
 	// Site emails
 	define('SITE_RECEIPT_EMAIL_SUBJECT', '[{{site}}] Receipt for your purchase (Transaction #: {{transactionId}})');
-	define('SITE_WELCOME_EMAIL_SUBJECT', 'Welcome to {{site}}');
 	
 	
 	/************************************/
@@ -247,5 +196,18 @@
 	
 	// Set default as UTC
 	date_default_timezone_set('UTC');
+	
+	
+	/************************************/
+	/*  DEBUGGING                       */
+	/************************************/
+    
+    // Debugging
+	define('DEBUG', true);
+
+	if(DEBUG){
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+	}
 	
 ?>

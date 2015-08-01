@@ -38,11 +38,14 @@
     <!-- web components -->
     <script src="components/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="components/respond-build.html">
+
+    <!-- optional additional code to embed in head section -->
+    {{site.EmbeddedCodeHead}}
     
   </head>
 
   <!-- entry point for app -->
-  <body ui-view></body>
+  <body></body>
     
 </html>
 
@@ -51,3 +54,6 @@
 
 <!-- theme js -->
 <script src="themes/sidebar/resources/sidebar.js"></script>
+
+<!-- optional additional code to embed at bottom of document -->
+{{site.EmbeddedCodeBottom}}

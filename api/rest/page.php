@@ -12,7 +12,7 @@ class PageAddResource extends Tonic\Resource {
     function add() {
 
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -31,6 +31,7 @@ class PageAddResource extends Tonic\Resource {
             $name = $request['name'];
             $friendlyId = $request['friendlyId'];
             $description = $request['description'];
+            
             
 			// check permissions
 			if(Utilities::CanPerformAction($pageTypeId, $access['CanCreate']) == false){
@@ -53,6 +54,18 @@ class PageAddResource extends Tonic\Resource {
 
 			// add page
             $page = Page::Add($friendlyId, $name, $description, $layout, $stylesheet, $pageTypeId, $token->SiteId, $token->UserId);
+            
+            // set content (if pageId set)
+            if(isset($request['pageId'])){
+            	
+            	// get existing page
+            	$existing_page = Page::GetByPageId($request['pageId']);
+            	
+            	// set content for page						
+				Page::EditContent($page['PageId'], $existing_page['Content'], $token->UserId);
+            
+            }
+            
             
             $fullName = $user['FirstName'].' '.$user['LastName'];
             $row['LastModifiedFullName'] = $fullName;
@@ -114,15 +127,7 @@ class PageAddResource extends Tonic\Resource {
 			if($page['Image']!=''){
 			
 				// set images URL
-				if(FILES_ON_S3 == true){
-					$bucket = $site['Bucket'];
-					$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-					$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-				}
-				else{
-					$imagesURL = $site['Domain'];
-				}
-			
+				$imagesURL = $site['Domain'];
 				$thumbURL = $imagesURL.'/files/thumbs/'.$page['Image'];
 				$imageURL = $imagesURL.'/files/'.$page['Image'];
 				
@@ -169,7 +174,7 @@ class PageEditTagsResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -220,7 +225,7 @@ class PageRemoveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -317,7 +322,7 @@ class PagePublishResource extends Tonic\Resource {
     function publish() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -384,7 +389,7 @@ class PageUnPublishResource extends Tonic\Resource {
     function unpublish() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -460,7 +465,7 @@ class PageRetrieveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -555,7 +560,7 @@ class PageSaveResource extends Tonic\Resource {
     function update() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -644,7 +649,7 @@ class PageContentRetrieveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -717,7 +722,7 @@ class PageContentSaveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -815,7 +820,7 @@ class PageContentRevert extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -872,7 +877,7 @@ class PageContentPreviewResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -951,7 +956,7 @@ class PagePreviewRemoveResource extends Tonic\Resource {
     function remove() {
 
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -991,7 +996,7 @@ class PageImageResource extends Tonic\Resource {
     function save() {
 
          // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -1022,7 +1027,7 @@ class PageListAll extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -1048,15 +1053,8 @@ class PageListAll extends Tonic\Resource {
 				if($row['Image']!=''){
 				
 					 // set images URL
-					if(FILES_ON_S3 == true){
-						$bucket = $site['Bucket'];
-						$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-						$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-					}
-					else{
-						$imagesURL = $site['Domain'];
-					}
-				
+					$imagesURL = $site['Domain'];
+					
 					$thumbURL = $imagesURL.'/files/thumbs/'.$row['Image'];
 					$imageURL = $imagesURL.'/files/'.$row['Image'];
 					
@@ -1112,7 +1110,7 @@ class PageListAllowed extends Tonic\Resource {
     function get() {
 
 		// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -1194,15 +1192,7 @@ class PageListAllowed extends Tonic\Resource {
 				if($row['Image'] != ''){
 				
 					 // set images URL
-					if(FILES_ON_S3 == true){
-						$bucket = $site['Bucket'];
-						$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL);
-						$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-					}
-					else{
-						$imagesURL = $site['Domain'];
-					}
-				
+					$imagesURL = $site['Domain'];
 					$thumbURL = $imagesURL.'/files/thumbs/'.$row['Image'];
 					$imageURL = $imagesURL.'/files/'.$row['Image'];
 					
@@ -1226,6 +1216,8 @@ class PageListAllowed extends Tonic\Resource {
                 }
                 
                 $row['HasDraft'] = $hasDraft;
+                
+                unset($row['Content']);
 
                 // push to array    
                 array_push($pages, $row);
@@ -1261,7 +1253,7 @@ class PageListSortedResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -1430,7 +1422,7 @@ class PageListFriendlyResource extends Tonic\Resource {
     function get($friendlyId) {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -1525,10 +1517,11 @@ class PageListResource extends Tonic\Resource {
 
         parse_str($this->request->data, $request); // parse request
         $siteId = $request['siteId'];
-        $friendlyId = $request['type'];
+        $friendlyId = urldecode($request['type']);
         $pageSize = $request['pagesize'];
         $orderBy = $request['orderby'];
-        $current= $request['current'];        
+        $current= $request['current'];  
+        $tag = $request['tag'];           
 
         // get language
         $language = 'en';
@@ -1633,7 +1626,20 @@ class PageListResource extends Tonic\Resource {
                     'Tags' => $page['Tags']
                 );
             
-            array_push($pages, $item);
+            if($tag != ''){
+	            
+	           // echo 'tags='.$page['Tags'].' and tag='.$tag;
+	           // echo ' and pos='.strpos($page['Tags'], $tag);
+	            
+	            if(strpos($page['Tags'], $tag) !== false){
+		            array_push($pages, $item); 
+	            }
+	            
+            }
+            else{
+	           array_push($pages, $item); 
+            }
+            
         }
 
         // return a json response

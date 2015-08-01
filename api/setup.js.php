@@ -1,10 +1,14 @@
 <?php 
-	include 'app.php';
+
+	// include setup
+    if(file_exists('../setup.local.php')){
+    	include '../setup.local.php';
+    }
+    else{
+    	include '../setup.php';
+    }
 	
 	$arr = Array(false => 'false', true => 'true');
-	
-	// get plans
-	$plans = file_get_contents(APP_LOCATION.'data/plans.json');
 	
 	// get system message
 	$system_message = '';
@@ -40,7 +44,6 @@ angular.module('respond.setup', [])
 	
 	// branding
 	logo: 					'<?php print BRAND_LOGO; ?>',
-	paypalLogo: 			'<?php print PAYPAL_LOGO; ?>',
 	icon: 					'<?php print BRAND_ICON; ?>',
 	brand: 					'<?php print BRAND; ?>',
 	css:					'<?php print BRAND_CSS; ?>',
@@ -50,13 +53,6 @@ angular.module('respond.setup', [])
 	direction: 				'<?php print DEFAULT_DIRECTION; ?>',
 	changeDefaultLanguage:	<?php print $arr[CHANGE_DEFAULT_LANGUAGE]; ?>, 
 	defaultNameOnCreate:	<?php print $arr[DEFAULT_NAME_ON_CREATE]; ?>, 
-
-	// public keys
-	stripePubKey:			'<?php print STRIPE_PUBLISHABLE_KEY; ?>',
-	paypalEmail:			'<?php print PAYPAL_EMAIL; ?>',
-	paypalUseSandbox:		<?php print $arr[PAYPAL_USE_SANDBOX]; ?>,
-	paypalCurrency:			'<?php print PAYPAL_CURRENCY; ?>',
-	paypalLogo:				'<?php print PAYPAL_LOGO; ?>',
 	
 	// app branding
 	app:					'<?php print BRAND; ?>',
@@ -64,18 +60,9 @@ angular.module('respond.setup', [])
 	updateLink:				'<?php print UPDATE_LINK; ?>',
 	copy: 					'<?php print COPY; ?>',
 	email:					'<?php print EMAIL; ?>',
-	
-	//links
-	pricingLink:			'<?php print PRICING_URL; ?>',
-	
-	// plans
-	plans: 					<?php print $plans; ?>,
-	
-	// trial length
-	trialLength: 			<?php print TRIAL_LENGTH; ?>,
-	
-	// disable after trial
-	disableAfterTrial:		<?php print $arr[DISABLE_AFTER_TRIAL]; ?>,
+	updateLink:				'<?php print SUBSCRIBE_LINK; ?>',
+	subscribeLink:			'<?php print SUBSCRIBE_LINK; ?>',
+	trialMessage:			'<?php print TRIAL_MESSAGE; ?>',
 	
 	// themes 
 	themes:					'<?php print THEMES_FOLDER; ?>',

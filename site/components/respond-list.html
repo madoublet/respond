@@ -260,7 +260,8 @@
 	  		display: { type: String },
 	  		pagesize: { type: String },
 	  		orderby: { type: String },
-	  		pageresults: { type: String }
+	  		pageresults: { type: String },
+	  		tag: { type: String }
 		},
 		
 		// attached
@@ -291,6 +292,11 @@
 			// show pager
 			if(this.pageresults === 'true'){
 				this.showPager = true;
+			}
+			
+			// init tag if undefined
+			if(this.tag == undefined){
+				this.tag = '';
 			}
 			
 			// setup map
@@ -473,7 +479,8 @@
 				type: this.type,
 				pagesize: this.pagesize,
 				current: this.current,
-				orderby: this.orderby
+				orderby: this.orderby,
+				tag: this.tag
 			}
 			
 			// set current index

@@ -12,7 +12,7 @@ class PageTypeAddResource extends Tonic\Resource {
     function add() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -25,8 +25,34 @@ class PageTypeAddResource extends Tonic\Resource {
             $isSecure = $request['isSecure'];
             $siteId = $token->SiteId;
             $lastModifiedBy = $token->UserId;
-
+           
+			// add pagetype
             $pageType = PageType::Add($friendlyId, $layout, $stylesheet, $isSecure, $siteId, $lastModifiedBy);
+            
+            // duplicate pages in pagetype (if set)
+            if(isset($request['pageTypeId'])){
+            
+            	$pageTypeId = $request['pageTypeId'];
+            	
+            	// set order
+            	$pageSize = 100;
+            	$page = 0;
+            	$orderBy = 'Pages.PageId ASC';
+            	
+	            // get pages
+	            $list = Page::GetPages($siteId, $pageTypeId, $pageSize, $page, $orderBy);
+	            
+	            // walk through pages
+	            foreach ($list as $row){
+	            
+	            	// duplicate page
+					$page = Page::Add($row['FriendlyId'], $row['Name'], $row['Description'], $row['Layout'], $row['Stylesheet'], $pageType['PageTypeId'], $token->SiteId, $token->UserId);
+					
+					// set content for page						
+					Page::EditContent($page['PageId'], $row['Content'], $token->UserId);
+	            
+	            }
+            }
 
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
@@ -55,7 +81,7 @@ class PageTypeEditResource extends Tonic\Resource {
     function edit() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){
@@ -93,7 +119,7 @@ class PageTypeRemoveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){
@@ -129,7 +155,7 @@ class PageTypeListAllResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){
@@ -169,7 +195,7 @@ class PageTypeListAllowedResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){

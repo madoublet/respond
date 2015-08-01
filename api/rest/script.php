@@ -11,7 +11,7 @@ class ScriptAddResource extends Tonic\Resource {
     function add() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -54,7 +54,7 @@ class ScriptRetrieveResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -97,7 +97,7 @@ class ScriptPublishResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -141,7 +141,7 @@ class ScriptRemoveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -182,7 +182,7 @@ class ScriptListResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

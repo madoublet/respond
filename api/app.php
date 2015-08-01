@@ -11,20 +11,6 @@
     else{
     	include '../setup.php';
     }
-    
-    
-    /************************************/
-	/*  DEBUGGING                       */
-	/************************************/
-    
-    // Debugging
-	define('DEBUG', false);
-
-	if(DEBUG){
-		error_reporting(E_ALL);
-		ini_set('display_errors', '1');
-	}
-   
    
 	/************************************/
 	/*  Locations                       */
@@ -68,11 +54,9 @@
 	// include libs
 	require_once 'libs/Utilities.php';
 	require_once 'libs/Webhooks.php';
-	require_once 'libs/S3.php';
 	require_once 'libs/Validator.php';
 	require_once 'libs/Image.php';
 	require_once 'libs/Publish.php';
-	
 	
 	/************************************/
 	/*  REST Objects                    */
@@ -97,24 +81,5 @@
     require_once 'rest/product.php';
     require_once 'rest/snippet.php';
     require_once 'rest/app.php';
-   
-	// workaround for JSON module issues
-	if(defined('JSON_C_VERSION') == false){	
-		define('JSON_C_VERSION', true);
-	}
-	
-	// workaround for apache_request_headers not available under Nginx/FastCGI
-	if (!function_exists('apache_request_headers')) { 
-        function apache_request_headers() { 
-            foreach($_SERVER as $key=>$value) { 
-                if (substr($key,0,5)=="HTTP_") { 
-                    $key=str_replace(" ","-",ucwords(strtolower(str_replace("_"," ",substr($key,5))))); 
-                    $out[$key]=$value; 
-                }else{
-                    $out[$key]=$value; 
-		}
-            } 
-            return $out; 
-        } 
-}
+		
 ?>

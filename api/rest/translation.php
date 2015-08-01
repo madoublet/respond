@@ -12,7 +12,7 @@ class TranslationRetrieveResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 		
 		$siteId = -1;
 		parse_str($this->request->data, $request); // parse request
@@ -72,7 +72,7 @@ class TranslationRetrieveDefaultResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -120,7 +120,7 @@ class TranslationAddLocaleResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -172,7 +172,7 @@ class TranslationRemoveLocaleResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -216,7 +216,7 @@ class TranslationSaveResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -293,7 +293,7 @@ class TranslationListResource extends Tonic\Resource {
     function post() {
     
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		$siteId = -1;
 		parse_str($this->request->data, $request); // parse request

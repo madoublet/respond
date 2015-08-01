@@ -5644,7 +5644,12 @@ this._removeChildren();
 		// attached
 		attached: function() {
 			
-			var url = this.url.replace('/', '.');
+			// replace '/' with '.'
+			var find = '/';
+			var re = new RegExp(find, 'g');
+			var url = this.url.replace(re, '.');
+			
+			
 			var context = this;
 			
 			// xhr
@@ -6062,7 +6067,8 @@ this._removeChildren();
 	  		display: { type: String },
 	  		pagesize: { type: String },
 	  		orderby: { type: String },
-	  		pageresults: { type: String }
+	  		pageresults: { type: String },
+	  		tag: { type: String }
 		},
 		
 		// attached
@@ -6093,6 +6099,11 @@ this._removeChildren();
 			// show pager
 			if(this.pageresults === 'true'){
 				this.showPager = true;
+			}
+			
+			// init tag if undefined
+			if(this.tag == undefined){
+				this.tag = '';
 			}
 			
 			// setup map
@@ -6275,7 +6286,8 @@ this._removeChildren();
 				type: this.type,
 				pagesize: this.pagesize,
 				current: this.current,
-				orderby: this.orderby
+				orderby: this.orderby,
+				tag: this.tag
 			}
 			
 			// set current index
@@ -7941,9 +7953,9 @@ this._removeChildren();
 	
 	});
 </script><dom-module id="respond-menu" assetpath="../../../../../../../">
-	<style></style>
-
-	<template></template>
+	<template>
+  		<content></content>
+	</template>
 </dom-module>
 
 <script>

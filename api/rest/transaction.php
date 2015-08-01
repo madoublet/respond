@@ -50,23 +50,10 @@ class TransactionDownloadResource extends Tonic\Resource {
 		// get site
 		$site = Site::GetBySiteId($transaction['SiteId']);
     	
-    	// handle files on S3 and local
-    	if(FILES_ON_S3 == true){
-    	
-    		// http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_getObject
-    		$result = S3::GetFile($site, $product['Download'], 'downloads');
-    	
-    		$body =  $result['Body'];
-    	
-    	}
-    	else{
-	    	
-	    	$file = SITES_LOCATION.'/'.$site['FriendlyId'].'/downloads/'.$product['Download'];
-	    	
-	    	$body = file_get_contents($file);
-	    	
-    	}
-
+    	// handle files
+    	$file = SITES_LOCATION.'/'.$site['FriendlyId'].'/downloads/'.$product['Download'];
+	    $body = file_get_contents($file);
+	    
 		if(isset($transaction['Items'])){
 			// decode items in the transaction
 			$items = json_decode($transaction['Items'], true);
@@ -173,12 +160,6 @@ class TransactionPaypalResource extends Tonic\Resource {
 			
 			// set static URL
 			$staticUrl = $site['Domain'];
-			
-			if(FILES_ON_S3 == true){
-				$bucket = $site['Bucket'];
-				$staticUrl = str_replace('{{bucket}}', $bucket, S3_URL);
-				$staticUrl = str_replace('{{site}}', $site['FriendlyId'], $staticUrl);
-			}
 
 		    // get items 
 		    for($x=1; $x<=$num_items; $x++){
@@ -318,7 +299,7 @@ class TransactionListResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

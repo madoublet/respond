@@ -12,7 +12,7 @@ class ProductAddResource extends Tonic\Resource {
     function add() {
 
        	// get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -56,7 +56,7 @@ class ProductRetrieveResource extends Tonic\Resource {
     function post() {
     
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -94,7 +94,7 @@ class ProductClearResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

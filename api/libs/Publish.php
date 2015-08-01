@@ -99,42 +99,28 @@ class Publish
 	public static function SetupHtaccess($site){
 	
 		$htaccess = SITES_LOCATION.'/'.$site['FriendlyId'].'/.htaccess';
-	
-		if($site['UrlMode'] == 'html5'){
-			
-			$contents = 'Options -Indexes'.PHP_EOL.
-				'RewriteEngine On'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-d'.PHP_EOL.
-				'RewriteCond %{REQUEST_URI} !.*\.(css¦js|html|png)'.PHP_EOL.
-				'RewriteRule (.*) index.html [L]';
-			
-
-			file_put_contents($htaccess, $contents); // save to file			
-		}
-		else if($site['UrlMode'] == 'static'){
-						
-			$contents = 'Options -Indexes'.PHP_EOL.
-				'<IfModule mod_rewrite.c>'.PHP_EOL.
-				'RewriteEngine On'.PHP_EOL.
-				'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-				'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
-				'ErrorDocument 404 /page/error'.PHP_EOL.
-				'</IfModule>'.PHP_EOL.
-				'<IfModule mod_expires.c>'.PHP_EOL.
-				'ExpiresActive On '.PHP_EOL.
-				'ExpiresDefault "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/x-icon "access plus 1 year"'.PHP_EOL.
-				'ExpiresByType image/gif "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/png "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/jpg "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType image/jpeg "access plus 1 month"'.PHP_EOL.
-				'ExpiresByType text/css "access 1 month"'.PHP_EOL.
-				'ExpiresByType application/javascript "access plus 1 year"'.PHP_EOL.
-				'</IfModule>';	
-			
-			file_put_contents($htaccess, $contents); // save to file
-		}
+					
+		$contents = 'Options -Indexes'.PHP_EOL.
+			'<IfModule mod_rewrite.c>'.PHP_EOL.
+			'RewriteEngine On'.PHP_EOL.
+			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
+			'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
+			'ErrorDocument 404 /page/error'.PHP_EOL.
+			'</IfModule>'.PHP_EOL.
+			'<IfModule mod_expires.c>'.PHP_EOL.
+			'ExpiresActive On '.PHP_EOL.
+			'ExpiresDefault "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/x-icon "access plus 1 year"'.PHP_EOL.
+			'ExpiresByType image/gif "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/png "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/jpg "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType image/jpeg "access plus 1 month"'.PHP_EOL.
+			'ExpiresByType text/css "access 1 month"'.PHP_EOL.
+			'ExpiresByType application/javascript "access plus 1 year"'.PHP_EOL.
+			'</IfModule>';	
+		
+		file_put_contents($htaccess, $contents); // save to file
+		
 		
 	}
 	
@@ -360,23 +346,13 @@ class Publish
 			copy($configure_src, $configure_dest);
 		}
 		
-		// copy files
-		if(FILES_ON_S3 == true){  // copy files to S3
+		// copy files locally
+		$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files/';
 		
-			$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files';
-			
-			// deploy directory to S3
-			S3::DeployDirectory($site, $files_src, 'files/');
-		
-		}
-		else{ // copy files locally
-			$files_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/files/';
-			
-			if(file_exists($files_src)){
-				$files_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/';
-	
-				Utilities::CopyDirectory($files_src, $files_dest);
-			}
+		if(file_exists($files_src)){
+			$files_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/files/';
+
+			Utilities::CopyDirectory($files_src, $files_dest);
 		}
 		
 		// copy resources
@@ -434,22 +410,8 @@ class Publish
 		}
 		
 		// set imagesURL
-		if($env == 'local'){  // if it is locally deployed
-		
-			$imagesURL = $site['Domain'].'/';
+		$imagesURL = $site['Domain'].'/';
 			
-			// if files are stored on S3
-			if(FILES_ON_S3 == true){
-				$bucket = $site['Bucket'];
-				$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL).'/';
-				$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-			}
-			
-		}
-		else{ // if the deployment is on S3
-			$imagesURL = '/';
-		}
-		
 		// set iconUrl
 		$iconUrl = '';
 		
@@ -491,7 +453,6 @@ class Publish
 			'API' => API_URL,
 			'Name' => $site['Name'],
 			'ImagesUrl' => $imagesURL,
-			'UrlMode' => $site['UrlMode'],
 			'LogoUrl' => $logoUrl,
 			'AltLogoUrl' => $altLogoUrl,
 			'PayPalLogoUrl' => $payPalLogoUrl,
@@ -934,9 +895,6 @@ class Publish
 			if($page['IncludeOnly'] == 0){
 				Publish::PublishStaticPage($page, $site, $preview, $remove_draft);
 			}
-				
-			
-			
 		}
 	}
 	
@@ -978,7 +936,10 @@ class Publish
 			
 			// prepend the friendlyId to the fullname
 			if($pageType!=null){
-				$file = strtolower($pageType['FriendlyId']).'.'.$file;
+				
+				$path = str_replace('/', '.', $pageType['FriendlyId']);
+				
+				$file = strtolower($path).'.'.$file;
 			}
 			else{
 				$file = 'uncategorized.'.$file;
@@ -994,6 +955,25 @@ class Publish
 		}
 		else{
 			$html = $page['Content'];
+		}
+		
+		if($html !== NULL){
+		
+			// parse the html for menus
+			$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+			
+			// generate the [render=publish] components
+			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
+			
+			// applies the style attributes to the $html
+			$html = Publish::ApplyStyleAttributes($html);
+			
+			// applies the mustache syntax
+			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
+		
+		}
+		else{
+			$html = '';
 		}
 		
 		// remove any drafts associated with the page
@@ -1049,9 +1029,14 @@ class Publish
 				$ctrl = str_replace('-', '', $ctrl);
 			}
 			
-			// set $base to the root of the director
-			$base = '../';
-
+			// explode friendlyid by '/'
+			$parts = explode('/', $pageType['FriendlyId']);
+			
+			// set base based on the depth
+			foreach($parts as $part){
+				$base .= '../';
+			}
+			
 		}
         
         // create directory if it does not exist
@@ -1120,88 +1105,41 @@ class Publish
 			Page::RemoveDraft($page['PageId']);
 		
 		}
-
-		// replace mustaches syntax {{page.Description}} {{site.Name}}
-		$html = str_replace('{{page.Name}}', $page['Name'], $html);
-		$html = str_replace('{{page.Description}}', $page['Description'], $html);
-		$html = str_replace('{{page.Keywords}}', $page['Keywords'], $html);
-		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
-		$html = str_replace('{{site.Name}}', $site['Name'], $html);
-		$html = str_replace('{{site.Language}}', $site['Language'], $html);
-		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
-		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
-		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
 		
-		// meta data
-		$photo = '';
-		$firstName = '';
-		$lastName = '';
-		$lastModifiedDate = $page['LastModifiedDate'];
-		
-		// replace last modified
-		if($page['LastModifiedBy'] != NULL){
+		if($html !== NULL){
 			
-			// get user
-			$user = User::GetByUserId($page['LastModifiedBy']);
+			// parse the html for menus
+			$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
 			
-			// set user infomration
-			if($user != NULL){
-				$photo = $user['PhotoUrl'];
-				$firstName = $user['FirstName'];
-				$lastName = $user['LastName'];
-			}
+			// generate the [render=publish] components
+			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
 			
-		}
-		
-		
-		// set page information
-		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
-		$html = str_replace('{{page.FirstName}}', $firstName, $html);
-		$html = str_replace('{{page.LastName}}', $lastName, $html);
-		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
-		
-		// add a timestamp
-		$html = str_replace('{{timestamp}}', time(), $html);
-		
-		// set imaages URL
-		$imagesURL = $site['Domain'].'/';
+			// applies the style attributes to the $html
+			$html = Publish::ApplyStyleAttributes($html);
 			
-		// if files are stored on S3
-		if(FILES_ON_S3 == true){
-			$bucket = $site['Bucket'];
-			$imagesURL = str_replace('{{bucket}}', $bucket, S3_URL).'/';
-			$imagesURL = str_replace('{{site}}', $site['FriendlyId'], $imagesURL);
-		}
+			// applies the mustache syntax
+			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
 		
-		// set iconURL
-		$iconURL = '';
-		
-		if($site['IconUrl'] != ''){
-			$iconURL = $imagesURL.'files/'.$site['IconUrl'];
-		}
-		
-		// replace
-		$html = str_replace('ng-src', 'src', $html);
-		$html = str_replace('{{site.ImagesUrl}}', $imagesURL, $html);
-		$html = str_replace('{{site.ImagesURL}}', $imagesURL, $html);
-		$html = str_replace('{{site.IconUrl}}', $iconURL, $html);
-		
-		// set fullLogo
-		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
-		
-		// set altLogo (defaults to full logo if not available)
-		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
-			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
 		}
 		else{
-			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+			$html = '';
 		}
 		
 		// update base
 		$html = str_replace('<base href="/">', '<base href="'.$base.'">', $html);
+	
+		// save the content to the published file
+		Utilities::SaveContent($dest, $file, $html);
 		
-		// parse the html for menus
-		$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
+        return $dest.$file;
+        
+	}
+	
+	// generate the [render=publish] components
+	public static function GenerateRenderAtPublish($html, $site, $page){
+		
+		// set images URL
+		$imagesURL = $site['Domain'].'/';
 		
 		// build out the menus where render is set to publish
 		foreach($html->find('respond-menu[render=publish]') as $el){
@@ -1334,6 +1272,13 @@ class Publish
 			
 		}
 		/* foreach */
+		
+		return $html;
+		
+	}
+	
+	// applies the style attributes
+	public static function ApplyStyleAttributes($html){
 		
 		// replace background color
 		foreach($html->find('[backgroundcolor]') as $el){
@@ -1539,12 +1484,105 @@ class Publish
 		
 		}
 		/* foreach */
-	
-		// save the content to the published file
-		Utilities::SaveContent($dest, $file, $html);
 		
-        return $dest.$file;
+		return $html;
+		
+	}
+	
+	
+	// applies the mustache syntax
+	public static function ApplyMustacheSyntax($html, $site, $page){
+		
+		// meta data
+		$photo = '';
+		$firstName = '';
+		$lastName = '';
+		$lastModifiedDate = $page['LastModifiedDate'];
+		
+		// replace last modified
+		if($page['LastModifiedBy'] != NULL){
+			
+			// get user
+			$user = User::GetByUserId($page['LastModifiedBy']);
+			
+			// set user infomration
+			if($user != NULL){
+				$photo = $user['PhotoUrl'];
+				$firstName = $user['FirstName'];
+				$lastName = $user['LastName'];
+			}
+			
+		}
+		
+		// set page information
+		$html = str_replace('{{page.PhotoUrl}}', $photo, $html);
+		$html = str_replace('{{page.FirstName}}', $firstName, $html);
+		$html = str_replace('{{page.LastName}}', $lastName, $html);
+		$html = str_replace('{{page.LastModifiedDate}}', $lastModifiedDate, $html);
+		
+		// replace timestamp
+		$html = str_replace('{{timestamp}}', time(), $html);
+		
+		// replace year
+		$html = str_replace('{{year}}', date('Y'), $html);
+		
+		// set images URL
+		$imagesURL = $site['Domain'].'/';
+		
+		// set iconURL
+		$iconURL = '';
+		
+		if($site['IconUrl'] != ''){
+			$iconURL = $imagesURL.'files/'.$site['IconUrl'];
+		}
+		
+		// replace
+		$html = str_replace('ng-src', 'src', $html);
+		$html = str_replace('{{site.ImagesUrl}}', $imagesURL, $html);
+		$html = str_replace('{{site.ImagesURL}}', $imagesURL, $html);
+		$html = str_replace('{{site.IconUrl}}', $iconURL, $html);
+		
+		// set fullLogo
+		$html = str_replace('{{fullLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		
+		// set altLogo (defaults to full logo if not available)
+		if($site['AltLogoUrl'] != '' && $site['AltLogoUrl'] != NULL){
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['AltLogoUrl'], $html);
+		}
+		else{
+			$html = str_replace('{{fullAltLogoUrl}}', $imagesURL.'files/'.$site['LogoUrl'], $html);
+		}
+		
+		// set urls
+		$relativeURL = $page['FriendlyId'];
+		
+		if($page['PageTypeId']!=-1){
+        	$pageType = PageType::GetByPageTypeId($page['PageTypeId']);
+			$relativeURL = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
+        }
         
+        $fullURL = $site['Domain'].'/'.$relativeURL;
+		
+		
+		// replace mustaches syntax {{page.Description}} {{site.Name}}
+		$html = str_replace('{{page.Name}}', $page['Name'], $html);
+		$html = str_replace('{{page.Description}}', $page['Description'], $html);
+		$html = str_replace('{{page.Keywords}}', $page['Keywords'], $html);
+		$html = str_replace('{{page.Callout}}', $page['Callout'], $html);
+		$html = str_replace('{{site.Name}}', $site['Name'], $html);
+		$html = str_replace('{{site.Language}}', $site['Language'], $html);
+		$html = str_replace('{{site.Direction}}', $site['Direction'], $html);
+		$html = str_replace('{{site.IconBg}}', $site['IconBg'], $html);
+		$html = str_replace('{{site.EmbeddedCodeHead}}', $site['EmbeddedCodeHead'], $html);
+		$html = str_replace('{{site.EmbeddedCodeBottom}}', $site['EmbeddedCodeBottom'], $html);
+		$html = str_replace('{{page.FullStylesheetUrl}}', 'css/'.$page['Stylesheet'].'.css', $html);
+		
+		// urls
+		$html = str_replace('{{page.Url}}', $relativeURL, $html);
+		$html = str_replace('{{page.FullUrl}}', $fullURL, $html);
+		
+		return $html;
+		
 	}
 	
 	// removes a draft of the page

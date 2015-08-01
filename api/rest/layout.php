@@ -11,7 +11,7 @@ class LayoutAddResource extends Tonic\Resource {
     function add() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -54,7 +54,7 @@ class LayoutRetrieveResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -97,7 +97,7 @@ class LayoutPublishResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -115,17 +115,9 @@ class LayoutPublishResource extends Tonic\Resource {
 
             file_put_contents($file, $content); // save to file
             
-            // publish index to root
-            if($name=='index' && $site['UrlMode'] != 'static'){
-	            $index = SITES_LOCATION.'/'.$site['FriendlyId'].'/index.html';
-	            file_put_contents($index, $content); // save to file	            
-            }
+            // republish pages
+            Publish::PublishAllPages($site);
             
-            // republish pages for static mode
-            if($site['UrlMode'] == 'static'){
-	            Publish::PublishAllPages($site);
-            }
-
             // return a json response
             $response = new Tonic\Response(Tonic\Response::OK);
             $response->contentType = 'text/HTML';
@@ -152,7 +144,7 @@ class LayoutRemoveResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -193,7 +185,7 @@ class LayoutListResource extends Tonic\Resource {
     function get() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

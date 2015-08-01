@@ -1,4 +1,4 @@
-<section class="main" data-pageid="{{pageId}}">
+<section class="main content" data-pageid="{{pageId}}">
 	
 	<nav>
         <a ng-click="back()" 
@@ -441,27 +441,31 @@
     </div>
     <!-- /#editor-container -->
     
-    <div id="actions">
+    <div class="content-actions">
+	    
+	    <div>
     
-        <button class="primary-button" 
-        	ng-click="saveAndPublish()"
-        	ng-show="page.CanPublish"
-        	ng-disabled="disableAfterTrial()"
-        	type="button">{{'Save and Publish' | i18next}}</button>
+	        <button class="primary-button" 
+	        	ng-click="saveAndPublish()"
+	        	ng-show="page.CanPublish"
+	        	ng-disabled="site.Status == 'Disabled'"
+	        	type="button">{{'Save and Publish' | i18next}}</button>
+	        	
+	        <button class="secondary-button"
+	        	ng-click="saveDraft()"
+	        	ng-show="page.CanPublish || page.CanEdit"
+	        	ng-disabled="site.Status == 'Disabled'"
+	        	type="button">{{'Save Draft' | i18next}}</button>
+	        
+	        <!-- {{page.HasDraft}} -->
+	        
+	        <button class="secondary-button"
+	        	ng-click="revertDraft()"
+	        	ng-disabled="site.Status == 'Disabled'"
+	        	ng-show="(page.CanPublish || page.CanEdit) && page.HasDraft"
+	        	type="button">{{'Revert Draft' | i18next}}</button>
         	
-        <button class="secondary-button"
-        	ng-click="saveDraft()"
-        	ng-show="page.CanPublish || page.CanEdit"
-        	ng-if="!disableAfterTrial()"
-        	type="button">{{'Save Draft' | i18next}}</button>
-        
-        <!-- {{page.HasDraft}} -->
-        
-        <button class="secondary-button"
-        	ng-click="revertDraft()"
-        	ng-if="!disableAfterTrial()"
-        	ng-show="(page.CanPublish || page.CanEdit) && page.HasDraft"
-        	type="button">{{'Revert Draft' | i18next}}</button>
+	    </div>
    
     </div>
     <!-- /#actions -->

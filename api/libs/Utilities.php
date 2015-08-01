@@ -271,14 +271,7 @@ class Utilities
 		  }
 		  
 		  // set URL divider based on URL mode
-		  $divider = '/#/';
-		  
-		  if($site['UrlMode'] == 'hashbang'){
-			  $divider = '/!#/';
-		  }
-		  else if($site['UrlMode'] == 'html5' || $site['UrlMode'] == 'static') {
-		  		$divider = '/';
-		  }
+		  $divider = '/';
 		  
 		  // build url
           if($row['PageTypeId']==-1){
@@ -375,8 +368,9 @@ class Utilities
 			
 		}
 		
-		$mail->From = $from;
-		$mail->FromName = $fromName;
+		$mail->addReplyTo($from, $fromName); 		// Set Reply-To: header to the primary site email
+		$mail->From = EMAILS_FROM; 					// Set From: header to address specified in setup.php
+		$mail->FromName = EMAILS_FROM_NAME;
 		$mail->addAddress($to, '');
 		$mail->isHTML(true);
 		
@@ -417,8 +411,6 @@ class Utilities
 		$mail->Subject = $subject;
 		$mail->Body    = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
 		
-		echo 'send email';
-    
 		if(!$mail->send()) {
 		   return true;
 		}
@@ -546,54 +538,48 @@ class Utilities
     }
     
     // validate JWT token
-    public static function ValidateJWTToken($headers){
-	    
-	    if(isset($headers['Authorization'])){
+    public static function ValidateJWTToken(){
+    
+    	$auth = $_SERVER['HTTP_X_AUTH'];
+
+		// locate token
+		if(strpos($auth, 'Bearer') !== false){
+		
+			$jwt = str_replace('Bearer ', '', $auth);
 			
-			// get auth header
-			$auth = $headers['Authorization'];
+			try{
 			
-			// locate token
-			if(strpos($auth,'Bearer') !== false){
-			
-				$jwt = str_replace('Bearer ', '', $auth);
+				// decode token
+				$jwt_decoded = JWT::decode($jwt, JWT_KEY, array('HS256'));
 				
-				try{
-				
-					// decode token
-					$jwt_decoded = JWT::decode($jwt, JWT_KEY, array('HS256'));
+				if($jwt_decoded != NULL){
 					
-					if($jwt_decoded != NULL){
-						
-						// check to make sure the token has not expired
-						if(strtotime('NOW') < $jwt_decoded->Expires){
-							return $jwt_decoded;
-						}
-						else{
-							return NULL;
-						}
-						
+					// check to make sure the token has not expired
+					if(strtotime('NOW') < $jwt_decoded->Expires){
+						return $jwt_decoded;
 					}
 					else{
 						return NULL;
 					}
-				
-					// return token
-					return $jwt_decoded;
-				
-				} catch(Exception $e){
+					
+				}
+				else{
 					return NULL;
 				}
-							
-			}
-			else{
+			
+				// return token
+				return $jwt_decoded;
+			
+			} catch(Exception $e){
 				return NULL;
 			}
-			
+						
 		}
 		else{
 			return NULL;
 		}
+		
+		
     }
     
     // gets content type from extensiont
@@ -625,6 +611,23 @@ class Utilities
 	        return $default;
         }
 	 	
+    }
+    
+    // handles response from the API
+    public static function SendHTTPResponse($code, $text = '', $type = 'text/html'){
+	    
+	    // set response code
+	    http_response_code($code);  
+	    
+	    // set type
+     	header($type);
+     	
+     	// set text if provided
+     	if($text != ''){
+	     	print $text;
+     	}
+     	
+     	exit();
     }
 
 }

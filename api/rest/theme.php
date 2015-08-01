@@ -76,7 +76,7 @@ class ThemeApplyResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -127,7 +127,7 @@ class ThemeResetResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -169,7 +169,7 @@ class ThemePageContentResource extends Tonic\Resource {
     function post() {
 
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -217,7 +217,7 @@ class ThemePagesListResource extends Tonic\Resource {
     function get() {
         
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -280,7 +280,7 @@ class ThemeConfigurationsListResource extends Tonic\Resource {
     function get() {
         
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 
@@ -319,7 +319,7 @@ class ThemeConfigurationsApplyResource extends Tonic\Resource {
     function post() {
         
         // get token
-		$token = Utilities::ValidateJWTToken(apache_request_headers());
+		$token = Utilities::ValidateJWTToken();
 
 		// check if token is not null
         if($token != NULL){ 

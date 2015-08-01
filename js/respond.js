@@ -1,7 +1,9 @@
-// respond app
-// respond.controllers 	-> js/respond.controllers.js
-// respond.factories 	-> js/respond.factories.js
-// respond.directives	-> js/respond.directives.js
+// setup helper modules
+angular.module('respond.controllers', []);
+angular.module('respond.factories', []);
+angular.module('respond.directives', []);
+
+// set application module
 angular.module('respond', ['ui.router', 
 	'ui.codemirror',
 	'respond.setup',
@@ -10,7 +12,7 @@ angular.module('respond', ['ui.router',
 	'respond.directives',
 	'respond.filters',
 	'jm.i18next'])
-
+	
 // disable header during development
 .config(['$httpProvider', function($httpProvider) {
     //initialize get if not there

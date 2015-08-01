@@ -1,6 +1,6 @@
 <section class="main">
 
-	<nav>
+    <nav>
         <a class="show-menu"></a>
         
         <h1>{{'Users' | i18next}}</h1>
@@ -10,23 +10,20 @@
        		class="primary-action">
 	   		{{'Add User' | i18next}}
        </button>  
-        
-        <div class="dropdown more">
-		  <button class="dropdown-toggle" type="button" id="more-menu" data-toggle="dropdown">
-		    <i class="fa fa-ellipsis-v"></i>
-		  </button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="more-menu">
-		  	<li role="presentation"> 
-    			<a ui-sref="app.roles"
-    				tabindex="-1">
-    				{{'Roles' | i18next}}
-    			</a>
-		  	</li>
-		  </ul>
-		</div>
     </nav>
     <!-- /nav -->
-
+    <menu>
+    	<div class="dropdown">
+    		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+		    <span id="settings-text">{{'Users' | i18next}}</span>
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu dropdown-auto" role="menu" aria-labelledby="page-types" data-display="#settings-text">
+	  		<li class="active"><a>{{'Users' | i18next}}</a></li>
+			<li><a ui-sref="app.roles">{{'Roles' | i18next}}</a></li>
+		</ul>
+	</div>
+    </menu>
     <div id="usersList" class="list has-photo">
     
         <div class="listItem" ng-repeat="user in users">

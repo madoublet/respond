@@ -50,7 +50,7 @@ respond.utility.load = {
 				url: respond.editor.api +  '/page/content/retrieve',
 				type: 'POST',
 				beforeSend : function(xhr) {
-				 	xhr.setRequestHeader('Authorization', 'Bearer ' + window.sessionStorage.token);
+				 	xhr.setRequestHeader('X-Auth', 'Bearer ' + window.sessionStorage.token);
 			    },
 				data: {pageId: respond.utility.load.pageId},
 				success: function(data){
@@ -79,7 +79,7 @@ respond.utility.load = {
 				url: respond.editor.api + '/theme/page/content',
 				type: 'post',
 				beforeSend : function(xhr) {
-				 	xhr.setRequestHeader('Authorization', 'Bearer ' + window.sessionStorage.token);
+				 	xhr.setRequestHeader('X-Auth', 'Bearer ' + window.sessionStorage.token);
 			    },
 				data: {location: respond.utility.load.location},
 				success: function(data){
@@ -107,7 +107,7 @@ respond.utility.load = {
 				url: respond.editor.api + '/version/retrieve',
 				type: 'post',
 				beforeSend : function(xhr) {
-				 	xhr.setRequestHeader('Authorization', 'Bearer ' + window.sessionStorage.token);
+				 	xhr.setRequestHeader('X-Auth', 'Bearer ' + window.sessionStorage.token);
 			    },
 				data: {versionId: respond.utility.load.versionId},
 				success: function(data){
@@ -194,6 +194,20 @@ respond.utility.layout = {
 				var html = data;
 				html = utilities.replaceAll(html, '{{id}}', uniqId);
 				html = utilities.replaceAll(html, '{{menu}}', respond.editor.defaults.blockMenu);
+				
+				// replace with flexbox classes for columns
+				html = utilities.replaceAll(html, 'col-md-12', 'flex-100');
+				html = utilities.replaceAll(html, 'col-md-11', 'flex-91');
+				html = utilities.replaceAll(html, 'col-md-10', 'flex-83');
+				html = utilities.replaceAll(html, 'col-md-9', 'flex-75');
+				html = utilities.replaceAll(html, 'col-md-8', 'flex-66');
+				html = utilities.replaceAll(html, 'col-md-7', 'flex-58');
+				html = utilities.replaceAll(html, 'col-md-6', 'flex-50');
+				html = utilities.replaceAll(html, 'col-md-5', 'flex-41');
+				html = utilities.replaceAll(html, 'col-md-4', 'flex-33');
+				html = utilities.replaceAll(html, 'col-md-3', 'flex-25');
+				html = utilities.replaceAll(html, 'col-md-2', 'flex-16');
+				html = utilities.replaceAll(html, 'col-md-1', 'flex-8');
 				
 				// append to editor
 				$(respond.editor.el).append(
