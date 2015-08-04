@@ -484,8 +484,6 @@ class Publish
 		// get site file
 		$file = SITES_LOCATION.'/'.$site['FriendlyId'].'/js/respond.site.js';
 		
-		echo 'pre-check, file='.$file;
-		
 		if(file_exists($file)){
 			
 			// get contents
@@ -1589,7 +1587,7 @@ class Publish
 	public static function RemoveDraft($pageId){
 	
 		// remove a draft from the page
-		Page::RemoveDraft($page['PageId']);
+		Page::RemoveDraft($pageId);
 		
 		return false;
 	}
