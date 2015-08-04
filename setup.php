@@ -70,7 +70,7 @@
 	
 	// URLs
 	define('API_URL', APP_URL.'/api');
-	define('SITES_URL', APP_URL.'/sites');
+	define('SITES_URL', APP_URL.'/sites/{{friendlyId}}');
 	define('SITE_URL', APP_URL.'/sites/{{friendlyId}}');
 	define('LOGIN_URL', APP_URL.'/#/login/{{friendlyId}}');
 	define('TERMS_URL', 'http://myrespond.com/page/terms-of-service');
