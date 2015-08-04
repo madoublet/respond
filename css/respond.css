@@ -2402,7 +2402,7 @@ body.content{}
 		}
 	
 	.context-menu label{
-		width: 75px;
+		width: 70px;
 		color: #555;
 		font-size: 12px;
 		vertical-align: top;
@@ -2418,7 +2418,7 @@ body.content{}
 	}
 
 	body .context-menu .form-control{
-		width: 160px;
+		width: 150px;
 		background-color: #fff !important;
 		border-radius: 0 !important;
 		padding: 0 5px !important;
@@ -2478,7 +2478,7 @@ body.content{}
 	body .context-menu .form-group .sp-replacer{
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: 17px;
 		border: 1px solid #ddd;
 		background-color: #fff;
 		border-left: 1px solid transparent;
