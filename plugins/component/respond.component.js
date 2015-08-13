@@ -1912,6 +1912,10 @@ respond.component.badge = {
 		attrs['data-pinterest'] = '';
 		attrs['data-github'] = '';
 		attrs['data-tumblr'] = '';
+		attrs['data-youtube'] = '';
+		attrs['data-googleplus'] = '';
+		attrs['data-linkedin'] = '';
+		attrs['data-instagram'] = '';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -1947,6 +1951,10 @@ respond.component.badge = {
 		attrs['data-pinterest'] = $(node).attr('pinterest');
 		attrs['data-github'] = $(node).attr('github');
 		attrs['data-tumblr'] = $(node).attr('tumblr');
+		attrs['data-youtube'] = $(node).attr('youtube');
+		attrs['data-googleplus'] = $(node).attr('googleplus');
+		attrs['data-linkedin'] = $(node).attr('linkedin');
+		attrs['data-instagram'] = $(node).attr('instagram');
 		
 		utilities.element('div', attrs, html)
 		
@@ -1969,6 +1977,10 @@ respond.component.badge = {
 		attrs['pinterest'] = $(node).attr('data-pinterest');
 		attrs['github'] = $(node).attr('data-github');
 		attrs['tumblr'] = $(node).attr('data-tumblr');
+		attrs['youtube'] = $(node).attr('data-youtube');
+		attrs['googleplus'] = $(node).attr('data-googleplus');
+		attrs['linkedin'] = $(node).attr('data-linkedin');
+		attrs['instagram'] = $(node).attr('data-instagram');
 		
 		// return element
 		return utilities.element('respond-badge', attrs, '');
