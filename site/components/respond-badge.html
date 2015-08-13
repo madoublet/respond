@@ -54,6 +54,30 @@
 			background-color: #35465c;
 		}
 		
+		.respond-badge.colorful a.badge-youtube{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #dc2725;
+		}
+		
+		.respond-badge.colorful a.badge-googleplus{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #df4b38;
+		}
+		
+		.respond-badge.colorful a.badge-linkedin{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #0077b5;
+		}
+		
+		.respond-badge.colorful a.badge-instagram{
+			border: 1px solid #fff;
+			color: #fff;
+			background-color: #2e5e86;
+		}
+		
 	</style>
 
 	<template>
@@ -84,6 +108,26 @@
 				visible$="{{tumblrshow}}" 
 				href$="{{tumblrurl}}"><i class="fa fa-tumblr"></i></a>
 			<!-- /.badge-tumbler -->
+	
+			<a class="badge-youtube"
+				visible$="{{youtubeshow}}" 
+				href$="{{youtubeurl}}"><i class="fa fa-youtube"></i></a>
+			<!-- /.badge-youtube -->
+	
+			<a class="badge-googleplus"
+				visible$="{{googleplusshow}}" 
+				href$="{{googleplusurl}}"><i class="fa fa-google-plus"></i></a>
+			<!-- /.badge-googleplus -->
+	
+			<a class="badge-linkedin"
+				visible$="{{linkedinshow}}" 
+				href$="{{linkedinurl}}"><i class="fa fa-linkedin"></i></a>
+			<!-- /.badge-linkedin -->
+	
+			<a class="badge-instagram"
+				visible$="{{instagramshow}}" 
+				href$="{{instagramurl}}"><i class="fa fa-instagram"></i></a>
+			<!-- /.badge-instagram -->
 			
 		</div>
 		<!-- /.respond-share -->
@@ -104,7 +148,11 @@
 	  		twitter: { type: String },
 	  		github: { type: String },
 	  		pinterest: { type: String },
-	  		tumblr: { type: String }
+	  		tumblr: { type: String },
+	  		youtube: { type: String },
+	  		googleplus: { type: String },
+	  		linkedin: { type: String },
+	  		instagram: { type: String }
 		},
 		
 		// attached
@@ -140,6 +188,18 @@
 			
 			this.tumblershow = false;
 			this.tumblerurl = '';
+			
+			this.youtubeshow = false;
+			this.youtubeurl = '';
+			
+			this.googleplusshow = false;
+			this.googleplusurl = '';
+			
+			this.linkedinshow = false;
+			this.linkedinurl = '';
+			
+			this.instagramshow = false;
+			this.instagramrurl = '';
 		
 			// show and set urls
 			if(this.facebook != '' && this.facebook != undefined){
@@ -165,6 +225,26 @@
 			if(this.tumblr != '' && this.tumblr != undefined){
 				this.tumblrshow = true;
 				this.tumblrurl = 'http://' + this.tumblr + '.tumbler.com/';
+			}
+			
+			if(this.youtube != '' && this.youtube != undefined){
+				this.youtubeshow = true;
+				this.youtubeurl = 'https://youtube.com/user/' + this.youtube;
+			}
+			
+			if(this.googleplus != '' && this.googleplus != undefined){
+				this.googleplusshow = true;
+				this.googleplusurl = 'https://plus.google.com/' + this.googleplus;
+			}
+			
+			if(this.linkedin != '' && this.linkedin != undefined){
+				this.linkedinshow = true;
+				this.linkedinurl = 'https://linkedin.com/in/' + this.linkedin;
+			}
+			
+			if(this.instagram != '' && this.instagram != undefined){
+				this.instagramshow = true;
+				this.instagramurl = 'https://instagram.com/' + this.instagram;
 			}
 				
 		},
