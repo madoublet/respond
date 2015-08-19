@@ -982,7 +982,7 @@ body .read-only{
 		margin: 0 0 5px 0;
 		padding: 0;
 		height: auto;
-		line-height: auto;
+		line-height: normal;
 	}
 	
 	body .read-only a{
