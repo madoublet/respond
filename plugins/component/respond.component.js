@@ -620,6 +620,7 @@ respond.component.content = {
 		attrs['class'] = 'respond-content';
 		attrs['data-cssclass'] = '';
 		attrs['data-url'] = '';
+		attrs['data-render'] = 'client';
 		
 		// append element to the editor
 		respond.editor.append(
@@ -648,6 +649,7 @@ respond.component.content = {
 		attrs['class'] = 'respond-content';
 		attrs['data-cssclass'] = $(node).attr('cssclass');
 		attrs['data-url'] = $(node).attr('url');
+		attrs['data-render'] = $(node).attr('render');
 		
 		// return element
 		return utilities.element('div', attrs, html);
@@ -662,6 +664,7 @@ respond.component.content = {
 		attrs['contentid'] = $(node).attr('data-id');
 		attrs['cssclass'] = $(node).attr('data-cssclass');
 		attrs['url'] = $(node).attr('data-url');
+		attrs['render'] = $(node).attr('data-render');
 		
 		// return element
 		return utilities.element('respond-content', attrs, '');

@@ -25,7 +25,16 @@
 					{{page.Name}}
 				</option>
 			</select>
-			
+		</div>
+	
+		<div class="form-group">
+			<label for="class">{{'Render' | i18next}}</label>
+			<select class="form-control"
+				ng-model="node.render">
+				<option value="">{{'On Client' | i18next}}</option>
+				<option value="publish">{{'During Publish' | i18next}}</option>
+				</option>
+			</select>
 		</div>
 	
 	</div>
