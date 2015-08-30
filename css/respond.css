@@ -472,7 +472,7 @@ header.slideout{
     
          header.slideout .sub-menu a:hover{
              text-decoration: none;
-             color: #1111;
+             color: #111;
          }
          
          header.slideout .sub-menu a.signout:hover{
@@ -982,7 +982,7 @@ body .read-only{
 		margin: 0 0 5px 0;
 		padding: 0;
 		height: auto;
-		line-height: auto;
+		line-height: normal;
 	}
 	
 	body .read-only a{
@@ -3493,7 +3493,7 @@ body.content{
 	}
 
 		.editor .block div.respond-ul div[contentEditable=true]{
-			background: url('../images/bullet.png') no-repeat 5px 5px;
+			background: url('../images/bullet.png') no-repeat 5px 23px;
 			padding-left: 25px !important;
 		}
 		
@@ -4278,7 +4278,7 @@ body.content{
 	
 	/* table */
 	.editor .block div.respond-table{
-		padding: 8px 0 20px 0 !important;
+		padding: 10px 0 10px 0 !important;
 		width: auto !important;
 	}
 	
@@ -4290,11 +4290,8 @@ body.content{
 	
 	.editor div.respond-table table{
 		min-width: 50%;
-		margin-bottom: 2px !important;
-		margin-top: 0 !important;
-		margin-left: 0;
-		margin-right: 0;
-		width: 100%;
+		margin: 0 10px 0 10px !important;
+		width: calc(100% - 20px);
 	}
 	
 	.editor div.respond-table table.col-2 td{
