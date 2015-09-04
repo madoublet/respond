@@ -1,0 +1,264 @@
+
+body.home{
+	background-color: #555;
+	background: #fff config(--backdrop-background-image) 0 0;
+  	background-size: cover;
+  	background-position: center center;
+  	background-attachment: fixed;
+}
+
+
+body.home .container{
+	max-width: 100%;
+  	padding: 0;
+  	margin: 0;
+}
+
+
+body.home .container .row{
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+/* primary slideshow on home screen */
+body.home .container .primary-slideshow{
+  	position: relative;
+  	max-width: 100%;
+  	margin: 0;
+  	padding: 65px 0 40px 0;
+  	text-align: center;
+  	background-color: #f0f0f0;
+}
+
+  body.home .container .primary-slideshow .col{
+      padding: 0;
+      margin: 0;
+  }
+
+	body.home .container .primary-slideshow .carousel{
+    	height: 500px;
+      	margin-bottom: 0;
+    }
+
+	body.home .container .primary-slideshow .carousel .item{
+		height: 500px;
+      	background-size: cover;
+      	background-position: center;
+     	text-align: left;
+	}
+
+	body.home .container .primary-slideshow .carousel-caption{
+      	left: 0;
+		text-align: left;
+      	background-color: rgba(0,0,0,.5);
+      	max-width: 500px;
+      	padding: 25px 25px 20px 25px;
+      	margin-bottom: 35px;
+	}
+
+	body.home .container .primary-slideshow .carousel-caption h1{
+		font-size: 25px;
+    }
+
+	body.home .container .primary-slideshow .carousel-caption h1, body.home .container .primary-slideshow .carousel-caption p{
+		margin: 0 0 5px 0;
+      	color: #fff;
+    }
+
+	body.home .container .primary-slideshow .carousel-caption .btn{
+    	background: none;
+      	border-radius: 0;
+      	border: 1px solid #fff;
+      	color: #fff;
+      	margin-top: 25px;
+      	font-size: 15px;
+    }
+
+	body.home .container .primary-slideshow .carousel-indicators{
+      	width: 100%;
+      	bottom: -30px;
+      	left: 0;
+      	margin: 0;
+	}
+
+	body.home .container .primary-slideshow .carousel-indicators li{
+		margin: 0 5px;
+      	padding: 5px;
+      	height: 15px;
+      	width: 15px;
+    	background-color: rgba(136, 136, 136, 0.4);
+      	border: none;
+    }
+
+	body.home .container .primary-slideshow .carousel-indicators li.active{
+    	background-color: rgba(136, 136, 136, 1);
+    }
+
+	body.home .container .primary-slideshow .carousel-caption .btn:hover{
+		background-color: rgba(255,255,255,.25);
+    }
+
+	body.home .container .primary-slideshow .carousel-control{
+      	margin: 0;
+      	padding: 0;
+      	top: auto;
+      	bottom: -40px;
+      	text-shadow: none;
+      	height: 40px;
+      	width: 40px;
+      	z-index: 1000;
+      	border-radius: 0;
+      	background-color: #aaa;
+      	background-image: none;
+	}
+
+	body.home .container .primary-slideshow .carousel-control core-icon{
+      	top: 0;
+      	color: #fff;
+	}
+
+    body.home .container .primary-slideshow .carousel-control.left core-icon{
+        left: 0;
+    }
+
+	body.home .container .primary-slideshow .carousel-control.right core-icon{
+        right: 0;
+    }
+
+body.home .container .jumbotron .col-md-12{
+	margin: 0;
+  	padding: 0;
+}
+
+body.home .jumbotron .col{
+  	position: absolute;
+  	top: 225px;
+  	left: 0;
+}
+
+body.home .jumbotron h1{
+  	background-color: config(--jumbotron-panel-background-color);
+  	text-align: left;
+  	margin: 0;
+  	padding: 25px 25px 0 25px;
+  	font-size: 20px;
+  	line-height: 35px;
+  	text-transform: uppercase;
+  	color: config(--jumbotron-headline-color);
+  	width: 100%;
+  	max-width: 520px;
+}
+
+body.home .jumbotron p{
+  	background-color:config(--jumbotron-panel-background-color);
+  	text-align: left;
+  	margin: 0;
+  	padding: 10px 25px 25px 25px;
+  	font-size: 15px;
+  	line-height: 35px;
+  	text-transform: uppercase;
+  	color: config(--jumbotron-text-color);
+  	width: 100%;
+  	max-width: 520px;
+}
+
+body.home .jumbotron a, body .jumbotron a:hover{
+	color: config(--jumbotron-link-color);
+  	border: 1px solid config(--jumbotron-link-color);
+  	padding: 5px 30px;
+  	border-radius: 0;
+  	text-decoration: none;
+  	margin-left: 10px;
+}
+
+
+body.home .container blockquote{
+	border-left: 0;
+  	text-align: center;
+  	font-size: 18px;
+  	line-height: 24px;
+  	color: #888;
+}
+
+/* nested-container */
+body.home .nested-container{
+  	position: relative;
+	border-bottom: 1px solid #ddd;
+  	text-align: center;
+  	padding: 25px 25px;
+  	background-color: #fff;
+}
+
+body.home .nested-container:last-child{
+	border-bottom: none;
+}
+
+/* backdrop */
+body.home .nested-container.backdrop{
+  	padding-top: 40px;
+  	padding-bottom: 50px;
+	overflow: hidden;
+  	background-color: config(--backdrop-background-color);
+}
+
+body.home .nested-container.backdrop h3{
+	color: config(--backdrop-headline-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .nested-container.backdrop p{
+	color: config(--backdrop-text-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .nested-container.backdrop a{
+	color: config(--backdrop-link-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home footer{
+	margin-top: 0;
+}
+
+/* rtl */
+html[dir=rtl] body.home .jumbotron a, 
+html[dir=rtl] body.home .jumbotron a:hover{
+  	margin-left: 0;
+	margin-right: 10px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+	body.home aside.call-to-action a{
+  		display: inline-block;
+	}
+	
+	body.home .container{
+		width: 100%;
+	}
+  
+  	body.home .jumbotron .respond-image img{
+      max-width: 800px;
+      margin: 0;
+  	}
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+	body.home .container{
+		width: 100%;
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+	body.home .container{
+		width: 100%;
+	}
+
+}

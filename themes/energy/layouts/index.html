@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="{{site.Language}}" dir="{{site.Direction}}">
+  <head>
+    
+    <title>{{site.Name}} - {{page.Name}}</title>
+	
+    <!-- meta -->
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{page.Description}}">
+	<meta name="keywords" content="{{page.Keywords}}">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    
+    <!-- set base for HTML5 mode -->
+    <base href="/">
+    
+    <!-- icons -->
+    <link rel="icon" href="{{site.IconUrl}}">
+	<meta name="msapplication-TileColor" content="{{site.IconBg}}">
+    <meta name="msapplication-TileImage" content="{{site.IconUrl}}">
+    <meta name="theme-color" content="{{site.IconBg}}">
+    <link rel="apple-touch-icon" href="{{site.IconUrl}}">
+          
+    <!-- font -->
+	<link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+	<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
+    
+	<!-- css -->
+    <link type="text/css" href="css/libs.min.css?t={{timestamp}}" rel="stylesheet">
+	<link type="text/css" href="css/respond.min.css?t={{timestamp}}" rel="stylesheet">
+    
+    <!-- js -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/respond.site.js"></script>
+    
+    <!-- web components -->
+    <script src="components/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="components/respond-build.html">
+
+  </head>
+
+  <!-- entry point for site -->
+  <body></body>
+    
+</html>
+
+<!-- jquery and bootstrap -->
+<script src="js/libs.min.js?t={{timestamp}}"></script>

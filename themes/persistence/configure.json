@@ -1,0 +1,414 @@
+[
+	{
+		"name": 			"Body",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--body-background-color)",
+				"control":		"color",
+				"selected":		"#ddd"
+			},
+			{
+				"name": 		"Background Image",
+				"replace": 		"config(--body-background-image)",
+				"control":		"image",
+				"selected":		"../themes/persistence/resources/bridge.png",
+				"cssFormat":	"url(%1)"
+			},
+			{
+				"name": 		"Background Position",
+				"replace": 		"config(--body-background-position)",
+				"control":		"select",
+				"selected":		"center center",
+				"options":		["top left", "center center", "top right"]
+			},
+			{
+				"name": 		"Background Repeat",
+				"replace": 		"config(--body-background-repeat)",
+				"control":		"select",
+				"selected":		"no-repeat",
+				"options":		["repeat", "no-repeat"]
+			},
+			{
+				"name": 		"Background Size",
+				"replace": 		"config(--body-background-size)",
+				"control":		"select",
+				"selected":		"cover",
+				"options":		["initial", "cover"]
+			}
+		]
+	},
+	{
+		"name": 			"Navigation",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--nav-background-color)",
+				"control":		"color",
+				"selected":		"transparent"
+			},
+			{
+				"name": 		"Border Color",
+				"replace": 		"config(--nav-border-color)",
+				"control":		"color",
+				"selected":		"transparent"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--nav-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--nav-icon-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Hover Color",
+				"replace": 		"config(--nav-icon-hover-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Active Color",
+				"replace": 		"config(--nav-icon-active-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	},
+	{
+		"name": 			"Jumbotron",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--jumbotron-background-color)",
+				"control":		"color",
+				"selected":		"transparent"
+			},
+			{
+				"name": 		"Background Image",
+				"replace": 		"config(--jumbotron-background-image)",
+				"control":		"image",
+				"selected":		"",
+				"cssFormat":	"url(%1)"
+			},
+			{
+				"name": 		"Panel Color",
+				"replace": 		"config(--jumbotron-panel-background-color)",
+				"control":		"color",
+				"selected":		"transparent"
+			},
+			{
+				"name": 		"Headline Color",
+				"replace": 		"config(--jumbotron-headline-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--jumbotron-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--jumbotron-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	},
+	{
+		"name": 			"Backdrop Panel",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--backdrop-background-color)",
+				"control":		"color",
+				"selected":		"rgba(0,0,0,.5)"
+			},
+			{
+				"name": 		"Background Image",
+				"replace": 		"config(--backdrop-background-image)",
+				"control":		"image",
+				"selected":		"",
+				"cssFormat":	"url(%1)"
+			},
+			{
+				"name": 		"Headline Color",
+				"replace": 		"config(--backdrop-headline-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--backdrop-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--backdrop-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	},
+	{
+		"name": 			"Settings",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--settings-background-color)",
+				"control":		"color",
+				"selected":		"#aaa"
+			},
+			{
+				"name": 		"Border Color",
+				"replace": 		"config(--settings-border-color)",
+				"control":		"color",
+				"selected":		"#ccc"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--settings-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--settings-link-color)",
+				"control":		"color",
+				"selected":		"#ffffff"
+			},
+			{
+				"name": 		"Active Background Color",
+				"replace": 		"config(--settings-active-background-color)",
+				"control":		"color",
+				"selected":		"#8FBE00"
+			}
+		]
+	},
+	{
+		"name": 			"Cart",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--cart-background-color)",
+				"control":		"color",
+				"selected":		"#aaa"
+			},
+			{
+				"name": 		"Border Color",
+				"replace": 		"config(--cart-border-color)",
+				"control":		"color",
+				"selected":		"#ccc"
+			},
+			{
+				"name": 		"Alternate Background Color",
+				"replace": 		"config(--cart-alternate-background-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--cart-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Alternate Text Color",
+				"replace": 		"config(--cart-alternate-text-color)",
+				"control":		"color",
+				"selected":		"#555"
+			}
+		]
+	},
+	{
+		"name": 			"Search",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--search-background-color)",
+				"control":		"color",
+				"selected":		"#888"
+			},
+			{
+				"name": 		"Border Color",
+				"replace": 		"config(--search-border-color)",
+				"control":		"color",
+				"selected":		"#777"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--search-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--search-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	},
+	{
+		"name": 			"H1",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h1-font-size)",
+				"control":		"number",
+				"selected":		40,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h1-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H2",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h2-font-size)",
+				"control":		"number",
+				"selected":		30,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h2-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H3",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h3-font-size)",
+				"control":		"number",
+				"selected":		20,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h3-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H4",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h4-font-size)",
+				"control":		"number",
+				"selected":		16,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h4-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"H5",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--h5-font-size)",
+				"control":		"number",
+				"selected":		16,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--h5-color)",
+				"control":		"color",
+				"selected":		"#333"
+			}
+		]
+	},
+	{
+		"name": 			"Default Text",
+		"controls":	[
+			{
+				"name": 		"Font Size",
+				"replace": 		"config(--default-font-size)",
+				"control":		"number",
+				"selected":		14,
+				"cssFormat":	"%1px"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--default-color)",
+				"control":		"color",
+				"selected":		"#333"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--default-link-color)",
+				"control":		"color",
+				"selected":		"#428bca"
+			}
+		]
+	},
+	{
+		"name": 			"Footer",
+		"controls":	[
+			{
+				"name": 		"Background Color",
+				"replace": 		"config(--footer-background-color)",
+				"control":		"color",
+				"selected":		"#888"
+			},
+			{
+				"name": 		"Headline Color",
+				"replace": 		"config(--footer-headline-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Text Color",
+				"replace": 		"config(--footer-text-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Link Color",
+				"replace": 		"config(--footer-link-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Color",
+				"replace": 		"config(--footer-icon-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			},
+			{
+				"name": 		"Icon Background Color",
+				"replace": 		"config(--footer-icon-background-color)",
+				"control":		"color",
+				"selected":		"#fff"
+			}
+		]
+	}
+]

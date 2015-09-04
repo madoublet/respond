@@ -1,0 +1,48 @@
+<respond-languages></respond-languages>
+<respond-cart></respond-cart>
+<respond-search></respond-search> 
+
+<div class="wrapper" role="main">
+  	
+  	<div class="canvas">
+      
+      	<div class="toggle-nav">
+          <i class="fa fa-bars"></i>
+        </div>
+        <!-- /.toggle-nav -->
+
+        <nav class="side-nav" role="navigation">
+
+          <respond-menu type="primary" render="publish"></respond-menu>
+
+          <ul class="social">
+            <li><a href="#twitter-url"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#facebook-url"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#email-url"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+
+        </nav>
+        <!-- /.side-nav -->
+      
+        <header role="banner">
+
+          <respond-search-toggle></respond-search-toggle>
+	      <respond-cart-toggle></respond-cart-toggle>
+	      <respond-languages-toggle></respond-languages-toggle>
+
+		  <a class="navbar-brand hidden-xs" href="index"><img ng-src="{{fullLogoUrl}}"></a>
+		  <a class="navbar-brand visible-xs-inline-block" href="index"><img ng-src="{{fullAltLogoUrl}}"></a>
+
+        </header>
+      
+		<respond-content id="main-content" url="{{page.Url}}"></respond-content>
+      
+        <footer role="contentinfo">
+		  	<div class="container">
+		  		<respond-content url="component/footer" render="publish"></respond-content>
+			</div>
+		  	<!-- /.container -->
+		</footer>
+      
+  	</div>
+</div>

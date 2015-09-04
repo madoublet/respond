@@ -1,0 +1,54 @@
+<respond-languages></respond-languages>
+<respond-cart></respond-cart>
+<respond-search></respond-search> 
+
+<div class="brand">
+	
+	<a class="hidden-xs" href="index"><img ng-src="{{fullLogoUrl}}"></a>
+	<a class="visible-xs-inline-block" href="index"><img ng-src="{{fullAltLogoUrl}}"></a>
+
+</div>
+
+<div class="wrapper">
+	
+	<nav class="navbar navbar-default" role="navigation">
+	  
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    
+	  </div>
+	  <!-- /.navbar-header -->
+	
+	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+	   	<respond-menu type="primary" class="nav navbar-nav" render="publish"></respond-menu>
+	  </div>
+	  <!-- /.navbar-collapse -->
+	  
+      <div class="navbar-toggles">
+        <respond-search-toggle></respond-search-toggle>
+        <respond-cart-toggle></respond-cart-toggle>
+        <respond-languages-toggle></respond-languages-toggle>
+      </div>
+	  <!-- /.navbar-toggles -->
+	  
+	</nav>
+	
+	<div id="content" class="container" role="main">
+		<respond-content id="main-content" url="{{page.Url}}"></respond-content>
+	</div>
+	
+	<footer role="contentinfo">
+	  	<div class="container">
+	  		<respond-content url="component/footer" render="publish"></respond-content>
+		</div>
+	  	<!-- /.container -->
+	</footer>
+
+	
+</div>
+<!-- /.wrapper -->

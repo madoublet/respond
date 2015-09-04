@@ -1,0 +1,72 @@
+/* callout / jumbotron */
+body.home .callout{
+	border-bottom: none !important;
+}
+
+body.home .callout .col{
+	position: relative;
+	background: config(--jumbotron-background-color) config(--jumbotron-background-image) no-repeat 0 0;
+  	background-size: cover;
+  	background-position: center center;
+  	min-height: 450px;
+  	border-radius: 0;
+	padding: 0;
+	margin: 0;
+}
+
+body.home .callout h1{
+	position: absolute;
+	top: 150px;
+	left: 0;
+	margin: 0;
+	padding: 20px;
+	background-color: config(--jumbotron-callout-background-color);
+	color: config(--jumbotron-headline-color);
+	font-size: 20px;
+}
+
+body.home .callout h1 a{
+	display: block;
+	text-align: center;
+	width: 200px;
+	color: #fff;
+	border: 1px solid config(--jumbotron-link-color);
+	padding: 10px 15px;
+	margin-top: 15px;
+}
+
+/* rtl */
+html[dir=rtl] body.home .callout h1 {
+  left: auto;
+  right: 0;
+}
+
+/* block */
+body.home .block{
+	border-bottom: 1px solid #ccc;
+}
+
+/* welcome */
+body.home .welcome{
+	border-top: 4px solid config(--welcome-border-color);
+	background-color: config(--welcome-background-color);
+}
+
+	
+	body.home .welcome h1, body.home .welcome h2, body.home .welcome h3, body.home .welcome h4, body.home .welcome h5, body.home .welcome p{
+		text-align: center;
+		color:  config(--welcome-text-color);
+	}
+	
+	body.home .welcome a{
+		color: config(--welcome-link-color);
+	}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+	body.home .callout .col{
+		background-position: center -75px !important;
+	}
+
+}

@@ -1,0 +1,183 @@
+body.home{
+	background-color: #555;
+}
+
+body.home .container{
+	max-width: 100%;
+  	padding: 0;
+  	margin: 0;
+}
+
+body.home .container .row{
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+/* jumbotron */
+body.home .container .jumbotron{
+  	position: relative;
+  	box-sizing: border-box;
+  	background: config(--jumbotron-background-color) config(--jumbotron-background-image) no-repeat 0 0;
+  	background-size: cover;
+  	background-position: center center;
+  	border-radius: 0 !important;
+  	color: #fff;
+  	max-width: 100%;
+  	margin: 0 0 0 0;
+  	padding: 0 0 0 0;
+  	text-align: center;
+  	height: 650px;
+}
+
+body.home .container .jumbotron .col-md-12{
+	margin: 0;
+  	padding: 0;
+}
+
+body.home .jumbotron .col{
+  	position: absolute;
+  	top: 225px;
+  	left: 0;
+  	width: 100%;
+}
+
+body.home .jumbotron h1{
+  	background-color: config(--jumbotron-panel-background-color);
+  	text-align: center;
+  	margin: 0;
+  	padding: 25px 0;
+  	font-size: 50px;
+  	line-height: 35px;
+  	color: config(--jumbotron-headline-color);
+  	width: 100%;
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .jumbotron p{
+  	background-color:config(--jumbotron-panel-background-color);
+  	text-align: center;
+  	margin: 0;
+  	padding: 10px 0;
+  	font-size: 18px;
+  	line-height: 35px;
+  	color: config(--jumbotron-text-color);
+  	width: 100%;
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .jumbotron a, 
+body.home .jumbotron a:hover{
+	display: block;
+	margin-top: 25px;
+	margin-right: 10px;
+	color: config(--jumbotron-link-color);
+  	border: 1px solid config(--jumbotron-link-color);
+  	padding: 5px 30px;
+  	border-radius: 0;
+  	text-decoration: none;
+  	margin-left: 10px;
+}
+
+
+body.home .container blockquote{
+	border-left: 0;
+  	text-align: center;
+  	font-size: 18px;
+  	line-height: 24px;
+  	color: #888;
+}
+
+/* nested-container */
+body.home .nested-container{
+  	position: relative;
+	border-bottom: 1px solid #ddd;
+  	text-align: center;
+  	padding: 25px 25px;
+  	background-color: #fff;
+}
+
+body.home .nested-container:last-child{
+	border-bottom: none;
+}
+
+/* backdrop */
+body.home .nested-container.backdrop{
+  	padding-top: 40px;
+  	padding-bottom: 50px;
+	overflow: hidden;
+	background-color: config(--backdrop-background-color);
+}
+
+body.home .nested-container.backdrop h3{
+	color: config(--backdrop-headline-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .nested-container.backdrop p{
+	color: config(--backdrop-text-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home .nested-container.backdrop a{
+	color: config(--backdrop-link-color);
+  	text-shadow: 1px 1px 1px rgba(17,17,17,0.25);
+}
+
+body.home footer{
+	margin-top: 0;
+}
+
+/* rtl */
+html[dir=rtl] body.home .jumbotron a, 
+html[dir=rtl] body.home .jumbotron a:hover{
+  	margin-left: 0;
+	margin-right: 10px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	
+	body.home .jumbotron a, 
+	body.home .jumbotron a:hover{
+		display: inline-block;
+		margin-top: 0;
+		margin-right: 0
+	}
+	
+	html[dir=rtl] body.home .jumbotron a, body .jumbotron a:hover{
+		margin-left: 0;
+		margin-right: 10px;
+	}
+
+	body.home aside.call-to-action a{
+  		display: inline-block;
+	}
+	
+	body.home .container{
+		width: 100%;
+	}
+  
+  	body.home .jumbotron .respond-image img{
+      max-width: 800px;
+      margin: 0;
+  	}
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+	body.home .container{
+		width: 100%;
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+	body.home .container{
+		width: 100%;
+	}
+
+}

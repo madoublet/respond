@@ -1,0 +1,142 @@
+body.home header .navbar{
+  	border: none !important;
+  	margin: 0;
+  	background-color: red;
+}
+
+body.home .container{
+	max-width: 100%;
+  	width: 100% !important;
+  	padding: 0;
+}
+
+body.home .row{
+	max-width: 1003px;
+	margin: 0 auto;
+}
+
+body.home .jumbotron{
+  	box-sizing: border-box;
+  	padding-top: 250px;
+	background: config(--jumbotron-background-color) config(--jumbotron-background-image) no-repeat 0 0;
+  	background-size: cover;
+  	min-height: 700px;
+  	border-radius: 0 !important;
+  	color: #fff;
+  	max-width: 100%;
+  	margin-bottom: 0;
+}
+
+body.home .jumbotron h1, 
+body.home .jumbotron h2, 
+body.home .jumbotron h3{
+	color: config(--jumbotron-headline-color);
+  	max-width: 500px;
+  	font-size: 60px;
+}
+
+body.home .jumbotron p{
+	color: config(--jumbotron-text-color);
+  	max-width: 500px;
+  	font-size: 18px;
+}
+
+body.home .jumbotron a{
+	color: config(--jumbotron-link-color);
+}
+
+/* home-block */
+body.home .home-block{
+ 	padding: 0;
+  	text-align: center;
+}
+
+/* feature-block */
+body .home-block.feature-block{
+  	background-color: config(--feature-background-color);
+	border-bottom: 1px solid config(--feature-border-color);
+  	background-size: 67px 100px;
+  	border-bottom: 1px solid (--feature-border-color);
+  	border-top: 1px solid (--feature-border-color);
+  	padding-top: 25px;
+  	padding-bottom: 25px;
+}
+
+body .home-block.feature-block h1, body .home-block.feature-block h2, body .home-block.feature-block h3{
+	color: config(--feature-headline-color);
+	text-align: center;
+}
+
+body .home-block.feature-block p, body .home-block.feature-block td, body .home-block.feature-block th,
+body .home-block.feature-block blockquote, body .home-block.feature-block li{
+	color: config(--feature-text-color);
+	text-align: center;
+}
+
+body .home-block.feature-block a{
+	color: config(--feature-link-color);
+}
+
+body .home-block.feature-block i{
+  	width: 50px;
+  	height: 50px;
+  	line-height: 50px;
+  	text-align: center;
+  	background-color: config(--feature-icon-color);
+  	color: #fff;
+  	border-radius: 50%;
+  	font-size: 25px;
+}
+
+body .home-block.feature-block .respond-image{
+	text-align: center;
+}
+
+body .home-block.feature-block img{
+	border-radius: 50%;
+  	max-width: 175px !important;
+  	margin-bottom: 0 !important;
+  	border: 3px solid rgba(221,221,221,0.4) !important;
+}
+
+/* callout-block */
+body .home-block.callout-block{
+  	background-color: config(--callout-background-color);
+	border-bottom: 1px solid config(--callout-border-color);
+  	background-size: 67px 100px;
+  	border-bottom: 1px solid (--callout-border-color);
+  	border-top: 1px solid (--callout-border-color);
+  	padding-top: 25px;
+  	padding-bottom: 25px;
+}
+
+body .home-block.callout-block h1, body .home-block.callout-block h2, body .home-block.callout-block h3{
+	color: config(--callout-headline-color);
+	text-align: left;
+}
+
+body .home-block.callout-block p, body .home-block.callout-block td, body .home-block.callout-block th,
+body .home-block.callout-block blockquote, body .home-block.callout-block li{
+	color: config(--callout-text-color);
+	text-align: left;
+}
+
+body .home-block.callout-block a{
+	color: config(--callout-link-color);
+}
+
+body .home-block.callout-block img{
+	border: 3px solid rgba(255,255,255,0.4) !important;
+}
+
+/* rtl */
+html[dir=rtl] body .home-block.callout-block p, 
+html[dir=rtl] body .home-block.callout-block td, 
+html[dir=rtl] body .home-block.callout-block th,
+html[dir=rtl] body .home-block.callout-block blockquote, 
+html[dir=rtl] body .home-block.callout-block li, 
+html[dir=rtl] body .home-block.callout-block h1, 
+html[dir=rtl] body .home-block.callout-block h2, 
+html[dir=rtl] body .home-block.callout-block h3{
+	text-align: right;
+}
