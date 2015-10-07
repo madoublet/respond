@@ -340,8 +340,11 @@
 			};
 			
 			// set mark
-			if(symbols[this.currency] !== undefined) {
+			if(symbols[this.currency] != undefined) {
 				this.mark = symbols[this.currency];
+			}
+			else{
+    			this.mark = '';
 			}
 			
 			// set totals
