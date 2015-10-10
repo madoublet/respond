@@ -60,7 +60,6 @@ angular.module('respond.setup', [])
 	updateLink:				'<?php print UPDATE_LINK; ?>',
 	copy: 					'<?php print COPY; ?>',
 	email:					'<?php print EMAIL; ?>',
-	updateLink:				'<?php print SUBSCRIBE_LINK; ?>',
 	subscribeLink:			'<?php print SUBSCRIBE_LINK; ?>',
 	trialMessage:			'<?php print TRIAL_MESSAGE; ?>',
 	
