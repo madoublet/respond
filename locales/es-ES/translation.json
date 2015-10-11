@@ -153,7 +153,7 @@
     "Error Message": "Mensaje Error",
     "Event": "Evento",
     "Event Start Date (newest first)": "Fecha Creación (más reciente primero)",
-    "example_domain": "e.g. domain.com, sub.domain.com (sin www, http://, ni / al final)",
+    "example_domain": "e.g. http://domain.com, http://sub.domain.com",
     "example_tags": "e.g.: tag1, tag2, etc.",
     "Existing Image": "Imagen Existente",
     "Existing Page": "Página Existente",
