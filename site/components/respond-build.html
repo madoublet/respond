@@ -874,7 +874,7 @@ return "&gt;";
 case '"':
 return "&quot;";
 
-case " ":
+case " ":
 return "&nbsp;";
 }
 }
@@ -8894,7 +8894,7 @@ this._removeChildren();
 				this.mark = symbols[this.currency];
 			}
 			else{
-    			this.mark = '';
+    			this.mark = '$';
 			}
 			
 			// set totals
@@ -9547,9 +9547,13 @@ this._removeChildren();
 			};
 			
 			// set mark
-			if(symbols[this.currency] !== undefined) {
+			if(symbols[this.currency] != undefined) {
 				this.mark = symbols[this.currency];
 			}
+	else{
+	this.mark = '$';
+	}
+
 			
 			// set price display
 			this.priceDisplay = this.mark + this.formatCurrency(this.price) + ' ' + this.currency;
