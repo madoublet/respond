@@ -207,13 +207,13 @@
     </style>
 
 	<template>
-	
+
 		<div class="respond-cart-container" visible$="{{showCart}}" dir$="{{dir}}">
-		
+
 			<button class="close-cart" on-click="close"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></g></svg></button>
-			
+
 			<div class="cart-container">
-			
+
 				<table>
 					<thead>
 						<tr>
@@ -264,24 +264,24 @@
 						</tr>
 					</tfoot>
 				</table>
-				
+
 			</div>
 			<!-- /.cart-container -->
-					
+
 			<div class="checkout">
-				
+
 				<a class="clear-cart" on-click="clearCart">{{label.clear}}</a>
-				
+
 				<span class="total">
 					<span>{{label.total}}</span>
 					<span>{{totalDisplay}}</span>
 				</span>
-				
+
 				<button on-click="checkoutWithPayPal"><span>{{label.checkoutWithPaypal}}</span></button>
 			</div>
-			
+
 		</div>
-	
+
 	</template>
 </dom-module>
 
@@ -311,7 +311,6 @@
 			
 			// set cart
 			this.cart = [];
-
 			// set defaults
 			this.showCart = false;
 			this.showShipping = false;
@@ -340,8 +339,11 @@
 			};
 			
 			// set mark
-			if(symbols[this.currency] !== undefined) {
+			if(symbols[this.currency] != undefined) {
 				this.mark = symbols[this.currency];
+			}
+			else{
+    			this.mark = '';
 			}
 			
 			// set totals

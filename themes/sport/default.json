@@ -1,0 +1,93 @@
+[
+	{
+		"url" 			: "component/footer",
+		"source"		: "pages/footer.html",
+		"name"			: "Footer",
+		"description"	: "This is the footer used across pages for your site",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false,
+		"includeOnly"	: true
+	},
+	{
+		"url" 			: "index",
+		"source"		: "pages/home.html",
+		"name"			: "Home",
+		"description"	: "Welcome to your new homepage created with Respond CMS",
+		"layout"		: "home",
+		"stylesheet"	: "home",
+		"primaryMenu"	: true,
+		"footerMenu"	: true
+	},
+	{
+		"url" 			: "thank-you",
+		"source"		: "pages/thank-you.html",
+		"name"			: "Thank you",
+		"description"	: "You have successfully completed your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
+		"url" 			: "cancel",
+		"source"		: "pages/cancel.html",
+		"name"			: "Purchase Cancelled",
+		"description"	: "You have successfully cancelled your purchase",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
+		"url" 			: "blog",
+		"source"		: "pages/blog.html",
+		"name"			: "Blog",
+		"description"	: "Your blog contains a list of your blog posts",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: true,
+		"footerMenu"	: true
+	},
+	{
+		"url" 			: "post/sample-blog-post",
+		"source"		: "pages/post.html",
+		"name"			: "Sample Blog Post",
+		"description"	: "A sample blog post to get you started",
+		"layout"		: "post",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	},
+	{
+		"url" 			: "page/about",
+		"source"		: "pages/about.html",
+		"name"			: "About",
+		"description"	: "A sample about page to introduce yourself or your business",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: true,
+		"footerMenu"	: true
+	},
+	{
+		"url" 			: "page/contact",
+		"source"		: "pages/contact.html",
+		"name"			: "Contact",
+		"description"	: "A contact us form is a great way for others to get in touch",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: true,
+		"footerMenu"	: true
+	},
+	{
+		"url" 			: "page/error",
+		"source"		: "pages/error.html",
+		"name"			: "Page Not Found",
+		"description"	: "A simple error page that is displayed when content cannot be found",
+		"layout"		: "content",
+		"stylesheet"	: "content",
+		"primaryMenu"	: false,
+		"footerMenu"	: false
+	}
+]
