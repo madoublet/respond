@@ -1627,6 +1627,7 @@ respond.element.image = {
 		attrs['class'] = 'respond-image';
 		attrs['data-cssclass'] = 'respond-image';
 		attrs['data-alt'] = '';
+		attrs['data-imgcssclass'] = '';
 		attrs['data-display'] = 'left';
 		attrs['data-link'] = '';
 		attrs['data-title'] = '';
@@ -1699,6 +1700,7 @@ respond.element.image = {
 		}
 		
 		var location = $(node).find('img').attr('data-location') || '';
+		var imgcssclass = $(node).find('img').attr('class') || '';
 		var alt = $(node).find('img').attr('alt') || '';
 		var link = $(node).find('a').attr('href') || $(node).find('a').attr('ui-sref') || '';
 		var title = $(node).find('a').attr('title') || '';
@@ -1739,6 +1741,7 @@ respond.element.image = {
 		attrs['class'] = 'respond-image';
 		attrs['data-cssclass'] = $(node).attr('class');
 		attrs['data-alt'] = alt;
+		attrs['data-imgcssclass'] = imgcssclass;
 		attrs['data-display'] = display;
 		attrs['data-link'] = link;
 		attrs['data-title'] = title;
@@ -1758,6 +1761,7 @@ respond.element.image = {
   		var display = $(node).attr('data-display');
   		var cssClass = $(node).attr('data-cssclass');
   		var alt = $(node).attr('data-alt') || '';
+  		var imgcssclass = $(node).attr('data-imgcssclass') || '';
   		var link = $(node).attr('data-link') || '';
   		var title = $(node).attr('data-title') || '';
   		var target = $(node).attr('data-target') || '';
@@ -1817,6 +1821,14 @@ respond.element.image = {
   		//set img
   		var img = '';
   		
+  		var attribute = function (name, value) {
+  			if( value && value != '' ) {
+  				return ' '+name+'="'+ value+'"';
+  			} else {
+  				return '';
+  			}
+  		}
+
   		if(location == 'local'){
 	  		
 	  		// removes the domain from the img
@@ -1826,12 +1838,12 @@ respond.element.image = {
 	  		}
 	  		
 	  		// set image tag
-	  		img = '<img src="{{site.ImagesUrl}}' + src + '" alt="' + alt + '" data-location="local">';
+	  		img = '<img src="{{site.ImagesUrl}}' + src + '"' + attribute('class', imgcssclass) + attribute('alt', alt) + ' data-location="local">';
 	  		
 	  	}
 	  	else{
 		  	// set image tag
-	  		img = '<img src="' + src + '" alt="' + alt + '" data-location="external">'; 	
+	  		img = '<img class="'+ imgcssclass +'" src="' + src + '"' + attribute('class', imgcssclass) + attribute('alt', alt) + ' data-location="external">'; 	
 	  	}
   		
   		var html = startLink + img + endLink;
