@@ -1245,6 +1245,7 @@ class Publish
 			if(isset($el->url)){
 			
 				$url = $el->url;
+				$url = Publish::ApplyMustacheSyntax($url, $site, $page);
 				
 				// replace the / with a period
 				$url = str_replace('/', '.', $url);
