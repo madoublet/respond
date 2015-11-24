@@ -22,5 +22,13 @@
 	{
 		"code": "sq",
 		"text": "Albanian (sq)"
+	},
+	{
+		"code": "pl",
+		"text": "Polish (pl)"
+	},
+	{
+		"code": "pt-BR",
+		"text": "Brazilian Portuguese (pt-BR)"
 	}
 ]
