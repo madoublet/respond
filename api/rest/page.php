@@ -81,7 +81,7 @@ class PageAddResource extends Tonic\Resource {
                 $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
 				if($pageType != NULL){
-	                $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
+	                $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'].".html";
 	                
 	                // set edit permissions
 					if($access['CanEdit']=='All' || strpos($access['CanEdit'], $pageType['PageTypeId']) !== FALSE){
@@ -493,7 +493,7 @@ class PageRetrieveResource extends Tonic\Resource {
             $site = Site::GetBySiteId($page['SiteId']);
             
             // url
-            $page['Url'] = $page['FriendlyId'];
+            $page['Url'] = $page['FriendlyId'].".html";
             
             // default permissions
 			$canEdit = false;
@@ -506,7 +506,7 @@ class PageRetrieveResource extends Tonic\Resource {
 			// get the page type            
             if($page['PageTypeId']!=-1){
 	            $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
-	            $page['Url'] = $pageType['FriendlyId'].'/'.$page['FriendlyId'];
+	            $page['Url'] = $pageType['FriendlyId'].'/'.$page['FriendlyId'].".html";
 	            $file = $pageType['FriendlyId'].'.'.$page['FriendlyId'];
 	            
 				// get permissions for the page
@@ -1063,12 +1063,12 @@ class PageListAll extends Tonic\Resource {
                 $row['Image'] = $imageURL;
                 $row['Thumb'] = $thumbURL;
 
-                $url = $row['FriendlyId'];
+                $url = $row['FriendlyId'].".html";
                 
                 if($row['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($row['PageTypeId']);
 
-                    $url = strtolower($pageType['FriendlyId']).'/'.$row['FriendlyId'];
+                    $url = strtolower($pageType['FriendlyId']).'/'.$row['FriendlyId'].".html";
                 }
 
                 $row['Url'] = $url;
@@ -1133,7 +1133,7 @@ class PageListAllowed extends Tonic\Resource {
                 $row['LastModifiedFullName'] = $fullName;
 
 				// init url
-                $url = $row['FriendlyId'];
+                $url = $row['FriendlyId'].".html";
                 
 				// initialize PT
 				$pageType = NULL;
@@ -1147,7 +1147,7 @@ class PageListAllowed extends Tonic\Resource {
                 if($row['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($row['PageTypeId']);
 
-                    $url = strtolower($pageType['FriendlyId']).'/'.$row['FriendlyId'];
+                    $url = strtolower($pageType['FriendlyId']).'/'.$row['FriendlyId'].".html";
                     
                     // set edit permissions
 					if($access['CanEdit']=='All' || strpos($access['CanEdit'], $pageType['PageTypeId']) !== FALSE){
@@ -1326,7 +1326,7 @@ class PageListSortedResource extends Tonic\Resource {
 
                 $page['Thumb'] = $thumbUrl;
 
-                $url = $page['FriendlyId'];
+                $url = $page['FriendlyId'].".html";
 
 				// default permissions
 				$canEdit = false;
@@ -1339,7 +1339,7 @@ class PageListSortedResource extends Tonic\Resource {
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
+                    $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'].".html";
                     
                     // set edit permissions
 					if($access['CanEdit']=='All' || strpos($access['CanEdit'], $pageType['PageTypeId']) !== FALSE){
@@ -1467,12 +1467,12 @@ class PageListFriendlyResource extends Tonic\Resource {
                 // set thumb
                 $page['Thumb'] = $thumbUrl;
 
-                $url = $page['FriendlyId'];
+                $url = $page['FriendlyId'].".html";
 
                 if($page['PageTypeId']!=-1){
                     $pageType = PageType::GetByPageTypeId($page['PageTypeId']);
 
-                    $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'];
+                    $url = strtolower($pageType['FriendlyId']).'/'.$page['FriendlyId'].".html";
                 }
 
 				// set url

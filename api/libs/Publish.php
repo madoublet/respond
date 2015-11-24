@@ -101,12 +101,7 @@ class Publish
 		$htaccess = SITES_LOCATION.'/'.$site['FriendlyId'].'/.htaccess';
 					
 		$contents = 'Options -Indexes'.PHP_EOL.
-			'<IfModule mod_rewrite.c>'.PHP_EOL.
-			'RewriteEngine On'.PHP_EOL.
-			'RewriteCond %{REQUEST_FILENAME} !-f'.PHP_EOL.
-			'RewriteRule ^([^\.]+)$ $1.html [NC,L]'.PHP_EOL.
 			'ErrorDocument 404 /page/error'.PHP_EOL.
-			'</IfModule>'.PHP_EOL.
 			'<IfModule mod_expires.c>'.PHP_EOL.
 			'ExpiresActive On '.PHP_EOL.
 			'ExpiresDefault "access plus 1 month"'.PHP_EOL.
@@ -201,6 +196,8 @@ class Publish
 					$pageFriendlyId = $url;
 					$pageTypeId = -1;
 				}
+
+				$url = $url.".html";
 				
 				// determine if page is unique
 				$isUnique = Page::IsFriendlyIdUnique($pageFriendlyId, $pageTypeId, $site['SiteId']);
