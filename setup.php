@@ -140,6 +140,7 @@
 	// Advanced SMTP settings (see https://github.com/Synchro/PHPMailer)
 	define('IS_SMTP', false);
 	define('SMTP_HOST', 'smtp.mailserver.com');
+	define('SMTP_POST', 25);
 	define('SMTP_AUTH', true);
 	define('SMTP_USERNAME', '');
 	define('SMTP_PASSWORD', '');

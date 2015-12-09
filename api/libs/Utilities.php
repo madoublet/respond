@@ -359,6 +359,9 @@ class Utilities
 	
 				$mail->isSMTP();                    // Set mailer to use SMTP
 				$mail->Host = SMTP_HOST;  			// Specify main and backup server
+                if (defined('SMTP_PORT')) {
+                	$mail->Port = SMTP_PORT;
+                }
 				$mail->SMTPAuth = SMTP_AUTH;        // Enable SMTP authentication
 				$mail->Username = SMTP_USERNAME;    // SMTP username
 				$mail->Password = SMTP_PASSWORD;    // SMTP password
@@ -395,6 +398,9 @@ class Utilities
 
 			$mail->isSMTP();                    // Set mailer to use SMTP
 			$mail->Host = SMTP_HOST;  			// Specify main and backup server
+			if (defined('SMTP_PORT')) {
+				$mail->Port = SMTP_PORT;
+			}
 			$mail->SMTPAuth = SMTP_AUTH;        // Enable SMTP authentication
 			$mail->Username = SMTP_USERNAME;    // SMTP username
 			$mail->Password = SMTP_PASSWORD;    // SMTP password
