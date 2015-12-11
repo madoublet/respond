@@ -1201,42 +1201,26 @@ respond.editor.getContent = function(){
 		
 		// set defaults to blank
 		var containerIdHtml = '';
-		var containerClassHtml = '';
 		
 		// if an id is specified build html for it
 		if($.trim(containerId) != ''){
 			containerIdHtml = ' id="' + containerId + '"';
 		}
-		
-		// add a space to separate it from .container
-		if($.trim(containerCssClass) != ''){
-			containerClassHtml = ' ' + containerCssClass;
-		}
-		
+				
 		// add container for nested blocks
 	  	if(nested == 'nested'){
-		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="container' + containerClassHtml + '">';
-		  	
-		  	// remove any duplicate row or block tags
-		  	cssclass = utilities.replaceAll(cssclass, 'block', '');
-		  	cssclass = utilities.replaceAll(cssclass, 'row', '');
-		  	cssclass = $.trim(cssclass);
+		  	html += '<div' + containerIdHtml + ' ' + bgcolor + bgimage + bgstyle + ' class="'+utilities.cssClassTrim('container ' + containerCssClass)+'">';
 		  	
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block row ' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="'+ utilities.cssClassTrim('block row ' + cssclass) + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +
 	  			'>';
 	  	}
 	  	else{
-		  	// remove any duplicate row or block tags
-		  	cssclass = utilities.replaceAll(cssclass, 'block', '');
-		  	cssclass = utilities.replaceAll(cssclass, 'row', '');
-		  	cssclass = $.trim(cssclass);
-		  	
 		  	// row HTML
-		  	html += '<div id="'+id+'" class="block row ' + cssclass + '" ' +
+		  	html += '<div id="'+id+'" class="'+ utilities.cssClassTrim('block row ' + cssclass) + '" ' +
 	  			'data-nested="' + nested + '" ' + bgcolor + bgimage + bgstyle + padding +
 	  			'data-containerid="' + containerId + '" ' +
 	  			'data-containercssclass="' + containerCssClass + '"' +

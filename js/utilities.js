@@ -330,6 +330,11 @@ var utilities = {
 		
 		return temp;
 	},
+
+	// optimizes a css class string by trimming and removing dup classes
+	cssClassTrim:function(value) {
+		return $("<div>").addClass(value).attr("class");
+	},
 	
 	// converts to local date
 	convertToLocalDate:function(date, offset){
