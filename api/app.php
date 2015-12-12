@@ -4,6 +4,7 @@
 	/*  LOAD SETUP                      */
 	/************************************/
 
+	include './setup-helper.php';
     // include optional local setup
     if(file_exists('../setup.local.php')){
     	include '../setup.local.php';
