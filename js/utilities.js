@@ -330,6 +330,11 @@ var utilities = {
 		
 		return temp;
 	},
+
+	// optimizes a css class string by trimming and removing dup classes
+	cssClassTrim:function(value) {
+		return $("<div>").addClass(value).attr("class");
+	},
 	
 	// converts to local date
 	convertToLocalDate:function(date, offset){
@@ -496,38 +501,22 @@ var utilities = {
 			translate = false;
 		}
 		
-		// start tag
-		var el = '<' + tag;
-		
-		// add attrs to tag
+		el = $("<"+tag+">").html(html);
 		for(var key in attrs){
-		
 			var value = attrs[key];
-			
 			if(value != '' && value != null && value != undefined){
-				el += ' ' + key + '="' + value + '"';
+				el.attr(key, value)
 			}
 		}
-		
-		// end tag, add html
+
 		if(translate == true && attrs['id'] != null){
-		
 			// get scope
 			var scope = angular.element($("section.main")).scope();
-			
 			// get pageId
 			var prefix = scope.page.PageId + '.';
-		
-			el += ' data-i18n="' + prefix + attrs['id'] + '">';
+			el.attr("data-i18n", prefix + attrs['id'])
 		}
-		else{
-			el += '>';
-		}
-		el += html;
-		el += '</' + tag + '>';
-		
-		return el;
-
+		return el[0].outerHTML
 	},
 	
 	// sets up flipsnap
