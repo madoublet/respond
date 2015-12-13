@@ -10,9 +10,8 @@
 	define('DB_USER', 'dbuser');
 	define('DB_PASSWORD', 'dbpass');
 	
-	// APP URL
-	define('APP_URL', 'http://app.myrespond.com');
-	
+	// If not set, we figure it out baded on the HTTP request.
+    define('APP_URL', detectedAppURL());
 	
 	/************************************/
 	/*  ADVANCED SETUP - LANGUAGES      */

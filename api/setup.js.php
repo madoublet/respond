@@ -1,5 +1,5 @@
 <?php 
-
+	include './setup-helper.php';
 	// include setup
     if(file_exists('../setup.local.php')){
     	include '../setup.local.php';
