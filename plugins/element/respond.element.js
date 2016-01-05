@@ -1416,7 +1416,7 @@ respond.element.table = {
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = id;
-		attrs['class'] = $(table).attr('class');
+		attrs['class'] = cssClass;
 		attrs['data-columns'] = cols;
 		
 		// return element
