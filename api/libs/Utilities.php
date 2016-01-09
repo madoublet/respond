@@ -349,7 +349,6 @@ class Utilities
 			$mail->Username = $site['SMTPUsername'];    // SMTP username
 			$mail->Password = $decrypted;    			// SMTP password
 			$mail->SMTPSecure = $site['SMTPSecure'];    // Enable encryption, 'ssl' also accepted
-			$mail->CharSet = 'UTF-8';
 			
 		}
 		else{
@@ -371,6 +370,7 @@ class Utilities
 			
 		}
 		
+		$mail->CharSet = 'UTF-8';
 		$mail->addReplyTo($from, $fromName); 		// Set Reply-To: header to the primary site email
 		$mail->From = EMAILS_FROM; 					// Set From: header to address specified in setup.php
 		$mail->FromName = EMAILS_FROM_NAME;
