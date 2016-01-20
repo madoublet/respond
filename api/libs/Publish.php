@@ -964,7 +964,7 @@ class Publish
 			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
 			
 			// applies the style attributes to the $html
-			$html = Publish::ApplyStyleAttributes($html);
+			$html = Publish::ApplyStyleAttributes($html, $site);
 			
 			// applies the mustache syntax
 			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
@@ -1113,7 +1113,7 @@ class Publish
 			$html = Publish::GenerateRenderAtPublish($html, $site, $page);
 			
 			// applies the style attributes to the $html
-			$html = Publish::ApplyStyleAttributes($html);
+			$html = Publish::ApplyStyleAttributes($html, $site);
 			
 			// applies the mustache syntax
 			$html = Publish::ApplyMustacheSyntax($html, $site, $page);
@@ -1277,8 +1277,10 @@ class Publish
 	}
 	
 	// applies the style attributes
-	public static function ApplyStyleAttributes($html){
+	public static function ApplyStyleAttributes($html, $site){
 		
+		$imagesURL = $site['Domain'].'/';
+
 		// replace background color
 		foreach($html->find('[backgroundcolor]') as $el){
 			
