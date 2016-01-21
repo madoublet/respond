@@ -955,7 +955,7 @@ class Publish
 			$html = $page['Content'];
 		}
 		
-		if($html !== NULL){
+		if(!empty($html)){
 		
 			// parse the html for menus
 			$html = str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false, DEFAULT_BR_TEXT);
