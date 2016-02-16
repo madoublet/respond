@@ -138,8 +138,11 @@ class ThemeResetResource extends Tonic\Resource {
 		          
 			$theme = $request['theme'];
         
+            // convert string to a boolean
+            $resetConfig = ($request['resetConfig'] === 'true');
+
         	// publishes a theme for a site
-    		Publish::PublishTheme($site, $theme);
+            Publish::PublishTheme($site, $theme, $resetConfig);
     		
     		// republish site with the new theme
     		Publish::PublishSite($site['SiteId']);

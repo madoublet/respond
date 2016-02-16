@@ -320,6 +320,7 @@
     "Required": "Required",
     "Requires Login": "Requires Login",
     "Reset": "Reset",
+    "reset_config": "Also reset theme configuration settings to their default values.",
     "reset_password": "Type your email address and we will send you a link to reset your password.",
     "Reset Theme": "Reset Theme",
     "reset_theme": "This will completely change the look and feel of your site and remove any custom changes you made to the layout and styles of the site.",

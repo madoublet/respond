@@ -274,7 +274,7 @@ class Publish
 	}
 
 	// publishes a theme
-	public static function PublishTheme($site, $theme){
+	public static function PublishTheme($site, $theme, $reset_config = true){
 
 		$theme_dir = SITES_LOCATION.'/'.$site['FriendlyId'].'/themes/';
 		
@@ -338,12 +338,74 @@ class Publish
 			Utilities::CopyDirectory($styles_src, $styles_dest);
 		}
 		
-		// copy the configure.json file
+		// determine source and destination paths for the configure.json file
 		$configure_src = APP_LOCATION.THEMES_FOLDER.'/'.$theme.'/configure.json';
 		$configure_dest = SITES_LOCATION.'/'.$site['FriendlyId'].'/themes/'.$theme.'/configure.json';
+
+		// If user has not checked the "reset configuration settings" checkbox, we preserve
+		// existing values from the old configuration file whenever the field name exists
+		// in the new configuration file
+		if( file_exists($configure_src) && file_exists($configure_dest) && (!$reset_config) ){
+
+			// get jsontxt from new config
+			$json = file_get_contents($configure_src);
 		
-		if(file_exists($configure_src)){
-			copy($configure_src, $configure_dest);
+			// decode new json file
+			$newconfigs = json_decode($json, true);
+
+			// get jsontxt from old config
+			$json = file_get_contents($configure_dest);
+		
+			// decode old json file
+			$oldconfigs = json_decode($json, true);
+
+			unset($json);  // free up memory
+
+			// walk through new config sections
+			for ($newconfig_index = 0; $newconfig_index < count($newconfigs); ++$newconfig_index) {
+
+				for ($newcontrols_index = 0; $newcontrols_index < count($newconfigs[$newconfig_index]['controls']); ++$newcontrols_index) {
+
+					// Now loop over old config and see if we can find a
+					// section and setting with the same names as the above
+					for ($oldconfig_index = 0; $oldconfig_index < count($oldconfigs); ++$oldconfig_index) {
+
+						// Only look inside of sections that have a matching name
+						if ( $oldconfigs[$oldconfig_index]['name'] === $newconfigs[$newconfig_index]['name'] ) {
+
+							// Loop over through old controls and look for configuration settings with the same name
+							for ($oldcontrols_index = 0; $oldcontrols_index < count($oldconfigs[$oldconfig_index]['controls']); ++$oldcontrols_index) {
+
+								if ( $oldconfigs[$oldconfig_index]['controls'][$oldcontrols_index]['replace'] === $newconfigs[$newconfig_index]['controls'][$newcontrols_index]['replace']) {
+
+									// we have a winner.  copy the value from the old config into the new one
+									$newconfigs[$newconfig_index]['controls'][$newcontrols_index]['selected'] = $oldconfigs[$oldconfig_index]['controls'][$oldcontrols_index]['selected'];
+
+								} // end if control name matches
+
+							} // end loop over old controls  within a config section
+
+						} // end if section name matches
+
+					} // end loop over old config sections 
+
+				} // end loop over new controls within a config section
+
+			} // end loop over new config sections
+
+			// Write modified JSON data into configure.json
+			$json = json_encode( $newconfigs );
+
+			file_put_contents( $configure_dest, $json );
+
+
+		} else {
+
+			// We are not preserving any configuration values, so simply copy the new config 
+			// file on top of any existing one
+			if(file_exists($configure_src)){
+				copy($configure_src, $configure_dest);
+			}
 		}
 		
 		// copy files locally
