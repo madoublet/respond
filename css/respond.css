@@ -2476,9 +2476,9 @@ body.content{}
 	}
 	
 	body .context-menu .form-group .sp-replacer{
-		position: absolute;
-		top: 0;
-		right: 17px;
+		position: relative;
+		margin-left: 10px;
+
 		border: 1px solid #ddd;
 		background-color: #fff;
 		border-left: 1px solid transparent;
@@ -2490,10 +2490,8 @@ body.content{}
 		}
 	
 	body .context-menu .form-group .image-picker{
-		position: absolute;
-		top: 0;
-		right: 0;
-		margin: 0;
+		position: relative;
+		margin-left: 10px;
 		padding: 0;
 		width: 35px;
 		height: 30px;
