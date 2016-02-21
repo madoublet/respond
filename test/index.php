@@ -68,6 +68,7 @@
 <?php
 
 	// include setup
+	include '../api/setup-helper.php';
     if(file_exists('../setup.local.php')){
     	include '../setup.local.php';
     }

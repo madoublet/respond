@@ -248,10 +248,6 @@ respond.text.link = {
 			linkDialog.url = url;        
 		});
 
-		$(document).on('click', '#linkUrl', function(){ 
-			document.getElementById('customUrl').checked = true;  
-		});
-
 		$(document).on('click', '#addLink', function(){ 
   
 			var url = $('#linkUrl').val();

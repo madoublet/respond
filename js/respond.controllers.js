@@ -3517,6 +3517,7 @@
 		
 			// set temporary model
 			$scope.temp = theme;
+			$scope.resetConfig = false;
 		
 			$('#resetDialog').modal('show');
 	    	
@@ -3528,7 +3529,7 @@
 			message.showMessage('progress');
 		
 			// reset the theme
-			Theme.reset(theme.name, 
+			Theme.reset(theme.name, $scope.resetConfig,
 				function(){
 					 message.showMessage('success');
 				});

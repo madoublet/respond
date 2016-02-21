@@ -1416,7 +1416,7 @@ respond.element.table = {
 		// tag attributes
 		var attrs = [];
 		attrs['id'] = id;
-		attrs['class'] = $(table).attr('class');
+		attrs['class'] = cssClass;
 		attrs['data-columns'] = cols;
 		
 		// return element
@@ -1628,7 +1628,7 @@ respond.element.image = {
 		attrs['data-cssclass'] = 'respond-image';
 		attrs['data-alt'] = '';
 		attrs['data-imgcssclass'] = '';
-		attrs['data-display'] = 'left';
+		attrs['data-display'] = 'standalone';
 		attrs['data-link'] = '';
 		attrs['data-title'] = '';
 		attrs['data-target'] = '';

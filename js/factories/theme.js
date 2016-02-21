@@ -64,11 +64,12 @@
 		}
 		
 		// resets a theme
-		theme.reset = function(theme, callback){
+		theme.reset = function(theme, resetConfig, callback){
 		
 			// set params
 			var params = {
-				theme: theme
+				theme: theme,
+				resetConfig: resetConfig
 				};
 				
 			// set post to URL Encoded
