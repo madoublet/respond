@@ -378,7 +378,7 @@ class DownloadListAllResource extends Tonic\Resource {
                     
                     array_push($arr, $file); 
                 }
-                else if($is_thumb==false){
+                else{
                     $file = array(
                         'filename' => $filename,
                         'fullUrl' => $site['Domain'].'/downloads/'.$filename,
