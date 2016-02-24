@@ -46,6 +46,13 @@
 			var prefix = '';
 			var pageId = document.body.getAttribute('page');
 		
+			if(this.cssclass != undefined){
+				this.cssclass = 'form-group ' + this.cssclass;
+			}
+			else{
+				this.cssclass = 'form-group';
+			}
+
 			if(this.fieldid != null){
 	
 				// get pageId
@@ -163,7 +170,7 @@
 			div.setAttribute('data-label', this.label);
 			div.setAttribute('data-type', this.type);
 			div.setAttribute('data-required', this.required);
-			div.setAttribute('class', 'form-group');
+			div.setAttribute('class', this.cssclass);
 			div.innerHTML = html;
 			
 			// append to the light dom
