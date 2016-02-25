@@ -699,6 +699,7 @@ body.content{}
 		}
 
 		.context-menu .input-select .dropdown-menu{
+			width: 216px;
 			height: 150px;
 			overflow: auto;
 		}
