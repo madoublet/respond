@@ -1617,8 +1617,7 @@ respond.element.image = {
 		
 		// build html
 		var html = respond.editor.defaults.elementMenu +
-					'<img src="' + image.fullUrl + '" data-location="' + location +'" alt="">' +
-					'<div class="editable-content" contentEditable="true"></div>';
+					'<img src="' + image.fullUrl + '" data-location="' + location +'" alt="">';
 					
 		// tag attributes
 		var attrs = [];
