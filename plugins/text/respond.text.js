@@ -228,6 +228,102 @@ respond.text.alignRight = {
 	
 };
 
+// align text left element
+respond.text.alignLeftEl = {
+
+	// creates bold text
+	create:function(){
+
+		// get scope from page
+		var scope = angular.element($("section.main")).scope();
+		
+		scope.$apply(function () {
+			var cssClass = scope.element.cssclass;
+			
+			if(cssClass != undefined){
+				cssClass = utilities.replaceAll(cssClass, 'text-center', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-left', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-right', '');
+			}
+			else{
+				cssClass = '';
+			}
+		
+			cssClass += ' text-left';
+		
+            scope.element.cssclass = $.trim(cssClass);
+        });
+        
+		return false;
+		
+	}
+	
+};
+
+// align text center element
+respond.text.alignCenterEl = {
+
+	// creates bold text
+	create:function(){
+
+		// get scope from page
+		var scope = angular.element($("section.main")).scope();
+		
+		scope.$apply(function () {
+			var cssClass = scope.element.cssclass;		
+			
+			if(cssClass != undefined){
+				cssClass = utilities.replaceAll(cssClass, 'text-center', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-left', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-right', '');
+			}
+			else{
+				cssClass = '';
+			}
+		
+			cssClass += ' text-center';
+		
+            scope.element.cssclass = $.trim(cssClass);
+        });
+        
+		return false;
+		
+	}
+	
+};
+
+// align text right element
+respond.text.alignRightEl = {
+
+	// creates bold text
+	create:function(){
+
+		// get scope from page
+		var scope = angular.element($("section.main")).scope();
+		
+		scope.$apply(function () {
+			var cssClass = scope.element.cssclass;
+			
+			if(cssClass != undefined){
+				cssClass = utilities.replaceAll(cssClass, 'text-center', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-left', '');
+				cssClass = utilities.replaceAll(cssClass, 'text-right', '');
+			}
+			else{
+				cssClass = '';
+			}
+		
+			cssClass += ' text-right';
+		
+            scope.element.cssclass = $.trim(cssClass);
+        });
+        
+		return false;
+		
+	}
+	
+};
+
 // adds a link
 respond.text.link = {
 

@@ -1971,3 +1971,277 @@ respond.element.pre = {
 };
 
 respond.element.pre.init();
+
+// text element
+respond.element.text = {
+
+	// inits the text
+	init:function(){
+			
+		// adds a text
+		$(document).on('click', '.add-element', function(){
+			
+			var node = $(respond.editor.currNode);
+			var elid = respond.editor.generateUniqId('text-element', 'el');
+			
+			// add temp text
+			node.find('.text-list').append(
+				respond.element.text.buildMock('p', elid, '', '')
+			);
+			
+			// focus on the new element
+			$(node).find('.text-list div:last-child').focus();
+			
+		});
+		
+		
+		// make parsed elements sortable
+		$(document).on('respond.editor.contentLoaded', function(){	
+			// make the elements sortable
+			$('.respond-text>div').sortable({handle: '.mock-text', placeholder: 'editor-highlight',connectWith:['.text-list'] , opacity:'0.6'});
+			
+		});
+		
+		// get a reference to the text
+		$(document).on('change', '.config[data-action="respond.element.text"] [name="text-type"]', function(){
+			var $el = $(this);
+			var id = utilities.toTitleCase($el.val());
+			var text = $('.current-element');
+			
+			if (id == 'hr'){
+				$(text).find('.editable-content').attr('contentEditable',false);
+			}else{
+				$(text).find('.editable-content').attr('contentEditable',true);
+			}
+			
+			//on change text-type action
+			$(text).removeClass('respond-p');
+			$(text).removeClass('respond-h1');
+			$(text).removeClass('respond-h2');
+			$(text).removeClass('respond-h3');
+			$(text).removeClass('respond-h4');
+			$(text).removeClass('respond-h5');
+			$(text).removeClass('respond-h6');
+			$(text).removeClass('respond-ul');
+			$(text).removeClass('respond-ol');
+			$(text).removeClass('respond-blockquote');
+			$(text).removeClass('respond-hr');
+			$(text).addClass('respond-'+id);
+		});
+		
+	},
+	
+	// builds a mock
+	buildMock:function(type, id, cssClass, html){
+	
+		// build html
+		if (type != 'hr'){
+			var text = '<a class="mock-text fa fa-arrows"></a>' +
+					'<div class="editable-content" contentEditable="true">'+ html +'</div>';
+		}else{
+			var text = '<a class="mock-text fa fa-arrows"></a>' +
+					'<div class="editable-content" contentEditable="false"></div>';
+		}
+		
+		// tag attributes
+		var attrs = [];
+		attrs['class'] = 'text-element respond-element respond-' + type;
+		attrs['data-type'] = type;
+		attrs['data-id'] = id;
+		attrs['data-cssclass'] = cssClass;
+				
+		// return element
+		return utilities.element('div', attrs, text);
+		
+	},
+	
+
+	// builds a text
+	buildText:function(type, id, cssClass, html){
+
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['type'] = type;
+		attrs['class'] = 'text-element ' + cssClass;
+			
+		// return element
+		return utilities.element(type, attrs, html, true);
+		
+	},
+	
+	// builds a list
+	buildList:function(type, id, cssClass, html){
+	
+		// build html
+		var text = '<a class="mock-text fa fa-arrows"></a>' + html;
+		
+		// tag attributes
+		var attrs = [];
+		attrs['class'] = 'text-element respond-element respond-' + type;
+		attrs['data-type'] = type;
+		attrs['data-id'] = id;
+		attrs['data-cssclass'] = cssClass;
+				
+		// return element
+		return utilities.element('div', attrs, text);
+		
+	},
+
+	// creates text
+	create:function(){
+	
+		// generate uniqId
+		var id = respond.editor.generateUniqId('text', 'text');
+		var elid = respond.editor.generateUniqId('text-element', 'el');
+		
+		// build html
+		var text = respond.editor.defaults.elementMenu +
+					'<div class="text-list">' +
+					respond.element.text.buildMock('p', elid, '', '') +
+					'</div>';
+					
+		text += '<button type="button" class="add-element"><i class="fa fa-plus-circle"></i></button>';
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-text';
+		attrs['data-cssclass'] = '';
+		attrs['data-action'] = '';
+		attrs['data-text-count'] = '1';
+		
+		// append element to the editor
+		respond.editor.append(
+			 utilities.element('div', attrs, text)
+		);
+		
+		$('.respond-text>div').sortable({handle: '.mock-text', placeholder: 'editor-highlight', opacity:'0.6', axis:'y'});
+	
+		return true;
+		
+	},
+	
+	// parse text
+	parse:function(node){
+		
+		// get params
+		var id = $(node).attr('textid');
+		
+		// get old textid
+		if(id == undefined){
+			id = $(node).attr('id');
+		}
+		
+		// build html
+		var html = respond.editor.defaults.elementMenu + '<div class="text-list">';
+				
+		// support for legacy fields
+		var texts = $(node).find('.text-element');
+		
+		for(y=0; y<texts.length; y++){
+		
+			// get type
+			var type = $(texts[y]).attr('type');
+			var contentHtml = '';
+			$(texts[y]).removeClass('text-element');
+			
+			// get attributes
+			var textId = $(texts[y]).attr('id') || '';
+			var textCssClass = $(texts[y]).attr('class') || '';
+			
+			if(type != null){
+				// get list 
+				if (type == 'ol'|| type == 'ul'){
+					var li = $(texts[y]).find('li');
+					
+					for(var i=0; i<li.length; i++){					
+						contentHtml += '<div class="editable-content" contenteditable="true">'+$(li[i]).html()+'</div>';	
+					}
+					
+					// build list of elements
+					html += respond.element.text.buildList(type, textId, textCssClass, contentHtml);	
+					
+				}else{
+					contentHtml = $(texts[y]).html() || '';
+					// build mock element
+					html += respond.element.text.buildMock(type, textId, textCssClass, contentHtml);
+				}
+			}
+			  	
+		}		
+		
+		html += '</div>';
+		
+		html += '<button type="button" class="add-element"><i class="fa fa-plus-circle"></i></button>';
+					
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = id;
+		attrs['data-id'] = id;
+		attrs['class'] = 'respond-text';
+		attrs['data-cssclass'] = $(node).attr('class');
+		attrs['data-action'] = $(node).attr('action');
+		
+		// return element
+		return utilities.element('div', attrs, html);
+				
+	},
+	
+	// generate text
+	generate:function(node){
+	
+		var texts = $(node).find('.text-list>div');
+		var html = '';
+		 
+		// build list   
+  		for(var y=0; y<texts.length; y++){
+			
+  			var text = $(texts[y]);
+			var contentHtml = '';
+			
+			if ($(text).hasClass('respond-ul')||$(text).hasClass('respond-ol')){
+				var li = $(text).find('[contentEditable=true]');
+				
+				
+				for(var i=0; i<li.length; i++){					
+					contentHtml += '<li>'+$(li[i]).html()+'</li>';	
+				}
+				
+				 
+			}else if(!$(text).hasClass('respond-hr')){
+				
+  				contentHtml = $(text).find('[contentEditable=true]').html();
+				contentHtml = contentHtml.replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
+				
+			}
+			
+  			// build text
+  			html += respond.element.text.buildText(
+  				text.attr('data-type') || '',  
+  				text.attr('data-id') || '', 
+  				text.attr('data-cssclass') || '',
+				contentHtml || '');  			
+  		}
+  		
+  		html += '';
+  		
+		// tag attributes
+		var attrs = [];
+		attrs['id'] = $(node).attr('data-id');
+		attrs['class'] = $(node).attr('data-cssclass');
+		attrs['type'] = $(node).attr('data-type');
+		attrs['action'] = $(node).attr('data-action');
+		
+		// return element
+		return utilities.element('respond-text', attrs, html);
+		
+	},
+	
+	// config text
+	config:function(node, form){}
+	
+};
+
+respond.element.text.init();

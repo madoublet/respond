@@ -1,5 +1,15 @@
 [
 	{
+		"action":	"respond.element.text",
+		"tag":		"RESPOND-TEXT",
+		"title":	"Text",
+		"class":	"respond-text",
+		"icon":		"fa fa-paragraph draggable",
+		"text":		"",
+		"config":	"plugins/element/config/text.html",
+		"script":	"plugins/element/respond.element.js"
+	},
+	{
 		"action":	"respond.element.h1",
 		"tag":		"H1",
 		"title":	"H1 Headline",
