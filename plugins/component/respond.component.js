@@ -697,6 +697,7 @@ respond.component.list = {
 		attrs['data-pagesize'] = '10';
 		attrs['data-orderby'] = 'Name';
 		attrs['data-pageresults'] = 'false';
+		attrs['data-filters'] = 'false';
 		attrs['data-tag'] = '';
 		attrs['data-desclength'] = '';
 		
@@ -728,6 +729,7 @@ respond.component.list = {
 		attrs['data-pagesize'] = $(node).attr('pagesize');
 		attrs['data-orderby'] =  $(node).attr('orderby');
 		attrs['data-pageresults'] =  $(node).attr('pageresults');
+		attrs['data-filters'] = $(node).attr('filters');
 		attrs['data-tag'] =  $(node).attr('tag');
 		attrs['data-desclength'] = $(node).attr('desclength');
 		
@@ -749,6 +751,7 @@ respond.component.list = {
 		attrs['pagesize'] = $(node).attr('data-pagesize');
 		attrs['orderby'] = $(node).attr('data-orderby');
 		attrs['pageresults'] = $(node).attr('data-pageresults');
+		attrs['filters'] = $(node).attr('data-filters');
 		attrs['tag'] = $(node).attr('data-tag');
 		attrs['desclength'] = $(node).attr('data-desclength');
 		

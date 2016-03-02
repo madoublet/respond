@@ -7481,8 +7481,19 @@ this.fire('dom-change');
 			margin: 15px 0 25px 0;
 		  	padding: 0;
 		  	vertical-align: top;
+			clear:both;
 		}
 		
+		.list-actions .filter{
+		  	margin: 0 15px 0 0;
+		  	padding: 0;
+			display: none;
+		}
+		
+			.list-actions .filter[visible]{
+				display: inline-block;
+			}
+			
 		.list-actions .pager{
 		  	margin: 0 15px 0 0;
 		  	padding: 0;
@@ -7700,16 +7711,47 @@ this.fire('dom-change');
 			 	  margin: 0;
 			      padding: 0;
 			  	}
+				
+			.list-grid {
+			  clear:both;
+			  position:relative;
+			  min-height:auto;
+			  max-width: 100%;
+			}
+			
+			.list-grid:after {
+			  content: '';
+			  display: block;
+			  clear: both;
+			}
+			
+			.grid-sizer,
+			.grid-item {
+			  width: 20%;
+			}
+			.gutter-sizer{
+			  width:0px;	
+			}
+			
 			  	
 	</style>
 
 	<template>
-	
+		<div class="list-actions">
+        	
+        	<span class="filter" visible$="{{showFilters}}">
+				<template id="filter" is="dom-repeat" items="{{listFilters}}">
+					<a on-click="setFilter" active$="{{item.isActive}}" data-filter$="{{item.filter}}">{{item.title}}</a>
+				</template>
+			</span>
+            
+        </div>
+        
 		<div id="items"></div>
 		<!-- /#items -->
 		
 		<div id="actions" class="list-actions">
-		
+		           
 			<span class="pager" visible$="{{showPager}}">
 				<template id="pager" is="dom-repeat" items="{{list}}">
 					<a on-click="gotoPage" active$="{{item.isActive}}">{{item.title}}</a>
@@ -7737,6 +7779,7 @@ this.fire('dom-change');
 	  		pagesize: { type: String },
 	  		orderby: { type: String },
 	  		pageresults: { type: String },
+	  		filters: { type: String },
 	  		tag: { type: String }
 		},
 		
@@ -7755,15 +7798,25 @@ this.fire('dom-change');
 			this.api = respond.site.settings.API;
 			this.images = respond.site.settings.ImagesUrl;
 			this.pageResults = (this.pageresults === 'true');
+			this.applyFilters = (this.filters === 'true');
 			this.currentIndex = 0;
 			this.list = [];
+			this.listFilters = [];
 			this.count = 0;
 			this.numberOfPages = 1;
+			this.tags = [];
+			this.activeFilters = '';
 			
 			// set display
 			this.showPager = false;
 			this.showPrevious = false;
 			this.showNext = false;
+			this.showFilters = false;
+			
+			// show list of filters
+			if(this.filters === 'true'){
+				this.showFilters = true;
+			}
 			
 			// show pager
 			if(this.pageresults === 'true'){
@@ -7774,7 +7827,21 @@ this.fire('dom-change');
 			if(this.tag == undefined){
 				this.tag = '';
 			}
-			
+			// setup grid thumbnails
+			if(this.display == 'list-thumbnails'){
+				items.setAttribute('class', 'list-grid');
+				
+				//add column sizer
+				var gridsizer = document.createElement('div');
+				gridsizer.setAttribute('class', 'grid-sizer');
+				Polymer.dom(items).appendChild(gridsizer);
+				
+				//add gutter sizer
+				var guttersizer = document.createElement('div');
+				guttersizer.setAttribute('class', 'gutter-sizer');
+				Polymer.dom(items).appendChild(guttersizer);
+			}
+						
 			// setup map
 			if(this.display == 'list-map'){
 			
@@ -7823,7 +7890,6 @@ this.fire('dom-change');
 			
 			// build the list of pages
 			this.buildList(this.currentIndex);
-			
 		},
 		
 		// navigates to a page when clicked
@@ -7946,6 +8012,63 @@ this.fire('dom-change');
 			
 		},
 		
+		// build filter
+		buildFilter:function(){
+			
+			this.listFilters = [];
+			
+			isActive = false;
+			
+			for(x = 0; x < this.tags.length; x++){
+				
+				this.push('listFilters', { 
+					'filter': '.flt-'+this.tags[x],
+					'title': this.tags[x],
+					'isActive': isActive
+					});
+			};	
+			
+			// clear list
+			this.tags = [];	
+		},
+		
+		// apply filter
+		setFilter:function(e){
+			var isActive = this.$.filter.itemForElement(e.target).isActive;
+			var f = this.$.filter.itemForElement(e.target).filter;
+			
+			if (!isActive) {
+				isActive = true; e.target.setAttribute('active', isActive);
+				this.activeFilters += f;
+			}
+			else {
+				isActive = false; e.target.removeAttribute('active');
+				this.activeFilters = this.activeFilters.replace(f,'');
+			}
+			this.$.filter.itemForElement(e.target).isActive = isActive;	
+								
+			
+								
+			//hide no match element	
+			if (this.activeFilters != '')$('#items > respond-list-item:not('+ this.activeFilters +')').hide();
+			$('#items > respond-list-item'+this.activeFilters).show();
+			
+			$('#items.list-grid').masonry();
+			
+			
+		},
+		
+		buildMasonry:function(){
+			$('#items.list-grid').masonry('destroy');
+			$('#items.list-grid').masonry({
+				itemSelector: '.grid-item',
+				columnWidth: '.grid-sizer',
+				gutter: '.gutter-sizer',
+				percentPosition: true
+			});	 
+			
+		},
+		
 		// build list
 		buildList:function(currentIndex){
 			
@@ -7992,6 +8115,7 @@ this.fire('dom-change');
 			xhr.onload = function() {
 			    if(xhr.status === 200){
 			    	var data = JSON.parse(xhr.responseText);
+					var filtersList = [];
 			    	
 			    	// set class for data
 					for(x=0; x<data.length; x++){
@@ -8051,10 +8175,34 @@ this.fire('dom-change');
 						item.setAttribute('date', data[x].LastModified);
 						item.setAttribute('fullurl', respond.site.settings.Domain +  '/' + data[x].Url);
 						
+						// add list of filters to item
+						var tagsClass = data[x].Tags.replace(/\s/g, '');
+						var newClass = 'grid-item'; 
+						if (tagsClass.length >0){
+							var allTags = new Array();
+							allTags = tagsClass.split(',');
+							filtersList = filtersList.concat(allTags);
+							newClass += ' flt-' + allTags.join(' flt-');
+						}
+						
+						item.setAttribute('class',newClass);
 						// append list item to the dom
 						Polymer.dom(context.$.items).appendChild(item);
 						
 					}
+					
+					//Add filters navigation //
+					if (filtersList.length > 0){
+						context.tags = [];
+						$.each(filtersList, function(i, el){
+							if($.inArray(el, context.tags) === -1)context.tags.push(el);
+						});
+						
+						context.buildFilter();
+					}
+					
+					//Add masonery //
+					if (context.display == 'list-thumbnails')context.buildMasonry();
 					
 					// set loading
 					context.loading = false;
@@ -8305,17 +8453,11 @@ this.fire('dom-change');
 		.respond-thumbnail{
 			vertical-align: top;
 			display: inline-block;
-			width: 200px;
-			height: 235px;
+			width: 100%;
+			height: auto;
 		  	position: relative;
-		  	border: 1px solid #f0f0f0;
-		  	padding: 0;
-		  	margin: 0 10px 10px 0;
-		}
-		
-		.respond-thumbnail h4, .respond-thumbnail h5{
-			margin: 0 0 5px 0;
-		  	padding: 0;
+		  	padding: 5px;
+		  	margin: 0;
 		}
 			
 		.respond-thumbnail a, .respond-thumbnail a:visited, .respond-thumbnail a:hover{
@@ -8323,37 +8465,17 @@ this.fire('dom-change');
 		}
 		
 		.respond-thumbnail img{
-		  	position: absolute;
-		  	top: 5px;
-		  	left: 5px;
-		  	width: 190px;
-		  	height: 190px;
+		  	width: 100%;
+		  	height: auto;
+			opacity:1;
+			
+			-webkit-transition: opacity 1s ease-in-out;
+			   -moz-transition: opacity 1s ease-in-out;
+			  	 -o-transition: opacity 1s ease-in-out;
+			  		transition: opacity 1s ease-in-out;
 		}
-		
-		.respond-thumbnail h4{
-			margin-top: 7px;
-			text-align: center;
-			font-size: 14px;
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 190px;
-			padding: 5px 0;
-			margin: 0;
-		}
-		
-		.respond-thumbnail h5{
-			background-color: #888;
-			color: #fff;
-			position: absolute;
-			left: 5px;
-			bottom: 30px;
-			padding: 5px 0;
-			margin: 0;
-			width: 190px;
-			text-align: center;
-			font-size: 13px;
-			font-weight: normal;
+		.respond-thumbnail img.toload{
+			opacity:0;	
 		}
 		
 		html[dir=rtl] .respond-list-item-container.has-image[style-scope=respond-list-item]{
@@ -8430,8 +8552,15 @@ this.fire('dom-change');
 					
 					var img = document.createElement('img');
 					img.setAttribute('src', respond.site.settings.ImagesUrl + this.thumb);
+					img.setAttribute('class', 'toload');
 					
 					a.appendChild(img);
+					
+					// image loaded
+					img.onload = function(){
+						$(img).removeClass('toload');
+						$('#items.list-grid').masonry();
+					}
 				}
 				
 				// set title
