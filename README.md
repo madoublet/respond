@@ -7,13 +7,19 @@ Learn more about Respond CMS at: http://respondcms.com
 
 View our documentation at: http://respondcms.com/learn
 
-New in version 5.2:
-- More themes
-- Bug Fixes
+New in version 5.3:
+- Updated Polymer web components libraries, fixes Microsoft Edge browser issues
+- Added support for Docker
+- Added Brazilian Portuguese translations, updated Spanish translations
+- Added ability to embed custom JS/CSS into site head and footer
+- New theme: Sport
+- Dozens of bug fixes
+- Various minor feature enhancements
 
-Upgrading from version 5.1
+Upgrading from version 5.2
 - Pull (or download) the latest version
-- Upgrade sites
+- Reload system files on each site
+- Reset theme on each site (if embedded JS/CSS feature is needed)
 
 
 License Information: http://respondcms.com/page/license
