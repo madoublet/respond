@@ -436,7 +436,7 @@ respond.component.form = {
 		// build html
 		var html = respond.editor.defaults.elementMenu +
 					'<div class="field-list">' +
-					respond.component.form.buildMock('text', 'Field', 'field1', 'false', '', '', 'form-control', '') +
+					respond.component.form.buildMock('text', 'Field', 'field1', 'false', '', '', '', '') +
 					'</div>';
 					
 		html += '<button type="button" class="add-field"><i class="fa fa-plus-circle"></i></button>';
