@@ -935,8 +935,10 @@ respond.editor.append = function(html){
 			var added = $(temp).next();
 			
 			$('[contentEditable=true], input, textarea').blur();
-			$(added).find('[contentEditable=true], input, textarea').first().focus();
-			
+			var scope = angular.element($("section.main")).scope();
+                        scope.timeout(function() {
+		        	$(added).find('[contentEditable=true], input, textarea').first().focus();
+                        });
 			respond.editor.currNode = $(added);
 		
 		}
