@@ -235,6 +235,10 @@
 		// get pageId
 		$scope.pageId = $stateParams.id;
 		
+		$scope.timeout = function(todo) {
+                        $timeout(todo, 0, false);
+                }
+		
 		// shows the images dialog
 		$scope.showAddImage = function(action){
 			$scope.retrieveImages();
