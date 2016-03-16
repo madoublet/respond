@@ -536,7 +536,7 @@ respond.editor.setupMenuEvents = function(){
 	$(document).unbind('mousedown touchstart');
    
     // setup text events
-	$(document).on('mousedown touchstart', '.context-menu a :not(.plugin-remove)', function(e){
+	$(document).on('mousedown touchstart', '.context-menu a:not(.plugin-remove)', function(e){
 		var action = $(this).attr('data-action') + '.create';
 		utilities.executeFunctionByName(action, window);
 		
