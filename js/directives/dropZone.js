@@ -21,8 +21,6 @@
 						formData.append('folder', attrs.folder);
 					}
 					
-					$(element).find('.dz-message').hide();
-					
 					return true;
 		            
 	            },
