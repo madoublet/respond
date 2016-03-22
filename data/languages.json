@@ -30,5 +30,13 @@
 	{
 		"code": "pt-BR",
 		"text": "Brazilian Portuguese (pt-BR)"
-	}
+	},
+	{
+		"code": "zh-TW",
+		"text": "Traditional Chinese"
+	},
+	{
+		"code": "zh-CN",
+		"text": "Simplified Chinese"
+	},
 ]
