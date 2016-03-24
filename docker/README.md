@@ -8,8 +8,8 @@ $ docker build -t respond .
 
 ### To Run
 
-Use [docker volumes](http://docs.docker.io/use/working_with_volumes/) to expose
-your web content to the apache web server.
+Run below commands if you want to store mysql data and site content into your docker host instead of inside the docker image.
+Please check [data volumes](https://docs.docker.com/engine/userguide/containers/dockervolumes/) for details.
 
 ``` bash
 # run Respond CMS
