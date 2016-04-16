@@ -231,21 +231,27 @@ body.content{
 		.editor .block div.respond-p[data-cssclass~=text-center] div, 
 		.editor .block div.respond-h1[data-cssclass~=text-center] div, 
 		.editor .block div.respond-h2[data-cssclass~=text-center] div, 
-		.editor .block div.respond-h3[data-cssclass~=text-center] div{
+		.editor .block div.respond-h3[data-cssclass~=text-center] div,
+		.editor .block div.respond-h4[data-cssclass~=text-center] div,
+		.editor .block div.respond-h5[data-cssclass~=text-center] div{
 			text-align: center;	
 		}
 		
 		.editor .block div.respond-p[data-cssclass~=text-left] div, 
 		.editor .block div.respond-h1[data-cssclass~=text-left] div, 
 		.editor .block div.respond-h2[data-cssclass~=text-left] div, 
-		.editor .block div.respond-h3[data-cssclass~=text-left] div{
+		.editor .block div.respond-h3[data-cssclass~=text-left] div, 
+		.editor .block div.respond-h4[data-cssclass~=text-left] div, 
+		.editor .block div.respond-h5[data-cssclass~=text-left] div{
 			text-align: left;	
 		}
 		
 		.editor .block div.respond-p[data-cssclass~=text-right] div, 
 		.editor .block div.respond-h1[data-cssclass~=text-right] div, 
 		.editor .block div.respond-h2[data-cssclass~=text-right] div, 
-		.editor .block div.respond-h3[data-cssclass~=text-right] div{
+		.editor .block div.respond-h3[data-cssclass~=text-right] div, 
+		.editor .block div.respond-h4[data-cssclass~=text-right] div, 
+		.editor .block div.respond-h5[data-cssclass~=text-right] div{
 			text-align: right;	
 		}
 	
