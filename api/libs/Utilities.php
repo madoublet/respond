@@ -188,7 +188,7 @@ class Utilities
 	// get a date in a format JavaScript can understand, YYYY-MM-DD hours:minutes:seconds
 	public static function GetDateForJavaScript($date, $timezone){
 		
-		$timeZone = new DateTimeZone($site['TimeZone']);
+		$timeZone = new DateTimeZone($timezone);
         $now = new DateTime("now", $timeZone);
         $offset = $timeZone->getOffset($now);
 		
