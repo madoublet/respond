@@ -7,8 +7,8 @@
 	// DB connection parameters
 	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'respond');
-	define('DB_USER', 'dbuser');
-	define('DB_PASSWORD', 'dbpass');
+	define('DB_USER', 'respond');
+	define('DB_PASSWORD', 'Jamesbond002');
 
 	// If not set, we figure it out baded on the HTTP request.
     define('APP_URL', detectedAppURL());
