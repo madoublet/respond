@@ -28,7 +28,8 @@
 			
 			var stamp = moment().format('X');
 				
-			var url = $scope.setup.sites + '/' + $scope.friendlyId + '?t='+stamp;
+			var url = $scope.setup.sites;
+			url = url.replace("{{friendlyId}}", $scope.friendlyId)+ '?t='+stamp;
 			
 			$scope.currentSite = $sce.trustAsResourceUrl(url);
 		});
@@ -51,7 +52,8 @@
 				function refresh(){
 					var stamp = moment().format('X');
 						
-					var url = $scope.setup.sites + '/' + $scope.friendlyId + '?t='+stamp;
+					var url = $scope.setup.sites;
+					url = url.replace("{{friendlyId}}", $scope.friendlyId)+ '?t='+stamp;
 					
 					$scope.currentSite = $sce.trustAsResourceUrl(url);
 				}
