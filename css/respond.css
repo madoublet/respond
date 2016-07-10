@@ -5234,6 +5234,7 @@ body.login{}
 	text-align: center;
 	border: none;
 	text-align: center;
+	pointer-events: none;
 }
 
 #message span{
