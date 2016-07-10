@@ -1,0 +1,63 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #editForm="ngForm">
+
+    <h2>{{ 'Page Settings' | translate }}</h2>
+
+    <div class="app-modal-body">
+
+      <label>{{ 'Title' | translate }}</label>
+      <input id="hashedit-page-settings-title" type="text" maxlength="128" required
+        [(ngModel)]="model.title"
+        ngControl="title">
+
+      <label>{{ 'Description' | translate }}</label>
+      <input id="hashedit-page-settings-description" type="text" maxlength="128"
+        [(ngModel)]="model.description"
+        ngControl="description">
+
+      <label>{{ 'Keywords' | translate }}</label>
+      <input id="hashedit-page-settings-keywords" type="text" maxlength="128"
+        [(ngModel)]="model.keywords"
+        ngControl="keywords">
+
+      <label>{{ 'Callout' | translate }}</label>
+      <input id="hashedit-page-settings-callout" type="text" maxlength="128"
+        [(ngModel)]="model.callout"
+        ngControl="callout">
+
+      <label>{{ 'Layout' | translate }}</label>
+      <select id="hashedit-page-settings-layout"
+        [(ngModel)]="model.layout"
+        ngControl="layout">
+        <option value="home">Home</option>
+        <option value="content">Content</option>
+      </select>
+
+      <label>{{ 'Language' | translate }}</label>
+      <select id="hashedit-page-settings-language"
+        [(ngModel)]="model.language"
+        ngControl="language">
+        <option value="en">English (en)</option>
+        <option value="es">Spanish (es)</option>
+      </select>
+
+      <label>{{ 'Direction' | translate }}</label>
+      <select id="hashedit-page-settings-direction"
+        [(ngModel)]="model.direction"
+        ngControl="language">
+        <option value="ltr">{{ 'Left-to-Right' | translate }}</option>
+        <option value="rtl">{{ 'Right-to-Left' | translate }}</option>
+      </select>
+
+    </div>
+    <!-- /.app-modal-body -->
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

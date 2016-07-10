@@ -1,0 +1,70 @@
+<menu class="app-menu" [class.noborder]="menus.length !== 0">
+
+    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
+
+    <h1>{{ 'Menus' | translate }}</h1>
+
+    <button class="app-add position-2" (click)="showAddItem()" *ngIf="menus.length !== 0"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></g></svg></button>
+
+    <button class="app-overflow" (click)="toggleOverflow()" *ngIf="selectedMenu !== undefined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
+
+</menu>
+
+<section class="app-main">
+
+  <nav class="app-selector">
+    <ul>
+      <li *ngFor="let menu of menus" [class.selected]="menu.id === selectedMenu.id" (click)="setActive(menu)">
+        <a>{{menu.name}}</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div id="items-list" class="app-list">
+    <div class="app-list-item" *ngFor="let item of items" (click)="setItemActive(item)" [class.selected]="item === selectedItem">
+      <h2><span class="primary">{{ item.html }}</span></h2>
+      <small>{{ item.url }}</small>
+      <div class="app-list-actions">
+          <span class="app-list-alternate-actions">
+            <a (click)="moveItemDown(item)">{{ 'Move Down' | translate }}</a>
+            <a (click)="moveItemUp(item)">{{ 'Move Up' | translate }}</a>
+          </span>
+          <a (click)="showRemoveItem(item)">{{ 'Remove' | translate }}</a>
+          <a class="primary" (click)="showEditItem(item)">{{ 'Edit' | translate }}</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="no-list-items" *ngIf="items.length === 0">
+    {{ 'Nothing here yet' | translate }}
+    <a (click)="showAddItem()" *ngIf="menus.length !== 0 && items.length === 0">{{ 'Add Menu Item' | translate }}</a>
+    <a (click)="showAdd()" *ngIf="menus.length === 0">{{ 'Add Menu' | translate }}</a>
+  </p>
+
+</section>
+
+<respond-add-menu [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-menu>
+
+<respond-edit-menu [visible]="editVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-edit-menu>
+
+<respond-remove-menu [visible]="removeVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-menu>
+
+<respond-add-menu-item [visible]="addItemVisible" [menu]="selectedMenu" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-menu-item>
+
+<respond-edit-menu-item [visible]="editItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-edit-menu-item>
+
+<respond-remove-menu-item [visible]="removeItemVisible" [menu]="selectedMenu" [item]="selectedItem" [index]="selectedIndex" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-menu-item>
+
+<respond-drawer active="menus" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+
+<nav class="app-overflow" [class.visible]="overflowVisible === true">
+
+  <ul>
+    <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
+    <li><a (click)="showAdd()">{{ 'Add Menu' | translate }}</a></li>
+    <li><a (click)="showEdit()">{{ 'Edit Menu' | translate }}</a></li>
+    <li><a (click)="showRemove()">{{ 'Remove Menu' | translate }}</a></li>
+  </ul>
+
+</nav>

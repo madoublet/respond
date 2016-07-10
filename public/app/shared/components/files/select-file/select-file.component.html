@@ -1,0 +1,19 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <h2>{{ 'Select File' | translate }}</h2>
+
+  <respond-dropzone (onAdd)="list($event)"></respond-dropzone>
+
+  <div id="files-list" class="app-modal-list">
+    <div class="app-modal-list-item" *ngFor="let file of files" (click)="select(file)" [class.image]="file.thumb !== ''">
+      <h2><span class="primary">{{ file.name }}</span></h2>
+      <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
+      <small>/files/{{ file.name }}</small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a (click)="hide()" class="primary">{{ 'Cancel' | translate }}</a>
+  </div>
+
+</div>

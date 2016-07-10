@@ -1,0 +1,96 @@
+{% spaceless %}
+
+{% for form in forms %}
+
+  {% if form.id == attributes.form  %}
+
+<form id="{{ form.id }}" action="{{ site.api }}/submissions/submit" method="post" data-site="{{ site.id }}" respond-form >
+
+    <input name="siteid" type="hidden" value="{{ site.id }}">
+    <input name="formid" type="hidden" value="{{ form.id }}">
+
+
+    {% for field in form.fields %}
+      <div class="form-group" data-id="{{ field.id }}" data-label="{{ field.label }}"  data-type="{{ field.type }}" data-required="{{ field.required }}">
+      
+
+          {% if field.type == 'text'  %}
+          
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="{{ field.id }}" name="{{ field.id }}">
+              <label class="mdl-textfield__label" for="{{ field.id }}">{{ field.label }}</label>
+            </div>
+          
+          {% endif %}
+          
+          {% if field.type == 'textarea'  %}
+          
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <textarea class="mdl-textfield__input" type="text" rows= "3" id="{{ field.id }}" ></textarea>
+              <label class="mdl-textfield__label" for="{{ field.id }}">{{ field.label }}</label>
+            </div>
+            
+          {% endif %}
+          
+          {% if field.type == 'select'  %}
+  
+          {% set options = field.options|split(',') %}
+          
+            <label for="{{ field.id }}" class="list-label">{{ field.label }}</label>
+    
+            <select id="{{ field.id }}" name="{{ field.id }}" class="form-control">
+            {% for option in options %}
+              <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+            </select>
+  
+          {% endif %}
+          
+          {% if field.type == 'checkboxlist'  %}
+  
+          {% set options = field.options|split(',') %}
+          
+          <label for="{{ field.id }}" class="list-label">{{ field.label }}</label>
+          
+          <span class="radio list">
+          {% for option in options %}
+            <label class="radio"><input name="{{ field.id }}"  type="checkbox" value="{{ option }}"><span>{{ option }}</span></label>
+          {% endfor %}
+          </span>
+  
+          {% endif %}
+          
+          {% if field.type == 'radiolist'  %}
+        
+          {% set options = field.options|split(',') %}
+          
+          <label for="{{ field.id }}" class="list-label">{{ field.label }}</label>
+          
+          <span class="checkbox list">
+          {% for option in options %}
+            <label class="checkbox"><input name="{{ field.id }}" type="radio" value="{{ option }}"><span>{{ option }}</span></label>
+          {% endfor %}
+          </span>
+  
+          {% endif %}
+          
+          {% if field.helperText != ''  %}
+          <span class="help-block">{{ field.helperText }}</span>
+          {% endif %}
+  
+      </div>
+      <!-- ./form-group -->
+    {% endfor %}
+
+  {% endif %}
+
+{% endfor %}
+  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Submit</button>
+
+  <span class="loading">
+  	<div class="mdl-spinner mdl-js-spinner is-active"></div>
+  </span>
+
+  <span class="error">There was an error submitting your form</span>
+</form>
+{% endspaceless %}

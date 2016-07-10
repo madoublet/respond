@@ -1,0 +1,28 @@
+{% spaceless %}
+
+{% set sorted = pages | bettersort('lastModifiedDate_desc') %}
+
+{% set count = 0 %}
+
+{% for page in sorted %}
+
+  {% if count < 5 %}
+
+  {% if 'post/' in page.url %}
+  
+    <div class="list-item">
+
+      <h5><a href="{{ page.url }}">{{ page.title }}</a></h5>
+      
+      <p>{{ page.description }}</p>
+      
+    </div>
+      
+      {% set count = count + 1 %}
+     
+  {% endif %} 
+  
+  {% endif %} 
+      
+{% endfor %}
+{% endspaceless %}

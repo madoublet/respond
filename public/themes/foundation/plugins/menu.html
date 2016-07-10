@@ -1,0 +1,23 @@
+{% spaceless %}
+{% for menu in menus %}
+
+  {% if menu.id == attributes.menu  %}
+
+    {% for item in menu.items %}
+    
+      {% set active = '' %}
+      
+      {% if page.url == item.url|replace({ ('.html'): '' })  %}
+      
+        {% set active = ' active' %}
+      
+      {% endif %}
+      
+      <li{{ active }}><a href="{{ item.url }}">{{ item.html }}</a></li>
+
+    {% endfor %}
+
+  {% endif %}
+
+{% endfor %}
+{% endspaceless %}

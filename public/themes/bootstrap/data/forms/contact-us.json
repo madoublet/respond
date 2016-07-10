@@ -1,0 +1,57 @@
+{
+    "id": "contact-us",
+    "name": "Contact Us",
+    "cssClass": "",
+    "fields": [
+        {
+            "id": "name",
+            "label": "* Name",
+            "type": "text",
+            "required": "true",
+            "options": "",
+            "helperText": "",
+            "placeholder": "",
+            "cssClass": ""
+        },
+        {
+            "id": "email",
+            "label": "* Email",
+            "type": "text",
+            "required": "true",
+            "options": "",
+            "helperText": "",
+            "placeholder": "",
+            "cssClass": ""
+        },
+        {
+            "id": "phone",
+            "label": "Phone",
+            "type": "text",
+            "required": "false",
+            "options": "",
+            "helperText": "",
+            "placeholder": "",
+            "cssClass": ""
+        },
+        {
+            "id": "preferred",
+            "label": "* Preferred Contact Method",
+            "type": "radiolist",
+            "required": "true",
+            "options": "Email, Phone",
+            "helperText": "",
+            "placeholder": "",
+            "cssClass": ""
+        },
+        {
+            "id": "comments",
+            "label": "Comments",
+            "type": "textarea",
+            "required": false,
+            "options": "",
+            "helperText": "",
+            "placeholder": "",
+            "cssClass": ""
+        }
+    ]
+}

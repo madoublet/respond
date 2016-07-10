@@ -1,0 +1,25 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #editForm="ngForm">
+
+    <h2>{{ 'Edit Form' | translate }}</h2>
+
+    <label>{{ 'Name' | translate }}</label>
+    <input id="hashedit-edit-form-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.name"
+      ngControl="name">
+    <small>&lt;respond-form id=&quot;{{model.id}}&quot;&gt;&lt;respond-form&gt;</small>
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="hashedit-edit-form-cssclass" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.cssClass"
+      ngControl="cssClass">
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,21 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #removeForm="ngForm">
+
+    <h2>{{ 'Remove Menu Item' | translate }}</h2>
+
+    <p>{{ 'Confirm you want to remove:' | translate }}</p>
+
+    <div class="to-be-removed">
+      <h3>{{model.html}}</h3>
+      <small>{{model.url}}</small>
+    </div>
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Remove' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

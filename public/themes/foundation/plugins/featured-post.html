@@ -1,0 +1,26 @@
+{% spaceless %}
+
+{% set sorted = pages | bettersort('lastModifiedDate_desc') %}
+
+{% set count = 0 %}
+
+{% for page in sorted %}
+
+  {% if count < 1 %}
+  
+    {% if 'post/' in page.url %}
+    
+        {% if count == 0 %} 
+  
+            {{ page.html|raw }}
+        
+        {% endif %}  
+  
+        {% set count = count + 1 %}
+       
+    {% endif %} 
+  
+  {% endif %} 
+      
+{% endfor %}
+{% endspaceless %}

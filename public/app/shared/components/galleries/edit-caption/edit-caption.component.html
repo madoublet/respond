@@ -1,0 +1,19 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit Caption' | translate }}</h2>
+
+    <label>{{ 'Caption' | translate }}</label>
+    <input id="hashedit-edit-caption" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.caption"
+      ngControl="label">
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

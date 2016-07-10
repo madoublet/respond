@@ -1,0 +1,17 @@
+<div class="logo"><img src="/app/shared/resources/respond-logo.png"></div>
+
+<form class="app-form standalone" (submit)="login($event, email.value, password.value)">
+
+    <label>{{ 'Email' | translate }}</label>
+    <input type="text" name="email" #email>
+
+    <label>{{ 'Password' | translate }}</label>
+    <input type="password" name="password" #password>
+
+    <button type="submit">{{ 'Login' | translate }}</button>
+
+    <a (click)="forgot()">{{ 'Forgot Password?' | translate }}</a>
+
+    <p>Respond 6 &mdash; made by Matthew Smith in Manchester, MO</p>
+
+</form>

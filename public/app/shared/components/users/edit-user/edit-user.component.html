@@ -1,0 +1,51 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit User' | translate }}</h2>
+
+    <div class="app-modal-body">
+
+      <label>{{ 'Email' | translate }}</label>
+      <input id="hashedit-edit-user-email" type="text" maxlength="128" required
+        [(ngModel)]="model.email"
+        ngControl="email" disabled="disabled">
+
+      <label>{{ 'First Name' | translate }}</label>
+      <input id="hashedit-edit-user-first-name" type="text" maxlength="128" required
+        [(ngModel)]="model.firstName"
+        ngControl="firstName">
+
+      <label>{{ 'Last Name' | translate }}</label>
+      <input id="hashedit-edit-user-last-name" type="text" maxlength="128" required
+        [(ngModel)]="model.lastName"
+        ngControl="lastName">
+
+      <label>{{ 'Password' | translate }}</label>
+      <input id="hashedit-edit-user-password" type="password" maxlength="128" required
+        [(ngModel)]="model.password"
+        ngControl="password">
+
+      <label>{{ 'Retype Password' | translate }}</label>
+      <input id="hashedit-edit-user-retype" type="password" maxlength="128" required
+        [(ngModel)]="model.retype"
+        ngControl="retype">
+
+      <label>{{ 'Language' | translate }}</label>
+      <select id="hashedit-edit-user-language"
+        [(ngModel)]="model.language"
+        ngControl="language">
+        <option *ngFor="let language of languages" [value]="language.code">{{language.text}}</option>
+      </select>
+
+    </div>
+    <!-- /.app-modal-body -->
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

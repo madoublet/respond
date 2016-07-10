@@ -1,0 +1,15 @@
+/vendor
+/node_modules
+.env
+composer.lock
+composer.phar
+/public/node_modules
+/public/sites
+/public/dev
+/resources/sites
+/public/themes/respond-themes
+/design
+/public/info.php
+roadmap.md
+technology.md
+todo.md

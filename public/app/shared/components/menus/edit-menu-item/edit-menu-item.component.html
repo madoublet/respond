@@ -1,0 +1,39 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Edit Menu Item' | translate }}</h2>
+
+    <label>{{ 'Text (or HTML)' | translate }}</label>
+    <input id="hashedit-edit-menu-item-html" type="text" required
+      [(ngModel)]="model.html"
+      ngControl="html">
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="hashedit-edit-menu-item-css-class" type="text" maxlength="128"
+      [(ngModel)]="model.cssClass"
+      ngControl="cssClass">
+
+    <label>{{ 'Is Nested?' | translate }}</label>
+    <select id="hashedit-edit-menu-item-is-nested"
+      [(ngModel)]="model.isNested"
+      ngControl="isNested">
+      <option value="true">{{ 'Yes' | translate }}</option>
+      <option value="false">{{ 'No' | translate }}</option>
+    </select>
+
+    <label>{{ 'URL' | translate }}</label>
+    <select id="hashedit-edit-menu-item-url"
+      [(ngModel)]="model.url"
+      ngControl="url">
+      <option *ngFor="#page of pages" [value]="page.url">{{page.url}}</option>
+    </select>
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

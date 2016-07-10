@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Respond</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00ADE3">
+
+    <base href="/">
+    
+    <link href="app/shared/resources/icon.png" rel="icon">
+    <meta content="#00ADE3" name="msapplication-TileColor">
+    <meta content="#00ADE3" name="msapplication-TileImage">
+    <link href="app/shared/resources/icon.png" rel="apple-touch-icon">
+
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="app/systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err);  });
+    </script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="app/shared/resources/reset.css">
+    <link rel="stylesheet" href="app/shared/resources/app.css">
+
+    <!-- font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+      body {
+        padding: 49px 0 0 0;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 49px 0 0 0;
+      }
+
+      body .spinner {
+        width: 40px;
+        height: 40px;
+        margin: 100px auto;
+        background-color: #00ADE3;
+
+        border-radius: 100%;
+        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
+      }
+
+      @-webkit-keyframes sk-scaleout {
+        0% { -webkit-transform: scale(0) }
+        100% {
+          -webkit-transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sk-scaleout {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+      </style>
+
+
+  </head>
+
+  <!-- Display the application -->
+  <body>
+    <respond-app>
+
+      <!-- loading -->
+      <div class="spinner" title="loading"></div>
+
+    </respond-app>
+  </body>
+
+
+  <!-- Load resources -->
+  <script src="app/shared/resources/toast.js"></script>
+  <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+  <script src="node_modules/dropzone/dist/min/dropzone.min.js"></script>
+  <link type="text/css" href="/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+
+</html>

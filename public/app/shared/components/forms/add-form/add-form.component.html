@@ -1,0 +1,24 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #addForm="ngForm">
+
+    <h2>{{ 'Add Form' | translate }}</h2>
+
+    <label>{{ 'Name' | translate }}</label>
+    <input id="hashedit-add-form-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.name"
+      ngControl="name">
+
+    <label>{{ 'CSS Class' | translate }}</label>
+    <input id="hashedit-add-form-cssclass" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.cssClass"
+      ngControl="cssClass">
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Add Form' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

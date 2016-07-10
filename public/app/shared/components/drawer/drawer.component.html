@@ -1,0 +1,22 @@
+<nav class="app-drawer" [class.visible]="visible === true">
+
+  <ul>
+    <li class="app-drawer-title"><span>{{ 'Manage your Site' | translate }}</span></li>
+    <li [class.active]="active === 'pages'"><a [routerLink]="['Pages']">{{ 'Pages' | translate }}</a></li>
+    <li [class.active]="active === 'menus'"><a [routerLink]="['Menus']">{{ 'Menus' | translate }}</a></li>
+    <li [class.active]="active === 'galleries'"><a [routerLink]="['Galleries']">{{ 'Galleries' | translate }}</a></li>
+    <li [class.active]="active === 'forms'"><a [routerLink]="['Forms']">{{ 'Forms' | translate }}</a></li>
+    <li [class.active]="active === 'submissions'"><a [routerLink]="['Submissions']">{{ 'Submissions' | translate }}</a></li>
+    <li [class.active]="active === 'files'"><a [routerLink]="['Files']">{{ 'Files' | translate }}</a></li>
+    <li [class.active]="active === 'users'"><a [routerLink]="['Users']">{{ 'Users' | translate }}</a></li>
+    <li [class.active]="active === 'settings'"><a [routerLink]="['Settings']">{{ 'Settings' | translate }}</a></li>
+    <li><a [href]="siteUrl" target="_blank">{{ 'View Site' | translate }}</a></li>
+    <li><a (click)="signOut()">{{ 'Sign Out' | translate }}</a></li>
+  </ul>
+
+  <ul id="dev-menu" [class.visible]="dev === true">
+    <li class="app-drawer-title"><span>{{ 'Developer Options' | translate }}</span></li>
+    <li><a (click)="reload()">{{ 'Re-publish plugins' | translate }}</a></li>
+  </ul>
+
+</nav>

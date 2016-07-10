@@ -1,0 +1,37 @@
+<menu class="app-menu">
+
+    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
+
+    <h1>{{ 'Pages' | translate }}</h1>
+
+    <button class="app-add" (click)="showAdd()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></g></svg></button>
+
+</menu>
+
+<section class="app-main">
+
+  <div id="pages-list" class="app-list">
+    <div class="app-list-item" *ngFor="let page of pages" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">
+      <h2><span class="primary">{{ page.title }}</span><span class="secondary">{{ page.lastModifiedDate | timeAgo }}</span></h2>
+      <img *ngIf="page.thumb !== ''" class="image" src="sites/{{id}}/{{page.thumb}}">
+      <small>/{{ page.url }}</small>
+      <p>{{ page.description }}</p>
+      <div class="app-list-actions">
+          <a (click)="showRemove(page)">{{'Remove' | translate }}</a>
+          <a (click)="showSettings(page)">{{'Settings' | translate }}</a>
+          <a class="primary" (click)="edit(page)">{{'Edit' | translate }}</a>
+      </div>
+    </div>
+  </div>
+  
+  <p class="no-list-items" *ngIf="pages.length === 0">{{ 'Nothing here yet' | translate }}</p>
+
+</section>
+
+<respond-add-page [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-page>
+
+<respond-page-settings [visible]="settingsVisible" [page]="page" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-page-settings>
+
+<respond-remove-page [visible]="removeVisible" [page]="page" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-page>
+
+<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>

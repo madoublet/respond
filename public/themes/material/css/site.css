@@ -1,0 +1,120 @@
+/* support hashedit menu bar */
+[hashedit-active] {
+  padding-top: 50px;
+}
+ 
+/* global */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: 'Roboto';
+}
+
+  body h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #506270;
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+
+body p {
+  color: #555;
+}
+
+.mdl-layout__header-row {
+  padding: 0 40px !important;
+}
+
+.material-ribbon {
+  width: 100%;
+  height: 40vh;
+  background-color: #506270;
+  flex-shrink: 0;
+}
+
+.material-main {
+  margin-top: -35vh;
+  flex-shrink: 0;
+}
+
+.material-header .mdl-layout__header-row {
+  padding-left: 40px;
+}
+
+.material-container {
+  max-width: 1600px;
+  width: calc(100% - 16px);
+  margin: 0 auto;
+}
+
+.material-container h1:first-child, .material-container h2:first-child, .material-container h3:first-child, .material-container h4:first-child {
+  margin-top: 0;
+}
+
+.material-container {
+  border-radius: 2px;
+  padding: 40px 40px;
+  max-width: 80%;
+  margin: 0 auto 80px auto;
+}
+
+.material-layout.is-small-screen .material-content {
+  padding: 40px 28px;
+}
+
+.material-footer {
+  padding-left: 40px;
+}
+
+footer .mdl-navigation__link {
+  font-size: 13px !important;
+  color: #fff !important;
+  margin: 0 20px 0 0;
+}
+
+/* home */
+.material-callout {
+  width: 100%;
+  background-color: #506270;
+  flex-shrink: 0;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  padding: 125px 0;
+}
+
+  .material-callout h2, .material-callout p {
+    color: #fff;
+  }
+  
+  .material-callout p {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #f0f0f0;
+  }
+
+.feature-block {
+  width: 80%;
+  margin: 0 auto;
+  min-height: 100px; 
+}
+
+  .feature-block h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #506270;
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+  
+  .feature-block p {
+    margin: 0 0 25px 0;
+    padding: 0;
+  }
+  
+  .feature-block .mdl-cell--8-col {
+    padding-right: 20px;
+  }
+  
+footer {
+  background-color: #506270 !important;
+}

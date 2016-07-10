@@ -1,0 +1,20 @@
+<div class="app-modal" [class.visible]="visible === true">
+
+  <form (ngSubmit)="submit()" #editForm="ngForm">
+
+    <h2>{{ 'Edit Gallery' | translate }}</h2>
+
+    <label>{{ 'Name' | translate }}</label>
+    <input id="hashedit-edit-gallery-name" type="text" maxlength="128" placeholder="" required
+      [(ngModel)]="model.name"
+      ngControl="name">
+    <small>&lt;respond-gallery id=&quot;{{model.id}}&quot; id=&quot;{{type}}&quot;&gt;&lt;respond-gallery&gt;</small>
+
+    <div class="actions">
+      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+      <button type="submit">{{ 'Update' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

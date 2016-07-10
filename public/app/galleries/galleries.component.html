@@ -1,0 +1,71 @@
+<menu class="app-menu" [class.noborder]="galleries.length !== 0">
+
+    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
+
+    <h1>{{ 'Galleries' | translate }}</h1>
+
+    <button class="app-add position-2" (click)="showSelect()" *ngIf="galleries.length !== 0"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></g></svg></button>
+
+    <button class="app-overflow" (click)="toggleOverflow()" *ngIf="selectedForm !== undefined"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
+
+</menu>
+
+<section class="app-main">
+
+  <nav class="app-selector">
+    <ul>
+      <li *ngFor="let gallery of galleries" [class.selected]="gallery.id === selectedGallery.id" (click)="setActive(gallery)">
+        <a>{{gallery.name}}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="images-list" class="app-list">
+    <div class="app-list-item" *ngFor="let image of images" (click)="setImageActive(image)" [class.selected]="image === selectedImage" [class.image]="image.thumb !== ''">
+      <h2><span class="primary">{{ image.name }}</span></h2>
+      <img *ngIf="image.thumb !== ''" class="image" src="sites/{{id}}/{{image.thumb}}">
+      <small>{{ image.caption }}</small>
+      <div class="app-list-actions">
+          <span class="app-list-alternate-actions">
+            <a (click)="moveImageDown(image)">{{ 'Move Down' | translate }}</a>
+            <a (click)="moveImageUp(image)">{{ 'Move Up' | translate }}</a>
+          </span>
+          <a (click)="showRemoveImage(image)">{{ 'Remove' | translate }}</a>
+          <a (click)="showEditImage(image)" class="primary">{{ 'Edit Caption' | translate }}</a>
+      </div>
+    </div>
+
+    <p class="no-list-items" *ngIf="images.length === 0">
+      {{ 'Nothing here yet' | translate }}
+      <a (click)="showSelect()" *ngIf="galleries.length !== 0 && images.length === 0">{{ 'Add Image' | translate }}</a>
+      <a (click)="showAdd()" *ngIf="galleries.length === 0">{{ 'Add Gallery' | translate }}</a>
+    </p>
+
+  </div>
+
+</section>
+
+<respond-add-gallery [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-gallery>
+
+<respond-edit-gallery [visible]="editVisible" [gallery]="selectedGallery" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-edit-gallery>
+
+<respond-remove-gallery [visible]="removeVisible" [gallery]="selectedGallery" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-gallery>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset($event)"  (onSelect)="select($event)" (onError)="failure($event)"></respond-select-file>
+
+<respond-edit-caption [visible]="editImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-edit-caption>
+
+<respond-remove-gallery-image [visible]="removeImageVisible" [gallery]="selectedGallery" [image]="selectedImage" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-gallery-image>
+
+<respond-drawer active="galleries" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+
+<nav class="app-overflow" [class.visible]="overflowVisible === true">
+
+  <ul>
+    <li class="app-overflow-title"><span>{{ 'Additional Options' | translate }}</span></li>
+    <li><a (click)="showAdd()">{{ 'Add Gallery' | translate }}</a></li>
+    <li><a (click)="showEdit()">{{ 'Edit Gallery' | translate }}</a></li>
+    <li><a (click)="showRemove()">{{ 'Remove Gallery' | translate }}</a></li>
+  </ul>
+
+</nav>

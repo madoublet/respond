@@ -1,0 +1,37 @@
+[
+    {
+        "id": "editable",
+        "value": "[role=main]"
+    },
+    {
+        "id": "sortable",
+        "value": ".mdl-cell"
+    },
+    {
+        "id": "theme-logo",
+        "label": "Logo",
+        "description": "Primary logo of the site",
+        "type": "image",
+        "value": "files\/sample-logo.png",
+        "sets": "attribute",
+        "attribute": "src"
+    },
+    {
+        "id": "theme-icon",
+        "label": "Icon",
+        "description": "The favicon used for the site",
+        "type": "image",
+        "value": "resources\/icon.png",
+        "sets": "attribute",
+        "attribute": "href"
+    },
+    {
+        "id": "theme-color",
+        "label": "Color",
+        "description": "The color used as the Android application color",
+        "type": "text",
+        "value": "#888",
+        "sets": "attribute",
+        "attribute": "content"
+    }
+]

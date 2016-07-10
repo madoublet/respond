@@ -1,0 +1,19 @@
+{% spaceless %}
+
+{% for gallery in galleries %}
+
+  {% if gallery.id == attributes.gallery  %}
+  
+    {% for image in gallery.images %}
+      
+      <div class="gallery-image">
+        <a href="{{ image.url }}" title="{{ image.caption }}" respond-lightbox><img src="{{ image.thumb }}"></a>
+      </div>
+    
+    {% endfor %}
+
+  {% endif %}
+
+{% endfor %}
+
+{% endspaceless %}
