@@ -11,18 +11,6 @@
     <meta content="#00ADE3" name="msapplication-TileImage">
     <link href="app/shared/resources/icon.png" rel="apple-touch-icon">
 
-    <!-- 1. Load libraries -->
-     <!-- Polyfill(s) for older browsers -->
-    <script src="app/libs/zone.js"></script>
-    <script src="app/libs/Reflect.js"></script>
-    <script src="app/libs/system.src.js"></script>
-
-    <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err);  });
-    </script>
-
     <!-- css -->
     <link rel="stylesheet" href="app/shared/resources/reset.css">
     <link rel="stylesheet" href="app/shared/resources/app.css">
@@ -81,6 +69,20 @@
 
     </respond-app>
   </body>
+  
+   <!-- load libs -->
+    <script src="app/libs/zone.js"></script>
+    <script src="app/libs/Reflect.js"></script>
+    <script src="app/libs/system.src.js"></script>
+
+    <!-- systemjs (dev)
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err);  });
+    </script> -->
+    
+    <!-- build (prod) -->
+    <script src="app/bundle.js"></script> 
 
 
   <!-- Load resources -->

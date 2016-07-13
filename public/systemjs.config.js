@@ -2,12 +2,12 @@
 
   // map tells the System loader where to look for things
   var map = {
-    'angular2-jwt/angular2-jwt':   'app/libs/angular2-jwt.js',
-    'ng2-translate/ng2-translate': 'app/libs/ng2-translate/ng2-translate.js',
+    'angular2-jwt/angular2-jwt':   'dev/libs/angular2-jwt.js',
+    'ng2-translate/ng2-translate': 'dev/libs/ng2-translate/ng2-translate.js',
     'app':                         'app', // 'dist',
-    'rxjs':                        'app/libs/rxjs',
-    'angular2-in-memory-web-api':  'app/libs/angular2-in-memory-web-api',
-    '@angular':                    'app/libs/@angular'
+    'rxjs':                        'dev/libs/rxjs',
+    'angular2-in-memory-web-api':  'dev/libs/angular2-in-memory-web-api',
+    '@angular':                    'dev/libs/@angular'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension

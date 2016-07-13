@@ -1,17 +1,18 @@
 import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
-import {PageService} from '/app/shared/services/page.service';
-import {AddPageComponent} from '/app/shared/components/pages/add-page/add-page.component';
-import {PageSettingsComponent} from '/app/shared/components/pages/page-settings/page-settings.component';
-import {RemovePageComponent} from '/app/shared/components/pages/remove-page/remove-page.component';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
-import {TimeAgoPipe} from '/app/shared/pipes/time-ago.pipe';
+import {PageService} from '../shared/services/page.service';
+import {AddPageComponent} from '../shared/components/pages/add-page/add-page.component';
+import {PageSettingsComponent} from '../shared/components/pages/page-settings/page-settings.component';
+import {RemovePageComponent} from '../shared/components/pages/remove-page/remove-page.component';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
     selector: 'respond-pages',
-    templateUrl: './app/pages/pages.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/pages/pages.component.html',
     providers: [PageService],
     directives: [AddPageComponent, PageSettingsComponent, RemovePageComponent, DrawerComponent],
     pipes: [TimeAgoPipe, TranslatePipe]

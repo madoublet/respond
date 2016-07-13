@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {RouteConfig, Router, RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {UserService} from '/app/shared/services/user.service';
+import {UserService} from '../shared/services/user.service';
 import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
 @Component({
     selector: 'respond-login',
-    templateUrl: './app/login/login.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/login/login.component.html',
     providers: [UserService],
     directives: [ROUTER_DIRECTIVES],
     pipes: [TranslatePipe]

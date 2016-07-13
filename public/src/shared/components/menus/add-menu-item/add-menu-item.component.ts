@@ -2,12 +2,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {MenuItemService} from '/app/shared/services/menu-item.service';
-import {PageService} from '/app/shared/services/page.service';
+import {MenuItemService} from '../../../../shared/services/menu-item.service';
+import {PageService} from '../../../../shared/services/page.service';
 
 @Component({
     selector: 'respond-add-menu-item',
-    templateUrl: './app/shared/components/menus/add-menu-item/add-menu-item.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/menus/add-menu-item/add-menu-item.component.html',
     providers: [MenuItemService, PageService],
     pipes: [TranslatePipe]
 })

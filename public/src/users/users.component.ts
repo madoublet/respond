@@ -2,15 +2,16 @@ import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UserService} from '/app/shared/services/user.service';
-import {AddUserComponent} from '/app/shared/components/users/add-user/add-user.component';
-import {EditUserComponent} from '/app/shared/components/users/edit-user/edit-user.component';
-import {RemoveUserComponent} from '/app/shared/components/users/remove-user/remove-user.component';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
+import {UserService} from '../shared/services/user.service';
+import {AddUserComponent} from '../shared/components/users/add-user/add-user.component';
+import {EditUserComponent} from '../shared/components/users/edit-user/edit-user.component';
+import {RemoveUserComponent} from '../shared/components/users/remove-user/remove-user.component';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
 @Component({
     selector: 'respond-users',
-    templateUrl: './app/users/users.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/users/users.component.html',
     providers: [UserService],
     directives: [AddUserComponent, EditUserComponent, RemoveUserComponent, DrawerComponent],
     pipes: [TranslatePipe]

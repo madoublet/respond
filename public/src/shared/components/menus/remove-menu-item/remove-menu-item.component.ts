@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {MenuItemService} from '/app/shared/services/menu-item.service';
+import {MenuItemService} from '../../../../shared/services/menu-item.service';
 
 @Component({
     selector: 'respond-remove-menu-item',
-    templateUrl: './app/shared/components/menus/remove-menu-item/remove-menu-item.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/menus/remove-menu-item/remove-menu-item.component.html',
     providers: [MenuItemService],
     pipes: [TranslatePipe]
 })

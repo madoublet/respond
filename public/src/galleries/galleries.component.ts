@@ -2,19 +2,20 @@ import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {GalleryService} from '/app/shared/services/gallery.service';
-import {GalleryImageService} from '/app/shared/services/gallery-image.service';
-import {SelectFileComponent} from '/app/shared/components/files/select-file/select-file.component';
-import {AddGalleryComponent} from '/app/shared/components/galleries/add-gallery/add-gallery.component';
-import {EditGalleryComponent} from '/app/shared/components/galleries/edit-gallery/edit-gallery.component';
-import {RemoveGalleryComponent} from '/app/shared/components/galleries/remove-gallery/remove-gallery.component';
-import {EditCaptionComponent} from '/app/shared/components/galleries/edit-caption/edit-caption.component';
-import {RemoveGalleryImageComponent} from '/app/shared/components/galleries/remove-gallery-image/remove-gallery-image.component';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
+import {GalleryService} from '../shared/services/gallery.service';
+import {GalleryImageService} from '../shared/services/gallery-image.service';
+import {SelectFileComponent} from '../shared/components/files/select-file/select-file.component';
+import {AddGalleryComponent} from '../shared/components/galleries/add-gallery/add-gallery.component';
+import {EditGalleryComponent} from '../shared/components/galleries/edit-gallery/edit-gallery.component';
+import {RemoveGalleryComponent} from '../shared/components/galleries/remove-gallery/remove-gallery.component';
+import {EditCaptionComponent} from '../shared/components/galleries/edit-caption/edit-caption.component';
+import {RemoveGalleryImageComponent} from '../shared/components/galleries/remove-gallery-image/remove-gallery-image.component';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
 @Component({
     selector: 'respond-galleries',
-    templateUrl: './app/galleries/galleries.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/galleries/galleries.component.html',
     providers: [GalleryService, GalleryImageService],
     directives: [SelectFileComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent, DrawerComponent],
     pipes: [TranslatePipe]

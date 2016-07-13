@@ -2,15 +2,16 @@ import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SubmissionService} from '/app/shared/services/submission.service';
-import {RemoveSubmissionComponent} from '/app/shared/components/submissions/remove-submission/remove-submission.component';
-import {ViewSubmissionComponent} from '/app/shared/components/submissions/view-submission/view-submission.component';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
-import {TimeAgoPipe} from '/app/shared/pipes/time-ago.pipe';
+import {SubmissionService} from '../shared/services/submission.service';
+import {RemoveSubmissionComponent} from '../shared/components/submissions/remove-submission/remove-submission.component';
+import {ViewSubmissionComponent} from '../shared/components/submissions/view-submission/view-submission.component';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
 
 @Component({
     selector: 'respond-submissions',
-    templateUrl: './app/submissions/submissions.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/submissions/submissions.component.html',
     providers: [SubmissionService],
     directives: [RemoveSubmissionComponent, ViewSubmissionComponent, DrawerComponent],
     pipes: [TimeAgoPipe, TranslatePipe]

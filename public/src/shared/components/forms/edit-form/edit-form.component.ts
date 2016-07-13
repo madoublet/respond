@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {FormService} from '/app/shared/services/form.service';
+import {FormService} from '../../../../shared/services/form.service';
 
 @Component({
     selector: 'respond-edit-form',
-    templateUrl: './app/shared/components/forms/edit-form/edit-form.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/forms/edit-form/edit-form.component.html',
     providers: [FormService],
     pipes: [TranslatePipe]
 })

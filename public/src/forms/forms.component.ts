@@ -2,19 +2,20 @@ import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {FormService} from '/app/shared/services/form.service';
-import {FormFieldService} from '/app/shared/services/form-field.service';
-import {AddFormComponent} from '/app/shared/components/forms/add-form/add-form.component';
-import {EditFormComponent} from '/app/shared/components/forms/edit-form/edit-form.component';
-import {RemoveFormComponent} from '/app/shared/components/forms/remove-form/remove-form.component';
-import {AddFormFieldComponent} from '/app/shared/components/forms/add-form-field/add-form-field.component';
-import {EditFormFieldComponent} from '/app/shared/components/forms/edit-form-field/edit-form-field.component';
-import {RemoveFormFieldComponent} from '/app/shared/components/forms/remove-form-field/remove-form-field.component';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
+import {FormService} from '../shared/services/form.service';
+import {FormFieldService} from '../shared/services/form-field.service';
+import {AddFormComponent} from '../shared/components/forms/add-form/add-form.component';
+import {EditFormComponent} from '../shared/components/forms/edit-form/edit-form.component';
+import {RemoveFormComponent} from '../shared/components/forms/remove-form/remove-form.component';
+import {AddFormFieldComponent} from '../shared/components/forms/add-form-field/add-form-field.component';
+import {EditFormFieldComponent} from '../shared/components/forms/edit-form-field/edit-form-field.component';
+import {RemoveFormFieldComponent} from '../shared/components/forms/remove-form-field/remove-form-field.component';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
 @Component({
     selector: 'respond-forms',
-    templateUrl: './app/forms/forms.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/forms/forms.component.html',
     providers: [FormService, FormFieldService],
     directives: [AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent, DrawerComponent],
     pipes: [TranslatePipe]

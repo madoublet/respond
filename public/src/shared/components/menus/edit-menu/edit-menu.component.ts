@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {MenuService} from '/app/shared/services/menu.service';
+import {MenuService} from '../../../../shared/services/menu.service';
 
 @Component({
     selector: 'respond-edit-menu',
-    templateUrl: './app/shared/components/menus/edit-menu/edit-menu.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/menus/edit-menu/edit-menu.component.html',
     providers: [MenuService],
     pipes: [TranslatePipe]
 })

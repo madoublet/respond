@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {HTTP_PROVIDERS}    from '@angular/http';
 import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {UserService} from '/app/shared/services/user.service';
+import {UserService} from '../shared/services/user.service';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
     selector: 'respond-reset',
-    templateUrl: './app/reset/reset.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/reset/reset.component.html',
     providers: [UserService],
     pipes: [TranslatePipe]
 })

@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {SiteService} from '/app/shared/services/site.service';
-import {AppService} from '/app/shared/services/app.service';
+import {SiteService} from '../shared/services/site.service';
+import {AppService} from '../shared/services/app.service';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
     selector: 'respond-create',
-    templateUrl: './app/create/create.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/create/create.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [SiteService, AppService],
     pipes: [TranslatePipe]

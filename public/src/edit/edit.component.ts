@@ -5,7 +5,8 @@ import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-brows
 
 @Component({
     selector: 'respond-edit',
-    templateUrl: './app/edit/edit.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/edit/edit.component.html',
     providers: [],
     directives: [],
     pipes: []

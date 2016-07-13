@@ -2,12 +2,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {SiteService} from '/app/shared/services/site.service';
-import {AppService} from '/app/shared/services/app.service';
+import {SiteService} from '../../../shared/services/site.service';
+import {AppService} from '../../../shared/services/app.service';
 
 @Component({
     selector: 'respond-drawer',
-    templateUrl: './app/shared/components/drawer/drawer.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/drawer/drawer.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [SiteService, AppService],
     pipes: [TranslatePipe]

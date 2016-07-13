@@ -2,13 +2,14 @@ import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SettingService} from '/app/shared/services/setting.service';
-import {DrawerComponent} from '/app/shared/components/drawer/drawer.component';
-import {SelectFileComponent} from '/app/shared/components/files/select-file/select-file.component';
+import {SettingService} from '../shared/services/setting.service';
+import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import {SelectFileComponent} from '../shared/components/files/select-file/select-file.component';
 
 @Component({
     selector: 'respond-settings',
-    templateUrl: './app/settings/settings.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/settings/settings.component.html',
     providers: [SettingService],
     directives: [SelectFileComponent, DrawerComponent],
     pipes: [TranslatePipe]

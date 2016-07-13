@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {GalleryImageService} from '/app/shared/services/gallery-image.service';
+import {GalleryImageService} from '../../../../shared/services/gallery-image.service';
 
 @Component({
     selector: 'respond-remove-gallery-image',
-    templateUrl: './app/shared/components/galleries/remove-gallery-image/remove-gallery-image.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/galleries/remove-gallery-image/remove-gallery-image.component.html',
     providers: [GalleryImageService],
     pipes: [TranslatePipe]
 })

@@ -2,11 +2,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {FormFieldService} from '/app/shared/services/form-field.service';
+import {FormFieldService} from '../../../../shared/services/form-field.service';
 
 @Component({
     selector: 'respond-remove-form-field',
-    templateUrl: './app/shared/components/forms/remove-form-field/remove-form-field.component.html',
+    moduleId: __moduleName,
+    templateUrl: '/app/shared/components/forms/remove-form-field/remove-form-field.component.html',
     providers: [FormFieldService],
     pipes: [TranslatePipe]
 })
