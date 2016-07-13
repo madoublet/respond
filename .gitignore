@@ -6,6 +6,7 @@ composer.phar
 /public/node_modules
 /public/sites
 /public/dev
+/public/app
 /resources/sites
 /public/themes/respond-themes
 /design

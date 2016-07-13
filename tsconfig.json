@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "rootDir": "public/src",
         "target": "es5",
         "module": "system",
         "moduleResolution": "node",
