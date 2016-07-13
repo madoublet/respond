@@ -33,18 +33,18 @@ class EditController extends Controller
           if(sizeof($arr) > 0) {
 
             $siteId = $arr[0];
-            
+
             // set html if hiddne
             $url = $q;
-            
+
             // strip any trailing .html from url
             $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
-            
+
             // add .html for non-friendly URLs
             if(env('FRIENDLY_URLS') === false) {
               $url .= '.html';
             }
-            
+
             // load page
             $path = rtrim(app()->basePath('public/sites/'.$url), '/');
 
@@ -54,7 +54,7 @@ class EditController extends Controller
 
               // set dom
               $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-              
+
               // find base element
               $el = $dom->find('base', 0);
               $el->setAttribute('href', '/sites/'.$siteId.'/');
@@ -62,7 +62,7 @@ class EditController extends Controller
               // get settings
               $sortable = Setting::getById('sortable', $siteId);
               $editable = Setting::getById('editable', $siteId);
-              
+
               // selector
               $selector = '.col, .column, .col *, .column *';
 
@@ -71,22 +71,22 @@ class EditController extends Controller
                 $sortable = '.col, .column';
               }
               else {
-              
+
                 // create array of sortable elements
                 $sortable_arr = explode(',', $sortable);
                 $sortable_arr = array_map('trim', $sortable_arr);
-        
+
                 $selector = '';
-        
+
                 foreach($sortable_arr as $item) {
                   $selector .= $item.', '.$item.' *, ';
                 }
-                
+
                 // trim extra characters
                 $selector = rtrim($selector, ', ');
-                
+
               }
-              
+
 
               // get editable array
               if($editable === NULL) {
@@ -97,25 +97,25 @@ class EditController extends Controller
                 // trim elements in the array
                 $editable = array_map('trim', $editable);
               }
-              
-              
-              
-    
+
+
+
+
               // find body element
               $el = $dom->find('body', 0);
               $el->setAttribute('hashedit-active', '');
-              
+
               // setup editable areas
               foreach($editable as $value){
-              
+
                 // find body element
                 $els = $dom->find($value);
-                
+
                 foreach($els as $el) {
                   $el->setAttribute('hashedit', '');
                   $el->setAttribute('hashedit-selector', $value);
                 }
-              
+
               }
 
               // init
@@ -131,7 +131,7 @@ class EditController extends Controller
                 }
 
               }
-              
+
               // inject forms into script
               if(strpos($plugins_script, 'respond.forms') !== false ) {
 
@@ -187,7 +187,7 @@ class EditController extends Controller
                 // inject galleries into script
                 $plugins_script = str_replace("['respond.routes']", json_encode($options), $plugins_script);
               }
-              
+
               // inject pages into script
               if(strpos($plugins_script, 'respond.pages') !== false ) {
 
@@ -217,7 +217,7 @@ class EditController extends Controller
               // setup references
               $els = $dom->find($selector);
               $i = 1;
-              
+
               // add references to each element
               foreach($els as $el) {
                 $el->setAttribute('data-ref', $i);
@@ -229,12 +229,7 @@ class EditController extends Controller
                 // hashedit development stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<link type="text/css" href="/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
-<script src="/dev/hashedit/js/fetch.min.js"></script>
-<script src="/dev/hashedit/js/i18next.js"></script>
-<script src="/node_modules/dropzone/dist/min/dropzone.min.js"></script>
-<script src="/node_modules/sortablejs/Sortable.min.js"></script>
-<script src="/dev/hashedit/js/hashedit.js"></script>
+<script src="/dev/hashedit/dist/hashedit-min.js"></script>
 <script>$plugins_script</script>
 <script>
 hashedit.setup({
@@ -251,22 +246,18 @@ hashedit.setup({
 EOD;
 }
               else {
-              
+
                 // hashedit production stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<link type="text/css" href="/node_modules/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
-<script src="/node_modules/hashedit/js/fetch.min.js"></script>
-<script src="/node_modules/hashedit/js/i18next.js"></script>
-<script src="/node_modules/dropzone/dist/min/dropzone.min.js"></script>
-<script src="/node_modules/sortablejs/Sortable.min.js"></script>
-<script src="/node_modules/hashedit/js/hashedit.js"></script>
+<script src="/app/libs/hashedit.min.js"></script>
 <script>$plugins_script</script>
 <script>
 hashedit.setup({
   url: '$url',
   sortable: '$sortable',
   login: '/login/$siteId',
+  stylesheet: ['/app/libs/hashedit-min.css'],
   translate: true,
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',
@@ -300,10 +291,10 @@ EOD;
                             '  width: 35px;'.
                             '  height: 35px;'.
                             '}';
-                            
+
               // find body element
               $el = $dom->find('body', 0);
-              
+
               // append
               $el->outertext = $el->makeup() . $el->innertext . $hashedit . '</body>';
 
@@ -347,11 +338,11 @@ EOD;
 
               // set dom
               $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-              
-              
+
+
               // get sortable
               $sortable = Setting::getById('sortable', $siteId);
-              
+
               // selector
               $selector = '.col, .column, .col *, .column *';
 
@@ -360,22 +351,22 @@ EOD;
                 $sortable = '.col, .column';
               }
               else {
-              
+
                 // create array of sortable elements
                 $sortable_arr = explode(',', $sortable);
                 $sortable_arr = array_map('trim', $sortable_arr);
-        
+
                 $selector = '';
-        
+
                 foreach($sortable_arr as $item) {
                   $selector .= $item.', '.$item.' *, ';
                 }
-                
+
                 // trim extra characters
                 $selector = rtrim($selector, ', ');
               }
-              
-              
+
+
               // setup references
               $els = $dom->find($selector);
               $i = 1;
@@ -385,7 +376,7 @@ EOD;
                 $el->setAttribute('data-ref', $i);
                 $i++;
               }
-              
+
               // get editable areas from settings
               $editable = Setting::getById('editable', $siteId);
 
@@ -395,27 +386,27 @@ EOD;
               }
               else {
                 $editable = explode(',', $editable);
-                
+
                 // trim elements in the array
                 $editable = array_map('trim', $editable);
               }
-              
+
               // setup editable areas
               foreach($editable as $value){
-              
+
                 // find body element
                 $els = $dom->find($value);
-                
+
                 foreach($els as $el) {
                   $el->setAttribute('hashedit', '');
                   $el->setAttribute('hashedit-selector', $value);
                 }
-              
+
               }
-              
-              
-            
-            
+
+
+
+
               // remove scripts that could rewrite the dom
               $els = $dom->find('script');
 
@@ -423,7 +414,7 @@ EOD;
               foreach($els as $el) {
                 $el->outertext = '';
               }
-              
+
               // remove links that could rewrite the dom
               $els = $dom->find('link');
 
@@ -431,7 +422,7 @@ EOD;
               foreach($els as $el) {
                 $el->outertext = '';
               }
-           
+
               // reutrn dom
               return $dom;
 

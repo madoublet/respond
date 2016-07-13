@@ -20,7 +20,7 @@
     "bootstrap": "^3.3.6",
     "dropzone": "4.3.0",
     "es6-shim": "^0.35.0",
-    "hashedit": "*",
+    "hashedit": "0.5.12",
     "moment": "2.12.0",
     "ng2-translate": "^2.1.0",
     "reflect-metadata": "^0.1.3",

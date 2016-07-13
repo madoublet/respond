@@ -76,7 +76,9 @@ gulp.task('copy-files', function() {
       'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
       'node_modules/dropzone/dist/min/dropzone.min.js',
-      'node_modules/dropzone/dist/min/dropzone.min.css'
+      'node_modules/dropzone/dist/min/dropzone.min.css',
+      'node_modules/hashedit/dist/hashedit.min.css',
+      'node_modules/hashedit/dist/hashedit.min.js',
     ])
     .pipe(gulp.dest('public/app/libs'));
 });
