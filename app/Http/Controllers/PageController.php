@@ -98,6 +98,9 @@ class PageController extends Controller
     
       // re-publish plugins
       Publish::publishPlugins($user, $site);
+      
+      // re-publish site map
+      Publish::publishSiteMap($site);
 
       // return 200
       return response('OK', 200);
@@ -207,6 +210,9 @@ class PageController extends Controller
 
     // add a page
     $page = Page::add($data, $site, $user);
+    
+    // re-publish site map
+    Publish::publishSiteMap($site);
 
     // return OK
     return response('OK, page added at = '.$page->url, 200);
@@ -234,6 +240,9 @@ class PageController extends Controller
     $page = Page::getByUrl($url, $id);
 
     $page->remove($user, $site);
+    
+    // re-publish site map
+    Publish::publishSiteMap($site);
 
     // return OK
     return response('OK, page removed at = '.$page->url, 200);

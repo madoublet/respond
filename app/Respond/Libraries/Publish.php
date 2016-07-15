@@ -10,6 +10,7 @@ use App\Respond\Models\Form;
 use App\Respond\Models\Menu;
 use App\Respond\Models\Gallery;
 use App\Respond\Libraries\Utilities;
+use App\Respond\Models\Setting;
 
 // DOM parser
 use Sunra\PhpSimple\HtmlDomParser;
@@ -56,6 +57,58 @@ class Publish
           rmdir($dest.'/private');
         }
 
+    }
+    
+    /**
+     * Publishes a sitemap for the site
+     *
+     * @param {Site} $site
+     */
+    public static function publishSiteMap($site)
+    {
+    
+      // get all pages
+      $pages = Page::listAll($user, $site);
+      
+      // xml file
+      $file = app()->basePath() . '/public/sites/' . $site->id . '/sitemap.xml';
+      
+      // get domain from settings
+      $domain = Setting::getById('domain', $site->id);
+      
+      // get generated domain
+      if($domain === NULL) {
+        $domain = Utilities::retrieveSiteURL();
+        $domain = str_replace('{{siteId}}', $site->id, $domain);
+      }
+      
+      // trim trailing /
+      $domain = rtrim($domain, '/');
+      
+      // setup xml  
+      $xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+      // get pages
+      foreach($pages as $page) {
+      
+        $u = strtotime($page['lastModifiedDate']);
+      
+        $xml = $xml.'<url>'.
+                '<loc>'.$domain.'/'.$page['url'].'</loc>'.
+                '<lastmod>'.date('Y-m-d', $u).'</lastmod>'.
+                '<priority>1.0</priority>'.
+                '</url>';
+      
+      }
+      
+      // close urlset
+      $xml = $xml.'</urlset>';
+      
+      // add xml data
+      file_put_contents($file, $xml);
+      
+      return TRUE;
+      
     }
 
     /**

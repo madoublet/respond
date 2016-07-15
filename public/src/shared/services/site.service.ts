@@ -10,6 +10,7 @@ export class SiteService {
 
   private _createUrl = 'api/sites/create';
   private _reloadUrl = 'api/sites/reload';
+  private _sitemapUrl = 'api/sites/sitemap';
 
   /**
    * Login to the application
@@ -38,6 +39,17 @@ export class SiteService {
   reload () {
 
     return this.authHttp.get(this._reloadUrl);
+
+  }
+  
+  /**
+   * Republishes the sitemap
+   *
+   * @return {Observable}
+   */
+  sitemap () {
+
+    return this.authHttp.get(this._sitemapUrl);
 
   }
 

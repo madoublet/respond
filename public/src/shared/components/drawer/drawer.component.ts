@@ -94,6 +94,17 @@ export class DrawerComponent {
                       );
 
   }
+  
+  /**
+   * Republish siteamp
+   */
+  sitemap() {
+    this._siteService.sitemap()
+                     .subscribe(
+                       data => { toast.show('success'); },
+                       error => { toast.show('failure');  }
+                      );
+  }
 
   /**
    * Signs out of the system

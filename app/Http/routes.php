@@ -66,6 +66,7 @@ $app->get('/api/languages/list', 'AppController@listLanguages');
 // site
 $app->post('/api/sites/create', 'SiteController@create');
 $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reload']);
+$app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@generateSitemap']);
 
 // login
 $app->post('/api/users/login', 'UserController@login');
