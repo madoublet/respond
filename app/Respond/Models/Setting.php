@@ -34,8 +34,8 @@ class Setting {
       }
     }
   }
-  
-  
+
+
   /**
    * Gets a setting for a given $id
    *
@@ -47,23 +47,23 @@ class Setting {
     $file = app()->basePath().'/resources/sites/'.$siteId.'/settings.json';
 
     $settings = json_decode(file_get_contents($file), true);
-    
+
     // get setting by id
     foreach($settings as $setting) {
-    
+
       if($setting['id'] === $id) {
-        
+
         return $setting['value'];
-        
+
       }
-      
+
     }
-    
+
     return NULL;
 
   }
-  
-  
+
+
 
   /**
    * lists all settings
@@ -106,37 +106,44 @@ class Setting {
 
         $path = app()->basePath().'/public/sites/'.$site->id.'/'.$page->url.'.html';
 
-        // get contents of the page
-        $html = file_get_contents($path);
-        
-        // parse HTML
-        $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-      
-        // walk through settings
-        foreach($settings as $setting) {
+        // fix double html
+        $path = str_replace('.html.html', '.html', $path);
 
-          // handle sets
-          if(isset($setting['sets'])) {
+        if(file_exists($path)) {
 
-            // set attribute
-            if(isset($setting['attribute'])) {
-            
-              // find setting
-              $els = $dom->find('['.$setting['id'].']');
-              
+          // get contents of the page
+          $html = file_get_contents($path);
+
+          // parse HTML
+          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+          // walk through settings
+          foreach($settings as $setting) {
+
+            // handle sets
+            if(isset($setting['sets'])) {
+
               // set attribute
-              foreach($els as $el) {
-                $el->setAttribute($setting['attribute'], $setting['value']); 
+              if(isset($setting['attribute'])) {
+
+                // find setting
+                $els = $dom->find('['.$setting['id'].']');
+
+                // set attribute
+                foreach($els as $el) {
+                  $el->setAttribute($setting['attribute'], $setting['value']);
+                }
+
               }
 
             }
 
           }
 
-        }
+          // update contents
+          file_put_contents($path, $dom);
 
-        // update contents
-        file_put_contents($path, $dom);
+        }
 
       }
 

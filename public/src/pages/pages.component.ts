@@ -127,10 +127,10 @@ export class PagesComponent {
    */
   edit(page) {
     // window.location = '/edit?q=' + this.id + '/' + page.url;
-    
+
     localStorage.setItem('respond.pageUrl', page.url);
-    
-    this._router.navigate( ['Edit'] );
+
+    this._router.navigate( ['/edit'] );
   }
 
   /**
@@ -141,7 +141,7 @@ export class PagesComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }
