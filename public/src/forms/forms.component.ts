@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {FormService} from '../shared/services/form.service';
 import {FormFieldService} from '../shared/services/form-field.service';
@@ -12,6 +11,9 @@ import {EditFormFieldComponent} from '../shared/components/forms/edit-form-field
 import {RemoveFormFieldComponent} from '../shared/components/forms/remove-form-field/remove-form-field.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
+declare var __moduleName: string;
+declare var toast: any;
+
 @Component({
     selector: 'respond-forms',
     moduleId: __moduleName,
@@ -20,8 +22,6 @@ import {DrawerComponent} from '../shared/components/drawer/drawer.component';
     directives: [AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent, DrawerComponent],
     pipes: [TranslatePipe]
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class FormsComponent {
 
@@ -277,7 +277,7 @@ export class FormsComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

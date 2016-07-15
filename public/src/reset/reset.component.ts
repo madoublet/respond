@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
 import {HTTP_PROVIDERS}    from '@angular/http';
-import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../shared/services/user.service';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-reset',
@@ -19,11 +22,13 @@ export class ResetComponent {
   token;
   errorMessage;
 
-  constructor (private _userService: UserService, private _routeParams: RouteParams) {}
+  constructor (private _userService: UserService, private _route: ActivatedRoute) {}
 
   ngOnInit() {
-      this.id = this._routeParams.get('id');
-      this.token = this._routeParams.get('token');
+      this._route.params.subscribe(params => {
+        this.id = params['id'];
+        this.token = params['token'];
+      });
   }
 
   reset(event, password, retype){
@@ -34,7 +39,7 @@ export class ResetComponent {
         alert('Password mismatch');
       }
       else {
-        this._userService.reset(this.id, this.token, password, retype)
+        this._userService.reset(this.id, this.token, password)
                      .subscribe(
                        () => { alert('success'); },
                        error =>  { this.failure(<any>error); }

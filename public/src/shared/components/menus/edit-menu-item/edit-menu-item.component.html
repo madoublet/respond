@@ -26,7 +26,7 @@
     <select id="hashedit-edit-menu-item-url"
       [(ngModel)]="model.url"
       ngControl="url">
-      <option *ngFor="#page of pages" [value]="page.url">{{page.url}}</option>
+      <option *ngFor="let page of pages" [value]="page.url">{{page.url}}</option>
     </select>
 
     <div class="actions">

@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {SubmissionService} from '../shared/services/submission.service';
 import {RemoveSubmissionComponent} from '../shared/components/submissions/remove-submission/remove-submission.component';
 import {ViewSubmissionComponent} from '../shared/components/submissions/view-submission/view-submission.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-submissions',
@@ -17,7 +19,6 @@ import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
     pipes: [TimeAgoPipe, TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
 
 export class SubmissionsComponent {
 
@@ -115,7 +116,7 @@ export class SubmissionsComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

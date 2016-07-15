@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
 import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-edit',
@@ -12,13 +14,11 @@ import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-brows
     pipes: []
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class EditComponent {
 
   url: SafeResourceUrl;
 
-  constructor (private _router: Router, private _sanitizer: DomSanitizationService) {}
+  constructor (private _sanitizer: DomSanitizationService) {}
 
   /**
    * Init pages

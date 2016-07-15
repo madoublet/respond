@@ -15,7 +15,7 @@ export class SettingService {
    * Lists settings
    *
    */
-  list (id) {
+  list () {
 
     var url = this._listUrl;
 

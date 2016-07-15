@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {MenuItemService} from '../../../../shared/services/menu-item.service';
 import {PageService} from '../../../../shared/services/page.service';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-add-menu-item',
@@ -13,12 +14,10 @@ import {PageService} from '../../../../shared/services/page.service';
     pipes: [TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class AddMenuItemComponent {
 
-  menu;
   pages;
+  errorMessage;
 
   // model to store
   model = {

@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {UserService} from '../../../../shared/services/user.service';
 import {AppService} from '../../../../shared/services/app.service';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-add-user',
@@ -13,11 +14,10 @@ import {AppService} from '../../../../shared/services/app.service';
     pipes: [TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class AddUserComponent {
 
   routes;
+  languages;
 
   // model to store
   model: {

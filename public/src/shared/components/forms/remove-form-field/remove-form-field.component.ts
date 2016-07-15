@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CanActivate} from '@angular/router-deprecated';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {FormFieldService} from '../../../../shared/services/form-field.service';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-remove-form-field',
@@ -11,8 +12,6 @@ import {FormFieldService} from '../../../../shared/services/form-field.service';
     providers: [FormFieldService],
     pipes: [TranslatePipe]
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class RemoveFormFieldComponent {
 

@@ -2,14 +2,14 @@
 
   <ul>
     <li class="app-drawer-title"><span>{{ 'Manage your Site' | translate }}</span></li>
-    <li [class.active]="active === 'pages'"><a [routerLink]="['Pages']">{{ 'Pages' | translate }}</a></li>
-    <li [class.active]="active === 'menus'"><a [routerLink]="['Menus']">{{ 'Menus' | translate }}</a></li>
-    <li [class.active]="active === 'galleries'"><a [routerLink]="['Galleries']">{{ 'Galleries' | translate }}</a></li>
-    <li [class.active]="active === 'forms'"><a [routerLink]="['Forms']">{{ 'Forms' | translate }}</a></li>
-    <li [class.active]="active === 'submissions'"><a [routerLink]="['Submissions']">{{ 'Submissions' | translate }}</a></li>
-    <li [class.active]="active === 'files'"><a [routerLink]="['Files']">{{ 'Files' | translate }}</a></li>
-    <li [class.active]="active === 'users'"><a [routerLink]="['Users']">{{ 'Users' | translate }}</a></li>
-    <li [class.active]="active === 'settings'"><a [routerLink]="['Settings']">{{ 'Settings' | translate }}</a></li>
+    <li [class.active]="active === 'pages'"><a [routerLink]="['/pages']">{{ 'Pages' | translate }}</a></li>
+    <li [class.active]="active === 'menus'"><a [routerLink]="['/menus']">{{ 'Menus' | translate }}</a></li>
+    <li [class.active]="active === 'galleries'"><a [routerLink]="['/galleries']">{{ 'Galleries' | translate }}</a></li>
+    <li [class.active]="active === 'forms'"><a [routerLink]="['/forms']">{{ 'Forms' | translate }}</a></li>
+    <li [class.active]="active === 'submissions'"><a [routerLink]="['/submissions']">{{ 'Submissions' | translate }}</a></li>
+    <li [class.active]="active === 'files'"><a [routerLink]="['/files']">{{ 'Files' | translate }}</a></li>
+    <li [class.active]="active === 'users'"><a [routerLink]="['/users']">{{ 'Users' | translate }}</a></li>
+    <li [class.active]="active === 'settings'"><a [routerLink]="['/settings']">{{ 'Settings' | translate }}</a></li>
     <li><a [href]="siteUrl" target="_blank">{{ 'View Site' | translate }}</a></li>
     <li><a (click)="signOut()">{{ 'Sign Out' | translate }}</a></li>
   </ul>

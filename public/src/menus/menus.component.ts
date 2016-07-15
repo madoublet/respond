@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {MenuService} from '../shared/services/menu.service';
 import {MenuItemService} from '../shared/services/menu-item.service';
@@ -12,6 +11,9 @@ import {EditMenuItemComponent} from '../shared/components/menus/edit-menu-item/e
 import {RemoveMenuItemComponent} from '../shared/components/menus/remove-menu-item/remove-menu-item.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
+declare var __moduleName: string;
+declare var toast: any;
+
 @Component({
     selector: 'respond-menus',
     moduleId: __moduleName,
@@ -21,11 +23,10 @@ import {DrawerComponent} from '../shared/components/drawer/drawer.component';
     pipes: [TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class MenusComponent {
 
   id;
+  menu;
   menus;
   items;
   errorMessage;
@@ -278,7 +279,7 @@ export class MenusComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

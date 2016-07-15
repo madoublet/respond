@@ -1,8 +1,12 @@
 import {Component} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
-import {RouteParams, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import {UserService} from '../shared/services/user.service';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-forgot',
@@ -18,10 +22,13 @@ export class ForgotComponent {
   id;
   errorMessage;
 
-  constructor (private _userService: UserService, private _routeParams: RouteParams) {}
+  constructor (private _userService: UserService, private _route: ActivatedRoute) {}
 
   ngOnInit() {
-      this.id = this._routeParams.get('id');
+      
+      this._route.params.subscribe(params => {
+        this.id = params['id'];
+      });
   }
 
   forgot(event, email, password){

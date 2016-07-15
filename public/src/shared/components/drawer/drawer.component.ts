@@ -1,9 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES, CanActivate} from '@angular/router-deprecated';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
 import {SiteService} from '../../../shared/services/site.service';
 import {AppService} from '../../../shared/services/app.service';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-drawer',
@@ -14,11 +16,13 @@ import {AppService} from '../../../shared/services/app.service';
     pipes: [TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
-
 export class DrawerComponent {
 
+  id;
+  dev;
+  siteUrl;
   _visible: boolean = false;
+  _active: string;
 
   @Input()
   set visible(visible: boolean){
@@ -70,7 +74,7 @@ export class DrawerComponent {
                          this.siteUrl = data.siteUrl;
                          this.siteUrl = this.siteUrl.replace('{{siteId}}', this.id);
                        },
-                       error =>  { this.failure(<any>error); }
+                       error =>  { }
                       );
   }
 
@@ -115,7 +119,7 @@ export class DrawerComponent {
     localStorage.removeItem('respond.siteId');
 
     // redirect
-    this._router.navigate( ['Login', {id: this.id}] );
+    this._router.navigate( ['/login', {id: this.id}] );
 
   }
 

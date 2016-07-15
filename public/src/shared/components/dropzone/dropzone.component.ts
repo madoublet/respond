@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, Output, ElementRef} from '@angular/core';
 
+declare var Dropzone: any;
+
 @Component({
     selector: 'respond-dropzone',
     template: '<form class="dropzone"></form>'
@@ -28,7 +30,8 @@ export class DropzoneComponent {
 
     // set dropzone options
     var options = {
-      url: '/api/images/add'
+      url: '/api/images/add',
+      headers: {}
     };
 
     // setup token headers

@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {UserService} from '../shared/services/user.service';
 import {AddUserComponent} from '../shared/components/users/add-user/add-user.component';
 import {EditUserComponent} from '../shared/components/users/edit-user/edit-user.component';
 import {RemoveUserComponent} from '../shared/components/users/remove-user/remove-user.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-users',
@@ -16,8 +18,6 @@ import {DrawerComponent} from '../shared/components/drawer/drawer.component';
     directives: [AddUserComponent, EditUserComponent, RemoveUserComponent, DrawerComponent],
     pipes: [TranslatePipe]
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class UsersComponent {
 
@@ -126,7 +126,7 @@ export class UsersComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

@@ -36,7 +36,7 @@ export class MenuItemService {
    * @param {string} url
    * @return {Observable}
    */
-  add (id: string, html: string, cssClass: string, isNested: string, url: string) {
+  add (id: string, html: string, cssClass: string, isNested: boolean, url: string) {
 
     let body = JSON.stringify({ id, html, cssClass, isNested, url });
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -58,7 +58,7 @@ export class MenuItemService {
    * @param {string} url
    * @return {Observable}
    */
-  edit (id: string, index: number, html: string, cssClass: string, isNested: string, url: string) {
+  edit (id: string, index: number, html: string, cssClass: string, isNested: boolean, url: string) {
 
     let body = JSON.stringify({ id, index, html, cssClass, isNested, url });
     let headers = new Headers({ 'Content-Type': 'application/json' });

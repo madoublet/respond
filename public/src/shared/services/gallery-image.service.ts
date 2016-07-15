@@ -29,7 +29,9 @@ export class GalleryImageService {
    * Adds an image
    *
    * @param {string} name
+   * @param {string} url
    * @param {string} caption
+   * @param {string} galleryId
    * @return {Observable}
    */
   add (name: string, url: string, thumb: string, caption: string, galleryId: string) {
@@ -46,14 +48,8 @@ export class GalleryImageService {
    * Edits an image
    *
    * @param {string} id
-   * @param {number} index
-   * @param {string} label
-   * @param {string} type
-   * @param {boolean} required
-   * @param {string} options
-   * @param {string} helperText
-   * @param {string} placeholder
-   * @param {string} cssClass
+   * @param {string} caption
+   * @param {string} galleryId
    * @return {Observable}
    */
   edit (id: string, caption: string, galleryId: string) {

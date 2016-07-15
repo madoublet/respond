@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {GalleryService} from '../shared/services/gallery.service';
 import {GalleryImageService} from '../shared/services/gallery-image.service';
@@ -12,6 +11,9 @@ import {EditCaptionComponent} from '../shared/components/galleries/edit-caption/
 import {RemoveGalleryImageComponent} from '../shared/components/galleries/remove-gallery-image/remove-gallery-image.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 
+declare var __moduleName: string;
+declare var toast: any;
+
 @Component({
     selector: 'respond-galleries',
     moduleId: __moduleName,
@@ -20,8 +22,6 @@ import {DrawerComponent} from '../shared/components/drawer/drawer.component';
     directives: [SelectFileComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent, DrawerComponent],
     pipes: [TranslatePipe]
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class GalleriesComponent {
 
@@ -32,6 +32,7 @@ export class GalleriesComponent {
   selectedGallery;
   selectedImage;
   selectedIndex;
+  editImageVisible;
   addVisible: boolean;
   editVisible: boolean;
   removeVisible: boolean;
@@ -296,7 +297,7 @@ export class GalleriesComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

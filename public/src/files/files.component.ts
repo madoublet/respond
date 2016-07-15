@@ -1,11 +1,14 @@
 import {Component} from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {RouteConfig, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, CanActivate} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {FileService} from '../shared/services/file.service';
 import {RemoveFileComponent} from '../shared/components/files/remove-file/remove-file.component';
 import {DropzoneComponent} from '../shared/components/dropzone/dropzone.component';
 import {DrawerComponent} from '../shared/components/drawer/drawer.component';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-files',
@@ -16,7 +19,6 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
     pipes: [TranslatePipe]
 })
 
-@CanActivate(() => tokenNotExpired())
 
 export class FilesComponent {
 
@@ -104,7 +106,7 @@ export class FilesComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['Login', {id: this.id}] );
+      this._router.navigate( ['/login', {id: this.id}] );
     }
 
   }

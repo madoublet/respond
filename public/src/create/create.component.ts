@@ -1,19 +1,29 @@
 import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {SiteService} from '../shared/services/site.service';
 import {AppService} from '../shared/services/app.service';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
+
+declare var __moduleName: string;
+declare var toast: any;
 
 @Component({
     selector: 'respond-create',
     moduleId: __moduleName,
     templateUrl: '/app/create/create.component.html',
-    directives: [ROUTER_DIRECTIVES],
     providers: [SiteService, AppService],
     pipes: [TranslatePipe]
 })
 
 export class CreateComponent {
+
+  themes;
+  visible;
+  selectedTheme;
+  selectedThemeIndex;
+  hasPasscode;
+  model;
+  site;
 
   constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {}
 
@@ -151,7 +161,7 @@ export class CreateComponent {
 
     toast.show('success');
 
-    this._router.navigate( ['Login', {id: this.site.id}] );
+    this._router.navigate( ['/login', {id: this.site.id}] );
 
     // clear model
     this.model = {
