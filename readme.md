@@ -18,7 +18,7 @@ Beta 2 cleans up the Angular 2 implementation and bundles the source into a dist
 ### Updating from Beta 1
 1. Update to Gulp 4 - http://bit.ly/29KB3Dv
 2. git pull
-3. npm install
+3. npm update
 4. gulp
 
 ### Prerequisites

@@ -31,14 +31,14 @@ export class CreateComponent {
    * Init pages
    */
   ngOnInit() {
-  
+
     // init
     this.themes = [];
     this.visible = false;
     this.selectedTheme = null;
     this.selectedThemeIndex = 0;
     this.hasPasscode = true;
-    
+
     // set model
     this.model = {
       name: '',
@@ -50,9 +50,9 @@ export class CreateComponent {
 
     // list themes
     this.list();
-    
+
     // retrieve settings
-    this.settings();    
+    this.settings();
 
   }
 
@@ -69,7 +69,7 @@ export class CreateComponent {
                     );
 
   }
-  
+
   /**
    * Get settings
    */
@@ -161,7 +161,7 @@ export class CreateComponent {
 
     toast.show('success');
 
-    this._router.navigate( ['/login', {id: this.site.id}] );
+    this._router.navigate( ['/login', this.site.id] );
 
     // clear model
     this.model = {

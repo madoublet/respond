@@ -25,12 +25,12 @@ export class LoginComponent {
   constructor (private _userService: UserService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
 
   ngOnInit() {
-  
+
       this._route.params.subscribe(params => {
         this.id = params['id'];
         localStorage.setItem('respond.siteId', this.id);
       });
-      
+
   }
 
   /**
@@ -64,8 +64,8 @@ export class LoginComponent {
 
     // set token
     this.setToken(this.data.token);
-    
-  
+
+
     // navigate
     this._router.navigate( ['/pages'] );
 
@@ -75,7 +75,7 @@ export class LoginComponent {
    * Routes to the forgot password screen
    */
   forgot() {
-    this._router.navigate( ['/forgot', { id: this.id }] );
+    this._router.navigate( ['/forgot', this.id] );
   }
 
   /**

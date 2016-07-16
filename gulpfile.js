@@ -85,7 +85,8 @@ gulp.task('copy-js', function() {
       'node_modules/reflect-metadata/Reflect.js',
       'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
-      'node_modules/dropzone/dist/min/dropzone.min.js'
+      'node_modules/dropzone/dist/min/dropzone.min.js',
+      'node_modules/hashedit/dist/hashedit-min.js'
     ])
     .pipe(gulp.dest('public/app/libs/'));
 });
@@ -95,7 +96,8 @@ gulp.task('copy-js', function() {
 gulp.task('copy-css', function() {
 
     return gulp.src([
-      'node_modules/dropzone/dist/min/dropzone.min.css'
+      'node_modules/dropzone/dist/min/dropzone.min.css',
+      'node_modules/hashedit/dist/hashedit-min.css'
       ])
   		.pipe(gulp.dest('public/app/libs/'));
 

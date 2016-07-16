@@ -250,7 +250,7 @@ EOD;
                 // hashedit production stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<script src="/app/libs/hashedit.min.js"></script>
+<script src="/app/libs/hashedit-min.js"></script>
 <script>$plugins_script</script>
 <script>
 hashedit.setup({

@@ -126,7 +126,7 @@ export class UsersComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['/login', {id: this.id}] );
+      this._router.navigate( ['/login', this.id] );
     }
 
   }

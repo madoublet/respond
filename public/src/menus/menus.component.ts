@@ -61,7 +61,7 @@ export class MenusComponent {
     this.overflowVisible = false;
     this.menus = [];
     this.items = [];
-    
+
     this.list();
 
   }
@@ -279,7 +279,7 @@ export class MenusComponent {
     toast.show('failure');
 
     if(obj.status == 401) {
-      this._router.navigate( ['/login', {id: this.id}] );
+      this._router.navigate( ['/login', this.id] );
     }
 
   }

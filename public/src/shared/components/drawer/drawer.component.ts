@@ -50,18 +50,18 @@ export class DrawerComponent {
     this.id = localStorage.getItem('respond.siteId');
     this.dev = false;
     this.siteUrl = '';
-    
+
     var url = window.location.href;
-    
+
     if(url.indexOf('?dev') !== -1) {
       this.dev = true;
     }
-    
+
     // get app settings
     this.settings();
-    
+
   }
-  
+
   /**
    * Get settings
    */
@@ -98,7 +98,7 @@ export class DrawerComponent {
                       );
 
   }
-  
+
   /**
    * Republish siteamp
    */
@@ -119,7 +119,7 @@ export class DrawerComponent {
     localStorage.removeItem('respond.siteId');
 
     // redirect
-    this._router.navigate( ['/login', {id: this.id}] );
+    this._router.navigate( ['/login', this.id] );
 
   }
 
