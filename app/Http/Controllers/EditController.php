@@ -250,14 +250,15 @@ EOD;
                 // hashedit production stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<script src="/app/libs/hashedit-min.js"></script>
+<script src="/app/libs/hashedit/dist/hashedit-min.js"></script>
 <script>$plugins_script</script>
 <script>
 hashedit.setup({
   url: '$url',
   sortable: '$sortable',
   login: '/login/$siteId',
-  stylesheet: ['/app/libs/hashedit-min.css'],
+  path: '/app/libs/hashedit/',
+  stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css'],
   translate: true,
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',

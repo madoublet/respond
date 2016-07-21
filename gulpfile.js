@@ -77,6 +77,19 @@ gulp.task('copy-files', function() {
     .pipe(gulp.dest('public/dev/libs/'));
 });
 
+// copy folders
+gulp.task('copy-folders', function() {
+
+  // copy folders
+  var libs = [
+      'node_modules/hashedit/**/*'
+      ];
+
+    return gulp.src(libs, {base: './node_modules/'})
+  		.pipe(gulp.dest('public/app/libs'));
+
+});
+
 // copy js
 gulp.task('copy-js', function() {
 
@@ -85,8 +98,7 @@ gulp.task('copy-js', function() {
       'node_modules/reflect-metadata/Reflect.js',
       'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
-      'node_modules/dropzone/dist/min/dropzone.min.js',
-      'node_modules/hashedit/dist/hashedit-min.js'
+      'node_modules/dropzone/dist/min/dropzone.min.js'
     ])
     .pipe(gulp.dest('public/app/libs/'));
 });
@@ -157,7 +169,7 @@ gulp.task('bundle', function() {
 
 
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-files', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
+gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-files', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
 
 // dev-build
 gulp.task('dev-build', gulp.series(['copy-static', 'ts']));
