@@ -229,7 +229,11 @@ class EditController extends Controller
                 // hashedit development stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<script src="/dev/hashedit/dist/hashedit-min.js"></script>
+<script src="/dev/hashedit/js/fetch.min.js"></script>
+<script src="/dev/hashedit/js/i18next.js"></script>
+<script src="/dev/hashedit/node_modules/sortablejs/Sortable.js"></script>
+<script src="/dev/hashedit/node_modules/dropzone/dist/dropzone.js"></script>
+<script src="/dev/hashedit/js/hashedit.js"></script>
 <script>$plugins_script</script>
 <script>
 hashedit.setup({

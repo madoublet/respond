@@ -64,7 +64,7 @@ class Publish
      *
      * @param {Site} $site
      */
-    public static function publishSiteMap($site)
+    public static function publishSiteMap($user, $site)
     {
     
       // get all pages

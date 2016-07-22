@@ -95,7 +95,7 @@ class SiteController extends Controller
     $user = User::getByEmail($email, $siteId);
 
     // publish site map
-    Publish::publishSiteMap($site);
+    Publish::publishSiteMap($user, $site);
 
     return response('Ok', 200);
 

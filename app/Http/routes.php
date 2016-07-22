@@ -12,7 +12,7 @@
 */
 
 // handle Angular app routes
-$app_routes = array('/', 'login', 'create', 'pages', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries');
+$app_routes = array('/', 'login', 'create', 'pages', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit');
 
 foreach($app_routes as $app_route) {
 
