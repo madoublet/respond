@@ -49,7 +49,7 @@ class MenuItem {
     if(env('FRIENDLY_URLS') === false) {
       
       foreach($arr as &$item) {
-        $item['url'] = $item['url'].'.html';
+        $item['url'] = $item['url'];
       }
       
     }
