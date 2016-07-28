@@ -62,6 +62,7 @@ class EditController extends Controller
               // get settings
               $sortable = Setting::getById('sortable', $siteId);
               $editable = Setting::getById('editable', $siteId);
+              $blocks = Setting::getById('blocks', $siteId);
 
               // selector
               $selector = '.col, .column, .col *, .column *';
@@ -87,7 +88,6 @@ class EditController extends Controller
 
               }
 
-
               // get editable array
               if($editable === NULL) {
                 $editable = ['[role=main]'];
@@ -98,8 +98,9 @@ class EditController extends Controller
                 $editable = array_map('trim', $editable);
               }
 
-
-
+              if($blocks === NULL) {
+                $blocks = '.row';
+              }
 
               // find body element
               $el = $dom->find('body', 0);
@@ -215,11 +216,41 @@ class EditController extends Controller
               }
 
               // setup references
-              $els = $dom->find($selector);
+              $parent = $dom->find('[role=main]', 0);
+
+              $all = array();
+
+              // depth 0
+              $els = $parent->children;
+              $all = array_merge($all, $els);
+
+              for($i_0=0; $i_0<sizeof($els); $i_0++) {
+
+                // depth 1
+                $children_0 = $els[$i_0]->children;
+                $all = array_merge($all, $children_0);
+
+                for($i_1=0; $i_1<sizeof($children_0); $i_1++) {
+
+                  // depth 2
+                  $children_1 = $children_0[$i_1]->children;
+                  $all = array_merge($all, $children_1);
+
+                  for($i_2=0; $i_2<sizeof($children_1); $i_2++) {
+
+                    $children_2 = $children_1[$i_2]->children;
+                    $all = array_merge($all, $children_2);
+
+                  }
+
+                }
+
+              }
+
               $i = 1;
 
               // add references to each element
-              foreach($els as $el) {
+              foreach($all as $el) {
                 $el->setAttribute('data-ref', $i);
                 $i++;
               }
@@ -240,6 +271,7 @@ hashedit.setup({
   dev: true,
   url: '$url',
   sortable: '$sortable',
+  blocks: '$blocks',
   login: '/login/$siteId',
   translate: true,
   languagePath: '/i18n/{{language}}.json',
@@ -260,6 +292,7 @@ EOD;
 hashedit.setup({
   url: '$url',
   sortable: '$sortable',
+  blocks: '$blocks',
   login: '/login/$siteId',
   path: '/app/libs/hashedit/',
   stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css'],
@@ -371,13 +404,42 @@ EOD;
                 $selector = rtrim($selector, ', ');
               }
 
-
               // setup references
-              $els = $dom->find($selector);
+              $parent = $dom->find('[role=main]', 0);
+
+              $all = array();
+
+              // depth 0
+              $els = $parent->children;
+              $all = array_merge($all, $els);
+
+              for($i_0=0; $i_0<sizeof($els); $i_0++) {
+
+                // depth 1
+                $children_0 = $els[$i_0]->children;
+                $all = array_merge($all, $children_0);
+
+                for($i_1=0; $i_1<sizeof($children_0); $i_1++) {
+
+                  // depth 2
+                  $children_1 = $children_0[$i_1]->children;
+                  $all = array_merge($all, $children_1);
+
+                  for($i_2=0; $i_2<sizeof($children_1); $i_2++) {
+
+                    $children_2 = $children_1[$i_2]->children;
+                    $all = array_merge($all, $children_2);
+
+                  }
+
+                }
+
+              }
+
               $i = 1;
 
               // add references to each element
-              foreach($els as $el) {
+              foreach($all as $el) {
                 $el->setAttribute('data-ref', $i);
                 $i++;
               }

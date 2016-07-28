@@ -31,21 +31,21 @@ class Utilities
       }
 
     }
-    
+
     /**
      * Retrieves the site URL
      *
      * @return {String} siteurl
      */
     public static function retrieveSiteURL() {
-    
+
       $app_url = Utilities::retrieveAppURL();
-    
+
 
       if(env('SITE_URL') === 'autodetect') {
 
         $site_url = $app_url.'/sites/{{siteId}}';
-        
+
         return $site_url;
 
       }
@@ -123,7 +123,7 @@ class Utilities
         return $result;
 
     }
-    
+
     /**
      * Returns a list of specific files
      *
@@ -152,12 +152,12 @@ class Utilities
                 // match against filename
                 if ($value === $fileName) {
                   $path = "$dir/$value";
-                  
-                  $result[] = $path;             
-                }
-     
 
-               
+                  $result[] = $path;
+                }
+
+
+
                 continue;
             }
 
