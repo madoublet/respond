@@ -6,5 +6,9 @@
 	{
 		"code": "es-ES",
 		"text": "Español (es-ES)"
+	},
+	{
+		"code": "ru-RU",
+		"text": "Русский (ru-RU)"
 	}
 ]
