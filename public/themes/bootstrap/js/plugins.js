@@ -317,7 +317,7 @@ respond.form = (function() {
      */
     submitForm: function(e) {
   
-      var form, groups, submission, label, id, type, required, x, hasError = false;
+      var form, groups, label, id, type, required, x, hasError = false;
   
       // get reference to form
       form = e.target;
@@ -357,7 +357,7 @@ respond.form = (function() {
   				var checkboxes = groups[x].querySelectorAll('input[type=checkbox]:checked');
   
   				// create comma separated list
-  				for(y=0; y<checkboxes.length; y++){
+  				for(var y=0; y<checkboxes.length; y++){
   					value += checkboxes[y].value + ', ';
   				}
   
