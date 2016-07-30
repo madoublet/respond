@@ -14,3 +14,4 @@ composer.phar
 roadmap.md
 technology.md
 todo.md
+*.log
