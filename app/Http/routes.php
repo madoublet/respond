@@ -49,9 +49,6 @@ $app->get('reset/{id}/{token}', function ($id) {
 // handles editing
 $app->get('/edit', 'EditController@edit');
 
-// handles mirror html
-$app->get('/mirror', 'EditController@mirror');
-
 // checks auth status
 $app->get('/api/auth', ['middleware' => 'jwtauth', 'uses'=> 'UserController@auth']);
 
