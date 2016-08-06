@@ -63,29 +63,19 @@ class EditController extends Controller
               $sortable = Setting::getById('sortable', $siteId);
               $editable = Setting::getById('editable', $siteId);
               $blocks = Setting::getById('blocks', $siteId);
+              $grid = Setting::getById('grid', $siteId);
 
-              // selector
-              $selector = '.col, .column, .col *, .column *';
+              // defaults
+              if($grid === NULL) {
+                $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-12\" hashedit-sortable></div></div>"}]';
+              }
+              else {
+                $grid = json_encode($grid);
+              }
 
               // defaults
               if($sortable === NULL) {
                 $sortable = '.col, .column';
-              }
-              else {
-
-                // create array of sortable elements
-                $sortable_arr = explode(',', $sortable);
-                $sortable_arr = array_map('trim', $sortable_arr);
-
-                $selector = '';
-
-                foreach($sortable_arr as $item) {
-                  $selector .= $item.', '.$item.' *, ';
-                }
-
-                // trim extra characters
-                $selector = rtrim($selector, ', ');
-
               }
 
               // get editable array
@@ -235,6 +225,7 @@ hashedit.setup({
   url: '$url',
   sortable: '$sortable',
   blocks: '$blocks',
+  grid: $grid,
   login: '/login/$siteId',
   translate: true,
   languagePath: '/i18n/{{language}}.json',
@@ -256,6 +247,7 @@ hashedit.setup({
   url: '$url',
   sortable: '$sortable',
   blocks: '$blocks',
+  grid: $grid,
   login: '/login/$siteId',
   path: '/app/libs/hashedit/',
   stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css'],
@@ -278,6 +270,7 @@ EOD;
                             '  text-align: center;'.
                             '  color: #aaa;'.
                             '}'.
+                            '[hashedit-element]:hover .respond-plugin { border: 1px solid #00ADE3  !important; }'.
                             '.respond-plugin span {'.
                             '  display: block;'.
                             '  margin: 0; padding: 0;'.

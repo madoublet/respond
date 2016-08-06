@@ -12,7 +12,7 @@ Submit a PR to the dev branch with instructions on how to reproduce the bug.
 
 ### Languages
 
-Add a new language file to public/i18n. Update the public/languages.json file with the code and language description.  Submit a PR.
+Add a new language file to public/i18n. Update the public/languages.json file with the code and language description.  Submit a PR to the current dev branch.
 
 ### Features
 
@@ -20,4 +20,4 @@ Respond is "designed small" so that the code is maintainable by our small team. 
 
 ### Themes and Plugins
 
-We do love when developers build new themes and plugins for Respond.  However, we do not want them in the main codebase.  If you develop a new theme, put it on github and we will give you a shout out in the forums and via our twitter (@respondcms).
+We love when developers build new themes and plugins for Respond.  However, we do not want them in the main codebase.  If you develop a new theme or plugin, put it on Github and we will give you a shout out in the forums and via our twitter (@respondcms).
