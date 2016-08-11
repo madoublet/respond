@@ -8,21 +8,27 @@
         "value": ".columns"
     },
     {
-        "id": "blocks",
-        "value": ".row"
-    },
-    {
         "id": "grid",
         "value": [
           {
             "name": "1 Column",
             "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"large-12 columns\" hashedit-sortable></div></div>"
+            "html": "<div class=\"block row\"><div class=\"large-12 columns\"></div></div>"
           },
           {
             "name": "2 Column",
-            "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"large-6 columns\" hashedit-sortable></div><div class=\"large-6 columns\" hashedit-sortable></div></div>"
+            "desc": "50%/50%",
+            "html": "<div class=\"block row\"><div class=\"large-6 columns\" hashedit-sortable></div><div class=\"large-6 columns\"></div></div>"
+          },
+          {
+            "name": "3 Column",
+            "desc": "33%/33%/33%",
+            "html": "<div class=\"block row\"><div class=\"large-4 columns\"></div><div class=\"large-4 columns\"></div><div class=\"large-4 columns\"></div></div>"
+          },
+          {
+            "name": "4 Column",
+            "desc": "25%/25%/25%/25%",
+            "html": "<div class=\"block row\"><div class=\"large-3 columns\"></div><div class=\"large-3 columns\"></div><div class=\"large-3 columns\"></div><div class=\"large-3 columns\"></div></div>"
           }
         ]
     },

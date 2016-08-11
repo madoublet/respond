@@ -17,12 +17,22 @@
           {
             "name": "1 Column",
             "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-12\" hashedit-sortable></div></div>"
+            "html": "<div class=\"block row\"><div class=\"col col-md-12\"></div></div>"
           },
           {
             "name": "2 Column",
-            "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-6\" hashedit-sortable></div><div class=\"col col-md-6\" hashedit-sortable></div></div>"
+            "desc": "50%/50%",
+            "html": "<div class=\"block row\"><div class=\"col col-md-6\"></div><div class=\"col col-md-6\"></div></div>"
+          },
+          {
+            "name": "3 Column",
+            "desc": "33%/33%/33%",
+            "html": "<div class=\"block row\"><div class=\"col col-md-4\"></div><div class=\"col col-md-4\"></div><div class=\"col col-md-4\"></div></div>"
+          },
+          {
+            "name": "4 Column",
+            "desc": "25%/25%/25%/25%",
+            "html": "<div class=\"block row\"><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div></div>"
           }
         ]
     },

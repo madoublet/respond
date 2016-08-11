@@ -17,12 +17,22 @@
           {
             "name": "1 Column",
             "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"material-content mdl-cell mdl-cell--12-col\" hashedit-sortable></div></div>"
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--12-col\"></div></div>"
           },
           {
             "name": "2 Column",
-            "desc": "100%",
-            "html": "<div class=\"block row\" hashedit-block><div class=\"material-content mdl-cell mdl-cell--6-col\" hashedit-sortable></div><div class=\"material-content mdl-cell mdl-cell--6-col\" hashedit-sortable></div></div>"
+            "desc": "50%/50%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--6-col\"></div><div class=\"material-content mdl-cell mdl-cell--6-col\"></div></div>"
+          },
+          {
+            "name": "3 Column",
+            "desc": "33%/33%/33%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--4-col\"></div><div class=\"material-content mdl-cell mdl-cell--4-col\"></div><div class=\"material-content mdl-cell mdl-cell--4-col\"></div></div>"
+          },
+          {
+            "name": "4 Column",
+            "desc": "25%/25%/25%/25%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div></div>"
           }
         ]
     },

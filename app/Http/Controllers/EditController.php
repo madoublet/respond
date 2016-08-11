@@ -264,7 +264,7 @@ EOD;
                             '.respond-plugin {'.
                             '  position: relative;'.
                             '  padding: 10px 0;'.
-                            '  margin: 0 0 20px 0;'.
+                            '  margin: 1px 0 20px 0;'.
                             '  background-color: #f8f8f8;'.
                             '  border: 1px solid #f0f0f0;'.
                             '  text-align: center;'.

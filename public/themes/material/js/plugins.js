@@ -661,7 +661,7 @@ respond.searchbox = (function() {
     								// walk through data[x]
     								for(y in data[x]){
     								
-    									var text = data[x][y].toLowerCase();
+    									
     								
     									// searh for the term
     									if(text.search(new RegExp(term.toLowerCase(), 'i')) != -1){

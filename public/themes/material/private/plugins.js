@@ -1,11 +1,20 @@
 var plugins = [
   {
+        action: "respond.featured",
+        selector: "[respond-plugin][type=featured-post]",
+        title: "Featured Blog Post",
+        display: '<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="100%" viewBox="0 0 18 18" width="100%"><path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/><path d="M0 0h18v18H0z" fill="none"/></svg>',
+        view: '<div class="respond-plugin"><svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="100%" viewBox="0 0 18 18" width="100%"><path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"/><path d="M0 0h18v18H0z" fill="none"/></svg><span>' + hashedit.i18n('Featured Blog Post') + '</span></div>',
+        html: '<div respond-plugin type="featured-post"></div>'
+
+  },
+  {
         action: "respond.blog",
         selector: "[respond-plugin][type=recent-posts]",
         title: "Recent Blog Posts",
         display: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="100%" width="100%"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/><path d="M0 0h24v24H0z" fill="none"/></svg>',
-        view: '<div class="respond-plugin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="100%" width="100%"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/><path d="M0 0h24v24H0z" fill="none"/></svg><span>' + hashedit.i18n('Blog Posts') + '</span></div>',
-        html: '<div respond-plugin type="posts"></div>'
+        view: '<div class="respond-plugin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="100%" width="100%"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/><path d="M0 0h24v24H0z" fill="none"/></svg><span>' + hashedit.i18n('Recent Blog Posts') + '</span></div>',
+        html: '<div respond-plugin type="recent-posts"></div>'
 
   },
   {
