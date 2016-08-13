@@ -7,9 +7,9 @@
     <label>{{ 'Name' | translate }}</label>
     <input id="hashedit-edit-menu-name" type="text" maxlength="128" placeholder="" required
       [(ngModel)]="model.name"
-      ngControl="name">
+      name="name">
     <small>&lt;respond-menu type=&quot;{{model.id}}&quot;&gt;&lt;respond-menu&gt;</small>
-    
+
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
       <button type="submit">{{ 'Update' | translate }}</button>

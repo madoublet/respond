@@ -1,19 +1,19 @@
-import {provideRouter, RouterConfig}  from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {ForgotComponent} from './forgot/forgot.component';
-import {ResetComponent} from './reset/reset.component';
-import {CreateComponent} from './create/create.component';
-import {PagesComponent} from './pages/pages.component';
-import {FilesComponent} from './files/files.component';
-import {UsersComponent} from './users/users.component';
-import {MenusComponent} from './menus/menus.component';
-import {FormsComponent} from './forms/forms.component';
-import {SettingsComponent} from './settings/settings.component';
-import {SubmissionsComponent} from './submissions/submissions.component';
-import {GalleriesComponent} from './galleries/galleries.component';
-import {EditComponent} from './edit/edit.component';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import { ResetComponent } from './reset/reset.component';
+import { CreateComponent } from './create/create.component';
+import { PagesComponent } from './pages/pages.component';
+import { FilesComponent } from './files/files.component';
+import { UsersComponent } from './users/users.component';
+import { MenusComponent } from './menus/menus.component';
+import { FormsComponent } from './forms/forms.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SubmissionsComponent } from './submissions/submissions.component';
+import { GalleriesComponent } from './galleries/galleries.component';
+import { EditComponent } from './edit/edit.component';
 
-const routes: RouterConfig = [
+const appRoutes: Routes = [
   {
     path: 'login/:id',
     component: LoginComponent
@@ -71,9 +71,6 @@ const routes: RouterConfig = [
     redirectTo: '/create',
     pathMatch: 'full'
   }
-  
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes)
-];
+export const routing = RouterModule.forRoot(appRoutes);

@@ -7,12 +7,12 @@
     <label>{{ 'Name' | translate }}</label>
     <input id="hashedit-add-form-name" type="text" maxlength="128" placeholder="" required
       [(ngModel)]="model.name"
-      ngControl="name">
+      name="name">
 
     <label>{{ 'CSS Class' | translate }}</label>
     <input id="hashedit-add-form-cssclass" type="text" maxlength="128" placeholder=""
       [(ngModel)]="model.cssClass"
-      ngControl="cssClass">
+      name="cssClass">
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

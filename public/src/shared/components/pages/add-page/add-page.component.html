@@ -7,24 +7,24 @@
     <label>{{ 'Path' | translate }}</label>
     <select id="hashedit-add-page-path"
       [(ngModel)]="model.path"
-      ngControl="path">
+      name="path">
       <option *ngFor="let route of routes" [value]="route">{{route}}</option>
     </select>
 
     <label>{{ 'URL' | translate }}</label>
     <input id="hashedit-add-page-url" type="text" maxlength="128" placeholder="new-page" required
       [(ngModel)]="model.url"
-      ngControl="url">
+      name="url">
 
     <label>{{ 'Title' | translate }}</label>
     <input id="hashedit-add-page-title" type="text" maxlength="128" required
       [(ngModel)]="model.title"
-      ngControl="title">
+      name="title">
 
     <label>{{ 'Description' | translate }}</label>
     <input id="hashedit-add-page-desc" type="text" maxlength="128"
       [(ngModel)]="model.description"
-      ngControl="description">
+      name="description">
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

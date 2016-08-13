@@ -9,12 +9,12 @@
       <label>{{ 'Label' | translate }}</label>
       <input id="hashedit-edit-form-field-label" type="text" maxlength="128" placeholder="" required
         [(ngModel)]="model.label"
-        ngControl="label">
+        name="label">
 
       <label>{{ 'Type' | translate }}</label>
       <select id="hashedit-edit-form-field-type"
         [(ngModel)]="model.type"
-        ngControl="isNested">
+        name="isNested">
         <option value="text">{{ 'Text' | translate }}</option>
         <option value="email">{{ 'Email' | translate }}</option>
         <option value="textarea">{{ 'Textarea' | translate }}</option>
@@ -26,7 +26,7 @@
       <label>{{ 'Required?' | translate }}</label>
       <select id="hashedit-edit-form-field-required"
         [(ngModel)]="model.required"
-        ngControl="required">
+        name="required">
         <option value="true">{{ 'Yes' | translate }}</option>
         <option value="false">{{ 'No' | translate }}</option>
       </select>
@@ -34,22 +34,22 @@
       <label>{{ 'Options' | translate }}</label>
       <input id="hashedit-edit-form-field-options" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.options"
-        ngControl="options">
+        name="options">
 
       <label>{{ 'Helper Text' | translate }}</label>
       <input id="hashedit-edit-form-field-options" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.helperText"
-        ngControl="helperText">
+        name="helperText">
 
       <label>{{ 'Placeholder' | translate }}</label>
       <input id="hashedit-edit-form-field-options" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.placeholder"
-        ngControl="placeholder">
+        name="placeholder">
 
       <label>{{ 'CSS Class' | translate }}</label>
       <input id="hashedit-edit-form-field-cssclass" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.cssClass"
-        ngControl="cssClass">
+        name="cssClass">
 
     </div>
     <!-- /.app-modal-body -->

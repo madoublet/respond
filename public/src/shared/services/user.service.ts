@@ -1,8 +1,8 @@
-import {Injectable}     from '@angular/core'
-import {Http, Response} from '@angular/http'
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/Observable'
+import { Injectable }     from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {

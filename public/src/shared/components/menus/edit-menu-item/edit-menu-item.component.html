@@ -7,17 +7,17 @@
     <label>{{ 'Text (or HTML)' | translate }}</label>
     <input id="hashedit-edit-menu-item-html" type="text" required
       [(ngModel)]="model.html"
-      ngControl="html">
+      name="html">
 
     <label>{{ 'CSS Class' | translate }}</label>
     <input id="hashedit-edit-menu-item-css-class" type="text" maxlength="128"
       [(ngModel)]="model.cssClass"
-      ngControl="cssClass">
+      name="cssClass">
 
     <label>{{ 'Is Nested?' | translate }}</label>
     <select id="hashedit-edit-menu-item-is-nested"
       [(ngModel)]="model.isNested"
-      ngControl="isNested">
+      name="isNested">
       <option value="true">{{ 'Yes' | translate }}</option>
       <option value="false">{{ 'No' | translate }}</option>
     </select>
@@ -25,7 +25,7 @@
     <label>{{ 'URL' | translate }}</label>
     <select id="hashedit-edit-menu-item-url"
       [(ngModel)]="model.url"
-      ngControl="url">
+      name="url">
       <option *ngFor="let page of pages" [value]="page.url">{{page.url}}</option>
     </select>
 

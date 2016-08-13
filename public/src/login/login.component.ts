@@ -1,16 +1,12 @@
-import {Component} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {ActivatedRoute} from '@angular/router';
-import {Router} from '@angular/router';
-import {UserService} from '../shared/services/user.service';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
+import { TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-login',
-    moduleId: __moduleName,
     templateUrl: '/app/login/login.component.html',
     providers: [UserService],
     pipes: [TranslatePipe]

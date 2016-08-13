@@ -14,24 +14,24 @@
 
       <div [ngSwitch]="setting.type">
 
-        <div *ngSwitchWhen="'text'">
+        <div *ngSwitchCase="'text'">
           <label>{{setting.label}}</label>
-          <input type="text" id="{{setting.id}}" ngControl="{{setting.id}}" [(ngModel)]="setting.value">
+          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
-        <div *ngSwitchWhen="'color'">
+        <div *ngSwitchCase="'color'">
           <label>{{setting.label}}</label>
-          <input type="color" id="{{setting.id}}" ngControl="{{setting.id}}" [(ngModel)]="setting.value">
+          <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
-        <div *ngSwitchWhen="'image'">
+        <div *ngSwitchCase="'image'">
           <label>{{setting.label}} <a (click)="showSelect(setting)">Select</a></label>
-          <input type="text" id="{{setting.id}}" ngControl="{{setting.id}}" [(ngModel)]="setting.value">
+          <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
-        <div *ngSwitchWhen="'select'">
+        <div *ngSwitchCase="'select'">
           <label>{{setting.label}}</label>
-          <select id="{{setting.id}}" ngControl="{{setting.id}}" [(ngModel)]="setting.value">
+          <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
             <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
           </select>
         </div>
