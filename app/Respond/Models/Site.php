@@ -14,6 +14,7 @@ class Site {
   public $id;
   public $name;
   public $email;
+  public $theme;
 
   /**
    * Constructs a page from an array of data
@@ -133,7 +134,8 @@ class Site {
     $site_arr = array(
       'id' => $id,
       'name' => $name,
-      'email' => $email
+      'email' => $email,
+      'theme' => $theme
     );
 
     // create and save the site
