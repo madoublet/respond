@@ -109,6 +109,10 @@ class Setting {
         // fix double html
         $path = str_replace('.html.html', '.html', $path);
 
+        // init css
+        $set_css = false;
+        $css = '';
+
         if(file_exists($path)) {
 
           // get contents of the page
@@ -136,8 +140,31 @@ class Setting {
 
               }
 
+              // set css
+              if(isset($setting['css'])) {
+
+                // build css string
+                $set_css = true;
+                $css .= str_replace('config(--'.$setting['id'].')', $setting['value'], $setting['css']);
+
+              }
+
             }
 
+          }
+
+          // remove existing inline styles
+          $styles = $dom->find('[respond-settings]');
+
+          foreach($styles as $style) {
+             $style->outertext = '';
+          }
+
+          // append style to the dom
+          $head = $dom->find('head', 0);
+
+          if($head != NULL) {
+            $head->innertext = $head->innertext() . '<style respond-settings>'.$css.'</style>';
           }
 
           // update contents

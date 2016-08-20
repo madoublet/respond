@@ -438,7 +438,7 @@ class Utilities
         while (false !== ($file = readdir($dir))) {
             if (($file != '.') && ($file != '..')) {
                 if (is_dir($src . '/' . $file)) {
-                    if($file !== '.private') {
+                    if($file !== 'private' && $file !== 'dist') {
                       Utilities::copyDirectory($src . '/' . $file, $dst . '/' . $file);
                     }
                 } else {

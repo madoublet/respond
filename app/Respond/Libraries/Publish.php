@@ -43,6 +43,10 @@ class Publish
         // copy the directory
         Utilities::copyDirectory($src, $dest);
         
+        /*
+        
+        echo('remove settings and plugins');
+        
         // remove settings and plugins
         if(file_exists($dest.'/private/plugins.js')) {
           unlink($dest.'/private/plugins.js');
@@ -55,7 +59,7 @@ class Publish
         // remove the directory
         if(file_exists($dest.'/private')) {
           rmdir($dest.'/private');
-        }
+        }*/
 
     }
     
