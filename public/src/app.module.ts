@@ -17,33 +17,16 @@ import { SubmissionsComponent } from './submissions/submissions.component';
 import { GalleriesComponent } from './galleries/galleries.component';
 import { EditComponent } from './edit/edit.component';
 import { HttpModule }     from '@angular/http';
-import { AuthHttp, AuthConfig, tokenNotExpired, JwtHelper } from 'angular2-jwt/angular2-jwt';
 import { routing } from './app.routes';
-import { HTTP_PROVIDERS, Http} from '@angular/http';
-import { TRANSLATE_PROVIDERS } from 'ng2-translate/ng2-translate';
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { HTTP_PROVIDERS, Http } from '@angular/http';
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, ForgotComponent, ResetComponent, CreateComponent, PagesComponent, FilesComponent, UsersComponent, MenusComponent, FormsComponent, SettingsComponent, SubmissionsComponent, GalleriesComponent, EditComponent],
-    imports:      [BrowserModule, FormsModule, RouterModule, routing, HttpModule],
+    imports:      [BrowserModule, FormsModule, RouterModule, routing, HttpModule, TranslateModule.forRoot()],
     bootstrap:    [AppComponent],
     providers: [
-        TRANSLATE_PROVIDERS,
-        HTTP_PROVIDERS,
-        {
-          provide: AuthConfig,
-          useValue: new AuthConfig({
-            headerName: 'X-AUTH'
-          })
-        },
-        {
-            provide: AuthHttp,
-            useFactory: (http) => {
-                return new AuthHttp(new AuthConfig({
-                    headerName: 'X-AUTH'
-                }), http);
-            },
-            deps: [Http]
-        }
+        HTTP_PROVIDERS
     ]
 })
 

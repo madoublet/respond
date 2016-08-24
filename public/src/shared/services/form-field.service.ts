@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable }     from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FormFieldService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/forms/fields/list';
   private _addUrl = 'api/forms/fields/add';
@@ -20,9 +19,12 @@ export class FormFieldService {
    */
   list (id) {
 
-    var url = this._listUrl + '/' + encodeURI(id);
+    let url = this._listUrl + '/' + encodeURI(id);
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.get(url).map((res:Response) => res.json());
+    return this.http.get(url, options).map((res:Response) => res.json());
   }
 
   /**
@@ -41,9 +43,10 @@ export class FormFieldService {
 
     let body = JSON.stringify({ id, label, type, required, options, helperText, placeholder, cssClass });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._addUrl, body, _options);
+    return this.http.post(this._addUrl, body, _options);
 
   }
 
@@ -65,9 +68,10 @@ export class FormFieldService {
 
     let body = JSON.stringify({ id, index, label, type, required, options, helperText, placeholder, cssClass });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._editUrl, body, _options);
+    return this.http.post(this._editUrl, body, _options);
 
   }
 
@@ -82,9 +86,10 @@ export class FormFieldService {
 
     let body = JSON.stringify({ id, index });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._removeUrl, body, options);
+    return this.http.post(this._removeUrl, body, options);
 
   }
 
@@ -99,9 +104,10 @@ export class FormFieldService {
 
     let body = JSON.stringify({ id, fields });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._updateOrderUrl, body, options);
+    return this.http.post(this._updateOrderUrl, body, options);
 
   }
 

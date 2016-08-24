@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-import {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 import 'rxjs/add/operator/map';
-
 
 @Component({
     selector: 'respond-app',

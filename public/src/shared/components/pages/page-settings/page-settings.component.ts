@@ -3,8 +3,8 @@ import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import {PageService} from '../../../../shared/services/page.service';
 import {RouteService} from '../../../../shared/services/route.service';
 
-declare var __moduleName: string;
 declare var toast: any;
+declare var __moduleName: string;
 
 @Component({
     selector: 'respond-page-settings',

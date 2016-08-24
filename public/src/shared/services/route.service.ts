@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core'
-import {Http, Response} from '@angular/http'
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/Observable'
+import { Injectable }     from '@angular/core'
+import { Http, Response } from '@angular/http'
+import { Headers, RequestOptions } from '@angular/http'
+import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class RouteService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/routes/list';
 
@@ -15,10 +14,12 @@ export class RouteService {
    *
    */
   list () {
+  
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
 
-    // LOOK AT BUG HERE: https://github.com/auth0/angular2-jwt/issues/28
-
-    return this.authHttp.get(this._listUrl).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
 
   }
 

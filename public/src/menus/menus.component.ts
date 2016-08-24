@@ -1,26 +1,23 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {MenuService} from '../shared/services/menu.service';
-import {MenuItemService} from '../shared/services/menu-item.service';
-import {AddMenuComponent} from '../shared/components/menus/add-menu/add-menu.component';
-import {EditMenuComponent} from '../shared/components/menus/edit-menu/edit-menu.component';
-import {RemoveMenuComponent} from '../shared/components/menus/remove-menu/remove-menu.component';
-import {AddMenuItemComponent} from '../shared/components/menus/add-menu-item/add-menu-item.component';
-import {EditMenuItemComponent} from '../shared/components/menus/edit-menu-item/edit-menu-item.component';
-import {RemoveMenuItemComponent} from '../shared/components/menus/remove-menu-item/remove-menu-item.component';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuService } from '../shared/services/menu.service';
+import { MenuItemService } from '../shared/services/menu-item.service';
+import { AddMenuComponent } from '../shared/components/menus/add-menu/add-menu.component';
+import { EditMenuComponent } from '../shared/components/menus/edit-menu/edit-menu.component';
+import { RemoveMenuComponent } from '../shared/components/menus/remove-menu/remove-menu.component';
+import { AddMenuItemComponent } from '../shared/components/menus/add-menu-item/add-menu-item.component';
+import { EditMenuItemComponent } from '../shared/components/menus/edit-menu-item/edit-menu-item.component';
+import { RemoveMenuItemComponent } from '../shared/components/menus/remove-menu-item/remove-menu-item.component';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-menus',
-    moduleId: __moduleName,
     templateUrl: '/app/menus/menus.component.html',
     providers: [MenuService, MenuItemService],
     directives: [AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent, DrawerComponent],
-    pipes: [TranslatePipe]
+    pipes: []
 })
 
 export class MenusComponent {

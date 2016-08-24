@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
-import { TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 declare var toast: any;
 
 @Component({
     selector: 'respond-login',
     templateUrl: '/app/login/login.component.html',
-    providers: [UserService],
-    pipes: [TranslatePipe]
+    providers: [UserService]
 })
 
 export class LoginComponent {

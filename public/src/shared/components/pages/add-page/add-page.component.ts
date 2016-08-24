@@ -1,17 +1,16 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {PageService} from '../../../../shared/services/page.service';
-import {RouteService} from '../../../../shared/services/route.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PageService } from '../../../../shared/services/page.service';
+import { RouteService } from '../../../../shared/services/route.service';
 
-declare var __moduleName: string;
 declare var toast: any;
+declare var __moduleName: string;
 
 @Component({
     selector: 'respond-add-page',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/pages/add-page/add-page.component.html',
     providers: [PageService, RouteService],
-    pipes: [TranslatePipe]
+    pipes: []
 })
 
 export class AddPageComponent {

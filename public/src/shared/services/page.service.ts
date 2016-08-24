@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core'
-import {Http, Response} from '@angular/http'
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/Observable'
+import { Injectable }     from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PageService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/pages/list';
   private _addUrl = 'api/pages/add';
@@ -18,7 +17,11 @@ export class PageService {
    *
    */
   list () {
-    return this.authHttp.get(this._listUrl).map((res:Response) => res.json());
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+    
+    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
   }
 
   /**
@@ -32,10 +35,12 @@ export class PageService {
   add (url: string, title: string, description: string) {
 
     let body = JSON.stringify({ url, title, description });
+    
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._addUrl, body, options);
+    return this.http.post(this._addUrl, body, options);
 
   }
 
@@ -56,9 +61,10 @@ export class PageService {
 
     let body = JSON.stringify({ url, title, description, keywords, callout, layout, language, direction });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._updateSettingsUrl, body, options);
+    return this.http.post(this._updateSettingsUrl, body, options);
 
   }
 
@@ -72,9 +78,10 @@ export class PageService {
 
     let body = JSON.stringify({ url });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._removePageUrl, body, options);
+    return this.http.post(this._removePageUrl, body, options);
 
   }
 

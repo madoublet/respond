@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable }     from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class GalleryImageService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/galleries/images/list';
   private _addUrl = 'api/galleries/images/add';
@@ -20,9 +19,13 @@ export class GalleryImageService {
    */
   list (galleryId: string) {
 
-    var url = this._listUrl + '/' + encodeURI(galleryId);
+    let url = this._listUrl + '/' + encodeURI(galleryId);
+    
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.get(url).map((res:Response) => res.json());
+    return this.http.get(url, options).map((res:Response) => res.json());
   }
 
   /**
@@ -38,9 +41,10 @@ export class GalleryImageService {
 
     let body = JSON.stringify({ name, url, thumb, caption, galleryId });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._addUrl, body, _options);
+    return this.http.post(this._addUrl, body, _options);
 
   }
 
@@ -56,9 +60,10 @@ export class GalleryImageService {
 
     let body = JSON.stringify({ id, caption, galleryId });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let _options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._editUrl, body, _options);
+    return this.http.post(this._editUrl, body, _options);
 
   }
 
@@ -72,9 +77,10 @@ export class GalleryImageService {
 
     let body = JSON.stringify({ id, galleryId });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._removeUrl, body, options);
+    return this.http.post(this._removeUrl, body, options);
 
   }
 
@@ -89,9 +95,10 @@ export class GalleryImageService {
 
     let body = JSON.stringify({ images, galleryId });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._updateOrderUrl, body, options);
+    return this.http.post(this._updateOrderUrl, body, options);
 
   }
 

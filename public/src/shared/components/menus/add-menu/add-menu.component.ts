@@ -1,16 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {MenuService} from '../../../../shared/services/menu.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MenuService } from '../../../../shared/services/menu.service';
 
-declare var __moduleName: string;
 declare var toast: any;
+declare var __moduleName: string;
 
 @Component({
     selector: 'respond-add-menu',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/menus/add-menu/add-menu.component.html',
     providers: [MenuService],
-    pipes: [TranslatePipe]
+    pipes: []
 })
 
 export class AddMenuComponent {

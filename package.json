@@ -23,22 +23,21 @@
     "zone.js": "^0.6.12",
     "angular2-in-memory-web-api": "0.0.15",
     "bootstrap": "^3.3.6",
-    "angular2-jwt": "~0.1.7",
     "dropzone": "4.3.0",
-    "hashedit": "0.5.15",
+    "hashedit": "0.5.16",
     "moment": "2.12.0",
-    "ng2-translate": "^2.1.0"
+    "ng2-translate": "^2.4.2"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "^2.6.0",
     "gulp-minify": "0.0.12",
-    "gulp-tsc": "^1.1.4",
+    "gulp-tsc": "^1.2.0",
     "gulp-typescript": "^2.13.6",
     "gulp-zip": "^3.2.0",
-    "systemjs-builder": "^0.15.23",
+    "systemjs-builder": "^0.15.29",
     "typescript": "^1.8.10",
-    "typings": "^0.6.8"
+    "typings": "^1.3.2"
   }
 }

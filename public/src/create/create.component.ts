@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {SiteService} from '../shared/services/site.service';
-import {AppService} from '../shared/services/app.service';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SiteService } from '../shared/services/site.service';
+import { AppService } from '../shared/services/app.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -11,8 +10,7 @@ declare var toast: any;
     selector: 'respond-create',
     moduleId: __moduleName,
     templateUrl: '/app/create/create.component.html',
-    providers: [SiteService, AppService],
-    pipes: [TranslatePipe]
+    providers: [SiteService, AppService]
 })
 
 export class CreateComponent {

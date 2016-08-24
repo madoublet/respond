@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core'
-import {Http, Response} from '@angular/http'
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/Observable'
+import { Injectable }     from '@angular/core'
+import { Http, Response } from '@angular/http'
+import { Headers, RequestOptions } from '@angular/http'
+import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class SubmissionService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/submissions/list';
   private _removeUrl = 'api/submissions/remove';
@@ -17,7 +16,11 @@ export class SubmissionService {
    */
   list () {
 
-    return this.authHttp.get(this._listUrl).map((res:Response) => res.json());
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
 
   }
 
@@ -31,9 +34,10 @@ export class SubmissionService {
 
     let body = JSON.stringify({ id });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._removeUrl, body, options);
+    return this.http.post(this._removeUrl, body, options);
 
   }
 

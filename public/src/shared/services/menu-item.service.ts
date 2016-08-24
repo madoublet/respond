@@ -1,12 +1,11 @@
-import {Injectable}     from '@angular/core'
-import {Http, Response} from '@angular/http'
-import {AuthHttp, AuthConfig} from 'angular2-jwt/angular2-jwt';
-import {Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/Observable'
+import { Injectable }     from '@angular/core'
+import { Http, Response } from '@angular/http'
+import { Headers, RequestOptions } from '@angular/http'
+import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class MenuItemService {
-  constructor (private http: Http, private authHttp: AuthHttp, private authConfig: AuthConfig) {}
+  constructor (private http: Http) {}
 
   private _listUrl = 'api/menus/items/list';
   private _addUrl = 'api/menus/items/add';
@@ -21,8 +20,12 @@ export class MenuItemService {
   list (id) {
 
     var url = this._listUrl + '/' + encodeURI(id);
+    
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.get(url).map((res:Response) => res.json());
+    return this.http.get(url, options).map((res:Response) => res.json());
   }
 
   /**
@@ -40,9 +43,10 @@ export class MenuItemService {
 
     let body = JSON.stringify({ id, html, cssClass, isNested, url });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._addUrl, body, options);
+    return this.http.post(this._addUrl, body, options);
 
   }
 
@@ -62,9 +66,10 @@ export class MenuItemService {
 
     let body = JSON.stringify({ id, index, html, cssClass, isNested, url });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._editUrl, body, options);
+    return this.http.post(this._editUrl, body, options);
 
   }
 
@@ -79,9 +84,10 @@ export class MenuItemService {
 
     let body = JSON.stringify({ id, index });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._removeUrl, body, options);
+    return this.http.post(this._removeUrl, body, options);
 
   }
 
@@ -96,9 +102,10 @@ export class MenuItemService {
 
     let body = JSON.stringify({ id, items });
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp.post(this._updateOrderUrl, body, options);
+    return this.http.post(this._updateOrderUrl, body, options);
 
   }
 

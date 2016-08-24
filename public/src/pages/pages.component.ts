@@ -1,16 +1,14 @@
-import {Component} from '@angular/core';
-import {tokenNotExpired} from 'angular2-jwt/angular2-jwt';
-import {Router} from '@angular/router';
-import {PageService} from '../shared/services/page.service';
-import {AddPageComponent} from '../shared/components/pages/add-page/add-page.component';
-import {PageSettingsComponent} from '../shared/components/pages/page-settings/page-settings.component';
-import {RemovePageComponent} from '../shared/components/pages/remove-page/remove-page.component';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
-import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { PageService } from '../shared/services/page.service';
+import { AddPageComponent } from '../shared/components/pages/add-page/add-page.component';
+import { PageSettingsComponent } from '../shared/components/pages/page-settings/page-settings.component';
+import { RemovePageComponent } from '../shared/components/pages/remove-page/remove-page.component';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
+import { TimeAgoPipe } from '../shared/pipes/time-ago.pipe';
 
-declare var __moduleName: string;
 declare var toast: any;
+declare var __moduleName: string;
 
 @Component({
     selector: 'respond-pages',
@@ -18,7 +16,7 @@ declare var toast: any;
     templateUrl: '/app/pages/pages.component.html',
     providers: [PageService],
     directives: [AddPageComponent, PageSettingsComponent, RemovePageComponent, DrawerComponent],
-    pipes: [TimeAgoPipe, TranslatePipe]
+    pipes: [TimeAgoPipe]
 })
 
 export class PagesComponent {
@@ -28,10 +26,10 @@ export class PagesComponent {
   pages;
   errorMessage;
   selectedPage;
-  addVisible: boolean;
-  removeVisible: boolean;
-  drawerVisible: boolean;
-  settingsVisible: boolean;
+  addVisible: boolean = false;
+  removeVisible: boolean = false;
+  drawerVisible: boolean = false;
+  settingsVisible: boolean = false;
 
   constructor (private _pageService: PageService, private _router: Router) {}
 
@@ -57,11 +55,11 @@ export class PagesComponent {
    * Updates the list
    */
   list() {
-
+  
     this.reset();
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; },
+                       data => { console.log(data); this.pages = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -137,6 +135,8 @@ export class PagesComponent {
    * handles error
    */
   failure (obj) {
+  
+    console.log(obj);
 
     toast.show('failure');
 
