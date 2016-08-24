@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {MenuService} from '../../../../shared/services/menu.service';
-import {GalleryService} from '../../../../shared/services/gallery.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MenuService } from '../../../../shared/services/menu.service';
+import { GalleryService } from '../../../../shared/services/gallery.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -10,8 +9,7 @@ declare var toast: any;
     selector: 'respond-remove-menu',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/menus/remove-menu/remove-menu.component.html',
-    providers: [MenuService],
-    pipes: [TranslatePipe]
+    providers: [MenuService]
 })
 
 export class RemoveMenuComponent {

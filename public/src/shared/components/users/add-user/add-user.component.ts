@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UserService} from '../../../../shared/services/user.service';
-import {AppService} from '../../../../shared/services/app.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserService } from '../../../../shared/services/user.service';
+import { AppService } from '../../../../shared/services/app.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -10,8 +9,7 @@ declare var toast: any;
     selector: 'respond-add-user',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/users/add-user/add-user.component.html',
-    providers: [UserService, AppService],
-    pipes: [TranslatePipe]
+    providers: [UserService, AppService]
 })
 
 export class AddUserComponent {
@@ -46,7 +44,7 @@ export class AddUserComponent {
       retype: '',
       language: 'en'
     };
-   
+
   }
 
   get visible() { return this._visible; }
@@ -62,10 +60,10 @@ export class AddUserComponent {
    */
   ngOnInit() {
     this.languages = [];
-  
+
     this.list();
   }
-  
+
   /**
    * Lists available languages
    */

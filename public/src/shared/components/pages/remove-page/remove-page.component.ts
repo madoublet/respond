@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {PageService} from '../../../../shared/services/page.service';
-import {RouteService} from '../../../../shared/services/route.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PageService } from '../../../../shared/services/page.service';
+import { RouteService } from '../../../../shared/services/route.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -10,8 +9,7 @@ declare var toast: any;
     selector: 'respond-remove-page',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/pages/remove-page/remove-page.component.html',
-    providers: [PageService, RouteService],
-    pipes: [TranslatePipe]
+    providers: [PageService, RouteService]
 })
 
 export class RemovePageComponent {

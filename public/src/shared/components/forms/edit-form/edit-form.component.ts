@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {FormService} from '../../../../shared/services/form.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormService } from '../../../../shared/services/form.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-edit-form',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/forms/edit-form/edit-form.component.html',
-    providers: [FormService],
-    pipes: [TranslatePipe]
+    providers: [FormService]
 })
 
 export class EditFormComponent {

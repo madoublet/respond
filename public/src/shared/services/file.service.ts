@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http'
-import { Observable } from 'rxjs/Observable'
+import { Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FileService {
@@ -20,7 +20,7 @@ export class FileService {
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this._listUrl).map((res:Response) => res.json());
+    return this.http.get(this._listUrl, options).map((res:Response) => res.json());
 
   }
 

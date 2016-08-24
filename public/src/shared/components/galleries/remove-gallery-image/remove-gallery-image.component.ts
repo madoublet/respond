@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {GalleryImageService} from '../../../../shared/services/gallery-image.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GalleryImageService } from '../../../../shared/services/gallery-image.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-remove-gallery-image',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/galleries/remove-gallery-image/remove-gallery-image.component.html',
-    providers: [GalleryImageService],
-    pipes: [TranslatePipe]
+    providers: [GalleryImageService]
 })
 
 export class RemoveGalleryImageComponent {

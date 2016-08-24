@@ -1,11 +1,9 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SubmissionService} from '../shared/services/submission.service';
-import {RemoveSubmissionComponent} from '../shared/components/submissions/remove-submission/remove-submission.component';
-import {ViewSubmissionComponent} from '../shared/components/submissions/view-submission/view-submission.component';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
-import {TimeAgoPipe} from '../shared/pipes/time-ago.pipe';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SubmissionService } from '../shared/services/submission.service';
+import { RemoveSubmissionComponent } from '../shared/components/submissions/remove-submission/remove-submission.component';
+import { ViewSubmissionComponent } from '../shared/components/submissions/view-submission/view-submission.component';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -15,10 +13,8 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/submissions/submissions.component.html',
     providers: [SubmissionService],
-    directives: [RemoveSubmissionComponent, ViewSubmissionComponent, DrawerComponent],
-    pipes: [TimeAgoPipe, TranslatePipe]
+    directives: [RemoveSubmissionComponent, ViewSubmissionComponent, DrawerComponent]
 })
-
 
 export class SubmissionsComponent {
 

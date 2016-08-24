@@ -19,10 +19,12 @@ import { EditComponent } from './edit/edit.component';
 import { HttpModule }     from '@angular/http';
 import { routing } from './app.routes';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
 import { HTTP_PROVIDERS, Http } from '@angular/http';
 
+
 @NgModule({
-    declarations: [AppComponent, LoginComponent, ForgotComponent, ResetComponent, CreateComponent, PagesComponent, FilesComponent, UsersComponent, MenusComponent, FormsComponent, SettingsComponent, SubmissionsComponent, GalleriesComponent, EditComponent],
+    declarations: [AppComponent, LoginComponent, ForgotComponent, ResetComponent, CreateComponent, PagesComponent, FilesComponent, UsersComponent, MenusComponent, FormsComponent, SettingsComponent, SubmissionsComponent, GalleriesComponent, EditComponent, TimeAgoPipe],
     imports:      [BrowserModule, FormsModule, RouterModule, routing, HttpModule, TranslateModule.forRoot()],
     bootstrap:    [AppComponent],
     providers: [

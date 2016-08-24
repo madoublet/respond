@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SettingService} from '../shared/services/setting.service';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
-import {SelectFileComponent} from '../shared/components/files/select-file/select-file.component';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SettingService } from '../shared/services/setting.service';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
+import { SelectFileComponent } from '../shared/components/files/select-file/select-file.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -13,8 +12,7 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/settings/settings.component.html',
     providers: [SettingService],
-    directives: [SelectFileComponent, DrawerComponent],
-    pipes: [TranslatePipe]
+    directives: [SelectFileComponent, DrawerComponent]
 })
 
 export class SettingsComponent {

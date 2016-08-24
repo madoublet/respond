@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {ActivatedRoute} from '@angular/router';
-import {Router} from '@angular/router';
-import {UserService} from '../shared/services/user.service';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
+import { Component } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -12,8 +11,7 @@ declare var toast: any;
     selector: 'respond-forgot',
     moduleId: __moduleName,
     templateUrl: '/app/forgot/forgot.component.html',
-    providers: [UserService],
-    pipes: [TranslatePipe]
+    providers: [UserService]
 })
 
 export class ForgotComponent {
@@ -25,7 +23,7 @@ export class ForgotComponent {
   constructor (private _userService: UserService, private _route: ActivatedRoute) {}
 
   ngOnInit() {
-      
+
       this._route.params.subscribe(params => {
         this.id = params['id'];
       });

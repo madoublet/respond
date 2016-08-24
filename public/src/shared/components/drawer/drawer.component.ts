@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SiteService} from '../../../shared/services/site.service';
-import {AppService} from '../../../shared/services/app.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { SiteService } from '../../../shared/services/site.service';
+import { AppService } from '../../../shared/services/app.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -12,8 +11,7 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/drawer/drawer.component.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [SiteService, AppService],
-    pipes: [TranslatePipe]
+    providers: [SiteService, AppService]
 })
 
 export class DrawerComponent {

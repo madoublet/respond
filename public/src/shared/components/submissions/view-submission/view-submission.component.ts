@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {SubmissionService} from '../../../../shared/services/submission.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslatePipe } from 'ng2-translate/ng2-translate';
+import { SubmissionService } from '../../../../shared/services/submission.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +9,7 @@ declare var toast: any;
     selector: 'respond-view-submission',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/submissions/view-submission/view-submission.component.html',
-    providers: [SubmissionService],
-    pipes: [TranslatePipe]
+    providers: [SubmissionService]
 })
 
 export class ViewSubmissionComponent {

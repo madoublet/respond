@@ -8,8 +8,7 @@ declare var __moduleName: string;
     selector: 'respond-add-menu',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/menus/add-menu/add-menu.component.html',
-    providers: [MenuService],
-    pipes: []
+    providers: [MenuService]
 })
 
 export class AddMenuComponent {

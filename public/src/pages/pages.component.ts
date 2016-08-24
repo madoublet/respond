@@ -5,7 +5,6 @@ import { AddPageComponent } from '../shared/components/pages/add-page/add-page.c
 import { PageSettingsComponent } from '../shared/components/pages/page-settings/page-settings.component';
 import { RemovePageComponent } from '../shared/components/pages/remove-page/remove-page.component';
 import { DrawerComponent } from '../shared/components/drawer/drawer.component';
-import { TimeAgoPipe } from '../shared/pipes/time-ago.pipe';
 
 declare var toast: any;
 declare var __moduleName: string;
@@ -15,8 +14,7 @@ declare var __moduleName: string;
     moduleId: __moduleName,
     templateUrl: '/app/pages/pages.component.html',
     providers: [PageService],
-    directives: [AddPageComponent, PageSettingsComponent, RemovePageComponent, DrawerComponent],
-    pipes: [TimeAgoPipe]
+    directives: [AddPageComponent, PageSettingsComponent, RemovePageComponent, DrawerComponent]
 })
 
 export class PagesComponent {
@@ -55,11 +53,11 @@ export class PagesComponent {
    * Updates the list
    */
   list() {
-  
+
     this.reset();
     this._pageService.list()
                      .subscribe(
-                       data => { console.log(data); this.pages = data; },
+                       data => { this.pages = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
@@ -135,7 +133,7 @@ export class PagesComponent {
    * handles error
    */
   failure (obj) {
-  
+
     console.log(obj);
 
     toast.show('failure');

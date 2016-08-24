@@ -9,8 +9,7 @@ declare var __moduleName: string;
     selector: 'respond-add-page',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/pages/add-page/add-page.component.html',
-    providers: [PageService, RouteService],
-    pipes: []
+    providers: [PageService, RouteService]
 })
 
 export class AddPageComponent {

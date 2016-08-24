@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {FormFieldService} from '../../../../shared/services/form-field.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormFieldService } from '../../../../shared/services/form-field.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-remove-form-field',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/forms/remove-form-field/remove-form-field.component.html',
-    providers: [FormFieldService],
-    pipes: [TranslatePipe]
+    providers: [FormFieldService]
 })
 
 export class RemoveFormFieldComponent {

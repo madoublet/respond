@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {FileService} from '../../../../shared/services/file.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FileService } from '../../../../shared/services/file.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-remove-file',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/files/remove-file/remove-file.component.html',
-    providers: [FileService],
-    pipes: [TranslatePipe]
+    providers: [FileService]
 })
 
 export class RemoveFileComponent {

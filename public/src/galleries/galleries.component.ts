@@ -1,15 +1,14 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {GalleryService} from '../shared/services/gallery.service';
-import {GalleryImageService} from '../shared/services/gallery-image.service';
-import {SelectFileComponent} from '../shared/components/files/select-file/select-file.component';
-import {AddGalleryComponent} from '../shared/components/galleries/add-gallery/add-gallery.component';
-import {EditGalleryComponent} from '../shared/components/galleries/edit-gallery/edit-gallery.component';
-import {RemoveGalleryComponent} from '../shared/components/galleries/remove-gallery/remove-gallery.component';
-import {EditCaptionComponent} from '../shared/components/galleries/edit-caption/edit-caption.component';
-import {RemoveGalleryImageComponent} from '../shared/components/galleries/remove-gallery-image/remove-gallery-image.component';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { GalleryService } from '../shared/services/gallery.service';
+import { GalleryImageService } from '../shared/services/gallery-image.service';
+import { SelectFileComponent } from '../shared/components/files/select-file/select-file.component';
+import { AddGalleryComponent } from '../shared/components/galleries/add-gallery/add-gallery.component';
+import { EditGalleryComponent } from '../shared/components/galleries/edit-gallery/edit-gallery.component';
+import { RemoveGalleryComponent } from '../shared/components/galleries/remove-gallery/remove-gallery.component';
+import { EditCaptionComponent } from '../shared/components/galleries/edit-caption/edit-caption.component';
+import { RemoveGalleryImageComponent } from '../shared/components/galleries/remove-gallery-image/remove-gallery-image.component';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -19,8 +18,7 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/galleries/galleries.component.html',
     providers: [GalleryService, GalleryImageService],
-    directives: [SelectFileComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent, DrawerComponent],
-    pipes: [TranslatePipe]
+    directives: [SelectFileComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent, DrawerComponent]
 })
 
 export class GalleriesComponent {

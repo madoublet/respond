@@ -1,7 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {FileService} from '../../../../shared/services/file.service';
-import {DropzoneComponent} from '../../../../shared/components/dropzone/dropzone.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FileService } from '../../../../shared/services/file.service';
+import { DropzoneComponent } from '../../../../shared/components/dropzone/dropzone.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -11,8 +10,7 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/files/select-file/select-file.component.html',
     providers: [FileService],
-    directives: [DropzoneComponent],
-    pipes: [TranslatePipe]
+    directives: [DropzoneComponent]
 })
 
 export class SelectFileComponent {

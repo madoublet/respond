@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {GalleryService} from '../../../../shared/services/gallery.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GalleryService } from '../../../../shared/services/gallery.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-edit-gallery',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/galleries/edit-gallery/edit-gallery.component.html',
-    providers: [GalleryService],
-    pipes: [TranslatePipe]
+    providers: [GalleryService]
 })
 
 export class EditGalleryComponent {

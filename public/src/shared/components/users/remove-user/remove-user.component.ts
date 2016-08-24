@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UserService} from '../../../../shared/services/user.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserService } from '../../../../shared/services/user.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-remove-user',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/users/remove-user/remove-user.component.html',
-    providers: [UserService],
-    pipes: [TranslatePipe]
+    providers: [UserService]
 })
 
 export class RemoveUserComponent {

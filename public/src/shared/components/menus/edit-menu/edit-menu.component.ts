@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {MenuService} from '../../../../shared/services/menu.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MenuService } from '../../../../shared/services/menu.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-edit-menu',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/menus/edit-menu/edit-menu.component.html',
-    providers: [MenuService],
-    pipes: [TranslatePipe]
+    providers: [MenuService]
 })
 
 export class EditMenuComponent {

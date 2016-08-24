@@ -1,11 +1,10 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import {UserService} from '../shared/services/user.service';
-import {AddUserComponent} from '../shared/components/users/add-user/add-user.component';
-import {EditUserComponent} from '../shared/components/users/edit-user/edit-user.component';
-import {RemoveUserComponent} from '../shared/components/users/remove-user/remove-user.component';
-import {DrawerComponent} from '../shared/components/drawer/drawer.component';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
+import { AddUserComponent } from '../shared/components/users/add-user/add-user.component';
+import { EditUserComponent } from '../shared/components/users/edit-user/edit-user.component';
+import { RemoveUserComponent } from '../shared/components/users/remove-user/remove-user.component';
+import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -15,8 +14,7 @@ declare var toast: any;
     moduleId: __moduleName,
     templateUrl: '/app/users/users.component.html',
     providers: [UserService],
-    directives: [AddUserComponent, EditUserComponent, RemoveUserComponent, DrawerComponent],
-    pipes: [TranslatePipe]
+    directives: [AddUserComponent, EditUserComponent, RemoveUserComponent, DrawerComponent]
 })
 
 export class UsersComponent {

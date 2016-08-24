@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ElementRef} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ElementRef } from '@angular/core';
 
 declare var Dropzone: any;
 

@@ -16,8 +16,7 @@ declare var toast: any;
     selector: 'respond-menus',
     templateUrl: '/app/menus/menus.component.html',
     providers: [MenuService, MenuItemService],
-    directives: [AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent, DrawerComponent],
-    pipes: []
+    directives: [AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent, DrawerComponent]
 })
 
 export class MenusComponent {
