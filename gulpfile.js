@@ -56,7 +56,6 @@ gulp.task('copy-libs', function() {
 
   // copy folders
   var libs = [
-      'node_modules/angular2-jwt/angular2-jwt.js',
       'node_modules/rxjs/**/*',
       'node_modules/angular2-in-memory-web-api/**/*',
       'node_modules/@angular/**/*',

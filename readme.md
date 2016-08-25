@@ -11,6 +11,8 @@ Status: Beta 4
 - Table
 - Fix paragraph bug
 - Remove private directory when site is created
+- Duplicate block
+- CSS settings
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
