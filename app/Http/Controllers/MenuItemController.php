@@ -150,6 +150,12 @@ class MenuItemController extends Controller
     $menu = Menu::getById($menuId, $siteId);
 
     if($menu != NULL) {
+    
+      // strip .html
+      foreach($items as &$item) {
+        $item['url'] = str_replace('.html', '', $item['url']);
+      }
+    
       $menu->items = $items;
       $menu->save($siteId);
 

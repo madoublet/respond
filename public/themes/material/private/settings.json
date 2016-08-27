@@ -12,6 +12,10 @@
         "value": ".mdl-grid"
     },
     {
+        "id": "framework",
+        "value": "mdl"
+    },
+    {
         "id": "grid",
         "value": [
           {

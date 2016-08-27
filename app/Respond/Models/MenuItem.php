@@ -43,6 +43,16 @@ class MenuItem {
       $json = json_decode(file_get_contents($file), true);
       
       $arr = $json['items'];
+      
+      // append .html for non-friendly URLs
+      if(env('FRIENDLY_URLS') === false) {
+  
+        foreach($arr as &$item) {
+          $item['url'] = $item['url'].'.html';
+          $item['url'] = str_replace('.html.html', '.html', $item['url']);
+        }
+  
+      }
     }
 
     return $arr;

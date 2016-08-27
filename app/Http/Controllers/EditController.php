@@ -64,7 +64,14 @@ class EditController extends Controller
               $editable = Setting::getById('editable', $siteId);
               $blocks = Setting::getById('blocks', $siteId);
               $grid = Setting::getById('grid', $siteId);
-
+              $framework = Setting::getById('framework', $siteId);
+              
+              
+              // framework
+              if($framework === NULL) {
+                $framework = 'bootstrap';
+              }
+              
               // defaults
               if($grid === NULL) {
                 $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-12\" hashedit-sortable></div></div>"}]';
@@ -226,6 +233,7 @@ hashedit.setup({
   sortable: '$sortable',
   blocks: '$blocks',
   grid: $grid,
+  framework: '$framework',
   login: '/login/$siteId',
   translate: true,
   languagePath: '/i18n/{{language}}.json',
@@ -248,6 +256,7 @@ hashedit.setup({
   sortable: '$sortable',
   blocks: '$blocks',
   grid: $grid,
+  framework: '$framework',
   login: '/login/$siteId',
   path: '/app/libs/hashedit/',
   stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css'],
