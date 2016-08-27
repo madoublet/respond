@@ -148,9 +148,14 @@ class Publish
 
         // location where twig should look for templates (local to site, then global)
         $template_dirs = array(
-          app()->basePath().'/public/sites/'.$site->id.'/plugins',
-          app()->basePath().'/resources/plugins'
+          app()->basePath().'/public/sites/'.$site->id.'/plugins'
         );
+
+        $global_plugin_dir = app()->basePath().'/resources/plugins';
+
+        if(file_exists($global_plugin_dir)) {
+          array_push($template_dirs, $global_plugin_dir);
+        }
 
         // setup twig
         $loader = new \Twig_Loader_Filesystem($template_dirs);
