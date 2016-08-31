@@ -111,8 +111,8 @@ class UserController extends Controller
 
         $user->token = uniqid();
 
-        // save
-        $site->saveUser($user);
+        // save user        
+        $user->save($site->id);
 
         // send email
         $to = $user->email;
