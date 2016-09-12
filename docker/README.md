@@ -15,8 +15,8 @@ $ docker build -t respond .
 ### Pulling from DockerHub
 
 ```bash
-$ docker pull neoalienson/respond6
-$ docker tag neoalienson/respond6 respond
+$ docker pull neoalienson/respond
+$ docker tag neoalienson/respond respond
 ```
 
 ## Starting a container from the docker image
@@ -35,10 +35,8 @@ Please check [data volumes](https://docs.docker.com/engine/userguide/containers/
 ``` bash
 $ export DATA_DIR=${HOME}/respond-data
 $ mkdir -p ${DATA_DIR}/sites 
-$ mkdir -p ${DATA_DIR}/resources 
 $ docker run --name=respond -p 80:80 \
 -v ${DATA_DIR}/sites:/var/www/public/sites:Z \
--v ${DATA_DIR}/resources:/var/www/resources/:Z \
 respond
 ```
 
