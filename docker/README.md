@@ -2,8 +2,8 @@
 
 # Respond CMS Docker Image
 
-- latest ([docker/latest/Dockerfile](docker/latest/Dockerfile)), master branch
-- rc1 ([docker/rc1/Dockerfile](docker/rc1/Dockerfile)), rc1 branch
+- latest ([docker/latest/Dockerfile](../../docker-update/docker/latest/Dockerfile)), master branch
+- rc1 ([docker/rc1/Dockerfile](../../docker-update/docker/rc1/Dockerfile)), rc1 branch
 
 ## The docker image
 You can have the image by either pulling from DockerHub or building it yourself from
