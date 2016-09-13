@@ -1,6 +1,9 @@
-[![](https://imagelayers.io/badge/neoalienson/respond6:latest.svg)](https://imagelayers.io/?images=neoalienson/respond6:latest 'Get your own badge on imagelayers.io')
+[![](https://imagelayers.io/badge/neoalienson/respond:latest.svg)](https://imagelayers.io/?images=neoalienson/respond:latest 'Get your own badge on imagelayers.io')
 
 # Respond CMS Docker Image
+
+- latest ([docker/latest/Dockerfile](docker/latest/Dockerfile)), master branch
+- rc1 ([docker/rc1/Dockerfile](docker/rc1/Dockerfile)), rc1 branch
 
 ## The docker image
 You can have the image by either pulling from DockerHub or building it yourself from
