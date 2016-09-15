@@ -1,4 +1,4 @@
-[![](https://imagelayers.io/badge/neoalienson/respond:latest.svg)](https://imagelayers.io/?images=neoalienson/respond:latest 'Get your own badge on imagelayers.io')
+![Docker Pulls](https://img.shields.io/docker/pulls/neoalienson/respond.svg) ![Docker Pulls](https://img.shields.io/docker/stars/neoalienson/respond.svg) [![](https://imagelayers.io/badge/neoalienson/respond:latest.svg)](https://imagelayers.io/?images=neoalienson/respond:latest 'Get your own badge on imagelayers.io')
 
 # Respond CMS Docker Image
 
