@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';

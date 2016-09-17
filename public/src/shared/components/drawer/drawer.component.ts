@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { Router } from '@angular/router';
 import { SiteService } from '../../../shared/services/site.service';
 import { AppService } from '../../../shared/services/app.service';
 
@@ -10,7 +10,6 @@ declare var toast: any;
     selector: 'respond-drawer',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/drawer/drawer.component.html',
-    directives: [ROUTER_DIRECTIVES],
     providers: [SiteService, AppService]
 })
 

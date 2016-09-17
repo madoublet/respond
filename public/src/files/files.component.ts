@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
-import { RemoveFileComponent } from '../shared/components/files/remove-file/remove-file.component';
-import { DropzoneComponent } from '../shared/components/dropzone/dropzone.component';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -12,8 +9,7 @@ declare var toast: any;
     selector: 'respond-files',
     moduleId: __moduleName,
     templateUrl: '/app/files/files.component.html',
-    providers: [FileService],
-    directives: [RemoveFileComponent, DropzoneComponent, DrawerComponent]
+    providers: [FileService]
 })
 
 

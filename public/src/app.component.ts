@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'respond-app',
-    templateUrl: './app/app.component.html',
-    directives: [ROUTER_DIRECTIVES]
+    templateUrl: './app/app.component.html'
 })
 
 export class AppComponent {

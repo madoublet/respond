@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubmissionService } from '../shared/services/submission.service';
-import { RemoveSubmissionComponent } from '../shared/components/submissions/remove-submission/remove-submission.component';
-import { ViewSubmissionComponent } from '../shared/components/submissions/view-submission/view-submission.component';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -12,8 +9,7 @@ declare var toast: any;
     selector: 'respond-submissions',
     moduleId: __moduleName,
     templateUrl: '/app/submissions/submissions.component.html',
-    providers: [SubmissionService],
-    directives: [RemoveSubmissionComponent, ViewSubmissionComponent, DrawerComponent]
+    providers: [SubmissionService]
 })
 
 export class SubmissionsComponent {

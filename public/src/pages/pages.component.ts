@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from '../shared/services/page.service';
-import { AddPageComponent } from '../shared/components/pages/add-page/add-page.component';
-import { PageSettingsComponent } from '../shared/components/pages/page-settings/page-settings.component';
-import { RemovePageComponent } from '../shared/components/pages/remove-page/remove-page.component';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var toast: any;
 declare var __moduleName: string;
@@ -13,8 +9,7 @@ declare var __moduleName: string;
     selector: 'respond-pages',
     moduleId: __moduleName,
     templateUrl: '/app/pages/pages.component.html',
-    providers: [PageService],
-    directives: [AddPageComponent, PageSettingsComponent, RemovePageComponent, DrawerComponent]
+    providers: [PageService]
 })
 
 export class PagesComponent {

@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
-import { AddUserComponent } from '../shared/components/users/add-user/add-user.component';
-import { EditUserComponent } from '../shared/components/users/edit-user/edit-user.component';
-import { RemoveUserComponent } from '../shared/components/users/remove-user/remove-user.component';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -13,8 +9,7 @@ declare var toast: any;
     selector: 'respond-users',
     moduleId: __moduleName,
     templateUrl: '/app/users/users.component.html',
-    providers: [UserService],
-    directives: [AddUserComponent, EditUserComponent, RemoveUserComponent, DrawerComponent]
+    providers: [UserService]
 })
 
 export class UsersComponent {

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingService } from '../shared/services/setting.service';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
-import { SelectFileComponent } from '../shared/components/files/select-file/select-file.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -11,8 +9,7 @@ declare var toast: any;
     selector: 'respond-settings',
     moduleId: __moduleName,
     templateUrl: '/app/settings/settings.component.html',
-    providers: [SettingService],
-    directives: [SelectFileComponent, DrawerComponent]
+    providers: [SettingService]
 })
 
 export class SettingsComponent {

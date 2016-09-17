@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from '../shared/services/menu.service';
 import { MenuItemService } from '../shared/services/menu-item.service';
-import { AddMenuComponent } from '../shared/components/menus/add-menu/add-menu.component';
-import { EditMenuComponent } from '../shared/components/menus/edit-menu/edit-menu.component';
-import { RemoveMenuComponent } from '../shared/components/menus/remove-menu/remove-menu.component';
-import { AddMenuItemComponent } from '../shared/components/menus/add-menu-item/add-menu-item.component';
-import { EditMenuItemComponent } from '../shared/components/menus/edit-menu-item/edit-menu-item.component';
-import { RemoveMenuItemComponent } from '../shared/components/menus/remove-menu-item/remove-menu-item.component';
-import { DrawerComponent } from '../shared/components/drawer/drawer.component';
 
 declare var toast: any;
 
@@ -16,7 +9,6 @@ declare var toast: any;
     selector: 'respond-menus',
     templateUrl: '/app/menus/menus.component.html',
     providers: [MenuService, MenuItemService],
-    directives: [AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent, DrawerComponent]
 })
 
 export class MenusComponent {

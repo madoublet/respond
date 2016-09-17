@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SafeResourceUrl, DomSanitizationService } from '@angular/platform-browser';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -7,17 +7,14 @@ declare var toast: any;
 @Component({
     selector: 'respond-edit',
     moduleId: __moduleName,
-    templateUrl: '/app/edit/edit.component.html',
-    providers: [],
-    directives: [],
-    pipes: []
+    templateUrl: '/app/edit/edit.component.html'
 })
 
 export class EditComponent {
 
   url: SafeResourceUrl;
 
-  constructor (private _sanitizer: DomSanitizationService) {}
+  constructor (private _sanitizer: DomSanitizer) {}
 
   /**
    * Init pages

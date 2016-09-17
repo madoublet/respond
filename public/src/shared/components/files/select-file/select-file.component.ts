@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FileService } from '../../../../shared/services/file.service';
-import { DropzoneComponent } from '../../../../shared/components/dropzone/dropzone.component';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,8 +8,7 @@ declare var toast: any;
     selector: 'respond-select-file',
     moduleId: __moduleName,
     templateUrl: '/app/shared/components/files/select-file/select-file.component.html',
-    providers: [FileService],
-    directives: [DropzoneComponent]
+    providers: [FileService]
 })
 
 export class SelectFileComponent {
