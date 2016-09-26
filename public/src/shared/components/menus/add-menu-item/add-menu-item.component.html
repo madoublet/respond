@@ -1,39 +1,62 @@
-<div class="app-modal" [class.visible]="visible === true">
+<div class="app-modal app-card" [class.visible]="visible === true" [class.flip]="flip === true">
 
-  <form (ngSubmit)="submit()" #addForm="ngForm">
+  <div class="app-card-front">
 
-    <h2>{{ 'Add Menu Item' | translate }}</h2>
+    <form (ngSubmit)="submit()" #addForm="ngForm">
 
-    <label>{{ 'Text (or HTML)' | translate }}</label>
-    <input id="hashedit-add-menu-item-html" type="text" maxlength="128" placeholder="" required
-      [(ngModel)]="model.html"
-      name="html">
+      <h2>{{ 'Add Menu Item' | translate }}</h2>
 
-    <label>{{ 'CSS Class' | translate }}</label>
-    <input id="hashedit-add-menu-item-css-class" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.cssClass"
-      name="cssClass">
+      <label>{{ 'Text (or HTML)' | translate }}</label>
+      <input id="hashedit-add-menu-item-html" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.html"
+        name="html">
 
-    <label>{{ 'Is Nested?' | translate }}</label>
-    <select id="hashedit-add-menu-item-is-nested"
-      [(ngModel)]="model.isNested"
-      name="isNested">
-      <option value="true">{{ 'Yes' | translate }}</option>
-      <option value="false">{{ 'No' | translate }}</option>
-    </select>
+      <label>{{ 'CSS Class' | translate }}</label>
+      <input id="hashedit-add-menu-item-css-class" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.cssClass"
+        name="cssClass">
 
-    <label>{{ 'URL' | translate }}</label>
-    <select id="hashedit-add-menu-item-url"
-      [(ngModel)]="model.url"
-      name="url">
-      <option *ngFor="let page of pages" [value]="page.url">{{page.url}}</option>
-    </select>
+      <label>{{ 'Is Nested?' | translate }}</label>
+      <select id="hashedit-add-menu-item-is-nested"
+        [(ngModel)]="model.isNested"
+        name="isNested">
+        <option value="true">{{ 'Yes' | translate }}</option>
+        <option value="false">{{ 'No' | translate }}</option>
+      </select>
 
-    <div class="actions">
-      <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Add' | translate }}</button>
+      <label>{{ 'URL' | translate }}</label>
+      <input id="hashedit-add-menu-item-url" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.url"
+        name="url">
+
+      <label>{{ 'Target' | translate }} <a class="toggle-select-url" (click)="flipCard()">{{ 'Select URL' | translate }}</a></label>
+      <input id="hashedit-add-menu-item-target" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.target"
+        name="target">
+
+      <div class="actions">
+        <a (click)="hide()">{{ 'Cancel' | translate }}</a>
+        <button type="submit">{{ 'Add' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
+  <!-- /.app-card-front -->
+
+  <div class="app-card-back">
+
+    <h2>{{ 'Select URL' | translate }}</h2>
+
+    <div id="pages-list" class="app-list">
+      <div class="app-list-item" *ngFor="let page of pages" (click)="setUrl(page)">{{page.url}}</div>
     </div>
 
-  </form>
+    <div class="actions">
+      <a class="primary toggle-select-url" data-i18n>Cancel</a>
+    </div>
+
+  </div>
+  <!-- /.app-card-back -->
 
 </div>

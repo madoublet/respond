@@ -80,7 +80,7 @@ body .app-selector li.selected a {
 }
 
 /* .app-main */
-body .app-main { 
+body .app-main {
   padding-top: 49px;
   margin-top: 0;
 }
@@ -214,7 +214,8 @@ body .app-list {
   }
 
   body .app-list-item .app-list-actions a.primary {
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 14px;
   }
 
   body .app-list-item.selected .app-list-actions {
@@ -227,6 +228,9 @@ body .app-list {
     max-height: 220px;
     overflow: auto;
     margin: 25px 0;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
   }
 
   body .app-modal .app-card .app-list {
@@ -440,6 +444,8 @@ body .app-modal {
   body .app-modal label a {
     float: right;
     cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
   }
 
   body .app-modal input, body .app-modal select {
@@ -637,7 +643,7 @@ body .app-modal {
 
 /* app-card */
 .app-card {
-  height: 500px;
+  height: 500px !important;
 }
 
   #app-link-settings.app-card {
@@ -670,12 +676,12 @@ body .app-modal {
     transform: rotateY(-180deg);
   }
 
-  .app-card[app-card-flipped] .app-card-front {
+  .app-card[app-card-flipped] .app-card-front, .app-card.flip .app-card-front {
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
   }
 
-  .app-card[app-card-flipped] .app-card-back {
+  .app-card[app-card-flipped] .app-card-back, .app-card.flip .app-card-back {
     -webkit-transform: rotateY(0);
     transform: rotateY(0);
   }
@@ -685,7 +691,7 @@ body .app-modal {
     display: none;
   }
 
-  .app-card[app-card-flipped] .app-card-back .app-list {
+  .app-card[app-card-flipped] .app-card-back .app-list, .app-card.flip .app-card-back .app-list {
     display: block;
   }
 

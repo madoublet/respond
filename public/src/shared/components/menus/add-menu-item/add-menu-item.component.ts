@@ -22,8 +22,11 @@ export class AddMenuItemComponent {
     html: '',
     cssClass: '',
     isNested: false,
-    url: ''
+    url: '',
+    target: ''
   };
+
+  flip: boolean = false;
 
   // visible input
   _visible: boolean = false;
@@ -39,7 +42,8 @@ export class AddMenuItemComponent {
       html: '',
       cssClass: '',
       isNested: false,
-      url: ''
+      url: '',
+      target: ''
     };
 
   }
@@ -83,7 +87,7 @@ export class AddMenuItemComponent {
    */
   submit() {
 
-    this._menuItemService.add(this.menu.id, this.model.html, this.model.cssClass, this.model.isNested, this.model.url)
+    this._menuItemService.add(this.menu.id, this.model.html, this.model.cssClass, this.model.isNested, this.model.url, this.model.target)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
@@ -100,6 +104,28 @@ export class AddMenuItemComponent {
 
     this._visible = false;
     this.onAdd.emit(null);
+
+  }
+
+  /**
+   * Handles a successful add
+   */
+  flipCard() {
+
+    // flip
+    this.flip = !this.flip;
+
+  }
+
+  /**
+   * Handles a successful add
+   */
+  setUrl(item) {
+
+    // flip
+    this.flip = !this.flip;
+
+    this.model.url = item.url;
 
   }
 

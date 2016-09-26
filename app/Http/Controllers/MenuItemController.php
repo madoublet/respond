@@ -60,9 +60,13 @@ class MenuItemController extends Controller
     $cssClass = $request->json()->get('cssClass');
     $isNested = $request->json()->get('isNested');
     $url = $request->json()->get('url');
+    $target = $request->json()->get('target');
+
+    // set $isNested to boolean
+    $isNested = boolval($isNested);
 
     // add a menu
-    $item = MenuItem::add($html, $cssClass, $isNested, $url, $menuId, $siteId);
+    $item = MenuItem::add($html, $cssClass, $isNested, $url, $target, $menuId, $siteId);
 
     // get site and user
     $site = Site::getById($siteId);
@@ -97,6 +101,10 @@ class MenuItemController extends Controller
     $cssClass = $request->json()->get('cssClass');
     $isNested = $request->json()->get('isNested');
     $url = $request->json()->get('url');
+    $target = $request->json()->get('target');
+
+    // set $isNested to boolean
+    $isNested = boolval($isNested);
 
     // update order in file
     $menu = Menu::getById($menuId, $siteId);
@@ -110,6 +118,7 @@ class MenuItemController extends Controller
         $menu->items[$index]['cssClass'] = $cssClass;
         $menu->items[$index]['isNested'] = $isNested;
         $menu->items[$index]['url'] = $url;
+        $menu->items[$index]['target'] = $target;
 
       }
 
@@ -150,12 +159,12 @@ class MenuItemController extends Controller
     $menu = Menu::getById($menuId, $siteId);
 
     if($menu != NULL) {
-    
+
       // strip .html
       foreach($items as &$item) {
         $item['url'] = str_replace('.html', '', $item['url']);
       }
-    
+
       $menu->items = $items;
       $menu->save($siteId);
 

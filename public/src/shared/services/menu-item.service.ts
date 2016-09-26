@@ -39,9 +39,9 @@ export class MenuItemService {
    * @param {string} url
    * @return {Observable}
    */
-  add (id: string, html: string, cssClass: string, isNested: boolean, url: string) {
+  add (id: string, html: string, cssClass: string, isNested: boolean, url: string, target: string) {
 
-    let body = JSON.stringify({ id, html, cssClass, isNested, url });
+    let body = JSON.stringify({ id, html, cssClass, isNested, url, target });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -62,9 +62,9 @@ export class MenuItemService {
    * @param {string} url
    * @return {Observable}
    */
-  edit (id: string, index: number, html: string, cssClass: string, isNested: boolean, url: string) {
+  edit (id: string, index: number, html: string, cssClass: string, isNested: boolean, url: string, target: string) {
 
-    let body = JSON.stringify({ id, index, html, cssClass, isNested, url });
+    let body = JSON.stringify({ id, index, html, cssClass, isNested, url, target });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

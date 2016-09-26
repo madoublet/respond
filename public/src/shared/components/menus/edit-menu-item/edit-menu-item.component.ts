@@ -22,8 +22,11 @@ export class EditMenuItemComponent {
     html: '',
     cssClass: '',
     isNested: false,
-    url: ''
+    url: '',
+    target: ''
   };
+
+  flip: boolean = false;
 
   // visible input
   _visible: boolean = false;
@@ -48,6 +51,12 @@ export class EditMenuItemComponent {
   @Input()
   set item(item){
 
+    if(item != null && item != undefined) {
+      if(item.target == null || item.target == undefined) {
+        item.target = '';
+      }
+    }
+
     // set item
     this.model = item;
 
@@ -69,7 +78,8 @@ export class EditMenuItemComponent {
       html: '',
       cssClass: '',
       isNested: false,
-      url: ''
+      url: '',
+      target: ''
     };
 
     // list pages
@@ -94,7 +104,7 @@ export class EditMenuItemComponent {
    */
   submit() {
 
-    this._menuItemService.edit(this.menu.id, this.index, this.model.html, this.model.cssClass, this.model.isNested, this.model.url)
+    this._menuItemService.edit(this.menu.id, this.index, this.model.html, this.model.cssClass, this.model.isNested, this.model.url, this.model.target)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
@@ -111,6 +121,28 @@ export class EditMenuItemComponent {
 
     this._visible = false;
     this.onAdd.emit(null);
+
+  }
+
+  /**
+   * Handles a successful add
+   */
+  flipCard() {
+
+    // flip
+    this.flip = !this.flip;
+
+  }
+
+  /**
+   * Handles a successful add
+   */
+  setUrl(item) {
+
+    // flip
+    this.flip = !this.flip;
+
+    this.model.url = item.url;
 
   }
 
