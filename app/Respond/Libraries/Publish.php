@@ -64,6 +64,26 @@ class Publish
     }
 
     /**
+     * Renders HTML from a given PHP plugin file (#ref: http://bit.ly/2cHYZY1)
+     *
+     * @param {String} $php_file
+     * @param {Array} $render_arr
+     */
+    public static function render($php_file, $render_arr) {
+
+      ob_start();
+
+      extract($render_arr);
+      include $php_file;
+
+      $output = ob_get_contents();
+      ob_end_clean();
+
+      return $output;
+
+    }
+
+    /**
      * Publishes a sitemap for the site
      *
      * @param {Site} $site
@@ -122,9 +142,10 @@ class Publish
      */
     public static function publishPlugins($user, $site)
     {
+
         // get plugins for the site
         $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
-        $exts = array('html');
+        $exts = array('html', 'php');
 
         $files = Utilities::listFiles($dir, $site->id, $exts);
         $plugins = array();
@@ -138,6 +159,7 @@ class Publish
             $html = file_get_contents($path);
             $id = basename($path);
             $id = str_replace('.html', '', $id);
+            $id = str_replace('.php', '', $id);
 
             // push plugin to array
             array_push($plugins, $id);
@@ -151,6 +173,7 @@ class Publish
           app()->basePath().'/public/sites/'.$site->id.'/plugins'
         );
 
+        $local_plugin_dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
         $global_plugin_dir = app()->basePath().'/resources/plugins';
 
         if(file_exists($global_plugin_dir)) {
@@ -259,6 +282,7 @@ class Publish
             // get html from page
             $html = file_get_contents($location);
 
+            /*
             // walk through plugins
             foreach($plugins as $plugin) {
 
@@ -269,17 +293,24 @@ class Publish
               // check for start and end
               if(strpos($html, $start) !== FALSE && strpos($html, $end) !== FALSE) {
 
-                // load the template
-                $template = $twig->loadTemplate($plugin.'.html');
+                $plugin_html = '';
 
-                // render the template
-                $plugin_html = $template->render(array('pages' => $pages));
+                // check for a twig template file
+                if(file_exists($local_plugin_dir.'/'.$plugin.'.html') || file_exists($global_plugin_dir.'/'.$plugin.'.html')) {
+
+                  // load the template
+                  $template = $twig->loadTemplate($plugin.'.html');
+
+                  // render the template
+                  $plugin_html = $template->render(array('pages' => $pages));
+
+                }
 
                 // replace content
                 $html = Utilities::replaceBetween($html, $start, $end, $plugin_html);
               }
 
-            }
+            }*/
 
             // make sure the html is not empty
             if(!empty($html)) {
@@ -294,9 +325,8 @@ class Publish
 
                   if(array_search($el->type, $plugins) !== FALSE) {
 
-                    // load the template
-                    $template = $twig->loadTemplate($el->type.'.html');
 
+                    // render array
                     $render_arr = array('page' => $current_page,
                                           'site' => $current_site,
                                           'pages' => $pages,
@@ -305,8 +335,37 @@ class Publish
                                           'menus' => $menus,
                                           'attributes' => $el->attr);
 
-                    // render the template
-                    $plugin_html = $template->render($render_arr);
+                    $plugin_html = '';
+
+                    // check for .html (twig templates)
+                    if(file_exists($local_plugin_dir.'/'.$el->type.'.html') || file_exists($global_plugin_dir.'/'.$el->type.'.html')) {
+
+                      // load the template
+                      $template = $twig->loadTemplate($el->type.'.html');
+
+                      // render the template
+                      $plugin_html = $template->render($render_arr);
+
+                    }
+                    // check for PHP
+                    else if(file_exists($local_plugin_dir.'/'.$el->type.'.php') || file_exists($global_plugin_dir.'/'.$$el->type.'.php')) {
+
+                      $php_file = NULL;
+
+                      // set PHP file
+                      if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
+                        $php_file = $local_plugin_dir.'/'.$el->type.'.php';
+                      }
+                      else if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
+                        $php_file = $global_plugin_dir.'/'.$el->type.'.php';
+                      }
+
+                      // render PHP file
+                      if($php_file != NULL) {
+                        $plugin_html = Publish::render($php_file, $render_arr);
+                      }
+
+                    }
 
                     // set the inner text
                     $el->innertext = $plugin_html;
