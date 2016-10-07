@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
+import { AppService } from '../shared/services/app.service';
 
 declare var __moduleName: string;
 declare var toast: any;
@@ -9,7 +10,7 @@ declare var toast: any;
     selector: 'respond-reset',
     moduleId: __moduleName,
     templateUrl: '/app/reset/reset.component.html',
-    providers: [UserService]
+    providers: [UserService, AppService]
 })
 
 export class ResetComponent {
@@ -18,16 +19,41 @@ export class ResetComponent {
   id;
   token;
   errorMessage;
+  logoUrl;
 
-  constructor (private _userService: UserService, private _route: ActivatedRoute) {}
+  constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute) {}
 
   ngOnInit() {
+      this.logoUrl = '';
+
       this._route.params.subscribe(params => {
         this.id = params['id'];
         this.token = params['token'];
       });
+
+      // retrieve settings
+      this.settings();
   }
 
+  /**
+   * Get settings
+   */
+  settings() {
+
+    // list themes in the app
+    this._appService.retrieveSettings()
+                     .subscribe(
+                       data => {
+                         this.logoUrl = data.logoUrl;
+                       },
+                       error =>  { this.failure(<any>error); }
+                      );
+
+  }
+
+  /**
+   * Reset the password
+   */
   reset(event, password, retype){
 
       event.preventDefault();

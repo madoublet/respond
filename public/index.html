@@ -5,7 +5,7 @@
     <meta name="theme-color" content="#00ADE3">
 
     <base href="/">
-    
+
     <link href="app/shared/resources/icon.png" rel="icon">
     <meta content="#00ADE3" name="msapplication-TileColor">
     <meta content="#00ADE3" name="msapplication-TileImage">
@@ -14,6 +14,7 @@
     <!-- css -->
     <link rel="stylesheet" href="app/shared/resources/reset.css">
     <link rel="stylesheet" href="app/shared/resources/app.css">
+    <link rel="stylesheet" href="api/app/css">
 
     <!-- font -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -30,7 +31,7 @@
         width: 40px;
         height: 40px;
         margin: 100px auto;
-        background-color: #00ADE3;
+        background-color: #888;
 
         border-radius: 100%;
         -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -69,7 +70,7 @@
 
     </respond-app>
   </body>
-  
+
    <!-- load libs -->
     <script src="app/libs/zone.js"></script>
     <script src="app/libs/Reflect.js"></script>
@@ -80,7 +81,7 @@
     <script>
       System.import('app').catch(function(err){ console.error(err);  });
     </script> -->
-    
+
     <!-- build (prod)   -->
     <script src="app/bundle.js"></script>
 

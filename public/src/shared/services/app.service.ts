@@ -12,6 +12,8 @@ export class AppService {
   private _themesListUrl = 'api/themes/list';
   private _languagesListUrl = 'api/languages/list';
 
+  // cache the settings
+  private _settings;
 
   /**
    * Retrieve settings for the application

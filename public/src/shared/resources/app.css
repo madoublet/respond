@@ -1168,8 +1168,8 @@ body .dropzone .dz-message {
       background-color: rgba(255,255,255,.2);
     }
 
-    .app-drawer li:hover{
-      background-color: #0690BA;
+    .app-drawer li:hover {
+      background-color: rgba(255,255,255,.2);
     }
 
   .app-more {
@@ -1190,7 +1190,7 @@ body .dropzone .dz-message {
 
     .app-menu .app-add, .app-menu .app-overflow {
       background-color: #fff;
-      color: #00ADE3 !important;
+      color: #00ADE3;
       box-shadow: none;
     }
 

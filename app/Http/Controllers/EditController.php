@@ -236,6 +236,7 @@ hashedit.setup({
   framework: '$framework',
   login: '/login/$siteId',
   translate: true,
+  stylesheet: ['/dev/hashedit/css/hashedit.css', '/api/editor/css'],
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH'
@@ -259,7 +260,7 @@ hashedit.setup({
   framework: '$framework',
   login: '/login/$siteId',
   path: '/app/libs/hashedit/',
-  stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css'],
+  stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css', '/api/editor/css'],
   translate: true,
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',

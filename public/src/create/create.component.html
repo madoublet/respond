@@ -1,7 +1,7 @@
-<div class="logo"><img src="/app/shared/resources/respond-logo.png"></div>
+<div class="logo"><img src="{{ logoUrl }}"></div>
 
  <div class="app-slideshow">
- 
+
   <div class="app-slideshow-item" *ngFor="let theme of themes" [class.selected]="theme === selectedTheme">
 
     <div class="app-slideshow-container">
@@ -20,9 +20,9 @@
 
   </div>
   <!-- /.app-slideshow -->
-  
+
 </div>
-  
+
 <div class="app-theme-list">
 
   <h3>{{ 'All Themes' | translate }}</h3>

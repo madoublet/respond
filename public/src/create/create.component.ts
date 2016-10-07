@@ -20,6 +20,7 @@ export class CreateComponent {
   selectedTheme;
   selectedThemeIndex;
   hasPasscode;
+  logoUrl;
   model;
   site;
 
@@ -36,6 +37,7 @@ export class CreateComponent {
     this.selectedTheme = null;
     this.selectedThemeIndex = 0;
     this.hasPasscode = true;
+    this.logoUrl = '';
 
     // set model
     this.model = {
@@ -78,9 +80,12 @@ export class CreateComponent {
                      .subscribe(
                        data => {
                          this.hasPasscode = data.hasPasscode;
+                         this.logoUrl = data.logoUrl;
                        },
                        error =>  { this.failure(<any>error); }
                       );
+
+
   }
 
   /**

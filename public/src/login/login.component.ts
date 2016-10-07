@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { TranslateService } from 'ng2-translate/ng2-translate';
+import { AppService } from '../shared/services/app.service';
 
 declare var toast: any;
 
 @Component({
     selector: 'respond-login',
     templateUrl: '/app/login/login.component.html',
-    providers: [UserService]
+    providers: [UserService, AppService]
 })
 
 export class LoginComponent {
@@ -16,15 +17,37 @@ export class LoginComponent {
   data;
   id;
   errorMessage;
+  logoUrl;
 
-  constructor (private _userService: UserService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
+  constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
 
   ngOnInit() {
+
+      this.logoUrl = '';
 
       this._route.params.subscribe(params => {
         this.id = params['id'];
         localStorage.setItem('respond.siteId', this.id);
       });
+
+      // retrieve settings
+      this.settings();
+
+  }
+
+  /**
+   * Get settings
+   */
+  settings() {
+
+    // list themes in the app
+    this._appService.retrieveSettings()
+                     .subscribe(
+                       data => {
+                         this.logoUrl = data.logoUrl;
+                       },
+                       error =>  { this.failure(<any>error); }
+                      );
 
   }
 
@@ -98,5 +121,6 @@ export class LoginComponent {
     toast.show('failure');
 
   }
+
 
 }

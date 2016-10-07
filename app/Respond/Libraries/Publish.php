@@ -43,24 +43,6 @@ class Publish
         // copy the directory
         Utilities::copyDirectory($src, $dest);
 
-        /*
-
-        echo('remove settings and plugins');
-
-        // remove settings and plugins
-        if(file_exists($dest.'/private/plugins.js')) {
-          unlink($dest.'/private/plugins.js');
-        }
-
-        if(file_exists($dest.'/private/settings.json')) {
-          unlink($dest.'/private/settings.json');
-        }
-
-        // remove the directory
-        if(file_exists($dest.'/private')) {
-          rmdir($dest.'/private');
-        }*/
-
     }
 
     /**
@@ -281,36 +263,6 @@ class Publish
 
             // get html from page
             $html = file_get_contents($location);
-
-            /*
-            // walk through plugins
-            foreach($plugins as $plugin) {
-
-              // insert into respond-plugin comments
-              $start = '<!-- respond-plugin:'.$plugin.' -->';
-              $end = '<!-- /respond-plugin:'.$plugin.' -->';
-
-              // check for start and end
-              if(strpos($html, $start) !== FALSE && strpos($html, $end) !== FALSE) {
-
-                $plugin_html = '';
-
-                // check for a twig template file
-                if(file_exists($local_plugin_dir.'/'.$plugin.'.html') || file_exists($global_plugin_dir.'/'.$plugin.'.html')) {
-
-                  // load the template
-                  $template = $twig->loadTemplate($plugin.'.html');
-
-                  // render the template
-                  $plugin_html = $template->render(array('pages' => $pages));
-
-                }
-
-                // replace content
-                $html = Utilities::replaceBetween($html, $start, $end, $plugin_html);
-              }
-
-            }*/
 
             // make sure the html is not empty
             if(!empty($html)) {
