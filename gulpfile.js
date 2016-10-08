@@ -70,9 +70,7 @@ gulp.task('copy-libs', function() {
 // copy js
 gulp.task('copy-files', function() {
 
-  return gulp.src([
-      'node_modules/angular2-jwt/angular2-jwt.js'
-    ])
+  return gulp.src([])
     .pipe(gulp.dest('public/dev/libs/'));
 });
 
@@ -168,7 +166,7 @@ gulp.task('bundle', function() {
 
 
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-files', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
+gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
 
 // dev-build
 gulp.task('dev-build', gulp.series(['copy-static', 'ts']));
