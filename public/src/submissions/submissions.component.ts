@@ -8,7 +8,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-submissions',
     moduleId: __moduleName,
-    templateUrl: '/app/submissions/submissions.component.html',
+    templateUrl: '/submissions/submissions.component.html',
     providers: [SubmissionService]
 })
 

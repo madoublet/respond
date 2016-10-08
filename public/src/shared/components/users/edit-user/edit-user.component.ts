@@ -8,7 +8,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-edit-user',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/users/edit-user/edit-user.component.html',
+    templateUrl: '/shared/components/users/edit-user/edit-user.component.html',
     providers: [UserService, AppService]
 })
 

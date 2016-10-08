@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-select-file',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/files/select-file/select-file.component.html',
+    templateUrl: '/shared/components/files/select-file/select-file.component.html',
     providers: [FileService]
 })
 

@@ -7,7 +7,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-menus',
-    templateUrl: '/app/menus/menus.component.html',
+    templateUrl: '/menus/menus.component.html',
     providers: [MenuService, MenuItemService],
 })
 

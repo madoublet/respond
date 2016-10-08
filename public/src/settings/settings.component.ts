@@ -8,7 +8,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-settings',
     moduleId: __moduleName,
-    templateUrl: '/app/settings/settings.component.html',
+    templateUrl: '/settings/settings.component.html',
     providers: [SettingService]
 })
 

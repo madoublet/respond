@@ -8,7 +8,7 @@ declare var __moduleName: string;
 @Component({
     selector: 'respond-page-settings',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/pages/page-settings/page-settings.component.html',
+    templateUrl: '/shared/components/pages/page-settings/page-settings.component.html',
     providers: [PageService, RouteService]
 })
 

@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-edit',
     moduleId: __moduleName,
-    templateUrl: '/app/edit/edit.component.html'
+    templateUrl: '/edit/edit.component.html'
 })
 
 export class EditComponent {

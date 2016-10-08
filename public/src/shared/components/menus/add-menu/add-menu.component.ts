@@ -7,7 +7,7 @@ declare var __moduleName: string;
 @Component({
     selector: 'respond-add-menu',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/menus/add-menu/add-menu.component.html',
+    templateUrl: '/shared/components/menus/add-menu/add-menu.component.html',
     providers: [MenuService]
 })
 

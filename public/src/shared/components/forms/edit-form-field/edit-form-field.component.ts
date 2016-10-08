@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-edit-form-field',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/forms/edit-form-field/edit-form-field.component.html',
+    templateUrl: '/shared/components/forms/edit-form-field/edit-form-field.component.html',
     providers: [FormFieldService]
 })
 

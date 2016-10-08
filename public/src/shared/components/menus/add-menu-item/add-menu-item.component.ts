@@ -8,7 +8,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-add-menu-item',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/menus/add-menu-item/add-menu-item.component.html',
+    templateUrl: '/shared/components/menus/add-menu-item/add-menu-item.component.html',
     providers: [MenuItemService, PageService]
 })
 

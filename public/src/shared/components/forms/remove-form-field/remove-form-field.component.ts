@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-remove-form-field',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/forms/remove-form-field/remove-form-field.component.html',
+    templateUrl: '/shared/components/forms/remove-form-field/remove-form-field.component.html',
     providers: [FormFieldService]
 })
 

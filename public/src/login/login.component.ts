@@ -8,7 +8,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-login',
-    templateUrl: '/app/login/login.component.html',
+    templateUrl: '/login/login.component.html',
     providers: [UserService, AppService]
 })
 

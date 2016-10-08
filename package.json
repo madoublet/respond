@@ -32,6 +32,7 @@
     "concurrently": "^2.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "^2.6.0",
+    "gulp-inline-ng2-template": "^3.0.1",
     "gulp-minify": "0.0.12",
     "gulp-tsc": "^1.2.0",
     "gulp-typescript": "^2.13.6",

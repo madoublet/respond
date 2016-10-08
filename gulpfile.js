@@ -5,6 +5,7 @@ const ts = require('gulp-typescript');
 const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
+const  inlineNg2Template = require('gulp-inline-ng2-template');
 
 // copy node modules (no longer needed with new build)
 gulp.task('copy-nm', function() {
@@ -133,6 +134,7 @@ var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('ts', function() {
     return gulp.src(['public/src/**/*.ts'])
+        .pipe(inlineNg2Template({ UseRelativePaths: true, indent: 0, removeLineBreaks: true, base: 'public/src'}))
         .pipe(sourcemaps.init({
             loadMaps: true
         }))

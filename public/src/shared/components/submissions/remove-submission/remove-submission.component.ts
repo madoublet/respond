@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-remove-submission',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/submissions/remove-submission/remove-submission.component.html',
+    templateUrl: '/shared/components/submissions/remove-submission/remove-submission.component.html',
     providers: [SubmissionService]
 })
 

@@ -7,7 +7,7 @@ declare var toast: any;
 @Component({
     selector: 'respond-remove-gallery-image',
     moduleId: __moduleName,
-    templateUrl: '/app/shared/components/galleries/remove-gallery-image/remove-gallery-image.component.html',
+    templateUrl: '/shared/components/galleries/remove-gallery-image/remove-gallery-image.component.html',
     providers: [GalleryImageService]
 })
 

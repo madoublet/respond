@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'respond-app',
-    templateUrl: './app/app.component.html'
+    templateUrl: 'app.component.html'
 })
 
 export class AppComponent {
