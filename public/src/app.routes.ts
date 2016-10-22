@@ -12,6 +12,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SubmissionsComponent } from './submissions/submissions.component';
 import { GalleriesComponent } from './galleries/galleries.component';
 import { EditComponent } from './edit/edit.component';
+import { DeveloperComponent } from './developer/developer.component';
 
 const appRoutes: Routes = [
   {
@@ -65,6 +66,10 @@ const appRoutes: Routes = [
   {
     path: 'edit',
     component: EditComponent
+  },
+  {
+    path: 'developer',
+    component: DeveloperComponent
   },
   {
     path: '',

@@ -3,7 +3,7 @@
 
   <head>
     <title>Contact</title>
-    
+
     <!-- meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,31 +11,33 @@
     <meta name="keywords" content="">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    
+
     <!-- set base -->
     <base href="../">
-    
+
     <!-- icons -->
     <link theme-icon href="resources/icon.png" rel="icon">
     <meta theme-color content="#888" name="msapplication-TileColor">
     <meta theme-color content="#888" name="msapplication-TileImage">
     <link theme-icon href="resources/icon.png" rel="apple-touch-icon">
-    
+
     <!-- font -->
     <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
     <link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
-    
+
     <!-- css -->
-    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="css/libs.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
     <link type="text/css" href="css/site.min.css" rel="stylesheet">
-    
+
     <!-- google maps -->
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  
-  </head>  
+
+  </head>
 
   <body class="content">
-    
+
     <!-- Start Top Bar -->
     <div class="top-bar">
       <div class="top-bar-left">
@@ -52,9 +54,9 @@
       </div>
     </div>
     <!-- /.top-bar -->
-    
+
     <div role="main">
-    
+
       <div class="row">
         <div class="large-12 columns">
           <h1>Contact</h1>
@@ -62,10 +64,10 @@
         </div>
       </div>
       <!-- /.row -->
-      
+
     </div>
     <!-- /role=main -->
-      
+
     <hr>
 
     <div class="row">
@@ -80,11 +82,15 @@
       </div>
     </div>
     <!-- /.row -->
-    
+
   </body>
 
   <!-- js -->
   <script src="js/libs.min.js"></script>
+  <script>
+    $(document).foundation();
+    $('.slick').slick({arrows:false, dots: true});
+  </script>
   <script src="js/plugins.js"></script>
 
 </html>

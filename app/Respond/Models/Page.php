@@ -7,6 +7,11 @@ use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
+use App\Respond\Models\Setting;
+
+// AMP
+use Lullabot\AMP\AMP;
+use Lullabot\AMP\Validate\Scope;
 
 // DOM parser
 use Sunra\PhpSimple\HtmlDomParser;
@@ -30,6 +35,7 @@ class Page {
   public $lastName;
   public $lastModifiedBy;
   public $lastModifiedDate;
+  public $template;
 
   /**
    * Constructs a page from an array of data
@@ -63,6 +69,10 @@ class Page {
     $name = $new_name = str_replace('/', '.', $page->url);
     $fragment = $dest . '/fragments/page/' . $name . '.html';
 
+    // will be configurable in the future
+    $template = 'default';
+
+
     // avoid dupes
     $x = 1;
 
@@ -85,15 +95,36 @@ class Page {
     // get default html for a new page
     if($content == NULL) {
 
-      // get default content
-      $default_content = app()->basePath().'/public/sites/'.$site->id.'/.default.html';
+      // get template
+      $template_file = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$template.'.html';
 
-      if(file_exists($default_content)) {
-        $content = file_get_contents($default_content);
+      // default (if all else fails)
+      $content = '<html><head></head><body><p>You must specify default content in .default.html</p></body></html>';
+
+      if(file_exists($template_file)) {
+
+        // new page content
+        $content = file_get_contents($template_file);
+
       }
-      else {
-        $content = '<html><head></head><body><p>You must specify default content in .default.html</p></body></html>';
+      else { // fall back to the old .default.html file for backwards compatibility
+
+        // get default content
+        $default_content = app()->basePath().'/public/sites/'.$site->id.'/.default.html';
+
+        // get default content
+        if(file_exists($default_content)) {
+          $content = file_get_contents($default_content);
+        }
+
+        // set template to blank
+        $template = '';
+
       }
+
+      // update template
+      $page->template = $template;
+      $data["template"] = $template;
 
       // replace
       $content = str_replace('{{page.title}}', $page->title, $content);
@@ -131,6 +162,8 @@ class Page {
 
         $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
+        $els[0]->setAttribute('data-template', $template);
+
 
       }
 
@@ -149,7 +182,6 @@ class Page {
     // set text
     $page->text = $text;
     $data['text'] = $text;
-    $data['html'] = $fragment_content;
 
     // get base path for the site
     $json_file = app()->basePath().'/public/sites/'.$site->id.'/data/pages.json';
@@ -219,13 +251,6 @@ class Page {
           $els[0]->innertext = $change['html'];
         }
 
-
-
-      }
-
-      // remove data-ref attributes
-      foreach($dom->find('[data-ref]') as $el) {
-        $el->removeAttr('data-ref');
       }
 
       // update the page
@@ -317,7 +342,7 @@ class Page {
     if(!empty($html)) {
 
       // set parser
-    $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+      $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
       // set title
       $els = $dom->find('title');
@@ -371,7 +396,7 @@ class Page {
         }
         else {
           $thumb = str_replace('files/', 'files/thumbs/', $photo);
-          
+
           // handle if the thumb is already a thumb (for galleries)
           $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
         }
@@ -386,6 +411,10 @@ class Page {
 
         $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
+
+        if(isset($this->template)) {
+          $els[0]->setAttribute('data-template', $this->template);
+        }
 
       }
 
@@ -420,6 +449,11 @@ class Page {
         // update page
         if($page['url'] == $this->url) {
 
+          $template = "";
+          if(isset($this->template)) {
+            $template = $this->template;
+          }
+
           $page['title'] = $this->title;
           $page['description'] = $this->description;
           $page['text'] = $this->text;
@@ -431,6 +465,7 @@ class Page {
           $page['direction'] = $this->direction;
           $page['lastModifiedBy'] = $user->email;
           $page['lastModifiedDate'] = $timestamp;
+          $page['template'] = $template;
 
         }
 
@@ -442,6 +477,65 @@ class Page {
     }
 
   }
+
+  /**
+   * Amplifies a page
+   *
+   * @param {string} $url url of page
+   * @return Response
+   */
+  public static function amplify($site, $user) {
+
+    // get domain from settings
+    $can_amp = Setting::getById('amp', $site->id);
+
+    // get generated domain
+    if($can_amp != NULL) {
+
+      if(strtoupper($can_amp) == "TRUE") {
+
+        // generate amp page
+        $amp_file = app()->basePath() . '/public/sites/' . $site->id . '/' . $this->url . '-amp.html';
+
+        $html = file_get_contents($file);
+
+        if(!empty($html)) {
+
+          // load parser
+          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+          // main content
+          $main_content = '';
+
+          // get main content
+          $els = $dom->find('[role=main]');
+
+          if(isset($els[0])) {
+            $main_content = $els[0]->innertext;
+          }
+
+          // create AMP object
+          $amp = new AMP();
+
+          // load HTML
+          $amp->loadHtml($main_content);
+
+          // convert to AMP HTML
+          $amp_html = $amp->convertToAmpHtml();
+
+          // update file
+          file_put_contents($amp_file, $amp_html);
+
+        }
+
+      }
+
+
+    }
+
+
+  }
+
 
   /**
    * Retrieves page data based on a url
@@ -515,7 +609,7 @@ class Page {
       }
 
     }
-    
+
     // sort by last modified date
     usort($arr, function($a, $b) {
         $ts1 = strtotime($a['lastModifiedDate']);
@@ -573,6 +667,7 @@ class Page {
             array('html'),
             array('plugins/',
                   'components/',
+                  'templates/',
                   'css/',
                   'data/',
                   'files/',
@@ -599,6 +694,7 @@ class Page {
         $photo = '';
         $thumb = '';
         $lastModifiedDate = date('Y-m-d\TH:i:s.Z\Z', time());
+        $template = 'default';
 
         // set full file path
         $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $file;
@@ -621,11 +717,28 @@ class Page {
         // get els
         $els = $dom->find('body');
 
-         // set timestamp in head
+        // get timestamp in head
         if(isset($els[0])) {
           $lastModifiedDate = $els[0]->getAttribute('data-lastmodified');
         }
 
+        // get template in head
+        if(isset($els[0])) {
+
+          // try to get the template attribute
+          if($els[0]->getAttribute('data-template') !== FALSE) {
+            $template = $els[0]->getAttribute('data-template');
+          }
+          else {
+            $template = app()->basePath().'/public/sites/'.$site->id.'/templates/default.html';
+
+            // set template to default
+            if(file_exists($template)) {
+              $template = 'default';
+            }
+
+          }
+        }
 
         // get description
         $els = $dom->find('meta[name=description]');
@@ -705,7 +818,8 @@ class Page {
             'firstName' => $user->firstName,
             'lastName' => $user->lastName,
             'lastModifiedBy' => $user->email,
-            'lastModifiedDate' => $timestamp
+            'lastModifiedDate' => $timestamp,
+            'template' => $template
         );
 
         // push to array

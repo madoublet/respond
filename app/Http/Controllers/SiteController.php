@@ -75,7 +75,32 @@ class SiteController extends Controller
     return response('Ok', 200);
 
   }
-  
+
+  /**
+   * Migrates a R5 site to R6
+   *
+   * @return Response
+   */
+  public function migrate(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    // get user
+    $user = User::getByEmail($email, $siteId);
+
+    // migrate site
+    Publish::migrate($user, $site);
+
+    return response('Ok', 200);
+
+  }
+
   /**
    * Generates a sitemap.xml for the site
    *

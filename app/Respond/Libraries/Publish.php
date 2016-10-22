@@ -18,6 +18,7 @@ use Sunra\PhpSimple\HtmlDomParser;
 // Twig Extensions
 use App\Respond\Extensions\BetterSortTwigExtension;
 
+// Handes common publish tasks
 class Publish
 {
 
@@ -114,6 +115,122 @@ class Publish
       file_put_contents($file, $xml);
 
       return TRUE;
+
+    }
+
+    /**
+     * Migrates a site from R5 to R6
+     *
+     * @param {Site} $site
+     */
+    public static function migrate($user, $site)
+    {
+
+      // get all pages
+      $pages = Page::listAll($user, $site);
+
+      // get html of pages
+      foreach($pages as $page) {
+
+        $url = $page['url'];
+        $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+
+        // get html of page
+        $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $url . '.html';
+
+        if(file_exists($file)) {
+          $html = file_get_contents($file);
+
+          // remove un-used scripts
+          $html = str_replace('<script src="js/respond.site.js"></script>', '', $html);
+          $html = str_replace('<!-- web components -->', '', $html);
+          $html = str_replace('<script src="components/lib/webcomponentsjs/webcomponents-lite.min.js"></script>', '', $html);
+          $html = str_replace('<link rel="import" href="components/respond-build.html">', '', $html);
+
+          // remove compontents
+          $html = str_replace('<respond-languages></respond-languages>', '', $html);
+          $html = str_replace('<respond-cart></respond-cart>', '', $html);
+          $html = str_replace('<respond-search></respond-search>', '', $html);
+
+          // update map
+          $html = str_replace('<respond-map', '<div respond-plugin type="map"', $html);
+          $html = str_replace('</respond-map>', '</div>', $html);
+
+          // update html
+          $html = str_replace('<respond-html', '<div respond-plugin type="html"', $html);
+          $html = str_replace('</respond-html>', '</div>', $html);
+
+          // update video
+          $html = str_replace('<respond-video', '<div respond-plugin type="video"', $html);
+          $html = str_replace('</respond-video>', '</div>', $html);
+
+          // remove toggles
+          $html = str_replace('<respond-cart-toggle></respond-cart-toggle>', '', $html);
+          $html = str_replace('<respond-languages-toggle></respond-languages-toggle>', '', $html);
+
+          // replace search with R6 version
+          $html = str_replace('<respond-search-toggle></respond-search-toggle>', '<a class="search" respond-search><svg xmlns="http://www.w3.org/2000/svg" height="24" viewbox="0 0 24 24" width="24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>', $html);
+
+          // load the DOM parser
+          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+          // remove i18n attributes
+          foreach($dom->find('[data-i18n]') as $el) {
+            $el->{'data-i18n'} = null;
+          }
+
+          // remove nested attributes
+          foreach($dom->find('[data-nested]') as $el) {
+            $el->{'data-nested'} = null;
+          }
+
+          // remove backgroundimage
+          foreach($dom->find('[backgroundimage]') as $el) {
+            $el->{'backgroundimage'} = null;
+          }
+
+          // remove backgroundimage
+          foreach($dom->find('[backgroundstyle]') as $el) {
+            $el->{'backgroundstyle'} = null;
+          }
+
+          // remove containerid
+          foreach($dom->find('[data-containerid]') as $el) {
+            $el->{'data-containerid'} = null;
+          }
+
+          // remove containercssclass
+          foreach($dom->find('[data-containercssclass]') as $el) {
+            $el->{'data-containercssclass'} = null;
+          }
+
+          // update blog
+          foreach($dom->find('[display="list-blog"]') as $el) {
+            $el->outertext = '<div respond-plugin type="recent-posts" class="recent-posts"></div>';
+          }
+
+          // remove page
+          foreach($dom->find('[page]') as $el) {
+            $el->{'page'} = null;
+          }
+
+          // set the nav in the header to the main nav
+          foreach($dom->find('header .nav') as $el) {
+            $el->{'respond-plugin'} = "";
+            $el->{'type'} = "menu";
+            $el->{'menu'} = "primary";
+          }
+
+          // put html back
+          file_put_contents($file, $dom);
+
+        }
+
+
+      }
+
+      // re-publish the plugins
+      Publish::publishPlugins($user, $site);
 
     }
 
@@ -276,7 +393,6 @@ class Publish
                 if(isset($el->type)) {
 
                   if(array_search($el->type, $plugins) !== FALSE) {
-
 
                     // render array
                     $render_arr = array('page' => $current_page,

@@ -1,7 +1,7 @@
 {
   "name": "respondcms",
   "description": "Respond CMS powered by Lumen, Angular 2",
-  "keywords": ["framework", "laravel", "lumen"],
+  "keywords": ["respond", "angular2", "cms", "framework", "laravel", "lumen"],
   "license": "MIT",
   "type": "project",
   "require": {
@@ -12,11 +12,10 @@
     "firebase/php-jwt": "dev-master",
     "phpmailer/phpmailer": "5.2.8",
     "sunra/php-simple-html-dom-parser": "1.5.1",
-    "symfony/yaml": "3.0.3"
+    "symfony/yaml": "3.0.3",
+    "lullabot/amp": "1.0.7"
   },
   "require-dev": {
-    "fzaninotto/faker": "~1.4",
-    "phpunit/phpunit": "~4.0"
   },
   "autoload": {
     "psr-4": {

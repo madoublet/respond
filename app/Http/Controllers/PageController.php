@@ -92,13 +92,13 @@ class PageController extends Controller
 
     // edit the page
     $success = Page::edit($url, $changes, $site, $user);
-    
+
     // show response
     if($success == TRUE) {
-    
+
       // re-publish plugins
       Publish::publishPlugins($user, $site);
-      
+
       // re-publish site map
       Publish::publishSiteMap($user, $site);
 
@@ -163,7 +163,7 @@ class PageController extends Controller
   }
 
   /**
-   * Adds the page and the fragment
+   * Adds the page
    *
    * @return Response
    */
@@ -177,7 +177,7 @@ class PageController extends Controller
     $url = $request->json()->get('url');
     $title = $request->json()->get('title');
     $description = $request->json()->get('description');
-    $timestamp = gmdate('D M d Y H:i:s O', time());
+    $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
 
     // get the site
     $site = Site::getById($id);
@@ -199,7 +199,6 @@ class PageController extends Controller
       'url' => $url,
       'photo' => '',
       'thumb' => '',
-      'layout' => 'content',
       'language' => 'en',
       'direction' => 'ltr',
       'firstName' => $user->firstName,
@@ -210,7 +209,7 @@ class PageController extends Controller
 
     // add a page
     $page = Page::add($data, $site, $user);
-    
+
     // re-publish site map
     Publish::publishSiteMap($user, $site);
 
@@ -240,7 +239,7 @@ class PageController extends Controller
     $page = Page::getByUrl($url, $id);
 
     $page->remove($user, $site);
-    
+
     // re-publish site map
     Publish::publishSiteMap($user, $site);
 

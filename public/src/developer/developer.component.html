@@ -1,0 +1,51 @@
+<menu class="app-menu">
+
+    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
+
+    <h1>{{ 'Developer Options' | translate }}</h1>
+</menu>
+
+<section class="app-main">
+
+  <div id="developer-list" class="app-list">
+    <div class="app-list-item" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
+      <h2><span class="primary">{{ 'Republish Plugins' | translate }}</span></h2>
+      <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="reload()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- plugins -->
+
+    <div class="app-list-item" (click)="setActive('sitemap')" [class.selected]="selectedOption === 'sitemap'">
+      <h2><span class="primary">{{ 'Republish Sitemap' | translate }}</span></h2>
+      <p>{{ 'Republish the sitemap when you make changes outside of the application' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="reload()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- sitemap -->
+
+    <div class="app-list-item" (click)="setActive('amp')" [class.selected]="selectedOption === 'amp'">
+      <h2><span class="primary">{{ 'Create AMP pages' | translate }}</span></h2>
+      <p>{{ 'Generates Google AMP pages for your site.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="amp()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- migrate -->
+
+    <div class="app-list-item" (click)="setActive('migrate')" [class.selected]="selectedOption === 'migrate'">
+      <h2><span class="primary">{{ 'Migrate Respond 5 site' | translate }}</span></h2>
+      <p>{{ 'Updates HTML from Respond 5 so that it consistent with Respond 6' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="migrate()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- migrate -->
+
+  </div>
+
+</section>
+
+<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>

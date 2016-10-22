@@ -16,6 +16,9 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
 import { CreateComponent } from './create/create.component';
 
+// developer
+import { DeveloperComponent } from './developer/developer.component';
+
 // edit
 import { EditComponent } from './edit/edit.component';
 
@@ -80,19 +83,19 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
 
 @NgModule({
     declarations: [
-      AppComponent, 
-      LoginComponent, 
-      ForgotComponent, 
-      ResetComponent, 
+      AppComponent,
+      LoginComponent,
+      ForgotComponent,
+      ResetComponent,
       CreateComponent,
-      DrawerComponent, DropzoneComponent, 
-      EditComponent,
+      DrawerComponent, DropzoneComponent,
+      EditComponent, DeveloperComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,
       MenusComponent, AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent,
       PagesComponent, AddPageComponent, PageSettingsComponent, RemovePageComponent,
-      SettingsComponent, 
+      SettingsComponent,
       SubmissionsComponent, RemoveSubmissionComponent, ViewSubmissionComponent,
       UsersComponent, AddUserComponent, EditUserComponent, RemoveUserComponent,
       TimeAgoPipe],

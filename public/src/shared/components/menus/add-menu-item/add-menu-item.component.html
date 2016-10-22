@@ -24,12 +24,12 @@
         <option value="false">{{ 'No' | translate }}</option>
       </select>
 
-      <label>{{ 'URL' | translate }}</label>
+      <label>{{ 'URL' | translate }} <a class="toggle-select-url" (click)="flipCard()">{{ 'Select URL' | translate }}</a></label>
       <input id="hashedit-add-menu-item-url" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.url"
         name="url">
 
-      <label>{{ 'Target' | translate }} <a class="toggle-select-url" (click)="flipCard()">{{ 'Select URL' | translate }}</a></label>
+      <label>{{ 'Target' | translate }}</label>
       <input id="hashedit-add-menu-item-target" type="text" maxlength="128" placeholder=""
         [(ngModel)]="model.target"
         name="target">

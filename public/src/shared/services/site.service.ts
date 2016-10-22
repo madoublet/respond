@@ -10,6 +10,7 @@ export class SiteService {
   private _createUrl = 'api/sites/create';
   private _reloadUrl = 'api/sites/reload';
   private _sitemapUrl = 'api/sites/sitemap';
+  private _migrateUrl = 'api/sites/migrate';
 
   /**
    * Login to the application
@@ -57,6 +58,21 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._sitemapUrl, options);
+
+  }
+
+  /**
+   * Migrates a R5 site to R6
+   *
+   * @return {Observable}
+   */
+  migrate () {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._migrateUrl, options);
 
   }
 
