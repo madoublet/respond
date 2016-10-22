@@ -512,19 +512,19 @@ class Page {
 
           if(isset($els[0])) {
             $main_content = $els[0]->innertext;
+
+            // create AMP object
+            $amp = new AMP();
+
+            // load HTML
+            $amp->loadHtml($main_content);
+
+            // convert to AMP HTML
+            $amp_html = $amp->convertToAmpHtml();
+
+            // update file
+            file_put_contents($amp_file, $amp_html);
           }
-
-          // create AMP object
-          $amp = new AMP();
-
-          // load HTML
-          $amp->loadHtml($main_content);
-
-          // convert to AMP HTML
-          $amp_html = $amp->convertToAmpHtml();
-
-          // update file
-          file_put_contents($amp_file, $amp_html);
 
         }
 
@@ -755,17 +755,19 @@ class Page {
         }
 
         // get text
+        $text = '';
+
         $els = $dom->find('[role=main]');
 
         if(isset($els[0])) {
           $main_content = $els[0]->innertext;
-        }
 
-        // get the text from the content
-        $text = strip_tags($main_content);
-        $text = preg_replace("/\s+/", " ", $text);
-        $text = trim($text);
-        $text = preg_replace('/[[:^print:]]/', '', $text);
+          // get the text from the content
+          $text = strip_tags($main_content);
+          $text = preg_replace("/\s+/", " ", $text);
+          $text = trim($text);
+          $text = preg_replace('/[[:^print:]]/', '', $text);
+        }
 
         // get photo
         $photos = $dom->find('[role=main] img');
@@ -773,6 +775,7 @@ class Page {
         if(isset($photos[0])) {
           $photo = $photos[0]->src;
         }
+
         $thumb = '';
 
         if ($photo === NULL || $photo === '') {
