@@ -663,5 +663,24 @@ class Utilities
         return substr_replace($str, $replacement, $start, $end - $start);
     }
 
+    /**
+     * Removes all text between two strings
+     *
+     * @param {String} $beginning
+     * @param {String} $end
+     * @param {String} $string
+     */
+    public static function deleteAllBetween($beginning, $end, $string) {
+      $beginningPos = strpos($string, $beginning);
+      $endPos = strpos($string, $end);
+      if ($beginningPos === false || $endPos === false) {
+        return $string;
+      }
+
+      $textToDelete = substr($string, $beginningPos, ($endPos + strlen($end)) - $beginningPos);
+
+      return str_replace($textToDelete, '', $string);
+    }
+
 
 }

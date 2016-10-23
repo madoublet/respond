@@ -21,19 +21,10 @@
       <h2><span class="primary">{{ 'Republish Sitemap' | translate }}</span></h2>
       <p>{{ 'Republish the sitemap when you make changes outside of the application' | translate }}</p>
       <div class="app-list-actions">
-          <a class="primary" (click)="reload()">{{'Execute' | translate }}</a>
+          <a class="primary" (click)="sitemap()">{{'Execute' | translate }}</a>
       </div>
     </div>
     <!-- sitemap -->
-
-    <div class="app-list-item" (click)="setActive('amp')" [class.selected]="selectedOption === 'amp'">
-      <h2><span class="primary">{{ 'Create AMP pages' | translate }}</span></h2>
-      <p>{{ 'Generates Google AMP pages for your site.' | translate }}</p>
-      <div class="app-list-actions">
-          <a class="primary" (click)="amp()">{{'Execute' | translate }}</a>
-      </div>
-    </div>
-    <!-- migrate -->
 
     <div class="app-list-item" (click)="setActive('migrate')" [class.selected]="selectedOption === 'migrate'">
       <h2><span class="primary">{{ 'Migrate Respond 5 site' | translate }}</span></h2>

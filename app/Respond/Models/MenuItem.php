@@ -48,8 +48,35 @@ class MenuItem {
       if(env('FRIENDLY_URLS') === false) {
 
         foreach($arr as &$item) {
-          $item['url'] = $item['url'].'.html';
-          $item['url'] = str_replace('.html.html', '.html', $item['url']);
+
+          $append_html = true;
+          $url = $item['url'];
+
+          if(strpos($url, 'http://') !== false){
+            $append_html = false;
+          }
+
+          if(strpos($url, 'https://') !== false){
+            $append_html = false;
+          }
+
+          if(strpos($url, 'tel:') !== false){
+            $append_html = false;
+          }
+
+          if(strpos($url, 'mailto:') !== false){
+            $append_html = false;
+          }
+
+          if(strpos($url, '#') !== false){
+            $append_html = false;
+          }
+
+          if($append_html === true) {
+            $item['url'] = $item['url'].'.html';
+            $item['url'] = str_replace('.html.html', '.html', $item['url']);
+          }
+
         }
 
       }

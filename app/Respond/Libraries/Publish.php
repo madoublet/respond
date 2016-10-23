@@ -164,12 +164,16 @@ class Publish
           $html = str_replace('<respond-video', '<div respond-plugin type="video"', $html);
           $html = str_replace('</respond-video>', '</div>', $html);
 
+          // update gallery
+          $html = str_replace('<respond-gallery galleryid=', '<div respond-plugin type="gallery" gallery=', $html);
+          $html = str_replace('</respond-gallery>', '</div>', $html);
+
           // remove toggles
           $html = str_replace('<respond-cart-toggle></respond-cart-toggle>', '', $html);
           $html = str_replace('<respond-languages-toggle></respond-languages-toggle>', '', $html);
 
-          // replace search with R6 version
-          $html = str_replace('<respond-search-toggle></respond-search-toggle>', '<a class="search" respond-search><svg xmlns="http://www.w3.org/2000/svg" height="24" viewbox="0 0 24 24" width="24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></a>', $html);
+          // replace search toggle
+          $html = str_replace('<respond-search-toggle></respond-search-toggle>', '', $html);
 
           // load the DOM parser
           $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
@@ -219,6 +223,19 @@ class Publish
             $el->{'respond-plugin'} = "";
             $el->{'type'} = "menu";
             $el->{'menu'} = "primary";
+          }
+
+          // remove absolute links to images
+          foreach($dom->find('img') as $el) {
+            $src = $el->src;
+
+            if(isset($src)) {
+              $pos = strpos($src, 'files/');
+              $new_src = substr($src, $pos, strlen($src));
+
+              $el->src = $new_src;
+            }
+
           }
 
           // put html back

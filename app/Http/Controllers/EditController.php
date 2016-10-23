@@ -41,7 +41,7 @@ class EditController extends Controller
             $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
 
             // add .html for non-friendly URLs
-            if(env('FRIENDLY_URLS') === false) {
+            if(env('FRIENDLY_URLS') === true) {
               $url .= '.html';
             }
 
@@ -65,13 +65,13 @@ class EditController extends Controller
               $blocks = Setting::getById('blocks', $siteId);
               $grid = Setting::getById('grid', $siteId);
               $framework = Setting::getById('framework', $siteId);
-              
-              
+
+
               // framework
               if($framework === NULL) {
                 $framework = 'bootstrap';
               }
-              
+
               // defaults
               if($grid === NULL) {
                 $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-12\" hashedit-sortable></div></div>"}]';
