@@ -83,6 +83,19 @@ export class DeveloperComponent {
   }
 
   /**
+   * Reindex pages
+   */
+  reindex() {
+
+    this._siteService.reindex()
+                     .subscribe(
+                       data => { toast.show('success'); },
+                       error => { toast.show('failure');  }
+                      );
+
+  }
+
+  /**
    * Republish site
    */
   sitemap() {

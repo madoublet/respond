@@ -9,6 +9,7 @@ export class SiteService {
 
   private _createUrl = 'api/sites/create';
   private _reloadUrl = 'api/sites/reload';
+  private _reindexUrl = 'api/sites/reindex';
   private _sitemapUrl = 'api/sites/sitemap';
   private _migrateUrl = 'api/sites/migrate';
 
@@ -43,6 +44,21 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._reloadUrl, options);
+
+  }
+
+  /**
+   * Reindexes pages in the site
+   *
+   * @return {Observable}
+   */
+  reindex () {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._reindexUrl, options);
 
   }
 

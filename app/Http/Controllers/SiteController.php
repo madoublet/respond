@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
+use App\Respond\Models\Page;
 
 use \Illuminate\Http\Request;
 
@@ -52,7 +53,7 @@ class SiteController extends Controller
   }
 
   /**
-   * Reloads system files for sites (e.g. components)
+   * Reloads system files for sites (e.g. plugins)
    *
    * @return Response
    */
@@ -118,6 +119,34 @@ class SiteController extends Controller
 
     // get user
     $user = User::getByEmail($email, $siteId);
+
+    // publish site map
+    Publish::publishSiteMap($user, $site);
+
+    return response('Ok', 200);
+
+  }
+
+  /**
+   * Re-index pages (updates JSON, republishes sitemap)
+   *
+   * @return Response
+   */
+  public function reindexPages(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    // get user
+    $user = User::getByEmail($email, $siteId);
+
+    // refresh JSON
+    Page::refreshJSON($user, $site);
 
     // publish site map
     Publish::publishSiteMap($user, $site);

@@ -9,7 +9,7 @@
 
   <div id="developer-list" class="app-list">
     <div class="app-list-item" (click)="setActive('plugins')" [class.selected]="selectedOption === 'plugins'">
-      <h2><span class="primary">{{ 'Republish Plugins' | translate }}</span></h2>
+      <h2><span class="primary">{{ 'Re-publish Plugins' | translate }}</span></h2>
       <p>{{ 'When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.' | translate }}</p>
       <div class="app-list-actions">
           <a class="primary" (click)="reload()">{{'Execute' | translate }}</a>
@@ -17,8 +17,17 @@
     </div>
     <!-- plugins -->
 
+    <div class="app-list-item" (click)="setActive('reindex')" [class.selected]="selectedOption === 'reindex'">
+      <h2><span class="primary">{{ 'Re-index Pages' | translate }}</span></h2>
+      <p>{{ 'Republish the sitemap and pages index.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="reindex()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- sitemap -->
+
     <div class="app-list-item" (click)="setActive('sitemap')" [class.selected]="selectedOption === 'sitemap'">
-      <h2><span class="primary">{{ 'Republish Sitemap' | translate }}</span></h2>
+      <h2><span class="primary">{{ 'Re-publish Sitemap' | translate }}</span></h2>
       <p>{{ 'Republish the sitemap when you make changes outside of the application' | translate }}</p>
       <div class="app-list-actions">
           <a class="primary" (click)="sitemap()">{{'Execute' | translate }}</a>
