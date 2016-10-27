@@ -29,6 +29,7 @@ class Page {
   public $url;
   public $photo;
   public $thumb;
+  public $location;
   public $language;
   public $direction;
   public $firstName;
@@ -47,6 +48,11 @@ class Page {
       if(property_exists(__CLASS__,$key)) {
         $this->$key = $val;
       }
+    }
+
+    // fallback
+    if(isset($this->location) === false) {
+      $this->location = '';
     }
   }
 
@@ -71,7 +77,6 @@ class Page {
 
     // will be configurable in the future
     $template = 'default';
-
 
     // avoid dupes
     $x = 1;
@@ -403,6 +408,20 @@ class Page {
 
       }
 
+      // get map
+      $maps = $dom->find('[type=map]');
+      $location = "";
+
+      // get address
+      if(isset($maps[0])) {
+        if(isset($maps[0]->address)) {
+          $location = $maps[0]->address;
+        }
+      }
+
+      // set location
+      $this->location = $location;
+
       // find body
       $els = $dom->find('body');
 
@@ -461,6 +480,7 @@ class Page {
           $page['callout'] = $this->callout;
           $page['photo'] = $this->photo;
           $page['thumb'] = $this->thumb;
+          $page['location'] = $this->location;
           $page['language'] = $this->language;
           $page['direction'] = $this->direction;
           $page['lastModifiedBy'] = $user->email;
@@ -602,7 +622,7 @@ class Page {
     }
 
     // append .html for non-friendly URLs
-    if(env('FRIENDLY_URLS') === false) {
+    if($site->supportsFriendlyUrls === false) {
 
       foreach($arr as &$page) {
         $page['url'] = $page['url'].'.html';
@@ -693,6 +713,7 @@ class Page {
         $direction = 'ltr';
         $photo = '';
         $thumb = '';
+        $location = '';
         $lastModifiedDate = date('Y-m-d\TH:i:s.Z\Z', time());
         $template = 'default';
 
@@ -792,6 +813,17 @@ class Page {
 
         }
 
+        // get map
+        $maps = $dom->find('[type=map]');
+        $location = "";
+
+        // get address
+        if(isset($maps[0])) {
+          if(isset($maps[0]->address)) {
+            $location = $maps[0]->address;
+          }
+        }
+
         // get language and direction
         $els = $dom->find('html');
 
@@ -816,6 +848,7 @@ class Page {
             'url' => $url,
             'photo' => $photo,
             'thumb' => $thumb,
+            'location' => $location,
             'language' => $language,
             'direction' => $direction,
             'firstName' => $user->firstName,

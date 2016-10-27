@@ -134,6 +134,12 @@ body .app-list {
     padding: 0;
   }
 
+    body .app-list-item h2 svg.location {
+      height: 15px;
+      fill: currentColor;
+      color: #00ADE3;
+    }
+
   body .app-list-item small {
     display: block;
     margin: 10px 0 5px 0;

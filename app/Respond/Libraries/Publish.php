@@ -168,6 +168,14 @@ class Publish
           $html = str_replace('<respond-gallery galleryid=', '<div respond-plugin type="gallery" gallery=', $html);
           $html = str_replace('</respond-gallery>', '</div>', $html);
 
+          // update menu
+          $html = str_replace('<respond-menu type=', '<ul respond-plugin type="menu" menu=', $html);
+          $html = str_replace('</respond-gallery>', '</ul>', $html);
+
+          // update form
+          $html = str_replace('<respond-form formid=', '<div respond-plugin type="form" form=', $html);
+          $html = str_replace('</respond-form>', '</div>', $html);
+
           // remove toggles
           $html = str_replace('<respond-cart-toggle></respond-cart-toggle>', '', $html);
           $html = str_replace('<respond-languages-toggle></respond-languages-toggle>', '', $html);
@@ -373,7 +381,7 @@ class Publish
           // setup whether the site is using friendly urls
           $useFriendlyURLs = false;
 
-          if(env('FRIENDLY_URLS') === true || env('FRIENDLY_URLS') === 'true') {
+          if($site->supportsFriendlyUrls === true) {
             $useFriendlyURLs = true;
           }
 

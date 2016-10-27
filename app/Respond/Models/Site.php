@@ -15,6 +15,7 @@ class Site {
   public $name;
   public $email;
   public $theme;
+  public $supportsFriendlyUrls;
 
   /**
    * Constructs a page from an array of data
@@ -26,6 +27,11 @@ class Site {
       if(property_exists(__CLASS__,$key)) {
         $this->$key = $val;
       }
+    }
+    
+    // fallback to env setting if not set on site
+    if(isset($this->supportsFriendlyUrls) === false) {
+      $this->supportsFriendlyUrls = env('FRIENDLY_URLS');
     }
   }
 
@@ -117,7 +123,7 @@ class Site {
     // find a unique $id (e.g. myid, myid1, myid2, etc.)
     $x = 1;
     $folder = app()->basePath().'/public/sites/'.$id;
-
+    
     while(file_exists($folder) === TRUE) {
 
       // increment id and folder
@@ -129,13 +135,17 @@ class Site {
 
     // set id to new_id
     $id = $new_id;
+    
+    // default friendly id setting to the app
+    $supportsFriendlyUrls = env('FRIENDLY_URLS');
 
     // create a site
     $site_arr = array(
       'id' => $id,
       'name' => $name,
       'email' => $email,
-      'theme' => $theme
+      'theme' => $theme,
+      'supportsFriendlyUrls' => $supportsFriendlyUrls
     );
 
     // create and save the site
@@ -164,7 +174,10 @@ class Site {
     // return site information
     return array(
       'id' => $id,
-      'name' => $name
+      'name' => $name,
+      'email' => $email,
+      'theme' => $theme,
+      'supportsFriendlyUrls' => $supportsFriendlyUrls
       );
 
   }

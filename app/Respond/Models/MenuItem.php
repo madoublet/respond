@@ -43,9 +43,12 @@ class MenuItem {
       $json = json_decode(file_get_contents($file), true);
 
       $arr = $json['items'];
-
+      
+      // get site
+      $site = Site::getById($siteId);
+      
       // append .html for non-friendly URLs
-      if(env('FRIENDLY_URLS') === false) {
+      if($site->supportsFriendlyUrls === false) {
 
         foreach($arr as &$item) {
 
