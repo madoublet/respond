@@ -228,7 +228,7 @@ body .hashedit-modal a,body .hashedit-modal a:visited {
   color: $primary_color;
 }
 
-body .hashedit-config {
+body .hashedit-config, body .hashedit-help {
   background-color: $primary_dark_color;
 }
 
