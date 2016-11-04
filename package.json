@@ -24,7 +24,7 @@
     "angular2-in-memory-web-api": "0.0.20",
     "bootstrap": "^3.3.6",
     "dropzone": "4.3.0",
-    "hashedit": "0.5.19",
+    "hashedit": "0.5.21",
     "moment": "2.12.0",
     "ng2-translate": "^2.4.2"
   },
