@@ -16,6 +16,7 @@ class Site {
   public $email;
   public $theme;
   public $supportsFriendlyUrls;
+  public $timeZone;
 
   /**
    * Constructs a page from an array of data
@@ -28,11 +29,23 @@ class Site {
         $this->$key = $val;
       }
     }
-    
+
     // fallback to env setting if not set on site
     if(isset($this->supportsFriendlyUrls) === false) {
       $this->supportsFriendlyUrls = env('FRIENDLY_URLS');
     }
+
+    // fallback for timezone
+    if(isset($this->timeZone) === false) {
+
+      $this->timeZone = 'America/Chicago';
+
+      if(env('TIMEZONE')) {
+        $this->timeZone = env('TIMEZONE');
+      }
+
+    }
+
   }
 
   /**
@@ -123,7 +136,7 @@ class Site {
     // find a unique $id (e.g. myid, myid1, myid2, etc.)
     $x = 1;
     $folder = app()->basePath().'/public/sites/'.$id;
-    
+
     while(file_exists($folder) === TRUE) {
 
       // increment id and folder
@@ -135,9 +148,16 @@ class Site {
 
     // set id to new_id
     $id = $new_id;
-    
+
     // default friendly id setting to the app
     $supportsFriendlyUrls = env('FRIENDLY_URLS');
+
+    $timeZone = 'America/Chicago';
+
+    // default timezone to app
+    if(env('TIMEZONE')) {
+      $timeZone = env('TIMEZONE');
+    }
 
     // create a site
     $site_arr = array(
@@ -145,7 +165,8 @@ class Site {
       'name' => $name,
       'email' => $email,
       'theme' => $theme,
-      'supportsFriendlyUrls' => $supportsFriendlyUrls
+      'supportsFriendlyUrls' => $supportsFriendlyUrls,
+      'timeZone' => $timeZone
     );
 
     // create and save the site
@@ -177,7 +198,8 @@ class Site {
       'name' => $name,
       'email' => $email,
       'theme' => $theme,
-      'supportsFriendlyUrls' => $supportsFriendlyUrls
+      'supportsFriendlyUrls' => $supportsFriendlyUrls,
+      'timeZone' => $timeZone
       );
 
   }

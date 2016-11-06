@@ -38,6 +38,8 @@ class Page {
   public $lastModifiedDate;
   public $template;
 
+  public static $ISO8601 = "Y-m-d\TH:i:sO";
+
   /**
    * Constructs a page from an array of data
    *
@@ -165,7 +167,7 @@ class Page {
       // set timestamp in head
       if(isset($els[0])) {
 
-        $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
+        $timestamp = date(Page::$ISO8601, time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
         $els[0]->setAttribute('data-template', $template);
 
@@ -428,7 +430,7 @@ class Page {
       // set timestamp in head
       if(isset($els[0])) {
 
-        $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
+        $timestamp = date(Page::$ISO8601, time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
 
         if(isset($this->template)) {
@@ -450,7 +452,7 @@ class Page {
     }
 
     // set timestamp
-    $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
+    $timestamp = date(Page::$ISO8601, time());
 
     // edit the json file
     $json_file = app()->basePath().'/public/sites/'.$site->id.'/data/pages.json';
@@ -714,7 +716,7 @@ class Page {
         $photo = '';
         $thumb = '';
         $location = '';
-        $lastModifiedDate = date('Y-m-d\TH:i:s.Z\Z', time());
+        $lastModifiedDate = date(Page::$ISO8601, time());
         $template = 'default';
 
         // set full file path
@@ -723,7 +725,7 @@ class Page {
         $file_modified_time = filemtime($file);
 
         // setup timestamp as JS date
-        $timestamp = date('Y-m-d\TH:i:s.Z\Z', $file_modified_time);
+        $timestamp = date(Page::$ISO8601, $file_modified_time);
 
         // set parser
         $dom = HtmlDomParser::str_get_html(file_get_contents($file), $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);

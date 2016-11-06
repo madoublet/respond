@@ -391,7 +391,8 @@ class Publish
             'name' => $site->name,
             'email' => $site->email,
             'api' => Utilities::retrieveAppUrl() . '/api',
-            'useFriendlyURLs' => $useFriendlyURLs
+            'useFriendlyURLs' => $site->supportsFriendlyUrls,
+            'timeZone' => $site->timeZone,
           );
 
           // set url
