@@ -3,7 +3,7 @@
 {% for gallery in galleries %}
 
   {% if gallery.id == attributes.gallery  %}
-<div class="slick">
+<ul class="example-orbit" data-orbit>
 
   {% set count = 0 %}
   {% set active = "" %}
@@ -16,15 +16,18 @@
         {% set active = "" %}
       {% endif %}
 
-  <div class="item">
-    <img src="{{ image.url }}" alt="{{ image.caption }}" />
-  </div>
+  <li class="{{ active }}">
+    <img src="{{ image.url }" alt="{{ image.caption }}" />
+    <div class="orbit-caption">
+      {{ image.caption }}
+    </div>
+  </li>
 
   {% set count = count + 1 %}
 
   {% endfor %}
 
-</div>
+</ul>
 
   {% endif %}
 

@@ -24,25 +24,6 @@
 	background-color: #08B168;
 }
 
-[respond-form] .form-group {
-  position: relative;
-}
-
-[respond-form] .list-label {
-  display: block;
-  margin: 0 0 10px 0;
-  color: rgb(158,158,158);
-}
-
-[respond-form] .list label {
-  display: block;
-  margin: 0 0 5px 0;
-}
-
-[respond-form] .has-error label {
-  color: #CF4647 !important;
-}
-
 /* loading */
 [respond-form] .loading {
 	display: none;
@@ -56,6 +37,20 @@
 
 	[respond-form] .loading[visible] {
 		display: inline-block;
+	}
+
+	[respond-form] .loading svg {
+		display: block;
+		vertical-align: top;
+		width: 25px;
+	    height: 25px;
+	  	margin: 0;
+	  	padding: 0;
+	  	line-height: 25px;
+	  	display: inline-block;
+	  	vertical-align: middle;
+	  	text-align: center;
+	  	fill: currentColor;
 	}
 
 /* maps */
@@ -72,17 +67,24 @@ body .list-item {
   padding: 20px 0;
 }
 
+body .list-item:last-child {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
 body .list-item h5 {
   font-size: 16px;
   font-weight: bold;
   margin: 0 0 5px 0;
   padding: 0;
+  text-align: left;
 }
 
-body.content .list-item p {
+body .list-item p {
   font-size: 14px;
   margin: 0 !important;
   padding: 0;
+  text-align: left !important;
 }
 
 /* toast */
@@ -123,27 +125,19 @@ body .app-toast {
     visibility: visible;
     opacity: 1;
   }
-  
+
 /* gallery-image */
 .gallery-image {
   display: inline-block;
   margin: 0 20px 20px 0;
-  padding: 0;
   width: 200px;
   border: 5px solid #f0f0f0;
-  
+
 }
 
-  .gallery-image a {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
   .gallery-image img {
-    width: 200px;
+    width: 190px;
     cursor: pointer;
-    margin: 0;
-    padding: 0;
   }
 
 /* respond-lightbox  */
@@ -175,7 +169,7 @@ body .app-toast {
     padding: 0;
     text-align: center;
   }
-  
+
   .respond-lightbox-body img {
     max-width: 100%;
   }
@@ -204,11 +198,11 @@ body .app-toast {
   .respond-searchbox[visible] {
     display: flex;
   }
-  
+
   .respond-searchbox .respond-search-results {
     margin-top: 25px;
   }
-  
+
   .respond-searchbox .respond-search-result {
     background-color: #fff;
     border-top: 1px solid #ccc;
@@ -216,27 +210,27 @@ body .app-toast {
     border-right: 1px solid #ccc;
     padding: 20px;
   }
-  
+
   .respond-searchbox .respond-search-result h2 {
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 5px 0;
     padding: 0;
   }
-  
+
   .respond-searchbox .respond-search-result small {
     font-size: 12px;
     text-transform: uppercase;
     margin: 0 0 10px 0;
     padding: 0;
   }
-  
+
   .respond-searchbox .respond-search-result p {
     font-size: 13px;
     margin: 0;
     padding: 0;
   }
-  
+
   .respond-searchbox .respond-search-result:last-child {
     border-bottom: 1px solid #ccc;
   }
