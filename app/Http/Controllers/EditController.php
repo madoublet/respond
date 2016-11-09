@@ -40,10 +40,8 @@ class EditController extends Controller
             // strip any trailing .html from url
             $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
 
-            // add .html for non-friendly URLs
-            if(env('FRIENDLY_URLS') === true) {
-              $url .= '.html';
-            }
+            // add .html back in
+            $url .= '.html';
 
             // load page
             $path = rtrim(app()->basePath('public/sites/'.$url), '/');

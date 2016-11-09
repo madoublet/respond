@@ -1,0 +1,70 @@
+[
+    {
+        "id": "editable",
+        "value": "[role=main]"
+    },
+    {
+        "id": "sortable",
+        "value": ".mdl-cell"
+    },
+    {
+        "id": "blocks",
+        "value": ".mdl-grid"
+    },
+    {
+        "id": "framework",
+        "value": "mdl"
+    },
+    {
+        "id": "grid",
+        "value": [
+          {
+            "name": "1 Column",
+            "desc": "100%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--12-col\"></div></div>"
+          },
+          {
+            "name": "2 Column",
+            "desc": "50%/50%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--6-col\"></div><div class=\"material-content mdl-cell mdl-cell--6-col\"></div></div>"
+          },
+          {
+            "name": "3 Column",
+            "desc": "33%/33%/33%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--4-col\"></div><div class=\"material-content mdl-cell mdl-cell--4-col\"></div><div class=\"material-content mdl-cell mdl-cell--4-col\"></div></div>"
+          },
+          {
+            "name": "4 Column",
+            "desc": "25%/25%/25%/25%",
+            "html": "<div class=\"mdl-grid\"><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div><div class=\"material-content mdl-cell mdl-cell--3-col\"></div></div>"
+          }
+        ]
+    },
+    {
+        "id": "theme-logo",
+        "label": "Logo",
+        "description": "Primary logo of the site",
+        "type": "image",
+        "value": "files\/sample-logo.png",
+        "sets": "attribute",
+        "attribute": "src"
+    },
+    {
+        "id": "theme-icon",
+        "label": "Icon",
+        "description": "The favicon used for the site",
+        "type": "image",
+        "value": "resources\/icon.png",
+        "sets": "attribute",
+        "attribute": "href"
+    },
+    {
+        "id": "theme-color",
+        "label": "Color",
+        "description": "The color used as the Android application color",
+        "type": "text",
+        "value": "#888",
+        "sets": "attribute",
+        "attribute": "content"
+    }
+]
