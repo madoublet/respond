@@ -1,22 +1,27 @@
 # Respond CMS
 
-Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized to  for exceptional performance. 
+Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance. 
 
 ### Status
-Version: 6.0.0-beta.4
-Status: Beta 4
+Version: 6.0.0-rc-1
+Status: Release Candidate 1
 
 ### Latest updates
-- Angular RC5
-- Table
-- Fix paragraph bug
-- Remove private directory when site is created
-- Duplicate block
-- CSS settings
+- Angular 2.0-Final
+- Plugins: Byline (author name + date), HTML, List (with Map)
+- Edit HTML for elements
+- Setting friendly URL support at site level
+- Location on page level (enables List with map plugin)
+- Timezone on site
+- R5 to R6 migration utility
+- White label support - Logo, colors
+- PHP-based plugins
+- French translation
+- Edit URL/target of menu item
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
-- Static sites
+- Flat File CMS / static HTML site
 - No database
 - Easy installation, no configuration
 - Easy to write plugins
@@ -37,3 +42,6 @@ Status: Beta 4
 - Static sites lower deployment costs
 - Easy backups and migrations due to flat-file structure
 - Popular frameworks make it easier to build on the CMS
+- Free, open source version
+- Paid premium version includes installation and premium themes (and additional features to be announced)
+- Monthly support options
