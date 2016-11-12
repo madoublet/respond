@@ -147,9 +147,6 @@ class Page {
   			mkdir($dir, 0777, true);
   		}
 
-      // place content in the file
-      file_put_contents($dest.'/'.$page->url.'.html', $content);
-
       // parse HTML
       $dom = HtmlDomParser::str_get_html($content, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
@@ -170,9 +167,27 @@ class Page {
         $timestamp = date(Page::$ISO8601, time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
         $els[0]->setAttribute('data-template', $template);
-
-
       }
+
+      // update base
+      $base = $dom->find('base', 0);
+
+      if(isset($base)) {
+
+        $new_base = '';
+
+        $dir_count = substr_count($page->url, '/');
+
+        for($x=0; $x<$dir_count; $x++) {
+          $new_base .= '../';
+        }
+
+        $base->setAttribute('href', $new_base);
+      }
+
+      // place content in the file
+      file_put_contents($dest.'/'.$page->url.'.html', $dom);
+
 
     }
 

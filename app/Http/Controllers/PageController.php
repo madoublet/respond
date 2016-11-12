@@ -210,11 +210,24 @@ class PageController extends Controller
     // add a page
     $page = Page::add($data, $site, $user);
 
-    // re-publish site map
-    Publish::publishSiteMap($user, $site);
+    if($page != NULL) {
 
-    // return OK
-    return response('OK, page added at = '.$page->url, 200);
+      // re-publish plugins
+      Publish::publishPlugins($user, $site);
+
+      // re-publish site map
+      Publish::publishSiteMap($user, $site);
+
+      // re-publish the settings
+      Publish::publishSettings($user, $site);
+
+      // return OK
+      return response('OK, page added at = '.$page->url, 200);
+
+    }
+    else {
+      return response('Page not created successfully', 400);
+    }
 
   }
 
