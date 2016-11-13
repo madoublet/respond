@@ -229,60 +229,6 @@ body .app-list {
     height: 15px;
   }
 
-  /* .app-list in modal */
-  body .app-modal .app-list {
-    max-height: 220px;
-    overflow: auto;
-    margin: 25px 0;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-  }
-
-  body .app-modal .app-card .app-list {
-    max-height: 355px;
-  }
-
-  body .app-modal .app-list-item h2 {
-    font-weight: bold;
-    color: #111;
-    margin: 0 0 2px 0;
-    padding: 0;
-  }
-
-  body .app-modal .app-list-item small {
-    color: #888;
-    text-transform: uppercase;
-  }
-
-  body .app-modal .app-list-item h2 span {
-    font-weight: normal;
-    color: #888;
-    text-transform: uppercase;
-    float: right;
-  }
-
-  body .app-modal .app-list-item p {
-    font-weight: normal;
-    color: #888;
-    margin: 0 0 2px 0;
-    padding: 0;
-  }
-
-  .app-list-item label {
-    display: block;
-    margin: 0;
-    padding: 0 0 5px 0;
-    font-weight: normal;
-    color: #aaa;
-    min-width: 25%;
-    text-transform: uppercase;
-  }
-
-  .app-list-item:last-child {
-    border-bottom: none;
-  }
-
 /* app-overflow */
 .app-drawer, .app-overflow {
   font-family: 'Helvetica', 'Arial', 'sans-serif';
@@ -563,66 +509,55 @@ body .app-modal {
   }
 
   /* app-modal-list */
-  body .app-modal .app-modal-list {
-    margin: 0;
+  body .app-modal-list {
+    height: 320px;
+    overflow: auto;
+    margin: 25px 0;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     border: 1px solid #ddd;
+    overflow: hidden;
+    overflow-y: scroll;
   }
 
-    body .app-modal .app-modal-list-item {
+    body .app-modal-list .app-modal-list-item {
       position: relative;
       border-top: 1px solid #ddd;
       cursor: pointer;
     }
 
-    body .app-modal .app-modal-list-item:first-child {
+    body .app-modal-list .app-modal-list-item:first-child {
       border: none;
     }
 
-    body .app-modal .app-modal-list-item.image {
-      padding-left: 80px;
-      min-height: 70px;
-    }
-
-    body .app-modal .app-modal-list-item.selected {
-      background-color: #fff;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, .15);
-    }
-
-    body .app-modal .app-modal-list-item h2 {
-      font-size: 15px;
+    body .app-modal-list .app-list-item h2 {
       font-weight: bold;
       color: #111;
       margin: 0 0 2px 0;
-      padding: 15px 0 0 0;
+      padding: 0;
     }
 
-    body .app-modal .app-modal-list-item small {
-      display: block;
-      margin: 10px 0 0 0;
-      padding: 0 0 15px 0;
-      font-size: 11px;
-      color: #00ADE3;
+    body .app-modal-list .app-list-item small {
+      color: #888;
       text-transform: uppercase;
     }
 
-    body .app-modal .app-modal-list-item h2 span.secondary {
+    body .app-modal-list .app-list-item h2 span {
       font-weight: normal;
       color: #888;
       text-transform: uppercase;
       float: right;
-      font-size: 11px;
     }
 
-    body .app-modal .app-modal-list-item p {
-      font-weight: 400;
-      color: #aaa;
+    body .app-modal-list .app-list-item p {
+      font-weight: normal;
+      color: #888;
       margin: 0 0 2px 0;
       padding: 0;
-      line-height: 18px;
-      font-size: 13px;
     }
 
-    body .app-modal .app-modal-list-item label {
+    body .app-modal-list .app-list-item label {
       display: block;
       margin: 0;
       padding: 0 0 5px 0;
@@ -632,7 +567,66 @@ body .app-modal {
       text-transform: uppercase;
     }
 
-    body .app-modal .app-modal-list-item .image {
+    body .app-modal-list .app-list-item:last-child {
+      border-bottom: none;
+    }
+
+
+    body .app-modal-list-item.image {
+      padding-left: 80px;
+      min-height: 70px;
+    }
+
+    body .app-modal-list-item.selected {
+      background-color: #fff;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, .15);
+    }
+
+    body .app-modal-list-item h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #111;
+      margin: 0 0 2px 0;
+      padding: 15px 0 0 0;
+    }
+
+    body .app-modal-list-item small {
+      display: block;
+      margin: 10px 0 0 0;
+      padding: 0 0 15px 0;
+      font-size: 11px;
+      color: #00ADE3;
+      text-transform: uppercase;
+    }
+
+    body .app-modal-list-item h2 span.secondary {
+      font-weight: normal;
+      color: #888;
+      text-transform: uppercase;
+      float: right;
+      font-size: 11px;
+    }
+
+    body .app-modal-list-item p {
+      font-weight: 400;
+      color: #aaa;
+      margin: 0 0 2px 0;
+      padding: 0;
+      line-height: 18px;
+      font-size: 13px;
+    }
+
+    body .app-modal-list-item label {
+      display: block;
+      margin: 0;
+      padding: 0 0 5px 0;
+      font-weight: normal;
+      color: #aaa;
+      min-width: 25%;
+      text-transform: uppercase;
+    }
+
+    body .app-modal-list-item .image {
       position: absolute;
       top: 10px;
       left: 10px;
@@ -645,7 +639,6 @@ body .app-modal {
       background-repeat: no-repeat;
       background-color: #fff;
     }
-
 
 /* app-card */
 .app-card {

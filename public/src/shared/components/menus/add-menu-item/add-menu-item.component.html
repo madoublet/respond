@@ -48,12 +48,12 @@
 
     <h2>{{ 'Select URL' | translate }}</h2>
 
-    <div id="pages-list" class="app-list">
+    <div id="pages-list" class="app-modal-list">
       <div class="app-list-item" *ngFor="let page of pages" (click)="setUrl(page)">{{page.url}}</div>
     </div>
 
     <div class="actions">
-      <a class="primary toggle-select-url" data-i18n>Cancel</a>
+      <a class="primary toggle-select-url" data-i18n (click)="flipCard()">Cancel</a>
     </div>
 
   </div>
