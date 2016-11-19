@@ -76,6 +76,20 @@ export class DrawerComponent {
   }
 
   /**
+   * View the code editor
+   */
+  viewCode() {
+
+    localStorage.setItem('respond.codeUrl', 'index.html');
+    localStorage.setItem('respond.codeType', 'page');
+
+    var id = Math.random().toString(36).substr(2, 9);
+
+    this._router.navigate( ['/code',  id] );
+
+  }
+
+  /**
    * Hides the add page modal
    */
   hide() {
