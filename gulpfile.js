@@ -96,7 +96,17 @@ gulp.task('copy-js', function() {
       'node_modules/reflect-metadata/Reflect.js',
       'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
-      'node_modules/dropzone/dist/min/dropzone.min.js'
+      'node_modules/dropzone/dist/min/dropzone.min.js',
+      'node_modules/ace-builds/src-min/ace.js',
+      'node_modules/ace-builds/src-min/mode-html.js',
+      'node_modules/ace-builds/src-min/mode-css.js',
+      'node_modules/ace-builds/src-min/mode-php.js',
+      'node_modules/ace-builds/src-min/mode-javascript.js',
+      'node_modules/ace-builds/src-min/theme-chrome.js',
+      'node_modules/ace-builds/src-min/worker-html.js',
+      'node_modules/ace-builds/src-min/worker-css.js',
+      'node_modules/ace-builds/src-min/worker-javascript.js',
+      'node_modules/ace-builds/src-min/worker-php.js'
     ])
     .pipe(gulp.dest('public/app/libs/'));
 });
