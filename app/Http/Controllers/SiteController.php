@@ -103,6 +103,40 @@ class SiteController extends Controller
   }
 
   /**
+   * Republishes templates and pushed the change to pages that inherit from it
+   *
+   * @return Response
+   */
+  public function republishTemplates(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    // get user
+    $user = User::getByEmail($email, $siteId);
+
+    // migrate site
+    Publish::publishTemplates($user, $site);
+
+    // re-publish plugins
+    Publish::publishPlugins($user, $site);
+
+    // re-publish site map
+    Publish::publishSiteMap($user, $site);
+
+    // re-publish the settings
+    Publish::publishSettings($user, $site);
+
+    return response('Ok', 200);
+
+  }
+
+  /**
    * Generates a sitemap.xml for the site
    *
    * @return Response

@@ -1,0 +1,77 @@
+<menu class="app-interior-menu">
+  <button class="app-back" (click)="back()"><svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button>
+  <h2>{{codeUrl}}</h2>
+</menu>
+
+<nav class="code-menu">
+
+  <h2 (click)="expand('page')" [class.expanded]="isPagesExpanded === true">
+    <span>{{ 'Pages' | translate }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isPagesExpanded === true">
+    <li *ngFor="let page of pages"><a (click)="view('page', page)">{{page}}</a></li>
+  </ul>
+
+  <h2 (click)="expand('template')" [class.expanded]="isTemplatesExpanded === true">
+    <span>{{ 'Templates' | translate }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isTemplatesExpanded === true">
+    <li *ngFor="let template of templates"><a (click)="view('template', template)">{{template}}</a></li>
+  </ul>
+
+  <h2 (click)="expand('stylesheet')" [class.expanded]="isStylesheetsExpanded === true">
+    CSS
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isStylesheetsExpanded === true">
+    <li *ngFor="let stylesheet of stylesheets"><a (click)="view('stylesheet', stylesheet)">{{stylesheet}}</a></li>
+  </ul>
+
+  <h2 (click)="expand('script')" [class.expanded]="isScriptsExpanded === true">
+    JS
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isScriptsExpanded === true">
+    <li *ngFor="let script of scripts"><a (click)="view('script', script)">{{script}}</a></li>
+  </ul>
+
+  <h2 (click)="expand('plugin')" [class.expanded]="isPluginsExpanded === true">
+    <span>{{ 'Plugins' | translate }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isPluginsExpanded === true">
+    <li *ngFor="let plugin of plugins"><a (click)="view('plugin', plugin)">{{plugin}}</a></li>
+  </ul>
+
+
+</nav>
+
+
+<div id="editor" class="code-editor"></div>
+
+<menu class="app-interior-menu-alternate">
+  <button class="respond-save" (click)="saveAndExit()">Save and Exit</button>
+  <button class="respond-save primary" (click)="save()">Save</button>
+</menu>

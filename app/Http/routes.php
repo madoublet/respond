@@ -12,7 +12,7 @@
 */
 
 // handle Angular app routes
-$app_routes = array('/', 'login', 'create', 'pages', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer');
+$app_routes = array('/', 'login', 'create', 'pages', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
 
 foreach($app_routes as $app_route) {
 
@@ -39,6 +39,20 @@ $app->get('forgot/{id}', function ($id) {
     return file_get_contents($public);
 });
 
+// the edit route should load the angular2 app
+$app->get('edit/{id}', function ($id) {
+    $public = rtrim(app()->basePath('public/index.html'), '/');
+
+    return file_get_contents($public);
+});
+
+// the code route should load the angular2 app
+$app->get('code/{id}', function ($id) {
+    $public = rtrim(app()->basePath('public/index.html'), '/');
+
+    return file_get_contents($public);
+});
+
 // the login/my-site route should load the angular2 app
 $app->get('reset/{id}/{token}', function ($id) {
     $public = rtrim(app()->basePath('public/index.html'), '/');
@@ -48,6 +62,11 @@ $app->get('reset/{id}/{token}', function ($id) {
 
 // handles editing
 $app->get('/edit', 'EditController@edit');
+
+// handles code editing
+$app->get('/api/code/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@retrieve']);
+$app->post('/api/code/save', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@save']);
+$app->get('/api/code/list/{id}', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@listAll']);
 
 // checks auth status
 $app->get('/api/auth', ['middleware' => 'jwtauth', 'uses'=> 'UserController@auth']);
@@ -68,6 +87,7 @@ $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteControl
 $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@generateSitemap']);
 $app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@migrate']);
 $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reindexPages']);
+$app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
 
 // login
 $app->post('/api/users/login', 'UserController@login');

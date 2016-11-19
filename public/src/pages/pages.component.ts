@@ -112,23 +112,36 @@ export class PagesComponent {
   }
 
   /**
-   * Shows the settings dialog
+   * Edits a page
    *
    * @param {Page} page
    */
   edit(page) {
-    // window.location = '/edit?q=' + this.id + '/' + page.url;
-
     localStorage.setItem('respond.pageUrl', page.url);
 
-    this._router.navigate( ['/edit'] );
+    var id = Math.random().toString(36).substr(2, 9);
+
+    this._router.navigate( ['/edit',  id] );
+  }
+
+  /**
+   * Edits code for a page
+   *
+   * @param {Page} page
+   */
+  editCode(page) {
+    localStorage.setItem('respond.codeUrl', page.url);
+    localStorage.setItem('respond.codeType', 'page');
+
+    var id = Math.random().toString(36).substr(2, 9);
+
+    this._router.navigate( ['/code',  id] );
   }
 
   /**
    * handles error
    */
   failure (obj) {
-
     console.log(obj);
 
     toast.show('failure');

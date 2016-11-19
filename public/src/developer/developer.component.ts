@@ -118,6 +118,18 @@ export class DeveloperComponent {
   }
 
   /**
+   * Republish Templates
+   */
+  templates() {
+    this._siteService.republishTemplates()
+                     .subscribe(
+                       data => { toast.show('success'); },
+                       error => { toast.show('failure');  }
+                      );
+  }
+
+
+  /**
    * handles error
    */
   failure (obj) {

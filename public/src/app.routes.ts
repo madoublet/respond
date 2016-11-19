@@ -13,6 +13,7 @@ import { SubmissionsComponent } from './submissions/submissions.component';
 import { GalleriesComponent } from './galleries/galleries.component';
 import { EditComponent } from './edit/edit.component';
 import { DeveloperComponent } from './developer/developer.component';
+import { CodeComponent } from './code/code.component';
 
 const appRoutes: Routes = [
   {
@@ -64,12 +65,16 @@ const appRoutes: Routes = [
     component: GalleriesComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: EditComponent
   },
   {
     path: 'developer',
     component: DeveloperComponent
+  },
+  {
+    path: 'code/:id',
+    component: CodeComponent
   },
   {
     path: '',

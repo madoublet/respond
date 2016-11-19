@@ -458,6 +458,22 @@ class Page {
       $this->photo = $photo;
       $this->thumb = $thumb;
 
+      // update base
+      $base = $dom->find('base', 0);
+
+      if(isset($base)) {
+
+        $new_base = '';
+
+        $dir_count = substr_count($this->url, '/');
+
+        for($x=0; $x<$dir_count; $x++) {
+          $new_base .= '../';
+        }
+
+        $base->setAttribute('href', $new_base);
+      }
+
       // set html
       $html = $dom;
 

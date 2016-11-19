@@ -12,6 +12,7 @@ export class SiteService {
   private _reindexUrl = 'api/sites/reindex';
   private _sitemapUrl = 'api/sites/sitemap';
   private _migrateUrl = 'api/sites/migrate';
+  private _templateUrl = 'api/sites/republish/templates';
 
   /**
    * Login to the application
@@ -89,6 +90,21 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._migrateUrl, options);
+
+  }
+
+  /**
+   * Republishes templates
+   *
+   * @return {Observable}
+   */
+  republishTemplates () {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._templateUrl, options);
 
   }
 

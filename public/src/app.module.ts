@@ -18,6 +18,7 @@ import { CreateComponent } from './create/create.component';
 
 // developer
 import { DeveloperComponent } from './developer/developer.component';
+import { CodeComponent } from './code/code.component';
 
 // edit
 import { EditComponent } from './edit/edit.component';
@@ -89,7 +90,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       ResetComponent,
       CreateComponent,
       DrawerComponent, DropzoneComponent,
-      EditComponent, DeveloperComponent,
+      EditComponent, DeveloperComponent, CodeComponent,
       FilesComponent, RemoveFileComponent, SelectFileComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,

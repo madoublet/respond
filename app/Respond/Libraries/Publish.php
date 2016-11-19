@@ -355,8 +355,121 @@ class Publish
     }
 
     /**
+     * Re-publishes all templates for the site
+     *
+     * @param {User} $user
+     * @param {Site} $site
+     */
+    public static function publishTemplates($user, $site) {
+
+      // get templates for the site
+      $dir = app()->basePath().'/public/sites/'.$site->id.'/templates/';
+      $exts = array('html');
+
+      $files = Utilities::listFiles($dir, $site->id, $exts);
+      $plugins = array();
+
+      foreach($files as $file) {
+
+        $path = app()->basePath().'/public/sites/'.$site->id.'/'.$file;
+
+        $template = basename($path);
+        $template = str_replace('.html', '', $template);
+
+        Publish::publishTemplate($template, $user, $site);
+
+      }
+
+    }
+
+    /**
+     * Re-publishes the template for the site
+     *
+     * @param {String} $template
+     * @param {User} $user
+     * @param {Site} $site
+     */
+    public static function publishTemplate($template, $user, $site) {
+
+      $template_file = $dir = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$template.'.html';
+
+      if(file_exists($template_file)) {
+
+        // get all pages
+        $pages = Page::listAll($user, $site);
+
+        // get html of pages
+        foreach($pages as $item) {
+
+          // get page
+          $page = new Page($item);
+
+          // determine if the page derived from the template
+          if($page->template == $template) {
+
+            // get template html
+            $template_html = file_get_contents($template_file);
+
+            // replace name and description
+            $template_html = str_replace('{{page.title}}', $page->title, $template_html);
+            $template_html = str_replace('{{page.description}}', $page->description, $template_html);
+
+            // stript html
+            $page_url = $page->url;
+            $page_url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $page_url);
+
+            // get html of page
+            $page_file = app()->basePath() . '/public/sites/' . $site->id . '/' . $page_url . '.html';
+
+            if(file_exists($page_file)) {
+              $page_html = file_get_contents($page_file);
+
+              // set parser
+              $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+              // find main content
+              $el = $page_dom->find('[role=main]');
+              $main_content = '';
+
+              // get the main content
+              if(isset($el[0])) {
+                $main_content = $el[0]->innertext;
+              }
+
+              // get template dom
+              $template_dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+              $el = $template_dom->find('[role=main]');
+
+              if(isset($el[0])) {
+                $el[0]->innertext = $main_content;
+              }
+
+              // put the contents
+              file_put_contents($page_file, $template_dom);
+
+              // saves the page
+              $page->save($site, $user);
+
+            }
+            // end file_exists
+
+          }
+          // end template match
+
+        }
+        // end pages loop
+
+      }
+      // end file_exists loop
+
+    }
+
+
+    /**
      * Publishes plugins for the site
      *
+     * @param {User} $user
      * @param {Site} $site
      */
     public static function publishPlugins($user, $site)

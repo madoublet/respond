@@ -44,6 +44,15 @@
     </div>
     <!-- migrate -->
 
+    <div class="app-list-item" (click)="setActive('templates')" [class.selected]="selectedOption === 'templates'">
+      <h2><span class="primary">{{ 'Republish Templates' | translate }}</span></h2>
+      <p>{{ 'Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="templates()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- migrate -->
+
   </div>
 
 </section>
