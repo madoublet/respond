@@ -23,11 +23,13 @@ export class CodeComponent {
   private stylesheets: any;
   private scripts: any;
   private plugins: any;
+  private components: any;
   private isPagesExpanded: boolean;
   private isTemplatesExpanded: boolean;
   private isStylesheetsExpanded: boolean;
   private isScriptsExpanded: boolean;
   private isPluginsExpanded: boolean;
+  private isComponentsExpanded: boolean;
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService) {}
 
@@ -49,6 +51,7 @@ export class CodeComponent {
     this.stylesheets = [];
     this.scripts = [];
     this.plugins = [];
+    this.components = [];
 
     // set expanded
     this.isPagesExpanded = false;
@@ -56,6 +59,7 @@ export class CodeComponent {
     this.isStylesheetsExpanded = false;
     this.isScriptsExpanded = false;
     this.isPluginsExpanded = false;
+    this.isComponentsExpanded = false;
 
     this.retrieve();
     this.list();
@@ -83,6 +87,9 @@ export class CodeComponent {
     else if(this.codeType == 'plugin') {
       this.isPluginsExpanded = true;
     }
+    else if(this.codeType == 'component') {
+      this.isComponentsExpanded = true;
+    }
 
   }
 
@@ -105,6 +112,9 @@ export class CodeComponent {
     }
     else if(codeType == 'plugin') {
       this.isPluginsExpanded = !this.isPluginsExpanded;
+    }
+    else if(codeType == 'component') {
+      this.isComponentsExpanded = !this.isComponentsExpanded;
     }
 
   }
@@ -172,6 +182,12 @@ export class CodeComponent {
     this._codeService.list('plugin')
                      .subscribe(
                        data => { this.plugins = data; },
+                       error =>  { this.failure(<any>error); }
+                      );
+
+    this._codeService.list('component')
+                     .subscribe(
+                       data => { this.components = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }

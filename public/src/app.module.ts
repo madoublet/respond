@@ -60,6 +60,11 @@ import { AddPageComponent } from './shared/components/pages/add-page/add-page.co
 import { PageSettingsComponent } from './shared/components/pages/page-settings/page-settings.component';
 import { RemovePageComponent } from './shared/components/pages/remove-page/remove-page.component';
 
+// component
+import { ComponentsComponent } from './components/components.component';
+import { AddComponentComponent } from './shared/components/components/add-component/add-component.component';
+import { RemoveComponentComponent } from './shared/components/components/remove-component/remove-component.component';
+
 // settings
 import { SettingsComponent } from './settings/settings.component';
 
@@ -96,6 +101,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,
       MenusComponent, AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent,
       PagesComponent, AddPageComponent, PageSettingsComponent, RemovePageComponent,
+      ComponentsComponent, AddComponentComponent, RemoveComponentComponent,
       SettingsComponent,
       SubmissionsComponent, RemoveSubmissionComponent, ViewSubmissionComponent,
       UsersComponent, AddUserComponent, EditUserComponent, RemoveUserComponent,

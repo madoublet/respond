@@ -465,7 +465,6 @@ class Publish
 
     }
 
-
     /**
      * Publishes plugins for the site
      *
@@ -474,234 +473,205 @@ class Publish
      */
     public static function publishPlugins($user, $site)
     {
-
-        // get plugins for the site
-        $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
-        $exts = array('html', 'php');
-
-        $files = Utilities::listFiles($dir, $site->id, $exts);
-        $plugins = array();
-
-        foreach($files as $file) {
-
-          $path = app()->basePath().'/public/sites/'.$site->id.'/'.$file;
-
-          if(file_exists($path)) {
-
-            $html = file_get_contents($path);
-            $id = basename($path);
-            $id = str_replace('.html', '', $id);
-            $id = str_replace('.php', '', $id);
-
-            // push plugin to array
-            array_push($plugins, $id);
-
-          }
-
-        }
-
-        // location where twig should look for templates (local to site, then global)
-        $template_dirs = array(
-          app()->basePath().'/public/sites/'.$site->id.'/plugins'
-        );
-
-        $local_plugin_dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
-        $global_plugin_dir = app()->basePath().'/resources/plugins';
-
-        if(file_exists($global_plugin_dir)) {
-          array_push($template_dirs, $global_plugin_dir);
-        }
-
-        // setup twig
-        $loader = new \Twig_Loader_Filesystem($template_dirs);
-
-        $twig = new \Twig_Environment($loader);
-        $twig->addExtension(new BetterSortTwigExtension());
-
-        // get all pages
+        // list all pages
         $pages = Page::listAll($user, $site);
 
-        // list all forms, menus, galleries
-        $forms = Form::listExtended($site->id);
-        $menus = Menu::listExtended($site->id);
-        $galleries = Gallery::listExtended($site->id);
-
-        $i = 0;
-
         // get html of pages
-        foreach($pages as $page) {
+        foreach($pages as $item) {
 
-          // stript html
-          $url = $page['url'];
-          $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+          $page = new Page($item);
 
-          // get html of page
-          $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $url . '.html';
-
-          if(file_exists($file)) {
-            $html = file_get_contents($file);
-
-            // set parser
-            $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-
-            // find main content
-            $el = $dom->find('[role=main]');
-            $main_content = '';
-
-            // get the fragment content
-            if(isset($el[0])) {
-              $main_content = $el[0]->innertext;
-            }
-
-            // set html
-            $pages[$i]['html'] = $main_content;
-          }
-
-          $i++;
+          // publish the plugins for the page
+          Publish::publishPluginsForPage($page, $user, $site);
 
         }
 
-        $i = 0;
+        return TRUE;
+    }
 
-        // public plugin for pages
-        foreach($pages as $item) {
+    /**
+     * Publishes plugins for the page
+     *
+     * @param {Page} $page
+     * @param {User} $user
+     * @param {Site} $site
+     */
+    public static function publishPluginsForPage($page, $user, $site)
+    {
 
-          // get page
-          $page = new Page($item);
+      // stript html
+      $filename = $page->url;
+      $filename = preg_replace('/\\.[^.\\s]{3,4}$/', '', $page->url);
 
-          // setup current page
-          $current_page = array(
-            'url' => $page->url,
-            'title' => $page->title,
-            'description' => $page->description,
-            'keywords' => $page->keywords,
-            'callout' => $page->callout,
-            'photo' => $page->photo,
-            'thumb' => $page->thumb,
-            'language' => $page->language,
-            'direction' => $page->direction,
-            'firstName' => $page->firstName,
-            'lastName' => $page->lastName,
-            'lastModifiedBy' => $page->lastModifiedBy,
-            'lastModifiedDate' => $page->lastModifiedDate
-          );
+      // get html of page
+      $location = app()->basePath() . '/public/sites/' . $site->id . '/' . $filename . '.html';
 
-          // setup whether the site is using friendly urls
-          $useFriendlyURLs = false;
+      if(file_exists($location)) {
 
-          if($site->supportsFriendlyUrls === true) {
-            $useFriendlyURLs = true;
-          }
+        $html = file_get_contents($location);
 
-          // setup current site
-          $current_site = array(
-            'id' => $site->id,
-            'name' => $site->name,
-            'email' => $site->email,
-            'api' => Utilities::retrieveAppUrl() . '/api',
-            'useFriendlyURLs' => $site->supportsFriendlyUrls,
-            'timeZone' => $site->timeZone,
-          );
+        // setup current page
+        $meta = array(
+          'url' => $page->url,
+          'firstName' => $page->firstName,
+          'lastName' => $page->lastName,
+          'lastModifiedBy' => $page->lastModifiedBy,
+          'lastModifiedDate' => $page->lastModifiedDate
+        );
 
-          // set url
-          $url = $page->url;
-          $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+        // inject plugin HTML to the page
+        $dom = Publish::injectPluginHTML($html, $user, $site, $meta);
 
-          $location = app()->basePath().'/public/sites/'.$site->id.'/'.$url.'.html';
+        // put html back
+        file_put_contents($location, $dom);
 
-          // check for valid location
-          if(file_exists($location)) {
+        return TRUE;
 
-            // get html from page
-            $html = file_get_contents($location);
+      }
+      else {
+        return FALSE;
+      }
 
-            // make sure the html is not empty
-            if(!empty($html)) {
+    }
 
-              // load the parser
-              $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-              // insert into [respond-plugin] elements
-              foreach($dom->find('[respond-plugin]') as $el) {
+    /**
+     * Gets the plugin HTML
+     *
+     * @param {User} $user
+     * @param {Site} $site
+     */
+    public static function injectPluginHTML($html, $user, $site, $meta) {
 
-                if(isset($el->type)) {
+      // get all pages
+      $pages = Page::listAll($user, $site);
+      $forms = Form::listExtended($site->id);
+      $menus = Menu::listExtended($site->id);
+      $galleries = Gallery::listExtended($site->id);
 
-                  if(array_search($el->type, $plugins) !== FALSE) {
+      // setup current site
+      $current_site = array(
+        'id' => $site->id,
+        'name' => $site->name,
+        'email' => $site->email,
+        'api' => Utilities::retrieveAppUrl() . '/api',
+        'useFriendlyURLs' => $site->supportsFriendlyUrls,
+        'timeZone' => $site->timeZone,
+      );
 
-                    // render array
-                    $render_arr = array('page' => $current_page,
-                                          'site' => $current_site,
-                                          'pages' => $pages,
-                                          'forms' => $forms,
-                                          'galleries' => $galleries,
-                                          'menus' => $menus,
-                                          'attributes' => $el->attr);
+      // get plugins for the site
+      $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
+      $exts = array('html', 'php');
 
-                    $plugin_html = '';
+      $files = Utilities::listFiles($dir, $site->id, $exts);
+      $plugins = array();
 
-                    // check for .html (twig templates)
-                    if(file_exists($local_plugin_dir.'/'.$el->type.'.html') || file_exists($global_plugin_dir.'/'.$el->type.'.html')) {
+      foreach($files as $file) {
 
-                      // load the template
-                      $template = $twig->loadTemplate($el->type.'.html');
+        $path = app()->basePath().'/public/sites/'.$site->id.'/'.$file;
 
-                      // render the template
-                      $plugin_html = $template->render($render_arr);
+        if(file_exists($path)) {
 
-                    }
-                    // check for PHP
-                    else if(file_exists($local_plugin_dir.'/'.$el->type.'.php') || file_exists($global_plugin_dir.'/'.$$el->type.'.php')) {
+          // $html = file_get_contents($path);
+          $id = basename($path);
+          $id = str_replace('.html', '', $id);
+          $id = str_replace('.php', '', $id);
 
-                      $php_file = NULL;
+          // push plugin to array
+          array_push($plugins, $id);
 
-                      // set PHP file
-                      if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
-                        $php_file = $local_plugin_dir.'/'.$el->type.'.php';
-                      }
-                      else if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
-                        $php_file = $global_plugin_dir.'/'.$el->type.'.php';
-                      }
+        }
 
-                      // render PHP file
-                      if($php_file != NULL) {
-                        $plugin_html = Publish::render($php_file, $render_arr);
-                      }
+      }
 
-                    }
+      // location where twig should look for templates (local to site, then global)
+      $template_dirs = array(
+        app()->basePath().'/public/sites/'.$site->id.'/plugins'
+      );
 
-                    // set the inner text
-                    $el->innertext = $plugin_html;
+      $local_plugin_dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
+      $global_plugin_dir = app()->basePath().'/resources/plugins';
 
-                  }
+      if(file_exists($global_plugin_dir)) {
+        array_push($template_dirs, $global_plugin_dir);
+      }
 
+      // setup twig
+      $loader = new \Twig_Loader_Filesystem($template_dirs);
+      $twig = new \Twig_Environment($loader);
+      $twig->addExtension(new BetterSortTwigExtension());
+
+      // make sure the html is not empty
+      if(!empty($html)) {
+
+        // load the parser
+        $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+        // insert into [respond-plugin] elements
+        foreach($dom->find('[respond-plugin]') as $el) {
+
+          if(isset($el->type)) {
+
+            if(array_search($el->type, $plugins) !== FALSE) {
+
+              // render array
+              $render_arr = array('page' => $meta,
+                                  'meta' => $meta,
+                                  'site' => $current_site,
+                                  'pages' => $pages,
+                                  'forms' => $forms,
+                                  'galleries' => $galleries,
+                                  'menus' => $menus,
+                                  'attributes' => $el->attr);
+
+              $plugin_html = '';
+
+              // check for .html (twig templates)
+              if(file_exists($local_plugin_dir.'/'.$el->type.'.html') || file_exists($global_plugin_dir.'/'.$el->type.'.html')) {
+
+                // load the template
+                $template = $twig->loadTemplate($el->type.'.html');
+
+                // render the template
+                $plugin_html = $template->render($render_arr);
+
+              }
+              // check for PHP
+              else if(file_exists($local_plugin_dir.'/'.$el->type.'.php') || file_exists($global_plugin_dir.'/'.$$el->type.'.php')) {
+
+                $php_file = NULL;
+
+                // set PHP file
+                if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
+                  $php_file = $local_plugin_dir.'/'.$el->type.'.php';
+                }
+                else if(file_exists($local_plugin_dir.'/'.$el->type.'.php')) {
+                  $php_file = $global_plugin_dir.'/'.$el->type.'.php';
+                }
+
+                // render PHP file
+                if($php_file != NULL) {
+                  $plugin_html = Publish::render($php_file, $render_arr);
                 }
 
               }
 
+              // set the inner text
+              $el->innertext = $plugin_html;
+
             }
-
-            // find main content
-            $el = $dom->find('[role=main]');
-            $main_content = '';
-
-            // get the fragment content
-            if(isset($el[0])) {
-              $main_content = $el[0]->innertext;
-            }
-
-            // put html back
-            file_put_contents($location, $dom);
-
-            // update html in the array
-            $pages[$i]['html'] = $main_content;
-
-            // increment
-            $i++;
 
           }
 
         }
 
+        return $dom;
+
+      }
+
+      return NULL;
+
     }
+
 
 }

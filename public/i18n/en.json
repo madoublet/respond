@@ -110,5 +110,9 @@
     "Plugins": "Plugins",
     "Save": "Save",
     "Save and Exit": "Save and  Exit",
-    "Code": "Code"
+    "Code": "Code",
+    "Template": "Template",
+    "Components": "Components",
+    "Add Component": "Add Component",
+    "Remove Component": "Remove Component"
 }

@@ -67,6 +67,7 @@ class PageController extends Controller
 
   }
 
+
   /**
    * Saves the page and the fragment
    *
@@ -128,9 +129,9 @@ class PageController extends Controller
     $description = $request->json()->get('description');
     $keywords = $request->json()->get('keywords');
     $callout = $request->json()->get('callout');
-    $layout = $request->json()->get('layout');
     $language = $request->json()->get('language');
     $direction = $request->json()->get('direction');
+    $template = $request->json()->get('template');
     $timestamp = gmdate('D M d Y H:i:s O', time());
 
     $data = array(
@@ -141,6 +142,7 @@ class PageController extends Controller
       'url' => $url,
       'language' => $language,
       'direction' => $direction,
+      'template' => $template,
       'lastModifiedBy' => $email,
       'lastModifiedDate' => $timestamp
     );
@@ -177,6 +179,7 @@ class PageController extends Controller
     $url = $request->json()->get('url');
     $title = $request->json()->get('title');
     $description = $request->json()->get('description');
+    $template = $request->json()->get('template');
     $timestamp = date('Y-m-d\TH:i:s.Z\Z', time());
 
     // get the site
@@ -204,7 +207,8 @@ class PageController extends Controller
       'firstName' => $user->firstName,
       'lastName' => $user->lastName,
       'lastModifiedBy' => $user->email,
-      'lastModifiedDate' => $timestamp
+      'lastModifiedDate' => $timestamp,
+      'template' => $template
     );
 
     // add a page

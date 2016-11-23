@@ -22,12 +22,13 @@ export class EditComponent {
    */
   ngOnInit() {
 
-    var id, pageUrl;
+    var id, pageUrl, editMode;
 
     id = localStorage.getItem('respond.siteId');
     pageUrl = localStorage.getItem('respond.pageUrl');
+    editMode = localStorage.getItem('respond.editMode');
 
-    this.url = this._sanitizer.bypassSecurityTrustResourceUrl('/edit?q=' + id + '/' + pageUrl);
+    this.url = this._sanitizer.bypassSecurityTrustResourceUrl('/edit?q=' + id + '/' + pageUrl + '&mode=' + editMode);
 
   }
 

@@ -17,6 +17,18 @@
     <li *ngFor="let page of pages"><a (click)="view('page', page)">{{page}}</a></li>
   </ul>
 
+  <h2 (click)="expand('component')" [class.expanded]="isComponentsExpanded === true">
+    <span>{{ 'Components' | translate }}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7 10l5 5 5-5z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+  </h2>
+
+  <ul [class.expanded]="isComponentsExpanded === true">
+    <li *ngFor="let component of components"><a (click)="view('component', component)">{{component}}</a></li>
+  </ul>
+
   <h2 (click)="expand('template')" [class.expanded]="isTemplatesExpanded === true">
     <span>{{ 'Templates' | translate }}</span>
     <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24">

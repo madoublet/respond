@@ -106,6 +106,19 @@ class CodeController extends Controller
           return response()->json($files);
 
         }
+        else if($id == 'component') {
+
+          // set dir
+          $dir = app()->basePath().'/public/sites/'.$site->id.'/components';
+
+          // list files
+          $files = Utilities::ListFiles($dir, $site->id,
+                  array('html'),
+                  array());
+
+          return response()->json($files);
+
+        }
 
       }
 
@@ -235,6 +248,39 @@ class CodeController extends Controller
 
           // save to file
           file_put_contents($path, $value);
+
+          // re-publish plugins
+          Publish::publishPlugins($user, $site);
+
+          // return 200
+          return response('Ok', 200);
+        }
+        else {
+          return response('File does not exist', 400);
+        }
+      }
+      else if($type == "component") {
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/'.$url);
+
+         // return OK
+        if(file_exists($path) == true) {
+
+          $timestamp = date("Y-m-d\TH:i:sO", time());
+
+          $meta = array(
+            'url' => $url,
+            'firstName' => $user->firstName,
+            'lastName' => $user->lastName,
+            'lastModifiedBy' => $user->email,
+            'lastModifiedDate' => $timestamp
+          );
+
+          // inject code into component
+          $dom = Publish::injectPluginHTML($value, $user, $site, $meta);
+
+          // save to file
+          file_put_contents($path, $dom);
 
           // re-publish plugins
           Publish::publishPlugins($user, $site);

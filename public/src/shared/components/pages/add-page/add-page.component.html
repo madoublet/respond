@@ -26,6 +26,13 @@
       [(ngModel)]="model.description"
       name="description">
 
+    <label>{{ 'Template' | translate }}</label>
+    <select id="hashedit-add-page-template"
+      [(ngModel)]="model.template"
+      name="template">
+      <option *ngFor="let template of templates" [value]="template">{{template}}</option>
+    </select>
+
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
       <button type="submit">{{ 'Add Page' | translate }}</button>

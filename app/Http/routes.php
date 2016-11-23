@@ -12,7 +12,7 @@
 */
 
 // handle Angular app routes
-$app_routes = array('/', 'login', 'create', 'pages', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
+$app_routes = array('/', 'login', 'create', 'pages', 'components', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
 
 foreach($app_routes as $app_route) {
 
@@ -88,6 +88,7 @@ $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteContro
 $app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@migrate']);
 $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reindexPages']);
 $app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
+$app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listTemplates']);
 
 // login
 $app->post('/api/users/login', 'UserController@login');
@@ -108,6 +109,12 @@ $app->post('/api/pages/save', ['middleware' => 'jwtauth', 'uses'=> 'PageControll
 $app->post('/api/pages/add', ['middleware' => 'jwtauth', 'uses'=> 'PageController@add']);
 $app->post('/api/pages/remove', ['middleware' => 'jwtauth', 'uses'=> 'PageController@remove']);
 $app->post('/api/pages/settings', ['middleware' => 'jwtauth', 'uses'=> 'PageController@settings']);
+
+// components
+$app->get('/api/components/list', ['middleware' => 'jwtauth', 'uses'=> 'ComponentController@listAll']);
+$app->post('/api/components/add', ['middleware' => 'jwtauth', 'uses'=> 'ComponentController@add']);
+$app->post('/api/components/remove', ['middleware' => 'jwtauth', 'uses'=> 'ComponentController@remove']);
+$app->post('/api/components/save', ['middleware' => 'jwtauth', 'uses'=> 'ComponentController@save']);
 
 // files
 $app->post('/api/images/add', ['middleware' => 'jwtauth', 'uses'=> 'FileController@upload']);

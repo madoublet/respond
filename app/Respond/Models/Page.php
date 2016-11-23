@@ -52,12 +52,12 @@ class Page {
       }
     }
 
-    // fallback
+    // fallback for locatino
     if(isset($this->location) === false) {
       $this->location = '';
     }
-  }
 
+  }
 
   /**
    * Adds a page
@@ -75,35 +75,22 @@ class Page {
     // create a new snippet for the page
     $dest = app()->basePath().'/public/sites/'.$site->id;
     $name = $new_name = str_replace('/', '.', $page->url);
-    $fragment = $dest . '/fragments/page/' . $name . '.html';
-
-    // will be configurable in the future
-    $template = 'default';
 
     // avoid dupes
     $x = 1;
-
-    while(file_exists($fragment) === TRUE) {
-
-      // increment id and folder
-      $new_name = $name.$x;
-      $fragment = $dest . '/fragments/page/' . $new_name . '.html';
-      $x++;
-
-    }
 
     // update url
     $page->url = str_replace('.', '/', $new_name);
     $data['url'] = $page->url;
 
     // default fragemnt content
-    $fragment_content = '';
+    $content = '';
 
     // get default html for a new page
     if($content == NULL) {
 
       // get template
-      $template_file = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$template.'.html';
+      $template_file = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$page->template.'.html';
 
       // default (if all else fails)
       $content = '<html><head></head><body><p>You must specify default content in .default.html</p></body></html>';
@@ -125,13 +112,9 @@ class Page {
         }
 
         // set template to blank
-        $template = '';
+        $page->template = '';
 
       }
-
-      // update template
-      $page->template = $template;
-      $data["template"] = $template;
 
       // replace
       $content = str_replace('{{page.title}}', $page->title, $content);
@@ -153,9 +136,9 @@ class Page {
       // find fragment content
       $el = $dom->find('[role=main]');
 
-      // get the fragment content
+      // get the component content
       if(isset($el[0])) {
-        $fragment_content = $el[0]->innertext;
+        $content = $el[0]->innertext;
       }
 
       // find body
@@ -166,7 +149,7 @@ class Page {
 
         $timestamp = date(Page::$ISO8601, time());
         $els[0]->setAttribute('data-lastmodified', $timestamp);
-        $els[0]->setAttribute('data-template', $template);
+        $els[0]->setAttribute('data-template', $page->template);
       }
 
       // update base
@@ -185,14 +168,14 @@ class Page {
         $base->setAttribute('href', $new_base);
       }
 
+
       // place content in the file
       file_put_contents($dest.'/'.$page->url.'.html', $dom);
-
 
     }
 
     // get text
-    $text = strip_tags($fragment_content);
+    $text = strip_tags($content);
     $text = preg_replace("/\s+/", " ", $text);
     $text = trim($text);
     $text = preg_replace('/[[:^print:]]/', '', $text);
@@ -253,39 +236,59 @@ class Page {
       // load the parser
       $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-      // content placeholder
-      $main_content = '';
+      // check for body
+      $el = $dom->find('body', 0);
 
-      // get content
-      foreach($changes as $change) {
+      // determine if it is a component
+      if(isset($el)) {
 
-        $selector = $change['selector'];
+        // content placeholder
+        $main_content = '';
 
-        // set main content
-        if($selector == '[role="main"]') {
-          $main_content = $change['html'];
+        // get content
+        foreach($changes as $change) {
+
+          $selector = $change['selector'];
+
+          // set main content
+          if($selector == '[role="main"]') {
+            $main_content = $change['html'];
+          }
+
+          // apply changes to the document
+          $els = $dom->find($selector);
+
+          if(isset($els[0])) {
+            $els[0]->innertext = $change['html'];
+          }
+
         }
 
-        // apply changes to the document
-        $els = $dom->find($selector);
+        // update the page
+        file_put_contents($location, $dom);
 
-        if(isset($els[0])) {
-          $els[0]->innertext = $change['html'];
+        // get text from content
+        $text = strip_tags($main_content);
+        $text = preg_replace("/\s+/", " ", $text);
+        $text = trim($text);
+        $text = preg_replace('/[[:^print:]]/', '', $text);
+
+        // set text to main_content
+        $page->text = $text;
+
+      }
+      else {
+
+        // for components, save the change out to the file
+        if(isset($changes[0])) {
+
+          $content = $changes[0]['html'];
+
+          file_put_contents($location, $content);
+
         }
 
       }
-
-      // update the page
-      file_put_contents($location, $dom);
-
-      // get text from content
-      $text = strip_tags($main_content);
-      $text = preg_replace("/\s+/", " ", $text);
-      $text = trim($text);
-      $text = preg_replace('/[[:^print:]]/', '', $text);
-
-      // set text to main_content
-      $page->text = $text;
 
       // saves the page
       $page->save($site, $user);
@@ -771,9 +774,16 @@ class Page {
         // get els
         $els = $dom->find('body');
 
-        // get timestamp in head
+        // default
+        $lastModifiedDate = date("Y-m-d\TH:i:sO", time());
+
+        // get timestamp in body [data-lastmodified]
         if(isset($els[0])) {
-          $lastModifiedDate = $els[0]->getAttribute('data-lastmodified');
+          $attr = $els[0]->getAttribute('data-lastmodified');
+
+          if($attr !== FALSE) {
+            $lastModifiedDate = $attr;
+          }
         }
 
         // get template in head
@@ -865,6 +875,9 @@ class Page {
           $direction = $els[0]->dir;
         }
 
+        // check for body tag
+        $els = $dom->find('body');
+
         // cleanup url
         $url = ltrim($url, '/');
 
@@ -887,7 +900,7 @@ class Page {
             'firstName' => $user->firstName,
             'lastName' => $user->lastName,
             'lastModifiedBy' => $user->email,
-            'lastModifiedDate' => $timestamp,
+            'lastModifiedDate' => $lastModifiedDate,
             'template' => $template
         );
 

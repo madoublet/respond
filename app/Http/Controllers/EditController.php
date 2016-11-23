@@ -7,6 +7,7 @@ use \Illuminate\Http\Request;
 use App\Respond\Libraries\Utilities;
 
 use App\Respond\Models\Form;
+use App\Respond\Models\Component;
 use App\Respond\Models\Gallery;
 use App\Respond\Models\Setting;
 
@@ -25,8 +26,23 @@ class EditController extends Controller
     {
 
         $q = $request->input('q');
+        $m = $request->input('mode');
 
         if($q != NULL){
+
+          $saveUrl = '/api/pages/save';
+          $mode = 'page';
+
+          // set save URL
+          if(isset($m)) {
+
+            if($m == 'component') {
+              $saveUrl = '/api/components/save';
+
+              $mode = 'component';
+            }
+
+          }
 
           $arr = explode('/', $q);
 
@@ -54,8 +70,54 @@ class EditController extends Controller
               $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
               // find base element
+              $el = $dom->find('body', 0);
+
+              // check for body
+              if(isset($el) == false) {
+
+                $arr = explode('/', $q);
+
+                // check for site id
+                if(isset($arr[0])) {
+
+                  $id = $arr[0];
+
+                  $default_template_location = app()->basePath('public/sites/'.$id.'/templates/default.html');
+
+                  if(file_get_contents($default_template_location)) {
+
+                    // get html
+                    $template_html = file_get_contents($default_template_location);
+
+                    // set dom
+                    $dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+                    $el = $dom->find('[role=main]');
+
+                    // get the component content
+                    if(isset($el[0])) {
+                      $el[0]->innertext = $html;
+                    }
+
+                  }
+                  else {
+                    return 'Please specify a default template to render a component.';
+                  }
+
+                }
+
+              }
+
+              // find base
               $el = $dom->find('base', 0);
-              $el->setAttribute('href', '/sites/'.$siteId.'/');
+
+              if(isset($el)) {
+                $el->setAttribute('href', '/sites/'.$siteId.'/');
+              }
+              else {
+                return 'Please specify a base in your html file';
+              }
+
 
               // get settings
               $sortable = Setting::getById('sortable', $siteId);
@@ -63,7 +125,6 @@ class EditController extends Controller
               $blocks = Setting::getById('blocks', $siteId);
               $grid = Setting::getById('grid', $siteId);
               $framework = Setting::getById('framework', $siteId);
-
 
               // framework
               if($framework === NULL) {
@@ -115,7 +176,9 @@ class EditController extends Controller
               }
 
               // init
-              $plugins_script = '';
+
+
+             $plugins_script = '';
 
               // get custom plugins
               $js_file = app()->basePath().'/resources/sites/'.$siteId.'/plugins.js';
@@ -144,6 +207,24 @@ class EditController extends Controller
 
                 // inject forms into script
                 $plugins_script = str_replace("['respond.forms']", json_encode($options), $plugins_script);
+              }
+
+              // inject components into script
+              if(strpos($plugins_script, 'respond.components') !== false ) {
+
+                $arr = Component::listAll($siteId);
+                $options = array();
+
+                // get id
+                foreach($arr as $item) {
+                  array_push($options, array(
+                    'text' => $item['url'],
+                    'value' => $item['url']
+                  ));
+                }
+
+                // inject forms into script
+                $plugins_script = str_replace("['respond.components']", json_encode($options), $plugins_script);
               }
 
               // inject galleries into script
@@ -237,7 +318,8 @@ hashedit.setup({
   stylesheet: ['/dev/hashedit/css/hashedit.css', '/api/editor/css'],
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',
-  authHeader: 'X-AUTH'
+  authHeader: 'X-AUTH',
+  saveUrl: '$saveUrl'
 });
 </script>
 EOD;
@@ -262,7 +344,8 @@ hashedit.setup({
   translate: true,
   languagePath: '/i18n/{{language}}.json',
   auth: 'token',
-  authHeader: 'X-AUTH'
+  authHeader: 'X-AUTH',
+  saveUrl: '$saveUrl'
 });
 </script>
 EOD;

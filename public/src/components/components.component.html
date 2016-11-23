@@ -1,0 +1,37 @@
+<menu class="app-menu">
+
+    <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
+
+    <h1>{{ 'Components' | translate }}</h1>
+
+    <button class="app-add" (click)="showAdd()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></g></svg></button>
+
+</menu>
+
+<section class="app-main">
+
+  <div id="components-list" class="app-list">
+    <div class="app-list-item" *ngFor="let component of components" (click)="setActive(component)" [class.selected]="component === selectedComponent">
+      <h2>
+        <span class="primary">{{ component.title }}</span>
+      </h2>
+      <small>
+        {{ component.url }}
+      </small>
+      <div class="app-list-actions">
+          <a (click)="showRemove(component)">{{'Remove' | translate }}</a>
+          <a (click)="editCode(component)">{{'Edit HTML' | translate }}</a>
+          <a class="primary" (click)="edit(component)">{{'Edit' | translate }}</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="no-list-items" *ngIf="components.length === 0">{{ 'Nothing here yet' | translate }}</p>
+
+</section>
+
+<respond-add-component [visible]="addVisible" (onCancel)="reset($event)" (onAdd)="list($event)" (onError)="failure($event)"></respond-add-component>
+
+<respond-remove-component [visible]="removeVisible" [component]="component" (onCancel)="reset($event)" (onUpdate)="list($event)" (onError)="failure($event)"></respond-remove-component>
+
+<respond-drawer active="components" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>

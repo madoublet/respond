@@ -26,14 +26,6 @@
         [(ngModel)]="model.callout"
         name="callout">
 
-      <label>{{ 'Layout' | translate }}</label>
-      <select id="hashedit-page-settings-layout"
-        [(ngModel)]="model.layout"
-        name="layout">
-        <option value="home">Home</option>
-        <option value="content">Content</option>
-      </select>
-
       <label>{{ 'Language' | translate }}</label>
       <select id="hashedit-page-settings-language"
         [(ngModel)]="model.language"
@@ -51,6 +43,13 @@
         name="direction">
         <option value="ltr">{{ 'Left-to-Right' | translate }}</option>
         <option value="rtl">{{ 'Right-to-Left' | translate }}</option>
+      </select>
+
+      <label>{{ 'Template' | translate }}</label>
+      <select id="hashedit-add-page-template"
+        [(ngModel)]="model.template"
+        name="template">
+        <option *ngFor="let template of templates" [value]="template">{{template}}</option>
       </select>
 
     </div>

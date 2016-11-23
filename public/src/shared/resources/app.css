@@ -134,7 +134,7 @@ body .app-list {
     padding: 0;
   }
 
-    body .app-list-item h2 svg.location {
+    body .app-list-item h2 svg.location, body .app-list-item h2 svg.component {
       height: 15px;
       fill: currentColor;
       color: #00ADE3;

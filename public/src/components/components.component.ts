@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PageService } from '../shared/services/page.service';
+import { ComponentService } from '../shared/services/component.service';
 
 declare var toast: any;
 declare var __moduleName: string;
 
 @Component({
-    selector: 'respond-pages',
+    selector: 'respond-components',
     moduleId: __moduleName,
-    templateUrl: '/pages/pages.component.html',
-    providers: [PageService]
+    templateUrl: '/components/components.component.html',
+    providers: [ComponentService]
 })
 
-export class PagesComponent {
+export class ComponentsComponent {
 
-  id;
-  page;
-  pages;
-  errorMessage;
-  selectedPage;
+  id: string;
+  component: any;
+  components: any;
+  errorMessage: string;
+  selectedComponent: any;
   addVisible: boolean = false;
   removeVisible: boolean = false;
   drawerVisible: boolean = false;
-  settingsVisible: boolean = false;
 
-  constructor (private _pageService: PageService, private _router: Router) {}
+  constructor (private _componentService: ComponentService, private _router: Router) {}
 
   /**
-   * Init pages
+   * Init
    *
    */
   ngOnInit() {
@@ -35,10 +34,9 @@ export class PagesComponent {
     this.id = localStorage.getItem('respond.siteId');
     this.addVisible = false;
     this.removeVisible = false;
-    this.settingsVisible = false;
     this.drawerVisible = false;
-    this.page = {};
-    this.pages = [];
+    this.component = {};
+    this.components = [];
 
     this.list();
 
@@ -50,31 +48,30 @@ export class PagesComponent {
   list() {
 
     this.reset();
-    this._pageService.list()
+    this._componentService.list()
                      .subscribe(
-                       data => { this.pages = data; },
+                       data => { this.components = data; },
                        error =>  { this.failure(<any>error); }
                       );
   }
 
   /**
-   * Resets an modal booleans
+   * Resets modal booleans
    */
   reset() {
     this.removeVisible = false;
     this.addVisible = false;
-    this.settingsVisible = false;
     this.drawerVisible = false;
-    this.page = {};
+    this.component = {};
   }
 
   /**
    * Sets the list item to active
    *
-   * @param {Page} page
+   * @param {Any} component
    */
-  setActive(page) {
-    this.selectedPage = page;
+  setActive(component) {
+    this.selectedComponent = component;
   }
 
   /**
@@ -94,31 +91,21 @@ export class PagesComponent {
   /**
    * Shows the remove dialog
    *
-   * @param {Page} page
+   * @param {Any} component
    */
-  showRemove(page) {
+  showRemove(component) {
     this.removeVisible = true;
-    this.page = page;
+    this.component = component;
   }
 
   /**
-   * Shows the settings dialog
+   * Edits a component
    *
-   * @param {Page} page
+   * @param {Any} component
    */
-  showSettings(page) {
-    this.settingsVisible = true;
-    this.page = page;
-  }
-
-  /**
-   * Edits a page
-   *
-   * @param {Page} page
-   */
-  edit(page) {
-    localStorage.setItem('respond.pageUrl', page.url);
-    localStorage.setItem('respond.editMode', 'page');
+  edit(component) {
+    localStorage.setItem('respond.pageUrl', 'components/' + component.url);
+    localStorage.setItem('respond.editMode', 'component');
 
     var id = Math.random().toString(36).substr(2, 9);
 
@@ -126,13 +113,13 @@ export class PagesComponent {
   }
 
   /**
-   * Edits code for a page
+   * Edits code for a component
    *
-   * @param {Page} page
+   * @param {Any} component
    */
-  editCode(page) {
-    localStorage.setItem('respond.codeUrl', page.url);
-    localStorage.setItem('respond.codeType', 'page');
+  editCode(component) {
+    localStorage.setItem('respond.codeUrl', 'components/' + component.url);
+    localStorage.setItem('respond.codeType', 'component');
 
     var id = Math.random().toString(36).substr(2, 9);
 

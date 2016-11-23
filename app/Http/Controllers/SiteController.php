@@ -8,6 +8,7 @@ use App\Respond\Models\Page;
 
 use \Illuminate\Http\Request;
 
+use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
 
 class SiteController extends Controller
@@ -186,6 +187,42 @@ class SiteController extends Controller
     Publish::publishSiteMap($user, $site);
 
     return response('Ok', 200);
+
+  }
+
+  /**
+   * Lists the templates for a given site
+   *
+   * @return Response
+   */
+  public function listTemplates(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $id = $request->input('auth-id');
+
+    $site = Site::getById($id);
+
+    // set dir
+    $dir = app()->basePath().'/public/sites/'.$site->id.'/templates';
+
+    // list files
+    $files = Utilities::ListFiles($dir, $site->id,
+            array('html'),
+            array());
+
+
+    // get template
+    foreach($files as &$file) {
+
+      $file = basename($file);
+      $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file);
+
+    }
+
+
+    return response()->json($files);
 
   }
 

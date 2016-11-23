@@ -20,7 +20,7 @@ export class PageService {
     let headers = new Headers();
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
-    
+
     return this.http.get(this._listUrl, options).map((res:Response) => res.json());
   }
 
@@ -32,10 +32,10 @@ export class PageService {
    * @param {string} description
    * @return {Observable}
    */
-  add (url: string, title: string, description: string) {
+  add (url: string, title: string, description: string, template: string) {
 
-    let body = JSON.stringify({ url, title, description });
-    
+    let body = JSON.stringify({ url, title, description, template });
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -55,11 +55,12 @@ export class PageService {
    * @param {string} layout
    * @param {string} language
    * @param {string} direction
+   * @param {string} template
    * @return {Observable}
    */
-  updateSettings (url: string, title: string, description: string, keywords: string, callout: string, layout: string, language: string, direction: string) {
+  updateSettings (url: string, title: string, description: string, keywords: string, callout: string, language: string, direction: string, template: string) {
 
-    let body = JSON.stringify({ url, title, description, keywords, callout, layout, language, direction });
+    let body = JSON.stringify({ url, title, description, keywords, callout, language, direction, template });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

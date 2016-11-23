@@ -4,6 +4,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
 import { CreateComponent } from './create/create.component';
 import { PagesComponent } from './pages/pages.component';
+import { ComponentsComponent } from './components/components.component';
 import { FilesComponent } from './files/files.component';
 import { UsersComponent } from './users/users.component';
 import { MenusComponent } from './menus/menus.component';
@@ -35,6 +36,10 @@ const appRoutes: Routes = [
   {
     path: 'pages',
     component: PagesComponent
+  },
+  {
+    path: 'components',
+    component: ComponentsComponent
   },
   {
     path: 'files',

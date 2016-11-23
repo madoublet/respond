@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageService } from '../../../../shared/services/page.service';
+import { SiteService } from '../../../../shared/services/site.service';
 import { RouteService } from '../../../../shared/services/route.service';
 
 declare var toast: any;
@@ -9,20 +10,16 @@ declare var __moduleName: string;
     selector: 'respond-add-page',
     moduleId: __moduleName,
     templateUrl: '/shared/components/pages/add-page/add-page.component.html',
-    providers: [PageService, RouteService]
+    providers: [PageService, SiteService, RouteService]
 })
 
 export class AddPageComponent {
 
-  routes;
+  routes: any;
+  templates: any;
 
   // model to store
-  model: {
-    path: '/',
-    url: '',
-    title: '',
-    description: ''
-  };
+  model: any;
 
   _visible: boolean = false;
 
@@ -37,7 +34,8 @@ export class AddPageComponent {
       path: '/',
       url: '',
       title: '',
-      description: ''
+      description: '',
+      template: 'default'
     };
 
   }
@@ -48,7 +46,7 @@ export class AddPageComponent {
   @Output() onAdd = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
 
-  constructor (private _pageService: PageService, private _routeService: RouteService) {}
+  constructor (private _pageService: PageService, private _siteService: SiteService, private _routeService: RouteService) {}
 
   /**
    * Init pages
@@ -58,6 +56,12 @@ export class AddPageComponent {
     this._routeService.list()
                      .subscribe(
                        data => { this.routes = data; },
+                       error =>  { this.onError.emit(<any>error); }
+                      );
+
+    this._siteService.listTemplates()
+                     .subscribe(
+                       data => { this.templates = data; },
                        error =>  { this.onError.emit(<any>error); }
                       );
 
@@ -83,7 +87,7 @@ export class AddPageComponent {
       fullUrl = '/' + this.model.url;
     }
 
-    this._pageService.add(fullUrl, this.model.title, this.model.description)
+    this._pageService.add(fullUrl, this.model.title, this.model.description, this.model.template)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
