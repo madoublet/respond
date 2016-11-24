@@ -7,12 +7,9 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-files',
-    moduleId: __moduleName,
-    templateUrl: '/files/files.component.html',
+    templateUrl: 'files.component.html',
     providers: [FileService]
 })
-
-
 export class FilesComponent {
 
   id;

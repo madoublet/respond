@@ -8,8 +8,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-create',
-    moduleId: __moduleName,
-    templateUrl: '/create/create.component.html',
+    templateUrl: 'create.component.html',
     providers: [SiteService, AppService]
 })
 

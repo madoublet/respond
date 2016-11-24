@@ -7,8 +7,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-remove-page',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/pages/remove-page/remove-page.component.html',
+    templateUrl: 'remove-page.component.html',
     providers: [PageService, RouteService]
 })
 

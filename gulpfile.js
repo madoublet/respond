@@ -1,11 +1,16 @@
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const zip = require('gulp-zip');
 const Builder = require('systemjs-builder');
 const ts = require('gulp-typescript');
 const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
-const  inlineNg2Template = require('gulp-inline-ng2-template');
+const inlineNg2Template = require('gulp-inline-ng2-template');
+
+const php = require('gulp-connect-php');
+const webpack = require("webpack");
+const webpackConfig = require("./webpack.config.js");
 
 // copy node modules (no longer needed with new build)
 gulp.task('copy-nm', function() {
@@ -92,9 +97,6 @@ gulp.task('copy-folders', function() {
 gulp.task('copy-js', function() {
 
   return gulp.src([
-      'node_modules/zone.js/dist/zone.js',
-      'node_modules/reflect-metadata/Reflect.js',
-      'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
       'node_modules/dropzone/dist/min/dropzone.min.js'
     ])
@@ -117,7 +119,6 @@ gulp.task('copy-css', function() {
 gulp.task('copy-static', function() {
 
     var bundlePaths = [
-      'public/src/**/*.html',
       'public/src/**/*.js',
       'public/src/**/*.css',
       'public/src/**/*.png'
@@ -166,6 +167,20 @@ gulp.task('bundle', function() {
         });
 });
 
+gulp.task('webpack:build', function (callback) {
+    webpack(webpackConfig, function (err, stats) {
+        if (err)
+            throw new gutil.PluginError('webpack:build', err);
+        callback();
+    });
+});
+
+gulp.task('serve', function() {
+    php.server({
+        base: './public'
+    });
+
+});
 
 // copy
 gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));

@@ -71,25 +71,13 @@
     </respond-app>
   </body>
 
-   <!-- load libs -->
-    <script src="app/libs/zone.js"></script>
-    <script src="app/libs/Reflect.js"></script>
-    <script src="app/libs/system.src.js"></script>
-
-    <!-- systemjs (dev)
-    <script src="systemjs.config.js"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err);  });
-    </script> -->
-
     <!-- build (prod)   -->
-    <script src="app/bundle.js"></script>
-
+  <script src="app/polyfills.bundle.js"></script>
+  <script src="app/main.bundle.js"></script>
 
   <!-- Load resources -->
   <script src="app/shared/resources/toast.js"></script>
   <script src="app/libs/moment-with-locales.min.js"></script>
   <script src="app/libs/dropzone.min.js"></script>
   <link type="text/css" href="app/libs/dropzone.min.css" rel="stylesheet">
-
 </html>

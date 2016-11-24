@@ -5,7 +5,6 @@ declare var Dropzone: any;
 
 @Component({
     selector: 'respond-dropzone',
-    moduleId: __moduleName,
     template: '<form class="dropzone"></form>'
 })
 

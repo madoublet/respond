@@ -7,8 +7,7 @@ declare var __moduleName: string;
 
 @Component({
     selector: 'respond-developer',
-    moduleId: __moduleName,
-    templateUrl: '/developer/developer.component.html',
+    templateUrl: 'developer.component.html',
     providers: [SiteService]
 })
 

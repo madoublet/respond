@@ -6,8 +6,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-edit-caption',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/galleries/edit-caption/edit-caption.component.html',
+    templateUrl: 'edit-caption.component.html',
     providers: [GalleryImageService]
 })
 

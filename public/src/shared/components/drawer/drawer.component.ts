@@ -8,8 +8,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-drawer',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/drawer/drawer.component.html',
+    templateUrl: 'drawer.component.html',
     providers: [SiteService, AppService]
 })
 

@@ -9,8 +9,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-forgot',
-    moduleId: __moduleName,
-    templateUrl: '/forgot/forgot.component.html',
+    templateUrl: 'forgot.component.html',
     providers: [UserService, AppService]
 })
 

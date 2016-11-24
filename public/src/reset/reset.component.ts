@@ -8,8 +8,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-reset',
-    moduleId: __moduleName,
-    templateUrl: '/reset/reset.component.html',
+    templateUrl: 'reset.component.html',
     providers: [UserService, AppService]
 })
 

@@ -6,8 +6,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-edit-gallery',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/galleries/edit-gallery/edit-gallery.component.html',
+    templateUrl: 'edit-gallery.component.html',
     providers: [GalleryService]
 })
 

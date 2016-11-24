@@ -8,8 +8,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-forms',
-    moduleId: __moduleName,
-    templateUrl: '/forms/forms.component.html',
+    templateUrl: 'forms.component.html',
     providers: [FormService, FormFieldService]
 })
 

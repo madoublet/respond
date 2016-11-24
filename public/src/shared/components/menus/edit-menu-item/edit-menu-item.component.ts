@@ -7,8 +7,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-edit-menu-item',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/menus/edit-menu-item/edit-menu-item.component.html',
+    templateUrl: 'edit-menu-item.component.html',
     providers: [MenuItemService, PageService]
 })
 

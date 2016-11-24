@@ -6,8 +6,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-remove-file',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/files/remove-file/remove-file.component.html',
+    templateUrl: 'remove-file.component.html',
     providers: [FileService]
 })
 

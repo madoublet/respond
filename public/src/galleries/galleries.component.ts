@@ -8,11 +8,9 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-galleries',
-    moduleId: __moduleName,
-    templateUrl: '/galleries/galleries.component.html',
+    templateUrl: 'galleries.component.html',
     providers: [GalleryService, GalleryImageService]
 })
-
 export class GalleriesComponent {
 
   id;

@@ -6,8 +6,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-remove-user',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/users/remove-user/remove-user.component.html',
+    templateUrl: 'remove-user.component.html',
     providers: [UserService]
 })
 
