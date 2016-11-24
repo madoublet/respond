@@ -1,12 +1,9 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const zip = require('gulp-zip');
-const Builder = require('systemjs-builder');
-const ts = require('gulp-typescript');
 const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
-const inlineNg2Template = require('gulp-inline-ng2-template');
 
 const php = require('gulp-connect-php');
 const webpack = require("webpack");
@@ -129,44 +126,6 @@ gulp.task('copy-static', function() {
 
 });
 
-
-// #ref http://stackoverflow.com/questions/35280582/angular2-too-many-file-requests-on-load/37082199#37082199
-var tsProject = ts.createProject('tsconfig.json');
-
-gulp.task('ts', function() {
-    return gulp.src(['public/src/**/*.ts'])
-        .pipe(inlineNg2Template({ UseRelativePaths: true, indent: 0, removeLineBreaks: true, base: 'public/src'}))
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
-        .pipe(ts(tsProject))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/app'));
-});
-
-// bundle project
-gulp.task('bundle', function() {
-    // optional constructor options
-    // sets the baseURL and loads the configuration file
-    var builder = new Builder('public', 'public/systemjs.config.js');
-
-    /*
-       the parameters of the below buildStatic() method are:
-           - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
-           - the output (file into which it would output the bundled code)
-           - options {}
-    */
-    return builder
-        .buildStatic('app/main.js', 'public/app/bundle.js', { minify: true, sourceMaps: true})
-        .then(function() {
-            console.log('Build complete');
-        })
-        .catch(function(err) {
-            console.log('Build error');
-            console.log(err);
-        });
-});
-
 gulp.task('webpack:build', function (callback) {
     webpack(webpackConfig, function (err, stats) {
         if (err)
@@ -179,17 +138,16 @@ gulp.task('serve', function() {
     php.server({
         base: './public'
     });
-
 });
 
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
+gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'webpack:build']));
 
 // dev-build
-gulp.task('dev-build', gulp.series(['copy-static', 'ts']));
+gulp.task('dev-build', gulp.series(['copy-static', 'webpack:build']));
 
 // build
-gulp.task('build', gulp.series(['copy-static', 'ts', 'bundle']));
+gulp.task('build', gulp.series(['copy-static', 'webpack:build']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
