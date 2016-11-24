@@ -627,7 +627,7 @@ respond.searchbox = (function() {
     			// set URI
     			var uri = 'data/pages.json';
 
-    			xhr.open('GEt', encodeURI(uri));
+    			xhr.open('GET', encodeURI(uri));
     			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     			xhr.onload = function() {
 
@@ -883,3 +883,74 @@ respond.list = (function() {
 })();
 
 respond.list.setup();
+
+/*
+ * Loads a component
+ * Usage:
+ * respond.toast.show('success', 'Saved!');
+ * respond.toast.show('failure', 'Error!');
+ */
+respond.component = (function() {
+
+  'use strict';
+
+  return {
+
+    version: '0.0.1',
+
+    /**
+     * Creates the component
+     */
+    setup: function() {
+
+      var els, el, x, component;
+
+      els = document.querySelectorAll('[respond-plugin][type=component][runat=client]');
+
+      for(x=0; x<els.length; x++) {
+
+        if(els[x].hasAttribute('component') == true) {
+
+          component = els[x].getAttribute('component');
+
+          if(component != '') {
+
+            el = els[x];
+
+            var request = new XMLHttpRequest();
+            request.open('GET', 'components/' + component, true);
+
+            request.onload = function() {
+              if (request.status >= 200 && request.status < 400) {
+                var html = request.responseText;
+                el.innerHTML = html;
+
+                // setup other plugins
+                respond.map.setup();
+                respond.form.setup();
+                respond.lightbox.setup();
+                respond.list.setup();
+              } else {
+                console.log('[respond.component] XHR error, status=' + request.status);
+              }
+            };
+
+            request.onerror = function() {
+                console.log('[respond.component] XHR connection error');
+            };
+
+            request.send();
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+})();
+
+respond.component.setup();

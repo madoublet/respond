@@ -45,7 +45,7 @@
         "label": "Logo",
         "description": "Primary logo of the site",
         "type": "image",
-        "value": "resources\/logo.png",
+        "value": "files\/sample-logo.png",
         "sets": "attribute",
         "attribute": "src"
     },
