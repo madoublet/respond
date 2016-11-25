@@ -128,6 +128,17 @@ export class DeveloperComponent {
                       );
   }
 
+  /**
+   * Updates Plugins (re-syncs them with the latest version from the theme)
+   */
+  update() {
+    this._siteService.updatePlugins()
+                     .subscribe(
+                       data => { toast.show('success'); },
+                       error => { toast.show('failure');  }
+                      );
+  }
+
 
   /**
    * handles error

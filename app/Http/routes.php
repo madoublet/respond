@@ -88,6 +88,7 @@ $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteContro
 $app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@migrate']);
 $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reindexPages']);
 $app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
+$app->get('/api/sites/update/plugins', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@updatePlugins']);
 $app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listTemplates']);
 
 // login

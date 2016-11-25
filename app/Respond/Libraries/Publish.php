@@ -67,6 +67,98 @@ class Publish
     }
 
     /**
+     * Updates plugins for the site
+     *
+     * @param {Site} $site
+     */
+    public static function updatePlugins($site)
+    {
+
+      // update theme plugin files
+      $src = app()->basePath() . '/public/themes/' . $site->theme . '/plugins';
+      $dest = app()->basePath() . '/public/sites/' . $site->id . '/plugins';
+
+      // copy the directory
+      Utilities::copyDirectory($src, $dest);
+
+      // copy the plugin JS file
+      $src = app()->basePath() . '/public/themes/' . $site->theme . '/private/plugins.js';
+      $dest = app()->basePath() . '/resources/sites/' . $site->id . '/plugins.js';
+
+      copy($src, $dest);
+
+      // copy the JS file
+      $src = app()->basePath() . '/public/themes/' . $site->theme . '/js/plugins.js';
+      $dest = app()->basePath() . '/public/sites/' . $site->id . '/js/plugins.js';
+
+      copy($src, $dest);
+
+      // copy the CSS file
+      $src = app()->basePath() . '/public/themes/' . $site->theme . '/css/plugins.css';
+      $dest = app()->basePath() . '/public/sites/' . $site->id . '/css/plugins.css';
+
+      copy($src, $dest);
+
+      // combine the css
+      Publish::combineCSS($site);
+
+      return TRUE;
+
+    }
+
+    /**
+     * Combines all CSS into site.min.css
+     *
+     * @param {Site} $site
+     */
+    public static function combineCSS($site)
+    {
+
+      $id = $site->id;
+
+      // set dir
+      $dir = app()->basePath().'/public/sites/'.$id.'/css';
+
+      // list css files
+      $files = Utilities::ListFiles($dir, $id,
+              array('css'),
+              array());
+
+      $all_css = "";
+
+      // walk through files
+      foreach($files as $file) {
+
+        $path = app()->basePath('public/sites/'.$id.'/'.$file);
+
+        // get css
+        $css_file_name = basename($path);
+
+        // read, minify, and combine css
+        if($css_file_name != 'site.min.css') {
+
+          $css = file_get_contents($path);
+
+          // compress css
+          $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+          $css = str_replace(': ', ':', $css);
+          $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
+
+          // save to all css
+          $all_css .= $css;
+        }
+
+      }
+
+      // save to site.min.css
+      $min_path = app()->basePath('public/sites/'.$id.'/css/site.min.css');
+
+      // save
+      file_put_contents($min_path, $all_css);
+
+    }
+
+    /**
      * Publishes a sitemap for the site
      *
      * @param {Site} $site

@@ -14,6 +14,7 @@ export class SiteService {
   private _migrateUrl = 'api/sites/migrate';
   private _templateUrl = 'api/sites/republish/templates';
   private _listTemplatesUrl = 'api/templates/list';
+  private _updateUrl = 'api/sites/update/plugins';
 
   /**
    * Login to the application
@@ -119,6 +120,21 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._listTemplatesUrl, options).map((res:Response) => res.json());
+  }
+
+  /**
+   * Updates plugins
+   *
+   * @return {Observable}
+   */
+  updatePlugins () {
+
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._updateUrl, options);
+
   }
 
 

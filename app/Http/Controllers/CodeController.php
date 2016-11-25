@@ -336,45 +336,7 @@ class CodeController extends Controller
           // save to file
           file_put_contents($path, $value);
 
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$id.'/css';
-
-          // list css files
-          $files = Utilities::ListFiles($dir, $id,
-                  array('css'),
-                  array());
-
-          $all_css = "";
-
-          // walk through files
-          foreach($files as $file) {
-
-            $path = app()->basePath('public/sites/'.$id.'/'.$file);
-
-            // get css
-            $css_file_name = basename($path);
-
-            // read, minify, and combine css
-            if($css_file_name != 'site.min.css') {
-
-              $css = file_get_contents($path);
-
-              // compress css
-              $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
-              $css = str_replace(': ', ':', $css);
-              $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
-
-              // save to all css
-              $all_css .= $css;
-            }
-
-          }
-
-          // save to site.min.css
-          $min_path = app()->basePath('public/sites/'.$id.'/css/site.min.css');
-
-          // save
-          file_put_contents($min_path, $all_css);
+          Publish::combineCSS($site);
 
           // return 200
           return response('Ok', 200);

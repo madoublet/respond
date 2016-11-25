@@ -51,7 +51,16 @@
           <a class="primary" (click)="templates()">{{'Execute' | translate }}</a>
       </div>
     </div>
-    <!-- migrate -->
+    <!-- republish template -->
+
+    <div class="app-list-item" (click)="setActive('update-plugins')" [class.selected]="selectedOption === 'update-plugins'">
+      <h2><span class="primary">{{ 'Update Plugins' | translate }}</span></h2>
+      <p>{{ 'Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.' | translate }}</p>
+      <div class="app-list-actions">
+          <a class="primary" (click)="update()">{{'Execute' | translate }}</a>
+      </div>
+    </div>
+    <!-- republish template -->
 
   </div>
 
