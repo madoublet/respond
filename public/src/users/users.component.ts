@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-users',
-    moduleId: __moduleName,
-    templateUrl: '/users/users.component.html',
+    templateUrl: 'users.component.html',
     providers: [UserService]
 })
 

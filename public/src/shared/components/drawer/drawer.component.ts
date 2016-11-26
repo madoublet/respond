@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { SiteService } from '../../../shared/services/site.service';
 import { AppService } from '../../../shared/services/app.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-drawer',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/drawer/drawer.component.html',
+    templateUrl: 'drawer.component.html',
     providers: [SiteService, AppService]
 })
 

@@ -4,12 +4,10 @@ import { SiteService } from '../../../../shared/services/site.service';
 import { RouteService } from '../../../../shared/services/route.service';
 
 declare var toast: any;
-declare var __moduleName: string;
 
 @Component({
     selector: 'respond-page-settings',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/pages/page-settings/page-settings.component.html',
+    templateUrl: 'page-settings.component.html',
     providers: [PageService, SiteService, RouteService]
 })
 

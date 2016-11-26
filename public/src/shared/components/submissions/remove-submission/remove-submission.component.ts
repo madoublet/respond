@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SubmissionService } from '../../../../shared/services/submission.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-submission',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/submissions/remove-submission/remove-submission.component.html',
+    templateUrl: 'remove-submission.component.html',
     providers: [SubmissionService]
 })
 

@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentService } from '../../../../shared/services/component.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-component',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/components/remove-component/remove-component.component.html',
+    templateUrl: 'remove-component.component.html',
     providers: [ComponentService]
 })
 

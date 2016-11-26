@@ -2,12 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuService } from '../../../../shared/services/menu.service';
 
 declare var toast: any;
-declare var __moduleName: string;
 
 @Component({
     selector: 'respond-add-menu',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/menus/add-menu/add-menu.component.html',
+    templateUrl: 'add-menu.component.html',
     providers: [MenuService]
 })
 

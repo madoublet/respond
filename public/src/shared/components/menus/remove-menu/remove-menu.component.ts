@@ -2,13 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuService } from '../../../../shared/services/menu.service';
 import { GalleryService } from '../../../../shared/services/gallery.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-menu',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/menus/remove-menu/remove-menu.component.html',
+    templateUrl: 'remove-menu.component.html',
     providers: [MenuService]
 })
 

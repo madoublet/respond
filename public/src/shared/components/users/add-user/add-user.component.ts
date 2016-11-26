@@ -2,13 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../../../shared/services/user.service';
 import { AppService } from '../../../../shared/services/app.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-add-user',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/users/add-user/add-user.component.html',
+    templateUrl: 'add-user.component.html',
     providers: [UserService, AppService]
 })
 

@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SettingService } from '../shared/services/setting.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-settings',
-    moduleId: __moduleName,
-    templateUrl: '/settings/settings.component.html',
+    templateUrl: 'settings.component.html',
     providers: [SettingService]
 })
 

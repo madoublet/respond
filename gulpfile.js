@@ -1,11 +1,13 @@
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const zip = require('gulp-zip');
-const Builder = require('systemjs-builder');
-const ts = require('gulp-typescript');
 const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
-const  inlineNg2Template = require('gulp-inline-ng2-template');
+
+const php = require('gulp-connect-php');
+const webpack = require("webpack");
+const webpackConfig = require("./webpack.config.js");
 
 // copy node modules (no longer needed with new build)
 gulp.task('copy-nm', function() {
@@ -92,9 +94,6 @@ gulp.task('copy-folders', function() {
 gulp.task('copy-js', function() {
 
   return gulp.src([
-      'node_modules/zone.js/dist/zone.js',
-      'node_modules/reflect-metadata/Reflect.js',
-      'node_modules/systemjs/dist/system.src.js',
       'node_modules/moment/min/moment-with-locales.min.js',
       'node_modules/dropzone/dist/min/dropzone.min.js',
       'node_modules/ace-builds/src-min/ace.js',
@@ -127,7 +126,6 @@ gulp.task('copy-css', function() {
 gulp.task('copy-static', function() {
 
     var bundlePaths = [
-      'public/src/**/*.html',
       'public/src/**/*.js',
       'public/src/**/*.css',
       'public/src/**/*.png'
@@ -138,53 +136,28 @@ gulp.task('copy-static', function() {
 
 });
 
-
-// #ref http://stackoverflow.com/questions/35280582/angular2-too-many-file-requests-on-load/37082199#37082199
-var tsProject = ts.createProject('tsconfig.json');
-
-gulp.task('ts', function() {
-    return gulp.src(['public/src/**/*.ts'])
-        .pipe(inlineNg2Template({ UseRelativePaths: true, indent: 0, removeLineBreaks: true, base: 'public/src'}))
-        .pipe(sourcemaps.init({
-            loadMaps: true
-        }))
-        .pipe(ts(tsProject))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/app'));
+gulp.task('webpack:build', function (callback) {
+    webpack(webpackConfig, function (err, stats) {
+        if (err)
+            throw new gutil.PluginError('webpack:build', err);
+        callback();
+    });
 });
 
-// bundle project
-gulp.task('bundle', function() {
-    // optional constructor options
-    // sets the baseURL and loads the configuration file
-    var builder = new Builder('public', 'public/systemjs.config.js');
-
-    /*
-       the parameters of the below buildStatic() method are:
-           - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
-           - the output (file into which it would output the bundled code)
-           - options {}
-    */
-    return builder
-        .buildStatic('app/main.js', 'public/app/bundle.js', { minify: true, sourceMaps: true})
-        .then(function() {
-            console.log('Build complete');
-        })
-        .catch(function(err) {
-            console.log('Build error');
-            console.log(err);
-        });
+gulp.task('serve', function() {
+    php.server({
+        base: './public'
+    });
 });
-
 
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'ts', 'bundle']));
+gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'webpack:build']));
 
 // dev-build
-gulp.task('dev-build', gulp.series(['copy-static', 'ts']));
+gulp.task('dev-build', gulp.series(['copy-static', 'webpack:build']));
 
 // build
-gulp.task('build', gulp.series(['copy-static', 'ts', 'bundle']));
+gulp.task('build', gulp.series(['copy-static', 'copy-js', 'copy-css', 'webpack:build']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));

@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileService } from '../shared/services/file.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-files',
-    moduleId: __moduleName,
-    templateUrl: '/files/files.component.html',
+    templateUrl: 'files.component.html',
     providers: [FileService]
 })
 

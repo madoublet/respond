@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { FormService } from '../shared/services/form.service';
 import { FormFieldService } from '../shared/services/form-field.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-forms',
-    moduleId: __moduleName,
-    templateUrl: '/forms/forms.component.html',
+    templateUrl: 'forms.component.html',
     providers: [FormService, FormFieldService]
 })
 

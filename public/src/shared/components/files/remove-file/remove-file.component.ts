@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FileService } from '../../../../shared/services/file.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-file',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/files/remove-file/remove-file.component.html',
+    templateUrl: 'remove-file.component.html',
     providers: [FileService]
 })
 

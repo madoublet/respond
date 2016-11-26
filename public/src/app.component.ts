@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { TranslateService } from 'ng2-translate/ng2-translate';
+import { TranslateService } from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'respond-app',
     templateUrl: 'app.component.html'
 })
-
 export class AppComponent {
 
   constructor(private _translate: TranslateService) {

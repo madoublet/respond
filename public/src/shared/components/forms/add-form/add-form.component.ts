@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormService } from '../../../../shared/services/form.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-add-form',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/forms/add-form/add-form.component.html',
+    templateUrl: 'add-form.component.html',
     providers: [FormService]
 })
 

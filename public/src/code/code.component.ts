@@ -7,7 +7,7 @@ declare var ace: any;
 
 @Component({
     selector: 'respond-code',
-    templateUrl: '/code/code.component.html',
+    templateUrl: 'code.component.html',
     providers: [CodeService],
 })
 

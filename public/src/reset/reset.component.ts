@@ -3,13 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AppService } from '../shared/services/app.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-reset',
-    moduleId: __moduleName,
-    templateUrl: '/reset/reset.component.html',
+    templateUrl: 'reset.component.html',
     providers: [UserService, AppService]
 })
 

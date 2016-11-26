@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-edit',
-    moduleId: __moduleName,
-    templateUrl: '/edit/edit.component.html'
+    templateUrl: 'edit.component.html'
 })
 
 export class EditComponent {

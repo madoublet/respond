@@ -2,13 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageService } from '../../../../shared/services/page.service';
 import { RouteService } from '../../../../shared/services/route.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-page',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/pages/remove-page/remove-page.component.html',
+    templateUrl: 'remove-page.component.html',
     providers: [PageService, RouteService]
 })
 

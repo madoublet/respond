@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserService } from '../../../../shared/services/user.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-remove-user',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/users/remove-user/remove-user.component.html',
+    templateUrl: 'remove-user.component.html',
     providers: [UserService]
 })
 

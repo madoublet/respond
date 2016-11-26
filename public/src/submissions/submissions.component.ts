@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubmissionService } from '../shared/services/submission.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-submissions',
-    moduleId: __moduleName,
-    templateUrl: '/submissions/submissions.component.html',
+    templateUrl: 'submissions.component.html',
     providers: [SubmissionService]
 })
 

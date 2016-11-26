@@ -4,13 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AppService } from '../shared/services/app.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-forgot',
-    moduleId: __moduleName,
-    templateUrl: '/forgot/forgot.component.html',
+    templateUrl: 'forgot.component.html',
     providers: [UserService, AppService]
 })
 

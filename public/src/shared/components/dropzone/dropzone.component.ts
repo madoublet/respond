@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, Output, ElementRef } from '@angular/core';
 
-declare var __moduleName: string;
 declare var Dropzone: any;
 
 @Component({
     selector: 'respond-dropzone',
-    moduleId: __moduleName,
     template: '<form class="dropzone"></form>'
 })
 

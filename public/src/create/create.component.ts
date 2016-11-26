@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { SiteService } from '../shared/services/site.service';
 import { AppService } from '../shared/services/app.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-create',
-    moduleId: __moduleName,
-    templateUrl: '/create/create.component.html',
+    templateUrl: 'create.component.html',
     providers: [SiteService, AppService]
 })
 

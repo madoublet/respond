@@ -2,12 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentService } from '../../../../shared/services/component.service';
 
 declare var toast: any;
-declare var __moduleName: string;
 
 @Component({
     selector: 'respond-add-component',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/components/add-component/add-component.component.html',
+    templateUrl: 'add-component.component.html',
     providers: [ComponentService]
 })
 

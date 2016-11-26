@@ -3,13 +3,11 @@ import { Router } from '@angular/router';
 import { GalleryService } from '../shared/services/gallery.service';
 import { GalleryImageService } from '../shared/services/gallery-image.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-galleries',
-    moduleId: __moduleName,
-    templateUrl: '/galleries/galleries.component.html',
+    templateUrl: 'galleries.component.html',
     providers: [GalleryService, GalleryImageService]
 })
 

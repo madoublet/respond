@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GalleryImageService } from '../../../../shared/services/gallery-image.service';
 
-declare var __moduleName: string;
 declare var toast: any;
 
 @Component({
     selector: 'respond-edit-caption',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/galleries/edit-caption/edit-caption.component.html',
+    templateUrl: 'edit-caption.component.html',
     providers: [GalleryImageService]
 })
 

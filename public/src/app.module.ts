@@ -82,7 +82,7 @@ import { RemoveUserComponent } from './shared/components/users/remove-user/remov
 // http, routing, translate
 import { HttpModule }     from '@angular/http';
 import { routing } from './app.routes';
-import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { TranslateModule } from 'ng2-translate';
 
 // pipes
 import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';

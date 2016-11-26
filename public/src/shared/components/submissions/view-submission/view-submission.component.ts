@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { SubmissionService } from '../../../../shared/services/submission.service';
 
 declare var __moduleName: string;
@@ -7,8 +6,7 @@ declare var toast: any;
 
 @Component({
     selector: 'respond-view-submission',
-    moduleId: __moduleName,
-    templateUrl: '/shared/components/submissions/view-submission/view-submission.component.html',
+    templateUrl: 'view-submission.component.html',
     providers: [SubmissionService]
 })
 
