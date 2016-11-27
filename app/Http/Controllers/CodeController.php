@@ -111,6 +111,11 @@ class CodeController extends Controller
           // set dir
           $dir = app()->basePath().'/public/sites/'.$site->id.'/components';
 
+          // make directory
+          if(!file_exists($dir)){
+      			mkdir($dir, 0777, true);
+      		}
+
           // list files
           $files = Utilities::ListFiles($dir, $site->id,
                   array('html'),
