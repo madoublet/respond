@@ -65,6 +65,10 @@ class Utilities
     public static function listFiles($dir, $id, $exts, $restrict = NULL)
     {
 
+        if(!file_exists($dir)) {
+          return array();
+        }
+
         $root = scandir($dir);
 
         if (!isset($result)) {
