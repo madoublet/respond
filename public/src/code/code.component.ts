@@ -274,4 +274,14 @@ export class CodeComponent {
 
   }
 
+  /**
+   * Shows the add modal
+   */
+  showAdd() {
+
+    alert('show add');
+
+
+  }
+
 }

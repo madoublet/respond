@@ -240,6 +240,61 @@ class Utilities
 
     }
 
+    /**
+     * Returns all routes for a component
+     *
+     * @param {string} $path the recipient's email address
+     * @return {Array} list of routes
+     */
+    public static function listRoutesForComponents($dir, $id)
+    {
+
+        $result = array();
+
+        $restrict = array();
+
+        $cdir = scandir($dir);
+
+        foreach ($cdir as $key => $value) {
+
+            if (!in_array($value, array(
+                ".",
+                ".."
+            ))) {
+
+                if (is_dir("$dir/$value")) {
+
+                    $paths = explode('sites/' . $id . '/components/', "$dir/$value");
+
+                    $is_restricted = FALSE;
+
+                    foreach ($restrict as $item) {
+
+                        // TODO: MAKE SURE THE FILE DOES NOT START WITH A RESTRICTED PATH
+                        if (substr($paths[1], 0, strlen($item)) === $item) {
+                            $is_restricted = TRUE;
+                        }
+
+                    }
+
+                    if ($is_restricted === FALSE) {
+
+                        $arr = Utilities::listRoutes("$dir/$value", $id);
+
+                        $result[] = '/' . $paths[1];
+                        $result   = array_merge($result, $arr);
+
+                    }
+                }
+
+            }
+
+        }
+
+        return $result;
+
+    }
+
 
     /**
      * Sends an email from a specified file

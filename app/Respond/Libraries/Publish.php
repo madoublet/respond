@@ -9,6 +9,7 @@ use App\Respond\Models\Page;
 use App\Respond\Models\Form;
 use App\Respond\Models\Menu;
 use App\Respond\Models\Gallery;
+use App\Respond\Models\Component;
 use App\Respond\Libraries\Utilities;
 use App\Respond\Models\Setting;
 
@@ -640,6 +641,7 @@ class Publish
       $forms = Form::listExtended($site->id);
       $menus = Menu::listExtended($site->id);
       $galleries = Gallery::listExtended($site->id);
+      $components = Component::listAll($site->id);
 
       // setup current site
       $current_site = array(
@@ -711,6 +713,7 @@ class Publish
                                   'meta' => $meta,
                                   'site' => $current_site,
                                   'pages' => $pages,
+                                  'components' => $components,
                                   'forms' => $forms,
                                   'galleries' => $galleries,
                                   'menus' => $menus,

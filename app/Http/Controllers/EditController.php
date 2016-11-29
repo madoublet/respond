@@ -227,6 +227,26 @@ class EditController extends Controller
                 $plugins_script = str_replace("['respond.components']", json_encode($options), $plugins_script);
               }
 
+              // inject components into script
+              if(strpos($plugins_script, 'respond.components.routes') !== false ) {
+
+                $dir = $file = app()->basePath().'/public/sites/'.$siteId.'/components';
+                $arr = array_merge(array('/'), Utilities::listRoutesForComponents($dir, $siteId));
+
+                $options = array();
+
+                // get id
+                foreach($arr as $item) {
+                  array_push($options, array(
+                    'text' => $item,
+                    'value' => $item
+                  ));
+                }
+
+                // inject forms into script
+                $plugins_script = str_replace("['respond.components.routes']", json_encode($options), $plugins_script);
+              }
+
               // inject galleries into script
               if(strpos($plugins_script, 'respond.galleries') !== false ) {
 

@@ -1225,6 +1225,26 @@ body .dropzone .dz-message {
     color: #555;
   }
 
+  .app-interior-menu .app-add {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    color: #00ADE3 !important;
+    width: 50px;
+    height: 49px;
+    line-height: 50px;
+    border: 0;
+    outline: none;
+    color: #fff;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+    .app-interior-menu .app-add  svg {
+      fill: currentColor;
+    }
+
   /* back */
   .app-interior-menu .app-back {
     position: fixed;
