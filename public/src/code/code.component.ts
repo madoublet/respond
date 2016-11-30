@@ -24,6 +24,7 @@ export class CodeComponent {
   private scripts: any;
   private plugins: any;
   private components: any;
+  private showMenu: boolean;
   private isPagesExpanded: boolean;
   private isTemplatesExpanded: boolean;
   private isStylesheetsExpanded: boolean;
@@ -44,6 +45,7 @@ export class CodeComponent {
 
     this.codeUrl = localStorage.getItem('respond.codeUrl');
     this.codeType = localStorage.getItem('respond.codeType');
+    this.showMenu = true;
 
     // get types
     this.pages = [];
@@ -61,8 +63,14 @@ export class CodeComponent {
     this.isPluginsExpanded = false;
     this.isComponentsExpanded = false;
 
+    if(this.codeType == 'page' || this.codeType == 'component') {
+      this.showMenu = false;
+    }
+    else {
+      this.list();
+    }
+
     this.retrieve();
-    this.list();
     this.setExpanded();
 
   }

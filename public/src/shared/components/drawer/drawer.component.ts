@@ -78,8 +78,8 @@ export class DrawerComponent {
    */
   viewCode() {
 
-    localStorage.setItem('respond.codeUrl', 'index.html');
-    localStorage.setItem('respond.codeType', 'page');
+    localStorage.setItem('respond.codeUrl', 'templates/default.html');
+    localStorage.setItem('respond.codeType', 'template');
 
     var id = Math.random().toString(36).substr(2, 9);
 

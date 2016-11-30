@@ -1116,6 +1116,11 @@ body .dropzone .dz-message {
   height: calc(100% - 100px);
 }
 
+  .code-editor.expanded {
+    margin-left: 0;
+    width: 100%;
+  }
+
 .code-menu {
   font-family: 'Helvetica', 'Arial', 'sans-serif';
   position: fixed;
