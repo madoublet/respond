@@ -66,6 +66,7 @@ $app->get('/edit', 'EditController@edit');
 // handles code editing
 $app->get('/api/code/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@retrieve']);
 $app->post('/api/code/save', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@save']);
+$app->post('/api/code/add', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@add']);
 $app->get('/api/code/list/{id}', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@listAll']);
 
 // checks auth status

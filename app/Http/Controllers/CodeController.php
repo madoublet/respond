@@ -372,4 +372,119 @@ class CodeController extends Controller
       return response('File does not exist', 400);
     }
 
+    /**
+     * Add code
+     *
+     * @return Response
+     */
+    public function add(Request $request)
+    {
+
+      // get request data
+      $email = $request->input('auth-email');
+      $id = $request->input('auth-id');
+
+      // get site and user
+      $site = Site::getById($id);
+      $user = User::getByEmail($email, $id);
+
+      // get url and type
+      $type = $request->json()->get('type');
+      $name = $request->json()->get('name');
+
+      // save a page
+      if ($type == "plugin") {
+
+        // check for extension
+        if (strpos($name, '.html') === false && strpos($name, '.php') === false) {
+          $name = $name.'.php';
+        }
+
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/plugins/'.$name);
+
+         // return OK
+        if(file_exists($path) == false) {
+
+          // create file
+          file_put_contents($path, '');
+
+          // return 200
+          return response('Ok', 200);
+
+        }
+        else {
+          return response('File already exists', 400);
+        }
+      }
+      else if ($type == "template") {
+
+        // strip extension
+        $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/templates/'.$name.'.html');
+
+         // return OK
+        if (file_exists($path) == false) {
+
+          // create file
+          file_put_contents($path, '');
+
+          // return 200
+          return response('Ok', 200);
+        }
+        else {
+          return response('File already exists', 400);
+        }
+
+      }
+      else if ($type == "stylesheet") {
+
+        // strip extension
+        $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/css/'.$name.'.css');
+
+         // return OK
+        if (file_exists($path) == false) {
+
+          // create file
+          file_put_contents($path, '');
+
+          // return 200
+          return response('Ok', 200);
+        }
+        else {
+          return response('File already exists', 400);
+        }
+
+      }
+      else if ($type == "javascript") {
+
+        // strip extension
+        $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/js/'.$name.'.js');
+
+         // return OK
+        if (file_exists($path) == false) {
+
+          // create file
+          file_put_contents($path, '');
+
+          // return 200
+          return response('Ok', 200);
+        }
+        else {
+          return response('File already exists', 400);
+        }
+
+      }
+
+      return response('File does not exist', 400);
+    }
+
 }

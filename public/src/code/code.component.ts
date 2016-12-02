@@ -31,6 +31,7 @@ export class CodeComponent {
   private isScriptsExpanded: boolean;
   private isPluginsExpanded: boolean;
   private isComponentsExpanded: boolean;
+  addVisible: boolean = false;
 
   constructor (private _route: ActivatedRoute, private _router: Router, private _codeService: CodeService) {}
 
@@ -46,6 +47,7 @@ export class CodeComponent {
     this.codeUrl = localStorage.getItem('respond.codeUrl');
     this.codeType = localStorage.getItem('respond.codeType');
     this.showMenu = true;
+    this.addVisible = false;
 
     // get types
     this.pages = [];
@@ -128,6 +130,13 @@ export class CodeComponent {
   }
 
   /**
+   * Resets modal booleans
+   */
+  reset() {
+    this.addVisible = false;
+  }
+
+  /**
    * navigates back
    */
    back() {
@@ -143,7 +152,7 @@ export class CodeComponent {
 
     this._codeService.retrieve(this.codeUrl, this.codeType)
                      .subscribe(
-                       data => { console.log(data); this.setupEditor(data); },
+                       data => { this.setupEditor(data); },
                        error =>  { this.failure(<any>error); }
                       );
 
@@ -162,6 +171,8 @@ export class CodeComponent {
    * Updates the list
    */
   list() {
+
+    this.reset();
 
     this._codeService.list('page')
                      .subscribe(
@@ -283,13 +294,10 @@ export class CodeComponent {
   }
 
   /**
-   * Shows the add modal
+   * Shows the add dialog
    */
   showAdd() {
-
-    alert('show add');
-
-
+    this.addVisible = true;
   }
 
 }

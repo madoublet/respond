@@ -32,6 +32,7 @@ class EditController extends Controller
 
           $saveUrl = '/api/pages/save';
           $mode = 'page';
+          $title = '';
 
           // set save URL
           if(isset($m)) {
@@ -58,6 +59,15 @@ class EditController extends Controller
 
             // add .html back in
             $url .= '.html';
+
+            // build title
+            $arr = explode('/', $url);
+
+            for($x=1; $x < sizeof($arr); $x++) {
+              $title .= $arr[$x].'/';
+            }
+
+            $title = rtrim($title, '/');
 
             // load page
             $path = rtrim(app()->basePath('public/sites/'.$url), '/');
@@ -328,6 +338,7 @@ class EditController extends Controller
 <script>
 hashedit.setup({
   dev: true,
+  title: '$title',
   url: '$url',
   sortable: '$sortable',
   blocks: '$blocks',
@@ -353,6 +364,7 @@ EOD;
 <script>$plugins_script</script>
 <script>
 hashedit.setup({
+  title: '$title',
   url: '$url',
   sortable: '$sortable',
   blocks: '$blocks',

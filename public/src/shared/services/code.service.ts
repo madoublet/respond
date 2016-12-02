@@ -10,6 +10,7 @@ export class CodeService {
   private _retrieveUrl = 'api/code/retrieve';
   private _saveUrl = 'api/code/save';
   private _listUrl = 'api/code/list';
+  private _addUrl = 'api/code/add';
 
 
   /**
@@ -55,6 +56,24 @@ export class CodeService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this._saveUrl, body, options);
+
+  }
+
+  /**
+   * Add code
+   *
+   * @param {string} type
+   * @param {string} name
+   * @return {Observable}
+   */
+  add (type: string, name: string) {
+
+    let body = JSON.stringify({ type, name });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._addUrl, body, options);
 
   }
 
