@@ -903,7 +903,7 @@ respond.component = (function() {
      */
     setup: function() {
 
-      var els, el, x, component;
+      var els, el, x, component, delay=0;
 
       els = document.querySelectorAll('[respond-plugin][type=component][runat=client]');
 
@@ -913,33 +913,46 @@ respond.component = (function() {
 
           component = els[x].getAttribute('component');
 
+          if(els[x].hasAttribute('delay')) {
+              delay = parseInt(els[x].getAttribute('delay'));
+          }
+
           if(component != '') {
 
             el = els[x];
 
-            var request = new XMLHttpRequest();
-            request.open('GET', 'components/' + component, true);
+            function loadComponent(el, component) {
+                var request = new XMLHttpRequest();
+                request.open('GET', 'components/' + component, true);
 
-            request.onload = function() {
-              if (request.status >= 200 && request.status < 400) {
-                var html = request.responseText;
-                el.innerHTML = html;
+                request.onload = function() {
+                  if (request.status >= 200 && request.status < 400) {
+                    var html = request.responseText;
+                    el.innerHTML = html;
 
-                // setup other plugins
-                respond.map.setup();
-                respond.form.setup();
-                respond.lightbox.setup();
-                respond.list.setup();
-              } else {
-                console.log('[respond.component] XHR error, status=' + request.status);
-              }
-            };
+                    // setup other plugins
+                    respond.map.setup();
+                    respond.form.setup();
+                    respond.lightbox.setup();
+                    respond.list.setup();
+                  } else {
+                    console.log('[respond.component] XHR error, status=' + request.status);
+                  }
+                };
 
-            request.onerror = function() {
-                console.log('[respond.component] XHR connection error');
-            };
+                request.onerror = function() {
+                    console.log('[respond.component] XHR connection error');
+                };
 
-            request.send();
+                request.send();
+            }
+
+            if(delay > 0) {
+                setTimeout(function() {loadComponent(el, component);}, delay);
+            }
+            else {
+                loadComponent(el, component);
+            }
 
           }
 

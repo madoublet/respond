@@ -4,6 +4,8 @@ namespace App\Respond\Libraries;
 
 use \Firebase\JWT\JWT;
 
+use App\Respond\Models\Setting;
+
 class Utilities
 {
 
@@ -343,38 +345,118 @@ class Utilities
      * @param {string} $fromName the name of the sender
      * @param {string} $subject the subject of the email
      * @param {string} $content the content of the email
+     * @param {string} $site (optional, if added will check for site SMTP settings)
      * @return void
      */
-    public static function sendEmail($to, $from, $fromName, $subject, $content)
+    public static function sendEmail($to, $from, $fromName, $subject, $content, $site = NULL)
     {
 
         $mail = new \PHPMailer;
 
-        // setup SMTP
-        if (env('IS_SMTP') == true) {
+        // if null, grab settings from env()
+        if($site == NULL) {
+
+          // setup SMTP
+          if (env('IS_SMTP') == true) {
+
+              $mail->isSMTP(); // Set mailer to use SMTP
+              $mail->Host = env('SMTP_HOST'); // Specify main and backup server
+
+              if (env('SMTP_PORT')) {
+                  $mail->Port = env('SMTP_PORT');
+              }
+
+              $mail->SMTPAuth   = env('SMTP_AUTH'); // Enable SMTP authentication
+              $mail->Username   = env('SMTP_USERNAME'); // SMTP username
+              $mail->Password   = env('SMTP_PASSWORD'); // SMTP password
+              $mail->SMTPSecure = env('SMTP_SECURE'); // Enable encryption, 'ssl' also accepted
+              $mail->CharSet    = 'UTF-8';
+
+          }
+
+        }
+        else { // grab settings from site or env
+
+          // get isSMTP
+          $isSMTP = Setting::getById('IS_SMTP', $siteId);
+
+          if ($isSMTP == NULL) {
+            $isSMTP = env('IS_SMTP');
+          }
+
+          // setup SMTP
+          if ($isSMTP == true) {
 
             $mail->isSMTP(); // Set mailer to use SMTP
-            $mail->Host = env('SMTP_HOST'); // Specify main and backup server
 
-            if (env('SMTP_PORT')) {
-                $mail->Port = env('SMTP_PORT');
+            // get host
+            $host = Setting::getById('SMTP_HOST', $siteId);
+
+            if ($host == NULL) {
+              $host = env('SMTP_HOST');
             }
 
-            $mail->SMTPAuth   = env('SMTP_AUTH'); // Enable SMTP authentication
-            $mail->Username   = env('SMTP_USERNAME'); // SMTP username
-            $mail->Password   = env('SMTP_PASSWORD'); // SMTP password
-            $mail->SMTPSecure = env('SMTP_SECURE'); // Enable encryption, 'ssl' also accepted
+            $mail->Host = $host;
+
+            // get port
+            $port = Setting::getById('SMTP_PORT', $siteId);
+
+            if ($port == NULL) {
+              $port = env('SMTP_PORT');
+            }
+
+            $mail->Port = $port;
+
+            // get auth
+            $auth = Setting::getById('SMTP_AUTH', $siteId);
+
+            if ($auth == NULL) {
+              $auth = env('SMTP_AUTH');
+            }
+
+            $mail->SMTPAuth = $auth;
+
+            // get username
+            $username = Setting::getById('SMTP_USERNAME', $siteId);
+
+            if ($username == NULL) {
+              $username = env('SMTP_USERNAME');
+            }
+
+            $mail->Username = $username;
+
+            // get password
+            $password = Setting::getById('SMTP_PASSWORD', $siteId);
+
+            if ($password == NULL) {
+              $password = env('SMTP_PASSWORD');
+            }
+
+            $mail->Password = $password;
+
+            // get secure
+            $secure = Setting::getById('SMTP_SECURE', $siteId);
+
+            if ($secure == NULL) {
+              $secure = env('SMTP_SECURE');
+            }
+
+            $mail->SMTPSecure = secure;
+
+            // set encoding
             $mail->CharSet    = 'UTF-8';
+
+          }
 
         }
 
-        $mail->From     = $from;
+        $mail->From = $from;
         $mail->FromName = $fromName;
         $mail->addAddress($to, '');
         $mail->isHTML(true);
 
         $mail->Subject = $subject;
-        $mail->Body    = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
+        $mail->Body = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
 
         if (!$mail->send()) {
             return true;

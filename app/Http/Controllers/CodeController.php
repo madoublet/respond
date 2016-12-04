@@ -351,6 +351,28 @@ class CodeController extends Controller
         }
 
       }
+      else if($type == "script") {
+
+        // build path
+        $path = app()->basePath('public/sites/'.$id.'/'.$url);
+
+         // return OK
+        if(file_exists($path) == true) {
+
+          // save to file
+          file_put_contents($path, $value);
+
+          // combine JS to site.all.js
+          Publish::combineJS($site);
+
+          // return 200
+          return response('Ok', 200);
+        }
+        else {
+          return response('File does not exist', 400);
+        }
+
+      }
       else {
         // build path
         $path = app()->basePath('public/sites/'.$id.'/'.$url);
@@ -461,7 +483,7 @@ class CodeController extends Controller
         }
 
       }
-      else if ($type == "javascript") {
+      else if ($type == "script") {
 
         // strip extension
         $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
@@ -474,6 +496,9 @@ class CodeController extends Controller
 
           // create file
           file_put_contents($path, '');
+
+          // combine JS to site.all.js
+          Publish::combineJS($site);
 
           // return 200
           return response('Ok', 200);

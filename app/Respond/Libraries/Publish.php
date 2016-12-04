@@ -160,6 +160,53 @@ class Publish
     }
 
     /**
+     * Combines all JS into site.all.js
+     *
+     * @param {Site} $site
+     */
+    public static function combineJS($site)
+    {
+
+      $id = $site->id;
+
+      // set dir
+      $dir = app()->basePath().'/public/sites/'.$id.'/js';
+
+      // list css files
+      $files = Utilities::ListFiles($dir, $id,
+              array('js'),
+              array());
+
+      $all_js = "";
+
+      // walk through files
+      foreach($files as $file) {
+
+        $path = app()->basePath('public/sites/'.$id.'/'.$file);
+
+        // get css
+        $js_file_name = basename($path);
+
+        // read, minify, and combine css
+        if($js_file_name != 'site.all.css') {
+
+          $js = file_get_contents($path);
+
+          // save to all css
+          $all_js .= $js;
+        }
+
+      }
+
+      // save to site.all.js
+      $all_path = app()->basePath('public/sites/'.$id.'/js/site.all.js');
+
+      // save
+      file_put_contents($all_path, $all_js);
+
+    }
+
+    /**
      * Publishes a sitemap for the site
      *
      * @param {Site} $site

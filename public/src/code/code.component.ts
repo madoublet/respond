@@ -271,10 +271,9 @@ export class CodeComponent {
     // save code from the editor
     this._codeService.save(this.editor.getValue(), this.codeUrl, this.codeType)
                      .subscribe(
-                       data => { this.success(); },
+                       data => { this.success(); this.list(); },
                        error =>  { this.failure(<any>error); }
                       );
-
 
   }
 
