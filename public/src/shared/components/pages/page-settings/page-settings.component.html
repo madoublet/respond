@@ -21,6 +21,11 @@
         [(ngModel)]="model.keywords"
         name="keywords">
 
+      <label>{{ 'Tags' | translate }}</label>
+      <input id="hashedit-page-settings-tags" type="text" maxlength="128"
+        [(ngModel)]="model.tags"
+        name="tags">
+
       <label>{{ 'Callout' | translate }}</label>
       <input id="hashedit-page-settings-callout" type="text" maxlength="128"
         [(ngModel)]="model.callout"

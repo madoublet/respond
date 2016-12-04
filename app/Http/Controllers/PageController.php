@@ -128,6 +128,7 @@ class PageController extends Controller
     $title = $request->json()->get('title');
     $description = $request->json()->get('description');
     $keywords = $request->json()->get('keywords');
+    $tags = $request->json()->get('tags');
     $callout = $request->json()->get('callout');
     $language = $request->json()->get('language');
     $direction = $request->json()->get('direction');
@@ -138,6 +139,7 @@ class PageController extends Controller
       'title' => $title,
       'description' => $description,
       'keywords' => $keywords,
+      'tags' => $tags,
       'callout' => $callout,
       'url' => $url,
       'language' => $language,
@@ -198,6 +200,7 @@ class PageController extends Controller
       'description' => $description,
       'text' => '',
       'keywords' => '',
+      'tags' => '',
       'callout' => '',
       'url' => $url,
       'photo' => '',

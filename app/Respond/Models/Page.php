@@ -25,6 +25,7 @@ class Page {
   public $description;
   public $text;
   public $keywords;
+  public $tags;
   public $callout;
   public $url;
   public $photo;
@@ -52,9 +53,14 @@ class Page {
       }
     }
 
-    // fallback for locatino
+    // fallback for location
     if(isset($this->location) === false) {
       $this->location = '';
+    }
+
+    // fallback for tags
+    if(isset($this->tags) === false) {
+      $this->tags = '';
     }
 
   }
@@ -319,6 +325,7 @@ class Page {
     $page->title = $data['title'];
     $page->description = $data['description'];
     $page->keywords = $data['keywords'];
+    $page->tags = $data['tags'];
     $page->callout = $data['callout'];
     $page->language = $data['language'];
     $page->direction = $data['direction'];
@@ -445,7 +452,7 @@ class Page {
       // find body
       $els = $dom->find('body');
 
-      // set timestamp in head
+      // set timestamp, template, tags in head
       if(isset($els[0])) {
 
         $timestamp = date(Page::$ISO8601, time());
@@ -453,6 +460,10 @@ class Page {
 
         if(isset($this->template)) {
           $els[0]->setAttribute('data-template', $this->template);
+        }
+
+        if(isset($this->tags)) {
+          $els[0]->setAttribute('data-tags', $this->tags);
         }
 
       }
@@ -513,6 +524,7 @@ class Page {
           $page['description'] = $this->description;
           $page['text'] = $this->text;
           $page['keywords'] = $this->keywords;
+          $page['tags'] = $this->tags;
           $page['callout'] = $this->callout;
           $page['photo'] = $this->photo;
           $page['thumb'] = $this->thumb;
@@ -741,6 +753,7 @@ class Page {
         $title       = '';
         $description = '';
         $keywords    = '';
+        $tags = '';
         $callout     = '';
         $url         = $file;
         $text        = '';
@@ -786,7 +799,7 @@ class Page {
           }
         }
 
-        // get template in head
+        // get template
         if(isset($els[0])) {
 
           // try to get the template attribute
@@ -803,6 +816,16 @@ class Page {
 
           }
         }
+
+        // get tags
+        if(isset($els[0])) {
+          $attr = $els[0]->getAttribute('data-tags');
+
+          if($attr !== FALSE) {
+            $tags = $attr;
+          }
+        }
+
 
         // get description
         $els = $dom->find('meta[name=description]');
@@ -890,6 +913,7 @@ class Page {
             'description' => $description,
             'text' => $text,
             'keywords' => $keywords,
+            'tags' => $tags,
             'callout' => $callout,
             'url' => $url,
             'photo' => $photo,

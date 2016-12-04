@@ -77,7 +77,7 @@ export class PageSettingsComponent {
   submit() {
 
 
-    this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.callout, this.model.language, this.model.direction, this.model.template)
+    this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.tags, this.model.callout, this.model.language, this.model.direction, this.model.template)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.errorMessage = <any>error; this.error() }

@@ -17,8 +17,34 @@ if ($attributes['display'] == 'map') {
   $html .= '<div class="map-container"></div>';
 }
 
+// add tag
+$tag = '';
+
+// get tag (if set)
+if (isset($attributes['tag'])) {
+  $tag = $attributes['tag'];
+}
+
 // walk through pages and filter by url
 foreach ($pages as $page) {
+
+  // filter by tag
+  if ($tag != '') {
+
+    if (isset($page['tags'])) {
+
+      $tags = explode(',', $page['tags']);
+
+      if (!in_array($tag, $tags)) {
+        continue;
+      }
+
+    }
+    else {
+      continue;
+    }
+
+  }
 
   // check if the URL starts with
   if (url_starts_with($page['url'], $attributes['url'])) {
