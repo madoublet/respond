@@ -7,6 +7,7 @@
     <label>{{ 'Type' | translate }}</label>
     <select id="hashedit-add-code-type"
       [(ngModel)]="model.type"
+      (change)="updateUrl($event.target.value)"
       name="type">
       <option value="template">{{ 'Template' | translate }}</option>
       <option value="stylesheet">CSS</option>
@@ -18,6 +19,10 @@
     <input id="hashedit-add-code-name" type="text" maxlength="128" placeholder="new-file" required
       [(ngModel)]="model.name"
       name="url">
+
+    <div class="or">{{ 'Or' | translate }}</div>
+
+    <respond-dropzone [url]="uploadUrl" (onAdd)="uploaded($event)"></respond-dropzone>
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

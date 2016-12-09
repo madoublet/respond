@@ -29,6 +29,10 @@ import { FilesComponent } from './files/files.component';
 import { RemoveFileComponent } from './shared/components/files/remove-file/remove-file.component';
 import { SelectFileComponent } from './shared/components/files/select-file/select-file.component';
 
+// plugins
+import { PluginsComponent } from './plugins/plugins.component';
+import { RemovePluginComponent } from './shared/components/plugins/remove-plugin/remove-plugin.component';
+
 // forms
 import { FormsComponent } from './forms/forms.component';
 import { AddFormComponent } from './shared/components/forms/add-form/add-form.component';
@@ -97,7 +101,7 @@ import { TimeAgoPipe } from './shared/pipes/time-ago.pipe';
       CreateComponent,
       DrawerComponent, DropzoneComponent,
       EditComponent, DeveloperComponent, CodeComponent, AddCodeComponent,
-      FilesComponent, RemoveFileComponent, SelectFileComponent,
+      FilesComponent, RemoveFileComponent, SelectFileComponent, PluginsComponent, RemovePluginComponent,
       FormsComponent, AddFormComponent, EditFormComponent, RemoveFormComponent, AddFormFieldComponent, EditFormFieldComponent, RemoveFormFieldComponent,
       GalleriesComponent, AddGalleryComponent, EditGalleryComponent, RemoveGalleryComponent, EditCaptionComponent, RemoveGalleryImageComponent,
       MenusComponent, AddMenuComponent, EditMenuComponent, RemoveMenuComponent, AddMenuItemComponent, EditMenuItemComponent, RemoveMenuItemComponent,

@@ -13,7 +13,8 @@
     "phpmailer/phpmailer": "5.2.8",
     "sunra/php-simple-html-dom-parser": "1.5.1",
     "symfony/yaml": "3.0.3",
-    "lullabot/amp": "1.0.7"
+    "lullabot/amp": "1.0.7",
+    "alchemy/zippy": "^0.4.4"
   },
   "require-dev": {
   },

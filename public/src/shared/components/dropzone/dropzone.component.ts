@@ -9,6 +9,17 @@ declare var Dropzone: any;
 
 export class DropzoneComponent {
 
+  _url: string = '/api/images/add';
+  dropzone: any;
+
+  @Input()
+  set url(url: string){
+    this._url = url;
+    this.updateDropzone();
+  }
+
+  get url() { return this._url; }
+
   @Output() onAdd = new EventEmitter<any>();
 
   constructor (private elementRef: ElementRef) {}
@@ -26,11 +37,9 @@ export class DropzoneComponent {
 
     var el = this.elementRef.nativeElement.querySelector('.dropzone');
 
-    var dropzone: any;
-
     // set dropzone options
     var options = {
-      url: '/api/images/add',
+      url: this._url,
       headers: {}
     };
 
@@ -38,15 +47,27 @@ export class DropzoneComponent {
     options.headers = {};
     options.headers['X-AUTH'] = 'Bearer ' + localStorage.getItem('id_token');
 
-    // create the dropzone
-    dropzone = new Dropzone(el, options);
+    if(Dropzone != undefined) {
 
-    var context = this;
+      // create the dropzone
+      this.dropzone = new Dropzone(el, options);
 
-    dropzone.on("complete", function(file) {
-      dropzone.removeFile(file);
-      context.onAdd.emit(null);
-    });
+      var context = this;
+
+      this.dropzone.on("complete", function(file) {
+        this.removeFile(file);
+        context.onAdd.emit(null);
+      });
+
+    }
+
+  }
+
+  updateDropzone() {
+
+    if (this.dropzone != undefined) {
+      this.dropzone.options.url = this._url;
+    }
 
   }
 

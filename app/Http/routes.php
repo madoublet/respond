@@ -12,7 +12,7 @@
 */
 
 // handle Angular app routes
-$app_routes = array('/', 'login', 'create', 'pages', 'components', 'users', 'files', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
+$app_routes = array('/', 'login', 'create', 'pages', 'components', 'users', 'files', 'plugins', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
 
 foreach($app_routes as $app_route) {
 
@@ -68,6 +68,7 @@ $app->get('/api/code/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'CodeContro
 $app->post('/api/code/save', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@save']);
 $app->post('/api/code/add', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@add']);
 $app->get('/api/code/list/{id}', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@listAll']);
+$app->post('/api/code/upload/{type}', ['middleware' => 'jwtauth', 'uses'=> 'CodeController@upload']);
 
 // checks auth status
 $app->get('/api/auth', ['middleware' => 'jwtauth', 'uses'=> 'UserController@auth']);
@@ -91,6 +92,9 @@ $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteContro
 $app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
 $app->get('/api/sites/update/plugins', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@updatePlugins']);
 $app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listTemplates']);
+$app->get('/api/plugins/list', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@listAll']);
+$app->post('/api/plugins/upload', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@upload']);
+$app->post('/api/plugins/remove', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@remove']);
 
 // login
 $app->post('/api/users/login', 'UserController@login');

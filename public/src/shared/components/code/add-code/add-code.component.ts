@@ -13,6 +13,7 @@ export class AddCodeComponent {
 
   // model to store
   model: any;
+  uploadUrl: string;
 
   _visible: boolean = false;
 
@@ -42,7 +43,7 @@ export class AddCodeComponent {
    * Init
    */
   ngOnInit() {
-
+    this.uploadUrl = '/api/code/upload/template';
   }
 
   /**
@@ -76,6 +77,25 @@ export class AddCodeComponent {
     this._visible = false;
     this.onAdd.emit(null);
 
+  }
+
+  /**
+   * Handles a successful upload
+   */
+  uploaded() {
+
+    toast.show('success');
+
+    this._visible = false;
+    this.onAdd.emit(null);
+
+  }
+
+  /**
+   * Update the url with the type
+   */
+  updateUrl(value: string) {
+    this.uploadUrl = '/api/code/upload/' + value;
   }
 
 }

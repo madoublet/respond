@@ -121,6 +121,15 @@ body .app-list {
     min-height: 50px;
   }
 
+  body .app-list-item .icon {
+    display: inline-block;
+    color: #888;
+    margin-right: 10px;
+    height: 24px;
+    float: left;
+    margin-top: -5px;
+  }
+
   body .app-list-item.selected {
     background-color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, .15);
@@ -407,6 +416,15 @@ body .app-modal {
     box-sizing: border-box;
     width: 100%;
     font-size: 14px;
+  }
+
+  body .app-modal .or {
+    text-align: center;
+    color: #888;
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+    padding: 0;
+    font-size: 13px;
   }
 
   body .app-modal small {

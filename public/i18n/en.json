@@ -116,5 +116,7 @@
     "Components": "Components",
     "Add Component": "Add Component",
     "Remove Component": "Remove Component",
-    "Tags": "Tags"
+    "Tags": "Tags",
+    "Or": "Or",
+    "Remove Plugin": "Remove Plugin"
 }

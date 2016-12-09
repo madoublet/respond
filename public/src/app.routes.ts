@@ -6,6 +6,7 @@ import { CreateComponent } from './create/create.component';
 import { PagesComponent } from './pages/pages.component';
 import { ComponentsComponent } from './components/components.component';
 import { FilesComponent } from './files/files.component';
+import { PluginsComponent } from './plugins/plugins.component';
 import { UsersComponent } from './users/users.component';
 import { MenusComponent } from './menus/menus.component';
 import { FormsComponent } from './forms/forms.component';
@@ -44,6 +45,10 @@ const appRoutes: Routes = [
   {
     path: 'files',
     component: FilesComponent
+  },
+  {
+    path: 'plugins',
+    component: PluginsComponent
   },
   {
     path: 'users',

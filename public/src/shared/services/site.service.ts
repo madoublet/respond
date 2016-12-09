@@ -14,7 +14,9 @@ export class SiteService {
   private _migrateUrl = 'api/sites/migrate';
   private _templateUrl = 'api/sites/republish/templates';
   private _listTemplatesUrl = 'api/templates/list';
+  private _listPluginsUrl = 'api/plugins/list';
   private _updateUrl = 'api/sites/update/plugins';
+  private _removePluginUrl = 'api/plugins/remove';
 
   /**
    * Login to the application
@@ -123,6 +125,18 @@ export class SiteService {
   }
 
   /**
+   * Lists plugins
+   *
+   */
+  listPlugins () {
+    let headers = new Headers();
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this._listPluginsUrl, options).map((res:Response) => res.json());
+  }
+
+  /**
    * Updates plugins
    *
    * @return {Observable}
@@ -134,6 +148,23 @@ export class SiteService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this._updateUrl, options);
+
+  }
+
+  /**
+   * Removes the plugin
+   *
+   * @param {string} selector
+   * @return {Observable}
+   */
+  removePlugin (selector: string) {
+
+    let body = JSON.stringify({ selector });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._removePluginUrl, body, options);
 
   }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
+use \Alchemy\Zippy\Zippy;
 
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
@@ -510,6 +511,94 @@ class CodeController extends Controller
       }
 
       return response('File does not exist', 400);
+
     }
+
+  /**
+   * Uploads a file to code
+   *
+   * @return Response
+   */
+  public function upload(Request $request, $type)
+  {
+    // get request data
+    $email = $request->input('auth-email');
+    $id = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($id);
+
+    // get file
+    $file = $request->file('file');
+
+    // get file info
+    $filename = $file->getClientOriginalName();
+		$contentType = $file->getMimeType();
+		$size = intval($file->getClientSize()/1024);
+
+		// get the extension
+		$ext = strtoupper($file->getClientOriginalExtension());
+
+		// set allowed
+		$is_allowed = false;
+		$directory = app()->basePath().'/public/sites/'.$site->id.'/resources/';
+
+    if ($type == 'plugin') {
+
+      if ($ext == 'HTML' || $ext == 'PHP') {
+        $directory = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
+        $is_allowed = true;
+      }
+
+    }
+    else if ($type == 'template') {
+
+      if ($ext == 'HTML') {
+        $directory = app()->basePath().'/public/sites/'.$site->id.'/templates/';
+        $is_allowed = true;
+      }
+
+    }
+    else if ($type == 'stylesheet') {
+
+      if ($ext == 'CSS') {
+        $directory = app()->basePath().'/public/sites/'.$site->id.'/css/';
+        $is_allowed = true;
+      }
+
+    }
+    else if ($type == 'script') {
+
+      if ($ext == 'JS') {
+        $directory = app()->basePath().'/public/sites/'.$site->id.'/js/';
+        $is_allowed = true;
+      }
+
+    }
+
+    // save file if it is allowed
+		if($is_allowed == true){
+
+      // move the file
+      $file->move($directory, $filename);
+
+      // set url
+      $arr = array(
+        'filename' => $filename,
+        'fullUrl' => $directory.$filename,
+        'extension' => $ext
+        );
+
+    }
+    else{
+
+      return response('Unauthorized', 401);
+
+    }
+
+    // return OK
+    return response()->json($arr);
+
+  }
 
 }

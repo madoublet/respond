@@ -27,7 +27,7 @@ export class FileService {
   /**
    * Removes the file
    *
-   * @param {string} url
+   * @param {string} name
    * @return {Observable}
    */
   remove (name: string) {

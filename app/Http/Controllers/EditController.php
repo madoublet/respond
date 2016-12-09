@@ -188,15 +188,29 @@ class EditController extends Controller
               // init
 
 
-             $plugins_script = '';
+              $plugins_script = '';
 
               // get custom plugins
-              $js_file = app()->basePath().'/resources/sites/'.$siteId.'/plugins.js';
+              $json_file = app()->basePath().'/public/sites/'.$siteId.'/data/plugins.json';
 
-              if(file_exists($js_file)) {
+              if(file_exists($json_file)) {
+
+                if(file_exists($json_file)) {
+                  $plugins_script .= 'var plugins = '.file_get_contents($json_file).';';
+                  $plugins_script .= 'if(hashedit.menu !== null && hashedit.menu !== undefined) {hashedit.menu = hashedit.menu.concat(plugins);}';
+                }
+
+              }
+              else { // fallback to existing plugins
+
+                $js_file = app()->basePath().'/resources/sites/'.$siteId.'/plugins.js';
 
                 if(file_exists($js_file)) {
-                  $plugins_script .= file_get_contents($js_file);
+
+                  if(file_exists($js_file)) {
+                    $plugins_script .= file_get_contents($js_file);
+                  }
+
                 }
 
               }
@@ -217,6 +231,7 @@ class EditController extends Controller
 
                 // inject forms into script
                 $plugins_script = str_replace("['respond.forms']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.forms"]', json_encode($options), $plugins_script);
               }
 
               // inject components into script
@@ -235,6 +250,7 @@ class EditController extends Controller
 
                 // inject forms into script
                 $plugins_script = str_replace("['respond.components']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.components"]', json_encode($options), $plugins_script);
               }
 
               // inject components into script
@@ -255,6 +271,7 @@ class EditController extends Controller
 
                 // inject forms into script
                 $plugins_script = str_replace("['respond.components.routes']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.components.routes"]', json_encode($options), $plugins_script);
               }
 
               // inject galleries into script
@@ -273,6 +290,7 @@ class EditController extends Controller
 
                 // inject galleries into script
                 $plugins_script = str_replace("['respond.galleries']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.galleries"]', json_encode($options), $plugins_script);
               }
 
               // inject routes into script
@@ -293,6 +311,7 @@ class EditController extends Controller
 
                 // inject galleries into script
                 $plugins_script = str_replace("['respond.routes']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.routes"]', json_encode($options), $plugins_script);
               }
 
               // inject pages into script
@@ -310,7 +329,8 @@ class EditController extends Controller
                 }
 
                 // inject galleries into script
-                $plugins_script = str_replace("['respond.galleries']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace("['respond.pages']", json_encode($options), $plugins_script);
+                $plugins_script = str_replace('["respond.pages"]', json_encode($options), $plugins_script);
               }
 
               // remove elements from that have been excluded
@@ -329,6 +349,7 @@ class EditController extends Controller
                 // hashedit development stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="/dev/hashedit/js/fetch.min.js"></script>
 <script src="/dev/hashedit/js/i18next.js"></script>
 <script src="/dev/hashedit/node_modules/sortablejs/Sortable.js"></script>
@@ -360,6 +381,7 @@ EOD;
                 // hashedit production stack
                 $hashedit = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="/app/libs/hashedit/dist/hashedit-min.js"></script>
 <script>$plugins_script</script>
 <script>
