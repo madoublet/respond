@@ -345,14 +345,41 @@ class Page {
   public function remove($user, $site){
 
     // remove the page and fragment
-    $page = app()->basePath().'/public/sites/'.$site->id.'/'.$this->url.'.html';
+    $page_location = app()->basePath().'/public/sites/'.$site->id.'/'.$this->url.'.html';
 
-    if(file_exists($page)) {
-      unlink($page);
+    if(file_exists($page_location)) {
+      unlink($page_location);
     }
 
-    // refresh the JSON file
-    $arr = Page::refreshJSON($user, $site);
+    // get base path for the site
+    $json_file = app()->basePath().'/public/sites/'.$site->id.'/data/pages.json';
+
+    if (file_exists($json_file)) {
+
+      $json = file_get_contents($json_file);
+      $pages = json_decode($json);
+
+      $i = 0;
+
+      foreach($pages as $page) {
+
+        if($this->url == $page->url) {
+          unset($pages[$i]);
+        }
+
+        $i+=1;
+
+      }
+
+      // prevent showing the index (e.g. "0":{})
+      $json_arr = array_values($pages);
+
+      // re-encode json
+      $json_text = json_encode($json_arr);
+
+      file_put_contents($json_file, $json_text);
+
+    }
 
     return TRUE;
 

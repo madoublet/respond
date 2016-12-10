@@ -1,0 +1,146 @@
+[
+  {
+        "selector": "[respond-plugin][type=featured-post]",
+        "title": "Featured Blog Post",
+        "display": "<i class=\"material-icons\">stars</i>",
+        "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">stars</i><span>Featured Blog Post</span></div>",
+        "html": "<div respond-plugin type=\"featured-post\"></div>",
+        "assets": ["plugins/featured-post.html"]
+
+  },
+  {
+        "selector": "[respond-plugin][type=recent-posts]",
+        "title": "Recent Blog Posts",
+        "display": "<i class=\"material-icons\">access_time</i>",
+        "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">access_time</i><span>Recent Blog Posts</span></div>",
+        "html": "<div respond-plugin type=\"recent-posts\"></div>",
+        "assets": ["plugins/recent-posts.html"]
+
+  },
+  {
+        "selector": "[respond-plugin][type=list]",
+        "title": "List",
+        "display": "<i class=\"material-icons\">view_list</i>",
+        "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">view_list</i><span>List</span></div>",
+        "html": "<div respond-plugin type=\"list\" url=\"page/\" display=\"list\"></div>",
+        "attributes": [
+        {
+          "attr": "url",
+          "label": "Url Starts With",
+          "type": "text"
+        },
+        {
+          "attr": "display",
+          "label": "Display",
+          "type": "select",
+          "values": ["list", "thumbnail", "map"]
+        },
+        {
+          "attr": "tag",
+          "label": "Filter by Tag",
+          "type": "text"
+        }
+      ],
+      "assets": ["plugins/list.php"]
+
+  },
+  {
+      "selector": "[respond-plugin][type=form]",
+      "title": "Form",
+      "display": "<i class=\"material-icons\">check_box</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">check_box</i><span>Form</span></div>",
+      "html": "<div respond-plugin type=\"form\" form=\"contact-us\"></div>",
+      "attributes": [
+        {
+          "attr": "form",
+          "label": "Form",
+          "type": "select",
+          "values": ["respond.forms"]
+        }
+      ],
+      "assets": ["plugins/form.html"]
+  },
+  {
+      "selector": "[respond-plugin][type=gallery]",
+      "title": "Gallery",
+      "display": "<i class=\"material-icons\">photo_library</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">photo_library</i><span>Gallery</span></div>",
+      "html": "<div respond-plugin type=\"gallery\" gallery=\"sample-gallery\"></div>",
+      "attributes": [
+        {
+          "attr": "gallery",
+          "label": "Gallery",
+          "type": "select",
+          "values": ["respond.galleries"]
+        }
+      ],
+      "assets": ["plugins/gallery.html"]
+  },
+  {
+      "selector": "[respond-plugin][type=slideshow]",
+      "title": "Slideshow",
+      "display": "<i class=\"material-icons\">slideshow</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">slideshow</i><span>Slideshow</span></div>",
+      "html": "<div respond-plugin type=\"slideshow\" gallery=\"sample-gallery\"></div>",
+      "attributes": [
+        {
+          "attr": "gallery",
+          "label": "Gallery",
+          "type": "select",
+          "values": ["respond.galleries"]
+        }
+      ],
+      "assets": ["plugins/slideshow.html"]
+  },
+  {
+      "selector": "[respond-plugin][type=map]",
+      "title": "Map",
+      "display": "<i class=\"material-icons\">map</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">map</i><span>Map</span></div>",
+      "html": "<div respond-plugin type=\"map\" address=\"700 Clark Ave, St. Louis, MO 63102\" zoom=\"8\"></respond-form>",
+      "attributes": [
+        {
+          "attr": "address",
+          "label": "Address",
+          "type": "text"
+        },
+        {
+          "attr": "zoom",
+          "label": "Zoom",
+          "type": "select",
+          "values": ["20","19","18","17","16","15","14","13","12","11","10","9","8","7","6","5","4","3","2","1"]
+        }
+      ],
+      "assets": ["plugins/map.html"]
+  },
+  {
+      "selector": "[respond-plugin][type=component]",
+      "title": "Component",
+      "display": "<i class=\"material-icons\">extension</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">extension</i><span>Component</span></div>",
+      "html": "<div respond-plugin type=\"component\" component=\"\" runat=\"publish\"></div>",
+      "attributes": [
+        {
+          "attr": "component",
+          "label": "Component",
+          "type": "select",
+          "values": ["respond.components"]
+        },
+        {
+          "attr": "runat",
+          "label": "Render at",
+          "type": "select",
+          "values": ["publish", "client"]
+        }
+      ],
+      "assets": ["plugins/component.php"]
+  },
+  {
+      "selector": "[respond-plugin][type=byline]",
+      "title": "Byline",
+      "display": "<i class=\"material-icons\">account_box</i>",
+      "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">account_box</i></div>",
+      "html": "<div respond-plugin type=\"byline\"></div>",
+      "assets": ["plugins/byline.php"]
+  }
+]

@@ -59,6 +59,7 @@ export class PluginsComponent {
    */
   reset() {
     this.drawerVisible = false;
+    this.removeVisible = false;
     this.plugin = {};
   }
 
