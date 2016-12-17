@@ -3,19 +3,12 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance. 
 
 ### Status
-Version: 6.0.0-rc-2
-Status: Release Candidate 2
+Version: 6.0.0-rc-3
+Status: Release Candidate 3
 
 ### Latest updates
-- New plugins UI
-- Upload plugin from ZIP
-- Tags
-- Filter lists by tags
-- Automatically combine JS to site.all.js
-- Automatically combine CSS to site.min.css
-- Site-specific email settings
-- Code editor (templates, plugins, css, js)
-- Components
+- Bug Fixes
+- Search in code editor
 
 ### Breaking changes
 - No breaking changes
