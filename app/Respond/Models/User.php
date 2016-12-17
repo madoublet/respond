@@ -214,8 +214,10 @@ class User {
 
       }
 
+      $json_arr = array_values($users);
+
       // save pages
-      file_put_contents($json_file, json_encode($users, JSON_PRETTY_PRINT));
+      file_put_contents($json_file, json_encode($json_arr, JSON_PRETTY_PRINT));
 
     }
 
