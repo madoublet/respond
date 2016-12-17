@@ -82,9 +82,11 @@ class Publish
       // copy the directory
       Utilities::copyDirectory($src, $dest);
 
-      // copy the plugin JS file
-      $src = app()->basePath() . '/public/themes/' . $site->theme . '/private/plugins.js';
-      $dest = app()->basePath() . '/resources/sites/' . $site->id . '/plugins.js';
+      // copy the plugin JSON file
+      $src = app()->basePath() . '/public/themes/' . $site->theme . '/data/plugins.json';
+      $dest = app()->basePath() . '/public/sites/' . $site->id . '/data/plugins.json';
+
+      copy($src, $dest);
 
       copy($src, $dest);
 
