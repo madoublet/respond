@@ -97,6 +97,7 @@ gulp.task('copy-js', function() {
       'node_modules/moment/min/moment-with-locales.min.js',
       'node_modules/dropzone/dist/min/dropzone.min.js',
       'node_modules/ace-builds/src-min/ace.js',
+      'node_modules/ace-builds/src-min/ext-searchbox.js',
       'node_modules/ace-builds/src-min/mode-html.js',
       'node_modules/ace-builds/src-min/mode-css.js',
       'node_modules/ace-builds/src-min/mode-php.js',
