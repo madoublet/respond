@@ -329,6 +329,7 @@ class Page {
     $page->callout = $data['callout'];
     $page->language = $data['language'];
     $page->direction = $data['direction'];
+    $page->template = $data['template'];
 
     $page->save($site, $user);
 
@@ -410,8 +411,22 @@ class Page {
         $els[0]->innertext = $this->title;
       }
 
+      // set og:description
+      $els = $dom->find('meta[property="og:title"]');
+
+      if(isset($els[0])) {
+        $els[0]->content = $this->title;
+      }
+
       // set description
       $els = $dom->find('meta[name=description]');
+
+      if(isset($els[0])) {
+        $els[0]->content = $this->description;
+      }
+
+      // set og:description
+      $els = $dom->find('meta[property="og:description"]');
 
       if(isset($els[0])) {
         $els[0]->content = $this->description;
@@ -440,6 +455,17 @@ class Page {
 
       if(isset($photos[0])) {
         $photo = $photos[0]->src;
+      }
+
+      echo('$photo='.$photo);
+
+      // set og:image
+      $els = $dom->find('meta[property="og:image"]');
+
+      echo('og:image length='.sizeof($els));
+
+      if(isset($els[0])) {
+        $els[0]->content = $photo;
       }
 
       // default thumb
