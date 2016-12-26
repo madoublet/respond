@@ -190,7 +190,7 @@ class Publish
         $js_file_name = basename($path);
 
         // read, minify, and combine css
-        if($js_file_name != 'site.all.css') {
+        if($js_file_name != 'site.all.js') {
 
           $js = file_get_contents($path);
 
