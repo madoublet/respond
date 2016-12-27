@@ -87,7 +87,7 @@ class Utilities
 
                 $file = "$dir/$value";
 
-                $ext = pathinfo($file, PATHINFO_EXTENSION);
+                $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
                 if (in_array($ext, $exts) === TRUE) {
 
