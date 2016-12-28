@@ -457,12 +457,8 @@ class Page {
         $photo = $photos[0]->src;
       }
 
-      echo('$photo='.$photo);
-
       // set og:image
       $els = $dom->find('meta[property="og:image"]');
-
-      echo('og:image length='.sizeof($els));
 
       if(isset($els[0])) {
         $els[0]->content = $photo;
@@ -737,6 +733,49 @@ class Page {
         $ts2 = strtotime($b['lastModifiedDate']);
         return $ts2 - $ts1;
     });
+
+    return $arr;
+
+  }
+
+  /**
+   * Lists pages extended
+   *
+   * @param {User} $user
+   * @param {string} $id friendly id of site (e.g. site-name)
+   * @return Response
+   */
+  public static function listExtended($user, $site){
+
+    $arr = Page::listAll($user, $site);
+
+    $base_url = app()->basePath().'/public/sites/'.$site->id.'/';
+
+    foreach($arr as &$page) {
+
+      $file_url = $base_url.$page['url'].'.html';
+      $html = '';
+
+      // check if file exists
+      if(file_exists($file_url)) {
+
+        echo('exists');
+
+        // get dom
+        $dom = HtmlDomParser::str_get_html(file_get_contents($file_url), $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+        // search for [role=main]
+        $els = $dom->find('[role=main]');
+
+        // get contents of [role=main]
+        if(isset($els[0])) {
+          $html = $els[0]->innertext;
+        }
+      }
+
+      $page['html'] = $html;
+
+    }
 
     return $arr;
 

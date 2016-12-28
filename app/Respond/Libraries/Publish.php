@@ -686,7 +686,7 @@ class Publish
     public static function injectPluginHTML($html, $user, $site, $meta) {
 
       // get all pages
-      $pages = Page::listAll($user, $site);
+      $pages = Page::listExtended($user, $site);
       $forms = Form::listExtended($site->id);
       $menus = Menu::listExtended($site->id);
       $galleries = Gallery::listExtended($site->id);

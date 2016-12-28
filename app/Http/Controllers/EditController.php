@@ -361,6 +361,7 @@ hashedit.setup({
   dev: true,
   title: '$title',
   url: '$url',
+  previewUrl: '/sites/$url',
   sortable: '$sortable',
   blocks: '$blocks',
   grid: $grid,
@@ -388,6 +389,7 @@ EOD;
 hashedit.setup({
   title: '$title',
   url: '$url',
+  previewUrl: '/sites/$url'
   sortable: '$sortable',
   blocks: '$blocks',
   grid: $grid,
