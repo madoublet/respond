@@ -389,7 +389,7 @@ EOD;
 hashedit.setup({
   title: '$title',
   url: '$url',
-  previewUrl: '/sites/$url'
+  previewUrl: '/sites/$url',
   sortable: '$sortable',
   blocks: '$blocks',
   grid: $grid,
