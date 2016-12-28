@@ -149,8 +149,8 @@ class FileController extends Controller
 		$contentType = $file->getMimeType();
 		$size = intval($file->getClientSize()/1024);
 
-		// get the extension
-		$ext = $file->getClientOriginalExtension();
+		// get the extension and lowercase it
+		$ext = strtolower($file->getClientOriginalExtension());
 
     // allowed filetypes
     $allowed = explode(',', env('ALLOWED_FILETYPES'));
