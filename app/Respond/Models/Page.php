@@ -753,13 +753,18 @@ class Page {
 
     foreach($arr as &$page) {
 
-      $file_url = $base_url.$page['url'].'.html';
+      $file_url = $base_url.$page['url'];
+
+      // strip any trailing .html from url
+      $file_url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file_url);
+
+      // add html
+      $file_url .= '.html';
+
       $html = '';
 
       // check if file exists
       if(file_exists($file_url)) {
-
-        echo('exists');
 
         // get dom
         $dom = HtmlDomParser::str_get_html(file_get_contents($file_url), $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
