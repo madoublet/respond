@@ -6,10 +6,12 @@
 
 $html = '<div class="list">';
 
-// check if a string starts with a $needle
-function url_starts_with($haystack, $needle) {
-     $length = strlen($needle);
-     return (substr($haystack, 0, $length) === $needle);
+if (function_exists("url_starts_with") == false) {
+  // check if a string starts with a $needle
+  function url_starts_with($haystack, $needle) {
+       $length = strlen($needle);
+       return (substr($haystack, 0, $length) === $needle);
+  }
 }
 
 // add map-container for maps
