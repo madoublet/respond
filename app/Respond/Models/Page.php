@@ -395,7 +395,13 @@ class Page {
   public function save($site, $user) {
 
     // set full file path
-    $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $this->url . '.html';
+    $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $this->url;
+
+    // strip .html
+    $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+
+    // add .html
+    $file = $file.'.html';
 
     $html = file_get_contents($file);
 
