@@ -439,54 +439,58 @@ class Publish
           // parse HTML
           $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-          // walk through settings
-          foreach($settings as $setting) {
+          if($dom != NULL) {
 
-            // handle sets
-            if(isset($setting['sets'])) {
+            // walk through settings
+            foreach($settings as $setting) {
 
-              // set attribute
-              if(isset($setting['attribute'])) {
-
-                // find setting
-                $els = $dom->find('['.$setting['id'].']');
+              // handle sets
+              if(isset($setting['sets'])) {
 
                 // set attribute
-                foreach($els as $el) {
-                  $el->setAttribute($setting['attribute'], $setting['value']);
+                if(isset($setting['attribute'])) {
+
+                  // find setting
+                  $els = $dom->find('['.$setting['id'].']');
+
+                  // set attribute
+                  foreach($els as $el) {
+                    $el->setAttribute($setting['attribute'], $setting['value']);
+                  }
+
                 }
 
-              }
+                // set css
+                if(isset($setting['css'])) {
 
-              // set css
-              if(isset($setting['css'])) {
+                  // build css string
+                  $set_css = true;
+                  $css .= str_replace('config(--'.$setting['id'].')', $setting['value'], $setting['css']);
 
-                // build css string
-                $set_css = true;
-                $css .= str_replace('config(--'.$setting['id'].')', $setting['value'], $setting['css']);
+                }
 
               }
 
             }
 
+            // remove existing inline styles
+            $styles = $dom->find('[respond-settings]');
+
+            foreach($styles as $style) {
+               $style->outertext = '';
+            }
+
+            // append style to the dom
+            $head = $dom->find('head', 0);
+
+            if($head != NULL) {
+              $head->innertext = $head->innertext() . '<style respond-settings>'.$css.'</style>';
+            }
+
+            // update contents
+            file_put_contents($path, $dom);
+
           }
-
-          // remove existing inline styles
-          $styles = $dom->find('[respond-settings]');
-
-          foreach($styles as $style) {
-             $style->outertext = '';
-          }
-
-          // append style to the dom
-          $head = $dom->find('head', 0);
-
-          if($head != NULL) {
-            $head->innertext = $head->innertext() . '<style respond-settings>'.$css.'</style>';
-          }
-
-          // update contents
-          file_put_contents($path, $dom);
 
         }
 

@@ -769,12 +769,17 @@ class Page {
         // get dom
         $dom = HtmlDomParser::str_get_html(file_get_contents($file_url), $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-        // search for [role=main]
-        $els = $dom->find('[role=main]');
+        // fix 500 error
+        if($dom != NULL){
 
-        // get contents of [role=main]
-        if(isset($els[0])) {
-          $html = $els[0]->innertext;
+          // search for [role=main]
+          $els = $dom->find('[role=main]');
+
+          // get contents of [role=main]
+          if(isset($els[0])) {
+            $html = $els[0]->innertext;
+          }
+
         }
       }
 
