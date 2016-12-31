@@ -398,7 +398,7 @@ class Page {
     $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $this->url;
 
     // strip .html
-    $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+    $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file);
 
     // add .html
     $file = $file.'.html';
