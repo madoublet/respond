@@ -105,5 +105,18 @@
 	"Nothing here yet": "No hay nada aquí todavía",
 	"View Site": "Ver Sitio",
 	"Re-publish plugins": "Generar complementos",
-	"Re-publish sitemap": "Generar mapa sitio"
+	"Re-publish sitemap": "Generar mapa sitio",
+	"Templates": "Plantillas",
+	"Plugins": "Complementos",
+	"Save": "Guardar",
+	"Save and Exit": "Guardar y Salir",
+	"Code": "Código",
+	"Add Code": "Añadir Código",
+	"Template": "Plantilla",
+	"Components": "Componentes",
+	"Add Component": "Añadir Componente",
+	"Remove Component": "Eliminar Componente",
+	"Tags": "Etiquetas",
+	"Or": "O",
+	"Remove Plugin": "Eliminar Complemento"
 }
