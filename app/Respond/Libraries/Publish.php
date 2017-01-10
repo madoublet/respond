@@ -32,14 +32,14 @@ class Publish
     {
 
         // publish theme files
-        $src = app()->basePath() . '/public/themes/' . $theme;
+        $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $theme;
         $dest = app()->basePath() . '/public/sites/' . $site->id;
 
         // copy the directory
         Utilities::copyDirectory($src, $dest);
 
         // copy the private files
-        $src = app()->basePath() . '/public/themes/' . $theme . '/private';
+        $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $theme . '/private';
         $dest = app()->basePath() . '/resources/sites/' . $site->id;
 
         // copy the directory
@@ -76,14 +76,14 @@ class Publish
     {
 
       // update theme plugin files
-      $src = app()->basePath() . '/public/themes/' . $site->theme . '/plugins';
+      $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/plugins';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/plugins';
 
       // copy the directory
       Utilities::copyDirectory($src, $dest);
 
       // copy the plugin JSON file
-      $src = app()->basePath() . '/public/themes/' . $site->theme . '/data/plugins.json';
+      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/data/plugins.json';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/data/plugins.json';
 
       copy($src, $dest);
@@ -91,13 +91,13 @@ class Publish
       copy($src, $dest);
 
       // copy the JS file
-      $src = app()->basePath() . '/public/themes/' . $site->theme . '/js/plugins.js';
+      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . '/js/plugins.js';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/js/plugins.js';
 
       copy($src, $dest);
 
       // copy the CSS file
-      $src = app()->basePath() . '/public/themes/' . $site->theme . '/css/plugins.css';
+      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/css/plugins.css';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/css/plugins.css';
 
       copy($src, $dest);

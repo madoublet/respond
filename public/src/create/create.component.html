@@ -6,7 +6,7 @@
 
     <div class="app-slideshow-container">
       <div class="screenshot">
-        <img src="themes/{{theme.location}}/screenshot.png">
+        <img src="{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png">
       </div>
       <div class="description">
         <h2>{{ theme.name }}</h2>
@@ -29,7 +29,7 @@
 
   <div>
     <span class="app-theme-image" *ngFor="let theme of themes; let i = index;" [class.selected]="theme === selectedTheme">
-      <img src="themes/{{theme.location}}/screenshot.png" (click)="select(i)">
+      <img src="{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png" (click)="select(i)">
     </span>
   </div>
 </div>

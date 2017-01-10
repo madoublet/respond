@@ -19,6 +19,7 @@ export class CreateComponent {
   selectedThemeIndex;
   hasPasscode;
   logoUrl;
+  themesLocation;
   model;
   site;
 
@@ -36,6 +37,7 @@ export class CreateComponent {
     this.selectedThemeIndex = 0;
     this.hasPasscode = true;
     this.logoUrl = '';
+    this.themesLocation = '';
 
     // set model
     this.model = {
@@ -79,6 +81,7 @@ export class CreateComponent {
                        data => {
                          this.hasPasscode = data.hasPasscode;
                          this.logoUrl = data.logoUrl;
+                         this.themesLocation = data.themesLocation;
                        },
                        error =>  { this.failure(<any>error); }
                       );

@@ -277,6 +277,7 @@ return response($css)->header('Content-Type', 'text/css');
       'hasPasscode' => $has_passcode,
       'siteUrl' => Utilities::retrieveSiteURL(),
       'logoUrl' => env('LOGO_URL'),
+      'themesLocation' => env('THEMES_LOCATION'),
       'primaryColor' => env('PRIMARY_COLOR'),
       'primaryDarkColor' => env('PRIMARY_DARK_COLOR')
     );
@@ -294,7 +295,7 @@ return response($css)->header('Content-Type', 'text/css');
   {
 
     // list pages in the site
-    $dir = app()->basePath().'/'.env('THEMES_LOCATION');
+    $dir = app()->basePath().'/public/'.env('THEMES_LOCATION');
 
     // list files
     $arr = Utilities::listSpecificFiles($dir, 'theme.json');
@@ -307,7 +308,7 @@ return response($css)->header('Content-Type', 'text/css');
       $json = json_decode(file_get_contents($item));
 
       // get location of theme
-      $temp = explode('public/themes/', $item);
+      $temp = explode(getenv('THEMES_LOCATION'), $item);
       $location = substr($temp[1], 0, strpos($temp[1], '/theme.json'));
 
       $json->location = $location;

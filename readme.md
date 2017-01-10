@@ -1,18 +1,16 @@
 # Respond CMS
 
-Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance. 
+Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.0.0-rc-3
-Status: Release Candidate 3
+Version: 6.0.0-rc-5
+Status: Release Candidate 5
 
 ### Latest updates
 - Bug Fixes
-- Search in code editor
 
 ### Breaking changes
-- No breaking changes
-- To enable new plugins UI, you need to include the plugins.json file in /public/sites/site-name/data/plugins.json. See existing theme for format.
+- In .env, the configuration parameter THEMES_LOCATION is now relative to the public webroot. Thus, you will need to edit this file and change "public/themes/" to "themes/"
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
