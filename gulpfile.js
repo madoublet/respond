@@ -4,6 +4,7 @@ const zip = require('gulp-zip');
 const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
+const cachebust = require('gulp-cache-bust');
 
 const php = require('gulp-connect-php');
 const webpack = require("webpack");
@@ -137,6 +138,19 @@ gulp.task('copy-static', function() {
 
 });
 
+// bust-cache
+gulp.task('cache-bust', function () {
+
+  var cachebust = require('gulp-cache-bust');
+
+  return gulp.src('public/index.html')
+      .pipe(cachebust({
+          type: 'timestamp'
+      }))
+      .pipe(gulp.dest('public/', {overwrite:true}));
+
+});
+
 gulp.task('webpack:build', function (callback) {
     webpack(webpackConfig, function (err, stats) {
         if (err)
@@ -152,13 +166,13 @@ gulp.task('serve', function() {
 });
 
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'webpack:build']));
+gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'webpack:build', 'cache-bust']));
 
 // dev-build
 gulp.task('dev-build', gulp.series(['copy-static', 'webpack:build']));
 
 // build
-gulp.task('build', gulp.series(['copy-static', 'copy-js', 'copy-css', 'webpack:build']));
+gulp.task('build', gulp.series(['copy-static', 'copy-js', 'copy-css', 'webpack:build', 'cache-bust']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
