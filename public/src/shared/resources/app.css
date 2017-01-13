@@ -1130,8 +1130,8 @@ body .dropzone .dz-message {
 .code-editor {
   display: block;
   margin: 50px 0 50px 200px;
-  width: calc(100% - 200px);
-  height: calc(100% - 100px);
+  width: calc(100vw - 200px);
+  height: calc(100vh - 100px);
 }
 
   .code-editor.expanded {
