@@ -181,6 +181,30 @@ class Publish
 
       $all_js = "";
 
+      // check for libs
+      $libs_file = app()->basePath().'/public/sites/'.$id.'/js/libs.min.js';
+
+      if(file_exists($libs_file)) {
+
+        $js = file_get_contents($libs_file);
+
+        // save to all css
+        $all_js .= $js;
+
+      }
+
+      // check for libs
+      $plugins_file = app()->basePath().'/public/sites/'.$id.'/js/plugins.js';
+
+      if(file_exists($plugins_file)) {
+
+        $js = file_get_contents($plugins_file);
+
+        // save to all css
+        $all_js .= $js;
+
+      }
+
       // walk through files
       foreach($files as $file) {
 
@@ -190,7 +214,7 @@ class Publish
         $js_file_name = basename($path);
 
         // read, minify, and combine css
-        if($js_file_name != 'site.all.js') {
+        if($js_file_name != 'site.all.js' && $js_file_name != 'libs.min.js' && $js_file_name != 'plugins.js') {
 
           $js = file_get_contents($path);
 
