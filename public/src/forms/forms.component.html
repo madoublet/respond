@@ -24,7 +24,7 @@
   <div id="fields-list" class="app-list">
     <div class="app-list-item" *ngFor="let field of fields" (click)="setFieldActive(field)" [class.selected]="field === selectedField">
       <h2><span class="primary">{{ field.label }}</span></h2>
-      <small>{{ field.type }}</small>
+      <small>{{ field.type | translate }}</small>
       <div class="app-list-actions">
           <span class="app-list-alternate-actions">
             <a (click)="moveFieldDown(field)">{{ 'Move Down' | translate }}</a>

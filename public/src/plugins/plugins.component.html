@@ -14,7 +14,7 @@
     <div class="app-list-item" *ngFor="let  plugin of plugins" (click)="setActive(plugin)" [class.selected]="plugin === selectedPlugin">
       <h2><span class="icon" [innerHTML]="plugin.display"></span> <span class="primary">{{ plugin.title }}</span></h2>
       <div class="app-list-actions">
-          <a (click)="showRemove(plugin)">Remove</a>
+          <a (click)="showRemove(plugin)">{{ 'Remove' | translate }}</a>
       </div>
     </div>
   </div>

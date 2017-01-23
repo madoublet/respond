@@ -13,8 +13,8 @@
       <h2><span class="primary">{{ submission.name }}</span><span class="secondary">{{ submission.date | timeAgo }}</span></h2>
       <small>{{ submission.formId }}</small>
       <div class="app-list-actions">
-          <a (click)="showRemove(submission)">Remove</a>
-          <a (click)="showView(submission)" class="primary">View</a>
+          <a (click)="showRemove(submission)">{{ 'Remove Submission' | translate }}</a>
+          <a (click)="showView(submission)" class="primary">{{ 'View Submission' | translate }}</a>
       </div>
     </div>
   </div>

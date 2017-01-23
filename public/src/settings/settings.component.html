@@ -15,22 +15,22 @@
       <div [ngSwitch]="setting.type">
 
         <div *ngSwitchCase="'text'">
-          <label>{{setting.label}}</label>
+          <label>{{setting.label | translate }}</label>
           <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
         <div *ngSwitchCase="'color'">
-          <label>{{setting.label}}</label>
+          <label>{{setting.label | translate }}</label>
           <input type="color" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
         <div *ngSwitchCase="'image'">
-          <label>{{setting.label}} <a (click)="showSelect(setting)">Select</a></label>
+          <label>{{setting.label | translate }} <a (click)="showSelect(setting)">{{ 'Select' | translate }}</a></label>
           <input type="text" id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
         </div>
 
         <div *ngSwitchCase="'select'">
-          <label>{{setting.label}}</label>
+          <label>{{setting.label | translate }}</label>
           <select id="{{setting.id}}" name="{{setting.id}}" [(ngModel)]="setting.value">
             <option *ngFor="let option of setting.options" [value]="option">{{option}}</option>
           </select>
@@ -38,7 +38,7 @@
 
       </div>
 
-      <small>{{setting.description}}</small>
+      <small>{{setting.description | translate }}</small>
 
     </div>
 

@@ -16,7 +16,7 @@
       <img *ngIf="file.thumb !== ''" class="image" src="{{file.thumb}}">
       <small>/files/{{ file.name }}</small>
       <div class="app-list-actions">
-          <a (click)="showRemove(file)">Remove</a>
+          <a (click)="showRemove(file)">{{ 'Remove' | translate }}</a>
       </div>
     </div>
   </div>
