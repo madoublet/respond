@@ -41,6 +41,13 @@
         ]
     },
     {
+      "id": "url",
+      "label": "URL",
+      "description": "The url for your site, e.g.: https://respondcms.com",
+      "type": "text",
+      "value": ""
+    },
+    {
         "id": "theme-logo",
         "label": "Logo",
         "description": "Primary logo of the site",

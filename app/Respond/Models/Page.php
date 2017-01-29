@@ -467,7 +467,31 @@ class Page {
       $els = $dom->find('meta[property="og:image"]');
 
       if(isset($els[0])) {
-        $els[0]->content = $photo;
+
+        $full_photo_url = $photo;
+
+        // try to get url setting
+        $site_url = Setting::getById('url', $site->id);
+
+        if(isset($site_url)) {
+          $full_photo_url = $site_url.'/'.$photo;
+        }
+
+        $els[0]->content = $full_photo_url;
+      }
+
+      // set og:url
+      $els = $dom->find('meta[property="og:url"]');
+
+      if(isset($els[0])) {
+
+        // try to get url setting
+        $site_url = Setting::getById('url', $site->id);
+
+        if(isset($site_url)) {
+          $els[0]->content = $site_url .'/';
+        }
+
       }
 
       // default thumb
@@ -476,6 +500,7 @@ class Page {
       // get thumb
       if ($photo === NULL || $photo === '') {
         $photo = '';
+        $thumb = '';
       }
       else {
         if (substr($photo, 0, 4) === "http") {
@@ -486,6 +511,13 @@ class Page {
 
           // handle if the thumb is already a thumb (for galleries)
           $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
+        }
+
+        $thumb_file = app()->basePath() . '/public/sites/' . $site->id . '/'.$thumb;
+
+        // check to see if it exists
+        if(!file_exists($thumb_file)) {
+          $thumb = '';
         }
 
       }
@@ -983,6 +1015,13 @@ class Page {
           else {
             $thumb = str_replace('files/', 'files/thumbs/', $photo);
             $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
+          }
+
+          $thumb_file = app()->basePath() . '/public/sites/' . $site->id . '/'.$thumb;
+
+          // check to see if it exists
+          if(!file_exists($thumb_file)) {
+            $thumb = '';
           }
 
         }
