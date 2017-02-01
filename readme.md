@@ -3,14 +3,12 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.0.0-rc-5
-Status: Release Candidate 5
+Version: 6.0.0
+Status: Final
 
 ### Latest updates
 - Bug Fixes
-
-### Breaking changes
-- In .env, the configuration parameter THEMES_LOCATION is now relative to the public webroot. Thus, you will need to edit this file and change "public/themes/" to "themes/"
+- Improved Support for Facebook Open Graph
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
