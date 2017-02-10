@@ -246,11 +246,11 @@ class Publish
       // xml file
       $file = app()->basePath() . '/public/sites/' . $site->id . '/sitemap.xml';
 
-      // get domain from settings
-      $domain = Setting::getById('domain', $site->id);
+      // get domain from settings (url)
+      $domain = Setting::getById('url', $site->id);
 
       // get generated domain
-      if($domain === NULL) {
+      if($domain == '' || $domain == NULL) {
         $domain = Utilities::retrieveSiteURL();
         $domain = str_replace('{{siteId}}', $site->id, $domain);
       }
