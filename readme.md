@@ -3,12 +3,12 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.0.0
-Status: Final
+Version: 6.0.1
+Status: 
 
 ### Latest updates
-- Bug Fixes
-- Improved Support for Facebook Open Graph
+- Performance improvements
+- Use "url" setting to set domain in sitemap.xml
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
