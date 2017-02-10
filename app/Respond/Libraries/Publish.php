@@ -713,12 +713,36 @@ class Publish
      */
     public static function injectPluginHTML($html, $user, $site, $meta) {
 
+      // caches the values of these variables across the request to improve performance
+      static $pages = array();
+      static $forms = array();
+      static $menus = array();
+      static $galleries = array();
+      static $components = array();
+
       // get all pages
-      $pages = Page::listExtended($user, $site);
-      $forms = Form::listExtended($site->id);
-      $menus = Menu::listExtended($site->id);
-      $galleries = Gallery::listExtended($site->id);
-      $components = Component::listAll($site->id);
+      if(!$pages) {
+        $pages = Page::listExtended($user, $site);
+      }
+
+      // get all forms
+      if(!$forms) {
+        $forms = Form::listExtended($site->id);
+      }
+
+      // get all menus
+      if(!$menus) {
+        $menus = Menu::listExtended($site->id);
+      }
+
+      // get all galleries
+      if(!$galleries) {
+        $galleries = Gallery::listExtended($site->id);
+      }
+
+      if(!$components) {
+        $components = Component::listAll($site->id);
+      }
 
       // setup current site
       $current_site = array(
@@ -736,6 +760,7 @@ class Publish
 
       $files = Utilities::listFiles($dir, $site->id, $exts);
       $plugins = array();
+
 
       foreach($files as $file) {
 
