@@ -643,8 +643,12 @@ class Publish
      */
     public static function publishPlugins($user, $site)
     {
-        // list all pages
-        $pages = Page::listAll($user, $site);
+        static $pages = array();
+
+        // get all pages
+        if(!$pages) {
+          $pages = Page::listAll($user, $site);
+        }
 
         // get html of pages
         foreach($pages as $item) {
@@ -719,6 +723,8 @@ class Publish
       static $menus = array();
       static $galleries = array();
       static $components = array();
+      static $files = array();
+      static $plugins = array();
 
       // get all pages
       if(!$pages) {
@@ -758,23 +764,26 @@ class Publish
       $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
       $exts = array('html', 'php');
 
-      $files = Utilities::listFiles($dir, $site->id, $exts);
-      $plugins = array();
+      if(!$files) {
+        $files = Utilities::listFiles($dir, $site->id, $exts);
+      }
 
+      if(!$plugins) {
+        foreach($files as $file) {
 
-      foreach($files as $file) {
+          $path = app()->basePath().'/public/sites/'.$site->id.'/'.$file;
 
-        $path = app()->basePath().'/public/sites/'.$site->id.'/'.$file;
+          if(file_exists($path)) {
 
-        if(file_exists($path)) {
+            // $html = file_get_contents($path);
+            $id = basename($path);
+            $id = str_replace('.html', '', $id);
+            $id = str_replace('.php', '', $id);
 
-          // $html = file_get_contents($path);
-          $id = basename($path);
-          $id = str_replace('.html', '', $id);
-          $id = str_replace('.php', '', $id);
+            // push plugin to array
+            array_push($plugins, $id);
 
-          // push plugin to array
-          array_push($plugins, $id);
+          }
 
         }
 

@@ -490,6 +490,10 @@ body .app-modal {
     font-weight: bold;
   }
 
+  body .app-modal .actions button[disabled] {
+    color: #ccc;
+  }
+
   body .app-modal .actions a {
     margin-left: 15px;
     text-transform: uppercase;

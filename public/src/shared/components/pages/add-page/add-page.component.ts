@@ -19,6 +19,9 @@ export class AddPageComponent {
   // model to store
   model: any;
 
+  // set processing
+  processing: boolean = false;
+
   _visible: boolean = false;
 
   @Input()
@@ -85,6 +88,9 @@ export class AddPageComponent {
       fullUrl = '/' + this.model.url;
     }
 
+    // set processing
+    this.processing = true;
+
     this._pageService.add(fullUrl, this.model.title, this.model.description, this.model.template)
                      .subscribe(
                        data => { this.success(); },
@@ -99,6 +105,9 @@ export class AddPageComponent {
   success() {
 
     toast.show('success');
+
+    // set processing
+    this.processing = false;
 
     this._visible = false;
     this.onAdd.emit(null);

@@ -35,7 +35,7 @@
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
-      <button type="submit">{{ 'Add Page' | translate }}</button>
+      <button type="submit" [disabled]="processing">{{ 'Add Page' | translate }}</button>
     </div>
 
   </form>
