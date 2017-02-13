@@ -111,7 +111,7 @@ class UserController extends Controller
 
         $user->token = uniqid();
 
-        // save user        
+        // save user
         $user->save($site->id);
 
         // send email
@@ -122,7 +122,7 @@ class UserController extends Controller
         $file = app()->basePath().'/resources/emails/reset-password.html';
 
         // create strings to replace
-        $resetUrl = env('APP_URL').'/reset/'.$site->id.'/'.$user->token;
+        $resetUrl = Utilities::retrieveAppURL().'/reset/'.$site->id.'/'.$user->token;
 
         $replace = array(
           '{{brand}}' => env('BRAND'),
