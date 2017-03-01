@@ -2,7 +2,8 @@
 
 <form class="app-form standalone" (submit)="login($event, email.value, password.value)">
 
-    <label>{{ 'Email' | translate }}</label>
+    <label *ngIf="usesLDAP === false">{{ 'Email' | translate }}</label>
+    <label *ngIf="usesLDAP === true">{{ 'Username' | translate }}</label>
     <input type="text" name="email" #email>
 
     <label>{{ 'Password' | translate }}</label>

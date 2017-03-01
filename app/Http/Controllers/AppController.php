@@ -279,7 +279,8 @@ return response($css)->header('Content-Type', 'text/css');
       'logoUrl' => env('LOGO_URL'),
       'themesLocation' => env('THEMES_LOCATION'),
       'primaryColor' => env('PRIMARY_COLOR'),
-      'primaryDarkColor' => env('PRIMARY_DARK_COLOR')
+      'primaryDarkColor' => env('PRIMARY_DARK_COLOR'),
+      'usesLDAP' => !empty(env('LDAP_SERVER'))
     );
 
     return response()->json($settings);
