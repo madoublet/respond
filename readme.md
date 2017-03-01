@@ -25,6 +25,7 @@ Status: 6 Stable, Maintenance Release 1
 - Desktop focused, mobile ready
 - Intuitive editing experience
 - Quick access to common customizations (forms, galleries, etc.)
+- LDAP authentication
 
 ### Developer features
 - Easy to write plugins
