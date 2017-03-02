@@ -1,5 +1,6 @@
 {
     "Email": "Email",
+    "Username": "Имя пользователя",
     "Password": "Пароль",
     "Login": "Вход",
     "Forgot Password?": "Забыли пароль?",

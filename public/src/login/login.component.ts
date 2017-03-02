@@ -17,7 +17,8 @@ export class LoginComponent {
   data;
   id;
   errorMessage;
-  logoUrl;
+  logoUrl
+  usesLDAP = false;
 
   constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
 
@@ -45,6 +46,7 @@ export class LoginComponent {
                      .subscribe(
                        data => {
                          this.logoUrl = data.logoUrl;
+                         this.usesLDAP = data.usesLDAP;
                        },
                        error =>  { this.failure(<any>error); }
                       );
