@@ -3,7 +3,9 @@
 namespace App\Respond\Models;
 
 use App\Respond\Models\Site;
+
 use App\Respond\Libraries\Utilities;
+use App\Respond\Libraries\Webhooks;
 
 /**
  * Models a user
@@ -140,7 +142,7 @@ class User {
    * Saves a user
    *
    * @param {string} $id the ID of the site
-   * @return {Site}
+   * @return void
    */
   public function save($id) {
 
@@ -177,11 +179,17 @@ class User {
     // save users
     $json = json_encode($users, JSON_PRETTY_PRINT);
 
-    // save site.json
+    // save users.json
     Utilities::saveContent($dir, 'users.json', $json);
 
-    return;
+    // Assemble data for webhook
+    $wh_data = clone $this;
+    $wh_data->siteId = $id;
 
+    // send new user hook
+    Webhooks::NewUser($wh_data);
+
+    return;
   }
 
   /**
