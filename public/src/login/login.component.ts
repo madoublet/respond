@@ -83,6 +83,8 @@ export class LoginComponent {
     // set token
     this.setToken(this.data.token);
 
+    // set status
+    this.setStatus(this.data.user.status, this.data.user.days, this.data.user.activationUrl);
 
     // navigate
     this._router.navigate( ['/pages'] );
@@ -111,6 +113,21 @@ export class LoginComponent {
    */
   setToken(token) {
       localStorage.setItem('id_token', token);
+  }
+
+  /**
+   * Sets the status
+   */
+  setStatus(status, days, activationUrl) {
+
+      // set expired
+      if(days < 0) {
+        status = 'Expired';
+      }
+
+      localStorage.setItem('site_status', status);
+      localStorage.setItem('site_trial_days_remaining', days);
+      localStorage.setItem('site_activation_url', activationUrl);
   }
 
   /**

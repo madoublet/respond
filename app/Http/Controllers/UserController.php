@@ -55,6 +55,12 @@ class UserController extends Controller
 
       	}
 
+      	$activationUrl = '';
+
+      	if(env('ACTIVATION_URL') != NULL) {
+        	$activationUrl = env('ACTIVATION_URL');
+      	}
+
         // return a subset of the user array
         $returned_user = array(
         	'email' => $user->email,
@@ -63,7 +69,10 @@ class UserController extends Controller
         	'photo' => $user->photo,
         	'fullPhotoUrl' => $fullPhotoUrl,
         	'language' => $user->language,
-        	'siteId' => $site->id
+        	'siteId' => $site->id,
+        	'status' => $site->status,
+        	'days'=> $site->daysRemaining(),
+        	'activationUrl'=> $activationUrl
         );
 
         // send token

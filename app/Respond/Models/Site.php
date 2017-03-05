@@ -2,8 +2,9 @@
 
 namespace App\Respond\Models;
 
+use \DateTime;
+use \DateTimeZone;
 use App\Respond\Libraries\Utilities;
-
 use App\Respond\Libraries\Publish;
 
 /**
@@ -17,6 +18,10 @@ class Site {
   public $theme;
   public $supportsFriendlyUrls;
   public $timeZone;
+  public $status;
+  public $startDate;
+
+  public static $ISO8601 = "Y-m-d\TH:i:sO";
 
   /**
    * Constructs a page from an array of data
@@ -46,6 +51,16 @@ class Site {
 
     }
 
+    // fallback for status
+    if(isset($this->status) === false) {
+      $this->status = 'Active';
+    }
+
+    // fallback for startDate
+    if(isset($this->startDate) === false) {
+      $this->startDate = date(Site::$ISO8601, time());
+    }
+
   }
 
   /**
@@ -62,6 +77,40 @@ class Site {
 
     // save site.json
     Utilities::saveContent($dir, 'site.json', $json);
+
+  }
+
+  /**
+   * Calculate the days remaining
+   *
+   * @param {string} $id the ID for the user
+   * @return {Site}
+   */
+  public function daysRemaining() {
+
+    // get trial length
+    $trialLength = 30;
+
+    if(env('TRIAL_LENGTH')) {
+      $trialLength = env('TRIAL_LENGTH');
+    }
+
+    // get timezone
+    $local = new DateTimeZone($this->timeZone);
+
+    // get start date
+    $startDate = DateTime::createFromFormat("Y-m-d\TH:i:sO", $this->startDate);
+    $startDate->setTimezone($local);
+
+    $startDate->add(date_interval_create_from_date_string($trialLength.' days'));
+
+    // get now
+    $now = new DateTime('NOW');
+    $now->setTimezone($local);
+
+    $daysLeft = $now->diff($startDate);
+
+    return $daysLeft->format('%a');
 
   }
 
@@ -117,7 +166,7 @@ class Site {
 	}
 
 	/**
-   * Gets a site for a given Id
+   * Create a site for a given name, theme, email, password
    *
    * @param {string} $id the ID for the user
    * @return {Site}
@@ -192,6 +241,15 @@ class Site {
     // publish plugins
     Publish::publishPlugins($user, $site);
 
+    // get default status
+    $status = 'Active';
+
+    // set as default status
+    if(env('DEFAULT_STATUS') == NULL) {
+      $status = env('DEFAULT_STATUS');
+    }
+
+
     // return site information
     return array(
       'id' => $id,
@@ -199,7 +257,9 @@ class Site {
       'email' => $email,
       'theme' => $theme,
       'supportsFriendlyUrls' => $supportsFriendlyUrls,
-      'timeZone' => $timeZone
+      'timeZone' => $timeZone,
+      'status' => $status,
+      'startDate' => date(Site::$ISO8601, time())
       );
 
   }

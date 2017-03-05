@@ -13,6 +13,10 @@ declare var toast: any;
 
 export class DrawerComponent {
 
+  status: string;
+  daysRemaining: int;
+  activationUrl: string;
+
   id;
   dev;
   siteUrl;
@@ -33,7 +37,6 @@ export class DrawerComponent {
 
   get active() { return this._active; }
 
-
   @Output() onHide = new EventEmitter<any>();
 
   constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {}
@@ -45,6 +48,9 @@ export class DrawerComponent {
     this.id = localStorage.getItem('respond.siteId');
     this.dev = false;
     this.siteUrl = '';
+    this.status = 'Active';
+    this.daysRemaining = 0;
+    this.activationUrl = '';
 
     var url = window.location.href;
 
@@ -54,13 +60,17 @@ export class DrawerComponent {
 
     // get app settings
     this.settings();
-
   }
 
   /**
    * Get settings
    */
   settings() {
+
+    // set trial information
+    this.status = localStorage.getItem('site_status');
+    this.daysRemaining = parseInt(localStorage.getItem('site_trial_days_remaining'));
+    this.activationUrl = localStorage.getItem('site_activation_url');
 
     // list themes in the app
     this._appService.retrieveSettings()

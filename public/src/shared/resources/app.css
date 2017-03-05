@@ -321,6 +321,41 @@ body .app-list {
     background-color: #f8f8f8;
   }
 
+  .app-drawer .app-status {
+    position: absolute;
+    width: calc(100% - 20px);
+    bottom: 0;
+    margin: 10px;
+    width: 230px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .app-drawer .app-status h3, .app-drawer .app-status p {
+    font-size: 13px;
+    margin: 5px 0 0 0;
+    padding: 0;
+    color: #00ADE3;
+  }
+
+    .app-drawer .app-status h3 {
+      margin-top: 0;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .app-drawer .app-status i {
+      position: absolute;
+      top: 12px;
+      right: 0;
+      font-size: 30px;
+      color: #00ADE3;
+    }
+
+    .app-drawer .app-status.trial-expired h3, .app-drawer .app-status.trial-expired p, .app-drawer .app-status.trial-expired i {
+      color: #ED4747;
+    }
+
 /* app-toast */
 .app-toast {
   font-family: 'Helvetica', 'Arial', 'sans-serif';

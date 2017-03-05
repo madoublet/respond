@@ -136,5 +136,9 @@
     "Color": "Color",
     "Primary logo of the site": "Primary logo of the site",
     "The favicon used for the site": "The favicon used for the site",
-    "The color used as the Android application color": "The color used as the Android application color"
+    "The color used as the Android application color": "The color used as the Android application color",
+    "Status: Trial": "Status: Trial",
+    "Status: Expired": "Status: Expired",
+    "days remaining": "days remaining",
+    "Activate now": "Activate now"
 }
