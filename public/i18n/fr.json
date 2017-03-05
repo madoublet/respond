@@ -1,5 +1,6 @@
 {
 	"Email": "Email",
+	"Username": "Nom d'utilisateur",
 	"Password": "Mot de passe",
 	"Login": "Se connecter",
 	"Forgot Password?": "Mot de passe oublié ?",

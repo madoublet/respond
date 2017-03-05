@@ -4,6 +4,7 @@ namespace App\Respond\Models;
 
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
+use App\Respond\Libraries\Webhooks;
 
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
@@ -44,22 +45,22 @@ class Submission {
     $file = app()->basePath().'/resources/sites/'.$siteId.'/submissions.json';
 
     $arr = array();
-    
+
     if(file_exists($file)) {
       $arr = json_decode(file_get_contents($file), true);
     }
-    
+
     // sort by last modified date
     usort($arr, function($a, $b) {
         $ts1 = strtotime($a['date']);
         $ts2 = strtotime($b['date']);
         return $ts2 - $ts1;
     });
-    
+
     return $arr;
-    
+
   }
-  
+
   /**
    * Gets a submission by id
    *
@@ -84,7 +85,7 @@ class Submission {
     return NULL;
 
 	}
-	
+
 	/**
    * Removes a submission
    *
@@ -138,14 +139,21 @@ class Submission {
 
     $submissions = Submission::listAll($siteId);
 
-    // push user
+    // push this submission into the array
     array_push($submissions, (array)$this);
 
-    // save users
+    // encode submissions
     $json = json_encode($submissions, JSON_PRETTY_PRINT);
 
-    // save site.json
+    // save submissions.json
     Utilities::saveContent($dir, 'submissions.json', $json);
+
+    // Add siteId to webhook data
+    $wh_data = clone $this;
+    $wh_data['siteId'] = $siteId;
+
+    // send webhook
+    Webhooks::FormSubmit($wh_data);
 
     return;
 

@@ -38,7 +38,20 @@ class UserController extends Controller
     if ($site != NULL) {
 
       // get the user from the credentials
-      $user = User::getByEmailPassword($email, $password, $site->id);
+      $user = NULL;
+
+      // if LDAP is being used, check for @ to determine how to authenticate user
+      if(strpos($email, '@') === false && !empty(env('LDAP_SERVER'))){
+        //authenticate against LDAP, on success get user by 'email'
+        $ldap = ldap_connect(env('LDAP_SERVER'));
+        if($bind = ldap_bind($ldap, env('LDAP_DOMAIN') . '\\' . $email)) {
+          $user = User::getByEmail($email, $site->id);
+        }
+      }
+      else {
+        // get the user from the credentials
+        $user = User::getByEmailPassword($email, $password, $site->id);
+      }
 
       if($user != NULL) {
 

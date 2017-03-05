@@ -6,6 +6,7 @@ use \DateTime;
 use \DateTimeZone;
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
+use App\Respond\Libraries\Webhooks;
 
 /**
  * Models a site
@@ -221,6 +222,9 @@ class Site {
     // create and save the site
   	$site = new Site($site_arr);
   	$site->save();
+
+    // send new site hook
+    Webhooks::NewSite($site);
 
     // create and save the user
     $user = new User(array(
