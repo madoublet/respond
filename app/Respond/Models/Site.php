@@ -111,7 +111,7 @@ class Site {
 
     $daysLeft = $now->diff($startDate);
 
-    return $daysLeft->format('%a');
+    return $daysLeft->format('%R%a');
 
   }
 
