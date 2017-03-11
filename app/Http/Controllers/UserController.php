@@ -72,6 +72,8 @@ class UserController extends Controller
 
       	if(env('ACTIVATION_URL') != NULL) {
         	$activationUrl = env('ACTIVATION_URL');
+
+        	$activationUrl = str_replace('{{site}}', $site->id, $activationUrl);
       	}
 
         // return a subset of the user array

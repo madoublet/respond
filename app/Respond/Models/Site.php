@@ -65,6 +65,18 @@ class Site {
   }
 
   /**
+   * Activates a site
+   *
+   * @return {Site}
+   */
+  public function activate() {
+
+    $this->status = 'Active';
+    $this->save();
+
+  }
+
+  /**
    * Saves a site
    *
    * @param {string} $id the ID for the user

@@ -54,6 +54,31 @@ class SiteController extends Controller
   }
 
   /**
+   * Activates the site
+   *
+   * @return Response
+   */
+  public function active(Request $request)
+  {
+
+    // get request
+    $siteId = $request->input('id');
+    $key = $request->input('key');
+
+    if($key == env('APP_KEY')) {
+
+      $site = Site::getById($siteId);
+      $site->activate();
+
+      return response('Ok', 200);
+    }
+    else {
+      return response('Passcode invalid', 401);
+    }
+
+  }
+
+  /**
    * Reloads system files for sites (e.g. plugins)
    *
    * @return Response
