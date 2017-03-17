@@ -280,7 +280,13 @@ return response($css)->header('Content-Type', 'text/css');
       'themesLocation' => env('THEMES_LOCATION'),
       'primaryColor' => env('PRIMARY_COLOR'),
       'primaryDarkColor' => env('PRIMARY_DARK_COLOR'),
-      'usesLDAP' => !empty(env('LDAP_SERVER'))
+      'usesLDAP' => !empty(env('LDAP_SERVER')),
+      'activationMethod' => env('ACTIVATION_METHOD'),
+      'activationUrl' => env('ACTIVATION_URL'),
+      'stripeAmount' => env('STRIPE_AMOUNT'),
+      'stripeName' => env('STRIPE_NAME'),
+      'stripeDescription' => env('STRIPE_DESCRIPTION'),
+      'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY')
     );
 
     return response()->json($settings);

@@ -8,6 +8,7 @@ export class SiteService {
   constructor (private http: Http) {}
 
   private _createUrl = 'api/sites/create';
+  private _subscribeUrl = 'api/sites/subscribe';
   private _reloadUrl = 'api/sites/reload';
   private _reindexUrl = 'api/sites/reindex';
   private _sitemapUrl = 'api/sites/sitemap';
@@ -34,6 +35,25 @@ export class SiteService {
 
     return this.http.post(this._createUrl, body, options)
                     .map((res:Response) => res.json());
+
+  }
+
+  /**
+   * Subscribes a site
+   *
+   * @param {string} token
+   * @param {string} email
+   * @return {Observable}
+   */
+  subscribe (token: string, email: string) {
+
+    let body = JSON.stringify({ token, email });
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this._subscribeUrl, body, options);
 
   }
 

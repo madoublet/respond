@@ -21,6 +21,7 @@ class Site {
   public $timeZone;
   public $status;
   public $startDate;
+  public $customerId;
 
   public static $ISO8601 = "Y-m-d\TH:i:sO";
 

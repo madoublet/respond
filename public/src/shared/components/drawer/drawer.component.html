@@ -23,10 +23,11 @@
     <i class="material-icons">keyboard_arrow_right</i>
   </a>
 
-  <a class="app-status status-expired" *ngIf="status == 'Expired'" href="{{ activationUrl }}">
+  <a class="app-status status-expired" *ngIf="status == 'Expired'" (click)="checkout()">
     <h3>{{ 'Status: Expired' | translate }}</h3>
     <p>{{ 'Activate now' | translate }}</p>
     <i class="material-icons">keyboard_arrow_right</i>
   </a>
+
 
 </nav>

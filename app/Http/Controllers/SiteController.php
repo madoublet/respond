@@ -79,6 +79,51 @@ class SiteController extends Controller
   }
 
   /**
+   * Subscribes a user via Stripe
+   *
+   * @return Response
+   */
+  public function subscribe(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get token
+    $stripeToken = $request->json()->get('token');
+    $stripeEmail = $request->json()->get('email');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    try {
+
+      // #ref https://stripe.com/docs/recipes/subscription-signup
+      \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+      $customer = \Stripe\Customer::create(array(
+        'email' => $stripeEmail,
+        'source'  => $stripeToken,
+        'plan' => env('STRIPE_PLAN')
+      ));
+
+      // activate
+      $site->status = 'Active';
+      $site->customerId = $customer->id;
+      $site->save();
+
+      return response('Ok', 200);
+    }
+    catch(Exception $e)
+    {
+      return response('Unable to subscribe', 401);
+    }
+
+
+  }
+
+  /**
    * Reloads system files for sites (e.g. plugins)
    *
    * @return Response

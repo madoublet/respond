@@ -47,6 +47,9 @@ export class LoginComponent {
                        data => {
                          this.logoUrl = data.logoUrl;
                          this.usesLDAP = data.usesLDAP;
+
+                         // set activation
+                         this.setActivation(data.activationMethod, data.activationUrl, data.stripeAmount, data.stripeName, data.stripeDescription, data.stripePublishableKey)
                        },
                        error =>  { this.failure(<any>error); }
                       );
@@ -86,7 +89,7 @@ export class LoginComponent {
     this.setToken(this.data.token);
 
     // set status
-    this.setStatus(this.data.user.status, this.data.user.days, this.data.user.activationUrl);
+    this.setStatus(this.data.user.status, this.data.user.days);
 
     // navigate
     this._router.navigate( ['/pages'] );
@@ -120,17 +123,30 @@ export class LoginComponent {
   /**
    * Sets the status
    */
-  setStatus(status, days, activationUrl) {
+  setStatus(status, days) {
 
       // set expired
-      if(days < 0) {
+      if(status == 'Trial' && days < 0) {
         status = 'Expired';
       }
 
       localStorage.setItem('site_status', status);
       localStorage.setItem('site_trial_days_remaining', days);
-      localStorage.setItem('site_activation_url', activationUrl);
   }
+
+  /**
+   * Sets the activation
+   */
+  setActivation(activationMethod, activationUrl, stripeAmount, stripeName, stripeDescription, stripePublishableKey) {
+
+      localStorage.setItem('activation_method', activationMethod);
+      localStorage.setItem('activation_url', activationUrl);
+      localStorage.setItem('stripe_amount', stripeAmount);
+      localStorage.setItem('stripe_name', stripeName);
+      localStorage.setItem('stripe_description', stripeDescription);
+      localStorage.setItem('stripe_publishable_key', stripePublishableKey);
+  }
+
 
   /**
    * handles error
