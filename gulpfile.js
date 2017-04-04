@@ -31,6 +31,7 @@ gulp.task('create-zip', function() {
       'database/**/*',
       'design/**/*',
       'public/app/**/*',
+      'public/install/**/*',
       'public/i18n/**/*',
       'public/themes/bootstrap/**/*',
       'public/themes/foundation/**/*',
