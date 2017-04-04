@@ -151,37 +151,40 @@ export class DrawerComponent {
 
     var context = this;
 
-    var handler = (<any>window).StripeCheckout.configure({
-      key: this.stripePublishableKey,
-      locale: 'auto',
-      token: function (token: any) {
+    // handle stripe activation
+    if(this.activationMethod == 'Stripe') {
 
-        console.log(token);
+      var handler = (<any>window).StripeCheckout.configure({
+        key: this.stripePublishableKey,
+        locale: 'auto',
+        token: function (token: any) {
 
-        // subscribe
-        context._siteService.subscribe(token.id, token.email)
-                     .subscribe(
-                       data => { context.subscribed(); toast.show('success'); },
-                       error => { toast.show('failure');  }
-                      );
+          // subscribe
+          context._siteService.subscribe(token.id, token.email)
+                       .subscribe(
+                         data => { context.subscribed(); toast.show('success'); },
+                         error => { toast.show('failure');  }
+                        );
+
+        }
+      });
+
+      handler.open({
+        name: this.stripeName,
+        description: this.stripeDescription,
+        amount: this.stripeAmount
+      });
+
+      this.globalListener = this.renderer.listenGlobal('window', 'popstate', () => {
+        handler.close();
+      });
+
+    }
+    else {
+      window.location.href = this.activationUrl;
+    }
 
 
-        // send this to the server to create the subscription
-
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-      }
-    });
-
-    handler.open({
-      name: this.stripeName,
-      description: this.stripeDescription,
-      amount: this.stripeAmount
-    });
-
-    this.globalListener = this.renderer.listenGlobal('window', 'popstate', () => {
-      handler.close();
-    });
   }
 
   /**

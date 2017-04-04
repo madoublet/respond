@@ -17,7 +17,7 @@
     <li><a (click)="signOut()">{{ 'Sign Out' | translate }}</a></li>
   </ul>
 
-  <a class="app-status status-trial" *ngIf="status == 'Trial'" href="{{ activationUrl }}">
+  <a class="app-status status-trial" *ngIf="status == 'Trial'" (click)="checkout()">
     <h3>{{ 'Status: Trial' | translate }}</h3>
     <p>{{ daysRemaining }} <span>{{ 'days remaining' | translate }}</span></p>
     <i class="material-icons">keyboard_arrow_right</i>

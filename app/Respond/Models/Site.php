@@ -222,6 +222,12 @@ class Site {
       $timeZone = env('TIMEZONE');
     }
 
+    $status = 'Active';
+
+    if(env('DEFAULT_STATUS')) {
+      $status = env('DEFAULT_STATUS');
+    }
+
     // create a site
     $site_arr = array(
       'id' => $id,
@@ -229,7 +235,9 @@ class Site {
       'email' => $email,
       'theme' => $theme,
       'supportsFriendlyUrls' => $supportsFriendlyUrls,
-      'timeZone' => $timeZone
+      'timeZone' => $timeZone,
+      'status' => $status,
+      'customerId' => ''
     );
 
     // create and save the site
