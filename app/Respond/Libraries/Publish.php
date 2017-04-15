@@ -75,6 +75,8 @@ class Publish
     public static function updatePlugins($site)
     {
 
+      echo('siteid='.$site->id.' theme='.$site->theme);
+
       // update theme plugin files
       $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/plugins';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/plugins';
@@ -88,10 +90,8 @@ class Publish
 
       copy($src, $dest);
 
-      copy($src, $dest);
-
       // copy the JS file
-      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . '/js/plugins.js';
+      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/js/plugins.js';
       $dest = app()->basePath() . '/public/sites/' . $site->id . '/js/plugins.js';
 
       copy($src, $dest);

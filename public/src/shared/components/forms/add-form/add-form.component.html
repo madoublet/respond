@@ -14,6 +14,14 @@
       [(ngModel)]="model.cssClass"
       name="cssClass">
 
+    <label>{{ 'Validate with reCAPTCHA' | translate }}</label>
+    <select id="hashedit-add-form-validate"
+      [(ngModel)]="model.validate"
+      name="required">
+      <option value="true">{{ 'Yes' | translate }}</option>
+      <option value="false">{{ 'No' | translate }}</option>
+    </select>
+
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
       <button type="submit">{{ 'Add Form' | translate }}</button>
