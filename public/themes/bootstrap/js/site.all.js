@@ -957,7 +957,7 @@ respond.component = (function() {
      */
     setup: function() {
 
-      var els, el, x, component;
+      var els, el, x, component, delay=0;
 
       els = document.querySelectorAll('[respond-plugin][type=component][runat=client]');
 
@@ -966,6 +966,10 @@ respond.component = (function() {
         if(els[x].hasAttribute('component') == true) {
 
           component = els[x].getAttribute('component');
+
+          if(els[x].hasAttribute('delay')) {
+              delay = parseInt(els[x].getAttribute('delay'));
+          }
 
           if(component != '') {
 
@@ -997,7 +1001,12 @@ respond.component = (function() {
                 request.send();
             }
 
-            loadComponent(el, component);
+            if(delay > 0) {
+                setTimeout(function() {loadComponent(el, component);}, delay);
+            }
+            else {
+                loadComponent(el, component);
+            }
 
           }
 
@@ -1012,3 +1021,50 @@ respond.component = (function() {
 })();
 
 respond.component.setup();
+var respond = respond || {};
+
+/*
+ * Handles the site JS
+ */
+respond.site = (function() {
+
+  'use strict';
+
+  return {
+
+    version: '0.0.1',
+
+    /**
+     * Setup the site JS
+     */
+    setup: function() {
+
+      var toggle, close;
+
+      toggle = document.querySelector('.navbar-toggle');
+
+      // show the nav
+      toggle.addEventListener('click', function(e) {
+
+        var nav = document.querySelector('.primary-nav');
+        nav.setAttribute('active', '');
+
+      });
+
+      close = document.querySelector('.navbar-close');
+
+      // show the nav
+      close.addEventListener('click', function(e) {
+
+        var nav = document.querySelector('.primary-nav');
+        nav.removeAttribute('active');
+
+      });
+
+    }
+
+  }
+
+})();
+
+respond.site.setup();
