@@ -73,5 +73,19 @@
         "value": "#888",
         "sets": "attribute",
         "attribute": "content"
+    },
+    {
+        "id": "reCAPTCHA-site-key",
+        "label": "reCAPTCHA Site Key",
+        "description": "The site key provided at https://www.google.com/recaptcha/",
+        "type": "text",
+        "value": ""
+    },
+    {
+        "id": "reCAPTCHA-secret-key",
+        "label": "reCAPTCHA Secret Key",
+        "description": "The secret key provided at https://www.google.com/recaptcha/",
+        "type": "text",
+        "value": ""
     }
 ]
