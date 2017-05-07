@@ -16,7 +16,8 @@ export class AddFormComponent {
   // model to store
   model: {
     name: '',
-    cssClass: ''
+    cssClass: '',
+    validate: false
   };
 
   _visible: boolean = false;
@@ -30,7 +31,8 @@ export class AddFormComponent {
     // reset model
     this.model = {
       name: '',
-      cssClass: ''
+      cssClass: '',
+      validate: false
     };
 
   }
@@ -63,7 +65,7 @@ export class AddFormComponent {
    */
   submit() {
 
-    this._formService.add(this.model.name, this.model.cssClass)
+    this._formService.add(this.model.name, this.model.cssClass, this.model.validate)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

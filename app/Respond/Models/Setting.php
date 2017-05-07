@@ -65,6 +65,30 @@ class Setting {
 
 
   /**
+   * lists all settings as an associative array with name, value
+   *
+   * @param {files} $data
+   * @return {array}
+   */
+  public static function listAllAsAssoc($siteId) {
+
+    $file = app()->basePath().'/resources/sites/'.$siteId.'/settings.json';
+
+    $settings = json_decode(file_get_contents($file), true);
+    $arr = array();
+    
+    foreach($settings as $setting) {
+    
+      $arr[$setting['id']] = $setting['value'];
+  
+    }
+    
+    return $arr;
+    
+
+  }
+  
+  /**
    * lists all settings
    *
    * @param {files} $data

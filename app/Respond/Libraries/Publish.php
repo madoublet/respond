@@ -742,6 +742,7 @@ class Publish
       static $components = array();
       static $files = array();
       static $plugins = array();
+      static $settings = array();
 
       // get all pages
       if(!$pages) {
@@ -766,7 +767,11 @@ class Publish
       if(!$components) {
         $components = Component::listAll($site->id);
       }
-
+      
+      if(!$settings) {
+        $settings = Setting::listAllAsAssoc($site->id);
+      }
+      
       // setup current site
       $current_site = array(
         'id' => $site->id,
@@ -845,6 +850,7 @@ class Publish
                                   'forms' => $forms,
                                   'galleries' => $galleries,
                                   'menus' => $menus,
+                                  'settings' => $settings,
                                   'attributes' => $el->attr);
 
               $plugin_html = '';

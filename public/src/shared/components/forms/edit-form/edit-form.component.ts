@@ -51,6 +51,7 @@ export class EditFormComponent {
       id: '',
       name: '',
       cssClass: '',
+      validate: false
     };
   }
 
@@ -67,7 +68,7 @@ export class EditFormComponent {
    */
   submit() {
 
-    this._formService.edit(this.model.id, this.model.name, this.model.cssClass)
+    this._formService.edit(this.model.id, this.model.name, this.model.cssClass, this.model.validate)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

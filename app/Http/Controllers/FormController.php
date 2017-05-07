@@ -48,9 +48,14 @@ class FormController extends Controller
     // get url, title and description
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
-
+    $validate =  $request->json()->get('validate');
+    
+    if(is_bool($validate)) {
+      $validate = ($validate) ? 'true' : 'false';
+    }
+    
     // add a menu
-    $form = Form::add($name, $cssClass, $siteId);
+    $form = Form::add($name, $cssClass, $validate, $siteId);
 
     if($form !== NULL) {
      // return OK
@@ -76,6 +81,11 @@ class FormController extends Controller
     $id = $request->json()->get('id');
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
+    $validate =  $request->json()->get('validate');
+    
+    if(is_bool($validate)) {
+      $validate = ($validate) ? 'true' : 'false';
+    }
 
     // update order in file
     $form = Form::getById($id, $siteId);
@@ -83,6 +93,7 @@ class FormController extends Controller
     if($form != NULL) {
       $form->name = $name;
       $form->cssClass = $cssClass;
+      $form->validate = $validate;
       $form->save($siteId);
 
       return response('Ok', 200);
