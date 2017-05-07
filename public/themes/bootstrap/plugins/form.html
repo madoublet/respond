@@ -88,11 +88,19 @@
         {% endif %}
 
       </div>
+
     {% endfor %}
 
   {% endif %}
 
+  {% if form.validate == "true"  %}
+
+    <div class="g-recaptcha" data-sitekey="{{ attribute(settings, 'reCAPTCHA-site-key') }}"></div>
+
+  {% endif %}
+
 {% endfor %}
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
   <span class="loading">

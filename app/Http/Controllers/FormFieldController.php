@@ -63,6 +63,11 @@ class FormFieldController extends Controller
     $helperText = $request->json()->get('helperText');
     $placeholder = $request->json()->get('placeholder');
     $cssClass = $request->json()->get('cssClass');
+    
+    // convert to string
+    if(is_bool($required)) {
+      $required = ($required) ? 'true' : 'false';
+    }
 
     // build an id from the label
 	  $id = strtolower($label);
@@ -114,7 +119,12 @@ class FormFieldController extends Controller
     $helperText = $request->json()->get('helperText');
     $placeholder = $request->json()->get('placeholder');
     $cssClass = $request->json()->get('cssClass');
-
+    
+    // convert to string
+    if(is_bool($required)) {
+      $required = ($required) ? 'true' : 'false';
+    }
+    
     // get form
     $form = Form::getById($formId, $siteId);
 

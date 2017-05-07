@@ -17,6 +17,7 @@ class Form {
   public $id;
   public $name;
   public $cssClass;
+  public $validate;
   public $fields;
 
   /**
@@ -29,6 +30,10 @@ class Form {
       if(property_exists(__CLASS__,$key)) {
         $this->$key = $val;
       }
+    }
+    
+    if(!isset($validate)) {
+      $this->validate = false;
     }
   }
 
@@ -57,11 +62,18 @@ class Form {
         $id = str_replace('.json', '', $file);
         $id = str_replace('data/forms/', '', $id);
         $id = str_replace('/', '', $id);
+        
+        $validate = false;
+        
+        if(isset($json['validate'])) {
+          $validate = $json['validate'];
+        }
 
         array_push($arr, array(
           'id' => $id,
           'name' => $json['name'],
-          'cssClass' => $json['cssClass']
+          'cssClass' => $json['cssClass'],
+          'validate' => $validate
           ));
 
       }
@@ -128,7 +140,7 @@ class Form {
    * @param {string} $siteId site id
    * @return Response
    */
-  public static function add($name, $cssClass, $siteId) {
+  public static function add($name, $cssClass, $validate, $siteId) {
 
     // build a name
 	  $id = strtolower($name);
@@ -168,6 +180,7 @@ class Form {
         'id' => $new_id,
         'name' => $name,
         'cssClass' => $cssClass,
+        'validate' => $validate,
         'fields' => array()
       ));
 
