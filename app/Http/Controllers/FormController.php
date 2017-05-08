@@ -49,11 +49,11 @@ class FormController extends Controller
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
     $validate =  $request->json()->get('validate');
-    
+
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
     }
-    
+
     // add a menu
     $form = Form::add($name, $cssClass, $validate, $siteId);
 
@@ -82,7 +82,7 @@ class FormController extends Controller
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
     $validate =  $request->json()->get('validate');
-    
+
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
     }
@@ -98,6 +98,9 @@ class FormController extends Controller
 
       return response('Ok', 200);
     }
+
+    // re-publish plugins
+    Publish::publishPlugins($user, $site);
 
     // return error
     return response('Error', 400);

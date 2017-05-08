@@ -31,10 +31,7 @@ class Form {
         $this->$key = $val;
       }
     }
-    
-    if(!isset($validate)) {
-      $this->validate = false;
-    }
+
   }
 
   /**
@@ -62,9 +59,9 @@ class Form {
         $id = str_replace('.json', '', $file);
         $id = str_replace('data/forms/', '', $id);
         $id = str_replace('/', '', $id);
-        
+
         $validate = false;
-        
+
         if(isset($json['validate'])) {
           $validate = $json['validate'];
         }
