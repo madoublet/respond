@@ -81,7 +81,7 @@ class SubmissionController extends Controller
    */
   public function submit(Request $request)
   {
-  
+
 
     // get referer
     $referer = $request->header('referer');
@@ -91,22 +91,34 @@ class SubmissionController extends Controller
 
     // get reference to site
     $site = Site::getById($siteId);
-    
+
     // handle reCAPTCHA
-    if($request->input('g-recaptcha-response') != NULL) {
-    
-      $recaptcha = new \ReCaptcha\ReCaptcha($secret);
-      $gRecaptchaResponse = $request->input('g-recaptcha-response');
-      
-      if ($resp->isSuccess()) {
-        // verified! continue
-      } else {
-          $errors = $resp->getErrorCodes();
-          return redirect($referer.'#recaptcha-failure');
+    if($request->exists('g-recaptcha-response') != NULL) {
+
+      $secret = Setting::getById('reCAPTCHA-secret-key', $site->id);
+
+      if(isset($secret)) {
+
+        $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+        $gRecaptchaResponse = $request->input('g-recaptcha-response');
+        $remoteIp = $request->ip();
+
+        $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+
+        if ($resp->isSuccess()) {
+          // verified! continue
+        } else {
+            $errors = $resp->getErrorCodes();
+            return redirect($referer.'#recaptcha-failure');
+        }
+
       }
-      
+      else {
+        return redirect($referer.'#recaptcha-failure-no-secret');
+      }
+
     }
-    
+
     // get url, formid, timestamp
     $url = $referer;
     $formId = $request->input('formid');
