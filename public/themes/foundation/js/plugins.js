@@ -113,6 +113,13 @@ respond.plugins = (function() {
         if(hash === 'success') {
           respond.toast.show('success');
         }
+        else if(has === 'recaptcha-failure') {
+          respond.toast.show('failure');
+        }
+        else if(has === 'recaptcha-failure-no-secret') {
+          respond.toast.show('failure');
+        }
+
       }
 
     },
