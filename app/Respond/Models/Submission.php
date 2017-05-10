@@ -148,6 +148,13 @@ class Submission {
     // save submissions.json
     Utilities::saveContent($dir, 'submissions.json', $json);
 
+    // Add siteId to webhook data
+    $wh_data = clone $this;
+    $wh_data->siteId = $siteId;
+
+    // send webhook
+    Webhooks::FormSubmit($wh_data);
+
     return;
 
   }
