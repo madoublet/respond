@@ -22,6 +22,21 @@
       <option value="false">{{ 'No' | translate }}</option>
     </select>
 
+    <label>{{ 'Success Message' | translate }}</label>
+    <input id="hashedit-add-form-success" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.success"
+      name="success">
+
+    <label>{{ 'Error Message' | translate }}</label>
+    <input id="hashedit-add-form-error" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.error"
+      name="error">
+
+    <label>{{ 'reCAPTCHA Error Message' | translate }}</label>
+    <input id="hashedit-add-form-recaptcha-error" type="text" maxlength="128" placeholder=""
+      [(ngModel)]="model.recaptchaError"
+      name="recaptchaError">
+
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>
       <button type="submit">{{ 'Add Form' | translate }}</button>

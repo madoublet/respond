@@ -136,7 +136,9 @@
     "Color": "Cor",
     "Primary logo of the site": "Logo Principal do Site",
     "The favicon used for the site": "Favicon usado para o Site",
-    "The color used as the Android application color": "Cor utilizada como aplicativo pelo Android"
+    "The color used as the Android application color": "Cor utilizada como aplicativo pelo Android",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }
-Window size: 1435 x 877
-Viewport size: 1435 x 763

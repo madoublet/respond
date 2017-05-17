@@ -136,5 +136,9 @@
     "Color": "Väri",
     "Primary logo of the site": "Sivuston pääsijainen logo",
     "The favicon used for the site": "Kuvaketta käytetään sivustossa",
-    "The color used as the Android application color": "Väriä käytetään Android sovelluksen värinä"
+    "The color used as the Android application color": "Väriä käytetään Android sovelluksen värinä",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

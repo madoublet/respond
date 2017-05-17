@@ -49,13 +49,16 @@ class FormController extends Controller
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
     $validate =  $request->json()->get('validate');
+    $success =  $request->json()->get('success');
+    $error =  $request->json()->get('error');
+    $recaptchaError =  $request->json()->get('recaptchaError');
 
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
     }
 
     // add a menu
-    $form = Form::add($name, $cssClass, $validate, $siteId);
+    $form = Form::add($name, $cssClass, $validate, $success, $error, $recaptchaError, $siteId);
 
     if($form !== NULL) {
      // return OK
@@ -82,6 +85,9 @@ class FormController extends Controller
     $name = $request->json()->get('name');
     $cssClass = $request->json()->get('cssClass');
     $validate =  $request->json()->get('validate');
+    $success =  $request->json()->get('success');
+    $error =  $request->json()->get('error');
+    $recaptchaError =  $request->json()->get('recaptchaError');
 
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
@@ -94,6 +100,9 @@ class FormController extends Controller
       $form->name = $name;
       $form->cssClass = $cssClass;
       $form->validate = $validate;
+      $form->success = $success;
+      $form->error = $error;
+      $form->recaptchaError = $recaptchaError;
       $form->save($siteId);
 
       return response('Ok', 200);

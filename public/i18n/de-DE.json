@@ -106,5 +106,9 @@
     "Nothing here yet": "Noch nichts hier",
     "View Site": "Seite anzeigen",
     "Re-publish plugins": "Plugins neu veröffentlichen",
-    "Re-publish sitemap": "Sitemap neu veröffentlichen"
+    "Re-publish sitemap": "Sitemap neu veröffentlichen",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

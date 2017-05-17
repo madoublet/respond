@@ -141,5 +141,9 @@
     "Status: Trial": "Status: Trial",
     "Status: Expired": "Status: Expired",
     "days remaining": "days remaining",
-    "Activate now": "Activate now"
+    "Activate now": "Activate now",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

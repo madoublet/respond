@@ -107,5 +107,9 @@
 	"View Site": "Voir le site",
 	"Re-publish plugins": "Générer de nouveau les plugins",
 	"Re-publish sitemap": "Générer de nouveau le plan du site",
-    "All themes": "Tous les thèmes"
+    "All themes": "Tous les thèmes",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

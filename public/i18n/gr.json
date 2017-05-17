@@ -109,5 +109,9 @@
   "Nothing here yet": "Δεν υπάρχει τίποτα ακόμα",
   "View Site": "Προβολή σελίδας",
   "Re-publish plugins": "Επαναδημοσίευση πρόσθετων",
-  "Re-publish sitemap": "Επαναδημοσίευση sitemap"
+  "Re-publish sitemap": "Επαναδημοσίευση sitemap",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

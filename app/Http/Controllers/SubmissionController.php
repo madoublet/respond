@@ -89,6 +89,11 @@ class SubmissionController extends Controller
     // get the site
     $siteId = $request->input('siteid');
 
+    // get url, formid, timestamp
+    $url = $referer;
+    $formId = $request->input('formid');
+    $timestamp = gmdate('D M d Y H:i:s O', time());
+
     // get reference to site
     $site = Site::getById($siteId);
 
@@ -109,20 +114,15 @@ class SubmissionController extends Controller
           // verified! continue
         } else {
             $errors = $resp->getErrorCodes();
-            return redirect($referer.'#recaptcha-failure');
+            return redirect($referer.'?formid='.$formId.'&formstatus=recaptcha-failure');
         }
 
       }
       else {
-        return redirect($referer.'#recaptcha-failure-no-secret');
+        return redirect($referer.'?formid='.$formId.'&formstatus=recaptcha-failure&details=no-secret');
       }
 
     }
-
-    // get url, formid, timestamp
-    $url = $referer;
-    $formId = $request->input('formid');
-    $timestamp = gmdate('D M d Y H:i:s O', time());
 
     // get all fields
     $all_fields = $request->all();
@@ -191,7 +191,7 @@ class SubmissionController extends Controller
     // send email from file
     Utilities::sendEmail($to, $from, $fromName, $subject, $content, $site = NULL);
 
-    return redirect($referer.'#success');
+    return redirect($referer.'?formid='.$formId.'&formstatus=success');
 
   }
 

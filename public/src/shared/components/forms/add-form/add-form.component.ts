@@ -17,7 +17,10 @@ export class AddFormComponent {
   model: {
     name: '',
     cssClass: '',
-    validate: false
+    validate: false,
+    success: '',
+    error: '',
+    recaptchaError: ''
   };
 
   _visible: boolean = false;
@@ -65,7 +68,7 @@ export class AddFormComponent {
    */
   submit() {
 
-    this._formService.add(this.model.name, this.model.cssClass, this.model.validate)
+    this._formService.add(this.model.name, this.model.cssClass, this.model.validate, this.model.success, this.model.error, this.model.recaptchaError)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }
