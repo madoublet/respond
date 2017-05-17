@@ -187,11 +187,19 @@ class Site {
    */
 	public static function create($name, $theme, $email, $password) {
 
+    // prevent directory names in theme
+    $theme = basename($theme);
+
 	  // create an id
 	  $id = strtolower($name);
 
     // replaces all spaces with hyphens
     $id = str_replace(' ', '-', $id);
+
+    // remove any slashes, dots
+    $id = str_replace('/', '', $id);
+    $id = str_replace('\\', '', $id);
+    $id = str_replace('.', '', $id);
 
     // replaces all spaces with hyphens
     $id = $new_id =  preg_replace('/[^A-Za-z0-9\-]/', '', $id);

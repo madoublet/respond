@@ -19,6 +19,8 @@ use Sunra\PhpSimple\HtmlDomParser;
 // Twig Extensions
 use App\Respond\Extensions\BetterSortTwigExtension;
 
+use Exception;
+
 // Handes common publish tasks
 class Publish
 {
@@ -31,19 +33,34 @@ class Publish
     public static function publishTheme($theme, $site)
     {
 
-        // publish theme files
-        $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $theme;
-        $dest = app()->basePath() . '/public/sites/' . $site->id;
+        // prevent traversal, #ref: http://bit.ly/2rdsDPS
+        $src_basepath = realpath(app()->basePath() . '/public/' . getenv('THEMES_LOCATION'));
+        $dest_basepath = realpath(app()->basePath() . '/public/sites');
 
-        // copy the directory
-        Utilities::copyDirectory($src, $dest);
+        // publish theme files
+        $src = realpath($src_basepath . '/' . basename($theme));
+        $dest = $dest_basepath . '/' . basename($site->id);
+
+        // copy source
+        if ($src === false || strpos($src, $src_basepath) !== 0) {
+          throw new Exception('Directory traversal attempt');
+        } else {
+          Utilities::copyDirectory($src, $dest);
+        }
+
+        // new dest_basepath
+        $dest_basepath = realpath(app()->basePath() . '/resources/sites/');
 
         // copy the private files
-        $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $theme . '/private';
-        $dest = app()->basePath() . '/resources/sites/' . $site->id;
+        $src = realpath($src_basepath . '/' . basename($theme) . '/private');
+        $dest = $dest_basepath . '/' . basename($site->id);
 
-        // copy the directory
-        Utilities::copyDirectory($src, $dest);
+        // copy source
+        if ($src === false || strpos($src, $src_basepath) !== 0) {
+          throw new Exception('Directory traversal attempt');
+        } else {
+            Utilities::copyDirectory($src, $dest);
+        }
 
     }
 
