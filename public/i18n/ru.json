@@ -109,5 +109,8 @@
     "Nothing here yet": "Здесь пока ничего нет",
     "View Site": "Просмотр сайта",
     "Re-publish plugins": "Повторно опубликовать плагины",
-    "Re-publish sitemap": "Повторно опубликовать карту сайта"
+    "Re-publish sitemap": "Повторно опубликовать карту сайта",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }

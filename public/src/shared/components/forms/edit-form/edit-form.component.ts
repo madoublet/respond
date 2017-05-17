@@ -51,7 +51,10 @@ export class EditFormComponent {
       id: '',
       name: '',
       cssClass: '',
-      validate: false
+      validate: false,
+      success: '',
+      error: '',
+      recaptchaError: ''
     };
   }
 
@@ -68,7 +71,7 @@ export class EditFormComponent {
    */
   submit() {
 
-    this._formService.edit(this.model.id, this.model.name, this.model.cssClass, this.model.validate)
+    this._formService.edit(this.model.id, this.model.name, this.model.cssClass, this.model.validate, this.model.success, this.model.error, this.model.recaptchaError)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

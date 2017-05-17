@@ -137,5 +137,9 @@
 	"Color": "Color",
 	"Primary logo of the site": "Logotipo principal del sitio",
 	"The favicon used for the site": "El favicon utilizado para el sitio",
-	"The color used as the Android application color": "Color de aplicación para Android"
+	"The color used as the Android application color": "Color de aplicación para Android",
+    "Validate with reCAPTCHA": "Validate with reCAPTCHA",
+    "Success Message": "Success Message",
+    "Error Message": "Error Message",
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
 }
