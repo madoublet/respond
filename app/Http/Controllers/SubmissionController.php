@@ -82,7 +82,6 @@ class SubmissionController extends Controller
   public function submit(Request $request)
   {
 
-
     // get referer
     $referer = $request->header('referer');
 

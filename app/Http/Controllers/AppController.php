@@ -286,7 +286,8 @@ return response($css)->header('Content-Type', 'text/css');
       'stripeAmount' => env('STRIPE_AMOUNT'),
       'stripeName' => env('STRIPE_NAME'),
       'stripeDescription' => env('STRIPE_DESCRIPTION'),
-      'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY')
+      'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY'),
+      'recaptchaSiteKey' => env('RECAPTCHA_SITE_KEY')
     );
 
     return response()->json($settings);

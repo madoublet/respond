@@ -27,9 +27,9 @@ export class SiteService {
    * @param {string} password The user's login password
    * @return {Observable}
    */
-  create (name: string, theme: string, email: string, password: string, passcode: string) {
+  create (name: string, theme: string, email: string, password: string, passcode: string, recaptchaResponse: string) {
 
-    let body = JSON.stringify({ name, theme, email, password, passcode });
+    let body = JSON.stringify({ name, theme, email, password, passcode, recaptchaResponse });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 

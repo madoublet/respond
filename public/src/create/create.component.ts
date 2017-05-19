@@ -22,8 +22,12 @@ export class CreateComponent {
   themesLocation;
   model;
   site;
+  recaptchaSiteKey;
+  recaptchaResponse;
 
-  constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {}
+  constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {
+    window['verifyCallback'] = this.verifyCallback.bind(this)
+  }
 
   /**
    * Init pages
@@ -38,6 +42,8 @@ export class CreateComponent {
     this.hasPasscode = true;
     this.logoUrl = '';
     this.themesLocation = '';
+    this.recaptchaSiteKey = '';
+    this.recaptchaResponse = '';
 
     // set model
     this.model = {
@@ -62,7 +68,7 @@ export class CreateComponent {
    */
   submit() {
 
-      this._siteService.create(this.model.name, this.selectedTheme.location, this.model.email, this.model.password, this.model.passcode)
+      this._siteService.create(this.model.name, this.selectedTheme.location, this.model.email, this.model.password, this.model.passcode, this.recaptchaResponse)
                    .subscribe(
                      data => { this.site = data; this.success(); },
                      error =>  { this.failure(<any>error); }
@@ -82,6 +88,7 @@ export class CreateComponent {
                          this.hasPasscode = data.hasPasscode;
                          this.logoUrl = data.logoUrl;
                          this.themesLocation = data.themesLocation;
+                         this.recaptchaSiteKey = data.recaptchaSiteKey;
                        },
                        error =>  { this.failure(<any>error); }
                       );
@@ -185,6 +192,10 @@ export class CreateComponent {
 
     toast.show('failure');
 
+  }
+
+  verifyCallback(response){
+    this.recaptchaResponse = response;
   }
 
 }
