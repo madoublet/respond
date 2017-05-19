@@ -40,6 +40,39 @@ class SiteController extends Controller
     $email = $request->json()->get('email');
     $password = $request->json()->get('password');
     $passcode = $request->json()->get('passcode');
+    $gRecaptchaResponse = $request->json()->get('recaptchaResponse');
+
+    // handle reCAPTCHA
+    if(isset($gRecaptchaResponse)) {
+
+      $secret = env('RECAPTCHA_SECRET_KEY');
+
+      // check if secret is set
+      if(isset($secret)) {
+
+        // do not check if secret is empty
+        if($secret != '') {
+
+          $recaptcha = new \ReCaptcha\ReCaptcha($secret);
+          $remoteIp = $request->ip();
+
+          $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
+
+          if ($resp->isSuccess()) {
+            // verified! continue
+          } else {
+              $errors = $resp->getErrorCodes();
+              return response('reCAPTCHA invalid', 401);
+          }
+
+        }
+
+      }
+      else {
+        return response('reCAPTCHA error no secret', 401);
+      }
+
+    }
 
     if($passcode == env('PASSCODE')) {
 

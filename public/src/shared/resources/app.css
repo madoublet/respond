@@ -453,6 +453,10 @@ body .app-modal {
     font-size: 14px;
   }
 
+  body .app-modal .g-recaptcha {
+    margin-bottom: 15px;
+  }
+
   body .app-modal .or {
     text-align: center;
     color: #888;
