@@ -141,6 +141,21 @@ respond.plugins = (function() {
     },
 
     /**
+     * Gets the query string paramger
+     * @param {String} name
+     * @param {String} url
+     */
+    getQueryStringParam: function(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    },
+
+    /**
      * Helper for findParentBySelecotr
      * @param {Array} config.sortable
      */
@@ -305,14 +320,64 @@ respond.form = (function() {
      */
     setup: function() {
 
-      var forms, x;
+      var form, forms, x, status, id, success, error, holder, recaptchaError, siteKey, submit;
 
       // setup [respond-form]
       forms = document.querySelectorAll('[respond-form]');
 
-      // setup submit event for form
+      // setup form
       for(x=0; x<forms.length; x++) {
+
+        // add submit
         forms[x].addEventListener('submit', respond.form.submitForm);
+
+      }
+
+      // handle messaging
+      status = respond.plugins.getQueryStringParam('formstatus');
+
+      if(status != '' && status != null) {
+
+        id = respond.plugins.getQueryStringParam('formid');
+
+        if(id != '' && id != null) {
+
+          form = document.querySelector('#' + id);
+
+          if(form != null) {
+            success = form.getAttribute('data-success') || '';
+            error = form.getAttribute('data-error') || '';
+            recaptchaError = form.getAttribute('data-recaptcha-error') || '';
+
+            // show success
+            if(status == 'success' && success != '') {
+              respond.toast.show('success', success);
+            }
+            else if(status == 'success'){
+              respond.toast.show('success');
+            }
+
+            // show error
+            if(status == 'error' && error != '') {
+              respond.toast.show('failure', error);
+            }
+            else if(status == 'error') {
+              respond.toast.show('failure');
+            }
+
+            // show error
+            if(status == 'recaptcha-failure' && recaptchaError != '') {
+              respond.toast.show('failure', recaptchaError);
+            }
+            else if(status == 'recaptcha-failure') {
+              respond.toast.show('failure');
+            }
+
+
+          }
+
+        }
+
       }
 
     },
@@ -447,6 +512,60 @@ respond.form = (function() {
   		for(x=0; x<els.length; x++){
   			els[x].selectedIndex = 0;
   		}
+
+  	},
+
+    /**
+     * Setup recaptcha
+     */
+  	setupRecaptcha: function() {
+
+      var form, forms, x, status, id, success, error, holder, recaptchaError, siteKey, submit;
+
+      // setup [respond-form]
+      forms = document.querySelectorAll('[respond-form]');
+
+      // setup form
+      for(x=0; x<forms.length; x++) {
+
+        // add submit
+        forms[x].addEventListener('submit', respond.form.submitForm);
+
+        // determine if recaptcha is setup
+        holder = forms[x].querySelector('.g-recaptcha-holder');
+
+        if(holder != null) {
+
+          submit = forms[x].querySelector('[type=submit]');
+
+          if(submit != null) {
+            submit.setAttribute('disabled', 'disabled');
+          }
+
+          (function(form){
+            siteKey = holder.getAttribute('data-sitekey');
+
+            var holderId = grecaptcha.render(holder,{
+              'sitekey': siteKey,
+              'badge' : 'inline', // possible values: bottomright, bottomleft, inline
+              'callback' : function (recaptchaToken) {
+                submit = form.querySelector('[type=submit]');
+
+                if(submit != null) {
+                  submit.removeAttribute('disabled');
+                }
+              }
+            });
+
+            form.onsubmit = function (evt){
+              //evt.preventDefault();
+              //grecaptcha.execute(holderId);
+            };
+          })(forms[x]);
+
+        }
+
+      }
 
   	}
 
