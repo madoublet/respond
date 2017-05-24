@@ -19,12 +19,14 @@ export class LoginComponent {
   errorMessage;
   logoUrl
   usesLDAP = false;
+  acknowledgement;
 
   constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
 
   ngOnInit() {
 
       this.logoUrl = '';
+    this.acknowledgement = '';
 
       this._route.params.subscribe(params => {
         this.id = params['id'];
@@ -46,6 +48,7 @@ export class LoginComponent {
                      .subscribe(
                        data => {
                          this.logoUrl = data.logoUrl;
+                         this.acknowledgement = data.acknowledgement;
                          this.usesLDAP = data.usesLDAP;
 
                          // set activation
