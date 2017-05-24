@@ -24,6 +24,7 @@ export class CreateComponent {
   site;
   recaptchaSiteKey;
   recaptchaResponse;
+  acknowledgement;
 
   constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {
     window['verifyCallback'] = this.verifyCallback.bind(this)
@@ -44,6 +45,7 @@ export class CreateComponent {
     this.themesLocation = '';
     this.recaptchaSiteKey = '';
     this.recaptchaResponse = '';
+    this.acknowledgement = '';
 
     // set model
     this.model = {
@@ -87,6 +89,7 @@ export class CreateComponent {
                        data => {
                          this.hasPasscode = data.hasPasscode;
                          this.logoUrl = data.logoUrl;
+                         this.acknowledgement = data.acknowledgement;
                          this.themesLocation = data.themesLocation;
                          this.recaptchaSiteKey = data.recaptchaSiteKey;
                        },

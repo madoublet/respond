@@ -881,6 +881,16 @@ body .app-form.standalone {
     text-align: left;
   }
 
+/* ack */
+body .acknowledgement {
+  text-align: center;
+  font-size: 13px;
+  line-height: 15px;
+  text-transform: inherit;
+  color: #555;
+  padding-bottom: 15px;
+}
+
 /* app-menu */
 .app-menu {
   font-family: 'Open Sans', 'Helvetica', 'Arial', 'sans-serif';

@@ -32,9 +32,11 @@
       <img src="{{themesLocation}}{{theme.location.replace('/','')}}/screenshot.png" (click)="select(i)">
     </span>
   </div>
+
+  <p class="acknowledgement" [innerHTML]="acknowledgement"></p>
+
 </div>
 <!-- /.app-theme-list -->
-
 
 
 <div class="app-modal" [class.visible]="visible === true">

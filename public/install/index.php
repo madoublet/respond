@@ -118,6 +118,7 @@
     $hasUniqueSMTPEncKey = false;
     $hasUniqueJWTKey = false;
     $hasUniquePasscode = false;
+    $hasRecaptcha = false;
 
     // make sure .env exists
     if (file_exists('../../.env')) {
@@ -142,9 +143,16 @@
           $hasUniqueJWTKey = true;
         }
 
-        // check for updated passoce
+        // check for updated passcode
         if (getenv('JWT_KEY') != 'PASSCODE') {
           $hasUniquePasscode = true;
+        }
+
+        // check for reCAPTCHA
+        if (getenv('RECAPTCHA_SITE_KEY') !== false && getenv('RECAPTCHA_SECRET_KEY') !== false) {
+          if (getenv('RECAPTCHA_SITE_KEY') != '' && getenv('RECAPTCHA_SECRET_KEY') != '') {
+            $hasRecaptcha = true;
+          }
         }
 
 
@@ -279,11 +287,20 @@
     }
 
     if ($hasUniquePasscode==true) {
-        print '<p class="success noline"><i class="material-icons">check</i> Passcode has been updated</p>';
+        print '<p class="success"><i class="material-icons">check</i> Passcode has been updated</p>';
     }
     else{
-        print '<p class="fail noline"><i class="material-icons">close</i> Passcode has not been updated<small>Update the PASSCODE in the .env file to be unique to your application.</small></p>';
+        print '<p class="fail"><i class="material-icons">close</i> Passcode has not been updated<small>Update the PASSCODE in the .env file to be unique to your application.</small></p>';
     }
+
+    if ($hasRecaptcha==true) {
+        print '<p class="success noline"><i class="material-icons">check</i> reCAPTCHA has been setup</p>';
+    }
+    else{
+        print '<p class="fail noline"><i class="material-icons">close</i> reCAPTCHA has not been setup<small>Update (or add) the RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY in the .env file to setup reCAPTCHA.</small></p>';
+    }
+
+    // $hasRecaptcha
 
 	?>
 
