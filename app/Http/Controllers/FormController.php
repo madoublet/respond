@@ -105,11 +105,15 @@ class FormController extends Controller
       $form->recaptchaError = $recaptchaError;
       $form->save($siteId);
 
+      // get site and user
+      $site = Site::getById($siteId);
+      $user = User::getByEmail($email, $siteId);
+
+      // re-publish plugins
+      Publish::publishPlugins($user, $site);
+
       return response('Ok', 200);
     }
-
-    // re-publish plugins
-    Publish::publishPlugins($user, $site);
 
     // return error
     return response('Error', 400);
