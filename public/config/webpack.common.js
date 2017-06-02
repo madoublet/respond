@@ -125,13 +125,6 @@ module.exports = {
      */
     plugins: [
 
-        /*
-         * Plugin: ForkCheckerPlugin
-         * Description: Do type checking in a separate process, so webpack don't need to wait.
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-         */
-        new ForkCheckerPlugin()
     ],
 
     /*

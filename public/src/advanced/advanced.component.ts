@@ -5,12 +5,12 @@ import { SiteService } from '../shared/services/site.service';
 declare var toast: any;
 
 @Component({
-    selector: 'respond-developer',
-    templateUrl: 'developer.component.html',
+    selector: 'respond-advanced',
+    templateUrl: 'advanced.component.html',
     providers: [SiteService]
 })
 
-export class DeveloperComponent {
+export class AdvancedComponent {
 
   id;
   errorMessage;

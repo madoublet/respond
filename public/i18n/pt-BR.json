@@ -38,6 +38,7 @@
     "Users": "Usuários",
     "Manage your Site": "Adiministrar seu Site",
     "Sign Out": "Sair",
+    "Advanced": "Advanced",
     "Developer Options": "Opções para Desenvolvedores",
     "Reload System Files": "Reload System Files",
     "Remove File": "Remover Arquivo",
@@ -140,5 +141,14 @@
     "Validate with reCAPTCHA": "Validate with reCAPTCHA",
     "Success Message": "Success Message",
     "Error Message": "Error Message",
-    "reCAPTCHA Error Message": "reCAPTCHA Error Message"
+    "reCAPTCHA Error Message": "reCAPTCHA Error Message",
+    "When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.": "When you are developing a plugin, you can use this function to republish the pages so the plugin update takes effect.",
+    "Re-index Pages": "Re-index Pages",
+    "Republish the sitemap and pages index.": "Republish the sitemap and pages index.",
+    "Re-publish Sitemap": "Re-publish Sitemap",
+    "Republish the sitemap when you make changes outside of the application.": "Republish the sitemap when you make changes outside of the application.",
+    "Republish Templates": "Republish Templates",
+    "Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template": "Republishes all templates and pushes the updates to pages that inherit from those templates.  Warning: Will overwrite any custom HTML outside of the [role=main] block with HTML from the template",
+    "Update Plugins": "Update Plugins",
+    "Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.": "Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme."
 }

@@ -3,37 +3,29 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.0.3-s1
-Status: 6 Stable, Maintenance Release 3, Security update 1
+Version: 6.1.0
 
 ### Latest updates
-- Tighten security around create
+- reCAPTCHA during site creation, see: https://respondcms.com/documentation/recaptcha-on-create
+- reCAPTCHA for site forms, see: https://respondcms.com/documentation/recaptcha-on-forms
+- Add fully configurable acknowledgement on login and creation
+- Update to latest Angular release (4)
+- To support more updates, support us at: https://www.patreon.com/respond
 
-### Updating from 6.0.1-MR1
+### Updating from 6.0.3
 
-Update your .env file with the following.
+1. Add ACKNOWLEDGEMENT, RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY to your .env file.  See .env.example for format.
 
 ```
-  # site status (Active or Trial)
-  DEFAULT_STATUS=Active
-  
-  # trial length (if Trial set above)
-  TRIAL_LENGTH=30
-  
-  # activation (Stripe or URL)
-  ACTIVATION_METHOD=Stripe
-  ACTIVATION_URL=https://example.com/pay?site={{site}}
-  
-  # stripe
-  STRIPE_SECRET_KEY=TEMP
-  STRIPE_PUBLISHABLE_KEY=TEMP
-  STRIPE_PLAN=TEMP
-  STRIPE_AMOUNT=2000
-  STRIPE_NAME="Monthly Subscription"
-  STRIPE_DESCRIPTION="$20 per month"
+  # white label
+  ...
+  ACKNOWLEDGEMENT="Powered by <a href="\https://respondcms.com\">Respond 6</a>. Build fast, responsive sites with Respond CMS."
+
+  # reCAPTCHA for /create
+  RECAPTCHA_SITE_KEY=
+  RECAPTCHA_SECRET_KEY=
   
 ```
-
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel

@@ -2,7 +2,7 @@
 
     <button class="app-more" (click)="toggleDrawer()"><svg viewBox="0 0 24 24" width="24" height="24" preserveAspectRatio="xMidYMid meet"><g><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg></button>
 
-    <h1>{{ 'Developer Options' | translate }}</h1>
+    <h1>{{ 'Advanced' | translate }}</h1>
 </menu>
 
 <section class="app-main">
@@ -28,13 +28,14 @@
 
     <div class="app-list-item" (click)="setActive('sitemap')" [class.selected]="selectedOption === 'sitemap'">
       <h2><span class="primary">{{ 'Re-publish Sitemap' | translate }}</span></h2>
-      <p>{{ 'Republish the sitemap when you make changes outside of the application' | translate }}</p>
+      <p>{{ 'Republish the sitemap when you make changes outside of the application.' | translate }}</p>
       <div class="app-list-actions">
           <a class="primary" (click)="sitemap()">{{'Execute' | translate }}</a>
       </div>
     </div>
     <!-- sitemap -->
 
+    <!-- 
     <div class="app-list-item" (click)="setActive('migrate')" [class.selected]="selectedOption === 'migrate'">
       <h2><span class="primary">{{ 'Migrate Respond 5 site' | translate }}</span></h2>
       <p>{{ 'Updates HTML from Respond 5 so that it consistent with Respond 6' | translate }}</p>
@@ -42,7 +43,7 @@
           <a class="primary" (click)="migrate()">{{'Execute' | translate }}</a>
       </div>
     </div>
-    <!-- migrate -->
+    migrate -->
 
     <div class="app-list-item" (click)="setActive('templates')" [class.selected]="selectedOption === 'templates'">
       <h2><span class="primary">{{ 'Republish Templates' | translate }}</span></h2>
@@ -66,4 +67,4 @@
 
 </section>
 
-<respond-drawer active="pages" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>
+<respond-drawer active="advanced" [visible]="drawerVisible" (onHide)="reset($event)"></respond-drawer>

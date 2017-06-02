@@ -14,7 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SubmissionsComponent } from './submissions/submissions.component';
 import { GalleriesComponent } from './galleries/galleries.component';
 import { EditComponent } from './edit/edit.component';
-import { DeveloperComponent } from './developer/developer.component';
+import { AdvancedComponent } from './advanced/advanced.component';
 import { CodeComponent } from './code/code.component';
 
 const appRoutes: Routes = [
@@ -79,8 +79,8 @@ const appRoutes: Routes = [
     component: EditComponent
   },
   {
-    path: 'developer',
-    component: DeveloperComponent
+    path: 'advanced',
+    component: AdvancedComponent
   },
   {
     path: 'code/:id',
