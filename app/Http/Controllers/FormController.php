@@ -52,13 +52,14 @@ class FormController extends Controller
     $success =  $request->json()->get('success');
     $error =  $request->json()->get('error');
     $recaptchaError =  $request->json()->get('recaptchaError');
+    $notify =  $request->json()->get('notify');
 
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
     }
 
     // add a menu
-    $form = Form::add($name, $cssClass, $validate, $success, $error, $recaptchaError, $siteId);
+    $form = Form::add($name, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId);
 
     if($form !== NULL) {
      // return OK
@@ -88,6 +89,7 @@ class FormController extends Controller
     $success =  $request->json()->get('success');
     $error =  $request->json()->get('error');
     $recaptchaError =  $request->json()->get('recaptchaError');
+    $notify =  $request->json()->get('notify');
 
     if(is_bool($validate)) {
       $validate = ($validate) ? 'true' : 'false';
@@ -103,6 +105,7 @@ class FormController extends Controller
       $form->success = $success;
       $form->error = $error;
       $form->recaptchaError = $recaptchaError;
+      $form->notify = $notify;
       $form->save($siteId);
 
       // get site and user
@@ -112,7 +115,7 @@ class FormController extends Controller
       // re-publish plugins
       Publish::publishPlugins($user, $site);
 
-      return response('Ok', 200);
+      return response('OK', 200);
     }
 
     // return error

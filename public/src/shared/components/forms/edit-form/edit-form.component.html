@@ -4,38 +4,49 @@
 
     <h2>{{ 'Edit Form' | translate }}</h2>
 
-    <label>{{ 'Name' | translate }}</label>
-    <input id="hashedit-edit-form-name" type="text" maxlength="128" placeholder="" required
-      [(ngModel)]="model.name"
-      name="name">
+    <div class="app-modal-body">
 
-    <label>{{ 'CSS Class' | translate }}</label>
-    <input id="hashedit-edit-form-cssclass" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.cssClass"
-      name="cssClass">
+      <label>{{ 'Name' | translate }}</label>
+      <input id="hashedit-edit-form-name" type="text" maxlength="128" placeholder="" required
+        [(ngModel)]="model.name"
+        name="name">
 
-    <label>{{ 'Validate with reCAPTCHA' | translate }}</label>
-    <select id="hashedit-edit-form-validate"
-      [(ngModel)]="model.validate"
-      name="required">
-      <option value="true">{{ 'Yes' | translate }}</option>
-      <option value="false">{{ 'No' | translate }}</option>
-    </select>
+      <label>{{ 'CSS Class' | translate }}</label>
+      <input id="hashedit-edit-form-cssclass" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.cssClass"
+        name="cssClass">
 
-    <label>{{ 'Success Message' | translate }}</label>
-    <input id="hashedit-edit-form-success" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.success"
-      name="success">
+      <label>{{ 'Validate with reCAPTCHA' | translate }}</label>
+      <select id="hashedit-edit-form-validate"
+        [(ngModel)]="model.validate"
+        name="required">
+        <option value="true">{{ 'Yes' | translate }}</option>
+        <option value="false">{{ 'No' | translate }}</option>
+      </select>
 
-    <label>{{ 'Error Message' | translate }}</label>
-    <input id="hashedit-edit-form-error" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.error"
-      name="error">
+      <label>{{ 'Success Message' | translate }}</label>
+      <input id="hashedit-edit-form-success" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.success"
+        name="success">
 
-    <label>{{ 'reCAPTCHA Error Message' | translate }}</label>
-    <input id="hashedit-edit-form-recaptcha-error" type="text" maxlength="128" placeholder=""
-      [(ngModel)]="model.recaptchaError"
-      name="recaptchaError">
+      <label>{{ 'Error Message' | translate }}</label>
+      <input id="hashedit-edit-form-error" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.error"
+        name="error">
+
+      <label>{{ 'reCAPTCHA Error Message' | translate }}</label>
+      <input id="hashedit-edit-form-recaptcha-error" type="text" maxlength="128" placeholder=""
+        [(ngModel)]="model.recaptchaError"
+        name="recaptchaError">
+
+      <label>{{ 'Email Notifications' | translate }}</label>
+      <input id="hashedit-edit-form-notify" type="text" maxlength="2048" placeholder=""
+        [(ngModel)]="model.notify"
+        name="notify">
+      <small>{{ 'Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.' | translate }}</small>
+
+    </div>
+    <!-- /.app-modal-body -->
 
     <div class="actions">
       <a (click)="hide()">{{ 'Cancel' | translate }}</a>

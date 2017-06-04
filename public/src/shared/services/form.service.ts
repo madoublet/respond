@@ -32,9 +32,9 @@ export class FormService {
    * @param {string} cssClass
    * @return {Observable}
    */
-  add (name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string) {
+  add (name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
 
-    let body = JSON.stringify({ name, cssClass, validate, success, error, recaptchaError });
+    let body = JSON.stringify({ name, cssClass, validate, success, error, recaptchaError, notify });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
@@ -49,9 +49,9 @@ export class FormService {
    * @param {string} name
    * @return {Observable}
    */
-  edit (id: string, name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string) {
+  edit (id: string, name: string, cssClass: string, validate: boolean, success: string, error: string, recaptchaError: string, notify: string) {
 
-    let body = JSON.stringify({ id, name, cssClass, validate, success, error, recaptchaError });
+    let body = JSON.stringify({ id, name, cssClass, validate, success, error, recaptchaError, notify });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });

@@ -20,7 +20,8 @@ export class AddFormComponent {
     validate: false,
     success: '',
     error: '',
-    recaptchaError: ''
+    recaptchaError: '',
+    notify: ''
   };
 
   _visible: boolean = false;
@@ -35,7 +36,8 @@ export class AddFormComponent {
     this.model = {
       name: '',
       cssClass: '',
-      validate: false
+      validate: false,
+      notify: ''
     };
 
   }
@@ -68,7 +70,7 @@ export class AddFormComponent {
    */
   submit() {
 
-    this._formService.add(this.model.name, this.model.cssClass, this.model.validate, this.model.success, this.model.error, this.model.recaptchaError)
+    this._formService.add(this.model.name, this.model.cssClass, this.model.validate, this.model.success, this.model.error, this.model.recaptchaError, this.model.notify)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.onError.emit(<any>error); }

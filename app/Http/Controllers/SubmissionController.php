@@ -12,6 +12,7 @@ use App\Respond\Models\User;
 
 use App\Respond\Models\Submission;
 use App\Respond\Models\Setting;
+use App\Respond\Models\Form;
 
 class SubmissionController extends Controller
 {
@@ -123,6 +124,9 @@ class SubmissionController extends Controller
 
     }
 
+    // get a reference to the form
+    $form = Form::getById($formId, $siteId);
+
     // get all fields
     $all_fields = $request->all();
     $fields = array();
@@ -187,8 +191,21 @@ class SubmissionController extends Controller
       $fromName = env('EMAILS_FROM_NAME');
     }
 
-    // send email from file
-    Utilities::sendEmail($to, $from, $fromName, $subject, $content, $site = NULL);
+    // check if notify set
+    if( isset($form->notify) && $form->notify != '' ) {
+
+      $arr = explode(',', $form->notify);
+
+      foreach($arr as $to) {
+        // send email from file
+        Utilities::sendEmail($to, $from, $fromName, $subject, $content, $site = NULL);
+      }
+
+    }
+    else {
+      // send email from file
+      Utilities::sendEmail($to, $from, $fromName, $subject, $content, $site = NULL);
+    }
 
     return redirect($referer.'?formid='.$formId.'&formstatus=success');
 

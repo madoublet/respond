@@ -21,6 +21,7 @@ class Form {
   public $success;
   public $error;
   public $recaptchaError;
+  public $notify;
   public $fields;
 
   /**
@@ -72,6 +73,7 @@ class Form {
         $success = "";
         $error = "";
         $recaptchaError = "";
+        $notify = "";
 
         if(isset($json['success'])) {
           $success = $json['success'];
@@ -85,6 +87,10 @@ class Form {
           $recaptchaError = $json['recaptchaError'];
         }
 
+        if(isset($json['notify'])) {
+          $notify = $json['notify'];
+        }
+
         array_push($arr, array(
           'id' => $id,
           'name' => $json['name'],
@@ -93,6 +99,7 @@ class Form {
           'success' => $success,
           'error' => $error,
           'recaptchaError' => $recaptchaError,
+          'notify' => $notify
           ));
 
       }
@@ -159,7 +166,7 @@ class Form {
    * @param {string} $siteId site id
    * @return Response
    */
-  public static function add($name, $cssClass, $validate, $success, $error, $recaptchaError, $siteId) {
+  public static function add($name, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId) {
 
     // build a name
 	  $id = strtolower($name);
@@ -203,6 +210,7 @@ class Form {
         'success' => $success,
         'error' => $error,
         'recaptchaError' => $recaptchaError,
+        'notify' => $notify,
         'fields' => array()
       ));
 
