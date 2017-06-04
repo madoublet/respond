@@ -3,13 +3,14 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.1.0
+Version: 6.1.1
 
 ### Latest updates
-- reCAPTCHA during site creation, see: https://respondcms.com/documentation/recaptcha-on-create
-- reCAPTCHA for site forms, see: https://respondcms.com/documentation/recaptcha-on-forms
-- Add fully configurable acknowledgement on login and creation
-- Update to latest Angular release (4)
+- Add option to specify who gets notified when a form is submitted (6.1.1)
+- reCAPTCHA during site creation, see: https://respondcms.com/documentation/recaptcha-on-create (6.1.0)
+- reCAPTCHA for site forms, see: https://respondcms.com/documentation/recaptcha-on-forms (6.1.0)
+- Add fully configurable acknowledgement on login and creation (6.1.0)
+- Update to latest Angular release (4) (6.1.0)
 - To support more updates, support us at: https://www.patreon.com/respond
 
 ### Updating from 6.0.3
