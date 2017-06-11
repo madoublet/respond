@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SiteService } from '../shared/services/site.service';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 import { AppService } from '../shared/services/app.service';
 
 declare var toast: any;
@@ -26,7 +27,7 @@ export class CreateComponent {
   recaptchaResponse;
   acknowledgement;
 
-  constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router) {
+  constructor (private _siteService: SiteService, private _appService: AppService, private _router: Router, private _translate: TranslateService) {
     window['verifyCallback'] = this.verifyCallback.bind(this)
   }
 
@@ -92,6 +93,9 @@ export class CreateComponent {
                          this.acknowledgement = data.acknowledgement;
                          this.themesLocation = data.themesLocation;
                          this.recaptchaSiteKey = data.recaptchaSiteKey;
+                         this.defaultLanguage = data.defaultLanguage;
+
+                         this.setLanguage(this.defaultLanguage);
                        },
                        error =>  { this.failure(<any>error); }
                       );
@@ -197,8 +201,22 @@ export class CreateComponent {
 
   }
 
+  /**
+   * Verifies the reCAPTCHA response
+   */
   verifyCallback(response){
     this.recaptchaResponse = response;
+  }
+
+  /**
+   * Sets the language for the app
+   */
+  setLanguage(language) {
+
+      localStorage.setItem('user_language', language);
+
+      // set language
+      this._translate.use(language);
   }
 
 }

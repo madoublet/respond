@@ -123,5 +123,8 @@
     "Update Plugins": "Update Plugins",
     "Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.": "Updates the plugins for your site and re-syncs them with the latest version from the theme. Warning: will overwrite any custom updates you made to plugins built into the theme.",
     "Email Notifications": "Email Notifications",
-    "Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.": "Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email."
+    "Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.": "Separate multiples with commas.  If an email is not specified, an email will be sent to the default site email.",
+    "All Themes": "All Themes",
+    "Use this Theme": "Use this Theme",
+    "Next Theme": "Next Theme"
 }

@@ -43,6 +43,10 @@ class EditController extends Controller
               $mode = 'component';
             }
 
+            if($m == 'focused') {
+              $mode = 'focused';
+            }
+
           }
 
           $arr = explode('/', $q);
@@ -79,8 +83,39 @@ class EditController extends Controller
               // set dom
               $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-              // find base element
-              $el = $dom->find('body', 0);
+              if($mode == 'focused') {
+
+                $content = $dom->find('[focused-content]', 0);
+
+                $default_template_location = app()->basePath('public/html/index.html');
+
+
+                if(file_get_contents($default_template_location)) {
+
+                  // get html
+                  $template_html = file_get_contents($default_template_location);
+
+                  // set dom
+                  $dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+                  $el = $dom->find('[role=main] .col');
+
+                  // get the component content
+                  if(isset($el[0])) {
+                    $el[0]->innertext = $content->innertext;
+                  }
+
+                }
+                else {
+                  return 'Please specify default html to render.';
+
+                }
+              }
+              else {
+                // find base element
+                $el = $dom->find('body', 0);
+              }
+
 
               // check for body
               if(isset($el) == false) {
@@ -154,6 +189,10 @@ class EditController extends Controller
                 $sortable = '.col, .column';
               }
 
+              if($mode == 'focused') {
+                $sortable = '.col';
+              }
+
               // get editable array
               if($editable === NULL) {
                 $editable = ['[role=main]'];
@@ -167,6 +206,12 @@ class EditController extends Controller
               if($blocks === NULL) {
                 $blocks = '.row';
               }
+
+              if($mode == 'focused') {
+                $editable = array('[role=main]');
+                $blocks = '.focused-no-block';
+              }
+
 
               // find body element
               $el = $dom->find('body', 0);
@@ -186,6 +231,7 @@ class EditController extends Controller
               }
 
               // init
+
 
 
               $plugins_script = '';

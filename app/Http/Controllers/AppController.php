@@ -272,6 +272,12 @@ return response($css)->header('Content-Type', 'text/css');
       $has_passcode = false;
     }
 
+    $language = true;
+
+    if(env('DEFAULT_LANGUAGE') != NULL) {
+      $language = env('DEFAULT_LANGUAGE');
+    }
+
     // return app settings
     $settings = array(
       'hasPasscode' => $has_passcode,
@@ -288,7 +294,8 @@ return response($css)->header('Content-Type', 'text/css');
       'stripeDescription' => env('STRIPE_DESCRIPTION'),
       'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY'),
       'recaptchaSiteKey' => env('RECAPTCHA_SITE_KEY'),
-      'acknowledgement' => env('ACKNOWLEDGEMENT')
+      'acknowledgement' => env('ACKNOWLEDGEMENT'),
+      'defaultLanguage' => $language
     );
 
     return response()->json($settings);

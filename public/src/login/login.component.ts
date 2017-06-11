@@ -19,13 +19,14 @@ export class LoginComponent {
   errorMessage;
   logoUrl
   usesLDAP = false;
+  defaultLanguage = 'en';
   acknowledgement;
 
   constructor (private _userService: UserService, private _appService: AppService, private _route: ActivatedRoute, private _router: Router, private _translate: TranslateService) {}
 
   ngOnInit() {
 
-      this.logoUrl = '';
+    this.logoUrl = '';
     this.acknowledgement = '';
 
       this._route.params.subscribe(params => {
@@ -43,13 +44,15 @@ export class LoginComponent {
    */
   settings() {
 
-    // list themes in the app
     this._appService.retrieveSettings()
                      .subscribe(
                        data => {
                          this.logoUrl = data.logoUrl;
                          this.acknowledgement = data.acknowledgement;
                          this.usesLDAP = data.usesLDAP;
+                         this.defaultLanguage = data.defaultLanguage;
+
+                         this.setLanguage(this.defaultLanguage);
 
                          // set activation
                          this.setActivation(data.activationMethod, data.activationUrl, data.stripeAmount, data.stripeName, data.stripeDescription, data.stripePublishableKey)
