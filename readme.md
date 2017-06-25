@@ -3,28 +3,26 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.1.1
+Version: 6.1.2
 
 ### Latest updates
-- Add option to specify who gets notified when a form is submitted (6.1.1)
-- reCAPTCHA during site creation, see: https://respondcms.com/documentation/recaptcha-on-create (6.1.0)
-- reCAPTCHA for site forms, see: https://respondcms.com/documentation/recaptcha-on-forms (6.1.0)
-- Add fully configurable acknowledgement on login and creation (6.1.0)
-- Update to latest Angular release (4) (6.1.0)
-- To support more updates, support us at: https://www.patreon.com/respond
+- Support for DEFAULT_LANGUAGE. This allows you to specify the language that will be shown on the login, forgot password, and create screens
+- Bug fixes:  
+    #525 - https://github.com/madoublet/respond/issues/525
+    #524 - https://github.com/madoublet/respond/issues/524
+    #523 - https://github.com/madoublet/respond/issues/523 
+    #522 - https://github.com/madoublet/respond/issues/522
+    #513 - https://github.com/madoublet/respond/issues/513
+
 
 ### Updating from 6.0.3
 
-1. Add ACKNOWLEDGEMENT, RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY to your .env file.  See .env.example for format.
+1. Add DEFAULT_LANGUAGE to your .env file.  See .env.example for format.
 
 ```
-  # white label
   ...
-  ACKNOWLEDGEMENT="Powered by <a href="\https://respondcms.com\">Respond 6</a>. Build fast, responsive sites with Respond CMS."
-
-  # reCAPTCHA for /create
-  RECAPTCHA_SITE_KEY=
-  RECAPTCHA_SECRET_KEY=
+  DEFAULT_LANGUAGE=en
+  ...
   
 ```
 
