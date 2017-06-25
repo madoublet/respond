@@ -363,7 +363,7 @@ class EditController extends Controller
               // inject pages into script
               if(strpos($plugins_script, 'respond.pages') !== false ) {
 
-                $arr = Pages::listAllBySite($siteId);
+                $arr = Page::listAllBySite($siteId);
                 $options = array();
 
                 // get id
