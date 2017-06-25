@@ -7,12 +7,11 @@ Version: 6.1.2
 
 ### Latest updates
 - Support for DEFAULT_LANGUAGE. This allows you to specify the language that will be shown on the login, forgot password, and create screens
-- Bug fixes:  
-    #525 - https://github.com/madoublet/respond/issues/525
-    #524 - https://github.com/madoublet/respond/issues/524
-    #523 - https://github.com/madoublet/respond/issues/523 
-    #522 - https://github.com/madoublet/respond/issues/522
-    #513 - https://github.com/madoublet/respond/issues/513
+- Bug fix: #525 https://github.com/madoublet/respond/issues/525
+- Bug fix: #524 https://github.com/madoublet/respond/issues/524
+- Bug fix: #523 https://github.com/madoublet/respond/issues/523 
+- Bug fix: #522 https://github.com/madoublet/respond/issues/522
+- Bug fix: #513 https://github.com/madoublet/respond/issues/513
 
 
 ### Updating from 6.0.3
