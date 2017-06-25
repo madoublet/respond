@@ -489,7 +489,19 @@ class Page {
         $site_url = Setting::getById('url', $site->id);
 
         if(isset($site_url)) {
-          $els[0]->content = $site_url .'/';
+
+          // build page url
+          $page_url = $site_url.'/'.$this->url;
+
+          // fix any issues with double quotes
+          $page_url = str_replace('//', '/', $page_url);
+
+          // append .html for non friendlly urls
+          if($site->supportsFriendlyUrls === false) {
+            $page_url .= '.html';
+          }
+
+          $els[0]->content = $page_url;
         }
 
       }
