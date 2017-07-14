@@ -33,6 +33,8 @@ class Page {
   public $location;
   public $language;
   public $direction;
+  public $customHeader;
+  public $customFooter;
   public $firstName;
   public $lastName;
   public $lastModifiedBy;
@@ -61,6 +63,16 @@ class Page {
     // fallback for tags
     if(isset($this->tags) === false) {
       $this->tags = '';
+    }
+
+    // fallback for customHeader
+    if(isset($this->customHeader) === false) {
+      $this->customHeader = '';
+    }
+
+    // fallback for customFooter
+    if(isset($this->customFooter) === false) {
+      $this->customFooter = '';
     }
 
   }
@@ -125,6 +137,8 @@ class Page {
       // replace
       $content = str_replace('{{page.title}}', $page->title, $content);
       $content = str_replace('{{page.description}}', $page->description, $content);
+      $content = str_replace('{{page.customHeader}}', $page->customHeader, $content);
+      $content = str_replace('{{page.customFooter}}', $page->customFooter, $content);
 
       // set location
       $location = $dest.'/'.$page->url.'.html';
@@ -330,6 +344,8 @@ class Page {
     $page->language = $data['language'];
     $page->direction = $data['direction'];
     $page->template = $data['template'];
+    $page->customHeader = $data['customHeader'];
+    $page->customFooter = $data['customFooter'];
 
     $page->save($site, $user);
 
@@ -387,6 +403,58 @@ class Page {
   }
 
   /**
+   * True-up the HTML with the template
+   *
+   * @param {string} $url url of page
+   * @return Response
+   */
+  public function injectTemplate($page_html, $site, $user) {
+
+    $template_file = $dir = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$this->template.'.html';
+
+    if(file_exists($template_file)) {
+
+      // get template html
+      $template_html = file_get_contents($template_file);
+
+      // replace name and description
+      $template_html = str_replace('{{page.title}}', $this->title, $template_html);
+      $template_html = str_replace('{{page.description}}', $this->description, $template_html);
+      $template_html = str_replace('{{page.customHeader}}', $this->customHeader, $template_html);
+      $template_html = str_replace('{{page.customFooter}}', $this->customFooter, $template_html);
+
+      // set parser
+      $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+      // find main content
+      $el = $page_dom->find('[role=main]');
+      $main_content = '';
+
+      // get the main content
+      if(isset($el[0])) {
+        $main_content = $el[0]->innertext;
+      }
+
+      // get template dom
+      $template_dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+      $el = $template_dom->find('[role=main]');
+
+      if(isset($el[0])) {
+        $el[0]->innertext = $main_content;
+      }
+
+      return $template_dom;
+
+    }
+    else {
+      return NULL;
+    }
+
+  }
+
+
+  /**
    * Saves a page
    *
    * @param {string} $url url of page
@@ -404,6 +472,13 @@ class Page {
     $file = $file.'.html';
 
     $html = file_get_contents($file);
+
+    // true-up the HTML by injecting the template back into it
+    $combined_html = $this->injectTemplate($html, $site, $user);
+
+    if($combined_html != NULL) {
+      $html = $combined_html->save();
+    }
 
     if(!empty($html)) {
 
@@ -633,6 +708,8 @@ class Page {
           $page['lastModifiedBy'] = $user->email;
           $page['lastModifiedDate'] = $timestamp;
           $page['template'] = $template;
+          $page['customHeader'] = $this->customHeader;
+          $page['customFooter'] = $this->customFooter;
 
         }
 

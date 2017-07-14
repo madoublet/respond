@@ -600,6 +600,8 @@ class Publish
             // replace name and description
             $template_html = str_replace('{{page.title}}', $page->title, $template_html);
             $template_html = str_replace('{{page.description}}', $page->description, $template_html);
+            $template_html = str_replace('{{page.customHeader}}', $page->customHeader, $template_html);
+            $template_html = str_replace('{{page.customFooter}}', $page->customFooter, $template_html);
 
             // stript html
             $page_url = $page->url;
@@ -767,11 +769,11 @@ class Publish
       if(!$components) {
         $components = Component::listAll($site->id);
       }
-      
+
       if(!$settings) {
         $settings = Setting::listAllAsAssoc($site->id);
       }
-      
+
       // setup current site
       $current_site = array(
         'id' => $site->id,

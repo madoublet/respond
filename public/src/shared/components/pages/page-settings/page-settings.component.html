@@ -26,6 +26,18 @@
         [(ngModel)]="model.tags"
         name="tags">
 
+      <label>{{ 'Custom Header' | translate }}</label>
+      <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="128"
+        [(ngModel)]="model.customHeader"
+        name="customHeader"></textarea>
+      <small>{{ 'Custom HTML content to be put in the header (e.g. meta tags, stylesheets)' | translate }}</small>
+
+      <label>{{ 'Custom Footer' | translate }}</label>
+      <textarea id="hashedit-page-settings-custom-footer" type="text" maxlength="128"
+        [(ngModel)]="model.customFooter"
+        name="customFooter"></textarea>
+      <small>{{ 'Custom HTML content to be put in the footer (e.g. javascript)' | translate }}</small>
+
       <label>{{ 'Callout' | translate }}</label>
       <input id="hashedit-page-settings-callout" type="text" maxlength="128"
         [(ngModel)]="model.callout"

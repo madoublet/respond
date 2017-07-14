@@ -133,6 +133,8 @@ class PageController extends Controller
     $language = $request->json()->get('language');
     $direction = $request->json()->get('direction');
     $template = $request->json()->get('template');
+    $customHeader = $request->json()->get('customHeader');
+    $customFooter = $request->json()->get('customFooter');
     $timestamp = gmdate('D M d Y H:i:s O', time());
 
     $data = array(
@@ -145,6 +147,8 @@ class PageController extends Controller
       'language' => $language,
       'direction' => $direction,
       'template' => $template,
+      'customHeader' => $customHeader,
+      'customFooter' => $customFooter,
       'lastModifiedBy' => $email,
       'lastModifiedDate' => $timestamp
     );

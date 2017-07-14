@@ -453,6 +453,17 @@ body .app-modal {
     font-size: 14px;
   }
 
+  body .app-modal textarea {
+    display: block;
+    margin: 0 0 15px 0;
+    padding: 10px;
+    color: #555;
+    line-height: 17px;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+  }
+
   body .app-modal .g-recaptcha {
     margin-bottom: 15px;
   }
@@ -813,6 +824,17 @@ body .app-form.standalone {
   }
 
   body .app-form input[type=text], body .app-form input[type=password], body .app-form select {
+    display: block;
+    margin: 0 0 25px 0;
+    padding: 10px;
+    color: #555;
+    line-height: 17px;
+    outline: none;
+    font-size: 14px;
+    min-width: 250px;
+  }
+
+  body .app-form textarea {
     display: block;
     margin: 0 0 25px 0;
     padding: 10px;
