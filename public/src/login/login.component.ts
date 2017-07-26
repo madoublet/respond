@@ -55,7 +55,7 @@ export class LoginComponent {
                          this.setLanguage(this.defaultLanguage);
 
                          // set activation
-                         this.setActivation(data.activationMethod, data.activationUrl, data.stripeAmount, data.stripeName, data.stripeDescription, data.stripePublishableKey)
+                         this.setActivation(data.activationMethod, data.activationUrl, data.stripeAmount, data.stripeName, data.stripeDescription, data.stripePublishableKey, data.stripeCurrency)
                        },
                        error =>  { this.failure(<any>error); }
                       );
@@ -143,7 +143,7 @@ export class LoginComponent {
   /**
    * Sets the activation
    */
-  setActivation(activationMethod, activationUrl, stripeAmount, stripeName, stripeDescription, stripePublishableKey) {
+  setActivation(activationMethod, activationUrl, stripeAmount, stripeName, stripeDescription, stripePublishableKey, stripeCurrency) {
 
       localStorage.setItem('activation_method', activationMethod);
       localStorage.setItem('activation_url', activationUrl);
@@ -151,6 +151,7 @@ export class LoginComponent {
       localStorage.setItem('stripe_name', stripeName);
       localStorage.setItem('stripe_description', stripeDescription);
       localStorage.setItem('stripe_publishable_key', stripePublishableKey);
+      localStorage.setItem('stripe_currency', stripeCurrency);
   }
 
 

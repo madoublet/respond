@@ -24,6 +24,7 @@ export class DrawerComponent {
   stripeName: string;
   stripeDescription: string;
   stripePublishableKey: string;
+  stripeCurrency: string;
 
   id;
   dev;
@@ -86,6 +87,7 @@ export class DrawerComponent {
     this.stripeName = localStorage.getItem('stripe_name');
     this.stripeDescription = localStorage.getItem('stripe_description');
     this.stripePublishableKey = localStorage.getItem('stripe_publishable_key');
+    this.stripeCurrency = localStorage.getItem('stripe_currency');
 
     // list themes in the app
     this._appService.retrieveSettings()
@@ -172,7 +174,8 @@ export class DrawerComponent {
       handler.open({
         name: this.stripeName,
         description: this.stripeDescription,
-        amount: this.stripeAmount
+        amount: this.stripeAmount,
+        currency: this.stripeCurrency
       });
 
       this.globalListener = this.renderer.listenGlobal('window', 'popstate', () => {
