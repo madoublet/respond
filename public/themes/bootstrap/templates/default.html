@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="{{page.language}}" dir="{{page.direction}}">
 
   <head>
     <title>{{page.title}}</title>
@@ -16,11 +16,11 @@
     <base href="../">
 
     <!-- open graph -->
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="{{page.fullUrl}}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="{{page.title}}" />
+    <meta property="og:description" content="{{page.description}}" />
+    <meta property="og:image" content="{{page.image}}" />
 
     <!-- icons -->
     <link theme-icon href="resources/icon.png" rel="icon">

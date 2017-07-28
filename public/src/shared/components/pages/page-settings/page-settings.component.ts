@@ -17,6 +17,7 @@ export class PageSettingsComponent {
   templates: any
   errorMessage: any;
   model: any;
+  selectVisible: boolean;
 
   _visible: boolean = false;
 
@@ -76,12 +77,28 @@ export class PageSettingsComponent {
    */
   submit() {
 
-    this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.tags, this.model.callout, this.model.language, this.model.direction, this.model.template, this.model.customHeader, this.model.customFooter)
+    this._pageService.updateSettings(this.model.url, this.model.title, this.model.description, this.model.keywords, this.model.tags, this.model.callout, this.model.language, this.model.direction, this.model.template, this.model.customHeader, this.model.customFooter, this.model.photo, this.model.thumb, this.model.location)
                      .subscribe(
                        data => { this.success(); },
                        error =>  { this.errorMessage = <any>error; this.error() }
                       );
 
+  }
+  
+  /**
+   * Shows the select modal
+   */
+  showSelect() {
+    this.selectVisible = true;
+  }
+  
+  /**
+   * Handles the selection of an image
+   */
+  select(event) {
+    this.model.photo = 'files/' + event.name;
+    this.model.thumb = 'files/thumbs/' + event.name;
+    this.selectVisible = false;
   }
 
   /**

@@ -25,6 +25,16 @@
       <input id="hashedit-page-settings-tags" type="text" maxlength="128"
         [(ngModel)]="model.tags"
         name="tags">
+        
+      <label>{{ 'Location' | translate }}</label>
+      <input id="hashedit-page-settings-location" type="text" maxlength="128"
+        [(ngModel)]="model.location"
+        name="location">
+        
+      <label>{{ 'Photo' | translate }} <a (click)="showSelect()">{{ 'Select' | translate }}</a></label>
+      <input id="hashedit-page-settings-photo" type="text" maxlength="128"
+        [(ngModel)]="model.photo"
+        name="photo">
 
       <label>{{ 'Custom Header' | translate }}</label>
       <textarea id="hashedit-page-settings-custom-header" type="text" maxlength="128"
@@ -80,3 +90,5 @@
   </form>
 
 </div>
+
+<respond-select-file [visible]="selectVisible" (onCancel)="reset($event)"  (onSelect)="select($event)"></respond-select-file>

@@ -135,6 +135,9 @@ class PageController extends Controller
     $template = $request->json()->get('template');
     $customHeader = $request->json()->get('customHeader');
     $customFooter = $request->json()->get('customFooter');
+    $photo = $request->json()->get('photo');
+    $thumb = $request->json()->get('thumb');
+    $location = $request->json()->get('location');
     $timestamp = gmdate('D M d Y H:i:s O', time());
 
     $data = array(
@@ -149,6 +152,9 @@ class PageController extends Controller
       'template' => $template,
       'customHeader' => $customHeader,
       'customFooter' => $customFooter,
+      'photo' => $photo,
+      'thumb' => $thumb,
+      'location' => $location,
       'lastModifiedBy' => $email,
       'lastModifiedDate' => $timestamp
     );

@@ -346,6 +346,9 @@ class Page {
     $page->template = $data['template'];
     $page->customHeader = $data['customHeader'];
     $page->customFooter = $data['customFooter'];
+    $page->photo = $data['photo'];
+    $page->thumb = $data['thumb'];
+    $page->location = $data['location'];
 
     $page->save($site, $user);
 
@@ -416,13 +419,61 @@ class Page {
 
       // get template html
       $template_html = file_get_contents($template_file);
+      
+      // default full_url
+      $full_url = $this->url;
+      
+      // try to get url setting
+      $site_url = Setting::getById('url', $site->id);
+
+      if(isset($site_url)) {
+
+        // build page url
+        $full_url = $site_url.'/'.$this->url;
+
+        // append .html for non friendlly urls
+        if($site->supportsFriendlyUrls === false) {
+          $full_url .= '.html';
+        }
+        
+      }
+      
+      $full_photo_url = $this->photo;
+      
+      if(isset($site_url)) {
+
+        // build page url
+        $full_photo_url = $site_url.'/'.$this->photo;
+        
+      }
+      
+      $full_thumb_url = $this->thumb;
+      
+      if(isset($site_url)) {
+
+        // build page url
+        $full_thumb_url = $site_url.'/'.$this->photo;
+        
+      }
 
       // replace name and description
       $template_html = str_replace('{{page.title}}', $this->title, $template_html);
       $template_html = str_replace('{{page.description}}', $this->description, $template_html);
+      $template_html = str_replace('{{page.keywords}}', $this->keywords, $template_html);
+      $template_html = str_replace('{{page.language}}', $this->language, $template_html);
+      $template_html = str_replace('{{page.direction}}', $this->direction, $template_html);
+      $template_html = str_replace('{{page.tags}}', $this->tags, $template_html);
+      $template_html = str_replace('{{page.callout}}', $this->callout, $template_html);
+      $template_html = str_replace('{{page.url}}', $this->url, $template_html);
+      $template_html = str_replace('{{page.fullUrl}}', $full_url, $template_html);
+      $template_html = str_replace('{{page.photoUrl}}', $this->photo, $template_html);
+      $template_html = str_replace('{{page.fullPhotoUrl}}', $full_photo_url, $template_html);
+      $template_html = str_replace('{{page.thumbUrl}}', $this->thumb, $template_html);
+      $template_html = str_replace('{{page.fullThumbUrl}}', $full_thumb_url, $template_html);
       $template_html = str_replace('{{page.customHeader}}', $this->customHeader, $template_html);
       $template_html = str_replace('{{page.customFooter}}', $this->customFooter, $template_html);
-
+      $template_html = str_replace('{{page.location}}', $this->location, $template_html);
+      
       // set parser
       $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
@@ -485,144 +536,7 @@ class Page {
       // set parser
       $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-      // set title
-      $els = $dom->find('title');
-
-      if(isset($els[0])) {
-        $els[0]->innertext = $this->title;
-      }
-
-      // set og:description
-      $els = $dom->find('meta[property="og:title"]');
-
-      if(isset($els[0])) {
-        $els[0]->content = $this->title;
-      }
-
-      // set description
-      $els = $dom->find('meta[name=description]');
-
-      if(isset($els[0])) {
-        $els[0]->content = $this->description;
-      }
-
-      // set og:description
-      $els = $dom->find('meta[property="og:description"]');
-
-      if(isset($els[0])) {
-        $els[0]->content = $this->description;
-      }
-
-      // set keywords
-      $els = $dom->find('meta[name=keywords]');
-
-      if(isset($els[0])) {
-        $els[0]->content = $this->keywords;
-      }
-
-      // set language and direction
-      $els = $dom->find('html');
-
-      if(isset($els[0])) {
-        $els[0]->lang = $this->language;
-        $els[0]->dir = $this->direction;
-      }
-
-      // photos
-      $photo = '';
-
-      // get photo
-      $photos = $dom->find('[role=main] img');
-
-      if(isset($photos[0])) {
-        $photo = $photos[0]->src;
-      }
-
-      // set og:image
-      $els = $dom->find('meta[property="og:image"]');
-
-      if(isset($els[0])) {
-
-        $full_photo_url = $photo;
-
-        // try to get url setting
-        $site_url = Setting::getById('url', $site->id);
-
-        if(isset($site_url)) {
-          $full_photo_url = $site_url.'/'.$photo;
-        }
-
-        $els[0]->content = $full_photo_url;
-      }
-
-      // set og:url
-      $els = $dom->find('meta[property="og:url"]');
-
-      if(isset($els[0])) {
-
-        // try to get url setting
-        $site_url = Setting::getById('url', $site->id);
-
-        if(isset($site_url)) {
-
-          // build page url
-          $page_url = $site_url.'/'.$this->url;
-
-          // fix any issues with double quotes
-          $page_url = str_replace('//', '/', $page_url);
-
-          // append .html for non friendlly urls
-          if($site->supportsFriendlyUrls === false) {
-            $page_url .= '.html';
-          }
-
-          $els[0]->content = $page_url;
-        }
-
-      }
-
-      // default thumb
-      $thumb = '';
-
-      // get thumb
-      if ($photo === NULL || $photo === '') {
-        $photo = '';
-        $thumb = '';
-      }
-      else {
-        if (substr($photo, 0, 4) === "http") {
-          $thumb = $photo;
-        }
-        else {
-          $thumb = str_replace('files/', 'files/thumbs/', $photo);
-
-          // handle if the thumb is already a thumb (for galleries)
-          $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
-        }
-
-        $thumb_file = app()->basePath() . '/public/sites/' . $site->id . '/'.$thumb;
-
-        // check to see if it exists
-        if(!file_exists($thumb_file)) {
-          $thumb = '';
-        }
-
-      }
-
-      // get map
-      $maps = $dom->find('[type=map]');
-      $location = "";
-
-      // get address
-      if(isset($maps[0])) {
-        if(isset($maps[0]->address)) {
-          $location = $maps[0]->address;
-        }
-      }
-
-      // set location
-      $this->location = $location;
-
+      
       // find body
       $els = $dom->find('body');
 
@@ -641,10 +555,6 @@ class Page {
         }
 
       }
-
-      // set photo and thumb
-      $this->photo = $photo;
-      $this->thumb = $thumb;
 
       // update base
       $base = $dom->find('base', 0);
@@ -719,67 +629,11 @@ class Page {
       file_put_contents($json_file, json_encode($pages, JSON_PRETTY_PRINT));
 
     }
+    
+    // republish settings
+    Publish::publishSettingsForPage($this, $user, $site);
 
   }
-
-  /**
-   * Amplifies a page
-   *
-   * @param {string} $url url of page
-   * @return Response
-   */
-  public static function amplify($site, $user) {
-
-    // get domain from settings
-    $can_amp = Setting::getById('amp', $site->id);
-
-    // get generated domain
-    if($can_amp != NULL) {
-
-      if(strtoupper($can_amp) == "TRUE") {
-
-        // generate amp page
-        $amp_file = app()->basePath() . '/public/sites/' . $site->id . '/' . $this->url . '-amp.html';
-
-        $html = file_get_contents($file);
-
-        if(!empty($html)) {
-
-          // load parser
-          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-
-          // main content
-          $main_content = '';
-
-          // get main content
-          $els = $dom->find('[role=main]');
-
-          if(isset($els[0])) {
-            $main_content = $els[0]->innertext;
-
-            // create AMP object
-            $amp = new AMP();
-
-            // load HTML
-            $amp->loadHtml($main_content);
-
-            // convert to AMP HTML
-            $amp_html = $amp->convertToAmpHtml();
-
-            // update file
-            file_put_contents($amp_file, $amp_html);
-          }
-
-        }
-
-      }
-
-
-    }
-
-
-  }
-
 
   /**
    * Retrieves page data based on a url

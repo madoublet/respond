@@ -3,25 +3,46 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.1.2
+Version: 6.2.0
 
 ### Latest updates
-- Support for DEFAULT_LANGUAGE. This allows you to specify the language that will be shown on the login, forgot password, and create screens
-- Bug fix: #525 https://github.com/madoublet/respond/issues/525
-- Bug fix: #524 https://github.com/madoublet/respond/issues/524
-- Bug fix: #523 https://github.com/madoublet/respond/issues/523 
-- Bug fix: #522 https://github.com/madoublet/respond/issues/522
-- Bug fix: #513 https://github.com/madoublet/respond/issues/513
+- Add support for custom syntax in templates:
+  {{page.title}}
+  {{page.description}}
+  {{page.keywords}}
+  {{page.tags}}
+  {{page.callout}}
+  {{page.url}}
+  {{page.fullUrl}}
+  {{page.photoUrl}}
+  {{page.fullPhotoUrl}}
+  {{page.thumbUrl}}
+  {{page.fullThumbUrl}}
+  {{page.language}}
+  {{page.direction}}
+  {{page.customHeader}}
+  {{page.customFooter}}
 
 
-### Updating from 6.0.3
+### Updating from 6.1.2
 
-1. Add DEFAULT_LANGUAGE to your .env file.  See .env.example for format.
+1. Update your theme templates and site templates to support the new 
 
 ```
+  <html lang="{{page.language}}" dir="{{page.direction}}">
+  
   ...
-  DEFAULT_LANGUAGE=en
+  
+  <meta property="og:url" content="{{page.fullUrl}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{page.title}}" />
+  <meta property="og:description" content="{{page.description}}" />
+  <meta property="og:image" content="{{page.image}}" />
+  
   ...
+  
+  {{page.customHeader}}
+
   
 ```
 

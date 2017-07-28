@@ -10,6 +10,10 @@ use App\Respond\Libraries\Publish;
 
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
+use App\Respond\Models\Page;
+
+// DOM parser
+use Sunra\PhpSimple\HtmlDomParser;
 
 class CodeController extends Controller
 {
@@ -163,8 +167,21 @@ class CodeController extends Controller
         if(file_exists($path) == true) {
 
           $code = file_get_contents($path);
+          
+          // set parser
+          $dom = HtmlDomParser::str_get_html($code, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+    
+          // find main content
+          $el = $dom->find('[role=main]');
+          $content = '';
+    
+          // get the main content
+          if(isset($el[0])) {
+            $content = $el[0]->innertext;
+          }
+          
 
-          return response($code, 200);
+          return response($content, 200);
         }
         else {
           return response('File does not exist', 400);
@@ -221,24 +238,59 @@ class CodeController extends Controller
 
         // add .html back in
         $url .= '.html';
-
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
-
-         // return OK
-        if(file_exists($path) == true) {
-
-          // save to file
-          file_put_contents($path, $value);
-
-          // re-publish plugins
-          Publish::publishPlugins($user, $site);
-
-          // re-publish the settings
-          Publish::publishSettings($user, $site);
-
-          // return 200
-          return response('Ok', 200);
+        
+        // get a reference to the page object
+        $page = Page::GetByUrl($url, $site->id);
+        
+        // get page
+        $location = app()->basePath().'/public/sites/'.$site->id.'/'.$url;
+        
+        echo($location);
+    
+        if($page != NULL && file_exists($location)) {
+        
+          // get html
+          $html = file_get_contents($location);
+        
+          // load the parser
+          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+        
+          // check for body
+          $el = $dom->find('body', 0);
+        
+          // find body
+          if(isset($el)) {
+          
+            // apply changes to the document
+            $els = $dom->find('[role="main"]');
+        
+            if(isset($els[0])) {
+              $els[0]->innertext = $value;
+            }
+            
+            // get text from content
+            $text = strip_tags($value);
+            $text = preg_replace("/\s+/", " ", $text);
+            $text = trim($text);
+            $text = preg_replace('/[[:^print:]]/', '', $text);
+    
+            // set text to main_content
+            $page->text = $text;
+            
+            // save html
+            file_put_contents($location, $dom);
+            
+            // save the page
+            $page->save($site, $user);
+      
+            // return 200
+            return response('Ok', 200);
+         }
+         else {
+           return response('Page is not valid', 400);
+         }
+            
+          
         }
         else {
           return response('File does not exist', 400);

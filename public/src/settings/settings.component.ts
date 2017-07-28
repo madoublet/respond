@@ -79,7 +79,14 @@ export class SettingsComponent {
    * Handles the selection of an image
    */
   select(event) {
-    this.setting.value = 'files/' + event.name;
+    this.setting.value = event.name;
+    this.selectVisible = false;
+  }
+  
+  /**
+   * Handles the reset of an image dialog
+   */
+  reset(event) {
     this.selectVisible = false;
   }
 

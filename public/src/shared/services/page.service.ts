@@ -60,9 +60,9 @@ export class PageService {
    * @param {string} customFooter
    * @return {Observable}
    */
-  updateSettings (url: string, title: string, description: string, keywords: string, tags: string, callout: string, language: string, direction: string, template: string, customHeader: string, customFooter: string) {
+  updateSettings (url: string, title: string, description: string, keywords: string, tags: string, callout: string, language: string, direction: string, template: string, customHeader: string, customFooter: string, photo: string, thumb: string, location: string) {
 
-    let body = JSON.stringify({ url, title, description, keywords, tags, callout, language, direction, template, customHeader, customFooter });
+    let body = JSON.stringify({ url, title, description, keywords, tags, callout, language, direction, template, customHeader, customFooter, photo, thumb, location });
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('X-AUTH', 'Bearer ' + localStorage.getItem('id_token'));
     let options = new RequestOptions({ headers: headers });
