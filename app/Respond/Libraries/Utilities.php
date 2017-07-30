@@ -59,10 +59,21 @@ class Utilities
 
 
     /**
-     * Returns all HTML files for a given path
+     * Lists all directories for a given path
      *
      * @param {string} $path the recipient's email address
-     * @return {Array} list of HTML fields
+     * @return {Array} list of directories
+     */
+    public static function listDirectories($dir) {
+      return glob($dir . '/*' , GLOB_ONLYDIR);
+    }
+
+
+    /**
+     * Returns all HTML files for a given path
+     *
+     * @param {string} $dir directory to list
+     * @return {Array} list of files
      */
     public static function listFiles($dir, $id, $exts, $restrict = NULL)
     {
@@ -822,6 +833,7 @@ class Utilities
 
       return str_replace($textToDelete, '', $string);
     }
+
 
 
 }
