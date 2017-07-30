@@ -290,6 +290,7 @@ return response($css)->header('Content-Type', 'text/css');
       'activationMethod' => env('ACTIVATION_METHOD'),
       'activationUrl' => env('ACTIVATION_URL'),
       'stripeAmount' => env('STRIPE_AMOUNT'),
+      'stripeCurrency' => env('STRIPE_CURRENCY'),
       'stripeName' => env('STRIPE_NAME'),
       'stripeDescription' => env('STRIPE_DESCRIPTION'),
       'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY'),
