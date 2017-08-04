@@ -42,7 +42,6 @@ Version: 6.2.0
   ...
   
   {{page.customHeader}}
-
   
 ```
 

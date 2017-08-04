@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-<html lang="en">
+<html lang="{{page.language}}" dir="{{page.direction}}">
 
 <head>
     <title>{{page.title}}</title>
@@ -24,7 +24,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="{{page.description}}">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="{{page.keywords}}">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -32,11 +32,11 @@
     <base href="../">
 
     <!-- open graph -->
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="{{page.fullUrl}}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="{{page.title}}" />
+    <meta property="og:description" content="{{page.description}}" />
+    <meta property="og:image" content="{{page.image}}" />
 
     <!-- icons -->
     <link theme-icon href="resources/icon.png" rel="icon">

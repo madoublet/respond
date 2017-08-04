@@ -419,10 +419,10 @@ class Page {
 
       // get template html
       $template_html = file_get_contents($template_file);
-      
+
       // default full_url
       $full_url = $this->url;
-      
+
       // try to get url setting
       $site_url = Setting::getById('url', $site->id);
 
@@ -435,25 +435,25 @@ class Page {
         if($site->supportsFriendlyUrls === false) {
           $full_url .= '.html';
         }
-        
+
       }
-      
+
       $full_photo_url = $this->photo;
-      
+
       if(isset($site_url)) {
 
         // build page url
         $full_photo_url = $site_url.'/'.$this->photo;
-        
+
       }
-      
+
       $full_thumb_url = $this->thumb;
-      
+
       if(isset($site_url)) {
 
         // build page url
         $full_thumb_url = $site_url.'/'.$this->photo;
-        
+
       }
 
       // replace name and description
@@ -473,7 +473,7 @@ class Page {
       $template_html = str_replace('{{page.customHeader}}', $this->customHeader, $template_html);
       $template_html = str_replace('{{page.customFooter}}', $this->customFooter, $template_html);
       $template_html = str_replace('{{page.location}}', $this->location, $template_html);
-      
+
       // set parser
       $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
@@ -536,7 +536,7 @@ class Page {
       // set parser
       $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-      
+
       // find body
       $els = $dom->find('body');
 
@@ -629,7 +629,7 @@ class Page {
       file_put_contents($json_file, json_encode($pages, JSON_PRETTY_PRINT));
 
     }
-    
+
     // republish settings
     Publish::publishSettingsForPage($this, $user, $site);
 

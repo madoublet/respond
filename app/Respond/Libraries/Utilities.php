@@ -208,7 +208,8 @@ class Utilities
             'js',
             'locales',
             'fragments',
-            'themes'
+            'themes',
+            '.git'
         );
 
         $cdir = scandir($dir);

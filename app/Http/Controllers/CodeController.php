@@ -245,8 +245,6 @@ class CodeController extends Controller
         // get page
         $location = app()->basePath().'/public/sites/'.$site->id.'/'.$url;
         
-        echo($location);
-    
         if($page != NULL && file_exists($location)) {
         
           // get html
@@ -282,6 +280,9 @@ class CodeController extends Controller
             
             // save the page
             $page->save($site, $user);
+            
+            // re-publish plugins
+            Publish::publishPluginsForPage($page, $user, $site);
       
             // return 200
             return response('Ok', 200);
