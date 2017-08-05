@@ -208,6 +208,7 @@ class Utilities
             'js',
             'locales',
             'fragments',
+            'templates',
             'themes',
             '.git'
         );

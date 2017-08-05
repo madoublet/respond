@@ -22,6 +22,7 @@ export class PagesComponent {
   removeVisible: boolean = false;
   drawerVisible: boolean = false;
   settingsVisible: boolean = false;
+  search: string = null;
 
   constructor (private _pageService: PageService, private _router: Router) {}
 
@@ -38,9 +39,18 @@ export class PagesComponent {
     this.drawerVisible = false;
     this.page = {};
     this.pages = [];
+    this.filteredPages = [];
+    this.search = null;
 
     this.list();
 
+  }
+
+  /**
+   * Make a copy of the pages
+   */
+  copy() {
+   this.filteredPages = Object.assign([], this.pages);
   }
 
   /**
@@ -51,9 +61,34 @@ export class PagesComponent {
     this.reset();
     this._pageService.list()
                      .subscribe(
-                       data => { this.pages = data; },
+                       data => { this.pages = data; this.copy(); },
                        error =>  { this.failure(<any>error); }
                       );
+  }
+
+  /**
+   * Searches the list
+   */
+  searchList() {
+
+    var keys = 'title,url';
+
+    // reset when nothing is typed
+    if(!this.search) {
+      this.copy();
+    }
+
+    // filter items
+    /*
+    this.filteredPages = Object.assign([], this.pages).filter(
+      item => item.url.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+    )*/
+
+    this.filteredPages = Object.assign([], this.pages).filter(
+      item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(this.search, 'gi').test(item[key]))
+    );
+
+
   }
 
   /**

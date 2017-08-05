@@ -99,6 +99,25 @@ body .edit-frame {
   padding: 0;
 }
 
+/* .app-search */
+body .app-search {
+  margin: 0;
+  padding: 0;
+}
+
+  body .app-search input[type=search] {
+    box-sizing: border-box;
+    padding: 11px 20px;
+    margin: 0;
+    border: 0;
+    width: 100%;
+    outline: none;
+  }
+
+  body .app-search input[type=search]::placeholder {
+    color: #ccc;
+  }
+
 /* .app-list */
 body .app-list {
   margin: 0;

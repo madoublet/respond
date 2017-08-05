@@ -10,8 +10,12 @@
 
 <section class="app-main">
 
+  <div class="app-search">
+    <input type="search" [(ngModel)]="search" (input)="searchList()" placeholder="{{ 'Search by Name or URL' | translate }}">
+  </div>
+
   <div id="pages-list" class="app-list">
-    <div class="app-list-item" *ngFor="let page of pages" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">
+    <div class="app-list-item" *ngFor="let page of filteredPages" (click)="setActive(page)" [class.selected]="page === selectedPage" [class.image]="page.thumb !== ''">
       <h2>
         <span class="primary">{{ page.title }}</span>
         <svg *ngIf="page.location && (page.location !== '')" xmlns="http://www.w3.org/2000/svg" fill="#000000" height="24" viewBox="0 0 24 24" width="24" class="location">
