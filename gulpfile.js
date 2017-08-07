@@ -6,10 +6,6 @@ const concat = require('gulp-concat');
 const minify = require('gulp-minify');
 const cachebust = require('gulp-cache-bust');
 
-const php = require('gulp-connect-php');
-const webpack = require("webpack");
-const webpackConfig = require("./webpack.config.js");
-
 // copy node modules (no longer needed with new build)
 gulp.task('copy-nm', function() {
 
@@ -31,8 +27,21 @@ gulp.task('create-zip', function() {
       'database/**/*',
       'design/**/*',
       'public/app/**/*',
+      'public/assets/**/*',
+      'public/favicon.ico',
+      'public/inline.bundle.js',
+      'public/inline.bundle.js.map',
+      'public/main.bundle.js',
+      'public/main.bundle.js.map',
+      'public/polyfills.bundle.js',
+      'public/polyfills.bundle.js.map',
+      'public/scripts.bundle.js',
+      'public/scripts.bundle.js.map',
+      'public/styles.bundle.js',
+      'public/styles.bundle.js.map',
+      'public/vendor.bundle.js',
+      'public/vendor.bundle.js.map',
       'public/install/**/*',
-      'public/i18n/**/*',
       'public/themes/bootstrap/**/*',
       'public/themes/foundation/**/*',
       'public/themes/material/**/*',
@@ -56,27 +65,17 @@ gulp.task('create-zip', function() {
 
 });
 
-// copy dependencies
-gulp.task('copy-libs', function() {
+// copy respond-ui
+gulp.task('copy-respond-ui', function() {
 
   // copy folders
   var libs = [
-      'node_modules/rxjs/**/*',
-      'node_modules/angular2-in-memory-web-api/**/*',
-      'node_modules/@angular/**/*',
-      'node_modules/ng2-translate/**/*'
+      'node_modules/respond-ui/dist/**/*'
       ];
 
-    return gulp.src(libs, {base: './node_modules/'})
-  		.pipe(gulp.dest('public/dev/libs'));
+    return gulp.src(libs, {base: './node_modules/respond-ui/dist/'})
+  		.pipe(gulp.dest('public'));
 
-});
-
-// copy js
-gulp.task('copy-files', function() {
-
-  return gulp.src([])
-    .pipe(gulp.dest('public/dev/libs/'));
 });
 
 // copy folders
@@ -125,20 +124,6 @@ gulp.task('copy-css', function() {
 
 });
 
-// copy static files
-gulp.task('copy-static', function() {
-
-    var bundlePaths = [
-      'public/src/**/*.js',
-      'public/src/**/*.css',
-      'public/src/**/*.png'
-    ];
-
-    return gulp.src(bundlePaths, {base: 'public/src'})
-  		.pipe(gulp.dest('public/app'));
-
-});
-
 // bust-cache
 gulp.task('cache-bust', function () {
 
@@ -152,28 +137,8 @@ gulp.task('cache-bust', function () {
 
 });
 
-gulp.task('webpack:build', function (callback) {
-    webpack(webpackConfig, function (err, stats) {
-        if (err)
-            throw new gutil.PluginError('webpack:build', err);
-        callback();
-    });
-});
-
-gulp.task('serve', function() {
-    php.server({
-        base: './public'
-    });
-});
-
 // copy
-gulp.task('default', gulp.series(['copy-libs', 'copy-folders', 'copy-js', 'copy-css', 'copy-static', 'webpack:build', 'cache-bust']));
-
-// dev-build
-gulp.task('dev-build', gulp.series(['copy-static', 'webpack:build']));
-
-// build
-gulp.task('build', gulp.series(['copy-static', 'copy-js', 'copy-css', 'webpack:build', 'cache-bust']));
+gulp.task('default', gulp.series(['copy-folders', 'copy-js', 'copy-css', 'copy-respond-ui']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));

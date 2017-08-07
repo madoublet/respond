@@ -1,94 +1,71 @@
+<!doctype html>
 <html>
-  <head>
-    <title>Respond</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#00ADE3">
+<head>
+  <meta charset="utf-8">
+  <title>Respond</title>
+  <base href="/">
 
-    <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00ADE3">
+  <meta content="#00ADE3" name="msapplication-TileColor">
+  <meta content="#00ADE3" name="msapplication-TileImage">
 
-    <link href="app/shared/resources/icon.png" rel="icon">
-    <meta content="#00ADE3" name="msapplication-TileColor">
-    <meta content="#00ADE3" name="msapplication-TileImage">
-    <link href="app/shared/resources/icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="assets/resources/icon.png" rel="icon">
+  <link href="assets/resources/icon.png" rel="apple-touch-icon">
 
-    <!-- css -->
-    <link rel="stylesheet" href="app/shared/resources/reset.css?t=1501965959583">
-    <link rel="stylesheet" href="app/shared/resources/app.css?t=1501965959583">
-    <link rel="stylesheet" href="api/app/css?t=1501965959583">
+  <!-- fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding: 49px 0 0 0;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 49px 0 0 0;
+    }
 
-    <style type="text/css">
-      body {
-        padding: 49px 0 0 0;
-        font-family: 'Open Sans', sans-serif;
-        margin: 0;
-        padding: 49px 0 0 0;
+    body .spinner {
+      width: 40px;
+      height: 40px;
+      margin: 100px auto;
+      background-color: #888;
+
+      border-radius: 100%;
+      -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+      animation: sk-scaleout 1.0s infinite ease-in-out;
+    }
+
+    @-webkit-keyframes sk-scaleout {
+      0% { -webkit-transform: scale(0) }
+      100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
       }
+    }
 
-      body .spinner {
-        width: 40px;
-        height: 40px;
-        margin: 100px auto;
-        background-color: #888;
-
-        border-radius: 100%;
-        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-        animation: sk-scaleout 1.0s infinite ease-in-out;
+    @keyframes sk-scaleout {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      } 100% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+        opacity: 0;
       }
-
-      @-webkit-keyframes sk-scaleout {
-        0% { -webkit-transform: scale(0) }
-        100% {
-          -webkit-transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-
-      @keyframes sk-scaleout {
-        0% {
-          -webkit-transform: scale(0);
-          transform: scale(0);
-        } 100% {
-          -webkit-transform: scale(1.0);
-          transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-      </style>
+    }
+  </style>
 
 
-  </head>
 
-  <!-- Display the application -->
-  <body>
-    <respond-app>
+</head>
+<body>
+  <respond-app>
 
       <!-- loading -->
       <div class="spinner" title="loading"></div>
 
     </respond-app>
-  </body>
-
-  <!-- build (prod)   -->
-  <script src="app/polyfills.bundle.js?t=1501965959583"></script>
-  <script src="app/main.bundle.js?t=1501965959583"></script>
-
-  <!-- Load resources -->
-  <script src="app/shared/resources/toast.js?t=1501965959583"></script>
-  <script src="app/libs/moment-with-locales.min.js?t=1501965959583"></script>
-  <script src="app/libs/ace.js?t=1501965959583"></script>
-  <script src="app/libs/ext-searchbox.js?t=1501965959583"></script>
-  <script src="app/libs/mode-html.js?t=1501965959583"></script>
-  <script src="app/libs/mode-css.js?t=1501965959583"></script>
-  <script src="app/libs/mode-php.js?t=1501965959583"></script>
-  <script src="app/libs/mode-javascript.js?t=1501965959583"></script>
-  <script src="app/libs/theme-chrome.js?t=1501965959583"></script>
-  <script src="app/libs/dropzone.min.js?t=1501965959583"></script>
-  <script src="https://js.stripe.com/v2/"></script>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
-  <link type="text/css" href="app/libs/dropzone.min.css?t=1501965959583" rel="stylesheet">
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
 </html>

@@ -347,7 +347,7 @@ return response($css)->header('Content-Type', 'text/css');
   {
 
     // list pages in the site
-    $file = app()->basePath().'/public/i18n/languages.json';
+    $file = app()->basePath().'/public/assets/i18n/languages.json';
 
     $result = array();
 
