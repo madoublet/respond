@@ -11,6 +11,9 @@ use App\Respond\Models\User;
 // DOM parser
 use Sunra\PhpSimple\HtmlDomParser;
 
+// Encrypt/Decrypt
+use Illuminate\Support\Facades\Crypt;
+
 /**
  * Models setting
  */
@@ -21,6 +24,7 @@ class Setting {
   public $description;
   public $type;
   public $value;
+  const CRYPT_PLACEHOLDER = '********';
 
   /**
    * Constructs a page from an array of data
@@ -52,8 +56,19 @@ class Setting {
     foreach($settings as $setting) {
 
       if($setting['id'] === $id) {
+      
+        $value = $setting['value'];
+      
+        // check for encryption
+        if(isset($setting['encrypted'])) {
+        
+          if($setting['encrypted'] == true && $value != '') {
+            $value = Crypt::decrypt($value);
+          }
+          
+        }
 
-        return $setting['value'];
+        return $value;
 
       }
 
@@ -67,7 +82,7 @@ class Setting {
   /**
    * lists all settings as an associative array with name, value
    *
-   * @param {files} $data
+   * @param {string} siteId
    * @return {array}
    */
   public static function listAllAsAssoc($siteId) {
@@ -79,7 +94,18 @@ class Setting {
     
     foreach($settings as $setting) {
     
-      $arr[$setting['id']] = $setting['value'];
+      $value = $setting['value'];
+      
+      // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
+      if(isset($setting['encrypted'])) {
+        
+        if($setting['encrypted'] == true && trim($value) != '') {
+          $value = Setting::CRYPT_PLACEHOLDER;
+        }
+        
+      }
+    
+      $arr[$setting['id']] = $value;
   
     }
     
@@ -91,15 +117,36 @@ class Setting {
   /**
    * lists all settings
    *
-   * @param {files} $data
+   * @param {string} siteId
    * @return {array}
    */
   public static function listAll($siteId) {
 
     $file = app()->basePath().'/resources/sites/'.$siteId.'/settings.json';
-
-    return json_decode(file_get_contents($file), true);
-
+    
+    
+    $settings = json_decode(file_get_contents($file), true);
+    $arr = array();
+    
+    foreach($settings as &$setting) {
+    
+      $value = $setting['value'];
+    
+      // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
+      if(isset($setting['encrypted'])) {
+        
+        if($setting['encrypted'] == true && trim($value) != '') {
+          $setting['value'] = Setting::CRYPT_PLACEHOLDER;
+        }
+        
+      }
+    
+      array_push($arr, $setting);
+  
+    }
+    
+    return $arr;
+  
   }
 
 
@@ -111,6 +158,27 @@ class Setting {
    * @return Response
    */
   public static function saveAll($settings, $user, $site) {
+  
+    // encrypt new setttings that are marked to be encrypted
+    foreach($settings as &$setting) {
+    
+      // check for encryption flag
+      if(isset($setting['encrypted'])) {
+        
+        if($setting['encrypted'] == true && $setting['value'] != Setting::CRYPT_PLACEHOLDER) {  // encrypt new setting
+          $setting['value'] = Crypt::encrypt($setting['value']);
+        }
+        else { // save old encrypted value
+        
+          $current_value = Setting::getById($setting['id'], $site->id);
+        
+          $setting['value'] = Crypt::encrypt($current_value);
+        }
+        
+      }
+    
+    }
+  
 
     // get file
     $file = app()->basePath().'/resources/sites/'.$site->id.'/settings.json';

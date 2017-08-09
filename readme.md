@@ -3,45 +3,20 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.2.0
+Version: 6.3.0
 
 ### Latest updates
-- Add support for custom syntax in templates:
-  {{page.title}}
-  {{page.description}}
-  {{page.keywords}}
-  {{page.tags}}
-  {{page.callout}}
-  {{page.url}}
-  {{page.fullUrl}}
-  {{page.photoUrl}}
-  {{page.fullPhotoUrl}}
-  {{page.thumbUrl}}
-  {{page.fullThumbUrl}}
-  {{page.language}}
-  {{page.direction}}
-  {{page.customHeader}}
-  {{page.customFooter}}
+- Search on Pages
+- Angular CLI support
+- Separating UI into its own repository at https://github.com/madoublet/respond-ui
+- Encrypted settings
 
+### Updating from 6.2.0
 
-### Updating from 6.1.2
-
-1. Update your theme templates and site templates to support the new 
+1. Update your .env file to point to new logo location
 
 ```
-  <html lang="{{page.language}}" dir="{{page.direction}}">
-  
-  ...
-  
-  <meta property="og:url" content="{{page.fullUrl}}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="{{page.title}}" />
-  <meta property="og:description" content="{{page.description}}" />
-  <meta property="og:image" content="{{page.image}}" />
-  
-  ...
-  
-  {{page.customHeader}}
+LOGO_URL=/assets/resources/respond-logo.png
   
 ```
 
