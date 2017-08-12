@@ -19,6 +19,7 @@ class User {
   public $language;
   public $photo;
   public $token;
+  public $siteId;
 
   /**
    * Constructs a page from an array of data
@@ -49,6 +50,63 @@ class User {
       if($user['email'] == $email) {
 
         return new User($user);
+
+      }
+
+    }
+
+    return NULL;
+
+	}
+	
+	/**
+   * Gets a user for a given id, email
+   *
+   * @param {string} $email
+   * @return {User}
+   */
+	public static function getByEmailWithoutSite($email){
+
+    $users = User::getAllUsers();
+
+    foreach($users as $user) {
+
+      if($user['email'] == $email) {
+
+        return new User($user);
+
+      }
+
+    }
+
+    return NULL;
+
+	}
+	
+	/**
+   * Gets a user by email and password
+   *
+   * @param {string} $id the ID for the user
+   * @return {Site}
+   */
+	public static function getByEmailPasswordWithoutSite($email, $password){
+
+    $users = User::getAllUsers();
+
+    foreach($users as $user) {
+
+      if($user['email'] == $email) {
+
+        $user = new User($user);
+
+        $hash = $user->password;
+
+        if(password_verify($password, $hash)) {
+            return $user;
+        }
+        else {
+            return NULL;
+        }
 
       }
 
@@ -137,7 +195,8 @@ class User {
     }
 
 	}
-
+	
+	
 	/**
    * Saves a user
    *
@@ -265,5 +324,48 @@ class User {
     return $arr;
 
   }
+  
+  /**
+   * Returns a list of sites that the user is a part of
+   *
+   * @param {string} $id
+   * @return {Site}
+   */
+	public static function lookupUserByEmail($email) {
+  	
+  	$arr = array();
+    
+    // list all sites
+    $sites = Site::getSites();
+    
+    // walk through sites
+    foreach($sites as &$site) {
+      
+      // get base path for the site
+      $json_file = app()->basePath().'/resources/sites/'.$site.'/users.json';
+  
+      if(file_exists($json_file)) {
+  
+        $json = file_get_contents($json_file);
+  
+        // decode json file
+        $users = json_decode($json, true);
+        
+        foreach($users as &$user) {
+          
+          if($user['email'] == $email) {
+            array_push($arr, $site);
+          }
+          
+        }
+        
+  
+      }
+      
+    }
+    
+    return $arr;
+  	
+	}
 
 }

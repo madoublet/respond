@@ -102,6 +102,7 @@ $app->post('/api/plugins/remove', ['middleware' => 'jwtauth', 'uses'=> 'PluginCo
 $app->post('/api/users/login', 'UserController@login');
 $app->post('/api/users/forgot', 'UserController@forgot');
 $app->post('/api/users/reset', 'UserController@reset');
+$app->post('/api/users/site/count', 'UserController@reset');
 
 // users
 $app->get('/api/users/list', ['middleware' => 'jwtauth', 'uses'=> 'UserController@listAll']);

@@ -32,6 +32,24 @@ class UserController extends Controller
     $password = $request->json()->get('password');
     $id = $request->json()->get('id');
 
+    // lookup site id for user
+    if(isset($id) == false || $id == '') {
+
+      $arr = User::lookupUserByEmail($email);
+
+      // set site id
+      if(sizeof($arr) == 1) {
+        $id = $arr[0];
+      }
+      else if(sizeof($arr) == 0) {
+        return response('Unauthorized', 401);
+      }
+      else {
+        return response('Specify site', 409);
+      }
+
+    }
+
     // get site by its friendly id
     $site = Site::getById($id);
 
@@ -122,6 +140,24 @@ class UserController extends Controller
 
     $email = $request->json()->get('email');
     $id = $request->json()->get('id');
+
+    // lookup site id for user
+    if(isset($id) == false || $id == '') {
+
+      $arr = User::lookupUserByEmail($email);
+
+      // set site id
+      if(sizeof($arr) == 1) {
+        $id = $arr[0];
+      }
+      else if(sizeof($arr) == 0) {
+        return response('Unauthorized', 401);
+      }
+      else {
+        return response('Specify site', 409);
+      }
+
+    }
 
     // get site
     $site = Site::getById($id);

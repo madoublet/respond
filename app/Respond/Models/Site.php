@@ -296,6 +296,25 @@ class Site {
       );
 
   }
+  
+  /**
+   * Lists all sites
+   *
+   * @return Response
+   */
+  public static function getSites()
+  {
+    // get base path for the site
+    $dir = app()->basePath().'/resources/sites';
+
+    $arr = glob($dir . '/*' , GLOB_ONLYDIR);
+    
+    foreach($arr as &$item) {
+      $item = basename($item);
+    }
+
+    return $arr;
+  }
 
 
 }

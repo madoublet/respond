@@ -25,7 +25,7 @@
     "core-js": "^2.4.1",
     "dropzone": "4.3.0",
     "hashedit": "0.6.33",
-    "respond-ui": "1.0.4",
+    "respond-ui": "1.0.5",
     "moment": "2.12.0",
     "ng2-translate": "^2.4.2",
     "reflect-metadata": "^0.1.3",
