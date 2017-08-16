@@ -94,6 +94,13 @@ class UserController extends Controller
         	$activationUrl = str_replace('{{site}}', $site->id, $activationUrl);
       	}
 
+      	// determine if a customer has an account
+      	$hasAccount = false;
+
+      	if($site->status == 'Active' && $site->customerId != '') {
+        	$hasAccount = true;
+      	}
+
         // return a subset of the user array
         $returned_user = array(
         	'email' => $user->email,
@@ -104,6 +111,7 @@ class UserController extends Controller
         	'language' => $user->language,
         	'siteId' => $site->id,
         	'status' => $site->status,
+        	'hasAccount' => $hasAccount,
         	'days'=> $site->daysRemaining(),
         	'activationUrl'=> $activationUrl
         );

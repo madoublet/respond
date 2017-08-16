@@ -153,6 +153,77 @@ class SiteController extends Controller
       return response('Unable to subscribe', 401);
     }
 
+  }
+
+  /**
+   * Subscribes a user via Stripe
+   *
+   * @return Response
+   */
+  public function retrieveSubscription(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get token
+    $stripeToken = $request->json()->get('token');
+    $stripeEmail = $request->json()->get('email');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    if($site->customerId != '') {
+
+      try {
+
+        // #ref https://stripe.com/docs/recipes/subscription-signup
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $customer = \Stripe\Customer::retrieve($site->customerId);
+        $subscription = NULL;
+
+        // retrieve all subscriptions
+        $subscriptions = $customer->subscriptions->all();
+
+        // init sub array
+        $subs_arr = array();
+
+        if(sizeof($subscriptions) > 0) {
+          $subscription = $subscriptions->data[0];
+        }
+
+        /*
+        foreach ($subscriptions->data as $subscription) {
+            array_push($subs_arr, $subscription);
+        } */
+
+        // return subscription data
+        $arr = array(
+          "customerId" => $site->customerId,
+          "subscriptionId" => $subscription->id,
+          "created" => $subscription->created,
+          "currentPeriodStart" => $subscription->current_period_start,
+          "currentPeriodEnd" => $subscription->current_period_end,
+          "planId" => $subscription->items->data[0]->plan->id,
+          "amount" => $subscription->items->data[0]->plan->amount,
+          "currency" => $subscription->items->data[0]->plan->currency,
+          "interval" => $subscription->items->data[0]->plan->interval,
+          "name" => $subscription->items->data[0]->plan->name
+        );
+
+
+        return response()->json($arr);
+      }
+      catch(Exception $e)
+      {
+        return response('Customer does not exist', 401);
+      }
+
+    }
+
+    return response('Customer does not exist', 401);
 
   }
 

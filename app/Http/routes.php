@@ -87,6 +87,7 @@ $app->get('/api/languages/list', 'AppController@listLanguages');
 $app->post('/api/sites/create', 'SiteController@create');
 $app->post('/api/sites/activate', 'SiteController@activate');
 $app->post('/api/sites/subscribe', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@subscribe']);
+$app->get('/api/sites/subscription/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@retrieveSubscription']);
 $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reload']);
 $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@generateSitemap']);
 $app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@migrate']);
