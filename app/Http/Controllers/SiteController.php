@@ -228,6 +228,67 @@ class SiteController extends Controller
   }
 
   /**
+   * Unsubscribes a user via Stripe
+   *
+   * @return Response
+   */
+  public function unsubscribe(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get token
+    $stripeToken = $request->json()->get('token');
+    $stripeEmail = $request->json()->get('email');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    if($site->customerId != '') {
+
+      try {
+
+        // #ref https://stripe.com/docs/recipes/subscription-signup
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+        $customer = \Stripe\Customer::retrieve($site->customerId);
+        $subscription = NULL;
+
+        // retrieve all subscriptions
+        $subscriptions = $customer->subscriptions->all();
+
+        // init sub array
+        $subs_arr = array();
+
+        if(sizeof($subscriptions) > 0) {
+          $subscription = $subscriptions->data[0];
+        }
+
+        // unsubscribe from stripe
+        $current_subscription = \Stripe\Subscription::retrieve($subscription->id);
+        $current_subscription->cancel();
+
+        // set site status back to trial
+        $site->status = 'Trial';
+        $site->save();
+
+        return response('Subscription cancelled', 200);
+      }
+      catch(Exception $e)
+      {
+        return response('Customer does not exist', 401);
+      }
+
+    }
+
+    return response('Customer does not exist', 401);
+
+  }
+
+
+  /**
    * Reloads system files for sites (e.g. plugins)
    *
    * @return Response

@@ -3,22 +3,15 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.3.0
+Version: 6.4.0
 
 ### Latest updates
-- Search on Pages
-- Angular CLI support
-- Separating UI into its own repository at https://github.com/madoublet/respond-ui
-- Encrypted settings
+- Account view for Stripe subscriptions
+- Unsubscribe from Stripe subscriptions
+- Fix missing icons in 6.3.0
 
-### Updating from 6.2.0
-
-1. Update your .env file to point to new logo location
-
-```
-LOGO_URL=/assets/resources/respond-logo.png
-  
-```
+### Updating from 6.3.0
+- Follow normal update instructions at https://respondcms.com/documentation/updating-respond
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
