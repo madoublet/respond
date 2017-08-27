@@ -86,6 +86,11 @@ class SubmissionController extends Controller
     // get referer
     $referer = $request->header('referer');
 
+    if($request->exists('submitted-from')) {
+      $referer = $request->input('submitted-from');
+      print $referer;
+    }
+
     // get the site
     $siteId = $request->input('siteid');
 
@@ -207,6 +212,7 @@ class SubmissionController extends Controller
       Utilities::sendEmail($to, $from, $fromName, $subject, $content, $site = NULL);
     }
 
+    // redirect back to referer
     return redirect($referer.'?formid='.$formId.'&formstatus=success');
 
   }
