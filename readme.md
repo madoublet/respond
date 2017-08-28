@@ -3,15 +3,16 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.4.0
+Version: 6.4.1
 
 ### Latest updates
-- Account view for Stripe subscriptions
-- Unsubscribe from Stripe subscriptions
-- Fix missing icons in 6.3.0
+- [Bugfix] Update form submissions to work with SSL enabled sites
+- [Bugfix] Change reCAPTCHA on /create to render explicit to make rendering more consistent
 
-### Updating from 6.3.0
+### Updating from 6.4.0
 - Follow normal update instructions at https://respondcms.com/documentation/updating-respond
+- To enable https support for forms, copy the updated plugin.js (https://github.com/madoublet/respond/blob/master/public/themes/bootstrap/js/plugins.js) code into your site by navigating to Code > JS > js/plugins.js from the left menu 
+- NOTE: Copying it via the Respond UI will automatically generate the js/site.all.js file.
 
 ### Design Goals
 - Modern application stack: Angular 2 + Laravel
