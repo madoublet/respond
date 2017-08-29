@@ -134,6 +134,10 @@ class EditController extends Controller
                     // get html
                     $template_html = file_get_contents($default_template_location);
 
+                    // remove custom header and footer from template
+                    $template_html = str_replace('{{page.customHeader}}', '', $template_html);
+                    $template_html = str_replace('{{page.customFooter}}', '', $template_html);
+
                     // set dom
                     $dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
