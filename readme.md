@@ -8,6 +8,7 @@ Version: 6.4.1
 ### Latest updates
 - [Bugfix] Update form submissions to work with SSL enabled sites
 - [Bugfix] Change reCAPTCHA on /create to render explicit to make rendering more consistent
+- [Bugfix] Remove {{page.customHeader}} and {{page.customFooter}} from component edit view
 
 ### Updating from 6.4.0
 - Follow normal update instructions at https://respondcms.com/documentation/updating-respond
