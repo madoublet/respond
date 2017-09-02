@@ -1,44 +1,40 @@
-[![](https://imagelayers.io/badge/neoalienson/respond6:latest.svg)](https://imagelayers.io/?images=neoalienson/respond6:latest 'Get your own badge on imagelayers.io')
-
 # Respond CMS Docker Image
+## Building from DockerFile
+To build your own Image you need to copy `Dockerfile`, `env.example` and `vhost-config` into one directory. 
+Modify the `env.example` to your needs (change password, jwt-token, ...). 
+You may also modify `vhost-config.conf`.
 
-## The docker image
-You can have the image by either pulling from DockerHub or building it yourself from
-DockerFile locally. Update port forwarding in `-p 80:80` if required. 
 
-### Building from DockerFile
-
+Then start the following command inside the directory to create a image called `respond`.
 ``` bash
 $ docker build -t respond .
-```
-
-### Pulling from DockerHub
-
-```bash
-$ docker pull neoalienson/respond6
-$ docker tag neoalienson/respond6 respond
 ```
 
 ## Starting a container from the docker image
 After the image is ready, you can start a container from the docker image. 
  
-### Run without data volumes
 ```bash
-$ docker run --name=respond -p 80:80 respond
+$ docker run --name=web --restart=always -p 8088:80
+$ -v /srv/respond/sites:/var/www/public/sites 
+$ -v /srv/respond/resources:/var/www/resources 
+$ -d respond
 ```
 
-### Run with data volume
+### Paramerter explanation
+Run a container called `web` and let it start with the host `--restart=always`.
+Map the container port `80` to `8080` on the host to make respond available on `http://hostdomain:8088`.
+Map the `sites` and `resources` directories with `-v` from the container outside to host `/srv/respond/*` 
+**Note:** `www-data` needs write permission to `/srv/respond/*` on the host
+Start the container in `detached` mode and use our `respond` image.
 
-Run below commands if you want to store site contents into your docker host instead of inside the docker image.
-Please check [data volumes](https://docs.docker.com/engine/userguide/containers/dockervolumes/) for details.
-
-``` bash
-$ export DATA_DIR=${HOME}/respond-data
-$ mkdir -p ${DATA_DIR}/sites 
-$ mkdir -p ${DATA_DIR}/resources 
-$ docker run --name=respond -p 80:80 \
--v ${DATA_DIR}/sites:/var/www/public/sites:Z \
--v ${DATA_DIR}/resources:/var/www/resources/:Z \
-respond
+### Tools
+You can output apache error and access logs
+```bash
+$ docker logs web
 ```
 
+Check your installation by navigating to `http://yourhostdomain:8088/install/`
+
+## Summary
+With this configuration you can easily upgrade your respond container. 
+Since your data is saved outside of the container you can delete the container and recreate it with a new version. 
