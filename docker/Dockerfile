@@ -1,50 +1,66 @@
-FROM coderstephen/php7:latest
+FROM ubuntu:16.04
+LABEL maintainer="Matthew Smith <matt@matthewsmith.com>" 
+LABEL version="1.0"
 
-# install supervisord
-RUN apt-get install -y supervisor && \
-mkdir -p /var/log/supervisor
+# install apache, php + clean up
+RUN apt-get update \ 
+	&& apt-get install -y --no-install-recommends \		
+		unzip \
+		wget \
+		curl \
+		apache2 \
+		php \		
+		php-cli \
+		libapache2-mod-php \
+		php-gd \
+		php-curl \
+		php-json \
+		php-zip \		
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# install nodejs 6
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && \
-apt-get install -y nodejs
+# install respond
+RUN	wget --content-disposition --no-check-certificate https://github.com/madoublet/respond/blob/master/dist/release.zip?raw=true \
+	
+	# unzip data to www 
+	&& unzip -o release.zip -d /var/www \
+	
+	# create directories
+	&& cd /var/www \
+	&& mkdir public/sites \
+	&& mkdir resources/sites \
 
-# Rebuild PHP for the required mbstring
-RUN cd /usr/local/src/php/ && \
-./configure --prefix=/usr/local/php70 \
---with-config-file-path=/usr/local/php70 \
---with-config-file-scan-dir=/usr/local/php70/conf.d \
---with-libdir=/lib/x86_64-linux-gnu \
---enable-fpm --without-pear --with-openssl --with-curl \
---enable-mbstring --enable-zip && \
-make install clean
+	# set permissions
+	&& chown -R www-data public/sites \
+	&& chown -R www-data resources/sites \
+	&& chown -R www-data storage \
 
-# checkout the source from respond cms
-# and create required directories
-RUN cd /var/www/ && \
-rm -rf html && \
-git clone https://github.com/madoublet/respond6.git . && \
-mkdir -p public/sites && \
-mkdir -p resources/sites && \
-chown -R www-data public/sites && \
-chown -R www-data resources/sites && \
-ln -s /var/www/public html && \
-ln -s /var/www/node_modules public/node_modules && \
-cp .env.example .env
+	# copy config
+	&& cp .env.example .env \
 
-# install required nodejs and PHP modules
-RUN cd /var/www/ && \
-npm install && \
-composer install
+	# set symbolic links
+	#&& rm -rf html \
+	#&& ln -s /var/www/public html \
+	#&& ln -s /var/www/node_modules public/node_modules \
 
-# update apache config and mod
-RUN sed -i "s/var\\/www/var\\/www\\/public/" /etc/apache2/sites-enabled/000-default.conf
-RUN a2enmod rewrite
+	# enable url-rewrite
+	&& a2enmod rewrite \
+
+	# Forward request and error logs to docker log collector
+	&& ln -sf /dev/stdout /var/log/apache2/access.log \
+	&& ln -sf /dev/stderr /var/log/apache2/error.log
+
+# set respond config 	
+ADD ./env.example /var/www/.env
+
+# overwrite apache config
+ADD ./vhost-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 VOLUME /var/www
 
+# Ports
 EXPOSE 80
 VOLUME ["/var/www/public/sites", "/var/www/resources"]
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# By default, simply start apache.
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
