@@ -31,6 +31,7 @@ composer.phar
 
 # theme development
 /public/themes/respond-themes
+/public/themes/respond-themes-premium
 /design
 
 # debugging
