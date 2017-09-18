@@ -45,7 +45,7 @@ class UserController extends Controller
         return response('Unauthorized', 401);
       }
       else {
-        return response('Specify site', 409);
+        return response($arr, 409);
       }
 
     }
