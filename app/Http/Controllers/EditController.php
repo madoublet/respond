@@ -419,7 +419,7 @@ hashedit.setup({
   login: '/login/$siteId',
   translate: true,
   stylesheet: ['/dev/hashedit/css/hashedit.css', '/api/editor/css'],
-  languagePath: '/i18n/{{language}}.json',
+  languagePath: '/assets/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH',
   saveUrl: '$saveUrl'
@@ -448,7 +448,7 @@ hashedit.setup({
   path: '/app/libs/hashedit/',
   stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css', '/api/editor/css'],
   translate: true,
-  languagePath: '/i18n/{{language}}.json',
+  languagePath: '/assets/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH',
   saveUrl: '$saveUrl'

@@ -103,11 +103,13 @@ class MenuItemController extends Controller
     $url = $request->json()->get('url');
     $target = $request->json()->get('target');
 
-    if($isNested == 'false') {
-      $isNested = FALSE;
+    // default
+    if ($isNested != '') {
+      $isNested = strtolower($isNested);
+      $isNested = ($isNested == 'true' || $isNested == '1') ? true : false;
     }
     else {
-      $isNested = TRUE;
+      $isNested = false;
     }
 
     // update order in file
