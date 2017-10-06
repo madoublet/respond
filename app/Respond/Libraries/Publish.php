@@ -441,7 +441,7 @@ class Publish
       Publish::publishPlugins($user, $site);
 
     }
-    
+
     /**
      * Publish all settings for a specific page
      *
@@ -451,13 +451,13 @@ class Publish
      * @return {array}
      */
     public static function publishSettingsForPage($page, $user, $site) {
-    
+
       // get settings
       $file = app()->basePath().'/resources/sites/'.$site->id.'/settings.json';
 
       $settings = json_decode(file_get_contents($file), true);
-      
-      
+
+
       $path = app()->basePath().'/public/sites/'.$site->id.'/'.$page->url.'.html';
 
       // fix double html
@@ -529,11 +529,11 @@ class Publish
         }
 
       }
-      
+
       return TRUE;
-      
+
     }
-    
+
 
     /**
      * Publish all settings for the site
@@ -553,7 +553,7 @@ class Publish
 
         // publish the settings for the page
         Publish::publishSettingsForPage($page, $user, $site);
-        
+
       }
 
       return TRUE;
@@ -685,7 +685,7 @@ class Publish
 
         // get all pages
         if(!$pages) {
-          $pages = Page::listAll($user, $site);
+          $pages = Page::listExtended($user, $site);
         }
 
         // get html of pages
@@ -694,7 +694,7 @@ class Publish
           $page = new Page($item);
 
           // publish the plugins for the page
-          Publish::publishPluginsForPage($page, $user, $site);
+          Publish::publishPluginsForPage($page, $user, $site, $pages);
 
         }
 
@@ -707,8 +707,9 @@ class Publish
      * @param {Page} $page
      * @param {User} $user
      * @param {Site} $site
+     * @param {Site} $pages - Pass pages array to improve performance
      */
-    public static function publishPluginsForPage($page, $user, $site)
+    public static function publishPluginsForPage($page, $user, $site, $pages = null)
     {
 
       // stript html
@@ -753,10 +754,10 @@ class Publish
      * @param {User} $user
      * @param {Site} $site
      */
-    public static function injectPluginHTML($html, $user, $site, $meta) {
+    public static function injectPluginHTML($html, $user, $site, $meta, $pages = null) {
 
       // caches the values of these variables across the request to improve performance
-      static $pages = array();
+      $pages = array();
       static $forms = array();
       static $menus = array();
       static $galleries = array();
