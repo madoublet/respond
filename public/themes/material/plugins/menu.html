@@ -13,7 +13,7 @@
       
       {% endif %}
       
-      <a class="mdl-navigation__link{{ active }}" href="{{ item.url }}">{{ item.html }}</a>
+      <a class="mdl-navigation__link{{ active }} {{ item.cssClass }}" href="{{ item.url }}">{{ item.html }}</a>
 
     {% endfor %}
 
