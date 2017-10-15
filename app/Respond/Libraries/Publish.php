@@ -733,7 +733,7 @@ class Publish
         );
 
         // inject plugin HTML to the page
-        $dom = Publish::injectPluginHTML($html, $user, $site, $meta);
+        $dom = Publish::injectPluginHTML($html, $user, $site, $meta, $pages);
 
         // put html back
         file_put_contents($location, $dom);
@@ -757,7 +757,6 @@ class Publish
     public static function injectPluginHTML($html, $user, $site, $meta, $pages = null) {
 
       // caches the values of these variables across the request to improve performance
-      $pages = array();
       static $forms = array();
       static $menus = array();
       static $galleries = array();
