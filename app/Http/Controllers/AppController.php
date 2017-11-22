@@ -21,6 +21,8 @@ class AppController extends Controller
     $primary_color = env('PRIMARY_COLOR');
     $primary_dark_color = env('PRIMARY_DARK_COLOR');
 
+    $drawer_color = env('DRAWER_COLOR', $primary_color);
+
     // create css
     $css = <<<EOD
 a, a:visited {
@@ -31,7 +33,7 @@ body .app-selector ul {
   background-color: $primary_color;
 }
 
-body .app-list-item small {
+body .app-list-item .primary a {
   color: $primary_color;
 }
 
@@ -89,7 +91,7 @@ body .app-modal .app-modal-list-item small {
 }
 
 .app-drawer {
-  background-color: $primary_color;
+  background-color: $drawer_color;
 }
 
 .app-menu .app-add, .app-menu .app-overflow {

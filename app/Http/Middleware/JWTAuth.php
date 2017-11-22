@@ -22,18 +22,18 @@ class JWTAuth
 
         if($auth != NULL) {
           $token = Utilities::ValidateJWTToken($auth);
-          
+
           if($token != NULL) {
             // merge the userId, siteId and friendlyId into the request
             $request->merge(array('auth-email' => $token->email, 'auth-id' => $token->id));
           }
           else {
-            return response('Unauthorized.', 401);
+            return response('You\'re session has expired. Please login again.', 401);
           }
-          
+
         }
         else {
-          return response('Unauthorized.', 401);
+          return response('You\'re session has expired. Please login again..', 401);
         }
 
         // continue

@@ -42,10 +42,10 @@ class UserController extends Controller
         $id = $arr[0];
       }
       else if(sizeof($arr) == 0) {
-        return response('Unauthorized', 401);
+        return response('The email and password combination is invalid', 401);
       }
       else {
-        return response('Specify site', 409);
+        return response('You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.', 409);
       }
 
     }
@@ -186,7 +186,7 @@ class UserController extends Controller
         $to = $user->email;
         $from = env('EMAILS_FROM');
         $fromName = env('EMAILS_FROM_NAME');
-        $subject = env('BRAND').': Reset Password';
+        $subject = env('RESET_SUBJECT', 'Reset Password');
         $file = app()->basePath().'/resources/emails/reset-password.html';
 
         // create strings to replace

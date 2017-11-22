@@ -78,6 +78,27 @@ class SiteController extends Controller
 
       $arr = Site::create($name, $theme, $email, $password);
 
+       // send email
+      $to = $email;
+      $from = env('EMAILS_FROM');
+      $fromName = env('EMAILS_FROM_NAME');
+      $subject = env('CREATE_SUBJECT', 'New Site');
+      $file = app()->basePath().'/resources/emails/create-site.html';
+
+      // create strings to replace
+      $loginUrl = Utilities::retrieveAppURL();
+      $siteUrl = str_replace('{{siteId}}', $arr['id'],  Utilities::retrieveSiteURL());
+
+      $replace = array(
+        '{{brand}}' => env('BRAND'),
+        '{{reply-to}}' => env('EMAILS_FROM'),
+        '{{new-site-url}}' => $siteUrl,
+        '{{login-url}}' => $loginUrl
+      );
+
+      // send email from file
+      Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+
       return response()->json($arr);
     }
     else {
