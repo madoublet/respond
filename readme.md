@@ -3,11 +3,15 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.5.1
+Version: 6.6.0
 
 ### Latest updates
-- Updated Angular CLI build to AOT to improve loading speeds
-- [Bugfix] #548, #547, #546, #545, #544, #542, #539
+- [UX] show actions on hover
+- [UX] set list name as primary action
+- [UX] collapse menu
+- [UX] pull actions out of edit iframe
+- [UX] add icons in drawer
+- Add Unsubscribe modal for additional verification 
 
 ### Updating from 6.4.1
 - Follow normal update instructions at https://respondcms.com/documentation/updating-respond
