@@ -6,6 +6,7 @@ composer.phar
 
 # local configuration
 .env
+remove_site
 
 # local development
 /public/sites

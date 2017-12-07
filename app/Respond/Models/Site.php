@@ -19,6 +19,13 @@ class Site {
   public $theme;
   public $supportsFriendlyUrls;
   public $timeZone;
+  /**
+   * [Active | Trial | Failed | Unsubscribed]
+   * Active -> Subscribed
+   * Trial -> In Trial Period
+   * Failed -> Failed Charge
+   * Unsubscribed -> Customer selected Unsubscribe
+   */
   public $status;
   public $startDate;
   public $customerId;
@@ -154,8 +161,38 @@ class Site {
       return NULL;
     }
 
-
 	}
+
+	/**
+   * Gets a site by $customerId
+   *
+   * @param {string} $customerId - Stripe CustomerID
+   * @return {Site}
+   */
+  public static function getSiteByCustomerId($customerId)
+  {
+    // get base path for the site
+    $dir = app()->basePath().'/resources/sites';
+
+    $arr = glob($dir . '/*' , GLOB_ONLYDIR);
+
+    foreach($arr as &$item) {
+      $id = basename($item);
+
+      // get site
+      $site = Site::getById($id);
+
+      if($site != NULL) {
+        if($site->customerId == $customerId) {
+          return $site;
+        }
+      }
+    }
+
+    return null;
+  }
+
+
 
 	/**
    * Gets a site for a given id
@@ -296,7 +333,7 @@ class Site {
       );
 
   }
-  
+
   /**
    * Lists all sites
    *
@@ -308,7 +345,7 @@ class Site {
     $dir = app()->basePath().'/resources/sites';
 
     $arr = glob($dir . '/*' , GLOB_ONLYDIR);
-    
+
     foreach($arr as &$item) {
       $item = basename($item);
     }

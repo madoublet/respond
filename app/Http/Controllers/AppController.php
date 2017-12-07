@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Respond\Models\Site;
+
 use \Illuminate\Http\Request;
 
 use App\Respond\Libraries\Utilities;
@@ -361,6 +363,98 @@ return response($css)->header('Content-Type', 'text/css');
     }
 
     return response()->json($result);
+
+  }
+
+  /**
+   * Listen for Stripe Webhooks, ref: https://stripe.com/docs/webhooks and https://stripe.com/docs/api#event_types
+   *
+   * @return Response
+   */
+  public function listenForStripeWebhooks(Request $request)
+  {
+
+    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+    // get event
+    $event = $request->json()->all();
+
+    $type = $event['type'];
+    $customer = $event['data']['object']['customer'];
+
+    // handle event types
+    if($type == 'charge.failed' || $type == 'invoice.payment_failed') {
+
+      if($customer != NULL) {
+
+        $site = Site::getSiteByCustomerId($customer);
+
+        if($site != NULL) {
+
+          $site->status = 'Active';
+
+          // send email
+          $to = $site->email;
+          $from = env('EMAILS_FROM');
+          $fromName = env('EMAILS_FROM_NAME');
+          $subject = env('SUCCESSFUL_CHARGE_SUBJECT', 'Successful Charge');
+          $file = app()->basePath().'/resources/emails/failed-charge.html';
+
+          $replace = array(
+            '{{brand}}' => env('BRAND'),
+            '{{reply-to}}' => env('EMAILS_FROM')
+          );
+
+          // send email from file
+          Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+        }
+        else {
+          return response('Site not found', 401);
+        }
+
+      }
+      else {
+        return response('Customer not found', 401);
+      }
+
+    }
+    else if($type == 'charge.succeeded' || $type == 'invoice.payment_succeeded') {
+
+      if($customer != NULL) {
+
+        $site = Site::getSiteByCustomerId($customer);
+
+        if($site != NULL) {
+
+          $site->status = 'Active';
+
+          // send email
+          $to = $site->email;
+          $from = env('EMAILS_FROM');
+          $fromName = env('EMAILS_FROM_NAME');
+          $subject = env('SUCCESSFUL_CHARGE_SUBJECT', 'Successful Charge');
+          $file = app()->basePath().'/resources/emails/successful-charge.html';
+
+          $replace = array(
+            '{{brand}}' => env('BRAND'),
+            '{{reply-to}}' => env('EMAILS_FROM')
+          );
+
+          // send email from file
+          Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
+        }
+        else {
+          return response('Site not found', 401);
+        }
+
+      }
+      else {
+        return response('Customer not found', 401);
+      }
+
+    }
+
+    return response('Ok', 200);
 
   }
 

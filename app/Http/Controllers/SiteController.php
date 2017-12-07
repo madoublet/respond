@@ -78,7 +78,7 @@ class SiteController extends Controller
 
       $arr = Site::create($name, $theme, $email, $password);
 
-       // send email
+      // send email
       $to = $email;
       $from = env('EMAILS_FROM');
       $fromName = env('EMAILS_FROM_NAME');
@@ -507,7 +507,6 @@ class SiteController extends Controller
       $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file);
 
     }
-
 
     return response()->json($files);
 
