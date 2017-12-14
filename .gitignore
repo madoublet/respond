@@ -29,6 +29,7 @@ remove_site
 /public/styles.bundle.js.map
 /public/vendor.bundle.js
 /public/vendor.bundle.js.map
+public/themes/custom/
 
 # theme development
 /public/themes/respond-themes
