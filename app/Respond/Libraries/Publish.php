@@ -26,6 +26,35 @@ class Publish
 {
 
     /**
+     * Syncs site to external provider
+     *
+     * @param {Site} $site
+     */
+    public static function sync($site) {
+
+      // get domain from settings (url)
+      $sync = Setting::getById('sync', $site->id);
+
+      // make sure sync is set
+      if($sync != NULL) {
+
+        // make sure sync is set to S3
+        if($sync == 'S3') {
+
+          $has_synced = S3::sync($site);
+
+          return $has_synced;
+        }
+
+      }
+
+      return false;
+
+
+    }
+
+
+    /**
      * Pubishes the theme to the site
      *
      * @param {Site} $site

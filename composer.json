@@ -17,7 +17,8 @@
     "alchemy/zippy": "^0.4.4",
     "guzzlehttp/guzzle": "^6.2.3",
     "stripe/stripe-php": "^4.4",
-    "google/recaptcha": "~1.1"
+    "google/recaptcha": "~1.1",
+    "aws/aws-sdk-php": "3.48.0"
   },
   "require-dev": {
   },

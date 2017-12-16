@@ -512,5 +512,34 @@ class SiteController extends Controller
 
   }
 
+  /**
+   * Publishes site to external provider
+   *
+   * @return Response
+   */
+  public function sync(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    $has_synced = Publish::sync($site);
+
+    if($has_synced == true) {
+      return response('Ok', 200);
+    }
+    else {
+      return response('Cannot sync. Double check your settings.', 400);
+    }
+
+
+
+
+  }
+
 
 }

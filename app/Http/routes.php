@@ -95,6 +95,7 @@ $app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteContro
 $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reindexPages']);
 $app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
 $app->get('/api/sites/update/plugins', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@updatePlugins']);
+$app->get('/api/sites/sync', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@sync']);
 $app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listTemplates']);
 $app->get('/api/plugins/list', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@listAll']);
 $app->post('/api/plugins/upload', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@upload']);

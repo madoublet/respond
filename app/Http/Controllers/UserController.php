@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Respond\Models\User;
 use App\Respond\Models\Site;
+use App\Respond\Models\Setting;
 use App\Respond\Libraries\Utilities;
 use \Illuminate\Http\Request;
 
@@ -101,6 +102,22 @@ class UserController extends Controller
         	$hasAccount = true;
       	}
 
+      	// determine if site can be synced
+      	$can_sync = false;
+      	$sync_type = '';
+
+      	$sync = Setting::getById('sync', $site->id);
+
+        // make sure sync is set
+        if($sync != NULL) {
+
+          // ... and check to make sure it is not empty
+          if($sync != '') {
+            $can_sync = true;
+            $sync_type = $sync;
+          }
+        }
+
         // return a subset of the user array
         $returned_user = array(
         	'email' => $user->email,
@@ -119,6 +136,10 @@ class UserController extends Controller
         // send token
         $params = array(
         	'user' => $returned_user,
+        	'sync' => array(
+          	'canSync' => $can_sync,
+          	'syncType' => $sync_type
+        	),
         	'token' => Utilities::createJWTToken($user->email, $site->id)
         );
 
