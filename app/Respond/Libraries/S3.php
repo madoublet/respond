@@ -18,6 +18,7 @@ class S3
     $s3_secret = Setting::getById('s3-secret', $site->id);
     $region = Setting::getById('s3-region', $site->id);
 
+
     // check for keys in settings
     if($s3_key != NULL && $s3_secret != NULL) {
 
