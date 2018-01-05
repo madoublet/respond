@@ -105,7 +105,7 @@ class Submission {
       $submissions = json_decode($json, true);
       $i = 0;
 
-      foreach($submissions as &$submission){
+      foreach($submissions as $submission){
 
         // remove submission
         if($submission['id'] == $this->id) {
@@ -115,9 +115,14 @@ class Submission {
         $i++;
 
       }
+      
+      // prevent showing the index (e.g. "0":{})
+      $json_arr = array_values($submissions);
 
-      // save pages
-      file_put_contents($json_file, json_encode($submissions, JSON_PRETTY_PRINT));
+      // re-encode json
+      $json_text = json_encode($json_arr);
+
+      file_put_contents($json_file, $json_text);
 
     }
 
