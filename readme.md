@@ -3,17 +3,53 @@
 Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.6.0
+Version: 6.7.0
 
 ### Latest updates
-- [UX] show actions on hover
-- [UX] set list name as primary action
-- [UX] collapse menu
-- [UX] pull actions out of edit iframe
-- [UX] add icons in drawer
-- Add Unsubscribe modal for additional verification 
+- [Feature] Enable Amazon S3 Sync of site
+- [Feature] File size storage / limit - TBD - WIP
+- [Feature] S3 file support - TBD - WIP
 
-### Updating from 6.4.1
+
+### How to Enable S3 Sync (optional)
+1. Add the following to resources/sites/site-name/settings.json (ensure valid json)
+
+```
+  {
+        "id": "s3-key",
+        "label": "S3 Access Key",
+        "description": "The access key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-secret",
+        "label": "S3 Secret Key",
+        "description": "The secret key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-bucket",
+        "label": "S3 Bucket",
+        "description": "The bucket created using the Amazon S3",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-region",
+        "label": "S3 Region",
+        "description": "The region in which you created your bucket",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    }
+```
+
+### Updating from 6.6.0
 - Follow normal update instructions at https://respondcms.com/documentation/updating-respond
 
 ### Design Goals
