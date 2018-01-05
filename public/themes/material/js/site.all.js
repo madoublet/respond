@@ -384,6 +384,14 @@ respond.form = (function() {
         // add submit
         forms[x].addEventListener('submit', respond.form.submitForm);
 
+        // add hidden field to track submission url
+        var input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "submitted-from");
+        input.setAttribute("value", window.location.href);
+
+        forms[x].appendChild(input);
+
       }
 
       // handle messaging

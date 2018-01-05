@@ -4,7 +4,7 @@
 
   {% if form.id == attributes.form  %}
 
-<form id="{{ form.id }}" action="{{ site.api }}/submissions/submit" method="post" data-site="{{ site.id }}" respond-form >
+<form id="{{ form.id }}" class="{{ form.cssClass }}" action="{{ site.api }}/submissions/submit" method="post" data-site="{{ site.id }}" data-success="{{ form.success }}" data-error="{{ form.error }}" data-recaptcha-error="{{ form.recaptchaError }}" respond-form="">
 
     <input name="siteid" type="hidden" value="{{ site.id }}">
     <input name="formid" type="hidden" value="{{ form.id }}">
