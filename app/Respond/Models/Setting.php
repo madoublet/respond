@@ -56,16 +56,16 @@ class Setting {
     foreach($settings as $setting) {
 
       if($setting['id'] === $id) {
-      
+
         $value = $setting['value'];
-      
+
         // check for encryption
         if(isset($setting['encrypted'])) {
-        
+
           if($setting['encrypted'] == true && $value != '') {
             $value = Crypt::decrypt($value);
           }
-          
+
         }
 
         return $value;
@@ -91,29 +91,29 @@ class Setting {
 
     $settings = json_decode(file_get_contents($file), true);
     $arr = array();
-    
+
     foreach($settings as $setting) {
-    
+
       $value = $setting['value'];
-      
+
       // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
       if(isset($setting['encrypted'])) {
-        
+
         if($setting['encrypted'] == true && trim($value) != '') {
           $value = Setting::CRYPT_PLACEHOLDER;
         }
-        
+
       }
-    
+
       $arr[$setting['id']] = $value;
-  
+
     }
-    
+
     return $arr;
-    
+
 
   }
-  
+
   /**
    * lists all settings
    *
@@ -123,30 +123,30 @@ class Setting {
   public static function listAll($siteId) {
 
     $file = app()->basePath().'/resources/sites/'.$siteId.'/settings.json';
-    
-    
+
+
     $settings = json_decode(file_get_contents($file), true);
     $arr = array();
-    
+
     foreach($settings as &$setting) {
-    
+
       $value = $setting['value'];
-    
+
       // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
       if(isset($setting['encrypted'])) {
-        
+
         if($setting['encrypted'] == true && trim($value) != '') {
           $setting['value'] = Setting::CRYPT_PLACEHOLDER;
         }
-        
+
       }
-    
+
       array_push($arr, $setting);
-  
+
     }
-    
+
     return $arr;
-  
+
   }
 
 
@@ -158,27 +158,27 @@ class Setting {
    * @return Response
    */
   public static function saveAll($settings, $user, $site) {
-  
+
     // encrypt new setttings that are marked to be encrypted
     foreach($settings as &$setting) {
-    
+
       // check for encryption flag
       if(isset($setting['encrypted'])) {
-        
+
         if($setting['encrypted'] == true && $setting['value'] != Setting::CRYPT_PLACEHOLDER) {  // encrypt new setting
           $setting['value'] = Crypt::encrypt($setting['value']);
         }
         else { // save old encrypted value
-        
+
           $current_value = Setting::getById($setting['id'], $site->id);
-        
+
           $setting['value'] = Crypt::encrypt($current_value);
         }
-        
+
       }
-    
+
     }
-  
+
 
     // get file
     $file = app()->basePath().'/resources/sites/'.$site->id.'/settings.json';
@@ -186,7 +186,7 @@ class Setting {
     // get settings
     if(file_exists($file)) {
 
-      file_put_contents($file, json_encode($settings, JSON_PRETTY_PRINT));
+      file_put_contents($file, json_encode($settings, JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES));
 
       // publish the settings for the user, site
       Publish::publishSettings($user, $site);
