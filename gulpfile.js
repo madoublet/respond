@@ -1,10 +1,4 @@
 const gulp = require('gulp');
-const gutil = require('gulp-util');
-const zip = require('gulp-zip');
-const sourcemaps  = require('gulp-sourcemaps');
-const concat = require('gulp-concat');
-const minify = require('gulp-minify');
-const cachebust = require('gulp-cache-bust');
 
 // copy node modules (no longer needed with new build)
 gulp.task('copy-nm', function() {
@@ -51,6 +45,8 @@ gulp.task('create-zip', function() {
       'artisan',
       'LICENSE'
     ];
+
+    var zip = require('gulp-zip');
 
     return gulp.src(bundlePaths, {base: './', follow: true})
   		.pipe(zip('release.zip'))
