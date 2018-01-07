@@ -1,0 +1,11 @@
+.dockerignore
+.git
+.gitignore
+contributing.md
+dist
+Dockerfile
+phpunit.xml
+readme.md
+tsconfig.json
+typings.json
+webpack.config.js
