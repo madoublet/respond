@@ -1,14 +1,13 @@
 # Respond CMS
 
-Respond 6 is a multi-site, flat-file CMS powered by Angular 2 and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
+Respond 6 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
 Version: 6.7.0
 
 ### Latest updates
 - [Feature] Enable Amazon S3 Sync of site
-- [Feature] File size storage / limit - TBD - WIP
-- [Feature] S3 file support - TBD - WIP
+- Bug fixes: #570, #568, #567, #565, #562
 
 
 ### How to Enable S3 Sync (optional)
@@ -53,7 +52,7 @@ Version: 6.7.0
 - Follow normal update instructions at https://respondcms.com/documentation/updating-respond
 
 ### Design Goals
-- Modern application stack: Angular 2 + Laravel
+- Modern application stack: Angular Latest + Laravel
 - Flat File CMS / static HTML site
 - No database
 - Easy installation, no configuration
