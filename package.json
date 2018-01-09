@@ -10,7 +10,7 @@
     "ace-builds": "1.2.5",
     "dropzone": "4.3.0",
     "hashedit": "1.0.0",
-    "respond-ui": "8.0.0"
+    "respond-ui": "9.0.0"
   },
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
