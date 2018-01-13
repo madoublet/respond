@@ -6,17 +6,6 @@ const concat = require('gulp-concat');
 const minify = require('gulp-minify');
 const cachebust = require('gulp-cache-bust');
 
-// copy node modules (no longer needed with new build)
-gulp.task('copy-nm', function() {
-
-    var src, dest;
-
-    src = 'node_modules/**/*';
-    dest = 'public/';
-
-    return gulp.src(src, {base:"."})
-        .pipe(gulp.dest(dest));
-});
 
 // create a zip for the release
 gulp.task('create-zip', function() {
@@ -87,21 +76,7 @@ gulp.task('copy-folders', function() {
 // copy js
 gulp.task('copy-js', function() {
 
-  return gulp.src([
-      'node_modules/moment/min/moment-with-locales.min.js',
-      'node_modules/dropzone/dist/min/dropzone.min.js',
-      'node_modules/ace-builds/src-min/ace.js',
-      'node_modules/ace-builds/src-min/ext-searchbox.js',
-      'node_modules/ace-builds/src-min/mode-html.js',
-      'node_modules/ace-builds/src-min/mode-css.js',
-      'node_modules/ace-builds/src-min/mode-php.js',
-      'node_modules/ace-builds/src-min/mode-javascript.js',
-      'node_modules/ace-builds/src-min/theme-chrome.js',
-      'node_modules/ace-builds/src-min/worker-html.js',
-      'node_modules/ace-builds/src-min/worker-css.js',
-      'node_modules/ace-builds/src-min/worker-javascript.js',
-      'node_modules/ace-builds/src-min/worker-php.js'
-    ])
+  return gulp.src([])
     .pipe(gulp.dest('public/app/libs/'));
 });
 
@@ -109,29 +84,13 @@ gulp.task('copy-js', function() {
 // copy static files
 gulp.task('copy-css', function() {
 
-    return gulp.src([
-      'node_modules/dropzone/dist/min/dropzone.min.css',
-      'node_modules/hashedit/dist/hashedit-min.css'
-      ])
+    return gulp.src([])
   		.pipe(gulp.dest('public/app/libs/'));
 
 });
 
-// bust-cache
-gulp.task('cache-bust', function () {
-
-  var cachebust = require('gulp-cache-bust');
-
-  return gulp.src('public/index.html')
-      .pipe(cachebust({
-          type: 'timestamp'
-      }))
-      .pipe(gulp.dest('public/', {overwrite:true}));
-
-});
-
 // copy
-gulp.task('default', gulp.series(['copy-folders', 'copy-js', 'copy-css', 'copy-respond-ui']));
+gulp.task('default', gulp.series(['copy-folders', 'copy-respond-ui']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
