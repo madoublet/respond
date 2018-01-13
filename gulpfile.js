@@ -1,10 +1,8 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const zip = require('gulp-zip');
-const sourcemaps  = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
-const cachebust = require('gulp-cache-bust');
 
 
 // create a zip for the release
