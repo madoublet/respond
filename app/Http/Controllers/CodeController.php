@@ -17,122 +17,73 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 class CodeController extends Controller
 {
-
     /**
      * Lists all code for a given type
      *
      * @return Response
      */
-    public function listAll(Request $request, $id)
+    public function listFiles(Request $request)
     {
 
       // get request data
       $email = $request->input('auth-email');
       $siteId = $request->input('auth-id');
 
+      // get dir
+      $dir = $request->input('dir');
+
+      // clear out dot files
+      $dir = str_replace('.', '', $dir);
+
+      // get site
       $site = Site::getById($siteId);
 
       $arr = array();
 
-      // list items in the menu
-      if($id != NULL) {
+      // set dir
+      $site_dir = app()->basePath().'/public/sites/'.$site->id.$dir;
 
-        if($id == 'page') {
+      // get directory
+      $paths = array_slice(scandir($site_dir), 2);
 
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id;
+      foreach($paths as $path) {
 
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('html'),
-                  array('plugins/',
-                        'components/',
-                        'templates/',
-                        'css/',
-                        'data/',
-                        'files/',
-                        'js/',
-                        'locales/',
-                        'fragments/',
-                        'themes/'));
+        // get full path
+        $full_path = $site_dir.'/'.$path;
 
-          return response()->json($files);
+        // get extension
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $ext = strtoupper($ext);
+
+        // default is_editable
+        $is_editable = FALSE;
+
+        // determine if editable
+        if($ext == 'CSS' || $ext == 'JS' || $ext == 'HTML' || $ext == 'HTACCESS' || $ext == 'JSON' || $ext == 'webmanifest' || $ext == 'MD' || $ext == 'TXT' || $ext == 'XML') {
+          $is_editable = TRUE;
+        }
+
+        if(is_dir($full_path)) {
+
+          array_push($arr, array(
+            'path' => $path,
+            'isFolder' => true,
+            'isEditable' => $is_editable
+          ));
 
         }
-        else if($id == 'template') {
-
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id.'/templates';
-
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('html'),
-                  array());
-
-          return response()->json($files);
-
-        }
-        else if($id == 'stylesheet') {
-
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id.'/css';
-
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('css'),
-                  array());
-
-          return response()->json($files);
-
-        }
-        else if($id == 'script') {
-
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id.'/js';
-
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('js'),
-                  array());
-
-          return response()->json($files);
-
-        }
-        else if($id == 'plugin') {
-
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
-
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('html', 'php'),
-                  array());
-
-          return response()->json($files);
-
-        }
-        else if($id == 'component') {
-
-          // set dir
-          $dir = app()->basePath().'/public/sites/'.$site->id.'/components';
-
-          // make directory
-          if(!file_exists($dir)){
-      			mkdir($dir, 0777, true);
-      		}
-
-          // list files
-          $files = Utilities::ListFiles($dir, $site->id,
-                  array('html'),
-                  array());
-
-          return response()->json($files);
-
+        else {
+          array_push($arr, array(
+            'path' => $path,
+            'isFolder' => false,
+            'isEditable' => $is_editable
+          ));
         }
 
       }
 
-      return response('Code not found', 400);
+      // return files
+      return response()->json($arr);
 
     }
 
@@ -148,12 +99,26 @@ class CodeController extends Controller
       // get request data
       $email = $request->input('auth-email');
       $id = $request->input('auth-id');
+      $isPage = false;
 
       // get url
       $url = $request->input('url');
-      $type = $request->input('type');
 
-      if($type == 'page'){
+      // trim leading slash
+      $url = ltrim($url,'/');
+
+      // get path
+      $path = app()->basePath('public/sites/'.$id.'/'.$url);
+      $ext = pathinfo($path, PATHINFO_EXTENSION);
+      $ext = strtoupper($ext);
+
+      // treat as a a page
+      if($ext == 'HTML' && substr($url, 0, strlen("components/")) !== "components/" && substr($url, 0, strlen("templates/")) !== "templates/" && substr($url, 0, strlen("plugins/")) !== "plugins/") {
+        $isPage = true;
+      }
+
+      if($isPage == true) {
+
         // strip any trailing .html from url
         $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
 
@@ -167,19 +132,19 @@ class CodeController extends Controller
         if(file_exists($path) == true) {
 
           $code = file_get_contents($path);
-          
+
           // set parser
           $dom = HtmlDomParser::str_get_html($code, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-    
+
           // find main content
           $el = $dom->find('[role=main]');
           $content = '';
-    
+
           // get the main content
           if(isset($el[0])) {
             $content = $el[0]->innertext;
           }
-          
+
 
           return response($content, 200);
         }
@@ -228,7 +193,36 @@ class CodeController extends Controller
       // get url and type
       $value = $request->json()->get('value');
       $url = $request->json()->get('url');
-      $type = $request->json()->get('type');
+
+      // trim leading slash
+      $url = ltrim($url,'/');
+
+      // get path and extension
+      $path = app()->basePath('public/sites/'.$id.'/'.$url);
+      $ext = pathinfo($path, PATHINFO_EXTENSION);
+      $ext = strtoupper($ext);
+
+      // figure out the type
+      $type = "unknown";
+
+      if($ext == 'HTML' && substr($url, 0, strlen("components/")) !== "components/" && substr($url, 0, strlen("templates/")) !== "templates/" && substr($url, 0, strlen("plugins/")) !== "plugins/") {
+        $type = "page";
+      }
+      else if ( $ext == 'HTML' && substr($url, 0, strlen("components/")) === "components/"){
+        $type = "component";
+      }
+      else if ( $ext == 'HTML' && substr($url, 0, strlen("templates/")) === "templates/"){
+        $type = "template";
+      }
+      else if ( ($ext == 'HTML' || $ext == 'PHP') && substr($url, 0, strlen("plugins/")) === "plugins/"){
+        $type = "plugin";
+      }
+      else if ( ($ext == 'CSS' || $ext == 'PHP') && substr($url, 0, strlen("css/")) === "css/"){
+        $type = "stylesheet";
+      }
+      else if ( ($ext == 'JS' || $ext == 'PHP') && substr($url, 0, strlen("js/")) === "js/"){
+        $type = "script";
+      }
 
       // save a page
       if($type == "page") {
@@ -238,60 +232,60 @@ class CodeController extends Controller
 
         // add .html back in
         $url .= '.html';
-        
+
         // get a reference to the page object
         $page = Page::GetByUrl($url, $site->id);
-        
+
         // get page
         $location = app()->basePath().'/public/sites/'.$site->id.'/'.$url;
-        
+
         if($page != NULL && file_exists($location)) {
-        
+
           // get html
           $html = file_get_contents($location);
-        
+
           // load the parser
           $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-        
+
           // check for body
           $el = $dom->find('body', 0);
-        
+
           // find body
           if(isset($el)) {
-          
+
             // apply changes to the document
             $els = $dom->find('[role="main"]');
-        
+
             if(isset($els[0])) {
               $els[0]->innertext = $value;
             }
-            
+
             // get text from content
             $text = strip_tags($value);
             $text = preg_replace("/\s+/", " ", $text);
             $text = trim($text);
             $text = preg_replace('/[[:^print:]]/', '', $text);
-    
+
             // set text to main_content
             $page->text = $text;
-            
+
             // save html
             file_put_contents($location, $dom);
-            
+
             // save the page
             $page->save($site, $user);
-            
+
             // re-publish plugins
             Publish::publishPluginsForPage($page, $user, $site);
-      
+
             // return 200
             return response('Ok', 200);
          }
          else {
            return response('Page is not valid', 400);
          }
-            
-          
+
+
         }
         else {
           return response('File does not exist', 400);
@@ -299,8 +293,6 @@ class CodeController extends Controller
 
       }
       else if($type == "plugin") {
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
 
          // return OK
         if(file_exists($path) == true) {
@@ -319,8 +311,6 @@ class CodeController extends Controller
         }
       }
       else if($type == "component") {
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
 
          // return OK
         if(file_exists($path) == true) {
@@ -353,9 +343,6 @@ class CodeController extends Controller
       }
       else if($type == "template") {
 
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
-
          // return OK
         if(file_exists($path) == true) {
 
@@ -386,9 +373,6 @@ class CodeController extends Controller
       }
       else if($type == "stylesheet") {
 
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
-
          // return OK
         if(file_exists($path) == true) {
 
@@ -407,10 +391,7 @@ class CodeController extends Controller
       }
       else if($type == "script") {
 
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
-
-         // return OK
+        // return OK
         if(file_exists($path) == true) {
 
           // save to file
@@ -428,8 +409,6 @@ class CodeController extends Controller
 
       }
       else {
-        // build path
-        $path = app()->basePath('public/sites/'.$id.'/'.$url);
 
          // return OK
         if(file_exists($path) == true) {
@@ -497,6 +476,7 @@ class CodeController extends Controller
 
         // strip extension
         $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+        $name = str_replace('.html', '', $name);
 
         // build path
         $path = app()->basePath('public/sites/'.$id.'/templates/'.$name.'.html');
@@ -519,6 +499,7 @@ class CodeController extends Controller
 
         // strip extension
         $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+        $name = str_replace('.css', '', $name);
 
         // build path
         $path = app()->basePath('public/sites/'.$id.'/css/'.$name.'.css');
@@ -541,6 +522,7 @@ class CodeController extends Controller
 
         // strip extension
         $name = preg_replace('/\\.[^.\\s]{3,4}$/', '', $name);
+        $name = str_replace('.js', '', $name);
 
         // build path
         $path = app()->basePath('public/sites/'.$id.'/js/'.$name.'.js');

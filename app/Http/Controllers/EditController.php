@@ -85,10 +85,9 @@ class EditController extends Controller
 
               if($mode == 'focused') {
 
-                $content = $dom->find('[focused-content]', 0);
+                $content = $dom->find('[role=main]', 0);
 
                 $default_template_location = app()->basePath('public/html/index.html');
-
 
                 if(file_get_contents($default_template_location)) {
 
@@ -98,7 +97,7 @@ class EditController extends Controller
                   // set dom
                   $dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-                  $el = $dom->find('[role=main] .col');
+                  $el = $dom->find('[role=main]');
 
                   // get the component content
                   if(isset($el[0])) {
@@ -145,6 +144,8 @@ class EditController extends Controller
 
                     // get the component content
                     if(isset($el[0])) {
+
+
                       $el[0]->innertext = $html;
                     }
 
