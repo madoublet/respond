@@ -40,7 +40,7 @@ $app->get('forgot/{id}', function ($id) {
 });
 
 // the edit route should load the angular2 app
-$app->get('edit/{id}', function ($id) {
+$app->get('edit/{id}/{type}', function ($id) {
     $public = rtrim(app()->basePath('public/index.html'), '/');
 
     return file_get_contents($public);

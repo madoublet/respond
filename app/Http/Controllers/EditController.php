@@ -144,8 +144,6 @@ class EditController extends Controller
 
                     // get the component content
                     if(isset($el[0])) {
-
-
                       $el[0]->innertext = $html;
                     }
 
@@ -167,7 +165,6 @@ class EditController extends Controller
               else {
                 return 'Please specify a base in your html file';
               }
-
 
               // get settings
               $sortable = Setting::getById('sortable', $siteId);
@@ -214,7 +211,7 @@ class EditController extends Controller
 
               if($mode == 'focused') {
                 $editable = array('[role=main]');
-                $blocks = '.focused-no-block';
+                // $blocks = '.focused-no-block';
               }
 
 
@@ -236,8 +233,6 @@ class EditController extends Controller
               }
 
               // init
-
-
 
               $plugins_script = '';
 
@@ -392,6 +387,20 @@ class EditController extends Controller
                 $el->outertext = '';
               }
 
+              // remove header
+              $header = $dom->find('header', 0);
+
+              if(isset($header)) {
+                $header->innertext = '';
+              }
+
+              // remove footer
+              $footer = $dom->find('footer', 0);
+
+              if(isset($footer)) {
+                $footer->innertext = '';
+              }
+
               // setup references
               $parent = $dom->find('[role=main]', 0);
 
@@ -468,7 +477,6 @@ EOD;
                             '  text-align: center;'.
                             '  color: #aaa;'.
                             '}'.
-                            '[hashedit-element]:hover .respond-plugin { border: 1px solid #00ADE3  !important; }'.
                             '.respond-plugin span {'.
                             '  display: block;'.
                             '  margin: 0; padding: 0;'.

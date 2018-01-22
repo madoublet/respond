@@ -57,10 +57,17 @@ class Menu {
         $id = str_replace('data/menus/', '', $id);
         $id = str_replace('/', '', $id);
 
-        array_push($arr, array(
-          'id' => $id,
-          'name' => $json['name']
-          ));
+        $obj = array(
+            'id' => $id,
+            'name' => $json['name']
+            );
+
+        if($id == 'primary') {
+           array_unshift($arr, $obj);
+        }
+        else {
+          array_push($arr, $obj);
+          }
 
       }
 
