@@ -115,7 +115,6 @@ class EditController extends Controller
                 $el = $dom->find('body', 0);
               }
 
-
               // check for body
               if(isset($el) == false) {
 
@@ -180,7 +179,7 @@ class EditController extends Controller
 
               // defaults
               if($grid === NULL) {
-                $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" hashedit-block><div class=\"col col-md-12\" hashedit-sortable></div></div>"}]';
+                $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" editor-block><div class=\"col col-md-12\" editor-sortable></div></div>"}]';
               }
               else {
                 $grid = json_encode($grid);
@@ -211,13 +210,11 @@ class EditController extends Controller
 
               if($mode == 'focused') {
                 $editable = array('[role=main]');
-                // $blocks = '.focused-no-block';
               }
-
 
               // find body element
               $el = $dom->find('body', 0);
-              $el->setAttribute('hashedit-active', '');
+              $el->setAttribute('editor-active', '');
 
               // setup editable areas
               foreach($editable as $value){
@@ -226,8 +223,8 @@ class EditController extends Controller
                 $els = $dom->find($value);
 
                 foreach($els as $el) {
-                  $el->setAttribute('hashedit', '');
-                  $el->setAttribute('hashedit-selector', $value);
+                  $el->setAttribute('editor', '');
+                  $el->setAttribute('editor-selector', $value);
                 }
 
               }
@@ -243,7 +240,7 @@ class EditController extends Controller
 
                 if(file_exists($json_file)) {
                   $plugins_script .= 'var plugins = '.file_get_contents($json_file).';';
-                  $plugins_script .= 'if(hashedit.menu !== null && hashedit.menu !== undefined) {hashedit.menu = hashedit.menu.concat(plugins);}';
+                  $plugins_script .= 'if(editor.menu !== null && editor.menu !== undefined) {editor.menu = editor.menu.concat(plugins);}';
                 }
 
               }
@@ -261,126 +258,8 @@ class EditController extends Controller
 
               }
 
-              // inject forms into script
-              if(strpos($plugins_script, 'respond.forms') !== false ) {
-
-                $arr = Form::listAll($siteId);
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item['name'],
-                    'value' => $item['id']
-                  ));
-                }
-
-                // inject forms into script
-                $plugins_script = str_replace("['respond.forms']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.forms"]', json_encode($options), $plugins_script);
-              }
-
-              // inject components into script
-              if(strpos($plugins_script, 'respond.components') !== false ) {
-
-                $arr = Component::listAll($siteId);
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item['url'],
-                    'value' => $item['url']
-                  ));
-                }
-
-                // inject forms into script
-                $plugins_script = str_replace("['respond.components']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.components"]', json_encode($options), $plugins_script);
-              }
-
-              // inject components into script
-              if(strpos($plugins_script, 'respond.components.routes') !== false ) {
-
-                $dir = $file = app()->basePath().'/public/sites/'.$siteId.'/components';
-                $arr = array_merge(array('/'), Utilities::listRoutesForComponents($dir, $siteId));
-
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item,
-                    'value' => $item
-                  ));
-                }
-
-                // inject forms into script
-                $plugins_script = str_replace("['respond.components.routes']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.components.routes"]', json_encode($options), $plugins_script);
-              }
-
-              // inject galleries into script
-              if(strpos($plugins_script, 'respond.galleries') !== false ) {
-
-                $arr = Gallery::listAll($siteId);
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item['name'],
-                    'value' => $item['id']
-                  ));
-                }
-
-                // inject galleries into script
-                $plugins_script = str_replace("['respond.galleries']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.galleries"]', json_encode($options), $plugins_script);
-              }
-
-              // inject routes into script
-              if(strpos($plugins_script, 'respond.routes') !== false ) {
-
-                $dir = $file = app()->basePath().'/public/sites/'.$siteId;
-                $arr = array_merge(array('/'), Utilities::listRoutes($dir, $siteId));
-
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item,
-                    'value' => $item
-                  ));
-                }
-
-                // inject galleries into script
-                $plugins_script = str_replace("['respond.routes']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.routes"]', json_encode($options), $plugins_script);
-              }
-
-              // inject pages into script
-              if(strpos($plugins_script, 'respond.pages') !== false ) {
-
-                $arr = Page::listAllBySite($siteId);
-                $options = array();
-
-                // get id
-                foreach($arr as $item) {
-                  array_push($options, array(
-                    'text' => $item['title'],
-                    'value' => $item['url']
-                  ));
-                }
-
-                // inject galleries into script
-                $plugins_script = str_replace("['respond.pages']", json_encode($options), $plugins_script);
-                $plugins_script = str_replace('["respond.pages"]', json_encode($options), $plugins_script);
-              }
-
               // remove elements from that have been excluded
-              $els = $dom->find('[hashedit-exclude]');
+              $els = $dom->find('[editor-exclude]');
 
               // add references to each element
               foreach($els as $el) {
@@ -391,33 +270,36 @@ class EditController extends Controller
               $header = $dom->find('header', 0);
 
               if(isset($header)) {
-                $header->innertext = '';
+                $header->outertext = '';
               }
 
               // remove footer
               $footer = $dom->find('footer', 0);
 
               if(isset($footer)) {
-                $footer->innertext = '';
+                $footer->outertext = '';
+              }
+
+              // remove inner part of contents
+              $els = $dom->find('[respond-plugin]');
+
+              // add references to each element
+              foreach($els as $el) {
+                $el->inntertext = '';
               }
 
               // setup references
               $parent = $dom->find('[role=main]', 0);
 
-              if(env('APP_ENV') == 'development') {
-
-                // hashedit development stack
-                $hashedit = <<<EOD
+              // editor js
+              $editor = <<<EOD
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="/dev/hashedit/js/fetch.min.js"></script>
-<script src="/dev/hashedit/js/i18next.js"></script>
-<script src="/dev/hashedit/node_modules/sortablejs/Sortable.js"></script>
-<script src="/dev/hashedit/node_modules/dropzone/dist/dropzone.js"></script>
-<script src="/dev/hashedit/js/hashedit.js"></script>
+<script src="/editor/libs.min.js"></script>
+<script src="/editor/editor.js"></script>
 <script>$plugins_script</script>
 <script>
-hashedit.setup({
+editor.setup({
   dev: true,
   title: '$title',
   url: '$url',
@@ -428,7 +310,7 @@ hashedit.setup({
   framework: '$framework',
   login: '/login/$siteId',
   translate: true,
-  stylesheet: ['/dev/hashedit/css/hashedit.css', '/api/editor/css'],
+  stylesheet: ['/editor/editor.css', '/api/editor/css'],
   languagePath: '/assets/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH',
@@ -436,38 +318,9 @@ hashedit.setup({
 });
 </script>
 EOD;
-}
-              else {
 
-                // hashedit production stack
-                $hashedit = <<<EOD
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="/app/libs/hashedit/dist/hashedit-min.js"></script>
-<script>$plugins_script</script>
-<script>
-hashedit.setup({
-  title: '$title',
-  url: '$url',
-  previewUrl: '/sites/$url',
-  sortable: '$sortable',
-  blocks: '$blocks',
-  grid: $grid,
-  framework: '$framework',
-  login: '/login/$siteId',
-  path: '/app/libs/hashedit/',
-  stylesheet: ['/app/libs/hashedit/dist/hashedit-min.css', '/api/editor/css'],
-  translate: true,
-  languagePath: '/assets/i18n/{{language}}.json',
-  auth: 'token',
-  authHeader: 'X-AUTH',
-  saveUrl: '$saveUrl'
-});
-</script>
-EOD;
-}
-
-              $hashedit .= '<style type="text/css">'.
+            // css
+            $editor .= '<style type="text/css">'.
                             '.respond-plugin {'.
                             '  position: relative;'.
                             '  padding: 10px 0;'.
@@ -496,7 +349,7 @@ EOD;
               $el = $dom->find('body', 0);
 
               // append
-              $el->outertext = $el->makeup() . $el->innertext . $hashedit . '</body>';
+              $el->outertext = $el->makeup() . $el->innertext . $editor . '</body>';
 
               // return updated html
               return $dom;
