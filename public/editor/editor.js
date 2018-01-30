@@ -36,9 +36,6 @@ editor = (function() {
     // set debug messages
     debug: false,
 
-    // set demo mode
-    demo: false,
-
     // init menu
     menu: [],
 
@@ -54,46 +51,12 @@ editor = (function() {
       node: null,
       parent: null,
       element: null,
-      image: null
+      image: null,
+      menuItem: null
     },
-
-    // new grid elements
-    grid: [
-      {
-        "name": "1 Column",
-        "desc": "100%",
-        "html": "<div class=\"block row\" editor-block><div class=\"col col-md-12\" editor-sortable></div></div>"
-      },
-      {
-        "name": "2 Column",
-        "desc": "100%",
-        "html": "<div class=\"block row\" editor-block><div class=\"col col-md-6\" editor-sortable></div><div class=\"col col-md-6\" editor-sortable></div></div>"
-      }
-    ],
 
     // handles text selection
     selection: null,
-
-    framework: 'bootstrap',
-
-    // framework defaults
-    frameworkDefaults: {
-      'bootstrap': {
-        'table': 'table',
-        'image': 'img-responsive',
-        'code': ''
-      },
-      'foundation': {
-        'table': '',
-        'image': '',
-        'code': ''
-      },
-      'mdl': {
-        'table': 'mdl-data-table',
-        'image': '',
-        'code': ''
-      }
-    },
 
     // counts and flags
     isI18nInit: false,
@@ -415,7 +378,7 @@ editor = (function() {
      */
     update: function(obj) {
 
-      let el = editor.current.node;
+      let el = editor.current.node, currentValue;
 
       if(obj.type == null || obj.type == 'undefined') {
         obj.type = 'element';
@@ -467,9 +430,17 @@ editor = (function() {
       if(obj.attributes != null && obj.attributes != undefined) {
         Object.keys(obj.attributes).forEach(function(key,index) {
 
+            currentValue = el.getAttribute(obj.attributes[index].attr);
+
+            // set attribute
             el.setAttribute(obj.attributes[index].attr, obj.attributes[index].value);
 
-            });
+            // call change
+            if(editor.current.menuItem.change != undefined) {
+              editor.current.menuItem.change(obj.attributes[index].attr, obj.attributes[index].value, currentValue);
+            }
+
+        });
       }
 
       if(obj.type == 'element') {
@@ -562,9 +533,6 @@ editor = (function() {
             if (editor.menu[x].selector == selector) {
               html = editor.menu[x].html;
               html = editor.replaceAll(html, '{{path}}', editor.path);
-              html = editor.replaceAll(html, '{{framework.image}}', editor.frameworkDefaults[editor.framework].image);
-              html = editor.replaceAll(html, '{{framework.table}}', editor.frameworkDefaults[editor.framework].table);
-              html = editor.replaceAll(html, '{{framework.code}}', editor.frameworkDefaults[editor.framework].code);
 
               var node = editor.append(html);
 
@@ -697,12 +665,12 @@ editor = (function() {
           selector: "img",
           title: "Image",
           display: "<i class=\"material-icons\">insert_photo</i>",
-          html: '<p><img src="{{path}}images/placeholder.png" class="{{framework.image}}"></p>'
+          html: '<p><img src="{{path}}images/placeholder.png" class="img-fluid img-responsive"></p>'
         }, {
           selector: "table[rows]",
           title: "Table",
           display: "<i class=\"material-icons\">grid_on</i>",
-          html: '<table class="{{framework.table}}" rows="1" columns="2"><thead><tr><th>Header</th><th>Header</th></tr></thead><tbody><tr><td>Content</td><td>Content</td></tr></tbody></table>',
+          html: '<table class="table" rows="1" columns="2"><thead><tr><th>Header</th><th>Header</th></tr></thead><tbody><tr><td>Content</td><td>Content</td></tr></tbody></table>',
           attributes: [
             {
               attr: 'rows',
@@ -1004,6 +972,7 @@ editor = (function() {
                     attributes = editor.menu[x].attributes;
                   }
 
+                  editor.current.menuItem = editor.menu[x];
                 }
               }
 
@@ -1993,7 +1962,7 @@ editor = (function() {
      */
     setup: function(incoming) {
 
-      var body, attr, path, stylesheet, sortable, demo, url, login, blocks, grid;
+      var body, attr, path, stylesheet, sortable, url, login, blocks;
 
       // get body
       body = document.querySelector('body');
@@ -2003,18 +1972,11 @@ editor = (function() {
       path = '/node_modules/editor/';
       stylesheet = ['/node_modules/editor/dist/editor-min.css'];
       sortable = ['.sortable'];
-      demo = false;
       url = null;
       blocks = [];
 
       // get attributes
       if(body != null) {
-
-        // setup development
-        if(incoming.dev) {
-          path = '/dev/editor/';
-          stylesheet = ['/dev/editor/css/editor.css'];
-        }
 
         if(incoming.path) {
           path = incoming.path;
@@ -2022,16 +1984,6 @@ editor = (function() {
 
         if(incoming.stylesheet) {
           stylesheet = incoming.stylesheet;
-        }
-
-        // setup demo
-        if(body.hasAttribute('editor-demo') == true) {
-          demo = true;
-        }
-
-        // setup framework
-        if(incoming.framework) {
-          editor.framework = incoming.framework;
         }
 
         // setup sortable
@@ -2048,15 +2000,6 @@ editor = (function() {
 
           if(incoming.blocks != '') {
             blocks = incoming.blocks.split(',');
-          }
-
-        }
-
-        // setup grid
-        if(incoming.grid) {
-
-          if(incoming.grid != '') {
-            grid = incoming.grid;
           }
 
         }
@@ -2151,9 +2094,7 @@ editor = (function() {
         login: login,
         stylesheet: stylesheet,
         sortable: sortable,
-        blocks: blocks,
-        grid: grid,
-        demo: demo
+        blocks: blocks
       };
 
       // set url
@@ -2187,11 +2128,6 @@ editor = (function() {
         editor.loginUrl = config.login;
       }
 
-      // set grid
-      if (config.grid != null) {
-        editor.grid = config.grid;
-      }
-
       // create container
       editor.current.container = document.createElement('div');
       editor.current.container.setAttribute('class', 'editor-container');
@@ -2220,73 +2156,52 @@ editor = (function() {
 
       editor.current.container.appendChild(style);
 
+      // set default auth
+      var obj = {
+        credentials: 'include'
+      }
+
+      // enable token based auth
+      if(editor.useToken) {
+
+        // set obj headers
+        obj = {
+          headers: {}
+        };
+
+        obj.headers[editor.authHeader] = editor.authHeaderPrefix + ' ' + localStorage.getItem(editor.tokenName);
+      }
+
       // check auth
-      if (config.demo === true) {
+      fetch(editor.authUrl, obj)
+        .then(function(response) {
 
-        editor.demo = true;
+          if (response.status !== 200) {
+            editor.showAuth();
+          }
+          else {
 
-        // init editor
-        editor.setActive();
-        editor.setupView();
-        editor.setupSortable();
-        editor.setupBlocks();
-        editor.setContentEditable();
-        editor.setupContentEditableEvents();
-        editor.setupMenu(config.path);
-        editor.setupToast();
-        editor.createMenu(config.path);
-        editor.setupTextMenu();
-        editor.translate();
+            // init editor
+            editor.setActive();
+            editor.setupView();
+            editor.setupSortable();
+            editor.setupBlocks();
+            editor.setContentEditable();
+            editor.setupContentEditableEvents();
+            editor.setupMenu(config.path);
+            editor.setupToast();
+            editor.createMenu(config.path);
+            editor.setupTextMenu();
+            editor.translate();
 
-      }
-      else {
+            // setup loaded event
+            var event = new Event('editor.loaded');
+            document.dispatchEvent(event);
 
-        // set default auth
-        var obj = {
-          credentials: 'include'
-        }
+          }
 
-        // enable token based auth
-        if(editor.useToken) {
+        });
 
-          // set obj headers
-          obj = {
-            headers: {}
-          };
-
-          obj.headers[editor.authHeader] = editor.authHeaderPrefix + ' ' + localStorage.getItem(editor.tokenName);
-        }
-
-        // check auth
-        fetch(editor.authUrl, obj)
-          .then(function(response) {
-
-            if (response.status !== 200) {
-              editor.showAuth();
-            }
-            else {
-
-              // init editor
-              editor.setActive();
-              editor.setupView();
-              editor.setupSortable();
-              editor.setupBlocks();
-              editor.setContentEditable();
-              editor.setupContentEditableEvents();
-              editor.setupMenu(config.path);
-              editor.setupToast();
-              editor.createMenu(config.path);
-              editor.setupTextMenu();
-              editor.translate();
-
-              // setup loaded event
-              var event = new Event('editor.loaded');
-              document.dispatchEvent(event);
-
-            }
-
-          });
-      }
 
     },
 

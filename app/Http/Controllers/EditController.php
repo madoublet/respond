@@ -169,21 +169,6 @@ class EditController extends Controller
               $sortable = Setting::getById('sortable', $siteId);
               $editable = Setting::getById('editable', $siteId);
               $blocks = Setting::getById('blocks', $siteId);
-              $grid = Setting::getById('grid', $siteId);
-              $framework = Setting::getById('framework', $siteId);
-
-              // framework
-              if($framework === NULL) {
-                $framework = 'bootstrap';
-              }
-
-              // defaults
-              if($grid === NULL) {
-                $grid = '[{"name": "1 Column","desc": "100%","html": "<div class=\"block row\" editor-block><div class=\"col col-md-12\" editor-sortable></div></div>"}]';
-              }
-              else {
-                $grid = json_encode($grid);
-              }
 
               // defaults
               if($sortable === NULL) {
@@ -300,14 +285,11 @@ class EditController extends Controller
 <script>$plugins_script</script>
 <script>
 editor.setup({
-  dev: true,
   title: '$title',
   url: '$url',
   previewUrl: '/sites/$url',
   sortable: '$sortable',
   blocks: '$blocks',
-  grid: $grid,
-  framework: '$framework',
   login: '/login/$siteId',
   translate: true,
   stylesheet: ['/editor/editor.css', '/api/editor/css'],

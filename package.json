@@ -7,9 +7,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "ace-builds": "1.2.5",
-    "dropzone": "4.3.0",
-    "hashedit": "2.1.0",
     "respond-ui": "9.1.0"
   },
   "devDependencies": {

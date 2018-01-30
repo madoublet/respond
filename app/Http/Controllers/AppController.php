@@ -258,8 +258,17 @@ return response($css)->header('Content-Type', 'text/css');
       $language = env('DEFAULT_LANGUAGE');
     }
 
+    // determine if the mode is PRO or CORE
+    if(file_exists( app()->basePath('app/Pro/routes.php' ))) {
+      $mode = 'pro';
+    }
+    else {
+      $mode = 'core';
+    }
+
     // return app settings
     $settings = array(
+      'mode' => $mode,
       'hasPasscode' => $has_passcode,
       'siteUrl' => Utilities::retrieveSiteURL(),
       'logoUrl' => env('LOGO_URL'),
@@ -269,13 +278,13 @@ return response($css)->header('Content-Type', 'text/css');
       'usesLDAP' => !empty(env('LDAP_SERVER')),
       'activationMethod' => env('ACTIVATION_METHOD'),
       'activationUrl' => env('ACTIVATION_URL'),
-      'stripeAmount' => env('STRIPE_AMOUNT'),
-      'stripeCurrency' => env('STRIPE_CURRENCY'),
-      'stripeName' => env('STRIPE_NAME'),
-      'stripeDescription' => env('STRIPE_DESCRIPTION'),
-      'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY'),
-      'recaptchaSiteKey' => env('RECAPTCHA_SITE_KEY'),
-      'acknowledgement' => env('ACKNOWLEDGEMENT'),
+      'stripeAmount' => env('STRIPE_AMOUNT', ''),
+      'stripeCurrency' => env('STRIPE_CURRENCY', ''),
+      'stripeName' => env('STRIPE_NAME', ''),
+      'stripeDescription' => env('STRIPE_DESCRIPTION', ''),
+      'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY', ''),
+      'recaptchaSiteKey' => env('RECAPTCHA_SITE_KEY', ''),
+      'acknowledgement' => env('ACKNOWLEDGEMENT', ''),
       'defaultLanguage' => $language
     );
 

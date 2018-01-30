@@ -186,3 +186,7 @@ $app->post('/api/galleries/images/edit', ['middleware' => 'jwtauth', 'uses'=> 'G
 $app->post('/api/galleries/images/remove', ['middleware' => 'jwtauth', 'uses'=> 'GalleryImageController@remove']);
 $app->post('/api/galleries/images/order', ['middleware' => 'jwtauth', 'uses'=> 'GalleryImageController@updateOrder']);
 
+// include pro routes if they are included in the project
+if(file_exists( app()->basePath('app/Pro/routes.php' ))) {
+  include_once( app()->basePath('app/Pro/routes.php') );
+}
