@@ -251,26 +251,22 @@ class EditController extends Controller
                 $el->outertext = '';
               }
 
-              // remove header
-              $header = $dom->find('header', 0);
-
-              if(isset($header)) {
-                $header->outertext = '';
-              }
-
-              // remove footer
-              $footer = $dom->find('footer', 0);
-
-              if(isset($footer)) {
-                $footer->outertext = '';
-              }
-
-              // remove inner part of contents
-              $els = $dom->find('[respond-plugin]');
+              // remove scripts
+              $els = $dom->find('script');
 
               // add references to each element
               foreach($els as $el) {
-                $el->inntertext = '';
+                $el->outertext = '';
+              }
+
+              // remove inner part of contents
+              $els = $dom->find('div');
+
+              // add references to each element
+              foreach($els as $el) {
+                if(isset($el->{'respond-plugin'})) {
+                  $el->inntertext = '';
+                }
               }
 
               // setup references
@@ -292,7 +288,7 @@ editor.setup({
   blocks: '$blocks',
   login: '/login/$siteId',
   translate: true,
-  stylesheet: ['/editor/editor.css', '/api/editor/css'],
+  stylesheet: ['/editor/editor.css', '/resources/editor.css'],
   languagePath: '/assets/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH',
@@ -300,32 +296,6 @@ editor.setup({
 });
 </script>
 EOD;
-
-            // css
-            $editor .= '<style type="text/css">'.
-                            '.respond-plugin {'.
-                            '  position: relative;'.
-                            '  padding: 10px 0;'.
-                            '  margin: 1px 0 20px 0;'.
-                            '  background-color: #f8f8f8;'.
-                            '  border: 1px solid #f0f0f0;'.
-                            '  text-align: center;'.
-                            '  color: #aaa;'.
-                            '}'.
-                            '.respond-plugin span {'.
-                            '  display: block;'.
-                            '  margin: 0; padding: 0;'.
-                            '  color: #aaa;'.
-                            '  text-align: center;'.
-                            '  text-transform: uppercase;'.
-                            '  font-size: 11px;'.
-                            '  font-family: "Open Sans", sans-serif;'.
-                            '}'.
-                            '.respond-plugin svg{'.
-                            '  fill: currentColor;'.
-                            '  width: 35px;'.
-                            '  height: 35px;'.
-                            '}';
 
               // find body element
               $el = $dom->find('body', 0);

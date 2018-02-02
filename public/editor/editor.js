@@ -129,7 +129,6 @@ editor = (function() {
       // setup sortable classes
       els = document.querySelectorAll('[editor] ' + blocks);
 
-
       // set [data-editor-sortable=true]
       for (y = 0; y < els.length; y += 1) {
 
@@ -139,23 +138,23 @@ editor = (function() {
           els[y].setAttribute('editor-block', '');
 
           // create element menu
-          div = document.createElement('DIV');
+          div = document.createElement('x-respond-menu');
           div.setAttribute('class', 'editor-block-menu');
           div.setAttribute('contentEditable', 'false');
-          div.innerHTML = '<label><i class="material-icons">more_vert</i> ' + editor.i18n('Layout Menu') + '</label>';
+          div.innerHTML = '<x-respond-menu-label><x-respond-menu-icon class="material-icons">more_vert</x-respond-menu-icon> ' + editor.i18n('Layout Menu') + '</x-respond-menu-label>';
 
           // create up
-          span = document.createElement('span');
-          span.setAttribute('class', 'editor-block-up');
-          span.innerHTML = '<i class="material-icons">arrow_upward</i> ' + editor.i18n('Move Up');
+          span = document.createElement('x-respond-menu-item');
+          span.setAttribute('class', 'editor-block-menu-item editor-block-up');
+          span.innerHTML = '<x-respond-menu-icon class="material-icons">arrow_upward</x-respond-menu-icon> ' + editor.i18n('Move Up');
 
           // append the handle to the wrapper
           div.appendChild(span);
 
           // create down
-          span = document.createElement('span');
-          span.setAttribute('class', 'editor-block-down');
-          span.innerHTML = '<i class="material-icons">arrow_downward</i> ' + editor.i18n('Move Down');
+          span = document.createElement('x-respond-menu-item');
+          span.setAttribute('class', 'editor-block-menu-item editor-block-down');
+          span.innerHTML = '<x-respond-menu-icon class="material-icons">arrow_downward</x-respond-menu-icon> ' + editor.i18n('Move Down');
 
           // append the handle to the wrapper
           div.appendChild(span);
@@ -170,17 +169,17 @@ editor = (function() {
           div.appendChild(span); */
 
           // create properties
-          span = document.createElement('span');
-          span.setAttribute('class', 'editor-block-properties');
-          span.innerHTML = '<i class="material-icons">settings</i> ' + editor.i18n('Settings');
+          span = document.createElement('x-respond-menu-item');
+          span.setAttribute('class', 'editor-block-menu-item editor-block-properties');
+          span.innerHTML = '<x-respond-menu-icon class="material-icons">settings</x-respond-menu-icon> ' + editor.i18n('Settings');
 
           // append the handle to the wrapper
           div.appendChild(span);
 
           // create remove
-          span = document.createElement('span');
-          span.setAttribute('class', 'editor-block-remove');
-          span.innerHTML = '<i class="material-icons">cancel</i> ' + editor.i18n('Remove');
+          span = document.createElement('x-respond-menu-item');
+          span.setAttribute('class', 'editor-block-menu-item editor-block-remove');
+          span.innerHTML = '<x-respond-menu-icon class="material-icons">cancel</x-respond-menu-icon> ' + editor.i18n('Remove');
 
           // append the handle to the wrapper
           div.appendChild(span);
@@ -205,29 +204,29 @@ editor = (function() {
       el.setAttribute('editor-element', '');
 
       // create element menu
-      menu = document.createElement('span');
+      menu = document.createElement('x-respond-menu');
       menu.setAttribute('class', 'editor-element-menu');
       menu.setAttribute('contentEditable', 'false');
-      menu.innerHTML = '<label><i class="material-icons">more_vert</i> ' + editor.i18n('Content Menu') + '</label>';
+      menu.innerHTML = '<x-respond-menu-label><x-respond-menu-icon class="material-icons">more_vert</x-respond-menu-icon> ' + editor.i18n('Content Menu') + '</x-respond-label>';
 
       // create a handle
-      span = document.createElement('span');
-      span.setAttribute('class', 'editor-move');
-      span.innerHTML = '<i class="material-icons">apps</i> ' + editor.i18n('Move');
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-move');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">apps</x-respond-menu-icon> ' + editor.i18n('Move');
 
       // append the handle to the wrapper
       menu.appendChild(span);
 
-      span = document.createElement('span');
-      span.setAttribute('class', 'editor-properties');
-      span.innerHTML = '<i class="material-icons">settings</i> ' + editor.i18n('Settings');
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-properties');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">settings</x-respond-menu-icon> ' + editor.i18n('Settings');
 
       // append the handle to the wrapper
       menu.appendChild(span);
 
-      span = document.createElement('span');
-      span.setAttribute('class', 'editor-remove');
-      span.innerHTML = '<i class="material-icons">cancel</i> ' + editor.i18n('Remove');
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-remove');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">cancel</x-respond-menu-icon> ' + editor.i18n('Remove');
 
       // append the handle to the wrapper
       menu.appendChild(span);
@@ -983,7 +982,7 @@ editor = (function() {
 
               // get the html of the element
               let html = element.innerHTML;
-              var i = html.indexOf('<span class="editor-element-menu"');
+              var i = html.indexOf('<x-respond-menu class="editor-element-menu"');
               html = html.substring(0, i);
 
               window.parent.postMessage({
@@ -1966,6 +1965,20 @@ editor = (function() {
 
       // get body
       body = document.querySelector('body');
+
+      // register dom elements
+      if(window.customElements) {
+        window.customElements.define('fx-respond-menu', class extends HTMLElement {});
+        window.customElements.define('fx-respond-menu-item', class extends HTMLElement {});
+        window.customElements.define('fx-respond-menu-label', class extends HTMLElement {});
+        window.customElements.define('fx-respond-menu-icon', class extends HTMLElement {});
+      }
+      else if(document.registerElement) {
+        document.registerElement('x-respond-menu');
+        document.registerElement('x-respond-menu-item');
+        document.registerElement('x-respond-menu-label');
+        document.registerElement('x-respond-menu-icon');
+      }
 
       // production
       login = '/login';

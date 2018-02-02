@@ -79,8 +79,6 @@ $app->get('/api/sites/test', 'SiteController@test');
 
 // app
 $app->get('/api/app/settings', 'AppController@settings');
-$app->get('/api/app/css', 'AppController@appCSS');
-$app->get('/api/editor/css', 'AppController@editorCSS');
 $app->get('/api/themes/list', 'AppController@listThemes');
 $app->get('/api/languages/list', 'AppController@listLanguages');
 

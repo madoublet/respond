@@ -13,8 +13,8 @@
 
 [editor-empty] {
   min-height: 100px;
-  background-color: rgba(255,153,0,1);
-  box-shadow: inset 0 0 0 1px #fff;
+  background-color: #EBF2F7;
+  box-shadow: inset 0 0 0 1px #ddd;
 }
 
 .editor-sortable {
@@ -62,7 +62,7 @@
       position: absolute;
       top: 0;
       left: 10px;
-      background-color: #111;
+      background-color: #09203f;
       margin: 0 !important;
       padding: 0 !important;
       color: #888;
@@ -84,31 +84,36 @@
       overflow: hidden;
     }
 
-    body [role=main] [editor-block] .editor-block-menu label {
+    body [role=main] [editor-block] .editor-block-menu x-respond-menu-label {
       font-family: 'Open Sans', sans-serif !important;
       position: relative;
       display: inline-block;
       font-size: 10px !important;
       color: #fff;
       margin: 0 15px 0 0 !important;
-      padding: 10px 0 10px 25px !important;
+      padding: 12px 0 12px 25px !important;
       text-transform: uppercase;
       line-height: normal !important;
       font-weight: normal !important;
     }
 
-      body [role=main] [editor-block] .editor-block-menu:hover label {
+      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label {
         color: #aaa;
+        padding: 10px 0 1px 25px !important;
       }
 
-      body [role=main] [editor-block] .editor-block-menu label i {
+      body [role=main] [editor-block] .editor-block-menu x-respond-menu-label x-respond-menu-icon {
         position: absolute;
-        top: 9px;
+        top: 11px;
         left: 10px;
         font-size: 16px;
       }
 
-      body [role=main] [editor-block] .editor-block-menu:hover label {
+      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label x-respond-menu-icon {
+        top: 9px;
+      }
+
+      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label {
         color: #aaa;
       }
 
@@ -118,7 +123,7 @@
       opacity: 1;
     }
 
-    body [role=main] [editor-block] .editor-block-menu span {
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
       font-family: 'Open Sans', sans-serif !important;
       position: relative;
       display: inline-block;
@@ -131,7 +136,7 @@
       line-height: normal !important;
     }
 
-    body [role=main] [editor-block] .editor-block-menu span i {
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item x-respond-menu-icon {
       position: absolute;
       top: 12px;
       left: 0;
@@ -141,23 +146,15 @@
       line-height: normal !important;
     }
 
-    body [role=main] [editor-block] .editor-block-menu span {
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
       display: none;
     }
 
-    body [role=main] [editor-block] .editor-block-menu a i {
-      color: #fff !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      font-size: 14px !important;
-      line-height: normal !important;
-    }
-
-    body [role=main] [editor-block] .editor-block-menu:hover span {
+    body [role=main] [editor-block] .editor-block-menu:hover .editor-block-menu-item {
       display: inline-block;
     }
 
-    body [role=main] [editor-block] .editor-block-menu:hover span[hidden] {
+    body [role=main] [editor-block] .editor-block-menu:hover .editor-block-menu-item[hidden] {
       display: none;
     }
 
@@ -209,7 +206,7 @@ body [role=main] .editor-element-menu {
     position: absolute;
     top: -15px;
     right: 5px;
-    background-color: #111;
+    background-color: #09203f;
     margin: 0 !important;
     padding: 0 !important;
     color: #888;
@@ -231,36 +228,42 @@ body [role=main] .editor-element-menu {
     overflow: hidden;
   }
 
-  body [role=main] [editor-element] .editor-element-menu label {
+  body [role=main] [editor-element] .editor-element-menu x-respond-menu-label {
     position: relative;
     font-family: 'Open Sans', sans-serif !important;
     display: inline-block;
     font-size: 10px !important;
     color: #fff;
     margin: 0 15px 0 0 !important;
-    padding: 10px 0 10px 25px !important;
+    padding: 12px 0 12px 25px !important;
     text-transform: uppercase;
     line-height: normal !important;
     font-weight: normal !important;
   }
 
-    body [role=main] [editor-element] .editor-element-menu label i {
+    body [role=main] [editor-element] .editor-element-menu:hover x-respond-menu-label {
+      color: #aaa;
+      padding: 10px 0 10px 25px !important;
+    }
+
+    body [role=main] [editor-element] .editor-element-menu x-respond-menu-label x-respond-menu-icon {
       position: absolute;
-      top: 9px;
+      top: 11px;
       left: 10px;
       font-size: 16px;
     }
 
-    body [role=main] [editor-element] .editor-element-menu:hover label {
-      color: #aaa;
+    body [role=main] [editor-element] .editor-element-menu:hover x-respond-menu-label x-respond-menu-icon {
+      top: 9px;
     }
+
 
   body [role=main] [editor-element]:hover .editor-element-menu {
     visibility: visible;
     opacity: 1;
   }
 
-  body [role=main] [editor-element] .editor-element-menu span {
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
     font-family: 'Open Sans', sans-serif !important;
     position: relative;
     display: inline-block;
@@ -273,11 +276,11 @@ body [role=main] .editor-element-menu {
     line-height: normal !important;
   }
 
-  body [role=main] [editor-element] .editor-element-menu span.editor-move {
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item.editor-move {
     cursor: move;
   }
 
-  body [role=main] [editor-element] .editor-element-menu span i {
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item x-respond-menu-icon {
     position: absolute;
     top: 12px;
     left: 0;
@@ -287,19 +290,11 @@ body [role=main] .editor-element-menu {
     line-height: normal !important;
   }
 
-  body [role=main] [editor-element] .editor-element-menu span {
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
     display: none;
   }
 
-  body [role=main] [editor-element] .editor-element-menu a i {
-    color: #fff !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 14px !important;
-    line-height: normal !important;
-  }
-
-  body [role=main] [editor-element] .editor-element-menu:hover span {
+  body [role=main] [editor-element] .editor-element-menu:hover .editor-element-menu-item {
     display: inline-block;
   }
 
@@ -357,7 +352,7 @@ body .editor-config {
   left: 0;
   height: 50px;
   width: 100%;
-  background-color: #111;
+  background-color: #09203f;
   margin: 0;
   padding: 0;
   color: #fff;
@@ -460,7 +455,7 @@ body .editor-config select {
 }
 
 body .editor-config a:hover,body .editor-config a:hover {
-  background-color: #00ADE3;
+  background-color: rgba(255,255,255,0.25);
 }
 
 body .editor-config .editor-layout {
@@ -692,7 +687,7 @@ body .editor-config .editor-layout {
   right: -200px;
   height: 100%;
   width: 195px;
-  background-color: #f0f0f0;
+  background-color: #EBF2F7;
   margin: 0;
   padding: 0;
   color: #2F3243;
@@ -713,7 +708,7 @@ body .editor-config .editor-layout {
   text-transform: uppercase;
   margin: 0px;
   padding: 10px 5px 5px 5px;
-  color: #555;
+  color: #09203F;
   font-size: 11px;
 }
 
@@ -770,7 +765,7 @@ body .editor-config .editor-layout {
   }
 
   .editor-menu a:hover {
-    background-color: #00ADE3 !important;
+    background-color: #537895 !important;
     color: #fff !important;
     text-decoration: none;
   }
@@ -1081,4 +1076,30 @@ body .editor-modal .editor-list-item p {
 
 .editor-list-item:last-child {
   border-bottom: none;
+}
+
+.respond-plugin {
+  position: relative;
+  padding: 10px 0;
+  margin: 5px 5px 20px 5px;
+  background-color: #EBF2F7;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  color: #2F3243;
+}
+
+.respond-plugin span {
+  display: block;
+  margin: 0; padding: 0;
+  color: #2F3243;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.respond-plugin svg {
+  fill: currentColor;
+  width: 35px;
+  height: 35px;
 }
