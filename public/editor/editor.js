@@ -347,8 +347,6 @@ editor = (function() {
 
           iframe.setAttribute('src', url);
 
-          console.log(iframe);
-
           });
 
       }
@@ -608,7 +606,6 @@ editor = (function() {
 
       for (x = 0; x < wrapper.childNodes.length; x += 1) {
         editor.current.container.appendChild(wrapper.childNodes[x]);
-        console.log('append count');
       }
 
       // init menu

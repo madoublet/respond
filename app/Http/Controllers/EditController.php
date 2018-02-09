@@ -288,7 +288,7 @@ editor.setup({
   blocks: '$blocks',
   login: '/login/$siteId',
   translate: true,
-  stylesheet: ['/editor/editor.css', '/resources/editor.css'],
+  stylesheet: ['/editor/editor.css', '/api/editor/css'],
   languagePath: '/assets/i18n/{{language}}.json',
   auth: 'token',
   authHeader: 'X-AUTH',

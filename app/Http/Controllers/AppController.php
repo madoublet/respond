@@ -12,6 +12,40 @@ class AppController extends Controller
 {
 
   /**
+   * White Label CSS for the app
+   *
+   * @return Response
+   */
+  public function appCSS(Request $request)
+  {
+
+    $css = '';
+
+    if(file_exists( app()->basePath('resources/white-label/app.css' ))) {
+      $css = file_get_contents(app()->basePath('resources/white-label/app.css' ));
+    }
+
+    return response($css)->header('Content-Type', 'text/css');
+
+  }
+
+  /**
+   * White Label CSS for the app
+   *
+   * @return Response
+   */
+  public function editorCSS(Request $request)
+  {
+    $css = '';
+
+    if(file_exists( app()->basePath('resources/white-label/editor.css' ))) {
+      $css = file_get_contents(app()->basePath('resources/white-label/editor.css' ));
+    }
+
+    return response($css)->header('Content-Type', 'text/css');
+  }
+
+  /**
    * Settings
    *
    * @return Response

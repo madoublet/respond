@@ -55,13 +55,16 @@ class Publish
         $src = realpath(app()->basePath() . '/resources/default');
         $dest = $dest_basepath . '/' . basename($site->id);
 
-        // copy source
-        if ($src === false || strpos($src, $src_basepath) !== 0) {
-          throw new Exception('Directory traversal attempt');
-        } else {
-            Utilities::copyDirectory($src, $dest);
-        }
+        // copy settings
+        Utilities::copyDirectory($src, $dest);
 
+        // copy PRO default settings
+        if(file_exists(app()->basePath().'/app/Pro')) {
+          $src = realpath(app()->basePath() . '/app/Pro/resources/default');
+          $dest = $dest_basepath . '/' . basename($site->id);
+
+          Utilities::copyDirectory($src, $dest);
+        }
     }
 
     /**
@@ -76,6 +79,14 @@ class Publish
         $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id));
 
         Utilities::copyDirectory($src, $dest);
+
+        // copy PRO plugins
+        if(file_exists(app()->basePath().'/app/Pro')) {
+          $src = realpath(app()->basePath() . '/app/Pro/resources/plugins');
+          $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id));
+
+          Utilities::copyDirectory($src, $dest);
+        }
     }
 
     /**
@@ -106,35 +117,14 @@ class Publish
     public static function updatePlugins($site)
     {
 
-      echo('siteid='.$site->id.' theme='.$site->theme);
-
-      // update theme plugin files
-      $src = app()->basePath() . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/plugins';
-      $dest = app()->basePath() . '/public/sites/' . $site->id . '/plugins';
-
-      // copy the directory
-      Utilities::copyDirectory($src, $dest);
-
-      // copy the plugin JSON file
-      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/data/plugins.json';
-      $dest = app()->basePath() . '/public/sites/' . $site->id . '/data/plugins.json';
-
-      copy($src, $dest);
-
-      // copy the JS file
-      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/js/plugins.js';
-      $dest = app()->basePath() . '/public/sites/' . $site->id . '/js/plugins.js';
-
-      copy($src, $dest);
-
-      // copy the CSS file
-      $src = app()->basePath()  . '/public/' . getenv('THEMES_LOCATION') . $site->theme . '/css/plugins.css';
-      $dest = app()->basePath() . '/public/sites/' . $site->id . '/css/plugins.css';
-
-      copy($src, $dest);
+      // recopy the plugins
+      copyPlugins($site);
 
       // combine the css
       Publish::combineCSS($site);
+
+      // combine the JS
+      Publish::combineJS($site);
 
       return TRUE;
 
@@ -637,6 +627,7 @@ class Publish
       static $files = array();
       static $plugins = array();
       static $settings = array();
+      static $products = array();
 
       // get all pages
       if(!$pages) {
@@ -664,6 +655,12 @@ class Publish
 
       if(!$settings) {
         $settings = Setting::listAllAsAssoc($site->id);
+      }
+
+      if(file_exists(app()->basePath().'/app/Pro/Models/Product.php')) {
+        if(!$products) {
+          $products = \App\Pro\Models\Product::listAll($site->id);
+        }
       }
 
       // setup current site
@@ -745,6 +742,7 @@ class Publish
                                   'galleries' => $galleries,
                                   'menus' => $menus,
                                   'settings' => $settings,
+                                  'products' => $products,
                                   'attributes' => $el->attr);
 
               $plugin_html = '';
