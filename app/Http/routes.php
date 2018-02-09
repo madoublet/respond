@@ -85,12 +85,8 @@ $app->get('/api/languages/list', 'AppController@listLanguages');
 // site
 $app->post('/api/sites/create', 'SiteController@create');
 $app->post('/api/sites/activate', 'SiteController@activate');
-$app->post('/api/sites/subscribe', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@subscribe']);
-$app->post('/api/sites/unsubscribe', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@unsubscribe']);
-$app->get('/api/sites/subscription/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@retrieveSubscription']);
 $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reload']);
 $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@generateSitemap']);
-$app->get('/api/sites/migrate', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@migrate']);
 $app->get('/api/sites/reindex', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reindexPages']);
 $app->get('/api/sites/republish/templates', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@republishTemplates']);
 $app->get('/api/sites/update/plugins', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@updatePlugins']);

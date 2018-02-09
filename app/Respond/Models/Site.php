@@ -305,8 +305,17 @@ class Site {
 
     $user->save($site->id);
 
-    // publish theme
-    Publish::publishTheme($theme, $site);
+    // copy theme
+    Publish::copyTheme($theme, $site);
+
+    // copy theme
+    Publish::copyPlugins($site);
+
+    // combine CSS
+    Publish::combineCSS($site);
+
+    // combine JS
+    Publish::combineJS($site);
 
     // publish plugins
     Publish::publishPlugins($user, $site);

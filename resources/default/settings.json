@@ -1,46 +1,5 @@
 [
     {
-        "id": "editable",
-        "value": "[role=main]"
-    },
-    {
-        "id": "sortable",
-        "value": ".col, .column"
-    },
-    {
-        "id": "blocks",
-        "value": ".row"
-    },
-    {
-        "id": "framework",
-        "value": "bootstrap"
-    },
-    {
-        "id": "grid",
-        "value": [
-          {
-            "name": "1 Column",
-            "desc": "100%",
-            "html": "<div class=\"block row\"><div class=\"col col-md-12\"></div></div>"
-          },
-          {
-            "name": "2 Column",
-            "desc": "50%/50%",
-            "html": "<div class=\"block row\"><div class=\"col col-md-6\"></div><div class=\"col col-md-6\"></div></div>"
-          },
-          {
-            "name": "3 Column",
-            "desc": "33%/33%/33%",
-            "html": "<div class=\"block row\"><div class=\"col col-md-4\"></div><div class=\"col col-md-4\"></div><div class=\"col col-md-4\"></div></div>"
-          },
-          {
-            "name": "4 Column",
-            "desc": "25%/25%/25%/25%",
-            "html": "<div class=\"block row\"><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div><div class=\"col col-md-3\"></div></div>"
-          }
-        ]
-    },
-    {
       "id": "url",
       "label": "URL",
       "description": "The url for your site, e.g.: https://respondcms.com",
@@ -52,7 +11,7 @@
         "label": "Logo",
         "description": "Primary logo of the site",
         "type": "image",
-        "value": "files\/sample-logo.png",
+        "value": "resources\/logo.png",
         "sets": "attribute",
         "attribute": "src"
     },

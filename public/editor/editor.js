@@ -396,6 +396,9 @@ editor = (function() {
       }
 
       if(obj.properties != null && obj.properties != undefined) {
+
+        var style = '';
+
         Object.keys(obj.properties).forEach(function(key,index) {
 
             if(key == 'id') {
@@ -422,9 +425,47 @@ editor = (function() {
             else if(key == 'href') {
               el.href = obj.properties.href || '';
             }
+            else if(key == 'backgroundImage') {
+              if(obj.properties.backgroundImage != '') {
+                el.setAttribute('data-background-image', obj.properties.backgroundImage);
+                style += 'background-image: url(' + obj.properties.backgroundImage + ');';
+              }
+            }
+            else if(key == 'backgroundColor') {
+              if(obj.properties.backgroundColor != '') {
+                el.setAttribute('data-background-color', obj.properties.backgroundColor);
+                style += 'background-color: ' + obj.properties.backgroundColor + ';';
+              }
+            }
+            else if(key == 'backgroundSize') {
+              if(obj.properties.backgroundSize != '') {
+                el.setAttribute('data-background-size', obj.properties.backgroundSize);
+                style += 'background-size: ' + obj.properties.backgroundSize + ';';
+              }
+            }
+            else if(key == 'backgroundPosition') {
+              if(obj.properties.backgroundPosition != '') {
+                el.setAttribute('data-background-position', obj.properties.backgroundPosition);
+                style += 'background-position: ' + obj.properties.backgroundPosition + ';';
+              }
+            }
+            else if(key == 'backgroundRepeat') {
+              if(obj.properties.backgroundRepeat != '') {
+                el.setAttribute('data-background-repeat', obj.properties.backgroundRepeat);
+                style += 'background-repeat: ' + obj.properties.backgroundRepeat + ';';
+              }
+            }
+            else if(key == 'textColor') {
+              if(obj.properties.backgroundRepeat != '') {
+                el.setAttribute('data-text-color', obj.properties.textColor);
+                style += 'color: ' + obj.properties.textColor + ';';
+              }
+            }
 
             });
       }
+
+      el.style = style;
 
       if(obj.attributes != null && obj.attributes != undefined) {
         Object.keys(obj.attributes).forEach(function(key,index) {
@@ -985,6 +1026,14 @@ editor = (function() {
               var i = html.indexOf('<x-respond-menu class="editor-element-menu"');
               html = html.substring(0, i);
 
+              // get background image, background color
+              var backgroundImage = element.getAttribute('data-background-image') || '';
+              var backgroundColor = element.getAttribute('data-background-color') || '';
+              var backgroundSize = element.getAttribute('data-background-size') || '';
+              var backgroundPosition = element.getAttribute('data-background-position') || '';
+              var backgroundRepeat = element.getAttribute('data-background-repeat') || '';
+              var textColor = element.getAttribute('data-text-color') || '';
+
               window.parent.postMessage({
                 type: 'element',
                 selector: selector,
@@ -992,6 +1041,12 @@ editor = (function() {
                 properties: {
                   id: element.id,
                   cssClass: element.className,
+                  backgroundImage: backgroundImage,
+                  backgroundColor: backgroundColor,
+                  backgroundSize: backgroundSize,
+                  backgroundPosition: backgroundPosition,
+                  backgroundRepeat: backgroundRepeat,
+                  textColor: textColor,
                   html: html
                 },
                 attributes: attributes
@@ -1010,6 +1065,13 @@ editor = (function() {
                 // set current node to block
                 editor.current.node = block;
 
+                // get background image, background color
+                var backgroundImage = block.getAttribute('data-background-image') || '';
+                var backgroundColor = block.getAttribute('data-background-color') || '';
+                var backgroundSize = block.getAttribute('data-background-size') || '';
+                var backgroundPosition = block.getAttribute('data-background-position') || '';
+                var backgroundRepeat = block.getAttribute('data-background-repeat') || '';
+
                 // post message to app
                 window.parent.postMessage({
                   type: 'block',
@@ -1017,7 +1079,12 @@ editor = (function() {
                   title: 'Block',
                   properties: {
                     id: block.id,
-                    cssClass: block.className
+                    cssClass: block.className,
+                    backgroundImage: backgroundImage,
+                    backgroundColor: backgroundColor,
+                    backgroundSize: backgroundSize,
+                    backgroundPosition: backgroundPosition,
+                    backgroundRepeat: backgroundRepeat
                   },
                   attributes: []
                 }, '*');

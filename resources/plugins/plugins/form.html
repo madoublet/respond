@@ -4,7 +4,7 @@
 
   {% if form.id == attributes.form  %}
 
-<form id="{{ form.id }}" action="{{ site.api }}/submissions/submit" method="post" data-site="{{ site.id }}" respond-form >
+<form id="{{ form.id }}" class="{{ form.cssClass }}" action="{{ site.api }}/submissions/submit" method="post" data-site="{{ site.id }}" data-success="{{ form.success }}" data-error="{{ form.error }}" data-recaptcha-error="{{ form.recaptchaError }}" respond-form >
 
     <input name="siteid" type="hidden" value="{{ site.id }}">
     <input name="formid" type="hidden" value="{{ form.id }}">
@@ -13,7 +13,7 @@
     {% for field in form.fields %}
       <div class="form-group" data-id="{{ field.id }}" data-label="{{ field.label }}"  data-type="{{ field.type }}" data-required="{{ field.required }}">
 
-        <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+        <label for="{{ field.id }}">{{ field.label }}</label>
 
         {% if field.type == 'text'  %}
         <input id="{{ field.id }}" name="{{ field.id }}" type="text" placeholder="{{ field.placeholder }}" class="form-control">
@@ -63,11 +63,14 @@
 
         {% set options = field.options|split(',') %}
 
-        <span class="radio list">
+        <div class="form-check">
         {% for option in options %}
-          <label class="radio"><input name="{{ field.id }}"  type="checkbox" value="{{ option }}"><span>{{ option }}</span></label>
+          <div class="form-check">
+            <input name="{{ field.id }}"  type="checkbox" value="{{ option }}" class="form-check-input">
+            <label class="form-check-label" for="{{ field.id }}">{{ option }}</label>
+          </div>
         {% endfor %}
-        </span>
+        </div>
 
         {% endif %}
 
@@ -77,18 +80,20 @@
 
         <span class="checkbox list">
         {% for option in options %}
-          <label class="checkbox"><input name="{{ field.id }}" type="radio" value="{{ option }}"><span>{{ option }}</span></label>
+          <div class="form-check">
+            <input name="{{ field.id }}" type="radio" value="{{ option }}" class="form-check-input">
+            <label class="form-check-label" for="{{ field.id }}">{{ option }}</label>
+          </div>
         {% endfor %}
         </span>
 
         {% endif %}
 
         {% if field.helperText != ''  %}
-        <span class="help-block">{{ field.helperText }}</span>
+        <small id="emailHelp" class="form-text text-muted">{{ field.helperText }}</small>
         {% endif %}
 
       </div>
-
     {% endfor %}
 
   {% endif %}
@@ -99,9 +104,7 @@
 
   {% endif %}
 
-
 {% endfor %}
-
   <button type="submit" class="btn btn-primary">Submit</button>
 
   <span class="loading">

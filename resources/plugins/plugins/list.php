@@ -36,6 +36,7 @@ foreach ($pages as $page) {
     if (isset($page['tags'])) {
 
       $tags = explode(',', $page['tags']);
+      $tags = array_map('trim', $tags);
 
       if (!in_array($tag, $tags)) {
         continue;

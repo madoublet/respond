@@ -7,14 +7,14 @@
             "name": "balloon.png",
             "url": "files\/balloon.png",
             "thumb": "files\/thumbs\/balloon.png",
-            "caption": "A beautiful hot air balloon in a picturesque setting."
+            "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         },
         {
             "id": "limes-png",
             "name": "limes.png",
             "url": "files\/limes.png",
             "thumb": "files\/thumbs\/limes.png",
-            "caption": "More limes then you can count."
+            "caption": "Vivamus vehicula risus vel eros interdu."
         }
     ]
 }

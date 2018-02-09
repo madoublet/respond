@@ -26,40 +26,11 @@ class Publish
 {
 
     /**
-     * Syncs site to external provider
+     * Copies the theme to the site
      *
      * @param {Site} $site
      */
-    public static function sync($site) {
-
-      // get domain from settings (url)
-      $sync = Setting::getById('sync', $site->id);
-
-      // make sure sync is set
-      if($sync != NULL) {
-
-        // make sure sync is set to S3
-        if($sync == 'S3') {
-
-          $has_synced = S3::sync($site);
-
-          return $has_synced;
-        }
-
-      }
-
-      return false;
-
-
-    }
-
-
-    /**
-     * Pubishes the theme to the site
-     *
-     * @param {Site} $site
-     */
-    public static function publishTheme($theme, $site)
+    public static function copyTheme($theme, $site)
     {
 
         // prevent traversal, #ref: http://bit.ly/2rdsDPS
@@ -80,8 +51,8 @@ class Publish
         // new dest_basepath
         $dest_basepath = realpath(app()->basePath() . '/resources/sites/');
 
-        // copy the private files
-        $src = realpath($src_basepath . '/' . basename($theme) . '/private');
+        // copy the default settings to resources/sites/site-id
+        $src = realpath(app()->basePath() . '/resources/default');
         $dest = $dest_basepath . '/' . basename($site->id);
 
         // copy source
@@ -91,6 +62,20 @@ class Publish
             Utilities::copyDirectory($src, $dest);
         }
 
+    }
+
+    /**
+     * Copies the plugins to the site
+     *
+     * @param {Site} $site
+     */
+    public static function copyPlugins($site)
+    {
+        // copy plugins
+        $src = realpath(app()->basePath() . '/resources/plugins');
+        $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id));
+
+        Utilities::copyDirectory($src, $dest);
     }
 
     /**
@@ -327,147 +312,6 @@ class Publish
       file_put_contents($file, $xml);
 
       return TRUE;
-
-    }
-
-    /**
-     * Migrates a site from R5 to R6
-     *
-     * @param {Site} $site
-     */
-    public static function migrate($user, $site)
-    {
-
-      // get all pages
-      $pages = Page::listAll($user, $site);
-
-      // get html of pages
-      foreach($pages as $page) {
-
-        $url = $page['url'];
-        $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
-
-        // get html of page
-        $file = app()->basePath() . '/public/sites/' . $site->id . '/' . $url . '.html';
-
-        if(file_exists($file)) {
-          $html = file_get_contents($file);
-
-          // remove un-used scripts
-          $html = str_replace('<script src="js/respond.site.js"></script>', '', $html);
-          $html = str_replace('<!-- web components -->', '', $html);
-          $html = str_replace('<script src="components/lib/webcomponentsjs/webcomponents-lite.min.js"></script>', '', $html);
-          $html = str_replace('<link rel="import" href="components/respond-build.html">', '', $html);
-
-          // remove compontents
-          $html = str_replace('<respond-languages></respond-languages>', '', $html);
-          $html = str_replace('<respond-cart></respond-cart>', '', $html);
-          $html = str_replace('<respond-search></respond-search>', '', $html);
-
-          // update map
-          $html = str_replace('<respond-map', '<div respond-plugin type="map"', $html);
-          $html = str_replace('</respond-map>', '</div>', $html);
-
-          // update html
-          $html = str_replace('<respond-html', '<div respond-plugin type="html"', $html);
-          $html = str_replace('</respond-html>', '</div>', $html);
-
-          // update video
-          $html = str_replace('<respond-video', '<div respond-plugin type="video"', $html);
-          $html = str_replace('</respond-video>', '</div>', $html);
-
-          // update gallery
-          $html = str_replace('<respond-gallery galleryid=', '<div respond-plugin type="gallery" gallery=', $html);
-          $html = str_replace('</respond-gallery>', '</div>', $html);
-
-          // update menu
-          $html = str_replace('<respond-menu type=', '<ul respond-plugin type="menu" menu=', $html);
-          $html = str_replace('</respond-gallery>', '</ul>', $html);
-
-          // update form
-          $html = str_replace('<respond-form formid=', '<div respond-plugin type="form" form=', $html);
-          $html = str_replace('</respond-form>', '</div>', $html);
-
-          // remove toggles
-          $html = str_replace('<respond-cart-toggle></respond-cart-toggle>', '', $html);
-          $html = str_replace('<respond-languages-toggle></respond-languages-toggle>', '', $html);
-
-          // replace search toggle
-          $html = str_replace('<respond-search-toggle></respond-search-toggle>', '', $html);
-
-          // load the DOM parser
-          $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-
-          // remove i18n attributes
-          foreach($dom->find('[data-i18n]') as $el) {
-            $el->{'data-i18n'} = null;
-          }
-
-          // remove nested attributes
-          foreach($dom->find('[data-nested]') as $el) {
-            $el->{'data-nested'} = null;
-          }
-
-          // remove backgroundimage
-          foreach($dom->find('[backgroundimage]') as $el) {
-            $el->{'backgroundimage'} = null;
-          }
-
-          // remove backgroundimage
-          foreach($dom->find('[backgroundstyle]') as $el) {
-            $el->{'backgroundstyle'} = null;
-          }
-
-          // remove containerid
-          foreach($dom->find('[data-containerid]') as $el) {
-            $el->{'data-containerid'} = null;
-          }
-
-          // remove containercssclass
-          foreach($dom->find('[data-containercssclass]') as $el) {
-            $el->{'data-containercssclass'} = null;
-          }
-
-          // update blog
-          foreach($dom->find('[display="list-blog"]') as $el) {
-            $el->outertext = '<div respond-plugin type="recent-posts" class="recent-posts"></div>';
-          }
-
-          // remove page
-          foreach($dom->find('[page]') as $el) {
-            $el->{'page'} = null;
-          }
-
-          // set the nav in the header to the main nav
-          foreach($dom->find('header .nav') as $el) {
-            $el->{'respond-plugin'} = "";
-            $el->{'type'} = "menu";
-            $el->{'menu'} = "primary";
-          }
-
-          // remove absolute links to images
-          foreach($dom->find('img') as $el) {
-            $src = $el->src;
-
-            if(isset($src)) {
-              $pos = strpos($src, 'files/');
-              $new_src = substr($src, $pos, strlen($src));
-
-              $el->src = $new_src;
-            }
-
-          }
-
-          // put html back
-          file_put_contents($file, $dom);
-
-        }
-
-
-      }
-
-      // re-publish the plugins
-      Publish::publishPlugins($user, $site);
 
     }
 

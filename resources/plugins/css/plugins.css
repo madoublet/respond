@@ -12,6 +12,10 @@
 		display: inline-block;
 	}
 
+	[respond-form] .g-recaptcha-holder {
+  	margin-bottom: 15px;
+	}
+
 [respond-form] .error {
 	border: 1px solid #CF4647;
 	color: #fff;
@@ -22,6 +26,20 @@
 	border: 1px solid #08B168;
 	color: #fff;
 	background-color: #08B168;
+}
+
+[respond-form] .g-recaptcha {
+  margin-bottom: 15px;
+}
+
+[respond-form] .btn-primary[disabled] {
+    background-color: #f0f0f0;
+    color: #aaa;
+    border: 1px solid #888;
+}
+
+[respond-form] .has-error label {
+    color: red;
 }
 
 /* loading */
@@ -56,9 +74,34 @@
 /* maps */
 .map-container {
   display: block;
-  height: 200px;
+  height: 350px;
   width: 100%;
   border: 1px solid #ddd;
+}
+
+.map-address {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  padding: 10px;
+  width: 400px;
+  margin: 0 0 0 -200px;
+  background-color: rgba(255,255,255,.9);
+}
+
+/* fix for small address */
+.col-md-3 [type="map"] {
+  position: relative;
+}
+
+.col-md-3 .map-address {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  width: 100%;
+  margin: 0;
+  background-color: rgba(255,255,255,.9);
 }
 
 /* list items */
@@ -185,8 +228,10 @@ body .app-toast {
 /* respond-searchbox  */
 .respond-searchbox {
     display: none;
-    width: 100%;
-    height: 100%;
+    width: 95vw;
+    height: 95vh;
+    margin-top: 2.5vh;
+    margin-left: 2.5vw;
     background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
     overflow: hidden;
     position: fixed;
@@ -194,6 +239,9 @@ body .app-toast {
     top:0;
     left: 0;
     transition: all 0.25s ease;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
   .respond-searchbox[visible] {
@@ -244,7 +292,8 @@ body .app-toast {
 .respond-searchbox-form input[type=text]{
   width: 100%;
   padding: 10px;
-  border: 1px solid #888;
+  border: 1px solid #aaa;
+  border-radius: 4px;
 }
 
 .respond-searchbox-close {
@@ -252,4 +301,15 @@ body .app-toast {
   top: 10px;
   right: 10px;
   cursor: pointer;
+}
+
+/* featured post plugin */
+[respond-plugin][type="featured-post"] .row {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+[respond-plugin][type="featured-post"] .col {
+    margin: 0 !important;
+    padding: 0 !important;
 }
