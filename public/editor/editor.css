@@ -64,7 +64,7 @@
       left: 10px;
       background-color: #09203f;
       margin: 0 !important;
-      padding: 0 !important;
+      padding: 0 0 0 15px !important;
       color: #888;
       z-index: 10000;
       visibility: hidden;
@@ -83,40 +83,6 @@
       height: auto;
       overflow: hidden;
     }
-
-    body [role=main] [editor-block] .editor-block-menu x-respond-menu-label {
-      font-family: 'Open Sans', sans-serif !important;
-      position: relative;
-      display: inline-block;
-      font-size: 10px !important;
-      color: #fff;
-      margin: 0 15px 0 0 !important;
-      padding: 12px 0 12px 25px !important;
-      text-transform: uppercase;
-      line-height: normal !important;
-      font-weight: normal !important;
-    }
-
-      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label {
-        color: #aaa;
-        padding: 10px 0 1px 25px !important;
-      }
-
-      body [role=main] [editor-block] .editor-block-menu x-respond-menu-label x-respond-menu-icon {
-        position: absolute;
-        top: 11px;
-        left: 10px;
-        font-size: 16px;
-      }
-
-      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label x-respond-menu-icon {
-        top: 9px;
-      }
-
-      body [role=main] [editor-block] .editor-block-menu:hover x-respond-menu-label {
-        color: #aaa;
-      }
-
 
     body [role=main] [editor-block]:hover .editor-block-menu {
       visibility: visible;
@@ -147,15 +113,7 @@
     }
 
     body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
-      display: none;
-    }
-
-    body [role=main] [editor-block] .editor-block-menu:hover .editor-block-menu-item {
       display: inline-block;
-    }
-
-    body [role=main] [editor-block] .editor-block-menu:hover .editor-block-menu-item[hidden] {
-      display: none;
     }
 
 /* edit icon */
@@ -205,7 +163,7 @@ body [role=main] .editor-element-menu {
     font-family: 'Open Sans', sans-serif !important;
     position: absolute;
     top: -15px;
-    right: 5px;
+    right: 0;
     background-color: #09203f;
     margin: 0 !important;
     padding: 0 !important;
@@ -218,15 +176,10 @@ body [role=main] .editor-element-menu {
     line-height: normal !important;
     border-radius: 20px;
     transition: all .1s ease;
-}
-
-  body [role=main] .editor-element-menu:hover {
-    z-index: 20000;
-    border-radius: 20px;
     width: auto;
     height: auto;
-    overflow: hidden;
-  }
+    z-index: 20000;
+}
 
   body [role=main] [editor-element] .editor-element-menu x-respond-menu-label {
     position: relative;
@@ -241,22 +194,6 @@ body [role=main] .editor-element-menu {
     font-weight: normal !important;
   }
 
-    body [role=main] [editor-element] .editor-element-menu:hover x-respond-menu-label {
-      color: #aaa;
-      padding: 10px 0 10px 25px !important;
-    }
-
-    body [role=main] [editor-element] .editor-element-menu x-respond-menu-label x-respond-menu-icon {
-      position: absolute;
-      top: 11px;
-      left: 10px;
-      font-size: 16px;
-    }
-
-    body [role=main] [editor-element] .editor-element-menu:hover x-respond-menu-label x-respond-menu-icon {
-      top: 9px;
-    }
-
 
   body [role=main] [editor-element]:hover .editor-element-menu {
     visibility: visible;
@@ -270,7 +207,7 @@ body [role=main] .editor-element-menu {
     color: #fff;
     font-size: 12px !important;
     margin: 0 15px 0 0 !important;
-    padding: 10px 0 10px 20px !important;
+    padding: 10px 0 10px 30px !important;
     cursor: pointer;
     font-weight: normal;
     line-height: normal !important;
@@ -282,8 +219,8 @@ body [role=main] .editor-element-menu {
 
   body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item x-respond-menu-icon {
     position: absolute;
-    top: 12px;
-    left: 0;
+    top: 11px;
+    left: 10px;
     margin: 0 !important;
     padding: 0 !important;
     font-size: 14px !important;
@@ -291,10 +228,6 @@ body [role=main] .editor-element-menu {
   }
 
   body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
-    display: none;
-  }
-
-  body [role=main] [editor-element] .editor-element-menu:hover .editor-element-menu-item {
     display: inline-block;
   }
 
@@ -348,21 +281,18 @@ body .editor-config {
   font-family: 'Helvetica','Arial','sans-serif';
   position: fixed;
   z-index: 10000;
-  top: -51px;
-  left: 0;
-  height: 50px;
-  width: 100%;
-  background-color: #09203f;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #EBF2F7;
+  border-left: 1px solid #DDD;
   margin: 0;
   padding: 0;
   color: #fff;
   overflow-x: auto;
   overflow-y: hidden;
   transition: all .2s ease;
-}
-
-body .editor-config .editor-context-body {
-  width: 2000px;
 }
 
 body #editor-link-settings {
@@ -396,9 +326,9 @@ body .editor-config a {
   position: relative;
   float: left;
   cursor: pointer;
-  width: 50px;
-  height: 49px;
-  color: #fff;
+  width: 39px;
+  height: 39px;
+  color: #537895 !important;
   text-align: center;
   line-height: 50px;
   font-size: 13px;
@@ -408,8 +338,17 @@ body .editor-config a {
 body .editor-config a svg {
   display: block;
   margin: 0 auto;
-  width: 40%;
+  width: 50%;
   fill: currentColor;
+}
+
+body .editor-config h4 {
+  display: block;
+  text-transform: uppercase;
+  margin: 0px;
+  padding: 10px 5px 5px 5px;
+  color: #537895;
+  font-size: 11px;
 }
 
 body .editor-config input[type=text] {
@@ -437,47 +376,8 @@ body .editor-config input[type=color] {
   width: 50px;
 }
 
-body .editor-config select {
-  font-size: 13px;
-  box-shadow: none;
-  background: none;
-  outline: none;
-  border: none;
-  border: none;
-  border-radius: 0;
-  padding: 5px 5px 5px 15px;
-  height: 50px;
-  min-width: 50px;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  text-align: center;
-}
-
 body .editor-config a:hover,body .editor-config a:hover {
-  background-color: rgba(255,255,255,0.25);
-}
-
-body .editor-config .editor-layout {
-  position: absolute;
-  right: 0;
-  z-index: 10;
-  border-left: 1px solid #aaa;
-  background-color: #888;
-}
-
-  body .editor-config .editor-layout:hover {
-    background-color: rgba(255,153,0,1);
-    color: #fff;
-  }
-
-/* editor-list */
-#pages-list {
-  max-height: 400px;
-}
-
-#images-list {
-  max-height: 310px;
+  background-color: rgba(255,255,255,0.9);
 }
 
 /* containers */
@@ -683,13 +583,13 @@ body .editor-config .editor-layout {
   font-family: 'Helvetica','Arial','sans-serif';
   position: fixed;
   z-index: 10002;
-  top: 0px;
-  right: -200px;
+  top: 0;
+  right: -205px;
   height: 100%;
-  width: 195px;
+  width: 200px;
   background-color: #EBF2F7;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 4px;
   color: #2F3243;
   border-left: 1px solid #DDD;
   overflow: hidden;
@@ -700,11 +600,12 @@ body .editor-config .editor-layout {
 }
 
   .editor-menu[active] {
-    right: -1px;
+    right: 0;
   }
 
 .editor-menu h4 {
   display: block;
+  font-weight: bold;
   text-transform: uppercase;
   margin: 0px;
   padding: 10px 5px 5px 5px;
@@ -1086,6 +987,7 @@ body .editor-modal .editor-list-item p {
   border: 1px solid #f0f0f0;
   text-align: center;
   color: #2F3243;
+  cursor: pointer;
 }
 
 .respond-plugin span {

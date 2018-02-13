@@ -49,6 +49,7 @@ editor = (function() {
     current: {
       container: null,
       node: null,
+      block: null,
       parent: null,
       element: null,
       image: null,
@@ -141,7 +142,6 @@ editor = (function() {
           div = document.createElement('x-respond-menu');
           div.setAttribute('class', 'editor-block-menu');
           div.setAttribute('contentEditable', 'false');
-          div.innerHTML = '<x-respond-menu-label><x-respond-menu-icon class="material-icons">more_vert</x-respond-menu-icon> ' + editor.i18n('Layout Menu') + '</x-respond-menu-label>';
 
           // create up
           span = document.createElement('x-respond-menu-item');
@@ -155,31 +155,6 @@ editor = (function() {
           span = document.createElement('x-respond-menu-item');
           span.setAttribute('class', 'editor-block-menu-item editor-block-down');
           span.innerHTML = '<x-respond-menu-icon class="material-icons">arrow_downward</x-respond-menu-icon> ' + editor.i18n('Move Down');
-
-          // append the handle to the wrapper
-          div.appendChild(span);
-
-          /*
-          // create duplicate
-          span = document.createElement('span');
-          span.setAttribute('class', 'editor-block-duplicate');
-          span.innerHTML = '<i class="material-icons">content_copy</i> ' + editor.i18n('Duplicate');
-
-          // append the handle to the wrapper
-          div.appendChild(span); */
-
-          // create properties
-          span = document.createElement('x-respond-menu-item');
-          span.setAttribute('class', 'editor-block-menu-item editor-block-properties');
-          span.innerHTML = '<x-respond-menu-icon class="material-icons">settings</x-respond-menu-icon> ' + editor.i18n('Settings');
-
-          // append the handle to the wrapper
-          div.appendChild(span);
-
-          // create remove
-          span = document.createElement('x-respond-menu-item');
-          span.setAttribute('class', 'editor-block-menu-item editor-block-remove');
-          span.innerHTML = '<x-respond-menu-icon class="material-icons">cancel</x-respond-menu-icon> ' + editor.i18n('Remove');
 
           // append the handle to the wrapper
           div.appendChild(span);
@@ -207,7 +182,6 @@ editor = (function() {
       menu = document.createElement('x-respond-menu');
       menu.setAttribute('class', 'editor-element-menu');
       menu.setAttribute('contentEditable', 'false');
-      menu.innerHTML = '<x-respond-menu-label><x-respond-menu-icon class="material-icons">more_vert</x-respond-menu-icon> ' + editor.i18n('Content Menu') + '</x-respond-label>';
 
       // create a handle
       span = document.createElement('x-respond-menu-item');
@@ -216,17 +190,6 @@ editor = (function() {
 
       // append the handle to the wrapper
       menu.appendChild(span);
-
-      span = document.createElement('x-respond-menu-item');
-      span.setAttribute('class', 'editor-element-menu-item editor-properties');
-      span.innerHTML = '<x-respond-menu-icon class="material-icons">settings</x-respond-menu-icon> ' + editor.i18n('Settings');
-
-      // append the handle to the wrapper
-      menu.appendChild(span);
-
-      span = document.createElement('x-respond-menu-item');
-      span.setAttribute('class', 'editor-element-menu-item editor-remove');
-      span.innerHTML = '<x-respond-menu-icon class="material-icons">cancel</x-respond-menu-icon> ' + editor.i18n('Remove');
 
       // append the handle to the wrapper
       menu.appendChild(span);
@@ -369,6 +332,38 @@ editor = (function() {
 
     },
 
+    /*
+     * executes a command
+     */
+    execCommand: function(command) {
+
+      var text, html, block = editor.current.block, element = editor.current.node;
+
+      if(command.toUpperCase() == 'LINK') {
+        // add link html
+        text = editor.getSelectedText();
+        html = '<a>' + text + '</a>';
+
+        document.execCommand("insertHTML", false, html);
+
+        // shows/manages the link dialog
+        editor.showLinkDialog();
+      }
+      else if(command.toUpperCase() == 'ELEMENT.REMOVE') {
+        if(element != null) {
+          element.remove();
+        }
+      }
+      else if(command.toUpperCase() == 'BLOCK.REMOVE') {
+        block.remove();
+        editor.setupBlocks();
+      }
+      else {
+        document.execCommand(command, false, null);
+      }
+
+    },
+
     /**
      * Updates the UI with the attributes
      * obj = { properties: {id, cssClass, html, alt, title, src}, attributes: { custom1, custom2, custom3 } }
@@ -384,6 +379,11 @@ editor = (function() {
       // set el to the current link
       if(obj.type == 'link') {
         el = editor.currLink;
+      }
+
+      // set el to the current block
+      if(obj.type == 'block') {
+        el = editor.current.block;
       }
 
       if(obj.type == 'add-block') {
@@ -454,13 +454,42 @@ editor = (function() {
               }
             }
             else if(key == 'textColor') {
-              if(obj.properties.backgroundRepeat != '') {
-                el.setAttribute('data-text-color', obj.properties.textColor);
+              el.setAttribute('data-text-color', obj.properties.textColor);
+
+              if(obj.properties.textColor != '') {
                 style += 'color: ' + obj.properties.textColor + ';';
               }
             }
+            else if(key == 'textAlignment') {
+              if(obj.properties.textAlignment != '') {
+                el.setAttribute('data-text-alignment', obj.properties.textAlignment);
+                style += 'text-align: ' + obj.properties.textAlignment + ';';
+              }
+            }
+            else if(key == 'textShadowColor') {
+              el.setAttribute('data-text-shadow-color', obj.properties.textShadowColor);
+            }
+            else if(key == 'textShadowHorizontal') {
+              el.setAttribute('data-text-shadow-horizontal', obj.properties.textShadowHorizontal);
+            }
+            else if(key == 'textShadowVertical') {
+              el.setAttribute('data-text-shadow-vertical', obj.properties.textShadowVertical);
+            }
+            else if(key == 'textShadowBlur') {
+              el.setAttribute('data-text-shadow-blur', obj.properties.textShadowBlur);
+            }
 
             });
+      }
+
+      if((el.getAttribute('data-text-shadow-color') || '') != '') {
+        var shadow = 'text-shadow: ';
+        shadow += (el.getAttribute('data-text-shadow-horizontal') || '1') + 'px ';
+        shadow += (el.getAttribute('data-text-shadow-vertical') || '1') + 'px ';
+        shadow += (el.getAttribute('data-text-shadow-blur') || '1') + 'px ';
+        shadow += (el.getAttribute('data-text-shadow-color') || '#555') + ';';
+
+        style += shadow;
       }
 
       el.style = style;
@@ -596,10 +625,10 @@ editor = (function() {
     /**
      * Setup the text menu
      */
-    setupTextMenu: function() {
+    setupSidebar: function() {
 
       // setup menu
-      var x, wrapper, menu = '<div id="editor-text-settings" class="editor-config editor-element-config"><div class="editor-context-body"><a data-action="editor.text.bold"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"></path></g></svg></a><a data-action="editor.text.italic"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z"></path></g></svg></a><a data-action="editor.text.strike"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M10 19h4v-3h-4v3zM5 4v3h5v3h4V7h5V4H5zM3 14h18v-2H3v2z"></path></g></svg></a><a data-action="editor.text.underline"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z"></path></g></svg></a><a data-action="editor.text.link"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></g></svg></a><a data-action="editor.text.image"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"></path></g></svg></a><a data-action="editor.text.code"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z"></path></g></svg></a><a data-action="editor.text.alignLeft"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></g></svg></a><a data-action="editor.text.alignCenter"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"></path></g></svg></a><a data-action="editor.text.alignRight"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"></path></g></svg></a></div></div>';
+      var x, wrapper, menu = '<div id="editor-text-settings" class="editor-config editor-element-config"></div>';
 
       wrapper = document.createElement('div');
       wrapper.innerHTML = menu;
@@ -617,9 +646,6 @@ editor = (function() {
         }
 
       }
-
-      // setup events
-      editor.setupTextEvents();
 
     },
 
@@ -831,11 +857,6 @@ editor = (function() {
             }
 
           }
-        },{
-          selector: "[respond-html]",
-          title: "HTML",
-          display: "HTML",
-          html: '<div respond-html>' + editor.i18n('Tap settings to edit HTML') + '</div>'
         },
         {
           separator: editor.i18n('Plugins')
@@ -899,11 +920,12 @@ editor = (function() {
     },
 
     /**
-     * Shows the text options
+     * Shows the sidebar
      */
-    showTextOptions: function(element) {
+    showSidebar: function(element) {
 
-      var x, link, image, text, fields;
+      /*
+      var x, link, image, text, fields, menu = document.querySelector('.editor-menu');;
 
       // set current element and node
       editor.current.element = element;
@@ -916,8 +938,125 @@ editor = (function() {
 
       // get #editor-config
       text = document.querySelector('#editor-text-settings');
-      text.setAttribute('visible', '');
+      text.setAttribute('visible', ''); */
 
+      var menu = document.querySelector('.editor-menu');
+
+      menu.removeAttribute('active');
+      editor.showElementMenu();
+      editor.showBlockMenu();
+
+    },
+
+    /**
+     * Shows the element menu
+     */
+    showElementMenu: function() {
+
+      // set current node
+      var element = editor.current.node, x, title, selector, attributes = [];
+
+      // see if the element matches a plugin selector
+      for (x = 0; x < editor.menu.length; x += 1) {
+        if (element.matches(editor.menu[x].selector)) {
+          title = editor.menu[x].title;
+          selector = editor.menu[x].selector;
+
+          // get null or not defined
+          if(editor.menu[x].attributes != null && editor.menu[x].attributes != undefined) {
+            attributes = editor.menu[x].attributes;
+          }
+
+          editor.current.menuItem = editor.menu[x];
+        }
+      }
+
+      // get current values for each attribute
+      for (x = 0; x < attributes.length; x++) {
+        attributes[x].value = element.getAttribute(attributes[x].attr) || '';
+      }
+
+      // get the html of the element
+      let html = element.innerHTML;
+      var i = html.indexOf('<x-respond-menu class="editor-element-menu"');
+      html = html.substring(0, i);
+
+      // get background image, background color
+      var backgroundImage = element.getAttribute('data-background-image') || '';
+      var backgroundColor = element.getAttribute('data-background-color') || '';
+      var backgroundSize = element.getAttribute('data-background-size') || '';
+      var backgroundPosition = element.getAttribute('data-background-position') || '';
+      var backgroundRepeat = element.getAttribute('data-background-repeat') || '';
+      var textColor = element.getAttribute('data-text-color') || '';
+      var textAlignment = element.getAttribute('data-text-alignment') || '';
+      var textShadowColor = element.getAttribute('data-text-shadow-color') || '';
+      var textShadowHorizontal = element.getAttribute('data-text-shadow-horizontal') || '';
+      var textShadowVertical = element.getAttribute('data-text-shadow-vertical') || '';
+      var textShadowBlur = element.getAttribute('data-text-shadow-blur') || '';
+
+      window.parent.postMessage({
+        type: 'element',
+        selector: selector,
+        title: title,
+        properties: {
+          id: element.id,
+          cssClass: element.className,
+          backgroundImage: backgroundImage,
+          backgroundColor: backgroundColor,
+          backgroundSize: backgroundSize,
+          backgroundPosition: backgroundPosition,
+          backgroundRepeat: backgroundRepeat,
+          textColor: textColor,
+          textAlignment: textAlignment,
+          textShadowColor: textShadowColor,
+          textShadowHorizontal: textShadowHorizontal,
+          textShadowVertical: textShadowVertical,
+          textShadowBlur: textShadowBlur,
+          html: html
+        },
+        attributes: attributes
+      }, '*');
+
+
+    },
+
+    /**
+     * Shows the block menu
+     */
+    showBlockMenu: function() {
+
+      var block = editor.findParentBySelector(editor.current.node, '[editor-block]');
+
+      if(block !== null) {
+
+        // set current node to block
+        editor.current.block = block;
+
+        // get background image, background color
+        var backgroundImage = block.getAttribute('data-background-image') || '';
+        var backgroundColor = block.getAttribute('data-background-color') || '';
+        var backgroundSize = block.getAttribute('data-background-size') || '';
+        var backgroundPosition = block.getAttribute('data-background-position') || '';
+        var backgroundRepeat = block.getAttribute('data-background-repeat') || '';
+
+        // post message to app
+        window.parent.postMessage({
+          type: 'block',
+          selector: '.block',
+          title: 'Block',
+          properties: {
+            id: block.id,
+            cssClass: block.className,
+            backgroundImage: backgroundImage,
+            backgroundColor: backgroundColor,
+            backgroundSize: backgroundSize,
+            backgroundPosition: backgroundPosition,
+            backgroundRepeat: backgroundRepeat
+          },
+          attributes: []
+        }, '*');
+
+      }
     },
 
     /**
@@ -986,111 +1125,7 @@ editor = (function() {
               element.setAttribute('current-editor-element', 'true');
             }
 
-            // check for remove element
-            if (e.target.matches('.editor-remove')  || editor.findParentBySelector(e.target, '.editor-remove') !== null) {
-              element.remove();
-            }
-            // check for properties element
-            else if (e.target.matches('.editor-properties')  ||  editor.findParentBySelector(e.target, '.editor-properties') !== null) {
-
-              let selector = null, attributes = [], title = "Element";
-
-              // set current node
-              editor.current.node = element;
-
-              // see if the element matches a plugin selector
-              for (x = 0; x < editor.menu.length; x += 1) {
-                if (element.matches(editor.menu[x].selector)) {
-                  title = editor.menu[x].title;
-                  selector = editor.menu[x].selector;
-
-                  // get null or not defined
-                  if(editor.menu[x].attributes != null && editor.menu[x].attributes != undefined) {
-                    attributes = editor.menu[x].attributes;
-                  }
-
-                  editor.current.menuItem = editor.menu[x];
-                }
-              }
-
-              // get current values for each attribute
-              for (x = 0; x < attributes.length; x++) {
-                attributes[x].value = element.getAttribute(attributes[x].attr) || '';
-              }
-
-              // get the html of the element
-              let html = element.innerHTML;
-              var i = html.indexOf('<x-respond-menu class="editor-element-menu"');
-              html = html.substring(0, i);
-
-              // get background image, background color
-              var backgroundImage = element.getAttribute('data-background-image') || '';
-              var backgroundColor = element.getAttribute('data-background-color') || '';
-              var backgroundSize = element.getAttribute('data-background-size') || '';
-              var backgroundPosition = element.getAttribute('data-background-position') || '';
-              var backgroundRepeat = element.getAttribute('data-background-repeat') || '';
-              var textColor = element.getAttribute('data-text-color') || '';
-
-              window.parent.postMessage({
-                type: 'element',
-                selector: selector,
-                title: title,
-                properties: {
-                  id: element.id,
-                  cssClass: element.className,
-                  backgroundImage: backgroundImage,
-                  backgroundColor: backgroundColor,
-                  backgroundSize: backgroundSize,
-                  backgroundPosition: backgroundPosition,
-                  backgroundRepeat: backgroundRepeat,
-                  textColor: textColor,
-                  html: html
-                },
-                attributes: attributes
-              }, '*');
-
-              return;
-
-            }
-            // properites block
-            else if (e.target.matches('.editor-block-properties') || editor.findParentBySelector(e.target, '.editor-block-properties') !== null) {
-
-              block = editor.findParentBySelector(e.target, '[editor-block]');
-
-              if(block !== null) {
-
-                // set current node to block
-                editor.current.node = block;
-
-                // get background image, background color
-                var backgroundImage = block.getAttribute('data-background-image') || '';
-                var backgroundColor = block.getAttribute('data-background-color') || '';
-                var backgroundSize = block.getAttribute('data-background-size') || '';
-                var backgroundPosition = block.getAttribute('data-background-position') || '';
-                var backgroundRepeat = block.getAttribute('data-background-repeat') || '';
-
-                // post message to app
-                window.parent.postMessage({
-                  type: 'block',
-                  selector: '.block',
-                  title: 'Block',
-                  properties: {
-                    id: block.id,
-                    cssClass: block.className,
-                    backgroundImage: backgroundImage,
-                    backgroundColor: backgroundColor,
-                    backgroundSize: backgroundSize,
-                    backgroundPosition: backgroundPosition,
-                    backgroundRepeat: backgroundRepeat
-                  },
-                  attributes: []
-                }, '*');
-
-              }
-
-            }
-            // move block up
-            else if (e.target.matches('.editor-block-up') ||  editor.findParentBySelector(e.target, '.editor-block-up') !== null) {
+            if (e.target.matches('.editor-block-up') ||  editor.findParentBySelector(e.target, '.editor-block-up') !== null) {
 
               block = editor.findParentBySelector(e.target, '[editor-block]');
 
@@ -1117,25 +1152,6 @@ editor = (function() {
                 }
 
               }
-
-              editor.setupBlocks();
-
-            }
-            // remove block
-            else if (e.target.matches('.editor-block-remove') ||  editor.findParentBySelector(e.target, '.editor-block-remove') !== null) {
-
-              block = editor.findParentBySelector(e.target, '[editor-block]');
-              block.remove();
-
-              editor.setupBlocks();
-
-            }
-            // remove block
-            else if (editor.findParentBySelector(e.target, '.editor-block-duplicate') !== null) {
-
-              block = editor.findParentBySelector(e.target, '[editor-block]');
-
-              editor.duplicateBlock(block, 'before');
 
               editor.setupBlocks();
 
@@ -1181,10 +1197,22 @@ editor = (function() {
                 }, '*');
 
             }
+            else if (editor.findParentBySelector(e.target, '[respond-plugin]') !== null) {
+
+                var parentNode = editor.findParentBySelector(e.target, '[respond-plugin]');
+
+                // get current node
+                editor.current.node = parentNode;
+
+                // shows the text options
+                editor.showSidebar(parentNode);
+            }
             else if (e.target.hasAttribute('contentEditable')) {
 
+              editor.current.node = e.target;
+
               // shows the text options
-              editor.showTextOptions(e.target);
+              editor.showSidebar(e.target);
 
             }
             else if (e.target.parentNode.hasAttribute('contentEditable') && e.target.parentNode) {
@@ -1512,6 +1540,20 @@ editor = (function() {
 
       el.insertBefore(newNode, el.childNodes[0]);
 
+      // setup contentEditable
+      var types = 'p, h1, h2, h3, h4, h5, li, td, th, blockquote, pre';
+
+      // set editable children
+      var editable = newNode.querySelectorAll(types);
+
+      for (x = 0; x < editable.length; x += 1) {
+        editable[x].setAttribute('contentEditable', 'true');
+      }
+
+      if (types.indexOf(newNode.nodeName.toLowerCase()) != -1) {
+        newNode.setAttribute('contentEditable', 'true');
+      }
+
       // re-init sortable
       editor.setupSortable();
 
@@ -1519,171 +1561,6 @@ editor = (function() {
       editor.setupBlocks();
 
       return newNode;
-
-    },
-
-
-    /**
-     * Setup text events (e.g. bold, italic, etc)
-     */
-    setupTextEvents: function() {
-
-      var x, arr, el, action, text, html, input, value;
-
-      arr = document.querySelectorAll('.editor-config');
-
-      for (x = 0; x < arr.length; x += 1) {
-
-        // delegate on .editor-config
-        ['mousedown', 'touchstart'].forEach(function(e) {
-
-          arr[x].addEventListener(e, function(e) {
-
-            el = e.target;
-
-            if (el.nodeName !== 'A') {
-              el = editor.findParentBySelector(el, '[data-action]');
-            }
-
-            // look for [data-model]
-            if (el.hasAttribute('data-action')) {
-
-              action = el.getAttribute('data-action');
-
-              if (action == 'editor.text.bold') {
-                document.execCommand("Bold", false, null);
-                return false;
-              } else if (action == 'editor.text.italic') {
-                document.execCommand("Italic", false, null);
-                return false;
-              } else if (action == 'editor.text.strike') {
-                document.execCommand("strikeThrough", false, null);
-                return false;
-              } else if (action == 'editor.text.subscript') {
-                document.execCommand("subscript", false, null);
-                return false;
-              } else if (action == 'editor.text.superscript') {
-                document.execCommand("superscript", false, null);
-                return false;
-              } else if (action == 'editor.text.underline') {
-                document.execCommand("underline", false, null);
-                return false;
-              }
-              else if (action == 'editor.text.link') {
-
-                // add link html
-                text = editor.getSelectedText();
-                html = '<a>' + text + '</a>';
-
-                document.execCommand("insertHTML", false, html);
-
-                // shows/manages the link dialog
-                editor.showLinkDialog();
-
-                return false;
-              }
-              else if (action == 'editor.text.image') {
-
-                // add link html
-                text = editor.getSelectedText();
-                html = '<img src="{{path}}images/placeholder-inline.png" class="pull-left">';
-                html = editor.replaceAll(html, '{{path}}', editor.path);
-
-                document.execCommand("insertHTML", false, html);
-
-
-                return false;
-              }
-              else if (action == 'editor.text.code') {
-
-                // create code html
-                text = editor.getSelectedText();
-                html = '<code>' + text + '</code>';
-
-                document.execCommand("insertHTML", false, html);
-                return false;
-              }
-              else if (action == 'editor.text.alignLeft') {
-                input = document.querySelector('.editor-modal [data-model="node.class"]');
-
-                // clear existing alignments
-                value = input.value;
-
-                value = editor.replaceAll(value,'text-center', '');
-                value = editor.replaceAll(value,'text-left', '');
-                value = editor.replaceAll(value,'text-right', '');
-                value += ' text-left';
-
-                console.log(value);
-
-                // update value and trigger change
-                input.value = value.trim();
-
-                // fire event
-                input.dispatchEvent(new Event('change', {
-                  'bubbles': true
-                }));
-
-                return false;
-              }
-              else if (action == 'editor.text.alignRight') {
-                input = document.querySelector('.editor-modal [data-model="node.class"]');
-
-                // clear existing alignments
-                value = input.value;
-
-                value = editor.replaceAll(value, 'text-center', '');
-                value = editor.replaceAll(value, 'text-left', '');
-                value = editor.replaceAll(value, 'text-right', '');
-                value += ' text-right';
-
-                // update value and trigger change
-                input.value = value.trim();
-
-                // fire event
-                input.dispatchEvent(new Event('change', {
-                  'bubbles': true
-                }));
-
-                return false;
-              }
-              else if (action == 'editor.text.alignCenter') {
-                input = document.querySelector(
-                  '.editor-modal [data-model="node.class"]');
-
-                // clear existing alignments
-                value = input.value;
-
-                value = editor.replaceAll(value,
-                  'text-center', '');
-                value = editor.replaceAll(value,
-                  'text-left', '');
-                value = editor.replaceAll(value,
-                  'text-right', '');
-                value += ' text-center';
-
-                // update value and trigger change
-                input.value = value.trim();
-
-                // fire event
-                input.dispatchEvent(new Event('change', {
-                  'bubbles': true
-                }));
-
-                return false;
-              } else if (action == 'editor.text.undo') {
-                document.execCommand("undo", false, null);
-                return false;
-              }
-
-
-            }
-
-          }, false);
-
-        });
-
-      }
 
     },
 
@@ -1843,43 +1720,6 @@ editor = (function() {
           savedSel.select();
         }
       }
-    },
-
-    /**
-     * Executes a function by its name and applies arguments
-     * @param {HTMLElement} node
-     */
-    createTextStyle: function(node) {
-
-      var style, textColor, textSize, textShadowColor, textShadowHorizontal, textShadowVertical, textShadowBlur;
-
-      // get current node
-      style = '';
-
-      // build a style attribute for (text-color, text-size, text-shadow-color, text-shadow-vertical, text-shadow-horizontal, text-shadow-blur)
-      textColor = node.getAttribute('text-color') || '';
-      textSize = node.getAttribute('text-size') || '';
-      textShadowColor = node.getAttribute('text-shadow-color') || '';
-      textShadowHorizontal = node.getAttribute('text-shadow-horizontal') || '';
-      textShadowVertical = node.getAttribute('text-shadow-horizontal') || '';
-      textShadowBlur = node.getAttribute('text-shadow-blur') || '';
-
-      if (textColor !== '') {
-        style += 'color:' + textColor + ';';
-      }
-
-      if (textSize !== '') {
-        style += 'font-size:' + textSize + ';';
-      }
-
-      if (textShadowColor !== '') {
-        style += 'text-shadow: ' + textShadowHorizontal + ' ' +
-          textShadowVertical + ' ' + textShadowBlur + ' ' +
-          textShadowColor + ';';
-      }
-
-      return style;
-
     },
 
     /**
@@ -2268,7 +2108,7 @@ editor = (function() {
             editor.setupMenu(config.path);
             editor.setupToast();
             editor.createMenu(config.path);
-            editor.setupTextMenu();
+            editor.setupSidebar();
             editor.translate();
 
             // setup loaded event

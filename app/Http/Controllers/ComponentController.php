@@ -50,7 +50,12 @@ class ComponentController extends Controller
     $id = $request->input('auth-id');
 
     // get url, title and description
+    $name = $request->json()->get('name');
     $url = $request->json()->get('url');
+    $codeOnly = $request->json()->get('codeOnly');
+
+    // convert to boolean
+    $codeOnly = filter_var($codeOnly, FILTER_VALIDATE_BOOLEAN);
 
     // get the site
     $site = Site::getById($id);
@@ -64,7 +69,9 @@ class ComponentController extends Controller
 
     // set component data
     $data = array(
-      'url' => $url
+      'url' => $url,
+      'name' => $name,
+      'codeOnly' => $codeOnly
     );
 
     // add a component

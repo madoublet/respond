@@ -94,7 +94,11 @@ class Setting {
 
     foreach($settings as $setting) {
 
-      $value = $setting['value'];
+      $value = '';
+
+      if(isset($setting['value'])) {
+        $value = $setting['value'];
+      }
 
       // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
       if(isset($setting['encrypted'])) {
@@ -130,7 +134,11 @@ class Setting {
 
     foreach($settings as &$setting) {
 
-      $value = $setting['value'];
+      $value = '';
+
+      if(isset($setting['value'])) {
+        $value = $setting['value'];
+      }
 
       // for encrypted settings, just return ******** when listed (this value is only decrypted in getById)
       if(isset($setting['encrypted'])) {

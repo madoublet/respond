@@ -16,8 +16,9 @@ use Sunra\PhpSimple\HtmlDomParser;
  */
 class Component {
 
-  public $title;
   public $url;
+  public $name;
+  public $codeOnly;
 
   public static $ISO8601 = "Y-m-d\TH:i:sO";
 
@@ -31,6 +32,11 @@ class Component {
       if(property_exists(__CLASS__,$key)) {
         $this->$key = $val;
       }
+    }
+
+    // fallback for location
+    if(isset($this->codeOnly) === false) {
+      $this->codeOnly = false;
     }
   }
 
@@ -94,7 +100,7 @@ class Component {
       $content = str_replace('{{page.description}}', "Description for a new component.", $content);
 
       // set location
-      $location = $dest.'/'.$component->url.'.html';
+      $location = $dest.'/components/'.$component->url.'.html';
 
       $dir = dirname($location);
 
@@ -111,10 +117,29 @@ class Component {
 
       // set main
       if(isset($el)) {
-        file_put_contents($dest.'/'.$component->url.'.html', $el->innertext);
+        file_put_contents($dest.'/components/'.$component->url.'.html', $el->innertext);
       }
 
     }
+
+    // add component to JSON file
+    $json_file = app()->basePath().'/public/sites/'.$site->id.'/data/components.json';
+    $data = array();
+
+    if(file_exists($json_file)) {
+      $json = file_get_contents($json_file);
+      $data = json_decode($json, true);
+    }
+
+    // push page to array
+    array_push($data, array(
+        'name' => $component->name,
+        'url' => $component->url.'.html',
+        'codeOnly' => $component->codeOnly
+      ));
+
+    // save array
+    file_put_contents($json_file, json_encode($data, JSON_PRETTY_PRINT));
 
     // return the component
     return $component;
@@ -171,18 +196,50 @@ class Component {
       unlink($component);
     }
 
+    // remove from JSON file
+    $json_file = app()->basePath().'/public/sites/'.$site->id.'/data/components.json';
+
+    $data = array();
+
+    if(file_exists($json_file)) {
+      $json = file_get_contents($json_file);
+      $data = json_decode($json, true);
+    }
+
+    $i = 0;
+
+    // walk through data
+    foreach($data as $component) {
+
+      // update the product with the given ID
+      if($component['url'] == $url) {
+        unset($data[$i]);
+      }
+
+      $i++;
+
+    }
+
+    // prevent showing the index (e.g. "0":{})
+    $json_arr = array_values($data);
+
+    // save $data
+    file_put_contents($json_file, json_encode($data, JSON_PRETTY_PRINT));
+
     return TRUE;
 
   }
+
   /**
-   * Lists components
+   * Refresh JSON
    *
    * @param {string} $siteId
    * @return Response
    */
-  public static function listAll($siteId){
+  public static function refreshJSON($siteId) {
 
-    // set dir
+    // set json_file, dir
+    $json_file = app()->basePath().'/public/sites/'.$siteId.'/data/components.json';
     $dir = app()->basePath().'/public/sites/'.$siteId.'/components';
 
     $arr = array();
@@ -205,11 +262,46 @@ class Component {
       $location = str_replace("components/", "", $file);
 
       array_push($arr, array(
-        "title" => $name,
         "url" => $location,
+        "name" => $name,
+        "codeOnly" => false
       ));
 
+    }
 
+    // encode arr
+    $content = json_encode($arr, JSON_PRETTY_PRINT);
+
+    // update content
+    file_put_contents($json_file, $content);
+
+    return $arr;
+
+  }
+
+  /**
+   * Lists components
+   *
+   * @param {string} $siteId
+   * @return Response
+   */
+  public static function listAll($siteId){
+
+    $arr = array();
+
+    // get base path for the site
+    $json_file = app()->basePath().'/public/sites/'.$siteId.'/data/components.json';
+
+    // try to refriefe JSON file
+    if(file_exists($json_file)) {
+      $json = file_get_contents($json_file);
+
+      $arr = json_decode($json, true);
+    }
+    else {
+
+      // refresh the JSON file
+      $arr = Component::refreshJSON($siteId);
     }
 
     return $arr;

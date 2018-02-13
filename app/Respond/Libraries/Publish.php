@@ -118,7 +118,7 @@ class Publish
     {
 
       // recopy the plugins
-      copyPlugins($site);
+      Publish::copyPlugins($site);
 
       // combine the css
       Publish::combineCSS($site);
@@ -370,7 +370,33 @@ class Publish
 
             }
 
+            // handle toggles
+            if(isset($setting['toggles'])) {
+
+              // set attribute
+              if(isset($setting['attribute'])) {
+
+                // find setting
+                $els = $dom->find('['.$setting['id'].']');
+
+                // set attribute
+                foreach($els as $el) {
+
+                  if($setting['value'] == 'true') {
+                    $el->setAttribute($setting['attribute'], $setting['attribute']);
+                  }
+                  else {
+                    $el->removeAttribute($setting['attribute']);
+                  }
+
+                }
+
+              }
+
+            }
+
           }
+
 
           // remove existing inline styles
           $styles = $dom->find('[respond-settings]');

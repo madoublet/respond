@@ -262,10 +262,10 @@ class EditController extends Controller
               // remove inner part of contents
               $els = $dom->find('div');
 
-              // add references to each element
+              // clear out the contents of the plugin
               foreach($els as $el) {
                 if(isset($el->{'respond-plugin'})) {
-                  $el->inntertext = '';
+                  $el->innertext = '';
                 }
               }
 
@@ -295,6 +295,11 @@ editor.setup({
   saveUrl: '$saveUrl'
 });
 </script>
+<style>
+  body {
+    margin-right: 200px !important;
+  }
+</style>
 EOD;
 
               // find body element
