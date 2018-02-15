@@ -1,0 +1,50 @@
+[
+    {
+      "id": "url",
+      "label": "URL",
+      "description": "The url for your site, e.g.: https://respondcms.com",
+      "type": "text",
+      "value": ""
+    },
+    {
+        "id": "theme-logo",
+        "label": "Logo",
+        "description": "Primary logo of the site",
+        "type": "image",
+        "value": "resources\/logo.png",
+        "sets": "attribute",
+        "attribute": "src"
+    },
+    {
+        "id": "theme-icon",
+        "label": "Icon",
+        "description": "The favicon used for the site",
+        "type": "image",
+        "value": "resources\/icon.png",
+        "sets": "attribute",
+        "attribute": "href"
+    },
+    {
+        "id": "theme-color",
+        "label": "Color",
+        "description": "The color used as the Android application color",
+        "type": "text",
+        "value": "#888",
+        "sets": "attribute",
+        "attribute": "content"
+    },
+    {
+        "id": "reCAPTCHA-site-key",
+        "label": "reCAPTCHA Site Key",
+        "description": "The site key provided at https://www.google.com/recaptcha/",
+        "type": "text",
+        "value": ""
+    },
+    {
+        "id": "reCAPTCHA-secret-key",
+        "label": "reCAPTCHA Secret Key",
+        "description": "The secret key provided at https://www.google.com/recaptcha/",
+        "type": "text",
+        "value": ""
+    }
+]

@@ -30,7 +30,11 @@ gulp.task('create-zip', function() {
       'public/scripts.93d1f5955ab6e697cc00.bundle.js',
       'public/styles.6cfdffb333348d0a866e.bundle.css',
       'public/install/**/*',
-      'public/themes/bootstrap/**/*',
+      'public/themes/executive/**/*',
+      'public/themes/simple/**/*',
+      'public/themes/energy/**/*',
+      'public/themes/serene/**/*',
+      'public/themes/market/**/*',
       'public/.htaccess',
       'public/index.html',
       'public/index.php',
@@ -92,9 +96,17 @@ gulp.task('create-zip-pro', function() {
       'public/scripts.2984d6f1578c3464f303.bundle.js',
       'public/styles.8a6a7f1c14ebea1598d0.bundle.css',
       'public/install/**/*',
-      'public/themes/bootstrap/**/*',
-      'public/themes/foundation/**/*',
-      'public/themes/material/**/*',
+      'public/themes/aspire/**/*',
+      'public/themes/base/**/*',
+      'public/themes/broadway/**/*',
+      'public/themes/energy/**/*',
+      'public/themes/executive/**/*',
+      'public/themes/highrise/**/*',
+      'public/themes/market/**/*',
+      'public/themes/serene/**/*',
+      'public/themes/sidebar/**/*',
+      'public/themes/simple/**/*',
+      'public/themes/stark/**/*',
       'public/.htaccess',
       'public/index.html',
       'public/index.php',
@@ -131,18 +143,6 @@ gulp.task('copy-respond-ui', function() {
 
 });
 
-// copy folders
-gulp.task('copy-folders', function() {
-
-  // copy folders
-  var libs = [
-      'node_modules/hashedit/**/*'
-      ];
-
-    return gulp.src(libs, {base: './node_modules/'})
-  		.pipe(gulp.dest('public/app/libs'));
-
-});
 
 // copy js
 gulp.task('copy-js', function() {
@@ -161,7 +161,7 @@ gulp.task('copy-css', function() {
 });
 
 // copy
-gulp.task('default', gulp.series(['copy-folders', 'copy-respond-ui']));
+gulp.task('default', gulp.series(['copy-respond-ui']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));

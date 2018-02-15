@@ -1,0 +1,237 @@
+/* support hashedit menu bar */
+[hashedit-active] {
+  padding-top: 50px;
+}
+
+/* global */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: 'Quicksand';
+}
+
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
+	margin-bottom: 25px;
+}
+
+body h1, body h2, body h3, body h4, body h5{
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+body p, body td, body th, body small, body li, body label, body input {
+  color: #555;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+}
+
+/* footer */
+body footer {
+  border-bottom: 0;
+  background-color: #888;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 0;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+	body footer .container{
+		text-align: left;
+		border-bottom: 0 !important;
+	}
+
+	body footer h3, body footer p, body footer a {
+		color: #fff !important;
+	}
+
+	body footer h3 {
+  	font-size: 22px;
+	}
+
+	body footer p {
+  	font-size: 15px;
+	}
+
+	body footer ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+	}
+
+	body footer li {
+    margin: 0;
+    padding: 0 10px;
+    display: inline-block;
+    color: #aaa;
+	}
+
+	body footer li a {
+		color: #00A0B0;
+    font-size: 14px;
+	}
+
+	body footer h3, body footer p {
+		text-align: center;
+	}
+
+	body footer li a.dropdown-item {
+		color: #555 !important;
+    font-size: 14px;
+	}
+
+
+/* header */
+body header {
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  min-height: 60px;
+  background-color: #8794a7;
+}
+
+  body header .navbar-brand {
+    position: absolute;
+    top: 13px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  body header .primary-menu {
+    margin-top: 50px;
+  }
+
+  body header .navbar-brand img {
+    margin: 0;
+    padding: 0;
+  	height: 25px;
+  }
+
+  body header .header-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  body header .header-action {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 0 0 5px;
+    min-width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  /* show/hide cart */
+  body header .header-action[respond-cart] {
+    display: none;
+  }
+
+  body[show-respond-cart] header .header-action[respond-cart] {
+    display: inline-block;
+  }
+
+  body header .header-action:hover {
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
+  }
+
+  body header .header-action i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  body header .header-action span {
+    display: inline-block;
+    margin: 0 0 0 25px;
+    padding: 0;
+    color: #fff;
+    font-size: 12px;
+  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 768px) {
+
+
+  body header .primary-menu {
+    margin-right: 50px;
+    margin-top: 0;
+  }
+
+  body[show-respond-cart] header .primary-menu {
+    margin-right: 140px;
+    margin-top: 0;
+  }
+
+}
+
+/* jumbotron */
+body.home .jumbotron {
+  position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	border-radius: 0 !important;
+	color: #fff;
+	max-width: 100%;
+	margin: 0;
+	padding: 240px 20px 40px 20px !important;
+}
+
+body.home main {
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.home .row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+body.home .jumbotron h1,
+body.home .jumbotron h2,
+body.home .jumbotron h3,
+body.home .jumbotron h4,
+body.home .jumbotron h5 {
+  margin: 0 0 20px 0;
+  padding: 0;
+	color: #fff;
+	max-width: 600px;
+	font-size: 60px;
+	font-weight: 400;
+}
+
+body.home .jumbotron p {
+  margin: 0 0 20px 0;
+  padding: 0;
+	color: #fff;
+	max-width: 600px;
+	font-size: 18px;
+}
+
+body.home .jumbotron a {
+  display: inline-block;
+	color: #fff;
+	border: 1px solid #fff;
+	padding: 10px 15px;
+}
+
+/* container */
+body.content main.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 500px;
+}

@@ -1,0 +1,36 @@
+{
+  "id": "primary",
+  "name": "Primary",
+  "items": [
+      {
+        "cssClass": "",
+        "isNested": false,
+        "html": "Home",
+        "url": "index"
+      },
+      {
+        "cssClass": "",
+        "isNested": false,
+        "html": "Blog",
+        "url": "blog"
+      },
+      {
+        "cssClass": "",
+        "isNested": false,
+        "html": "Gallery",
+        "url": "gallery"
+      },
+      {
+        "cssClass": "",
+        "isNested": false,
+        "html": "About",
+        "url": "page/about"
+      },
+      {
+        "cssClass": "",
+        "isNested": false,
+        "html": "Contact",
+        "url": "page/contact"
+      }
+  ]
+}

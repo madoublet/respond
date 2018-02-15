@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <title>Blog</title>
+
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Come read our posts on our blog">
+    <meta name="keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <!-- set base -->
+    <base href="">
+
+    <!-- open graph -->
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+
+    <!-- icons -->
+    <link theme-icon="" href="resources/icon.png" rel="icon">
+    <meta theme-color="" content="#888" name="msapplication-TileColor">
+    <meta theme-color="" content="#888" name="msapplication-TileImage">
+    <link theme-icon="" href="resources/icon.png" rel="apple-touch-icon">
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- css -->
+    <link type="text/css" href="css/site.min.css" rel="stylesheet">
+
+    <!-- google maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+  </head>
+
+  <body class="content">
+
+    <header role="banner">
+
+      <nav class="navbar navbar-expand-md navbar-light justify-content-end">
+
+        <a class="navbar-brand" href="index"><img theme-logo="" src="resources/logo.png"></a>
+
+        <div id="header-primary-menu" class="primary-menu collapse navbar-collapse">
+
+          <ul respond-plugin="" type="menu" menu="primary" class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link active" href="index">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog">Blog</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="gallery">Gallery</a>
+                <a class="dropdown-item" href="page/about">About</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="page/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="page/contact">Contact</a></li>
+          </ul>
+
+        </div>
+
+        <div class="header-actions">
+
+          <a class="header-action d-md-none" data-toggle="collapse" data-target="#header-primary-menu">
+            <i class="material-icons">menu</i>
+          </a>
+
+          <a class="header-action" respond-cart="" cart-toggle="">
+            <i class="material-icons">shopping_cart</i> <span cart-total="">$0.00</span>
+          </a>
+
+          <a class="header-action" respond-search="">
+            <i class="material-icons">search</i>
+          </a>
+
+        </div>
+
+      </nav>
+
+    </header>
+    
+    <main id="content" class="container" role="main">
+      <div id="block-1" class="block row">
+        <div class="col col-md-12">
+    		  <h4>Most Recent Post</h4>
+    		  <div respond-plugin="" type="featured-post"></div>
+
+    		  <h4>More Posts</h4>
+    		  <div respond-plugin="" type="recent-posts" class="recent-posts"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <div class="block row">
+          <div class="col col-md-12">
+            <h3>About</h3>
+            <p>This site is powered by <a href="http://respondcms.com">Respond CMS</a>. Respond CMS is an open source content management system that you can use to build beautiful, responsive websites. The latest version features Bootstrap 3.0, robust themes, a complete REST API, and a beautiful UI. Images from <a href="https://unsplash.com/">Unsplash</a>.</p>
+          </div>
+        </div>
+        <div class="block row">
+          <div class="col col-md-12 text-center">
+
+            <ul respond-plugin="" type="menu" menu="footer">
+              <li class="nav-item"><a class="nav-link active" href="index">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="blog">Blog</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="gallery">Gallery</a>
+                  <a class="dropdown-item" href="page/about">About</a>
+                </div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
+              <li class="nav-item"><a class="nav-link" href="page/about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="page/contact">Contact</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    </body>
+
+  <!-- js -->
+  <script src="js/site.all.js"></script>
+
+</html>

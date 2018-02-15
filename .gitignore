@@ -34,6 +34,13 @@ remove_site
 # pro
 /app/Pro
 /app/Pro/*
+/public/themes/aspire
+/public/themes/base
+/public/themes/broadway
+/public/themes/custom
+/public/themes/highrise
+/public/themes/sidebar
+/public/themes/stark
 
 # theme development
 /public/themes/respond-themes
