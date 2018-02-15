@@ -8,6 +8,8 @@ composer.phar
 .env
 remove_site
 
+
+
 # local development
 /public/sites
 /resources/sites
@@ -34,6 +36,7 @@ remove_site
 # pro
 /app/Pro
 /app/Pro/*
+/dist/release.pro.zip
 /public/themes/aspire
 /public/themes/base
 /public/themes/broadway
