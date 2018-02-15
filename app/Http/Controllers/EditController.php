@@ -297,7 +297,7 @@ editor.setup({
 </script>
 <style>
   body {
-    margin-right: 200px !important;
+    margin-left: 250px !important;
   }
 </style>
 EOD;

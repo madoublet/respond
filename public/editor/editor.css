@@ -277,23 +277,7 @@ body [contentEditable=true] a {
 }
 
 /* config */
-body .editor-config {
-  font-family: 'Helvetica','Arial','sans-serif';
-  position: fixed;
-  z-index: 10000;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 200px;
-  background-color: #EBF2F7;
-  border-left: 1px solid #DDD;
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  overflow-x: auto;
-  overflow-y: hidden;
-  transition: all .2s ease;
-}
+
 
 body #editor-link-settings {
   z-index: 10004;
