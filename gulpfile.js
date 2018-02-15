@@ -4,9 +4,75 @@ const zip = require('gulp-zip');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify');
 
-
 // create a zip for the release
 gulp.task('create-zip', function() {
+
+    var bundlePaths = [
+      'bootstrap/**/*',
+      'database/**/*',
+      'design/**/*',
+      'app/Console/**/*',
+      'app/Events/**/*',
+      'app/Exceptions/**/*',
+      'app/Http/**/*',
+      'app/Jobs/**/*',
+      'app/Listeners/**/*',
+      'app/Providers/**/*',
+      'app/Respond/**/*',
+      'app/Providers/**/*',
+      'app/User.php',
+      'public/assets/**/*',
+      'public/favicon.ico',
+      'public/0.a9271393cee4eadde776.chunk.js',
+      'public/inline.2a85d62a1fc469d5c57c.bundle.js',
+      'public/main.a337fef880d63fb8b5ba.bundle.js',
+      'public/polyfills.a3edfa5e652bca13d8b6.bundle.js',
+      'public/scripts.93d1f5955ab6e697cc00.bundle.js',
+      'public/styles.6cfdffb333348d0a866e.bundle.css',
+      'public/install/**/*',
+      'public/themes/bootstrap/**/*',
+      'public/.htaccess',
+      'public/index.html',
+      'public/index.php',
+      'resources/emails/**/*',
+      'resources/views/**/*',
+      'storage/**/*',
+      'tests/**/*',
+      'typings/**/*',
+      'vendor/alchemy/**/*',
+      'vendor/autoload.php',
+      'vendor/composer/**/*',
+      'vendor/doctrine/**/*',
+      'vendor/firebase/**/*',
+      'vendor/google/**/*',
+      'vendor/guzzlehttp/**/*',
+      'vendor/illuminate/**/*',
+      'vendor/laravel/**/*',
+      'vendor/monolog/**/*',
+      'vendor/mtdowling/**/*',
+      'vendor/nesbot/**/*',
+      'vendor/nikic/**/*',
+      'vendor/paragonie/**/*',
+      'vendor/phpmailer/**/*',
+      'vendor/psr/**/*',
+      'vendor/sunra/**/*',
+      'vendor/symfony/**/*',
+      'vendor/twig/**/*',
+      'vendor/vlucas/**/*',
+      '.env.example',
+      'artisan',
+      'LICENSE'
+    ];
+
+    return gulp.src(bundlePaths, {base: './', follow: true})
+  		.pipe(zip('release.zip'))
+  		.pipe(gulp.dest('./dist'));
+
+});
+
+
+// create a zip for the release
+gulp.task('create-zip-pro', function() {
 
     var bundlePaths = [
       'app/**/*',
@@ -41,7 +107,7 @@ gulp.task('create-zip', function() {
     ];
 
     return gulp.src(bundlePaths, {base: './', follow: true})
-  		.pipe(zip('release.zip'))
+  		.pipe(zip('release.pro.zip'))
   		.pipe(gulp.dest('./dist'));
 
 });
