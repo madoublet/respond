@@ -18,6 +18,7 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 // Twig Extensions
 use App\Respond\Extensions\BetterSortTwigExtension;
+use App\Respond\Extensions\MoneyFormatTwigExtension;
 
 use Exception;
 
@@ -744,6 +745,7 @@ class Publish
       $loader = new \Twig_Loader_Filesystem($template_dirs);
       $twig = new \Twig_Environment($loader);
       $twig->addExtension(new BetterSortTwigExtension());
+      $twig->addExtension(new MoneyFormatTwigExtension());
 
       // make sure the html is not empty
       if(!empty($html)) {

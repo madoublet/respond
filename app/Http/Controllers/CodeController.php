@@ -137,12 +137,22 @@ class CodeController extends Controller
           $dom = HtmlDomParser::str_get_html($code, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
           // find main content
-          $el = $dom->find('[role=main]');
+          $main = $dom->find('[role=main]');
           $content = '';
 
+          // remove inner part of contents
+          $els = $dom->find('div');
+
+          // clear out the contents of the plugin
+          foreach($els as $el) {
+            if(isset($el->{'respond-plugin'})) {
+              $el->innertext = '';
+            }
+          }
+
           // get the main content
-          if(isset($el[0])) {
-            $content = $el[0]->innertext;
+          if(isset($main[0])) {
+            $content = $main[0]->innertext;
           }
 
 

@@ -53,7 +53,8 @@ editor = (function() {
       parent: null,
       element: null,
       image: null,
-      menuItem: null
+      menuItem: null,
+      linkSelection: ''
     },
 
     // handles text selection
@@ -344,7 +345,11 @@ editor = (function() {
         text = editor.getSelectedText();
         html = '<a>' + text + '</a>';
 
+        editor.current.linkSelection = html;
+
         document.execCommand("insertHTML", false, html);
+
+        editor.current.linkSelection = '';
 
         // shows/manages the link dialog
         editor.showLinkDialog();
@@ -1103,11 +1108,6 @@ editor = (function() {
               // get value of text node
               var text = editor.getTextNodeValue(element);
 
-              // if text is set to "Tap to update" select all the text
-              if(text === editor.i18n('Tap to update')) {
-                document.execCommand('selectAll', false, null);
-              }
-
             }
             else {
               element = editor.findParentBySelector(e.target, '[editor-element]');
@@ -1278,9 +1278,16 @@ editor = (function() {
 
                 // if text is blank and the element has only one child node, add "Tap to update" to prevent the editor from breaking
                 if(text === '' && el.childNodes.length == 1) {
-                  text = document.createTextNode(editor.i18n('Tap to update'));
-                  el.insertBefore(text, el.firstChild);
-                  document.execCommand('selectAll', false, null);
+
+                  if(editor.current.linkSelection != '') {
+                    el.innerHTML = editor.current.linkSelection;
+                    editor.current.linkSelection = '';
+                    editor.setupElementMenu(el);
+                  }
+                  else {
+                    text = document.createTextNode(editor.i18n('Tap to update'));
+                    el.insertBefore(text, el.firstChild);
+                  }
                 }
 
                 html = el.innerHTML;
