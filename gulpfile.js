@@ -36,7 +36,7 @@ gulp.task('create-zip', function() {
       'public/themes/simple/**/*',
       'public/themes/energy/**/*',
       'public/themes/serene/**/*',
-      'public/themes/market/**/*',
+      'public/themes/sidebar/**/*',
       'public/.htaccess',
       'public/index.html',
       'public/index.php',
