@@ -221,6 +221,7 @@ body nav a.primary-nav-secondary, body nav a.primary-nav-secondary:hover {
   display: block;
   color: #607D8B !important;
   font-size: 15px;
+  cursor: pointer;
   padding: 10px 0 10px 0;
 }
 
