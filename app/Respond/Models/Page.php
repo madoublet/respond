@@ -819,6 +819,7 @@ class Page {
             array('plugins/',
                   'components/',
                   'templates/',
+                  'resources/',
                   'css/',
                   'data/',
                   'files/',
