@@ -208,10 +208,6 @@ class SiteController extends Controller
     // get user
     $user = User::getByEmail($email, $siteId);
 
-    if($site->theme == NULL || $site->theme == '') {
-      return response('Theme not set.', 400);
-    }
-
     // update plugins
     Publish::updatePlugins($site);
 

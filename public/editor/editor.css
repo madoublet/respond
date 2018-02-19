@@ -76,18 +76,16 @@
       transition: all .1s ease;
   }
 
-    body [role=main] .editor-block-menu:hover {
-      z-index: 20000;
-      border-radius: 20px;
-      width: auto;
-      height: auto;
-      overflow: hidden;
-    }
-
     body [role=main] [editor-block]:hover .editor-block-menu {
       visibility: visible;
-      opacity: 1;
+      opacity: 0.4;
     }
+
+    body [role=main] .editor-block-menu:hover {
+      z-index: 20000;
+      opacity: 1 !important;
+    }
+
 
     body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
       font-family: 'Open Sans', sans-serif !important;
@@ -197,6 +195,10 @@ body [role=main] .editor-element-menu {
 
   body [role=main] [editor-element]:hover .editor-element-menu {
     visibility: visible;
+    opacity: 0.4;
+  }
+
+  body [role=main] [editor-element]:hover .editor-element-menu:hover {
     opacity: 1;
   }
 

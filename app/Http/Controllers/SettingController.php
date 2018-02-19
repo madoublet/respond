@@ -57,6 +57,9 @@ class SettingController extends Controller
 
     if($success === TRUE) {
 
+      // re-publish plugins
+      Publish::publishPlugins($user, $site);
+
       return response('Ok', 200);
 
     }

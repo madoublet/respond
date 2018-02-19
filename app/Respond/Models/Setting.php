@@ -178,15 +178,15 @@ class Setting {
         }
         else { // save old encrypted value
 
-          $current_value = Setting::getById($setting['id'], $site->id);
-
-          $setting['value'] = Crypt::encrypt($current_value);
+          if($setting['encrypted'] == true) {
+            $current_value = Setting::getById($setting['id'], $site->id);
+            $setting['value'] = Crypt::encrypt($current_value);
+          }
         }
 
       }
 
     }
-
 
     // get file
     $file = app()->basePath().'/resources/sites/'.$site->id.'/settings.json';
@@ -200,7 +200,6 @@ class Setting {
       Publish::publishSettings($user, $site);
 
       return TRUE;
-
 
     }
 

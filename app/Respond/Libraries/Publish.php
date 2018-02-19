@@ -119,7 +119,58 @@ class Publish
     {
 
       // recopy the plugins
-      Publish::copyPlugins($site);
+
+      // copy css directory
+      $src = realpath(app()->basePath() . '/resources/plugins/css');
+      $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/css');
+
+      Utilities::copyDirectory($src, $dest);
+
+      // copy js directory
+      $src = realpath(app()->basePath() . '/resources/plugins/js');
+      $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/js');
+
+      Utilities::copyDirectory($src, $dest);
+
+      // copy plugins directory
+      $src = realpath(app()->basePath() . '/resources/plugins/plugins');
+      $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/plugins');
+
+      Utilities::copyDirectory($src, $dest);
+
+      // copy the plugins.json file
+      $src = realpath(app()->basePath() . '/resources/plugins/data/plugins.json');
+      $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/data/plugins.json');
+
+      copy($src, $dest);
+
+
+      // copy PRO plugins
+      if(file_exists(app()->basePath().'/app/Pro')) {
+
+        $src = realpath(app()->basePath() . '/app/Pro/resources/plugins/css');
+        $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/css');
+
+        Utilities::copyDirectory($src, $dest);
+
+        $src = realpath(app()->basePath() . '/app/Pro/resources/plugins/js');
+        $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/js');
+
+        Utilities::copyDirectory($src, $dest);
+
+        $src = realpath(app()->basePath() . '/app/Pro/resources/plugins/plugins');
+        $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/plugins');
+
+        Utilities::copyDirectory($src, $dest);
+
+        // copy the plugins.json file
+        $src = realpath(app()->basePath() . '/app/Pro/resources/plugins/data/plugins.json');
+        $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/data/plugins.json');
+
+        copy($src, $dest);
+      }
+
+
 
       // combine the css
       Publish::combineCSS($site);
@@ -525,29 +576,41 @@ class Publish
               // set parser
               $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-              // find main content
-              $el = $page_dom->find('[role=main]');
-              $main_content = '';
+              // check for page_dom
+              if($page_dom != NULL) {
 
-              // get the main content
-              if(isset($el[0])) {
-                $main_content = $el[0]->innertext;
+                // find main content
+                $el = $page_dom->find('[role=main]');
+                $main_content = '';
+
+                // get the main content
+                if(isset($el[0])) {
+                  $main_content = $el[0]->innertext;
+                }
+
+                // get template dom
+                $template_dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+                if($template_dom != null) {
+
+                  $el = $template_dom->find('[role=main]');
+
+                  if(isset($el[0])) {
+                    $el[0]->innertext = $main_content;
+                  }
+
+                  // put the contents
+                  file_put_contents($page_file, $template_dom);
+
+                  // saves the page
+                  $page->save($site, $user);
+
+                }
+                // end template_dom check
+
               }
+              // end page_dom check
 
-              // get template dom
-              $template_dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-
-              $el = $template_dom->find('[role=main]');
-
-              if(isset($el[0])) {
-                $el[0]->innertext = $main_content;
-              }
-
-              // put the contents
-              file_put_contents($page_file, $template_dom);
-
-              // saves the page
-              $page->save($site, $user);
 
             }
             // end file_exists
