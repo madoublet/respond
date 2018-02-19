@@ -860,170 +860,176 @@ class Page {
         // set parser
         $dom = HtmlDomParser::str_get_html(file_get_contents($file), $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-        // get title
-        $els = $dom->find('title');
+        if($dom != NULL) {
 
-        if(isset($els[0])) {
-          $title = $els[0]->innertext;
-        }
+          // get title
+          $els = $dom->find('title');
 
-        // get els
-        $els = $dom->find('body');
-
-        // default
-        $lastModifiedDate = date("Y-m-d\TH:i:sO", time());
-
-        // get timestamp in body [data-lastmodified]
-        if(isset($els[0])) {
-          $attr = $els[0]->getAttribute('data-lastmodified');
-
-          if($attr !== FALSE) {
-            $lastModifiedDate = $attr;
+          if(isset($els[0])) {
+            $title = $els[0]->innertext;
           }
-        }
 
-        // get template
-        if(isset($els[0])) {
+          // get els
+          $els = $dom->find('body');
 
-          // try to get the template attribute
-          if($els[0]->getAttribute('data-template') !== FALSE) {
-            $template = $els[0]->getAttribute('data-template');
+          // default
+          $lastModifiedDate = date("Y-m-d\TH:i:sO", time());
+
+          // get timestamp in body [data-lastmodified]
+          if(isset($els[0])) {
+            $attr = $els[0]->getAttribute('data-lastmodified');
+
+            if($attr !== FALSE) {
+              $lastModifiedDate = $attr;
+            }
+          }
+
+          // get template
+          if(isset($els[0])) {
+
+            // try to get the template attribute
+            if($els[0]->getAttribute('data-template') !== FALSE) {
+              $template = $els[0]->getAttribute('data-template');
+            }
+            else {
+              $template = app()->basePath().'/public/sites/'.$site->id.'/templates/default.html';
+
+              // set template to default
+              if(file_exists($template)) {
+                $template = 'default';
+              }
+
+            }
+          }
+
+          // get tags
+          if(isset($els[0])) {
+            $attr = $els[0]->getAttribute('data-tags');
+
+            if($attr !== FALSE) {
+              $tags = $attr;
+            }
+          }
+
+
+          // get description
+          $els = $dom->find('meta[name=description]');
+
+          if(isset($els[0])) {
+            $description = $els[0]->content;
+          }
+
+          // get keywords
+          $els = $dom->find('meta[name=keywords]');
+
+          if(isset($els[0])) {
+            $keywords = $els[0]->content;
+          }
+
+          // get text
+          $text = '';
+
+          $els = $dom->find('[role=main]');
+
+          if(isset($els[0])) {
+            $main_content = $els[0]->innertext;
+
+            // get the text from the content
+            $text = strip_tags($main_content);
+            $text = preg_replace("/\s+/", " ", $text);
+            $text = trim($text);
+            $text = preg_replace('/[[:^print:]]/', '', $text);
+          }
+
+          // get photo
+          $photos = $dom->find('[role=main] img');
+
+          if(isset($photos[0])) {
+            $photo = $photos[0]->src;
+          }
+
+          $thumb = '';
+
+          if ($photo === NULL || $photo === '') {
+            $photo = '';
           }
           else {
-            $template = app()->basePath().'/public/sites/'.$site->id.'/templates/default.html';
+            if (substr($photo, 0, 4) === "http") {
+              $thumb = $photo;
+            }
+            else {
+              $thumb = str_replace('files/', 'files/thumbs/', $photo);
+              $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
+            }
 
-            // set template to default
-            if(file_exists($template)) {
-              $template = 'default';
+            $thumb_file = app()->basePath() . '/public/sites/' . $site->id . '/'.$thumb;
+
+            // check to see if it exists
+            if(!file_exists($thumb_file)) {
+              $thumb = '';
             }
 
           }
-        }
 
-        // get tags
-        if(isset($els[0])) {
-          $attr = $els[0]->getAttribute('data-tags');
+          // get map
+          $maps = $dom->find('[type=map]');
+          $location = "";
 
-          if($attr !== FALSE) {
-            $tags = $attr;
-          }
-        }
-
-
-        // get description
-        $els = $dom->find('meta[name=description]');
-
-        if(isset($els[0])) {
-          $description = $els[0]->content;
-        }
-
-        // get keywords
-        $els = $dom->find('meta[name=keywords]');
-
-        if(isset($els[0])) {
-          $keywords = $els[0]->content;
-        }
-
-        // get text
-        $text = '';
-
-        $els = $dom->find('[role=main]');
-
-        if(isset($els[0])) {
-          $main_content = $els[0]->innertext;
-
-          // get the text from the content
-          $text = strip_tags($main_content);
-          $text = preg_replace("/\s+/", " ", $text);
-          $text = trim($text);
-          $text = preg_replace('/[[:^print:]]/', '', $text);
-        }
-
-        // get photo
-        $photos = $dom->find('[role=main] img');
-
-        if(isset($photos[0])) {
-          $photo = $photos[0]->src;
-        }
-
-        $thumb = '';
-
-        if ($photo === NULL || $photo === '') {
-          $photo = '';
-        }
-        else {
-          if (substr($photo, 0, 4) === "http") {
-            $thumb = $photo;
-          }
-          else {
-            $thumb = str_replace('files/', 'files/thumbs/', $photo);
-            $thumb = str_replace('thumbs/thumbs', 'thumbs/', $thumb);
+          // get address
+          if(isset($maps[0])) {
+            if(isset($maps[0]->address)) {
+              $location = $maps[0]->address;
+            }
           }
 
-          $thumb_file = app()->basePath() . '/public/sites/' . $site->id . '/'.$thumb;
+          // get language and direction
+          $els = $dom->find('html');
 
-          // check to see if it exists
-          if(!file_exists($thumb_file)) {
-            $thumb = '';
+          if(isset($els[0])) {
+            $language = $els[0]->lang;
+            $direction = $els[0]->dir;
+          }
+
+          // check for body tag
+          $els = $dom->find('body');
+
+          // cleanup url
+          $url = ltrim($url, '/');
+
+          // strip any trailing .html from url
+          $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+
+          // setup data
+          $data = array(
+              'title' => $title,
+              'description' => $description,
+              'text' => $text,
+              'keywords' => $keywords,
+              'tags' => $tags,
+              'callout' => $callout,
+              'url' => $url,
+              'photo' => $photo,
+              'thumb' => $thumb,
+              'location' => $location,
+              'language' => $language,
+              'direction' => $direction,
+              'firstName' => $user->firstName,
+              'lastName' => $user->lastName,
+              'lastModifiedBy' => $user->email,
+              'lastModifiedDate' => $lastModifiedDate,
+              'template' => $template
+          );
+
+          // push to array
+          if(substr($url, 0, strlen('.default')) !== '.default') {
+            array_push($arr, $data);
           }
 
         }
-
-        // get map
-        $maps = $dom->find('[type=map]');
-        $location = "";
-
-        // get address
-        if(isset($maps[0])) {
-          if(isset($maps[0]->address)) {
-            $location = $maps[0]->address;
-          }
-        }
-
-        // get language and direction
-        $els = $dom->find('html');
-
-        if(isset($els[0])) {
-          $language = $els[0]->lang;
-          $direction = $els[0]->dir;
-        }
-
-        // check for body tag
-        $els = $dom->find('body');
-
-        // cleanup url
-        $url = ltrim($url, '/');
-
-        // strip any trailing .html from url
-        $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
-
-        // setup data
-        $data = array(
-            'title' => $title,
-            'description' => $description,
-            'text' => $text,
-            'keywords' => $keywords,
-            'tags' => $tags,
-            'callout' => $callout,
-            'url' => $url,
-            'photo' => $photo,
-            'thumb' => $thumb,
-            'location' => $location,
-            'language' => $language,
-            'direction' => $direction,
-            'firstName' => $user->firstName,
-            'lastName' => $user->lastName,
-            'lastModifiedBy' => $user->email,
-            'lastModifiedDate' => $lastModifiedDate,
-            'template' => $template
-        );
-
-        // push to array
-        if(substr($url, 0, strlen('.default')) !== '.default') {
-          array_push($arr, $data);
-        }
+        // end dom check
 
     }
+    // end foreach
 
     // encode arr
     $content = json_encode($arr, JSON_PRETTY_PRINT);

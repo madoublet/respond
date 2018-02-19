@@ -401,8 +401,14 @@ class Publish
               // set attribute
               if(isset($setting['attribute'])) {
 
+                $selector = '['.$setting['id'].']';
+
+                if(isset($setting['selector'])) {
+                  $selector = $setting['selector'];
+                }
+
                 // find setting
-                $els = $dom->find('['.$setting['id'].']');
+                $els = $dom->find($selector);
 
                 // set attribute
                 foreach($els as $el) {
@@ -417,31 +423,6 @@ class Publish
                 // build css string
                 $set_css = true;
                 $css .= str_replace('config(--'.$setting['id'].')', $setting['value'], $setting['css']);
-
-              }
-
-            }
-
-            // handle toggles
-            if(isset($setting['toggles'])) {
-
-              // set attribute
-              if(isset($setting['attribute'])) {
-
-                // find setting
-                $els = $dom->find('['.$setting['id'].']');
-
-                // set attribute
-                foreach($els as $el) {
-
-                  if($setting['value'] == 'true') {
-                    $el->setAttribute($setting['attribute'], $setting['attribute']);
-                  }
-                  else {
-                    $el->removeAttribute($setting['attribute']);
-                  }
-
-                }
 
               }
 

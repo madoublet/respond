@@ -7,8 +7,8 @@ composer.phar
 # local configuration
 .env
 remove_site
-
-
+copy_core_themes
+copy_pro_themes
 
 # local development
 /public/sites
