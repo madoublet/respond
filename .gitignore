@@ -37,13 +37,6 @@ copy_pro_themes
 /app/Pro
 /app/Pro/*
 /dist/release.pro.zip
-/public/themes/aspire
-/public/themes/base
-/public/themes/broadway
-/public/themes/custom
-/public/themes/highrise
-/public/themes/sidebar
-/public/themes/stark
 
 # theme development
 /public/themes/respond-themes
