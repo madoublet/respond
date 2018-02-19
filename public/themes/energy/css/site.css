@@ -131,15 +131,6 @@ body header {
     cursor: pointer;
   }
 
-  /* show/hide cart */
-  body header .header-action[respond-cart] {
-    display: none;
-  }
-
-  body[show-respond-cart] header .header-action[respond-cart] {
-    display: inline-block;
-  }
-
   body header .header-action:hover {
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   }
@@ -220,7 +211,7 @@ body footer {
     margin-top: 0;
   }
 
-  body[show-respond-cart] header .primary-menu {
+  body[show-cart="true"] header .primary-menu {
     margin-right: 140px;
     margin-top: 0;
   }

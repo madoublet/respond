@@ -12,6 +12,15 @@
   max-width: 100%;
 }
 
+/* toggle cart */
+body [respond-cart] {
+  display: none !important;
+}
+
+body[show-cart="true"] [respond-cart] {
+  display: block !important;
+}
+
 /* entrance/exit */
 [editor-active] [data-entrance] {
     visibility: visible;
