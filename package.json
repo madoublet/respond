@@ -7,7 +7,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "respond-ui": "10.0.2"
+    "respond-ui": "10.0.3"
   },
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
