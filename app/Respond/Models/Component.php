@@ -224,7 +224,7 @@ class Component {
     $json_arr = array_values($data);
 
     // save $data
-    file_put_contents($json_file, json_encode($data, JSON_PRETTY_PRINT));
+    file_put_contents($json_file, json_encode($json_arr, JSON_PRETTY_PRINT));
 
     return TRUE;
 

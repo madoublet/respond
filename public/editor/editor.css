@@ -56,15 +56,11 @@
   transition: box-shadow 0.2s;
 }
 
-body [role=main] {
-  padding-top: 18px;
-}
-
   /* editor-block-menu */
   body [role=main] .editor-block-menu {
       font-family: 'Open Sans', sans-serif !important;
       position: absolute;
-      top: -18px;
+      top: 0;
       left: 10px;
       background-color: #09203f;
       margin: 0 !important;
