@@ -1,5 +1,9 @@
 [
     {
+        "id": "sync",
+        "value": "S3"
+    },
+    {
       "id": "url",
       "label": "URL",
       "description": "The url for your site, e.g.: https://respondcms.com",
@@ -34,6 +38,11 @@
         "attribute": "content"
     },
     {
+        "id": "reCAPTCHA-title",
+        "label": "reCAPTCHA Settings (optional)",
+        "title": "text"
+    },
+    {
         "id": "reCAPTCHA-site-key",
         "label": "reCAPTCHA Site Key",
         "description": "The site key provided at https://www.google.com/recaptcha/",
@@ -46,5 +55,144 @@
         "description": "The secret key provided at https://www.google.com/recaptcha/",
         "type": "text",
         "value": ""
+    },
+    {
+        "id": "s3-title",
+        "label": "Amazon S3 Sync Settings (optional)",
+        "type": "title"
+    },
+    {
+        "id": "s3-key",
+        "label": "S3 Access Key",
+        "description": "The access key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-secret",
+        "label": "S3 Secret Key",
+        "description": "The secret key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-bucket",
+        "label": "S3 Bucket",
+        "description": "The bucket created using the Amazon S3",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-region",
+        "label": "S3 Region",
+        "description": "The region in which you created your bucket",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "cart-title",
+        "label": "Shopping Cart (optional)",
+        "type": "title"
+    },
+    {
+        "id": "respond-cart",
+        "label": "Show Cart?",
+        "type": "select",
+        "options": [
+            "true",
+            "false"
+        ],
+        "value": "false",
+        "sets": "attribute",
+        "selector": "body",
+        "attribute": "show-cart"
+    },
+    {
+        "id": "cart-flat-rate-shipping",
+        "label": "Flat Rate Shipping",
+        "type": "number",
+        "value": "0.00"
+    },
+    {
+        "id": "cart-tax-rate",
+        "label": "Tax Rate",
+        "type": "number",
+        "value": "0.00"
+    },
+    {
+        "id": "cart-currency",
+        "label": "Currency",
+        "type": "text",
+        "value": "USD"
+    },
+    {
+        "id": "cart-locale",
+        "label": "Locale",
+        "type": "text",
+        "value": "en-US"
+    },
+    {
+        "id": "cart-image",
+        "label": "Checkout Image",
+        "type": "image",
+        "value": ""
+    },
+    {
+        "id": "cart-name",
+        "label": "Name",
+        "type": "text",
+        "value": ""
+    },
+    {
+        "id": "cart-require-zip-code",
+        "label": "Require ZIP code during Checkout",
+        "type": "select",
+        "options": ["true", "false"],
+        "value": "true"
+    },
+    {
+        "id": "cart-require-billing-address",
+        "label": "Require Billing Address code during Checkout",
+        "type": "select",
+        "options": ["true", "false"],
+        "value": "true"
+    },
+    {
+        "id": "cart-require-shipping-address",
+        "label": "Require Shipping Address code during Checkout",
+        "type": "select",
+        "options": ["true", "false"],
+        "value": "true"
+    },
+    {
+        "id": "cart-stripe-publishable-key",
+        "label": "Stripe Publishable Key",
+        "description": "The publishable key provided by Stripe",
+        "type": "text",
+        "value": ""
+    },
+    {
+        "id": "cart-stripe-secret-key",
+        "label": "Stripe Secret Key",
+        "description": "The secret key provided by Stripe",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "receipt-subject",
+        "label": "Receipt Subject",
+        "type": "text",
+        "value": "Thank you for your purchase!"
+    },
+    {
+        "id": "confirmation-subject",
+        "label": "Confirmation Subject",
+        "type": "text",
+        "value": "You have received a new order!"
     }
 ]

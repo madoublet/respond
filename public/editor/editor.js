@@ -405,25 +405,60 @@ editor = (function() {
         Object.keys(obj.properties).forEach(function(key,index) {
 
             if(key == 'id') {
-              el.id = obj.properties.id || '';
+
+              if(obj.properties.id != '') {
+                el.id = obj.properties.id || '';
+              }
+              else {
+                el.removeAttribute('id');
+              }
+
             }
             else if(key == 'cssClass') {
-              el.className = obj.properties.cssClass || '';
+
+              if(obj.properties.cssClass != '') {
+                el.className = obj.properties.cssClass || '';
+              }
+              else {
+                el.removeAttribute('class');
+              }
+
             }
             else if(key == 'html') {
               el.innerHTML = obj.properties.html || '';
             }
             else if(key == 'alt') {
-              el.alt = obj.properties.alt || '';
+
+              if(obj.properties.alt != '') {
+                el.alt = obj.properties.alt || '';
+              }
+              else {
+                el.removeAttribute('alt');
+              }
+
             }
             else if(key == 'title') {
-              el.title = obj.properties.title || '';
+
+              if(obj.properties.title != '') {
+                el.title = obj.properties.title || '';
+              }
+              else {
+                el.removeAttribute('title');
+              }
+
             }
             else if(key == 'src') {
               el.src = obj.properties.src || '';
             }
             else if(key == 'target') {
-              el.setAttribute('target', (obj.properties.target || ''));
+
+              if(obj.properties.target != '') {
+                el.setAttribute('target', (obj.properties.target || ''));
+              }
+              else {
+                el.removeAttribute('target');
+              }
+
             }
             else if(key == 'href') {
               el.href = obj.properties.href || '';
@@ -433,11 +468,17 @@ editor = (function() {
                 el.setAttribute('data-background-image', obj.properties.backgroundImage);
                 style += 'background-image: url(' + obj.properties.backgroundImage + ');';
               }
+              else {
+                el.removeAttribute('data-background-image');
+              }
             }
             else if(key == 'backgroundColor') {
               if(obj.properties.backgroundColor != '') {
                 el.setAttribute('data-background-color', obj.properties.backgroundColor);
                 style += 'background-color: ' + obj.properties.backgroundColor + ';';
+              }
+              else {
+                el.removeAttribute('data-background-color');
               }
             }
             else if(key == 'backgroundSize') {
@@ -445,11 +486,17 @@ editor = (function() {
                 el.setAttribute('data-background-size', obj.properties.backgroundSize);
                 style += 'background-size: ' + obj.properties.backgroundSize + ';';
               }
+              else {
+                el.removeAttribute('data-background-size');
+              }
             }
             else if(key == 'backgroundPosition') {
               if(obj.properties.backgroundPosition != '') {
                 el.setAttribute('data-background-position', obj.properties.backgroundPosition);
                 style += 'background-position: ' + obj.properties.backgroundPosition + ';';
+              }
+              else {
+                el.removeAttribute('data-background-position');
               }
             }
             else if(key == 'backgroundRepeat') {
@@ -457,12 +504,17 @@ editor = (function() {
                 el.setAttribute('data-background-repeat', obj.properties.backgroundRepeat);
                 style += 'background-repeat: ' + obj.properties.backgroundRepeat + ';';
               }
+              else {
+                el.removeAttribute('data-background-repeat');
+              }
             }
             else if(key == 'textColor') {
-              el.setAttribute('data-text-color', obj.properties.textColor);
-
               if(obj.properties.textColor != '') {
+                el.setAttribute('data-text-color', obj.properties.textColor);
                 style += 'color: ' + obj.properties.textColor + ';';
+              }
+              else {
+                el.removeAttribute('data-text-color');
               }
             }
             else if(key == 'textAlignment') {
@@ -470,18 +522,41 @@ editor = (function() {
                 el.setAttribute('data-text-alignment', obj.properties.textAlignment);
                 style += 'text-align: ' + obj.properties.textAlignment + ';';
               }
+              else {
+                el.removeAttribute('data-text-alignment');
+              }
             }
             else if(key == 'textShadowColor') {
-              el.setAttribute('data-text-shadow-color', obj.properties.textShadowColor);
+              if(obj.properties.textShadowColor != '') {
+                el.setAttribute('data-text-shadow-color', obj.properties.textShadowColor);
+              }
+              else {
+                el.removeAttribute('data-text-shadow-color');
+              }
             }
             else if(key == 'textShadowHorizontal') {
-              el.setAttribute('data-text-shadow-horizontal', obj.properties.textShadowHorizontal);
+              if(obj.properties.textShadowHorizontal != '') {
+                el.setAttribute('data-text-shadow-horizontal', obj.properties.textShadowHorizontal);
+              }
+              else {
+                el.removeAttribute('data-text-shadow-horizontal');
+              }
             }
             else if(key == 'textShadowVertical') {
-              el.setAttribute('data-text-shadow-vertical', obj.properties.textShadowVertical);
+              if(obj.properties.textShadowVertical != '') {
+                el.setAttribute('data-text-shadow-vertical', obj.properties.textShadowVertical);
+              }
+              else {
+                el.removeAttribute('data-text-shadow-vertical');
+              }
             }
             else if(key == 'textShadowBlur') {
-              el.setAttribute('data-text-shadow-blur', obj.properties.textShadowBlur);
+              if(obj.properties.textShadowBlur != '') {
+                el.setAttribute('data-text-shadow-blur', obj.properties.textShadowBlur);
+              }
+              else {
+                el.removeAttribute('data-text-shadow-blur');
+              }
             }
 
             });
@@ -1754,7 +1829,7 @@ editor = (function() {
      */
     retrieveUpdateArray: function() {
 
-      var x, y, data, els, el, refs, actions;
+      var x, y, data, els, el, refs, actions, html;
 
       els = document.querySelectorAll('[editor]');
       data = [];
@@ -1845,10 +1920,24 @@ editor = (function() {
           actions[y].removeAttribute('current-editor-element');
         }
 
+        // get html
+        html = els[x].innerHTML;
+
+        // cleanup empty attributs
+        html = editor.replaceAll(html, 'id=""', '');
+        html = editor.replaceAll(html, 'class=""', '');
+        html = editor.replaceAll(html, 'data-text-color=""', '');
+        html = editor.replaceAll(html, 'data-text-shadow-color=""', '');
+        html = editor.replaceAll(html, 'data-text-shadow-horizontal=""', '');
+        html = editor.replaceAll(html, 'data-text-shadow-vertical=""', '');
+        html = editor.replaceAll(html, 'data-text-shadow-blur=""', '');
+        html = editor.replaceAll(html, 'style=""', '');
+        html = editor.replaceAll(html, 'respond-plugin=""', 'respond-plugin');
+        html = html.replace(/  +/g, ' ');
 
         el = {
           'selector': els[x].getAttribute('editor-selector'),
-          'html': els[x].innerHTML
+          'html': html
         };
 
         if(editor.debug === true) {

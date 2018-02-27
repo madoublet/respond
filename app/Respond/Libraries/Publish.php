@@ -82,7 +82,8 @@ class Publish
         Utilities::copyDirectory($src, $dest);
 
         // copy PRO plugins
-        if(file_exists(app()->basePath().'/app/Pro')) {
+        if(file_exists(app()->basePath().'/app/Pro/resources/plugins')) {
+
           $src = realpath(app()->basePath() . '/app/Pro/resources/plugins');
           $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id));
 
@@ -146,7 +147,7 @@ class Publish
 
 
       // copy PRO plugins
-      if(file_exists(app()->basePath().'/app/Pro')) {
+      if(file_exists(app()->basePath().'/app/Pro/resources/plugins')) {
 
         $src = realpath(app()->basePath() . '/app/Pro/resources/plugins/css');
         $dest = realpath(app()->basePath() . '/public/sites/'.basename($site->id).'/css');

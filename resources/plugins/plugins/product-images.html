@@ -1,0 +1,80 @@
+{% spaceless %}
+
+{% for product in products %}
+
+  {% if product.id == attributes.product  %}
+
+{% if attributes.height != 'auto'  %}
+
+<style>
+  #{{ product.id }} img {
+    height: {{ attributes.height }}px;
+  }
+</style>
+
+{% endif %}
+
+<div id="{{ product.id }}" class="carousel slide" data-ride="carousel" data-interval="{{ attributes.interval }}">
+
+  {% set count = 0 %}
+  {% set active = "" %}
+
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for image in product.images %}
+
+      {% if count == 0  %}
+        {% set active = " active" %}
+      {% else %}
+        {% set active = "" %}
+      {% endif %}
+
+    <li data-target="#{{ product.id }}" data-slide-to="{{ count }}" class="{{ active }}"></li>
+
+      {% set count = count + 1 %}
+
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+
+    {% set count = 0 %}
+    {% set active = "" %}
+
+    {% for image in product.images %}
+
+      {% if count == 0  %}
+        {% set active = " active" %}
+      {% else %}
+        {% set active = "" %}
+      {% endif %}
+
+    <div class="carousel-item{{ active }}">
+      <img src="{{ image.url }}" alt="{{ image.caption }}">
+      <div class="carousel-caption">
+        {{ image.caption }}
+      </div>
+    </div>
+
+      {% set count = count + 1 %}
+
+    {% endfor %}
+
+  </div>
+
+  <!-- Controls -->
+  <a class="carousel-control-prev" href="#{{ product.id }}" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#{{ product.id }}" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  {% endif %}
+
+{% endfor %}
+
+{% endspaceless %}

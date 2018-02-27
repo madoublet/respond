@@ -1,0 +1,31 @@
+{% spaceless %}
+
+{% set currency = attribute(settings, 'cart-currency') %}
+{% set locale = attribute(settings, 'cart-locale') %}
+
+{% for product in products %}
+
+  {% if product.id == attributes.product  %}
+
+    {% if product.subscription == true  %}
+
+      <!-- subscriptions cannot be added to the cart -->
+
+    {% else %}
+
+        <a cart-add
+            data-name="{{ product.name }}"
+            data-sku="{{ product.id }}"
+            data-quantity="1"
+            data-price="{{ product.price }}"
+            data-button-label="{{ attributes.modaltext }}" class="btn btn-outline-primary">{{ attributes.text }}</a> &nbsp;
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+
+{% endspaceless %}
+
+

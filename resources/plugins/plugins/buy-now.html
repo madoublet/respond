@@ -1,0 +1,36 @@
+{% spaceless %}
+
+{% set currency = attribute(settings, 'cart-currency') %}
+{% set locale = attribute(settings, 'cart-locale') %}
+
+{% for product in products %}
+
+  {% if product.id == attributes.product  %}
+
+    {% if product.subscription == true  %}
+
+      <a subscribe
+            data-name="{{ product.name }}"
+            data-sku="{{ product.id }}"
+            data-quantity="1"
+            data-price="{{ product.price }}"
+            data-button-label="{{ attributes.modaltext }}" class="btn btn-outline-primary">{{ attributes.text }}</a>
+
+    {% else %}
+
+      <a buy-now
+          data-name="{{ product.name }}"
+          data-sku="{{ product.id }}"
+          data-quantity="1"
+          data-price="{{ product.price }}"
+          data-button-label="{{ attributes.modaltext }}" class="btn btn-outline-secondary">{{ attributes.text }}</a>
+
+    {% endif %}
+
+  {% endif %}
+
+{% endfor %}
+
+{% endspaceless %}
+
+
