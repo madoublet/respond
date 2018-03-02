@@ -363,6 +363,28 @@ editor = (function() {
         block.remove();
         editor.setupBlocks();
       }
+      else if(command.toUpperCase() == 'BLOCK.MOVEUP') {
+        if(block.previousElementSibling != null) {
+
+          if(block.previousElementSibling.hasAttribute('editor-block') === true) {
+            block.parentNode.insertBefore(block, block.previousElementSibling);
+          }
+
+        }
+
+        editor.setupBlocks();
+      }
+      else if(command.toUpperCase() == 'BLOCK.MOVEDOWN') {
+        if(block.nextElementSibling != null) {
+
+          if(block.nextElementSibling.hasAttribute('editor-block') === true) {
+            block.nextElementSibling.parentNode.insertBefore(block.nextElementSibling, block);
+          }
+
+        }
+
+        editor.setupBlocks();
+      }
       else {
         document.execCommand(command, false, null);
       }

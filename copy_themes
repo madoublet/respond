@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Remove existing themes
+echo "Removing existing themes"
+rm -rf public/themes/aspire
+rm -rf public/themes/base
+rm -rf public/themes/broadway
+rm -rf public/themes/energy
+rm -rf public/themes/executive
+rm -rf public/themes/highrise
+rm -rf public/themes/market
+rm -rf public/themes/serene
+rm -rf public/themes/sidebar
+rm -rf public/themes/simple
+rm -rf public/themes/stark
+
+echo "Copying from themes/respond-themes/dist"
+cp -R public/themes/respond-themes/dist/en/aspire public/themes/
+cp -R public/themes/respond-themes/dist/en/base public/themes/
+cp -R public/themes/respond-themes/dist/en/broadway public/themes/
+cp -R public/themes/respond-themes/dist/en/energy public/themes/
+cp -R public/themes/respond-themes/dist/en/executive public/themes/
+cp -R public/themes/respond-themes/dist/en/highrise public/themes/
+cp -R public/themes/respond-themes/dist/en/market public/themes/
+cp -R public/themes/respond-themes/dist/en/serene public/themes/
+cp -R public/themes/respond-themes/dist/en/sidebar public/themes/
+cp -R public/themes/respond-themes/dist/en/simple public/themes/
+cp -R public/themes/respond-themes/dist/en/stark public/themes/

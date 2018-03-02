@@ -74,6 +74,7 @@
       line-height: normal !important;
       border-radius: 20px;
       transition: all .1s ease;
+      display: none;
   }
 
     body [role=main] [editor-block]:hover .editor-block-menu {

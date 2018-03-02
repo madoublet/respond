@@ -182,6 +182,30 @@ $app->post('/api/galleries/images/edit', ['middleware' => 'jwtauth', 'uses'=> 'G
 $app->post('/api/galleries/images/remove', ['middleware' => 'jwtauth', 'uses'=> 'GalleryImageController@remove']);
 $app->post('/api/galleries/images/order', ['middleware' => 'jwtauth', 'uses'=> 'GalleryImageController@updateOrder']);
 
+// product routes
+$app->get('/api/products/list', ['middleware' => 'jwtauth', 'uses'=> 'ProductController@listAll']);
+$app->get('/api/products/retrieve/{id}', ['middleware' => 'jwtauth','uses'=> 'ProductController@retrieve']);
+$app->post('/api/products/add', ['middleware' => 'jwtauth', 'uses'=> 'ProductController@add']);
+$app->post('/api/products/edit', ['middleware' => 'jwtauth', 'uses'=> 'ProductController@edit']);
+$app->post('/api/products/remove', ['middleware' => 'jwtauth', 'uses'=> 'ProductController@remove']);
+
+// product images routes
+$app->post('/api/products/images/add', ['middleware' => 'jwtauth', 'uses'=> 'ProductImageController@add']);
+$app->post('/api/products/images/order', ['middleware' => 'jwtauth', 'uses'=> 'ProductImageController@updateOrder']);
+$app->post('/api/products/images/edit', ['middleware' => 'jwtauth', 'uses'=> 'ProductImageController@edit']);
+$app->post('/api/products/images/remove', ['middleware' => 'jwtauth', 'uses'=> 'ProductImageController@remove']);
+
+// payment routes
+$app->post('/api/payment/subscribe', ['middleware' => 'jwtauth', 'uses'=> 'PaymentController@subscribe']);
+$app->post('/api/payment/unsubscribe', ['middleware' => 'jwtauth', 'uses'=> 'PaymentController@unsubscribe']);
+$app->get('/api/payment/subscription/retrieve', ['middleware' => 'jwtauth', 'uses'=> 'PaymentController@retrieveSubscription']);
+
+// site subscribe route
+$app->post('/api/payment/subscribe/{id}', ['middleware' => 'cors', 'uses'=> 'PaymentController@subscribeAtSite']);
+
+// site payment route
+$app->post('/api/payment/pay/{id}', ['middleware' => 'cors', 'uses'=> 'PaymentController@payAtSite']);
+
 // include pro routes if they are included in the project
 if(file_exists( app()->basePath('app/Pro/routes.php' ))) {
   include_once( app()->basePath('app/Pro/routes.php') );
