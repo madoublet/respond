@@ -2,6 +2,7 @@
     "id": "contact-us",
     "name": "Contact Us",
     "cssClass": "",
+    "url": "page/contact"
     "fields": [
         {
             "id": "name",

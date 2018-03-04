@@ -11,6 +11,7 @@ use App\Respond\Libraries\Publish;
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
 use App\Respond\Models\Product;
+use App\Respond\Models\Page;
 
 class ProductImageController extends Controller
 {
@@ -26,6 +27,10 @@ class ProductImageController extends Controller
     $email = $request->input('auth-email');
     $siteId = $request->input('auth-id');
 
+    // get the site
+    $site = Site::getById($siteId);
+    $user = User::getByEmail($email, $siteId);
+
     // get url, title and description
     $id = $request->json()->get('id');
     $name = $request->json()->get('name');
@@ -39,6 +44,21 @@ class ProductImageController extends Controller
     if($product != NULL) {
 
       $product->addImage($id, $name, $url, $thumb, $caption, $siteId);
+
+      // update page
+      if($product->url != '' && $product->url != NULL) {
+
+        // update name and description in pages
+        $page = Page::getByUrl($product->url, $siteId);
+
+        if($page != NULL) {
+
+          // republish plugins for page
+          Publish::publishPluginsForPage($page, $user, $site);
+        }
+
+      }
+
       return response('Image added', 200);
 
     }
@@ -60,6 +80,10 @@ class ProductImageController extends Controller
     $email = $request->input('auth-email');
     $siteId = $request->input('auth-id');
 
+    // get the site
+    $site = Site::getById($siteId);
+    $user = User::getByEmail($email, $siteId);
+
     // get url, title and description
     $id = $request->json()->get('id');
     $productId = $request->json()->get('productId');
@@ -72,6 +96,20 @@ class ProductImageController extends Controller
 
       // edit product
       $product->editImage($id, $caption, $siteId);
+
+      // update page
+      if($product->url != '' && $product->url != NULL) {
+
+        // update name and description in pages
+        $page = Page::getByUrl($product->url, $siteId);
+
+        if($page != NULL) {
+
+          // republish plugins for page
+          Publish::publishPluginsForPage($page, $user, $site);
+        }
+
+      }
 
       return response('Image updated', 200);
 
@@ -93,6 +131,10 @@ class ProductImageController extends Controller
     $email = $request->input('auth-email');
     $siteId = $request->input('auth-id');
 
+    // get the site
+    $site = Site::getById($siteId);
+    $user = User::getByEmail($email, $siteId);
+
     // name, items
     $productId = $request->json()->get('productId');
     $images = $request->json()->get('images');
@@ -100,10 +142,23 @@ class ProductImageController extends Controller
     // update order in a gallery
     $product = Product::getById($productId, $siteId);
 
-    if($productId != NULL) {
+    if($product != NULL) {
 
       $product->updateImageOrder($images, $siteId);
 
+      // update page
+      if($product->url != '' && $product->url != NULL) {
+
+        // update name and description in pages
+        $page = Page::getByUrl($product->url, $siteId);
+
+        if($page != NULL) {
+
+          // republish plugins for page
+          Publish::publishPluginsForPage($page, $user, $site);
+        }
+
+      }
 
       return response('Ok', 200);
     }
@@ -123,6 +178,10 @@ class ProductImageController extends Controller
     $email = $request->input('auth-email');
     $siteId = $request->input('auth-id');
 
+    // get the site
+    $site = Site::getById($siteId);
+    $user = User::getByEmail($email, $siteId);
+
     // name, items
     $id = $request->json()->get('id');
     $productId = $request->json()->get('productId');
@@ -134,6 +193,20 @@ class ProductImageController extends Controller
 
       // removes a product
       $product->removeImage($id, $siteId);
+
+       // update page
+      if($product->url != '' && $product->url != NULL) {
+
+        // update name and description in pages
+        $page = Page::getByUrl($product->url, $siteId);
+
+        if($page != NULL) {
+
+          // republish plugins for page
+          Publish::publishPluginsForPage($page, $user, $site);
+        }
+
+      }
 
       return response('Image Removed', 200);
 

@@ -85,7 +85,7 @@ class Page {
    * @param {user} $user object
    * @return Response
    */
-  public static function add($data, $site, $user, $content = NULL){
+  public static function add($data, $site, $user, $replace = NULL){
 
     // create a new page
     $page = new Page($data);
@@ -110,27 +110,13 @@ class Page {
       // get template
       $template_file = app()->basePath().'/public/sites/'.$site->id.'/templates/'.$page->template.'.html';
 
-      // default (if all else fails)
-      $content = '<html><head></head><body><p>You must specify default content in .default.html</p></body></html>';
+      // default (if template does not exist)
+      $content = '<html><head></head><body><main role="main"><p>You must a template at templates/'.$page->template.'.html'.'</p></main></body></html>';
 
       if(file_exists($template_file)) {
 
         // new page content
         $content = file_get_contents($template_file);
-
-      }
-      else { // fall back to the old .default.html file for backwards compatibility
-
-        // get default content
-        $default_content = app()->basePath().'/public/sites/'.$site->id.'/.default.html';
-
-        // get default content
-        if(file_exists($default_content)) {
-          $content = file_get_contents($default_content);
-        }
-
-        // set template to blank
-        $page->template = '';
 
       }
 
@@ -139,6 +125,13 @@ class Page {
       $content = str_replace('{{page.description}}', $page->description, $content);
       $content = str_replace('{{page.customHeader}}', $page->customHeader, $content);
       $content = str_replace('{{page.customFooter}}', $page->customFooter, $content);
+
+      // walk through and replace values in associative array
+      foreach ($replace as $key => &$value) {
+          $content = str_replace($key, $value, $content);
+      }
+
+
 
       // set location
       $location = $dest.'/'.$page->url.'.html';
@@ -500,6 +493,55 @@ class Page {
     }
     else {
       return NULL;
+    }
+
+  }
+
+  /**
+   * Sets attributes for a page
+   *
+   * @param {string} $url url of page
+   * @return Response
+   */
+  public function setContent($selectors, $siteId) {
+
+    // set full file path
+    $file = app()->basePath() . '/public/sites/' . $siteId . '/' . $this->url;
+
+    // strip .html
+    $file = preg_replace('/\\.[^.\\s]{3,4}$/', '', $file);
+
+    // add .html
+    $file = $file.'.html';
+
+    $html = file_get_contents($file);
+
+    if(!empty($html)) {
+
+      // set parser
+      $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
+
+
+      // walk through and replace values in associative array
+      foreach ($selectors as $key => &$value) {
+
+          echo('find key='.$key);
+
+          $els = $dom->find($key);
+
+          if(isset($els[0])) {
+            echo('set value='.$value);
+            $els[0]->innertext = $value;
+          }
+
+      }
+
+      // set html
+      $html = $dom;
+
+      // save page
+      file_put_contents($file, $html);
+
     }
 
   }

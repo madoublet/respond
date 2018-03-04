@@ -10,6 +10,7 @@ use App\Respond\Models\Form;
 use App\Respond\Models\Menu;
 use App\Respond\Models\Gallery;
 use App\Respond\Models\Component;
+use App\Respond\Models\Product;
 use App\Respond\Libraries\Utilities;
 use App\Respond\Models\Setting;
 
@@ -729,10 +730,8 @@ class Publish
         $settings = Setting::listAllAsAssoc($site->id);
       }
 
-      if(file_exists(app()->basePath().'/app/Pro/Models/Product.php')) {
-        if(!$products) {
-          $products = \App\Pro\Models\Product::listAll($site->id);
-        }
+      if(!$products) {
+        $products = Product::listAll($site->id);
       }
 
       // setup current site

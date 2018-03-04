@@ -7,6 +7,7 @@ use App\Respond\Libraries\Publish;
 
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
+use App\Respond\Models\Page;
 
 /**
  * Models a product
@@ -15,6 +16,8 @@ class Product {
 
   public $id;
   public $name;
+  public $url;
+  public $description;
   public $shipped;
   public $price;
   public $file;
@@ -101,7 +104,7 @@ class Product {
    * @param {string} $siteId site id
    * @return Response
    */
-  public static function add($id, $name, $shipped, $price, $file, $subscription, $plan, $planPrice, $siteId) {
+  public static function add($id, $name, $url, $description, $shipped, $price, $file, $subscription, $plan, $planPrice, $siteId) {
 
     $json_file = app()->basePath().'/public/sites/'.$siteId.'/data/products.json';
     $data = array();
@@ -115,6 +118,8 @@ class Product {
     array_push($data, array(
         'id' => $id,
         'name' => $name,
+        'url' => $url,
+        'description' => $description,
         'shipped' => $shipped,
         'price' => $price,
         'file' => $file,
@@ -137,7 +142,7 @@ class Product {
    * @param {string} $siteId site id
    * @return Response
    */
-  public function edit($name, $shipped, $price, $file, $subscription, $plan, $planPrice, $siteId) {
+  public function edit($name, $description, $shipped, $price, $file, $subscription, $plan, $planPrice, $siteId) {
 
     $json_file = app()->basePath().'/public/sites/'.$siteId.'/data/products.json';
 
@@ -155,6 +160,7 @@ class Product {
       if($product['id'] == $this->id) {
 
         $product['name'] = $name;
+        $product['description'] = $description;
         $product['shipped'] = $shipped;
         $product['price'] = $price;
         $product['file'] = $file;
@@ -203,7 +209,7 @@ class Product {
     }
 
     // prevent showing the index (e.g. "0":{})
-    $json_arr = array_values($data);
+    $data = array_values($data);
 
     // save $data
     file_put_contents($json_file, json_encode($data, JSON_PRETTY_PRINT));
