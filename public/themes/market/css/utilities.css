@@ -18,7 +18,7 @@ body [respond-cart] {
 }
 
 body[show-cart="true"] [respond-cart] {
-  display: block !important;
+  display: inline-block !important;
 }
 
 /* entrance/exit */

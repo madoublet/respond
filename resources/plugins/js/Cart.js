@@ -708,6 +708,10 @@ class CartItem {
  *     data-subscribe-api="api/subscribe.php"></div>
  */
 if(document.querySelector('[cart]')) {
+
+  // add stripe cart JS
+  document.write('<script src="https://checkout.stripe.com/checkout.js"></script>');
+
   var cart, flatRateShipping, taxRate, currency, locale, image, name, zipCode, billingAddress, shippingAddress, key, payApi, subscribeApi;
 
   cart = document.querySelector('[cart]');

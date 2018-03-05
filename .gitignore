@@ -36,6 +36,8 @@ copy_pro_themes
 # pro
 /app/Pro
 /app/Pro/*
+/app/Pro-wip
+/app/Pro-wip/*
 /dist/release.pro.zip
 
 # theme development

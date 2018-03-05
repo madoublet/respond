@@ -121,38 +121,5 @@ gulp.task('create-zip-pro', function() {
 
 });
 
-// copy respond-ui
-gulp.task('copy-respond-ui', function() {
-
-  // copy folders
-  var libs = [
-      'node_modules/respond-ui/dist/**/*'
-      ];
-
-    return gulp.src(libs, {base: './node_modules/respond-ui/dist/'})
-  		.pipe(gulp.dest('public'));
-
-});
-
-
-// copy js
-gulp.task('copy-js', function() {
-
-  return gulp.src([])
-    .pipe(gulp.dest('public/app/libs/'));
-});
-
-
-// copy static files
-gulp.task('copy-css', function() {
-
-    return gulp.src([])
-  		.pipe(gulp.dest('public/app/libs/'));
-
-});
-
-// copy
-gulp.task('default', gulp.series(['copy-respond-ui']));
-
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
