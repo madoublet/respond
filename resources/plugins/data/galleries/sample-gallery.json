@@ -1,7 +1,7 @@
 {
     "id": "sample-gallery",
     "name": "Sample Gallery",
-    "url": "gallery"
+    "url": "gallery",
     "images": [
         {
             "id": "balloon-png",
