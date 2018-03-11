@@ -29,7 +29,7 @@ class ComponentController extends Controller
 
     // get site and user
     $site = Site::getById($id);
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email);
 
     // list componentss in the site
     $arr = Component::listAll($site->id);
@@ -59,7 +59,7 @@ class ComponentController extends Controller
 
     // get the site
     $site = Site::getById($id);
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email);
 
     // strip any leading slashes from url
     $url = ltrim($url, '/');
@@ -105,7 +105,7 @@ class ComponentController extends Controller
 
     // get site and user
     $site = Site::getById($id);
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email);
 
     // remove site and .html from url
     $url = str_replace($id.'/', '', $url);
@@ -142,7 +142,7 @@ class ComponentController extends Controller
 
     // get the site
     $site = Site::getById($id);
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email);
 
     // get url, title and description
     $url = $request->json()->get('url');

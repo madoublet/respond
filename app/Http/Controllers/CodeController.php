@@ -198,7 +198,7 @@ class CodeController extends Controller
 
       // get site and user
       $site = Site::getById($id);
-      $user = User::getByEmail($email, $id);
+      $user = User::getByEmail($email);
 
       // get url and type
       $value = $request->json()->get('value');
@@ -451,7 +451,7 @@ class CodeController extends Controller
 
       // get site and user
       $site = Site::getById($id);
-      $user = User::getByEmail($email, $id);
+      $user = User::getByEmail($email);
 
       // get url and type
       $type = $request->json()->get('type');

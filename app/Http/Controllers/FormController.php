@@ -110,7 +110,7 @@ class FormController extends Controller
 
       // get site and user
       $site = Site::getById($siteId);
-      $user = User::getByEmail($email, $siteId);
+      $user = User::getByEmail($email);
 
       // re-publish plugins
       Publish::publishPlugins($user, $site);

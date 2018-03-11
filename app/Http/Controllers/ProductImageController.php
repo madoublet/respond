@@ -29,7 +29,7 @@ class ProductImageController extends Controller
 
     // get the site
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // get url, title and description
     $id = $request->json()->get('id');
@@ -82,7 +82,7 @@ class ProductImageController extends Controller
 
     // get the site
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // get url, title and description
     $id = $request->json()->get('id');
@@ -133,7 +133,7 @@ class ProductImageController extends Controller
 
     // get the site
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // name, items
     $productId = $request->json()->get('productId');
@@ -180,7 +180,7 @@ class ProductImageController extends Controller
 
     // get the site
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // name, items
     $id = $request->json()->get('id');

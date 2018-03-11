@@ -12,7 +12,7 @@
 */
 
 // handle Angular app routes
-$app_routes = array('/', 'login', 'create', 'pages', 'components', 'users', 'files', 'plugins', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code');
+$app_routes = array('/', 'login', 'create', 'pages', 'components', 'users', 'files', 'plugins', 'menus', 'forms', 'submissions', 'branding', 'settings', 'galleries', 'edit', 'developer', 'code', 'manage');
 
 foreach($app_routes as $app_route) {
 
@@ -77,6 +77,9 @@ $app->get('/api/auth', ['middleware' => 'jwtauth', 'uses'=> 'UserController@auth
 // test site
 $app->get('/api/sites/test', 'SiteController@test');
 
+// temp
+$app->get('/api/users/convert', 'UserController@convert');
+
 // app
 $app->get('/api/app/settings', 'AppController@settings');
 $app->get('/api/app/css', 'AppController@appCSS');
@@ -85,6 +88,7 @@ $app->get('/api/themes/list', 'AppController@listThemes');
 $app->get('/api/languages/list', 'AppController@listLanguages');
 
 // site
+$app->get('/api/sites/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listAll']);
 $app->post('/api/sites/create', 'SiteController@create');
 $app->post('/api/sites/activate', 'SiteController@activate');
 $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reload']);
@@ -97,6 +101,7 @@ $app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteContr
 $app->get('/api/plugins/list', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@listAll']);
 $app->post('/api/plugins/upload', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@upload']);
 $app->post('/api/plugins/remove', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@remove']);
+$app->post('/api/sites/switch', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@switch']);
 $app->post('/api/stripe/webhooks', 'AppController@listenForStripeWebhooks');
 
 // login

@@ -31,62 +31,33 @@ class UserController extends Controller
 
     $email = $request->json()->get('email');
     $password = $request->json()->get('password');
-    $id = $request->json()->get('id');
+    $siteId = NULL;
 
     // lookup site id for user
     if(isset($id) == false || $id == '') {
 
-      $arr = User::lookupUserByEmail($email);
+      $user = User::getByEmail($email);
 
-      // set site id
-      if(sizeof($arr) == 1) {
-        $id = $arr[0];
-      }
-      else if(sizeof($arr) == 0) {
+      if($user == NULL) {
         return response('The email and password combination is invalid', 401);
       }
       else {
-        return response('You have multiple sites registered with this email.  Key the name of the site above to login. You can speed up the process in the future by navigating to login/site-name.', 409);
+        if(count($user->sites) == 0) {
+          return response('The email and password is not associated with a site', 401);
+        }
+        else {
+          $siteId = $user->sites[0]['id'];
+        }
       }
 
     }
 
     // get site by its friendly id
-    $site = Site::getById($id);
+    $site = Site::getById($siteId);
 
     if ($site != NULL) {
 
-      // get the user from the credentials
-      $user = NULL;
-
-      // if LDAP is being used, check for @ to determine how to authenticate user
-      if(strpos($email, '@') === false && !empty(env('LDAP_SERVER'))){
-        //authenticate against LDAP, on success get user by 'email'
-        $ldap = ldap_connect(env('LDAP_SERVER'));
-        if($bind = ldap_bind($ldap, env('LDAP_DOMAIN') . '\\' . $email)) {
-          $user = User::getByEmail($email, $site->id);
-        }
-      }
-      else {
-        // get the user from the credentials
-        $user = User::getByEmailPassword($email, $password, $site->id);
-      }
-
       if($user != NULL) {
-
-        // get the photoURL
-        $fullPhotoUrl = '';
-
-      	// set photo url
-      	if($user->photo != '' && $user->photo != NULL){
-
-      		// set images URL
-          $imagesURL = $site->domain;
-
-        	$fullPhotoUrl = $imagesURL.'/files/thumbs/'.$user->photo;
-
-      	}
-
       	$activationUrl = '';
 
       	if(env('ACTIVATION_URL') != NULL) {
@@ -123,9 +94,9 @@ class UserController extends Controller
         	'email' => $user->email,
         	'firstName' => $user->firstName,
         	'lastName' => $user->lastName,
-        	'photo' => $user->photo,
-        	'fullPhotoUrl' => $fullPhotoUrl,
         	'language' => $user->language,
+        	'sysadmin' => $user->sysadmin,
+        	'sites' => $user->sites,
         	'siteId' => $site->id,
         	'status' => $site->status,
         	'hasAccount' => $hasAccount,
@@ -168,63 +139,36 @@ class UserController extends Controller
   {
 
     $email = $request->json()->get('email');
-    $id = $request->json()->get('id');
 
-    // lookup site id for user
-    if(isset($id) == false || $id == '') {
+    $user = User::getByEmail($email);
 
-      $arr = User::lookupUserByEmail($email);
+    if($user != NULL) {
 
-      // set site id
-      if(sizeof($arr) == 1) {
-        $id = $arr[0];
-      }
-      else if(sizeof($arr) == 0) {
-        return response('Unauthorized', 401);
-      }
-      else {
-        return response('Specify site', 409);
-      }
+      $user->token = uniqid();
 
-    }
+      // save user
+      $user->save();
 
-    // get site
-    $site = Site::getById($id);
+      // send email
+      $to = $user->email;
+      $from = env('EMAILS_FROM');
+      $fromName = env('EMAILS_FROM_NAME');
+      $subject = env('RESET_SUBJECT', 'Reset Password');
+      $file = app()->basePath().'/resources/emails/reset-password.html';
 
-    if($site != NULL) {
+      // create strings to replace
+      $resetUrl = Utilities::retrieveAppURL().'/reset/'.$user->token;
 
-      // get user
-      $user = User::getByEmail($email, $site->id);
+      $replace = array(
+        '{{brand}}' => env('BRAND'),
+        '{{reply-to}}' => env('EMAILS_FROM'),
+        '{{reset-url}}' => $resetUrl
+      );
 
-      if($user != NULL) {
+      // send email from file
+      Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
 
-        $user->token = uniqid();
-
-        // save user
-        $user->save($site->id);
-
-        // send email
-        $to = $user->email;
-        $from = env('EMAILS_FROM');
-        $fromName = env('EMAILS_FROM_NAME');
-        $subject = env('RESET_SUBJECT', 'Reset Password');
-        $file = app()->basePath().'/resources/emails/reset-password.html';
-
-        // create strings to replace
-        $resetUrl = Utilities::retrieveAppURL().'/reset/'.$site->id.'/'.$user->token;
-
-        $replace = array(
-          '{{brand}}' => env('BRAND'),
-          '{{reply-to}}' => env('EMAILS_FROM'),
-          '{{reset-url}}' => $resetUrl
-        );
-
-        // send email from file
-        Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
-
-        return response('OK', 200);
-
-      }
+      return response('OK', 200);
 
     }
 
@@ -242,33 +186,20 @@ class UserController extends Controller
 
     $token = $request->json()->get('token');
     $password = $request->json()->get('password');
-    $id = $request->json()->get('id');
 
-    $site = Site::getById($id);
+    // get the user from the credentials
+    $user = User::getByToken($token);
 
-    if($site != NULL) {
+    if($user != NULL){
 
-      // get the user from the credentials
-      $user = User::getByToken($token, $site->id);
+      // update the password
+      $user->password = password_hash($password, PASSWORD_DEFAULT);
+      $user->token = '';
 
-      if($user!=null){
+      $user->save();
 
-        // update the password
-        $user->password = password_hash($password, PASSWORD_DEFAULT);
-        $user->token = '';
-
-        $user->save($site->id);
-
-        // return a successful response (200)
-        return response('OK', 200);
-
-      }
-      else{
-
-        // return a bad request
-        return response('Token invalid', 400);
-
-      }
+      // return a successful response (200)
+      return response('OK', 200);
 
     }
     else {
@@ -288,7 +219,7 @@ class UserController extends Controller
 
     // get request data
     $email = $request->input('auth-email');
-    $id = $request->input('auth-id');
+    $siteId = $request->input('auth-id');
 
     // get url & changes
     $email = $request->json()->get('email');
@@ -297,7 +228,7 @@ class UserController extends Controller
     $password = $request->json()->get('password');
     $language = $request->json()->get('language');
 
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email, $siteId);
 
     if($user != NULL) {
 
@@ -309,7 +240,7 @@ class UserController extends Controller
         $user->password = password_hash($password, PASSWORD_DEFAULT);
       }
 
-      $user->save($id);
+      $user->save();
 
       // return a successful response (200)
       return response('OK', 200);
@@ -330,7 +261,7 @@ class UserController extends Controller
   public function add(Request $request)
   {
     // get request data
-    $id = $request->input('auth-id');
+    $siteId = $request->input('auth-id');
 
     // get url & changes
     $email = $request->json()->get('email');
@@ -339,7 +270,7 @@ class UserController extends Controller
     $password = $request->json()->get('password');
     $language = $request->json()->get('language');
 
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email, $siteId);
 
     // make sure the email doesn't exist already
     if($user === NULL) {
@@ -351,12 +282,11 @@ class UserController extends Controller
           'firstName' => $firstName,
           'lastName' => $lastName,
           'language' => $language,
-          'photo' => '',
           'token' => ''
         ));
 
       // save the user
-      $user->save($id);
+      $user->save();
 
       // return a successful response (200)
       return response('OK', 200);
@@ -377,14 +307,14 @@ class UserController extends Controller
   public function remove(Request $request)
   {
     // get request data
-    $id = $request->input('auth-id');
+    $siteId = $request->input('auth-id');
 
     // get url, title and description
     $email = $request->json()->get('email');
 
-    $user = User::getByEmail($email, $id);
+    $user = User::getByEmail($email, $siteId);
 
-    $user->remove($id);
+    $user->remove($siteId);
 
     // return OK
     return response('OK, user removed at = '.$user->email, 200);
@@ -402,10 +332,26 @@ class UserController extends Controller
 
     // get request data
     $email = $request->input('auth-email');
-    $id = $request->input('auth-id');
+    $siteId = $request->input('auth-id');
 
     // list pages in the site
-    $arr = User::listAll($id);
+    $arr = User::listAll($siteId);
+
+    return response()->json($arr);
+
+  }
+
+
+  /**
+   * Converts all users to a users.json
+   *
+   * @return Response
+   */
+  public function convert(Request $request)
+  {
+
+    // list pages in the site
+    $arr = User::convert();
 
     return response()->json($arr);
 

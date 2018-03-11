@@ -63,7 +63,7 @@ class FormFieldController extends Controller
     $helperText = $request->json()->get('helperText');
     $placeholder = $request->json()->get('placeholder');
     $cssClass = $request->json()->get('cssClass');
-    
+
     // convert to string
     if(is_bool($required)) {
       $required = ($required) ? 'true' : 'false';
@@ -83,7 +83,7 @@ class FormFieldController extends Controller
 
     // get site and user
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // re-publish plugins
     Publish::publishPlugins($user, $site);
@@ -119,12 +119,12 @@ class FormFieldController extends Controller
     $helperText = $request->json()->get('helperText');
     $placeholder = $request->json()->get('placeholder');
     $cssClass = $request->json()->get('cssClass');
-    
+
     // convert to string
     if(is_bool($required)) {
       $required = ($required) ? 'true' : 'false';
     }
-    
+
     // get form
     $form = Form::getById($formId, $siteId);
 

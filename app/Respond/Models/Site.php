@@ -289,21 +289,23 @@ class Site {
   	$site = new Site($site_arr);
   	$site->save();
 
-    // send new site hook
-    Webhooks::NewSite($site);
+  	// try to get user
+  	$user = User::getByEmail($email);
 
-    // create and save the user
-    $user = new User(array(
-      'email' => $email,
-      'password' => password_hash($password, PASSWORD_DEFAULT),
-      'firstName' => 'New',
-      'lastName' => 'User',
-      'language' => 'en',
-      'photo' => '',
-      'token' => ''
-    ));
+  	if($user == NULL) {
 
-    $user->save($site->id);
+    	$firstName = 'New';
+    	$lastName = 'User';
+    	$language = 'en';
+    	$role = 'admin';
+
+    	// add user
+    	$user = User::add($email, password_hash($password, PASSWORD_DEFAULT), $firstName, $lastName, $language, $id, $role);
+
+  	}
+  	else {
+    	$user->addSite($site->id, 'admin');
+  	}
 
     // copy theme
     Publish::copyTheme($theme, $site);

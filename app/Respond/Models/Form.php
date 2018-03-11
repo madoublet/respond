@@ -16,6 +16,8 @@ class Form {
 
   public $id;
   public $name;
+  public $description;
+  public $url;
   public $cssClass;
   public $validate;
   public $success;
@@ -166,7 +168,7 @@ class Form {
    * @param {string} $siteId site id
    * @return Response
    */
-  public static function add($name, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId) {
+  public static function add($name, $description, $url, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId) {
 
     // build a name
 	  $id = strtolower($name);
@@ -205,6 +207,8 @@ class Form {
       $form = new Form(array(
         'id' => $new_id,
         'name' => $name,
+        'description' => $description,
+        'url' => $url,
         'cssClass' => $cssClass,
         'validate' => $validate,
         'success' => $success,

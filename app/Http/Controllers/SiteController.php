@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
 use App\Respond\Models\Page;
+use App\Respond\Models\Setting;
 
 use \Illuminate\Http\Request;
 
@@ -23,6 +24,50 @@ class SiteController extends Controller
   {
 
     return '[Respond] API works!';
+
+  }
+
+  /**
+   * Lists all sites for a user
+   *
+   * @return Response
+   */
+  public static function listAll(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get user
+    $user = User::getByEmail($email);
+
+    // setup array
+    $arr = array();
+
+    // list all sites
+    if(strtoupper($user->sysadmin) == TRUE) {
+
+      $sites = Site::getSites();
+
+      foreach($sites as &$item) {
+        $site = Site::getById($item);
+        array_push($arr, $site);
+      }
+
+    }
+    else { // get sites for user
+
+      foreach($user->sites as &$item) {
+
+        $site = Site::getById($item['id']);
+        array_push($arr, $site);
+
+      }
+
+    }
+
+    return response()->json($arr);
 
   }
 
@@ -148,7 +193,7 @@ class SiteController extends Controller
     $site = Site::getById($siteId);
 
     // get user
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // publish plugins
     Publish::publishPlugins($user, $site);
@@ -173,7 +218,7 @@ class SiteController extends Controller
     $site = Site::getById($siteId);
 
     // get user
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // migrate site
     Publish::publishTemplates($user, $site);
@@ -206,7 +251,7 @@ class SiteController extends Controller
     $site = Site::getById($siteId);
 
     // get user
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // update plugins
     Publish::updatePlugins($site);
@@ -234,7 +279,7 @@ class SiteController extends Controller
     $site = Site::getById($siteId);
 
     // get user
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // publish site map
     Publish::publishSiteMap($user, $site);
@@ -259,7 +304,7 @@ class SiteController extends Controller
     $site = Site::getById($siteId);
 
     // get user
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // refresh JSON
     Page::refreshJSON($user, $site);
@@ -330,8 +375,118 @@ class SiteController extends Controller
       return response('Cannot sync. Double check your settings.', 400);
     }
 
+  }
 
+  /**
+   * Switches to a new site
+   *
+   * @return Response
+   */
+  public function switch(Request $request)
+  {
 
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get new site id
+    $new_siteId = $request->json()->get('id');
+
+    // get user
+    $user = User::getByEmail($email);
+
+    // determine if the user can switch
+    $can_switch = FALSE;
+
+    if($user->sysadmin == TRUE) {
+      $can_switch = TRUE;
+    }
+    else {
+
+      foreach($user->sites as &$site) {
+
+        if($site['id'] == $new_siteId) {
+          $can_switch = TRUE;
+        }
+      }
+
+    }
+
+    // switch
+    if($can_switch == TRUE) {
+
+      // get site
+      $site = Site::getById($new_siteId);
+
+      if($site != NULL) {
+
+        $activationUrl = '';
+
+      	if(env('ACTIVATION_URL') != NULL) {
+        	$activationUrl = env('ACTIVATION_URL');
+
+        	$activationUrl = str_replace('{{site}}', $site->id, $activationUrl);
+      	}
+
+      	// determine if a customer has an account
+      	$hasAccount = false;
+
+      	if($site->status == 'Active' && $site->customerId != '') {
+        	$hasAccount = true;
+      	}
+
+      	// determine if site can be synced
+      	$can_sync = false;
+      	$sync_type = '';
+
+      	$sync = Setting::getById('sync', $site->id);
+
+        // make sure sync is set
+        if($sync != NULL) {
+
+          // ... and check to make sure it is not empty
+          if($sync != '') {
+            $can_sync = true;
+            $sync_type = $sync;
+          }
+        }
+
+        // return a subset of the user array
+        $returned_user = array(
+        	'email' => $user->email,
+        	'firstName' => $user->firstName,
+        	'lastName' => $user->lastName,
+        	'language' => $user->language,
+        	'sysadmin' => $user->sysadmin,
+        	'sites' => $user->sites,
+        	'siteId' => $site->id,
+        	'status' => $site->status,
+        	'hasAccount' => $hasAccount,
+        	'days'=> $site->daysRemaining(),
+        	'activationUrl'=> $activationUrl
+        );
+
+        // send token
+        $params = array(
+        	'user' => $returned_user,
+        	'sync' => array(
+          	'canSync' => $can_sync,
+          	'syncType' => $sync_type
+        	),
+        	'token' => Utilities::createJWTToken($user->email, $site->id)
+        );
+
+        // return a json response
+        return response()->json($params);
+      }
+      else {
+        return response('Site does not exist.', 400);
+      }
+
+    }
+    else {
+      return response('Cannot switch sites. Check to make sure you have permission.', 400);
+    }
 
   }
 

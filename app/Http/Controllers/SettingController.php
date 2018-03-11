@@ -50,7 +50,7 @@ class SettingController extends Controller
 
     // get site and user
     $site = Site::getById($siteId);
-    $user = User::getByEmail($email, $siteId);
+    $user = User::getByEmail($email);
 
     // update order in file
     $success = Setting::saveAll($settings, $user, $site);

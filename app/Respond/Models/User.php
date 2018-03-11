@@ -17,9 +17,9 @@ class User {
   public $firstName;
   public $lastName;
   public $language;
-  public $photo;
   public $token;
-  public $siteId;
+  public $sysadmin;
+  public $sites;
 
   /**
    * Constructs a page from an array of data
@@ -32,25 +32,68 @@ class User {
         $this->$key = $val;
       }
     }
+
+    if(isset($this->sysadmin) === FALSE) {
+      $this->sysadmin = FALSE;
+    }
   }
 
   /**
-   * Gets a user for a given id, email
+   * Adds a user
+   *
+   * @param {string} $email
+   * @param {string} $password
+   * @param {string} $firstName
+   * @param {string} $lastName
+   * @param {string} $language
+   * @param {string} $siteId
+   * @param {string} $role
+   * @return {User}
+   */
+	public static function add($email, $password, $firstName, $lastName, $language, $siteId, $role){
+
+  	// build sites array
+  	$sites = array();
+
+  	$site = array(
+      "id" => $siteId,
+      "role" => 'admin'
+    );
+
+    array_push($sites, $site);
+
+    $user = new User(array(
+      'email' => $email,
+      'password' => password_hash($password, PASSWORD_DEFAULT),
+      'firstName' => $firstName,
+      'lastName' => $lastName,
+      'language' => $language,
+      'token' => '',
+      'sites' => $sites
+    ));
+
+    // save the user
+    $user->save();
+
+    return $user;
+
+	}
+
+  /**
+   * Gets a user for a givenemail
    *
    * @param {string} $id
    * @param {string} $email
    * @return {User}
    */
-	public static function getByEmail($email, $id){
+	public static function getByEmail($email){
 
-    $users = User::getUsers($id);
+    $arr = User::getAllUsers();
 
-    foreach($users as $user) {
+    foreach($arr as &$item) {
 
-      if($user['email'] == $email) {
-
-        return new User($user);
-
+      if($item->email == $email) {
+        return $item;
       }
 
     }
@@ -58,63 +101,7 @@ class User {
     return NULL;
 
 	}
-	
-	/**
-   * Gets a user for a given id, email
-   *
-   * @param {string} $email
-   * @return {User}
-   */
-	public static function getByEmailWithoutSite($email){
 
-    $users = User::getAllUsers();
-
-    foreach($users as $user) {
-
-      if($user['email'] == $email) {
-
-        return new User($user);
-
-      }
-
-    }
-
-    return NULL;
-
-	}
-	
-	/**
-   * Gets a user by email and password
-   *
-   * @param {string} $id the ID for the user
-   * @return {Site}
-   */
-	public static function getByEmailPasswordWithoutSite($email, $password){
-
-    $users = User::getAllUsers();
-
-    foreach($users as $user) {
-
-      if($user['email'] == $email) {
-
-        $user = new User($user);
-
-        $hash = $user->password;
-
-        if(password_verify($password, $hash)) {
-            return $user;
-        }
-        else {
-            return NULL;
-        }
-
-      }
-
-    }
-
-    return NULL;
-
-	}
 
 	/**
    * Gets a user for a given id, token
@@ -123,16 +110,14 @@ class User {
    * @param {string} $token
    * @return {User}
    */
-	public static function getByToken($token, $id){
+	public static function getByToken($token){
 
-    $users = User::getUsers($id);
+    $users = User::getAllUsers();
 
     foreach($users as $user) {
 
-      if($user['token'] == $token) {
-
-        return new User($user);
-
+      if($user->token == $token) {
+        return $user;
       }
 
     }
@@ -147,9 +132,9 @@ class User {
    * @param {string} $id the ID for the user
    * @return {Site}
    */
-	public static function getByEmailPassword($email, $password, $id){
+	public static function getByEmailPassword($email, $password){
 
-    $users = User::getUsers($id);
+    $users = User::getAllUsers();
 
     foreach($users as $user) {
 
@@ -177,44 +162,106 @@ class User {
 	/**
    * Retrieves users for a given site
    *
-   * @param {string} $id
+   * @param {string} $siteId
    * @return {Site}
    */
-	public static function getUsers($id) {
+	public static function getUsers($siteId) {
 
-  	$file = app()->basePath().'/resources/sites/'.$id.'/users.json';
+  	$file = app()->basePath().'/resources/sites/users.json';
+  	$users = array();
 
     if(file_exists($file)) {
 
       $arr = json_decode(file_get_contents($file), true);
-      return $arr;
+
+      foreach($arr as &$item) {
+
+        $user = new User($item);
+
+        foreach($user->sites as &$site) {
+
+          if($site['id'] == $siteId) {
+            array_push($users, $user);
+          }
+
+        }
+
+      }
 
     }
-    else {
-      return array();
-    }
+
+    return $users;
 
 	}
-	
-	
+
+	/**
+   * Retrieves all users
+   *
+   * @return {users[]}
+   */
+	public static function getAllUsers() {
+
+  	$file = app()->basePath().'/resources/sites/users.json';
+  	$users = array();
+
+    if(file_exists($file)) {
+
+      $arr = json_decode(file_get_contents($file), true);
+
+      foreach($arr as &$item) {
+        $user = new User($item);
+        array_push($users, $user);
+      }
+
+    }
+
+    return $users;
+
+	}
+
+	/**
+   * Adds a site to a users
+   *
+   * @param {string} $siteId the ID of the site
+   * @param {string} role the role of the user
+   * @return void
+   */
+	public function addSite($siteId, $role) {
+
+  	if($this->sites == NULL) {
+    	$this->sites = array();
+  	}
+
+  	$site = array(
+      "id" => $siteId,
+      "role" => $role
+    );
+
+    // push site to sites array
+    array_push($this->sites, $site);
+
+    // save users
+    $this->save();
+	}
+
 	/**
    * Saves a user
    *
    * @param {string} $id the ID of the site
    * @return void
    */
-  public function save($id) {
+  public function save() {
 
     // defaults
-    $dir = app()->basePath().'/resources/sites/'.$id.'/';
+    $dir = app()->basePath().'/resources/sites/';
     $is_match = false;
 
-    $users = User::getUsers($id);
+    $users = User::getAllUsers();
 
     foreach($users as &$item) {
 
       // check email
-      if($item['email'] == $this->email) {
+      if($item->email == $this->email) {
 
         // update user
         $is_match = true;
@@ -241,26 +288,19 @@ class User {
     // save users.json
     Utilities::saveContent($dir, 'users.json', $json);
 
-    // Assemble data for webhook
-    $wh_data = clone $this;
-    $wh_data->siteId = $id;
-
-    // send new user hook
-    Webhooks::NewUser($wh_data);
-
     return;
   }
 
   /**
    * Removes a user
    *
-   * @param {id} $id
+   * @param {string} $siteId
    * @return Response
    */
-  public function remove($id){
+  public function remove($siteId){
 
     // remove the user from JSON
-    $json_file = app()->basePath().'/resources/sites/'.$id.'/users.json';
+    $json_file = app()->basePath().'/resources/sites/users.json';
 
     if(file_exists($json_file)) {
 
@@ -275,6 +315,26 @@ class User {
         // remove page
         if($user['email'] == $this->email) {
           unset($users[$i]);
+
+          $x = 0;
+
+          foreach($this->sites as &$site) {
+
+            // remove site from user
+            if($site['id'] == $siteId) {
+              unset($sites[$x]);
+
+              // if user has no more sites, then remove the user
+              if(count($this->sites) == 0) {
+                unset($users[$i]);
+              }
+            }
+
+            $x++;
+
+          }
+
+
         }
 
         $i++;
@@ -299,73 +359,112 @@ class User {
    * @param {string} $id id of site (e.g. site-name)
    * @return Response
    */
-  public static function listAll($id){
-
-    $arr = array();
-
-    // get base path for the site
-    $json_file = app()->basePath().'/resources/sites/'.$id.'/users.json';
+  public static function listAll($siteId){
 
 
-    if(file_exists($json_file)) {
+    $users = User::getUsers($siteId);
 
-      $json = file_get_contents($json_file);
+    foreach($users as &$user) {
 
-      // decode json file
-      $arr = json_decode($json, true);
-
-      foreach($arr as &$item) {
-        $item['password'] = 'currentpassword';
-        $item['retype'] = 'currentpassword';
-      }
+      $user->password = 'currentpassword';
+      $user->retype = 'currentpassword';
 
     }
 
-    return $arr;
+    return $users;
 
   }
-  
-  /**
-   * Returns a list of sites that the user is a part of
+
+	/**
+   * Converts per site users to resources/sites/users.json
    *
    * @param {string} $id
    * @return {Site}
    */
-	public static function lookupUserByEmail($email) {
-  	
+	public static function convert() {
+
   	$arr = array();
-    
+
     // list all sites
     $sites = Site::getSites();
-    
+
     // walk through sites
     foreach($sites as &$site) {
-      
+
+      echo $site;
+
       // get base path for the site
       $json_file = app()->basePath().'/resources/sites/'.$site.'/users.json';
-  
+
       if(file_exists($json_file)) {
-  
+
         $json = file_get_contents($json_file);
-  
+
         // decode json file
         $users = json_decode($json, true);
-        
+
         foreach($users as &$user) {
-          
-          if($user['email'] == $email) {
-            array_push($arr, $site);
+
+          $has_match = false;
+
+          // check for email match
+          foreach($arr as &$item) {
+
+            if($user['email'] == $item['email']) {
+
+              $has_match = true;
+
+              $this_site = array(
+                "id" => $site,
+                "role" => 'admin'
+              );
+
+              array_push($item['sites'], $this_site);
+
+            }
+
           }
-          
+
+          // push a new user
+          if($has_match == false){
+
+            $this_site = array(
+              "id" => $site,
+              "role" => 'admin'
+            );
+
+            $this_sites = array();
+
+            // push site to sites array
+            array_push($this_sites, $this_site);
+
+            $user['sites'] = $this_sites;
+
+            unset($user['siteId']);
+            unset($user['photo']);
+
+            array_push($arr, $user);
+
+
+          }
+
         }
-        
-  
+
       }
-      
+
     }
-    
-    return $arr;
-  	
+
+    // prevent showing the index (e.g. "0":{})
+    $arr = array_values($arr);
+
+    // set users
+    $json_file = app()->basePath().'/resources/sites/users.json';
+
+    // save array
+    file_put_contents($json_file, json_encode($arr, JSON_PRETTY_PRINT));
+
+    echo 'success!';
+
 	}
 
 }
