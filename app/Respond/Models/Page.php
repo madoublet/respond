@@ -131,8 +131,6 @@ class Page {
           $content = str_replace($key, $value, $content);
       }
 
-
-
       // set location
       $location = $dest.'/'.$page->url.'.html';
 
@@ -264,7 +262,7 @@ class Page {
           $selector = $change['selector'];
 
           // set main content
-          if($selector == '[role="main"]') {
+          if($selector == '[role="main"]' || $selector == '[role=main]') {
             $main_content = $change['html'];
           }
 

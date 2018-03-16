@@ -20,15 +20,14 @@ class Site {
   public $supportsFriendlyUrls;
   public $timeZone;
   /**
-   * [Active | Trial | Failed | Unsubscribed]
-   * Active -> Subscribed
-   * Trial -> In Trial Period
-   * Failed -> Failed Charge
-   * Unsubscribed -> Customer selected Unsubscribe
+   * Active => Normal, no message
+   * Message => Show Message
    */
   public $status;
+  public $messageColor;
+  public $messageText;
+  public $messageLink;
   public $startDate;
-  public $customerId;
 
   public static $ISO8601 = "Y-m-d\TH:i:sO";
 
@@ -62,7 +61,25 @@ class Site {
 
     // fallback for status
     if(isset($this->status) === false) {
-      $this->status = 'Active';
+      $this->status = 'active';
+    }
+    else {
+      $this->status = strtolower($this->status);
+    }
+    
+    // fallback for color
+    if(isset($this->messageColor) === false) {
+      $this->messageColor = 'none';
+    }
+    
+    // fallback for text
+    if(isset($this->messageText) === false) {
+      $this->messageText = '';
+    }
+    
+    // fallback for link
+    if(isset($this->messageLink) === false) {
+      $this->messageLink = '';
     }
 
     // fallback for startDate
@@ -83,7 +100,31 @@ class Site {
     $this->save();
 
   }
+  
+  /**
+   * updates a site
+   *
+   * @param {string} $name
+   * @param {string} $email
+   * @param {string} $status
+   * @param {string} $messageColor
+   * @param {string} $messageText
+   * @param {string} $messageLink
+   * @return {Site}
+   */
+  public function update($name, $email, $status, $messageColor, $messageText, $messageLink) {
 
+    $this->name = $name;
+    $this->email = $email;
+    $this->status = $status;
+    $this->messageColor = $messageColor;
+    $this->messageText = $messageText;
+    $this->messageLink = $messageLink;
+    
+    $this->save();
+
+  }
+  
   /**
    * Saves a site
    *
@@ -163,35 +204,6 @@ class Site {
 
 	}
 
-	/**
-   * Gets a site by $customerId
-   *
-   * @param {string} $customerId - Stripe CustomerID
-   * @return {Site}
-   */
-  public static function getSiteByCustomerId($customerId)
-  {
-    // get base path for the site
-    $dir = app()->basePath().'/resources/sites';
-
-    $arr = glob($dir . '/*' , GLOB_ONLYDIR);
-
-    foreach($arr as &$item) {
-      $id = basename($item);
-
-      // get site
-      $site = Site::getById($id);
-
-      if($site != NULL) {
-        if($site->customerId == $customerId) {
-          return $site;
-        }
-      }
-    }
-
-    return null;
-  }
-
 
 
 	/**
@@ -222,7 +234,7 @@ class Site {
    * @param {string} $id the ID for the user
    * @return {Site}
    */
-	public static function create($name, $theme, $email, $password) {
+	public static function create($name, $theme, $user, $add_user_to_site) {
 
     // prevent directory names in theme
     $theme = basename($theme);
@@ -277,7 +289,7 @@ class Site {
     $site_arr = array(
       'id' => $id,
       'name' => $name,
-      'email' => $email,
+      'email' => $user->email,
       'theme' => $theme,
       'supportsFriendlyUrls' => $supportsFriendlyUrls,
       'timeZone' => $timeZone,
@@ -289,21 +301,8 @@ class Site {
   	$site = new Site($site_arr);
   	$site->save();
 
-  	// try to get user
-  	$user = User::getByEmail($email);
-
-  	if($user == NULL) {
-
-    	$firstName = 'New';
-    	$lastName = 'User';
-    	$language = 'en';
-    	$role = 'admin';
-
-    	// add user
-    	$user = User::add($email, password_hash($password, PASSWORD_DEFAULT), $firstName, $lastName, $language, $id, $role);
-
-  	}
-  	else {
+    // add the user to the site (if required)
+  	if($add_user_to_site == TRUE) {
     	$user->addSite($site->id, 'admin');
   	}
 
@@ -323,23 +322,43 @@ class Site {
     Publish::publishPlugins($user, $site);
 
     // get default status
-    $status = 'Active';
+    $status = 'active';
+    $message_color = '';
+    $message_text = '';
+    $message_link = '';
 
-    // set as default status
+    // set default default status
     if(env('DEFAULT_STATUS') == NULL) {
       $status = env('DEFAULT_STATUS');
     }
-
+    
+    // set default message color
+    if(env('DEFAULT_MESSAGE_COLOR') == NULL) {
+      $message_color = env('DEFAULT_MESSAGE_COLOR');
+    }
+    
+    // set default message text
+    if(env('DEFAULT_MESSAGE_TEXT') == NULL) {
+      $message_text = env('DEFAULT_MESSAGE_TEXT');
+    }
+    
+    // set default message link
+    if(env('DEFAULT_MESSAGE_LINK') == NULL) {
+      $message_link = env('DEFAULT_MESSAGE_LINK');
+    }
 
     // return site information
     return array(
       'id' => $id,
       'name' => $name,
-      'email' => $email,
+      'email' => $user->email,
       'theme' => $theme,
       'supportsFriendlyUrls' => $supportsFriendlyUrls,
       'timeZone' => $timeZone,
       'status' => $status,
+      'messageColor' => $message_color,
+      'messageText' => $message_text,
+      'messageLink' => $message_link,
       'startDate' => date(Site::$ISO8601, time())
       );
 

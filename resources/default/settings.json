@@ -53,6 +53,43 @@
         "value": ""
     },
     {
+        "id": "s3-title",
+        "label": "Amazon S3 Sync Settings (optional)",
+        "type": "title"
+    },
+    {
+        "id": "s3-key",
+        "label": "S3 Access Key",
+        "description": "The access key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-secret",
+        "label": "S3 Secret Key",
+        "description": "The secret key provided by Amazon IAM",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-bucket",
+        "label": "S3 Bucket",
+        "description": "The bucket created using the Amazon S3",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
+        "id": "s3-region",
+        "label": "S3 Region",
+        "description": "The region in which you created your bucket",
+        "type": "text",
+        "value": "",
+        "encrypted": true
+    },
+    {
         "id": "cart-title",
         "label": "Shopping Cart (optional)",
         "type": "title"

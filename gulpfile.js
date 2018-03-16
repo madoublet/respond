@@ -68,59 +68,51 @@ gulp.task('create-zip', function() {
 });
 
 
-// create a zip for the release
-gulp.task('create-zip-pro', function() {
+// copy public/resources/themes to all themes
+gulp.task('resources', function(done) {
 
-    var bundlePaths = [
-      'app/**/*',
-      'bootstrap/**/*',
-      'database/**/*',
-      'design/**/*',
-      'public/app/**/*',
-      'public/assets/**/*',
-      'public/favicon.ico',
-      'public/0.03209b91f414e55880bd.chunk.js',
-      'public/inline.4fe9fd6922a8f85954b7.bundle.js',
-      'public/main.7777ed84a5d3363179f0.bundle.js',
-      'public/polyfills.35ab1ad93807931b93ad.bundle.js',
-      'public/scripts.f8b3fbe1c84c9e946ba2.bundle.js',
-      'public/styles.98eb654a4c41c07a2600.bundle.css',
-      'public/install/**/*',
-      'public/resources/**/*',
-      'public/editor/**/*',
-      'public/themes/aspire/**/*',
-      'public/themes/base/**/*',
-      'public/themes/broadway/**/*',
-      'public/themes/energy/**/*',
-      'public/themes/executive/**/*',
-      'public/themes/highrise/**/*',
-      'public/themes/market/**/*',
-      'public/themes/serene/**/*',
-      'public/themes/sidebar/**/*',
-      'public/themes/simple/**/*',
-      'public/themes/stark/**/*',
-      'public/.htaccess',
-      'public/index.html',
-      'public/index.php',
-      'resources/default/**/*',
-      'resources/emails/**/*',
-      'resources/plugins/**/*',
-      'resources/views/**/*',
-      'resources/white-label/**/*',
-      'storage/**/*',
-      'tests/**/*',
-      'typings/**/*',
-      'vendor/**/*',
-      '.env.example',
-      'artisan',
-      'LICENSE'
-    ];
+  var x;
 
-    return gulp.src(bundlePaths, {base: './', follow: true})
-  		.pipe(zip('release.pro.zip'))
-  		.pipe(gulp.dest('./dist'));
+  // walk through the themes
+  for(x=0; x<themes.length; x++) {
+
+    // copy shared directory to themes
+    gulp.src(['public/resources/themes/**/*']).pipe(gulp.dest('public/themes/' + themes[x]));
+
+  }
+
+  done();
 
 });
+
+// combine css/js files
+gulp.task('combine', function(done) {
+
+  var x;
+
+  // walk through the themes
+  for(x=0; x<themes.length; x++) {
+
+    // concat css
+    gulp.src(['public/themes/' + themes[x] + '/css/libs.min.css', 'public/themes/' + themes[x] + '/css/site.css', 'public/themes/' + themes[x] + '/css/utilities.css'])
+      .pipe(concat('site.all.css'))
+      .pipe(minifyCss())
+      .pipe(rename('site.min.css'))
+      .pipe(gulp.dest('src/' + themes[x] + '/css'));
+
+    // concat js
+    gulp.src(['public/themes/' + themes[x] + '/js/libs.min.js', 'public/themes/' + themes[x] + '/js/plugins.js',  'public/themes/' + themes[x] + '/js/site.js'])
+      .pipe(concat('site.all.js'))
+      .pipe(gulp.dest('src/' + themes[x] + '/js'));
+
+  }
+
+  done();
+
+});
+
+
+gulp.task('default', gulpSequence('resources', 'combine'));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));

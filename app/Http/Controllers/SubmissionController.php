@@ -145,6 +145,10 @@ class SubmissionController extends Controller
 
       if($key != 'siteid' && $key != 'url' && $key != 'formid') {
 
+        if(is_array($value)) {
+          $value = implode(", ", $value);
+        }
+
         // push field
         array_push($fields, array(
           'id' => $key,

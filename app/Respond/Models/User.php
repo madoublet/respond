@@ -50,17 +50,19 @@ class User {
    * @param {string} $role
    * @return {User}
    */
-	public static function add($email, $password, $firstName, $lastName, $language, $siteId, $role){
+	public static function add($email, $password, $firstName, $lastName, $language, $siteId = NULL, $role = 'admin'){
 
   	// build sites array
   	$sites = array();
 
-  	$site = array(
-      "id" => $siteId,
-      "role" => 'admin'
-    );
+    if($siteId != NULL) {
+    	$site = array(
+        "id" => $siteId,
+        "role" => 'admin'
+      );
 
-    array_push($sites, $site);
+      array_push($sites, $site);
+    }
 
     $user = new User(array(
       'email' => $email,
@@ -245,6 +247,62 @@ class User {
 	}
 
 	/**
+   * Edits the role of the user
+   *
+   * @param {string} $siteId the ID of the site
+   * @param {string} role the role of the user
+   * @return void
+   */
+	public function editRole($siteId, $role) {
+
+  	if($this->sites == NULL) {
+    	$this->sites = array();
+  	}
+
+    // walk through sites
+  	foreach($this->sites as &$site) {
+
+      // remove site from user
+      if($site['id'] == $siteId) {
+        $site['role'] = $role;
+      }
+
+    }
+
+    // save users
+    $this->save();
+	}
+
+	/**
+   * Gets the users role for a site
+   *
+   * @param {string} $siteId the ID of the site
+   * @return void
+   */
+	public function getRole($siteId) {
+
+	  $role = 'contributor';
+
+  	if($this->sites == NULL) {
+    	$this->sites = array();
+  	}
+
+  	print_r($this->sites);
+
+    // walk through sites
+  	foreach($this->sites as &$site) {
+
+      // rget role
+      if($site['id'] == $siteId) {
+        $role = $site['role'];
+      }
+
+    }
+
+    return $role;
+	}
+
+	/**
    * Saves a user
    *
    * @param {string} $id the ID of the site
@@ -322,7 +380,7 @@ class User {
 
             // remove site from user
             if($site['id'] == $siteId) {
-              unset($sites[$x]);
+              unset($this->sites[$x]);
 
               // if user has no more sites, then remove the user
               if(count($this->sites) == 0) {
@@ -368,6 +426,17 @@ class User {
 
       $user->password = 'currentpassword';
       $user->retype = 'currentpassword';
+      $user->role = 'admin';
+
+      // walk through sites
+    	foreach($user->sites as &$site) {
+
+        // remove site from user
+        if($site['id'] == $siteId) {
+          $user->role = $site['role'];
+        }
+
+      }
 
     }
 

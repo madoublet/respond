@@ -66,7 +66,7 @@
         <div class="form-check">
         {% for option in options %}
           <div class="form-check">
-            <input name="{{ field.id }}"  type="checkbox" value="{{ option }}" class="form-check-input">
+            <input name="{{ field.id }}[]"  type="checkbox" value="{{ option }}" class="form-check-input">
             <label class="form-check-label" for="{{ field.id }}">{{ option }}</label>
           </div>
         {% endfor %}

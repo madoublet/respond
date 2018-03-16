@@ -32,6 +32,7 @@ class UserController extends Controller
     $email = $request->json()->get('email');
     $password = $request->json()->get('password');
     $siteId = NULL;
+    $role = 'contributor';
 
     // lookup site id for user
     if(isset($id) == false || $id == '') {
@@ -47,6 +48,7 @@ class UserController extends Controller
         }
         else {
           $siteId = $user->sites[0]['id'];
+          $role = $user->sites[0]['role'];
         }
       }
 
@@ -58,20 +60,6 @@ class UserController extends Controller
     if ($site != NULL) {
 
       if($user != NULL) {
-      	$activationUrl = '';
-
-      	if(env('ACTIVATION_URL') != NULL) {
-        	$activationUrl = env('ACTIVATION_URL');
-
-        	$activationUrl = str_replace('{{site}}', $site->id, $activationUrl);
-      	}
-
-      	// determine if a customer has an account
-      	$hasAccount = false;
-
-      	if($site->status == 'Active' && $site->customerId != '') {
-        	$hasAccount = true;
-      	}
 
       	// determine if site can be synced
       	$can_sync = false;
@@ -89,6 +77,10 @@ class UserController extends Controller
           }
         }
 
+        if($user->sysadmin == TRUE) {
+          $role = 'admin';
+        }
+
         // return a subset of the user array
         $returned_user = array(
         	'email' => $user->email,
@@ -98,15 +90,21 @@ class UserController extends Controller
         	'sysadmin' => $user->sysadmin,
         	'sites' => $user->sites,
         	'siteId' => $site->id,
+        	'role' => $role
+        );
+
+        // message to show to user
+        $message = array(
         	'status' => $site->status,
-        	'hasAccount' => $hasAccount,
-        	'days'=> $site->daysRemaining(),
-        	'activationUrl'=> $activationUrl
+          'color' => $site->messageColor,
+          'text' => $site->messageText,
+          'link' => $site->messageLink
         );
 
         // send token
         $params = array(
         	'user' => $returned_user,
+        	'message' => $message,
         	'sync' => array(
           	'canSync' => $can_sync,
           	'syncType' => $sync_type
@@ -223,6 +221,7 @@ class UserController extends Controller
 
     // get url & changes
     $email = $request->json()->get('email');
+    $role = $request->json()->get('role');
     $firstName = $request->json()->get('firstName');
     $lastName = $request->json()->get('lastName');
     $password = $request->json()->get('password');
@@ -241,6 +240,9 @@ class UserController extends Controller
       }
 
       $user->save();
+
+      // edit role
+      $user->editRole($siteId, $role);
 
       // return a successful response (200)
       return response('OK', 200);
@@ -265,6 +267,7 @@ class UserController extends Controller
 
     // get url & changes
     $email = $request->json()->get('email');
+    $role = $request->json()->get('role');
     $firstName = $request->json()->get('firstName');
     $lastName = $request->json()->get('lastName');
     $password = $request->json()->get('password');
@@ -285,8 +288,12 @@ class UserController extends Controller
           'token' => ''
         ));
 
+
       // save the user
       $user->save();
+
+      // add to site
+      $user->addSite($siteId, $role);
 
       // return a successful response (200)
       return response('OK', 200);

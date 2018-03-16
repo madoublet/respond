@@ -11,6 +11,7 @@ use \Illuminate\Http\Request;
 
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
+use App\Respond\Libraries\S3;
 
 class SiteController extends Controller
 {
@@ -121,7 +122,27 @@ class SiteController extends Controller
 
     if($passcode == env('PASSCODE')) {
 
-      $arr = Site::create($name, $theme, $email, $password);
+      // try to get user
+      $user = User::getByEmail($email);
+
+    	if($user == NULL) {
+
+      	$firstName = 'New';
+      	$lastName = 'User';
+      	$language = 'en';
+
+      	// add user
+      	$user = User::add($email, password_hash($password, PASSWORD_DEFAULT), $firstName, $lastName, $language);
+    	}
+    	else {
+      	$user->addSite($site->id, 'admin');
+    	}
+
+      // do not add the sysadmin to the site
+      $add_user_to_site = true;
+
+      // create a site
+      $arr = Site::create($name, $theme, $user, $add_user_to_site);
 
       // send email
       $to = $email;
@@ -145,6 +166,82 @@ class SiteController extends Controller
       Utilities::sendEmailFromFile($to, $from, $fromName, $subject, $replace, $file);
 
       return response()->json($arr);
+    }
+    else {
+      return response('Passcode invalid', 401);
+    }
+
+  }
+
+  /**
+   * Adds a site
+   *
+   * @return Response
+   */
+  public function add(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get user
+    $user = User::getByEmail($email);
+
+    // get request
+    $name = $request->json()->get('name');
+    $theme = $request->json()->get('theme');
+
+    // only enabled for a sysadmin
+    if($user->sysadmin == TRUE) {
+
+      // do not add the sysadmin to the site
+      $add_user_to_site = false;
+
+      // create a site
+      $arr = Site::create($name, $theme, $user, $add_user_to_site);
+
+      return response()->json($arr);
+    }
+    else {
+      return response('Passcode invalid', 401);
+    }
+
+  }
+
+
+  /**
+   * Updates the site
+   *
+   * @return Response
+   */
+  public function update(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get user
+    $user = User::getByEmail($email);
+
+    // get request
+    $id = $request->json()->get('id');
+    $name = $request->json()->get('name');
+    $email = $request->json()->get('email');
+    $status = $request->json()->get('status');
+    $messageColor = $request->json()->get('messageColor');
+    $messageText = $request->json()->get('messageText');
+    $messageLink = $request->json()->get('messageLink');
+
+    // only enabled for a sysadmin
+    if($user->sysadmin == TRUE) {
+
+      // update the site
+      $site = Site::getById($id);
+      $site->update($name, $email, $status, $messageColor, $messageText, $messageLink);
+
+      return response('Ok', 200);
     }
     else {
       return response('Passcode invalid', 401);
@@ -351,12 +448,13 @@ class SiteController extends Controller
 
   }
 
+
   /**
    * Publishes site to external provider
    *
    * @return Response
    */
-  public function sync(Request $request)
+  public static function sync(Request $request)
   {
 
     // get request data
@@ -366,7 +464,7 @@ class SiteController extends Controller
     // get site
     $site = Site::getById($siteId);
 
-    $has_synced = Publish::sync($site);
+    $has_synced = S3::sync($site);
 
     if($has_synced == true) {
       return response('Ok', 200);
@@ -391,6 +489,7 @@ class SiteController extends Controller
 
     // get new site id
     $new_siteId = $request->json()->get('id');
+    $role = 'contributor';
 
     // get user
     $user = User::getByEmail($email);
@@ -407,6 +506,7 @@ class SiteController extends Controller
 
         if($site['id'] == $new_siteId) {
           $can_switch = TRUE;
+          $role = $site['role'];
         }
       }
 
@@ -419,21 +519,6 @@ class SiteController extends Controller
       $site = Site::getById($new_siteId);
 
       if($site != NULL) {
-
-        $activationUrl = '';
-
-      	if(env('ACTIVATION_URL') != NULL) {
-        	$activationUrl = env('ACTIVATION_URL');
-
-        	$activationUrl = str_replace('{{site}}', $site->id, $activationUrl);
-      	}
-
-      	// determine if a customer has an account
-      	$hasAccount = false;
-
-      	if($site->status == 'Active' && $site->customerId != '') {
-        	$hasAccount = true;
-      	}
 
       	// determine if site can be synced
       	$can_sync = false;
@@ -451,6 +536,10 @@ class SiteController extends Controller
           }
         }
 
+        if($user->sysadmin == TRUE) {
+          $role = 'admin';
+        }
+
         // return a subset of the user array
         $returned_user = array(
         	'email' => $user->email,
@@ -460,15 +549,21 @@ class SiteController extends Controller
         	'sysadmin' => $user->sysadmin,
         	'sites' => $user->sites,
         	'siteId' => $site->id,
+        	'role' => $role
+        );
+
+        // message to show to user
+        $message = array(
         	'status' => $site->status,
-        	'hasAccount' => $hasAccount,
-        	'days'=> $site->daysRemaining(),
-        	'activationUrl'=> $activationUrl
+          'color' => $site->messageColor,
+          'text' => $site->messageText,
+          'link' => $site->messageLink
         );
 
         // send token
         $params = array(
         	'user' => $returned_user,
+        	'message' => $message,
         	'sync' => array(
           	'canSync' => $can_sync,
           	'syncType' => $sync_type

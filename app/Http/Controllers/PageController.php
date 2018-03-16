@@ -91,6 +91,77 @@ class PageController extends Controller
     $url = str_replace($id.'/', '', $url);
     $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
 
+    // build draft
+    $draft_path_url = str_replace('/', '.', $url);
+    $draft_path = rtrim(app()->basePath('resources/sites/'.$id.'/drafts/'.$draft_path_url), '/').'.html';
+
+    $main_content = NULL;
+
+    // edit the page
+    foreach($changes as $change) {
+
+      $selector = $change['selector'];
+
+      // set main content
+      if($selector == '[role="main"]' || $selector == '[role=main]') {
+        $main_content = $change['html'];
+      }
+
+    }
+
+    if($main_content != NULL) {
+
+      $drafts_dir = app()->basePath('resources/sites/'.$id.'/drafts/');
+
+      // make the drafts directory
+      if (!file_exists($drafts_dir)) {
+        mkdir($drafts_dir, 0755, true);
+      }
+
+      // add draft
+      file_put_contents($draft_path, $main_content);
+
+      // return 200
+      return response('OK', 200);
+    }
+    else {
+      return response('Main content not specified', 400);
+    }
+
+  }
+
+  /**
+   * Publishes the changes to the page
+   *
+   * @return Response
+   */
+  public function publish(Request $request)
+  {
+    // get request data
+    $email = $request->input('auth-email');
+    $id = $request->input('auth-id');
+
+    // get url & changes
+    $url = $request->json()->get('url');
+    $changes = $request->json()->get('changes');
+
+    // get site and user
+    $site = Site::getById($id);
+    $user = User::getByEmail($email);
+
+    // remove site and .html from url
+    $url = str_replace($id.'/', '', $url);
+    $url = preg_replace('/\\.[^.\\s]{3,4}$/', '', $url);
+
+    // remove draft on publish
+    $draft_path_url = str_replace('/', '.', $url);
+    $draft_path = rtrim(app()->basePath('resources/sites/'.$id.'/drafts/'.$draft_path_url), '/').'.html';
+
+    // remove the draft
+    if(file_exists($draft_path)) {
+        unlink($draft_path);
+    }
+
     // edit the page
     $success = Page::edit($url, $changes, $site, $user);
 

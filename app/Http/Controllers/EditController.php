@@ -43,10 +43,6 @@ class EditController extends Controller
               $mode = 'component';
             }
 
-            if($m == 'focused') {
-              $mode = 'focused';
-            }
-
           }
 
           $arr = explode('/', $q);
@@ -55,7 +51,7 @@ class EditController extends Controller
 
             $siteId = $arr[0];
 
-            // set html if hiddne
+            // set html if hiddent
             $url = $q;
 
             // strip any trailing .html from url
@@ -73,59 +69,45 @@ class EditController extends Controller
 
             $title = rtrim($title, '/');
 
-            // load page
-            $path = rtrim(app()->basePath('public/sites/'.$url), '/');
+            // load page path
+            $page_path = rtrim(app()->basePath('public/sites/'.$url), '/');
+            $draft_path = NULL;
 
-            if(file_exists($path)) {
+            // get siteID
+            $siteId = NULL;
 
-              $html = file_get_contents($path);
+            // get arr
+            $arr = explode('/', $q);
+
+            // check for site id
+            if(isset($arr[0])) {
+              $siteId = $arr[0];
+
+              // strip out the siteId and replace the dots
+              $draft_path_url = str_replace($siteId.'/', '', $url);
+              $draft_path_url = str_replace('/', '.', $draft_path_url);
+
+              $draft_path = rtrim(app()->basePath('resources/sites/'.$siteId.'/drafts/'.$draft_path_url), '/');
+            }
+
+            if(file_exists($page_path)) {
+
+              $html = file_get_contents($page_path);
 
               // set dom
               $dom = HtmlDomParser::str_get_html($html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
 
-              if($mode == 'focused') {
+              // find base element
+              $el = $dom->find('body', 0);
 
-                $content = $dom->find('[role=main]', 0);
-
-                $default_template_location = app()->basePath('public/html/index.html');
-
-                if(file_get_contents($default_template_location)) {
-
-                  // get html
-                  $template_html = file_get_contents($default_template_location);
-
-                  // set dom
-                  $dom = HtmlDomParser::str_get_html($template_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);
-
-                  $el = $dom->find('[role=main]');
-
-                  // get the component content
-                  if(isset($el[0])) {
-                    $el[0]->innertext = $content->innertext;
-                  }
-
-                }
-                else {
-                  return 'Please specify default html to render.';
-
-                }
-              }
-              else {
-                // find base element
-                $el = $dom->find('body', 0);
-              }
-
-              // check for body
+              // check for body => no body, then it is a component
               if(isset($el) == false) {
 
-                $arr = explode('/', $q);
-
                 // check for site id
-                if(isset($arr[0])) {
+                if($siteId) {
 
-                  $id = $arr[0];
-
-                  $default_template_location = app()->basePath('public/sites/'.$id.'/templates/default.html');
+                  // load default template to render the component
+                  $default_template_location = app()->basePath('public/sites/'.$siteId.'/templates/default.html');
 
                   if(file_get_contents($default_template_location)) {
 
@@ -154,10 +136,30 @@ class EditController extends Controller
                 }
 
               }
+              else { // handle pages
+
+                // find main DOM
+                $el = $dom->find('[role=main]', 0);
+
+                if($el) {
+
+                  // load the draft if it exists
+                  if(file_exists($draft_path)) {
+
+                    // set HTML to the draft
+                    $html = file_get_contents($draft_path);
+                    $el->innertext = $html;
+
+                  }
+
+                }
+
+              }
 
               // find base
               $el = $dom->find('base', 0);
 
+              // update the base so that we can display the page's CSS
               if(isset($el)) {
                 $el->setAttribute('href', '/sites/'.$siteId.'/');
               }
@@ -170,31 +172,23 @@ class EditController extends Controller
               $editable = Setting::getById('editable', $siteId);
               $blocks = Setting::getById('blocks', $siteId);
 
-              // defaults
+              // set sortable elements
               if($sortable === NULL) {
                 $sortable = '.col, .column';
               }
 
-              if($mode == 'focused') {
-                $sortable = '.col';
-              }
-
-              // get editable array
+              // set editable elements
               if($editable === NULL) {
                 $editable = ['[role=main]'];
               }
               else {
                 $editable = explode(',', $editable);
-                // trim elements in the array
                 $editable = array_map('trim', $editable);
               }
 
+              // set block elements
               if($blocks === NULL) {
                 $blocks = '.row';
-              }
-
-              if($mode == 'focused') {
-                $editable = array('[role=main]');
               }
 
               // find body element
@@ -214,8 +208,7 @@ class EditController extends Controller
 
               }
 
-              // init
-
+              // initialize plugins
               $plugins_script = '';
 
               // get custom plugins
@@ -226,19 +219,6 @@ class EditController extends Controller
                 if(file_exists($json_file)) {
                   $plugins_script .= 'var plugins = '.file_get_contents($json_file).';';
                   $plugins_script .= 'if(editor.menu !== null && editor.menu !== undefined) {editor.menu = editor.menu.concat(plugins);}';
-                }
-
-              }
-              else { // fallback to existing plugins
-
-                $js_file = app()->basePath().'/resources/sites/'.$siteId.'/plugins.js';
-
-                if(file_exists($js_file)) {
-
-                  if(file_exists($js_file)) {
-                    $plugins_script .= file_get_contents($js_file);
-                  }
-
                 }
 
               }

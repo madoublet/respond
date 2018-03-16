@@ -90,6 +90,8 @@ $app->get('/api/languages/list', 'AppController@listLanguages');
 // site
 $app->get('/api/sites/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@listAll']);
 $app->post('/api/sites/create', 'SiteController@create');
+$app->post('/api/sites/add', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@add']);
+$app->post('/api/sites/update', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@update']);
 $app->post('/api/sites/activate', 'SiteController@activate');
 $app->get('/api/sites/reload', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@reload']);
 $app->get('/api/sites/sitemap', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@generateSitemap']);
@@ -121,6 +123,7 @@ $app->get('/api/pages/list', ['middleware' => 'jwtauth', 'uses'=> 'PageControlle
 $app->post('/api/pages/add', ['middleware' => 'jwtauth', 'uses'=> 'PageController@add']);
 $app->get('/api/routes/list', ['middleware' => 'jwtauth', 'uses'=> 'PageController@listRoutes']);
 $app->post('/api/pages/save', ['middleware' => 'jwtauth', 'uses'=> 'PageController@save']);
+$app->post('/api/pages/publish', ['middleware' => 'jwtauth', 'uses'=> 'PageController@publish']);
 $app->post('/api/pages/add', ['middleware' => 'jwtauth', 'uses'=> 'PageController@add']);
 $app->post('/api/pages/remove', ['middleware' => 'jwtauth', 'uses'=> 'PageController@remove']);
 $app->post('/api/pages/settings', ['middleware' => 'jwtauth', 'uses'=> 'PageController@settings']);
@@ -210,8 +213,3 @@ $app->post('/api/payment/subscribe/{id}', ['middleware' => 'cors', 'uses'=> 'Pay
 
 // site payment route
 $app->post('/api/payment/pay/{id}', ['middleware' => 'cors', 'uses'=> 'PaymentController@payAtSite']);
-
-// include pro routes if they are included in the project
-if(file_exists( app()->basePath('app/Pro/routes.php' ))) {
-  include_once( app()->basePath('app/Pro/routes.php') );
-}

@@ -19,6 +19,7 @@ editor = (function() {
 
     // API urls
     saveUrl: '/api/pages/save',
+    publishUrl: '/api/pages/publish',
     addPageURL: '/api/pages/add',
     pageSettingsURL: '/api/pages/settings',
     uploadUrl: '/api/images/add',
@@ -632,6 +633,39 @@ editor = (function() {
         // construct an HTTP request
         xhr = new XMLHttpRequest();
         xhr.open('post', editor.saveUrl, true);
+
+        // set token
+        if(editor.useToken == true) {
+          xhr.setRequestHeader(editor.authHeader, editor.authHeaderPrefix + ' ' + localStorage.getItem(editor.tokenName));
+        }
+
+        // send the collected data as JSON
+        xhr.send(JSON.stringify(data));
+
+        xhr.onloadend = function() {
+
+          location.reload();
+
+        };
+
+      }
+
+    },
+
+    /**
+      * Publishes the content
+      */
+    publish: function() {
+
+      var data, xhr;
+
+      data = editor.retrieveUpdateArray();
+
+      if (editor.saveUrl) {
+
+        // construct an HTTP request
+        xhr = new XMLHttpRequest();
+        xhr.open('post', editor.publishUrl, true);
 
         // set token
         if(editor.useToken == true) {
