@@ -6,12 +6,13 @@
     "tsc": "tsc"
   },
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.0",
     "gulp-minify": "0.0.12",
+    "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0"
   }

@@ -145,7 +145,7 @@ body header {
     display: none;
   }
 
-  body[show-respond-cart] header .header-action[respond-cart] {
+  body[show-cart] header .header-action[respond-cart] {
     display: inline-block;
   }
 
@@ -178,7 +178,7 @@ body header {
     margin-top: 0;
   }
 
-  body[show-respond-cart] header .primary-menu {
+  body[show-cart="true"] header .primary-menu {
     margin-right: 140px;
     margin-top: 0;
   }

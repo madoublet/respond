@@ -217,7 +217,7 @@ body header {
     margin-top: 0;
   }
 
-  body[show-cart="true"]] header .primary-menu {
+  body[show-cart="true"] header .primary-menu {
     margin-right: 140px;
     margin-top: 0;
   }

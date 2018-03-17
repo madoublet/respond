@@ -134,9 +134,6 @@ class SiteController extends Controller
       	// add user
       	$user = User::add($email, password_hash($password, PASSWORD_DEFAULT), $firstName, $lastName, $language);
     	}
-    	else {
-      	$user->addSite($site->id, 'admin');
-    	}
 
       // do not add the sysadmin to the site
       $add_user_to_site = true;

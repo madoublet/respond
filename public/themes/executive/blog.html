@@ -44,15 +44,11 @@
 
     <header role="banner">
 
-      <nav class="navbar navbar-expand-lg navbar-light justify-content-end">
+      <nav class="navbar navbar-expand-md navbar-light justify-content-end">
 
         <a class="navbar-brand" href="index"><img theme-logo="" src="resources/logo.png"></a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div id="header-primary-menu" class="primary-menu collapse navbar-collapse">
 
           <ul respond-plugin="" type="menu" menu="primary" class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link active" href="index">Home</a></li>
@@ -73,13 +69,21 @@
 
         </div>
 
-         <a class="header-action" respond-cart="">
-          <i class="material-icons">shopping_cart</i> <span>$25.00</span>
-        </a>
+        <div class="header-actions">
 
-        <a class="header-action" respond-search="">
-          <i class="material-icons">search</i>
-        </a>
+          <a class="header-action d-md-none" data-toggle="collapse" data-target="#header-primary-menu">
+            <i class="material-icons">menu</i>
+          </a>
+
+          <a class="header-action" respond-cart="" cart-toggle="">
+            <i class="material-icons">shopping_cart</i> <span cart-total="">$0.00</span>
+          </a>
+
+          <a class="header-action" respond-search="">
+            <i class="material-icons">search</i>
+          </a>
+
+        </div>
 
       </nav>
 

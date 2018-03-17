@@ -1,8 +1,12 @@
-const gulp = require('gulp');
-const gutil = require('gulp-util');
-const zip = require('gulp-zip');
-const concat = require('gulp-concat');
-const minify = require('gulp-minify');
+let gulp = require('gulp');
+let gutil = require('gulp-util');
+let zip = require('gulp-zip');
+let minify = require('gulp-minify');
+let cleanCSS = require('gulp-clean-css');
+let concat = require('gulp-concat');
+let rename = require('gulp-rename');
+
+var themes = ['aspire', 'base', 'broadway', 'energy', 'executive', 'highrise', 'market', 'serene', 'sidebar', 'simple', 'stark'];
 
 // create a zip for the release
 gulp.task('create-zip', function() {
@@ -94,14 +98,14 @@ gulp.task('combine', function(done) {
   for(x=0; x<themes.length; x++) {
 
     // concat css
-    gulp.src(['public/themes/' + themes[x] + '/css/libs.min.css', 'public/themes/' + themes[x] + '/css/site.css', 'public/themes/' + themes[x] + '/css/utilities.css'])
+    gulp.src(['public/themes/' + themes[x] + '/css/libs.min.css', 'public/themes/' + themes[x] + '/css/site.css', 'public/themes/' + themes[x] + '/css/utilities.css'], { allowEmpty: true })
       .pipe(concat('site.all.css'))
-      .pipe(minifyCss())
+      .pipe(cleanCSS())
       .pipe(rename('site.min.css'))
       .pipe(gulp.dest('src/' + themes[x] + '/css'));
 
     // concat js
-    gulp.src(['public/themes/' + themes[x] + '/js/libs.min.js', 'public/themes/' + themes[x] + '/js/plugins.js',  'public/themes/' + themes[x] + '/js/site.js'])
+    gulp.src(['public/themes/' + themes[x] + '/js/libs.min.js', 'public/themes/' + themes[x] + '/js/site.js'], { allowEmpty: true })
       .pipe(concat('site.all.js'))
       .pipe(gulp.dest('src/' + themes[x] + '/js'));
 
@@ -112,7 +116,7 @@ gulp.task('combine', function(done) {
 });
 
 
-gulp.task('default', gulpSequence('resources', 'combine'));
+gulp.task('themes', gulp.series(['resources', 'combine']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
