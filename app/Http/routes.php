@@ -103,7 +103,7 @@ $app->get('/api/templates/list', ['middleware' => 'jwtauth', 'uses'=> 'SiteContr
 $app->get('/api/plugins/list', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@listAll']);
 $app->post('/api/plugins/upload', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@upload']);
 $app->post('/api/plugins/remove', ['middleware' => 'jwtauth', 'uses'=> 'PluginController@remove']);
-$app->post('/api/sites/switch', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@switch']);
+$app->post('/api/sites/switch', ['middleware' => 'jwtauth', 'uses'=> 'SiteController@switchSites']);
 $app->post('/api/stripe/webhooks', 'AppController@listenForStripeWebhooks');
 
 // login

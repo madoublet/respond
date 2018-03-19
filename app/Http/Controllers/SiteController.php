@@ -477,7 +477,7 @@ class SiteController extends Controller
    *
    * @return Response
    */
-  public function switch(Request $request)
+  public function switchSites(Request $request)
   {
 
     // get request data
