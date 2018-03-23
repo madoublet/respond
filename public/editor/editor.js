@@ -41,7 +41,7 @@ editor = (function() {
     menu: [],
 
     // path to editor library
-    path: '/node_modules/editor/',
+    path: '/editor/',
 
     // path to stylesheet
     stylesheet: ['editor-min.css'],
@@ -2038,8 +2038,8 @@ editor = (function() {
 
       // production
       login = '/login';
-      path = '/node_modules/editor/';
-      stylesheet = ['/node_modules/editor/dist/editor-min.css'];
+      path = '/editor/';
+      stylesheet = ['/editor/editor.css'];
       sortable = ['.sortable'];
       url = null;
       blocks = [];

@@ -1,5 +1,9 @@
 [
     {
+        "id": "sync",
+        "value": "S3"
+    },
+    {
       "id": "url",
       "label": "URL",
       "description": "The url for your site, e.g.: https://respondcms.com",
@@ -78,16 +82,14 @@
         "label": "S3 Bucket",
         "description": "The bucket created using the Amazon S3",
         "type": "text",
-        "value": "",
-        "encrypted": true
+        "value": ""
     },
     {
         "id": "s3-region",
         "label": "S3 Region",
         "description": "The region in which you created your bucket",
         "type": "text",
-        "value": "",
-        "encrypted": true
+        "value": ""
     },
     {
         "id": "cart-title",

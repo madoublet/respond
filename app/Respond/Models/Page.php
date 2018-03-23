@@ -127,8 +127,10 @@ class Page {
       $content = str_replace('{{page.customFooter}}', $page->customFooter, $content);
 
       // walk through and replace values in associative array
-      foreach ($replace as $key => &$value) {
-          $content = str_replace($key, $value, $content);
+      if($replace != NULL) {
+        foreach ($replace as $key => &$value) {
+            $content = str_replace($key, $value, $content);
+        }
       }
 
       // set location

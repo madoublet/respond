@@ -252,16 +252,6 @@ body.home main .jumbotron {
     padding: 10px 10px;
   }
 
-  body.home main .jumbotron img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-  }
-
 /* vignette */
 body.home main .vignette {
   background-size: cover;

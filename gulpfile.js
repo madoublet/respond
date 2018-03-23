@@ -102,12 +102,12 @@ gulp.task('combine', function(done) {
       .pipe(concat('site.all.css'))
       .pipe(cleanCSS())
       .pipe(rename('site.min.css'))
-      .pipe(gulp.dest('src/' + themes[x] + '/css'));
+      .pipe(gulp.dest('public/themes/' + themes[x] + '/css'));
 
     // concat js
     gulp.src(['public/themes/' + themes[x] + '/js/libs.min.js', 'public/themes/' + themes[x] + '/js/site.js'], { allowEmpty: true })
       .pipe(concat('site.all.js'))
-      .pipe(gulp.dest('src/' + themes[x] + '/js'));
+      .pipe(gulp.dest('public/themes/' + themes[x] + '/js'));
 
   }
 

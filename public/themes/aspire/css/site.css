@@ -341,16 +341,6 @@ body.home .content .jumbotron {
   overflow: hidden;
 }
 
-  body.home .content .jumbotron img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   body.home .content .jumbotron .col-md-12 {
     position: absolute;
     top: 28vh;

@@ -20,8 +20,8 @@ class Site {
   public $supportsFriendlyUrls;
   public $timeZone;
   /**
-   * Active => Normal, no message
-   * Message => Show Message
+   * Active
+   * Trial
    */
   public $status;
   public $messageColor;
