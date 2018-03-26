@@ -10,7 +10,7 @@
  */
 class Cart {
 
-  constructor(flatRateShipping, taxRate, currency, locale, image, name, zipCode, billingAddress, shippingAddress, key, payApi, subscribeApi) {
+  constructor(flatRateShipping, taxRate, currency, locale, image, name, zipCode, billingAddress, shippingAddress, key, payApi, subscribeApi, successUrl) {
 
     var cartHtml, successHtml;
 
@@ -33,6 +33,7 @@ class Cart {
     this.subscribeApi = subscribeApi;
     this.handler = null;
     this.buttonLabel = null;
+    this.successUrl = successUrl;
 
     // cart
     this.cart = [];
@@ -417,6 +418,10 @@ class Cart {
                 context.el.removeAttribute('visible');
                 context.success.setAttribute('visible', '');
 
+                if(context.successUrl != null && context.successUrl != '') {
+                  window.location = context.successUrl;
+                }
+
                 // set downloads
                 var downloads = context.success.querySelector('.downloads');
                 downloads.innerHTML = http.responseText;
@@ -692,7 +697,7 @@ class CartItem {
 }
 
 /*
- * Prebuilt CartItem - Holds an item in the cart
+ * CartItem - Holds an item in the cart
  * <div cart
  *     data-flat-rate-shipping="0"
  *     data-tax-rate="0.67"
@@ -705,7 +710,9 @@ class CartItem {
  *     data-shipping-address="true"
  *     data-key="pk_test_FnhHnW31Z7M7ggXsStF19xXJ"
  *     data-pay-api="api/pay.php"
- *     data-subscribe-api="api/subscribe.php"></div>
+ *     data-subscribe-api="api/subscribe.php"
+ *     successUrl="page/thank-you.html"></div>
+ *
  */
 if(document.querySelector('[cart]')) {
 
@@ -728,6 +735,7 @@ if(document.querySelector('[cart]')) {
   key = cart.getAttribute('data-key') || '';
   payApi = cart.getAttribute('data-pay-api') || '';
   subscribeApi = cart.getAttribute('data-subscribe-api') || '';
+  successUrl = cart.getAttribute('data-success-url') || '';
 
-  cart = new Cart(flatRateShipping, taxRate, currency, locale, image, name, zipCode, billingAddress, shippingAddress, key, payApi, subscribeApi);
+  cart = new Cart(flatRateShipping, taxRate, currency, locale, image, name, zipCode, billingAddress, shippingAddress, key, payApi, subscribeApi, successUrl);
 }

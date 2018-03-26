@@ -10,6 +10,7 @@
     data-shipping-address="{{ attribute(settings, 'cart-require-shipping-address') }}"
     data-key="{{ attribute(settings, 'cart-stripe-publishable-key') }}"
     data-pay-api="{{ site.api }}/payment/pay/{{ site.id }}"
-    data-subscribe-api="{{ site.api }}/payment/subscribe/{{ site.id }}"></div>
+    data-subscribe-api="{{ site.api }}/payment/subscribe/{{ site.id }}"
+    data-success-url="{{ attribute(settings, 'cart-success-url') }}"></div>
 
 <script src="https://checkout.stripe.com/checkout.js"></script>

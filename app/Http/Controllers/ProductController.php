@@ -97,6 +97,8 @@ class ProductController extends Controller
     $plan = $request->json()->get('plan');
     $planPrice = $request->json()->get('planPrice');
 
+    $url = trim($url);
+
     $product = Product::getById($id, $siteId);
 
     if($product == NULL) {
@@ -104,50 +106,58 @@ class ProductController extends Controller
       // add product
       Product::add($id, $name, $url, $description, $shipped, $price, $file, $subscription, $plan, $planPrice, $siteId);
 
-      // set page data
-      $data = array(
-        'title' => $name,
-        'description' => $description,
-        'text' => '',
-        'keywords' => '',
-        'tags' => '',
-        'callout' => '',
-        'url' => $url,
-        'photo' => '',
-        'thumb' => '',
-        'language' => 'en',
-        'direction' => 'ltr',
-        'firstName' => $user->firstName,
-        'lastName' => $user->lastName,
-        'lastModifiedBy' => $user->email,
-        'lastModifiedDate' => $timestamp,
-        'template' => 'product'
-      );
+      if($url != '') {
 
-      $replace = array(
-        '{{product.id}}' =>  $id
-      );
+        // set page data
+        $data = array(
+          'title' => $name,
+          'description' => $description,
+          'text' => '',
+          'keywords' => '',
+          'tags' => '',
+          'callout' => '',
+          'url' => $url,
+          'photo' => '',
+          'thumb' => '',
+          'language' => 'en',
+          'direction' => 'ltr',
+          'firstName' => $user->firstName,
+          'lastName' => $user->lastName,
+          'lastModifiedBy' => $user->email,
+          'lastModifiedDate' => $timestamp,
+          'template' => 'product'
+        );
 
-      // add a page
-      $page = Page::add($data, $site, $user, $replace);
+        $replace = array(
+          '{{product.id}}' =>  $id
+        );
 
-      if($page != NULL) {
+        // add a page
+        $page = Page::add($data, $site, $user, $replace);
 
-        // re-publish plugins
-        Publish::publishPluginsForPage($page, $user, $site);
+        if($page != NULL) {
 
-        // re-publish site map
-        Publish::publishSiteMap($user, $site);
+          // re-publish plugins
+          Publish::publishPluginsForPage($page, $user, $site);
 
-        // re-publish the settings
-        Publish::publishSettings($user, $site);
+          // re-publish site map
+          Publish::publishSiteMap($user, $site);
 
-        // return OK
-        return response('Product added', 200);
+          // re-publish the settings
+          Publish::publishSettings($user, $site);
+
+          // return OK
+          return response('Product added', 200);
+
+        }
+        else {
+          return response('Product not created successfully', 400);
+        }
 
       }
       else {
-        return response('Product not created successfully', 400);
+        // return OK
+        return response('Product added', 200);
       }
 
 

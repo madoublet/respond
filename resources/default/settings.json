@@ -192,5 +192,11 @@
         "label": "Confirmation Subject",
         "type": "text",
         "value": "You have received a new order!"
+    },
+    {
+        "id": "cart-success-url",
+        "label": "Successful Payment URL",
+        "type": "text",
+        "value": ""
     }
 ]
