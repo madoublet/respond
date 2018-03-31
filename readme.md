@@ -1,55 +1,25 @@
 # Respond CMS
 
-Respond 6 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
+Respond 7 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 6.7.0
+Version: 7.0.0
 
 ### Latest updates
-- [Feature] Enable Amazon S3 Sync of site
-- Bug fixes: #570, #568, #567, #565, #562
+- [Feature] UI refresh
+- [Feature] Editor refresh -> includes new contextual menu
+- [Feature] Products, Stripe-powered cart
+- [Feature] Drag-and-drop menu, form, gallery re-ordering
+- [Feature] Bootstrap 4 themes
+- [Feature] Draft support in editor
+- [Feature] Centralized users (resources/sites/users.json)
+- [Feature] Site administration
 
-
-### How to Enable S3 Sync (optional)
-1. Add the following to resources/sites/site-name/settings.json (ensure valid json)
-
-```
-  {
-        "id": "s3-key",
-        "label": "S3 Access Key",
-        "description": "The access key provided by Amazon IAM",
-        "type": "text",
-        "value": "",
-        "encrypted": true
-    },
-    {
-        "id": "s3-secret",
-        "label": "S3 Secret Key",
-        "description": "The secret key provided by Amazon IAM",
-        "type": "text",
-        "value": "",
-        "encrypted": true
-    },
-    {
-        "id": "s3-bucket",
-        "label": "S3 Bucket",
-        "description": "The bucket created using the Amazon S3",
-        "type": "text",
-        "value": "",
-        "encrypted": true
-    },
-    {
-        "id": "s3-region",
-        "label": "S3 Region",
-        "description": "The region in which you created your bucket",
-        "type": "text",
-        "value": "",
-        "encrypted": true
-    }
-```
-
-### Updating from 6.6.0
-- Follow normal update instructions at https://respondcms.com/documentation/updating-respond
+### Updating from 6.7.0
+- Follow update instructions at https://respondcms.com/documentation/updating-respond
+- Run https://myrespondcms.com/api/users/convert to centralize your users
+- Sync your .env with the latest version
+- Update 'APP_KEY' in .env with 32 character long string (e.g.: 1&h8IqhJh-o_Nxzp(7yy&_K8n8HOY!vg)
 
 ### Design Goals
 - Modern application stack: Angular Latest + Laravel
