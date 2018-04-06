@@ -21,6 +21,10 @@
   border-bottom: 0;
 }
 
+[editor-active] header, [editor-active] footer {
+  display: none;
+}
+
 [editor-element] {
   position: relative;
   display: block;
