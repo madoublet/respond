@@ -236,8 +236,8 @@ class Product {
     $image = array(
               'id' => $id,
               'name' => $name,
-              'url' => 'files/'.$name,
-              'thumb' => 'files/thumbs/'.$name,
+              'url' => $url,
+              'thumb' => $thumb,
               'caption' => $caption
               );
 

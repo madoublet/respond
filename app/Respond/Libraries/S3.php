@@ -9,15 +9,44 @@ use App\Respond\Models\Setting;
 class S3
 {
 
-	// creates a bucket on S3
-	public static function createBucket($site, $bucket) {
+  /**
+   * Determine if a site supports direct upload to S3
+   *
+   * @return Response
+   */
+  public static function supportsDirectUpload($site) {
 
+    // settings for direct upload, bucket, url
+    $s3_direct_upload = Setting::getById('s3-direct-upload', $site->id);
+    $s3_bucket = Setting::getById('s3-bucket', $site->id);
+    $s3_url = Setting::getById('s3-url', $site->id);
+
+    // set direct upload
+    if($s3_direct_upload != NULL && $s3_bucket != NULL && $s3_url != NULL) {
+
+      if($s3_direct_upload == 'true') {
+        $s3_direct_upload = TRUE;
+      }
+      else {
+        $s3_direct_upload = FALSE;
+      }
+
+    }
+    else {
+      $s3_direct_upload = FALSE;
+    }
+
+    return $s3_direct_upload;
+
+  }
+
+  // creates a bucket on S3
+	public static function createBucket($site, $bucket) {
 
 	  // get s3 key from settings
     $s3_key = Setting::getById('s3-key', $site->id);
     $s3_secret = Setting::getById('s3-secret', $site->id);
     $region = Setting::getById('s3-region', $site->id);
-
 
     // check for keys in settings
     if($s3_key != NULL && $s3_secret != NULL) {
@@ -56,18 +85,15 @@ class S3
   			        // Suffix is required
   			        'Suffix' => 'index.html',
   			    )));
-
   		}
 
   		return true;
 
     }
 
-
     return false;
-
-
 	}
+
 
 	// saves a file to S3
 	public static function saveFile($site, $contentType, $filename, $file, $meta = array(), $folder = 'files') {
@@ -77,6 +103,10 @@ class S3
     $s3_secret = Setting::getById('s3-secret', $site->id);
     $bucket = Setting::getById('s3-bucket', $site->id);
     $region = Setting::getById('s3-region', $site->id);
+
+    $s3_bucket = Setting::getById('s3-bucket', $site->id);
+    $s3_url = Setting::getById('s3-url', $site->id);
+    $s3_url = str_replace('{{bucket}}', $s3_bucket, $s3_url);
 
     // check for keys in settings
     if($s3_key != NULL && $s3_secret != NULL) {
@@ -92,11 +122,11 @@ class S3
   		));
 
   		// create a bucket if it doesn't already exist
-  		S3::CreateBucket($bucket);
+  		S3::createBucket($site, $bucket);
 
   		$result = $client->putObject(array(
   		    'Bucket'       => $bucket,
-  		    'Key'          => $site->id.'/'.$folder.'/'.$filename,
+  		    'Key'          => $folder.'/'.$filename,
   		    'Body'   	   => file_get_contents($file),
   		    'ContentType'  => $contentType,
   		    'ACL'          => 'public-read',
@@ -104,11 +134,11 @@ class S3
   		    'Metadata'	   => $meta
   		));
 
-  		return true;
+  		return $s3_url.'/'.$folder.'/'.$filename;
 
 		}
 		else {
-  		return false;
+  		return NULL;
 		}
 
 	}
@@ -216,7 +246,7 @@ class S3
   		));
 
   		// create a bucket if it doesn't already exist
-  		S3::CreateBucket($bucket);
+  		S3::createBucket($site, $bucket);
 
   		$result = $client->putObject(array(
   		    'Bucket'       => $bucket,
@@ -247,6 +277,7 @@ class S3
     $s3_secret = Setting::getById('s3-secret', $site->id);
     $bucket = Setting::getById('s3-bucket', $site->id);
     $region = Setting::getById('s3-region', $site->id);
+    $s3_url = Setting::getById('s3-url', $site->id);
 
     // check for keys in settings
     if($s3_key != NULL && $s3_secret != NULL) {
@@ -261,16 +292,15 @@ class S3
           )
   		));
 
-  		$prefix = $site->id.'/'.$folder.'/';
-      $url = str_replace('{{bucket}}', $bucket, S3_URL);
-  		$url = str_replace('{{site}}', $site->id, $url);
+  		$prefix = $folder.'/';
+      $s3_url = str_replace('{{bucket}}', $bucket, $s3_url);
+  		$s3_url = str_replace('{{site}}', $site->id, $s3_url);
 
   		// list objects in a bucket
   		$iterator = $client->getIterator('ListObjects', array(
   		    'Bucket' => $bucket,
   		    'Prefix' => $prefix
   		));
-
 
   		foreach ($iterator as $object) {
   			$filename = $object['Key'];
@@ -298,73 +328,73 @@ class S3
   				}
   			}
 
-
   			$filename = str_replace($prefix, '', $filename);
 
   			// get extension
   			$parts = explode(".", $filename);
-      		$ext = end($parts); // get extension
-      		$ext = strtolower($ext); // convert to lowercase
+        $ext = end($parts); // get extension
+        $ext = strtolower($ext); // convert to lowercase
 
-      		// init
-      		$file = array();
+        // init
+        $file = array();
 
-    			// exclude thumbs and empty directories
-    			if(strpos($filename, 'thumbs/') === FALSE && $filename !== ''){
+    		// exclude thumbs and empty directories
+    		if(strpos($filename, 'thumbs/') === FALSE && $filename !== ''){
 
-    				// determine whether the file is an image
-    				if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
-    	            	$isImage = true;
+    		  // determine whether the file is an image
+          if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
 
-    	            	$file = array(
-    		                'filename' => $filename,
-    		                'fullUrl' => $url.'/'.$folder.'/'.$filename,
-    		                'thumbUrl' => $url.'/'.$folder.'/thumbs/'.$filename,
-    		                'extension' => $ext,
-    		                'isImage' => $isImage,
-    		                'size' => round(($size / 1024 / 1024), 2),
-    		                'width' => $width,
-    		                'height' => $height
-    		            );
+            $isImage = true;
 
-    		            // push file to array
-    					array_push($arr, $file);
-    	    		}
-    	    		else{
+          	$file = array(
+                'name' => $filename,
+                'url' => $s3_url.'/'.$folder.'/'.$filename,
+                'thumb' => $s3_url.'/'.$folder.'/'.$filename,
+                'extension' => $ext,
+                'isImage' => $isImage,
+                'size' => round(($size / 1024 / 1024), 2),
+                'width' => $width,
+                'height' => $height
+            );
 
-    	    			// list file if it is allowed
-    	    			if($imagesOnly == false){
+            // push file to array
+            array_push($arr, $file);
 
-    						$isImage = false;
+  	    	}
+  	    	else{
 
-    						$file = array(
-    			                'filename' => $filename,
-    			                'fullUrl' => $url.'/'.$folder.'/'.$filename,
-    			                'thumbUrl' => NULL,
-    			                'extension' => $ext,
-    			                'isImage' => $isImage,
-    							'size' => $size,
-    							'width' => NULL,
-    							'height' => NULL
-    			            );
+  	    	  // list file if it is allowed
+  	    	  if($imagesOnly == false){
 
-    			            // push file to array
-    						array_push($arr, $file);
-    					}
+  				   $isImage = false;
 
-    	    		}
-
-        		}
+  				    $file = array(
+	                'name' => $filename,
+	                'url' => $s3_url.'/'.$folder.'/'.$filename,
+	                'thumb' => $s3_url.'/'.$folder.'/'.$filename,
+	                'extension' => $ext,
+	                'isImage' => $isImage,
+	                'size' => round(($size / 1024 / 1024), 2),
+	                'width' => $width,
+	                'height' => $height
+	            );
 
 
-    		}
+              // push file to array
+  						array_push($arr, $file);
+  					}
 
-  		  return $arr;
+    	    }
+
+        }
 
       }
-      else {
-        return array();
-      }
+
+      return $arr;
+    }
+    else {
+      return array();
+    }
 	}
 
 	// gets the size in MB of files stored in /file
@@ -391,9 +421,7 @@ class S3
           )
   		));
 
-  		$bucket = $site['Bucket'];
-
-  		$prefix = $site['FriendlyId'].'/files/';
+  		$prefix = 'files/';
 
   		// list objects in a bucket
   		$iterator = $client->getIterator('ListObjects', array(
@@ -483,48 +511,6 @@ class S3
       catch (\Exception $e) {
         return false;
       }
-
-  		return true;
-    }
-		else {
-  		return false;
-		}
-
-	}
-
-	// deploys the directory to Amazon S3
-	public static function deployDirectory($site, $local_dir, $keyPrefix){
-
-	  // get s3 key from settings
-    $s3_key = Setting::getById('s3-key', $site->id);
-    $s3_secret = Setting::getById('s3-secret', $site->id);
-    $bucket = Setting::getById('s3-bucket', $site->id);
-
-    // check for keys in settings
-    if($s3_key != NULL && $s3_secret != NULL) {
-
-  		// create AWS client
-  		$client = \Aws\S3\S3Client::factory(array(
-    		  'version' => 'latest',
-          'region'  => $region,
-          'credentials' => array(
-            'key' => $s3_key,
-            'secret'  => $s3_secret
-          )
-  		));
-
-  		// create a bucket if it doesn't already exist
-  		S3::CreateBucket($bucket);
-
-  		// set permissions
-  		$options = array(
-  		    'params'      => array('ACL' => 'public-read'),
-  		    'concurrency' => 20,
-  		    'debug'       => true
-  		);
-
-  		// sync folders, #ref: http://blogs.aws.amazon.com/php/post/Tx2W9JAA7RXVOXA/Syncing-Data-with-Amazon-S3
-  		$client->uploadDirectory($local_dir, $bucket, $site['FriendlyId'].'/'.$keyPrefix, $options);
 
   		return true;
     }

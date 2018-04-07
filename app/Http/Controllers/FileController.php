@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
-//use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use App\Respond\Libraries\Utilities;
+use App\Respond\Libraries\S3;
 
 use App\Respond\Models\Site;
 use App\Respond\Models\User;
-
 use App\Respond\Models\File;
+use App\Respond\Models\Setting;
 
 class FileController extends Controller
 {
@@ -48,74 +48,83 @@ class FileController extends Controller
     // get a reference to the site
     $site = Site::getById($id);
 
-    // list files
-    $arr = File::listFiles($id);
+    // for direct upload => list files in S3
+    if(S3::supportsDirectUpload($site) == TRUE) {
+      $files = S3::listFiles($site);
+    }
+    else {
 
-    // set image extensions
-    $image_exts = array('gif', 'png', 'jpg', 'svg');
+      // list files
+      $arr = File::listFiles($id);
 
-    $files = array();
+      // set image extensions
+      $image_exts = array('gif', 'png', 'jpg', 'svg');
 
-    foreach($arr as $file) {
+      $files = array();
 
-      $filename = str_replace('files/', '', $file);
+      foreach($arr as $file) {
 
-      $path = app()->basePath().'/public/sites/'.$id.'/files/'.$filename;
+        $filename = str_replace('files/', '', $file);
 
-      // get extension
-      $parts = explode(".", $filename);
-      $ext = end($parts); // get extension
-      $ext = strtolower($ext); // convert to lowercase
+        $path = app()->basePath().'/public/sites/'.$id.'/files/'.$filename;
 
-      // determine if it is an image
-      $is_image = in_array($ext, $image_exts);
+        // get extension
+        $parts = explode(".", $filename);
+        $ext = end($parts); // get extension
+        $ext = strtolower($ext); // convert to lowercase
 
-      // get the filesize
-      $size = filesize($path);
+        // determine if it is an image
+        $is_image = in_array($ext, $image_exts);
 
-      if($is_image === TRUE) {
-        $width = 0;
-        $height = 0;
+        // get the filesize
+        $size = filesize($path);
 
-        try{
-          list($width, $height, $type, $attr) = Utilities::getImageInfo($path);
+        if($is_image === TRUE) {
+          $width = 0;
+          $height = 0;
+
+          try{
+            list($width, $height, $type, $attr) = Utilities::getImageInfo($path);
+          }
+          catch(Exception $e){}
+
+          // set url, thumb
+          $url = 'files/'.$filename;
+          $thumb = 'files/'.$filename;
+
+          // check for thumb
+          if(file_exists(app()->basePath().'/public/sites/'.$id.'/files/thumbs/'.$filename)) {
+            $thumb = 'files/thumbs/'.$filename;
+          }
+
+          // push file to the array
+          array_push($files, array(
+            'name' => $filename,
+            'url' => $url,
+            'thumb' => $thumb,
+            'extension' => $ext,
+            'isImage' => $is_image,
+            'width' => $width,
+            'height' => $height,
+            'size' => number_format($size / 1048576, 2)
+          ));
+
         }
-        catch(Exception $e){}
+        else {
 
-        // set url, thumb
-        $url = $thumb = 'sites/'.$site->id.'/files/'.$filename;
+          // push file to the array
+          array_push($files, array(
+            'name' => $filename,
+            'url' => 'files/'.$filename,
+            'thumb' => '',
+            'extension' => $ext,
+            'isImage' => $is_image,
+            'width' => NULL,
+            'height' => NULL,
+            'size' => number_format($size / 1048576, 2)
+          ));
 
-        // check for thumb
-        if(file_exists(app()->basePath().'/public/sites/'.$id.'/files/thumbs/'.$filename)) {
-          $thumb = 'sites/'.$site->id.'/files/thumbs/'.$filename;
         }
-
-        // push file to the array
-        array_push($files, array(
-          'name' => $filename,
-          'url' => $url,
-          'thumb' => $thumb,
-          'extension' => $ext,
-          'isImage' => $is_image,
-          'width' => $width,
-          'height' => $height,
-          'size' => number_format($size / 1048576, 2)
-        ));
-
-      }
-      else {
-
-        // push file to the array
-        array_push($files, array(
-          'name' => $filename,
-          'url' => 'files/'.$filename,
-          'thumb' => '',
-          'extension' => $ext,
-          'isImage' => $is_image,
-          'width' => NULL,
-          'height' => NULL,
-          'size' => number_format($size / 1048576, 2)
-        ));
 
       }
 
@@ -165,19 +174,31 @@ class FileController extends Controller
 		// save image
     if($ext=='png' || $ext=='jpg' || $ext=='gif' || $ext == 'svg'){ // upload image
 
-      // move the file
-      $file->move($directory, $filename);
+      $full_url = '/files/'.$filename;
+      $thumb_url = '/files/thumbs/'.$filename;
 
-      // set path
-      $path = $directory.'/'.$filename;
+      // upload to S3
+      if(S3::supportsDirectUpload($site) == TRUE) {
+        $full_url = S3::saveFile($site, $contentType, $filename, $file);
+        $thumb_url = $full_url;
+      }
+      else {
 
-      $arr = Utilities::createThumb($site, $path, $filename);
+        // move the file
+        $file->move($directory, $filename);
+
+         // set path
+        $path = $directory.'/'.$filename;
+
+        // create a thumb
+        $arr = Utilities::createThumb($site, $path, $filename);
+      }
 
       // create array
       $arr = array(
         'filename' => $filename,
-        'fullUrl' => '/files/'.$filename,
-        'thumbUrl' => '/files/thumbs/'.$filename,
+        'fullUrl' => $full_url,
+        'thumbUrl' => $thumb_url,
         'extension' => $ext,
         'isImage' => true,
         'width' => $arr['width'],
@@ -187,16 +208,22 @@ class FileController extends Controller
     }
     else if(in_array($ext, $allowed)){ // save file if it is allowed
 
-      // move the file
-      $file->move($directory, $filename);
+      $full_url = '/files/'.$filename;
+      $thumb_url = NULL;
 
-      // set url
-      $url = 	$site->domain;
+      // upload to S3
+      if(S3::supportsDirectUpload($site) == TRUE) {
+        $full_url = S3::saveFile($site, $contentType, $filename, $file);
+      }
+      else {
+        // move the file
+        $file->move($directory, $filename);
+      }
 
       $arr = array(
         'filename' => $filename,
-        'fullUrl' => $url.'/files/'.$filename,
-        'thumbUrl' => NULL,
+        'fullUrl' => $full_url,
+        'thumbUrl' => $thumb_url,
         'extension' => $ext,
         'isImage' => false,
         'width' => -1,

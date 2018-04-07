@@ -92,6 +92,23 @@
         "value": ""
     },
     {
+        "id": "s3-direct-upload",
+        "label": "Upload files directly to S3",
+        "type": "select",
+        "options": [
+            "true",
+            "false"
+        ],
+        "value": "true"
+    },
+    {
+        "id": "s3-url",
+        "label": "S3 URL",
+        "description": "The URL to the S3 bucket. The {{bucket}} syntax will be replaced with the bucket name.",
+        "type": "text",
+        "value": "https://s3.amazonaws.com/{{bucket}}"
+    },
+    {
         "id": "cart-title",
         "label": "Shopping Cart (optional)",
         "type": "title"
