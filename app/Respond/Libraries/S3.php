@@ -168,7 +168,7 @@ class S3
   		// remove file
       $result = $client->deleteObject(array(
   		    'Bucket' => $bucket,
-  		    'Key' => $site->id.'/'.$folder.'/'.$filename
+  		    'Key' => $folder.'/'.$filename
   		));
 
   		// remove thumb

@@ -252,11 +252,19 @@ class FileController extends Controller
     $email = $request->input('auth-email');
     $id = $request->input('auth-id');
 
+    // get site
+    $site = Site::getById($id);
+
     // get url, title and description
     $name = $request->json()->get('name');
 
     // remove the file
-    File::remove($name, $id);
+    if(S3::supportsDirectUpload($site) == TRUE) {
+      $files = S3::removeFile($site, $name);
+    }
+    else {
+      File::remove($name, $id);
+    }
 
     // return OK
     return response('OK', 200);
