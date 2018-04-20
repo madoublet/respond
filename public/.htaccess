@@ -14,3 +14,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule pagespeed_module>
+    ModPagespeed off
+</IfModule>
