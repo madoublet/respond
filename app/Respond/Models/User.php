@@ -136,18 +136,16 @@ class User {
    */
 	public static function getByEmailPassword($email, $password){
 
-    $users = User::getAllUsers();
+    $arr = User::getAllUsers();
 
-    foreach($users as $user) {
+    foreach($arr as &$item) {
 
-      if($user['email'] == $email) {
+      if($item->email == $email) {
 
-        $user = new User($user);
-
-        $hash = $user->password;
+        $hash = $item->password;
 
         if(password_verify($password, $hash)) {
-            return $user;
+            return $item;
         }
         else {
             return NULL;
@@ -320,6 +318,8 @@ class User {
 
       // check email
       if($item->email == $this->email) {
+
+        echo('match, email='.$this->email);
 
         // update user
         $is_match = true;

@@ -54,7 +54,7 @@ $app->get('code/{id}', function ($id) {
 });
 
 // the login/my-site route should load the angular2 app
-$app->get('reset/{id}/{token}', function ($id) {
+$app->get('reset/{token}', function ($token) {
     $public = rtrim(app()->basePath('public/index.html'), '/');
 
     return file_get_contents($public);

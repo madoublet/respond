@@ -37,7 +37,7 @@ class UserController extends Controller
     // lookup site id for user
     if(isset($id) == false || $id == '') {
 
-      $user = User::getByEmail($email);
+      $user = User::getByEmailPassword($email, $password);
 
       if($user == NULL) {
         return response('The email and password combination is invalid', 401);
@@ -185,6 +185,10 @@ class UserController extends Controller
     $token = $request->json()->get('token');
     $password = $request->json()->get('password');
 
+    if(trim($token) == '') {
+      return response('Token invalid', 400);
+    }
+
     // get the user from the credentials
     $user = User::getByToken($token);
 
@@ -193,6 +197,8 @@ class UserController extends Controller
       // update the password
       $user->password = password_hash($password, PASSWORD_DEFAULT);
       $user->token = '';
+
+      echo('before save, user='.$user->email.' token='.$token);
 
       $user->save();
 
