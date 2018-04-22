@@ -14,6 +14,7 @@ copy_pro_themes
 /public/sites
 /resources/sites
 /public/dev
+/public/dist
 
 # respond-ui
 /public/app

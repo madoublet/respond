@@ -319,8 +319,6 @@ class User {
       // check email
       if($item->email == $this->email) {
 
-        echo('match, email='.$this->email);
-
         // update user
         $is_match = true;
         $item = (array)$this;
@@ -459,8 +457,6 @@ class User {
 
     // walk through sites
     foreach($sites as &$site) {
-
-      echo $site;
 
       // get base path for the site
       $json_file = app()->basePath().'/resources/sites/'.$site.'/users.json';
