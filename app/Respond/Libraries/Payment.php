@@ -146,12 +146,18 @@ class Payment
         \Stripe\Stripe::setApiKey($this->stripe_secret_key);
 
         try {
-          // subscribe customer to plan
+
+          // create customer
           $customer = \Stripe\Customer::create(array(
             'email' => $email,
-            'source'  => $token,
-            'plan' => $product['plan']
+            'source'  => $token
           ));
+
+          // subscribe customer to plan
+          $subscription = \Stripe\Subscription::create([
+            'customer' => $customer->id,
+            'items' => [['plan' => $product['plan']]],
+          ]);
 
           $tax = 0;
           $shipping = 0;

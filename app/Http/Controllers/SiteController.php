@@ -132,7 +132,7 @@ class SiteController extends Controller
       	$language = 'en';
 
       	// add user
-      	$user = User::add($email, password_hash($password, PASSWORD_DEFAULT), $firstName, $lastName, $language);
+      	$user = User::add($email, $password, $firstName, $lastName, $language);
     	}
 
       // do not add the sysadmin to the site

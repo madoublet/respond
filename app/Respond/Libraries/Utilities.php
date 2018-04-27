@@ -364,7 +364,7 @@ class Utilities
     public static function sendEmail($to, $from, $fromName, $subject, $content, $site = NULL)
     {
 
-        $mail = new \PHPMailer;
+        $mail = new \PHPMailer\PHPMailer\PHPMailer;
 
         // if null, grab settings from env()
         if($site == NULL) {

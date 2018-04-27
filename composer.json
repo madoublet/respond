@@ -10,13 +10,13 @@
     "twig/twig": "1.35.0",
     "vlucas/phpdotenv": "~2.2",
     "firebase/php-jwt": "dev-master",
-    "phpmailer/phpmailer": "5.2.8",
+    "phpmailer/phpmailer": "~6.0",
     "sunra/php-simple-html-dom-parser": "1.5.1",
     "symfony/yaml": "3.0.3",
     "alchemy/zippy": "^0.4.4",
     "guzzlehttp/guzzle": "^6.2.3",
     "google/recaptcha": "~1.1",
-    "stripe/stripe-php": "^4.4",
+    "stripe/stripe-php": "^6.6.0",
     "aws/aws-sdk-php": "3.48.0"
   },
   "require-dev": {

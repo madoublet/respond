@@ -34,24 +34,20 @@ class UserController extends Controller
     $siteId = NULL;
     $role = 'contributor';
 
-    // lookup site id for user
-    if(isset($id) == false || $id == '') {
+    // get user
+    $user = User::getByEmailPassword($email, $password);
 
-      $user = User::getByEmailPassword($email, $password);
-
-      if($user == NULL) {
-        return response('The email and password combination is invalid', 401);
+    if($user == NULL) {
+      return response('The email and password combination is invalid', 401);
+    }
+    else {
+      if(count($user->sites) == 0) {
+        return response('The email and password is not associated with a site', 401);
       }
       else {
-        if(count($user->sites) == 0) {
-          return response('The email and password is not associated with a site', 401);
-        }
-        else {
-          $siteId = $user->sites[0]['id'];
-          $role = $user->sites[0]['role'];
-        }
+        $siteId = $user->sites[0]['id'];
+        $role = $user->sites[0]['role'];
       }
-
     }
 
     // get site by its friendly id
@@ -197,8 +193,6 @@ class UserController extends Controller
       // update the password
       $user->password = password_hash($password, PASSWORD_DEFAULT);
       $user->token = '';
-
-      echo('before save, user='.$user->email.' token='.$token);
 
       $user->save();
 
