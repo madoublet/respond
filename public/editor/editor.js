@@ -17,6 +17,10 @@ editor = (function() {
     // page title
     title: '',
 
+    // set whether the content has changed
+    hasChanged: false,
+    changedCallback: null,
+
     // API urls
     saveUrl: '/api/pages/save',
     publishUrl: '/api/pages/publish',
@@ -63,6 +67,17 @@ editor = (function() {
 
     // counts and flags
     isI18nInit: false,
+
+    /**
+     * Sets the editor to a changed state and dispatches event
+     */
+    setChanged: function(msg) {
+      console.log('[editor] changed, at ' + msg);
+      window.parent.postMessage({
+          type: 'editorChanged',
+          properties: []
+        }, '*');
+    },
 
     /**
      * Set as active
@@ -262,6 +277,8 @@ editor = (function() {
           // dragging ended
           onEnd: function(evt) {
 
+            editor.setChanged('item dragged');
+
             // get item
             item = evt.item;
 
@@ -339,6 +356,8 @@ editor = (function() {
      */
     execCommand: function(command) {
 
+      editor.setChanged('command executed: ' + command);
+
       var text, html, block = editor.current.block, element = editor.current.node;
 
       if(command.toUpperCase() == 'LINK') {
@@ -397,6 +416,8 @@ editor = (function() {
      * obj = { properties: {id, cssClass, html, alt, title, src}, attributes: { custom1, custom2, custom3 } }
      */
     update: function(obj) {
+
+      editor.setChanged('ui updated');
 
       let el = editor.current.node, currentValue;
 
@@ -720,6 +741,8 @@ editor = (function() {
 
         // dragging ended
         onEnd: function(evt) {
+
+          editor.setChanged('item dragged');
 
           // get item
           item = evt.item;
@@ -1059,22 +1082,6 @@ editor = (function() {
      * Shows the sidebar
      */
     showSidebar: function(element) {
-
-      /*
-      var x, link, image, text, fields, menu = document.querySelector('.editor-menu');;
-
-      // set current element and node
-      editor.current.element = element;
-      editor.current.node = element;
-
-      // if the current element is not a [editor-element], find the parent that matches
-      if(editor.current.element.hasAttribute('editor-element') === false) {
-        editor.current.element = editor.findParentBySelector(element, '[editor-element]');
-      }
-
-      // get #editor-config
-      text = document.querySelector('#editor-text-settings');
-      text.setAttribute('visible', ''); */
 
       var menu = document.querySelector('.editor-menu');
 
@@ -1440,9 +1447,11 @@ editor = (function() {
 
         });
 
-        // delegate INPUT event
+        // delegate keydown event
         ['keydown'].forEach(function(e) {
           arr[x].addEventListener(e, function(e) {
+
+            editor.setChanged('content keyed');
 
             if (e.target.hasAttribute('contentEditable')) {
 
@@ -1560,6 +1569,8 @@ editor = (function() {
      */
     append: function(html) {
 
+      editor.setChanged('item appended');
+
       var x, newNode, node, firstChild;
 
       // create a new node
@@ -1666,6 +1677,8 @@ editor = (function() {
      * Appends blocks to the editor
      */
     appendBlock: function(html) {
+
+      editor.setChanged('block appended');
 
       var el = document.querySelector('[editor]'), x, newNode, node, firstChild;
 
@@ -1987,6 +2000,8 @@ editor = (function() {
         html = editor.replaceAll(html, 'data-text-shadow-horizontal=""', '');
         html = editor.replaceAll(html, 'data-text-shadow-vertical=""', '');
         html = editor.replaceAll(html, 'data-text-shadow-blur=""', '');
+        html = editor.replaceAll(html, 'draggable="true"', '');
+        html = editor.replaceAll(html, 'draggable="false"', '');
         html = editor.replaceAll(html, 'style=""', '');
         html = editor.replaceAll(html, 'respond-plugin=""', 'respond-plugin');
         html = html.replace(/  +/g, ' ');

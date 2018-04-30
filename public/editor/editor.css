@@ -997,3 +997,15 @@ body .editor-modal .editor-list-item p {
   width: 35px;
   height: 35px;
 }
+
+@media screen and (min-width: 1200px) {
+
+  body {
+    margin-right: 200px;
+  }
+
+
+  .editor-menu {
+    right: 0 !important;
+  }
+}
