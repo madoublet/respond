@@ -12,6 +12,7 @@ use \Illuminate\Http\Request;
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
 use App\Respond\Libraries\S3;
+use App\Respond\Libraries\Zip;
 
 class SiteController extends Controller
 {
@@ -469,6 +470,27 @@ class SiteController extends Controller
     else {
       return response('Cannot sync. Double check your settings.', 400);
     }
+
+  }
+
+  /**
+   * Downloads the site as a ZIP file
+   *
+   * @return Response
+   */
+  public static function zip(Request $request)
+  {
+
+    // get request data
+    $email = $request->input('auth-email');
+    $siteId = $request->input('auth-id');
+
+    // get site
+    $site = Site::getById($siteId);
+
+    $zip_file = Zip::zipSite($site);
+
+    return response('Ok', 200);
 
   }
 

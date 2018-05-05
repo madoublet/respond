@@ -10,23 +10,20 @@ class Zip
      *
      * @return {String} app folder
      */
-    public static function zipFolder($site) {
+    public static function zipSite($site) {
 
-      $dir = 'dir';
-      $zip_file = 'file.zip';
-
-      // Get real path for our folder
-      $rootPath = realpath($dir);
+      $dir = realpath(app()->basePath() . '/public/sites/'.basename($site->id));
+      $zip_file = $dir.'/archive.zip';
 
       // Initialize archive object
-      $zip = new ZipArchive();
-      $zip->open($zip_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+      $zip = new \ZipArchive();
+      $zip->open($zip_file, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
 
       // Create recursive directory iterator
       /** @var SplFileInfo[] $files */
-      $files = new RecursiveIteratorIterator(
-          new RecursiveDirectoryIterator($rootPath),
-          RecursiveIteratorIterator::LEAVES_ONLY
+      $files = new \RecursiveIteratorIterator(
+          new \RecursiveDirectoryIterator($dir),
+          \RecursiveIteratorIterator::LEAVES_ONLY
       );
 
       foreach ($files as $name => $file)
@@ -36,10 +33,15 @@ class Zip
           {
               // Get real and relative path for current file
               $filePath = $file->getRealPath();
-              $relativePath = substr($filePath, strlen($rootPath) + 1);
 
-              // Add current file to archive
-              $zip->addFile($filePath, $relativePath);
+              // do not zip the zip file
+              if(strpos($filePath, 'archive.zip') == FALSE) {
+                $relativePath = substr($filePath, strlen($dir) + 1);
+
+                // Add current file to archive
+                $zip->addFile($filePath, $relativePath);
+              }
+
           }
       }
 
@@ -47,7 +49,6 @@ class Zip
       $zip->close();
 
       return $zip_file;
-
     }
 
 }
