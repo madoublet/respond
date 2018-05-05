@@ -214,3 +214,10 @@ $app->post('/api/payment/subscribe/{id}', ['middleware' => 'cors', 'uses'=> 'Pay
 
 // site payment route
 $app->post('/api/payment/pay/{id}', ['middleware' => 'cors', 'uses'=> 'PaymentController@payAtSite']);
+
+// include custom
+$custom_routes = app()->basePath().'/app/Custom/routes.php';
+
+if(file_exists($custom_routes)){
+  include $custom_routes;
+}
