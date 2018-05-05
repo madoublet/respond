@@ -97,7 +97,7 @@
       "title": "Map",
       "display": "<i class=\"material-icons\">map</i>",
       "view": "<div class=\"respond-plugin\"><i class=\"material-icons\">map</i><span>Map</span></div>",
-      "html": "<div respond-plugin type=\"map\" address=\"700 Clark Ave, St. Louis, MO 63102\" zoom=\"8\"></respond-form>",
+      "html": "<div respond-plugin type=\"map\" address=\"700 Clark Ave, St. Louis, MO 63102\" zoom=\"8\"></div>",
       "attributes": [
         {
           "attr": "address",

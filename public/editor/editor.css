@@ -165,7 +165,7 @@
 body [role=main] .editor-element-menu {
     font-family: 'Open Sans', sans-serif !important;
     position: absolute;
-    top: -18px;
+    top: 0;
     right: 0;
     background-color: #09203f;
     margin: 0 !important;

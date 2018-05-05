@@ -47,6 +47,8 @@ class FormController extends Controller
 
     // get url, title and description
     $name = $request->json()->get('name');
+    $description = '';
+    $url = '';
     $cssClass = $request->json()->get('cssClass');
     $validate =  $request->json()->get('validate');
     $success =  $request->json()->get('success');
@@ -58,8 +60,8 @@ class FormController extends Controller
       $validate = ($validate) ? 'true' : 'false';
     }
 
-    // add a menu
-    $form = Form::add($name, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId);
+    // add a form => add($name, $description, $url, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId))
+    $form = Form::add($name, $description, $url, $cssClass, $validate, $success, $error, $recaptchaError, $notify, $siteId);
 
     if($form !== NULL) {
      // return OK

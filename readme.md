@@ -3,23 +3,21 @@
 Respond 7 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 7.0.0
+Version: 7.1.0
 
 ### Latest updates
-- [Feature] UI refresh
-- [Feature] Editor refresh -> includes new contextual menu
-- [Feature] Products, Stripe-powered cart
-- [Feature] Drag-and-drop menu, form, gallery re-ordering
-- [Feature] Bootstrap 4 themes
-- [Feature] Draft support in editor
-- [Feature] Centralized users (resources/sites/users.json)
-- [Feature] Site administration
+- [Bug Fix] Table Rows/Columns fix
+- [Bug Fix] Removing Table in page editor
+- [Bug Fix] Remove UL/OL fin page editor
+- [Bug Fix] Fix Add Form Error
+- [Bug Fix] Add missing PHPMailer dependency
+- [Bug Fix] Remove HR in page editor
+- [UI/UX] Widescreen editor view shows "Add Content menu by default"
+- [UI/UX] Smarter Confirm Changes dialog in page editor
+- [UI/UX] Smarter Confirm Changes dialog in code editor
 
-### Updating from 6.7.0
+### Updating from 7.0.0
 - Follow update instructions at https://respondcms.com/documentation/updating-respond
-- Run https://myrespondcms.com/api/users/convert to centralize your users
-- Sync your .env with the latest version
-- Update 'APP_KEY' in .env with 32 character long string (e.g.: 1&h8IqhJh-o_Nxzp(7yy&_K8n8HOY!vg)
 
 ### Design Goals
 - Modern application stack: Angular Latest + Laravel

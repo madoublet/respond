@@ -285,6 +285,9 @@ editor = (function() {
             // handle empty
             editor.setupEmpty();
 
+            // update the element menu
+            editor.showElementMenu();
+
           }
 
         });
@@ -375,6 +378,7 @@ editor = (function() {
         editor.showLinkDialog();
       }
       else if(command.toUpperCase() == 'ELEMENT.REMOVE') {
+      
         if(element != null) {
           element.remove();
         }
@@ -767,13 +771,21 @@ editor = (function() {
                 node.innerHTML += editor.menu[x].view;
               }
 
+              // setup contextual menu
               editor.setupElementMenu(node);
+
+              // set current node
+              editor.current.node = node;
+
+              // update the element menu
+              editor.showElementMenu();
 
             }
           }
 
           // setup empty columns
           editor.setupEmpty();
+
 
           return false;
 
@@ -807,6 +819,7 @@ editor = (function() {
       }
 
     },
+
 
     /**
      * Create menu
@@ -911,110 +924,102 @@ editor = (function() {
 
             var x, y, rows, curr_rows, columns, curr_columns, toBeAdded,
               toBeRemoved, table, trs, th, tr, td, tbody;
+              
+            table = editor.current.node;
+            
+            // get new
+            columns = table.getAttribute('columns');
+            rows = table.getAttribute('rows');
+            
+            // get curr
+            curr_columns = table.querySelectorAll('thead tr:first-child th').length;
+            curr_rows = table.querySelectorAll('tbody tr').length;
+            
+            // handle adding/remove columns
+            if (columns > curr_columns) { // add columns
 
-            if (newValue != oldValue) {
+              toBeAdded = columns - curr_columns;
+              
+              var trs = table.getElementsByTagName('tr');
+              
+              // walk through table
+              for (x = 0; x < trs.length; x += 1) {
 
-              if (attr == 'columns') {
+                // add columns
+                for (y = 0; y < toBeAdded; y += 1) {
+                  if (trs[x].parentNode.nodeName == 'THEAD') {
 
-                columns = newValue;
-                curr_columns = oldValue;
+                    th = document.createElement('th');
+                    th.setAttribute('contentEditable', 'true');
+                    th.innerHTML = 'New Header';
 
-                if (columns > curr_columns) { // add columns
+                    trs[x].appendChild(th);
+                  } else {
+                    td = document.createElement('td');
+                    td.setAttribute('contentEditable', 'true');
+                    td.innerHTML = 'New Row';
 
-                  toBeAdded = columns - curr_columns;
-
-                  table = editor.current.node;
-                  trs = editor.current.node.getElementsByTagName('tr');
-
-                  // walk through table
-                  for (x = 0; x < trs.length; x += 1) {
-
-                    // add columns
-                    for (y = 0; y < toBeAdded; y += 1) {
-                      if (trs[x].parentNode.nodeName == 'THEAD') {
-
-                        th = document.createElement('th');
-                        th.setAttribute('contentEditable', 'true');
-                        th.innerHTML = 'New Header';
-
-                        trs[x].appendChild(th);
-                      } else {
-                        td = document.createElement('td');
-                        td.setAttribute('contentEditable', 'true');
-                        td.innerHTML = 'Content';
-
-                        trs[x].appendChild(td);
-                      }
-                    }
+                    trs[x].appendChild(td);
                   }
-
-                } else if (columns < curr_columns) { // remove columns
-
-                  toBeRemoved = curr_columns - columns;
-
-                  table = editor.current.node;
-                  trs = editor.current.node.getElementsByTagName('tr');
-
-                  // walk through table
-                  for (x = 0; x < trs.length; x += 1) {
-
-                    // remove columns
-                    for (y = 0; y < toBeRemoved; y += 1) {
-                      if (trs[x].parentNode.nodeName == 'THEAD') {
-                        trs[x].querySelector('th:last-child').remove();
-                      } else {
-                        trs[x].querySelector('td:last-child').remove();
-                      }
-                    }
-                  }
-
                 }
+              }
 
-              } else if (attr == 'rows') {
+            } else if (columns < curr_columns) { // remove columns
 
-                rows = newValue;
-                curr_rows = oldValue;
-                table = editor.current.node;
-                columns = table.querySelectorAll('thead tr:first-child th').length;
+              toBeRemoved = curr_columns - columns;
 
-                if (rows > curr_rows) { // add rows
+              var trs = table.getElementsByTagName('tr');
 
-                  toBeAdded = rows - curr_rows;
+              // walk through table
+              for (x = 0; x < trs.length; x += 1) {
 
-                  // add rows
-                  for (y = 0; y < toBeAdded; y += 1) {
-                    tr = document.createElement('tr');
-
-                    for (x = 0; x < columns; x += 1) {
-                      td = document.createElement('td');
-                      td.setAttribute('contentEditable', 'true');
-                      td.innerHTML = 'Content';
-                      tr.appendChild(td);
-                    }
-
-                    tbody = table.getElementsByTagName('tbody')[0];
-                    tbody.appendChild(tr);
+                // remove columns
+                for (y = 0; y < toBeRemoved; y += 1) {
+                  if (trs[x].parentNode.nodeName == 'THEAD') {
+                    trs[x].querySelector('th:last-child').remove();
+                  } else {
+                    trs[x].querySelector('td:last-child').remove();
                   }
-
-                } else if (rows < curr_rows) { // remove columns
-
-                  toBeRemoved = curr_rows - rows;
-
-                  // remove rows
-                  for (y = 0; y < toBeRemoved; y += 1) {
-                    tr = table.querySelector('tbody tr:last-child');
-
-                    if (tr !== null) {
-                      tr.remove();
-                    }
-                  }
-
                 }
-
               }
 
             }
+            
+            // handle adding/removing rows
+            if (rows > curr_rows) { // add rows
 
+              toBeAdded = rows - curr_rows;
+  
+              // add rows
+              for (y = 0; y < toBeAdded; y += 1) {
+                tr = document.createElement('tr');
+  
+                for (x = 0; x < columns; x += 1) {
+                  td = document.createElement('td');
+                  td.setAttribute('contentEditable', 'true');
+                  td.innerHTML = 'New Row';
+                  tr.appendChild(td);
+                }
+  
+                tbody = table.getElementsByTagName('tbody')[0];
+                tbody.appendChild(tr);
+              }
+  
+            } else if (rows < curr_rows) { // remove columns
+  
+              toBeRemoved = curr_rows - rows;
+  
+              // remove rows
+              for (y = 0; y < toBeRemoved; y += 1) {
+                tr = table.querySelector('tbody tr:last-child');
+  
+                if (tr !== null) {
+                  tr.remove();
+                }
+              }
+  
+            }
+            
           }
         },
         {
@@ -1098,6 +1103,8 @@ editor = (function() {
 
       // set current node
       var element = editor.current.node, x, title, selector, attributes = [];
+
+      if(element == null) { return };
 
       // see if the element matches a plugin selector
       for (x = 0; x < editor.menu.length; x += 1) {
@@ -1260,42 +1267,12 @@ editor = (function() {
 
             // set current element
             if (element) {
+              editor.current.node = element;
               element.setAttribute('current-editor-element', 'true');
             }
 
-            if (e.target.matches('.editor-block-up') ||  editor.findParentBySelector(e.target, '.editor-block-up') !== null) {
-
-              block = editor.findParentBySelector(e.target, '[editor-block]');
-
-              if(block.previousElementSibling != null) {
-
-                if(block.previousElementSibling.hasAttribute('editor-block') === true) {
-                  block.parentNode.insertBefore(block, block.previousElementSibling);
-                }
-
-              }
-
-              editor.setupBlocks();
-
-            }
-            // move block down
-            else if (e.target.matches('.editor-block-down') ||  editor.findParentBySelector(e.target, '.editor-block-down') !== null) {
-
-              block = editor.findParentBySelector(e.target, '[editor-block]');
-
-              if(block.nextElementSibling != null) {
-
-                if(block.nextElementSibling.hasAttribute('editor-block') === true) {
-                  block.nextElementSibling.parentNode.insertBefore(block.nextElementSibling, block);
-                }
-
-              }
-
-              editor.setupBlocks();
-
-            }
             // handle links
-            else if (e.target.nodeName == 'A') {
+            if (e.target.nodeName == 'A') {
 
                 // hide .editor-config
                 edits = document.querySelectorAll('[editor]');
@@ -1349,14 +1326,30 @@ editor = (function() {
 
               editor.current.node = e.target;
 
+              if(editor.current.node.nodeName == 'TH' || editor.current.node.nodeName == 'TD') {
+                var parentNode = editor.findParentBySelector(e.target, '.table');
+
+                if(parentNode != null) {
+                  editor.current.node = parentNode;
+                }
+              }
+
+              if(editor.current.node.nodeName == 'LI') {
+                var parentNode = editor.findParentBySelector(e.target, 'ul');
+
+                if(parentNode != null) {
+                  editor.current.node = parentNode;
+                }
+
+                var parentNode = editor.findParentBySelector(e.target, 'ol');
+
+                if(parentNode != null) {
+                  editor.current.node = parentNode;
+                }
+              }
+
               // shows the text options
               editor.showSidebar(e.target);
-
-            }
-            else if (e.target.parentNode.hasAttribute('contentEditable') && e.target.parentNode) {
-
-              // shows the text options
-              editor.showTextOptions(e.target);
 
             }
             else if (e.target.className == 'dz-hidden-input') {
@@ -1626,9 +1619,6 @@ editor = (function() {
 
         editable[0].focus();
         selectElementContents(editable[0]);
-
-        // show edit options for the text
-        editor.showTextOptions(editable[0]);
 
         // select editable contents, #ref: http://bit.ly/1jxd8er
         editor.selectElementContents(editable[0]);

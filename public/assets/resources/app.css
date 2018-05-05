@@ -2124,6 +2124,7 @@ body .dropzone .dz-message {
     background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     width: 50px;
     z-index: 10002;
+    transition-delay: 1s;
   }
 
   .app-drawer:hover {
@@ -2276,4 +2277,10 @@ body .dropzone .dz-message {
       border-bottom: 3px solid #537895;
     }
 
+}
+
+@media screen and (min-width: 1200px) {
+  .hide-wide-screen {
+    display: none;
+  }
 }

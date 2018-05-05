@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use \Illuminate\Http\Request;
-use \Alchemy\Zippy\Zippy;
+use Alchemy\Zippy\Zippy;
 
 use App\Respond\Libraries\Utilities;
 use App\Respond\Libraries\Publish;
@@ -81,6 +81,8 @@ class PluginController extends Controller
 
         // open the file
         $archive = $zippy->open($directory.$filename);
+        
+        echo('after open');
 
         // iterate through members (https://zippy.readthedocs.io/en/latest/_static/API/)
         // extract zip: http://stackoverflow.com/questions/10420112/how-to-read-a-single-file-inside-a-zip-archive
