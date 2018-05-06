@@ -20,12 +20,8 @@ copy_pro_themes
 /public/app
 /public/themes/custom/
 
-# pro
-/app/Pro
-/app/Pro/*
-/app/Pro-wip
-/app/Pro-wip/*
-/dist/release.pro.zip
+# custom
+/app/Custom/routes.php
 
 # theme development
 /public/themes/respond-themes
