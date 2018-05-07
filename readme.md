@@ -3,20 +3,14 @@
 Respond 7 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 7.1.0
+Version: 7.2.0
 
 ### Latest updates
-- [Bug Fix] Table Rows/Columns fix
-- [Bug Fix] Removing Table in page editor
-- [Bug Fix] Remove UL/OL fin page editor
-- [Bug Fix] Fix Add Form Error
-- [Bug Fix] Add missing PHPMailer dependency
-- [Bug Fix] Remove HR in page editor
-- [UI/UX] Widescreen editor view shows "Add Content menu by default"
-- [UI/UX] Smarter Confirm Changes dialog in page editor
-- [UI/UX] Smarter Confirm Changes dialog in code editor
+- Angular 6 update, see release notes: https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4
+- Download a ZIP of your site from the Advanced menu
+- Add custom API through app/Custom
 
-### Updating from 7.0.0
+### Updating from 7.1.0
 - Follow update instructions at https://respondcms.com/documentation/updating-respond
 
 ### Design Goals
