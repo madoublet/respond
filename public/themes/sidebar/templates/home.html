@@ -28,11 +28,14 @@
     <link theme-icon="" href="resources/icon.png" rel="apple-touch-icon">
 
     <!-- font -->
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700" rel="stylesheet" type="text/css">
+    {{theme.font}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- css -->
-    <link type="text/css" href="css/site.min.css" rel="stylesheet">
+    <link type="text/css" href="css/site.min.css?v={{version}}" rel="stylesheet">
+
+    <!-- google maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     {{page.customHeader}}
 
@@ -81,7 +84,7 @@
           <div class="container">
             <div class="block row">
               <div class="col col-md-12">
-                <h3>About</h3>
+                <h3>About!!</h3>
                 <p>This site is powered by <a href="http://respondcms.com">Respond CMS</a>. Respond CMS is an open source content management system that you can use to build beautiful, responsive websites. The latest version features Bootstrap 3.0, robust themes, a complete REST API, and a beautiful UI. Images from <a href="https://unsplash.com/">Unsplash</a>.</p>
               </div>
             </div>
@@ -117,7 +120,7 @@
   </body>
 
 <!-- js -->
-<script src="js/site.all.js"></script>
+<script src="js/site.all.js?v={{version}}"></script>
 
 {{page.customFooter}}
 

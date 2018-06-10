@@ -145,10 +145,19 @@ body .app-main {
     padding-top: 20px;
   }
 
+/* edit-main */
 body .edit-main {
   height: 100%;
   padding: 0;
   margin: 0;
+}
+
+body .preview-frame {
+  position: relative;
+  width: calc(100% - 250px);
+  height: calc(100% - 100px);;
+  margin: 50px 0 0 250px;
+  padding: 0;
 }
 
 /* .edit-frame */
@@ -1338,7 +1347,7 @@ body .app-edit-menu-section {
   margin: 0;
 }
 
-  body .app-edit-menu-section a, body .app-edit-menu-section a:visited {
+  body .app-edit-menu a, body .app-edit-menu-section a:visited {
     color: #537895
   }
 
@@ -1347,7 +1356,7 @@ body .app-edit-menu-section {
     opacity: 1;
   }
 
-  body .app-edit-menu-section label {
+  body .app-edit-menu label {
     font-weight: normal;
     display: block;
     margin: 0;
@@ -1356,7 +1365,7 @@ body .app-edit-menu-section {
     font-size: 11px;
   }
 
-  body .app-edit-menu-section label a {
+  body .app-edit-menu label a {
     float: right;
     cursor: pointer;
     text-transform: uppercase;
@@ -1364,7 +1373,7 @@ body .app-edit-menu-section {
     font-weight: normal;
   }
 
-  body .app-edit-menu-section input[type=text], body .app-edit-menu-section input[type=number], body .app-edit-menu-section input[type=password], body .app-edit-menu-section select {
+  body .app-edit-menu input[type=text], body .app-edit-menu input[type=number], body .app-edit-menu input[type=password], body .app-edit-menu select {
     margin: 0 0 10px 0;
     padding: 5px;
     color: #555;
@@ -1373,24 +1382,24 @@ body .app-edit-menu-section {
     font-size: 12px;
   }
 
-  body .app-edit-menu-section input[type=color] {
+  body .app-edit-menu input[type=color] {
     margin: 0 1px 10px 0;
     width: 30px;
     height: 29px;
   }
 
-  body .app-edit-menu-section .text-shadow-container {
+  body .app-edit-menu .text-shadow-container {
     margin: 0;
     padding: 0;
   }
 
-  body .app-edit-menu-section .text-shadow-container input {
+  body .app-edit-menu .text-shadow-container input {
     max-width: 40px;
     display: inline-block !important;
     vertical-align: top;
   }
 
-  body .app-edit-menu-section textarea {
+  body .app-edit-menu textarea {
     display: block;
     margin: 0 0 15px 0;
     padding: 5px;
@@ -1401,7 +1410,7 @@ body .app-edit-menu-section {
     width: calc(100% - 15px);
   }
 
-  body .app-edit-menu-section small {
+  body .app-edit-menu small {
     font-weight: normal;
     font-size: 11px;
     display: block;
@@ -1409,19 +1418,19 @@ body .app-edit-menu-section {
     padding: 0 0 15px 10px;
   }
 
-  body .app-edit-menu-section input[disabled] {
+  body .app-edit-menu input[disabled] {
     border: none;
     padding: 10px 0 10px 0;
   }
 
-  body .app-edit-menu-section input[type=submit] {
+  body .app-edit-menu input[type=submit] {
     background-color: #f0f0f0;
     padding: 15px 10px;
     text-transform: uppercase;
     border: 1px solid #ddd;
   }
 
-  body .app-edit-menu-section select {
+  body .app-edit-menu select {
     border-radius: 0;
     margin: 0 0 15px 0;
     padding: 5px;
@@ -1429,6 +1438,46 @@ body .app-edit-menu-section {
     line-height: 30px;
     text-align: center;
   }
+
+/* circle color picker */
+body .color-picker-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+body .color-picker-group .color-picker-wrapper {
+  position: absolute;
+  right: 10px;
+  top: -7px;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+body .color-picker-group .color-picker-wrapper input[type=color] {
+  margin: 0;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* app-customizations-menu-section */
+body .app-customizations-menu-section h4 {
+  border-top: 1px solid #ddd;
+  padding: 10px 10px 0 10px;
+}
+
+  body .app-customizations-menu-section:first-child h4 {
+    border-top: none;
+  }
+
+body .app-customizations-menu-section>div {
+  padding: 0 10px;
+}
 
 /* app-form */
 body .app-form {

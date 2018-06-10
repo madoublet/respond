@@ -1,49 +1,104 @@
 /* support hashedit menu bar */
-[editor-active] #main-carousel {
-  display: none;
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #5091C7;
+  --icon-color: #5091C7;
+
+  --header-background: #fff;
+  --header-text: #111;
+  --header-icon: #468b9d;
+
+  --footer-background: #468b9d;
+  --footer-text: #fff;
+
+  --hero-text: #fff;
+  --hero-background: #468b9d
+}
+
+/* h1,h2,h3 colors */
+body {
+	background: #fff;
+	background-color: var(--background);
+	margin: 0;
+	padding: 0;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
+
 }
 
 /* global */
-body {
-  background: #FFF url() repeat center center;
-  background-size: initial;
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body h1,body h2,body h3,body h4,body h5,body p,body blockquote {
-  font-family: 'Quicksand';
-  margin-bottom: 25px;
-  color: #555;
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
 }
 
-body h1 {
-  font-size: 50px;
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
   color: #333;
+  color: var(--text-color);
+}
+
+body a, body a:visited {
+  color: #5091C7;
+  color: var(--link-color);
+}
+
+body a:hover {
+	color: #78909c;
+  color: var(--link-color);
+	text-decoration: underline;
+}
+
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
+  margin-bottom: 25px;
+}
+
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
 }
 
 body h2 {
-  font-size: 40px;
-  color: #333;
+  font-size: 2.0em;
 }
 
 body h3 {
-  font-size: 30px;
-  color: #333;
+  font-size: 1.5em;
 }
 
 body h4 {
-  font-size: 20px;
-  color: #333;
-  text-transform: uppercase;
+  font-size: 1.25em;
 }
 
 body h5 {
-  font-size: 18px;
-  color: #333;
+  font-size: 1.15em;
 }
 
 body p {
-  font-size: 16px;
-  color: #777;
+  line-height: 25px;
+}
+
+/* relative font sizes for lead */
+body p.lead {
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 40px;
 }
 
 .gradient-bg {
@@ -56,32 +111,50 @@ main.container {
   max-width: 100%;
 }
 
-/* main-carousel */
-#main-carousel {
-  height: 500px;
+/* .hero */
+body .hero {
+  background-color: #468b9d;
+  background-color: var(--hero-background);
 }
 
-#main-carousel .carousel-caption {
-  bottom: 3rem;
-  z-index: 10;
-}
+  body .hero h1 {
+    font-size: 3em;
+    padding-right: 20px;
+  }
+  
+  body .hero p {
+    font-size: 1.2em;
+    padding-right: 20px;
+  }
 
-#main-carousel .carousel-item {
-  height: 32rem;
-}
+  body .row.full-width.hero {
+    padding: 100px 25px;
+    margin: 0;
+  }
 
-#main-carousel .carousel-item h1, #main-carousel .carousel-item p {
-  color: #fff;
-}
+  body .hero * {
+    color: #fff;
+    color: var(--hero-text);
+  }
 
-#main-carousel .carousel-item p a {
-  display: inline-block;
-  padding: 10px 15px;
-  border: 1px solid #fff;
-  border-radius: 30px;
-  color: #fff;
-  text-decoration: none;
-}
+  body .hero .hero-image {
+    text-align: center;
+  }
+
+  body .hero .hero-image img {
+    border: 10px solid rgba(255,255,255,.25);
+  }
+
+  body .hero .hero-text .btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #fff;
+    border: 1px solid var(--hero-text);
+    border-radius: 40px;
+    padding: 10px 40px;
+    color: #fff;
+    color: var(--hero-text);
+  }
 
 /* header */
 body header {
@@ -90,6 +163,8 @@ body header {
   z-index: 1000;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   min-height: 110px;
+  background-color: #fff;
+  background-color: var(--header-background);
 }
 
   body header .navbar-brand {
@@ -125,7 +200,8 @@ body header {
     height: 40px;
     text-align: center;
     border: 1px solid transparent;
-    background: #80d0c7;
+    background: #468b9d;
+    background: var(--header-icon);
     border-radius: 20px;
     vertical-align: middle;
     cursor: pointer;
@@ -151,12 +227,18 @@ body header {
     font-size: 12px;
   }
 
+  body header .navbar .nav-item a {
+    color: #111 !important;
+    color: var(--header-text) !important;
+  }
+
 /* footer */
 body footer {
   border-bottom: 0;
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-  padding-top: 50px;
-  padding-bottom: 50px;
+  background-color: #468b9d;
+  background-color: var(--footer-background);
+  padding-top: 100px;
+  padding-bottom: 100px;
   margin-top: 0;
   text-align: left;
   margin-bottom: 0;
@@ -167,16 +249,14 @@ body footer {
 		border-bottom: 0 !important;
 	}
 
-	body footer h3, body footer p, body footer a {
+	body footer h3, body footer p, body footer a, body footer * {
 		color: #fff !important;
+    color: var(--footer-text) !important;
 	}
 
-	body footer h3 {
-  	font-size: 22px;
-	}
 
 	body footer p {
-  	font-size: 15px;
+  	font-size: 0.9em;
 	}
 
 	body footer ul {
@@ -190,13 +270,12 @@ body footer {
     margin: 0;
     padding: 0 10px;
     display: inline-block;
-    color: #aaa;
-	}
+  }
+  
+  body footer li .dropdown-item {
+    color: #111 !important;
+  }
 
-	body footer li a {
-		color: #00A0B0;
-    font-size: 14px;
-	}
 
 	body footer h3, body footer p {
 		text-align: center;

@@ -1,16 +1,108 @@
-[hashedit-active] {
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #78909c;
+
+  --header-background: #fff;
+  --header-text: #111;
+
+  --footer-background: #888;
+  --footer-text: #fff;
+
+  --hero-background: #f8f8f8;
+  --hero-text: #111;
+}
+
+[editor-active] {
   padding-top: 50px;
+}
+
+/* h1,h2,h3 colors */
+body {
+	background: #fff;
+	background-color: var(--background);
+	margin: 0;
+	padding: 0;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
+
 }
 
 /* global */
 body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
-  font-family: 'Quicksand';
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
+}
+
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
+  color: #333;
+  color: var(--text-color);
+}
+
+body a, body a:visited {
+  color: #5091C7;
+  color: var(--link-color);
+}
+
+body a:hover {
+	color: #78909c;
+  color: var(--link-color);
+	text-decoration: underline;
+}
+
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
   margin-bottom: 25px;
 }
 
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
+}
+
+body h2 {
+  font-size: 2.0em;
+}
+
+body h3 {
+  font-size: 1.5em;
+}
+
+body h4 {
+  font-size: 1.25em;
+}
+
+body h5 {
+  font-size: 1.15em;
+}
+
+body p {
+  line-height: 25px;
+}
+
+/* relative font sizes for lead */
+body p.lead {
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 40px;
+}
+
+/* maps */
 div.map-container {
   position: relative;
   margin: 0 0 20px;
@@ -22,13 +114,38 @@ div.map-container {
   border-radius: 5px;
 }
 
-
+/* jummbotron */
 body .jumbotron {
   background-color: #f8f8f8;
+  background-color: var(--hero-background);
   border: 1px solid #ddd;
-  padding: 50px 25px !important;
-  margin: 0 0 25px 0 !important;
+  padding: 75px 50px !important;
+  margin: 0px 0 25px 0 !important;
 }
+
+body .jumbotron h1 {
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  color: #111;
+  color: var(--hero-text);
+}
+
+body .jumbotron p {
+  font-size: 1.2em;
+  color: #111;
+  color: var(--hero-text);
+}
+
+body .jumbotron a {
+  display: inline-block;
+  color: #111;
+  color: var(--hero-text);
+  border: 1px solid #ddd;
+  padding: 10px 25px;
+  border-radius: 25px;
+  background-color: #fff;
+}
+
 
 /* container */
 body.content .container[role=main] {
@@ -38,12 +155,13 @@ body.content .container[role=main] {
 /* footer */
 body footer {
   border-bottom: 0;
-  background-color: #888;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   margin-top: 0;
   text-align: left;
   margin-bottom: 0;
+  background-color: #888;
+  background-color: var(--footer-background);
 }
 
 	body footer .container{
@@ -51,17 +169,11 @@ body footer {
 		border-bottom: 0 !important;
 	}
 
-	body footer h3, body footer p, body footer a {
-		color: #fff !important;
+	body footer h3, body footer p, body footer a, body footer li a {
+    color: #fff !important;
+    color: var(--footer-text) !important;
 	}
 
-	body footer h3 {
-  	font-size: 22px;
-	}
-
-	body footer p {
-  	font-size: 15px;
-	}
 
 	body footer ul {
     margin: 20px 0 0 0;
@@ -74,12 +186,10 @@ body footer {
     margin: 0;
     padding: 0 10px;
     display: inline-block;
-    color: #aaa;
 	}
 
 	body footer li a {
-		color: #00A0B0;
-    font-size: 14px;
+    font-size: 0.9em;
 	}
 
 	body footer h3, body footer p {
@@ -88,9 +198,7 @@ body footer {
 
 	body footer li a.dropdown-item {
 		color: #555 !important;
-    font-size: 14px;
 	}
-
 
 /* header */
 body header {
@@ -98,8 +206,8 @@ body header {
   z-index: 1000;
   min-height: 60px;
   background-color: #fff;
-  margin: 0;
-  padding: 0 0 25px 0;
+	background-color: var(--header-background);
+	margin: 0;
 }
 
   body header .navbar-brand {
@@ -140,15 +248,6 @@ body header {
     cursor: pointer;
   }
 
-  /* show/hide cart */
-  body header .header-action[respond-cart] {
-    display: none;
-  }
-
-  body[show-cart] header .header-action[respond-cart] {
-    display: inline-block;
-  }
-
   body header .header-action:hover {
     box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   }
@@ -157,7 +256,7 @@ body header {
     position: absolute;
     top: 10px;
     left: 10px;
-    color: #aaa;
+    color: #111;
     font-size: 18px;
   }
 
@@ -165,8 +264,17 @@ body header {
     display: inline-block;
     margin: 0 0 0 25px;
     padding: 0;
-    color: #aaa;
+    color: #111;
     font-size: 12px;
+  }
+
+  body header .navbar a {
+    color: #111 !important;
+    color: var(--header-text) !important;
+  }
+
+  body header .navbar a.dropdown-item {
+    color: #111 !important;
   }
 
 /* Medium devices (desktops, 992px and up) */

@@ -172,6 +172,10 @@ $app->post('/api/forms/fields/order', ['middleware' => 'jwtauth', 'uses'=> 'Form
 $app->get('/api/settings/list', ['middleware' => 'jwtauth', 'uses'=> 'SettingController@listAll']);
 $app->post('/api/settings/edit', ['middleware' => 'jwtauth', 'uses'=> 'SettingController@edit']);
 
+// theme
+$app->get('/api/theme/list', ['middleware' => 'jwtauth', 'uses'=> 'ThemeController@listAll']);
+$app->post('/api/theme/edit', ['middleware' => 'jwtauth', 'uses'=> 'ThemeController@edit']);
+
 // submissions
 $app->get('/api/submissions/list', ['middleware' => 'jwtauth', 'uses'=> 'SubmissionController@listAll']);
 $app->post('/api/submissions/remove', ['middleware' => 'jwtauth', 'uses'=> 'SubmissionController@remove']);

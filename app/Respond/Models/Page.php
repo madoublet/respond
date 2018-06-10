@@ -449,6 +449,9 @@ class Page {
 
       }
 
+      // get font
+      $font_script = Publish::getFontScripts($site->id);
+
       // replace name and description
       $template_html = str_replace('{{page.title}}', $this->title, $template_html);
       $template_html = str_replace('{{page.description}}', $this->description, $template_html);
@@ -466,6 +469,10 @@ class Page {
       $template_html = str_replace('{{page.customHeader}}', $this->customHeader, $template_html);
       $template_html = str_replace('{{page.customFooter}}', $this->customFooter, $template_html);
       $template_html = str_replace('{{page.location}}', $this->location, $template_html);
+
+      // replace font_script
+      $template_html = str_replace('{{theme.font}}', $font_script, $template_html);
+      $template_html = str_replace('{{version}}', uniqid(), $template_html);
 
       // set parser
       $page_dom = HtmlDomParser::str_get_html($page_html, $lowercase=true, $forceTagsClosed=false, $target_charset=DEFAULT_TARGET_CHARSET, $stripRN=false, $defaultBRText=DEFAULT_BR_TEXT, $defaultSpanText=DEFAULT_SPAN_TEXT);

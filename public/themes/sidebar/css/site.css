@@ -1,3 +1,27 @@
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #2A5DB0;
+
+  --sidebar-background: #fff;
+  --sidebar-text: #2A5DB0;
+
+  --attention-background: #607D8B;
+  --attention-text: #fff;
+
+  --footer-background: #888;
+  --footer-text: #fff;
+
+  --hero-background: #607D8B;
+  --hero-text: #fff;
+
+}
+
 [editor-active] nav.side-nav {
   display: none;
 }
@@ -12,26 +36,68 @@
 
 body {
 	background: #fff;
+	background-color: var(--background);
 	margin: 0;
 	padding: 0;
-  font-family: 'Fira Sans', sans-serif;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
 }
 
 /* global */
 body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
+}
+
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
+  color: #333;
+  color: var(--text-color);
+}
+
+body a {
+  color: #2A5DB0;
+  color: var(--link-color);
+}
+
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
   margin-bottom: 25px;
 }
 
-body p {
-  color: #555;
-  font-size: 14px;
-  line-height: 25px;
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
 }
 
+body h2 {
+  font-size: 2.0em;
+}
+
+body h3 {
+  font-size: 1.5em;
+}
+
+body h4 {
+  font-size: 1.25em;
+}
+
+body h5 {
+  font-size: 1.15em;
+}
+
+body p {
+  line-height: 25px;
+}
 
 /* container */
 body.content .container[role=main] {
@@ -45,6 +111,7 @@ body.home main .jumbotron {
   box-sizing: border-box;
   border-radius: 0 !important;
   color: #fff;
+  color: var(--hero-text);
   max-width: 100%;
   padding: 0;
   margin: 0;
@@ -54,6 +121,7 @@ body.home main .jumbotron {
   background-size: cover;
   overflow: hidden;
   background-color: #B6C3CF;
+  background-color: var(--hero-background);
 }
 
   body.home main .jumbotron .col {
@@ -65,7 +133,8 @@ body.home main .jumbotron {
 
   body.home main .jumbotron h1 {
     color: #fff;
-    font-size: 50px;
+    color: var(--hero-text);
+    font-size: 3.0em;
     text-align: left;
     margin: 0 0 10px 0;
     padding: 0;
@@ -74,7 +143,8 @@ body.home main .jumbotron {
 
   body.home main .jumbotron p {
     color: #fff;
-    font-size: 16px;
+    color: var(--hero-text);
+    font-size: 1.2em;
     text-align: left;
     max-width: 600px;
     margin: 0;
@@ -89,6 +159,7 @@ body.home main .jumbotron {
   body.home main .jumbotron p a {
     display: inline-block;
     color: #fff;
+    color: var(--hero-text);
     border: 1px solid rgba(255,255,255,0.5);
     padding: 10px 10px;
   }
@@ -108,6 +179,7 @@ body .canvas {
     height: 100%;
     position: relative;
   	background-color: #fff;
+    background-color: var(--background-color);
   	z-index: 10;
   	padding: 0;
   	margin: 0;
@@ -163,6 +235,7 @@ nav {
   padding-top: 0;
   width: 300px;
   background-color: #fff;
+  background-color: var(--sidebar-background);
   min-width: 35px;
   z-index: 51;
   height: 100%;
@@ -173,6 +246,7 @@ nav {
   transition: .2s all ease;
   text-align: center;
   border-right: 1px solid #607D8B;
+  border-right: 1px solid var(--sidebar-background);
 }
 
   nav .brand img {
@@ -195,7 +269,8 @@ body nav li {
 
 body nav li a, body nav li a:hover {
   color: #607D8B;
-  font-size: 15px;
+  color: var(--sidebar-text);
+  font-size: 1.0em;
 }
 
 body nav .dropdown-menu {
@@ -210,14 +285,16 @@ body nav li:last-child {
 body nav a.primary-nav-secondary, body nav a.primary-nav-secondary:hover {
   display: block;
   color: #607D8B !important;
-  font-size: 15px;
+  color: var(--sidebar-text) !important;
+  font-size: 1.0em;
   cursor: pointer;
   padding: 10px 0 10px 0;
 }
 
 /* callout */
 body .row.attention {
-  background-color: #607D8B !important;
+  background-color: #607D8B;
+  background-color: var(--attention-background);
 }
 
   body .row.attention h1,
@@ -227,6 +304,7 @@ body .row.attention {
   body .row.attention h5,
   body .row.attention p {
     color: #fff;
+    color: var(--attention-text);
   }
 
 /* footer */
@@ -234,7 +312,8 @@ body footer {
   position: relative;
   padding: 100px 0;
   border-top: 1px solid #ddd;
-  background-color: #607D8B;
+  background-color: #888;
+  background-color: var(--footer-background);
   margin: 0;
   text-align: center;
   color: #fff;
@@ -256,7 +335,7 @@ body footer {
 		padding: 0 10px;
 		display: inline-block;
 		text-transform: uppercase;
-		font-size: 12px;
+		font-size: 0.8em;
 	}
 
     footer div {
@@ -265,6 +344,8 @@ body footer {
 
   footer p, footer h3 {
     text-align: center;
+    color: #fff;
+    color: var(--footer-text);
   }
 
 	footer p {
@@ -274,7 +355,7 @@ body footer {
 
 	footer a {
     color: #fff;
-    text-decoration: underline;
+    color: var(--footer-text);
 	}
 
 	footer .menu {

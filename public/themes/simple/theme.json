@@ -1,4 +1,98 @@
 {
 	"name": "Simple",
-	"desc": "Go beyond Bootstrap with this simple starter theme that gives you the best of Bootstrap and Respond."
+	"desc": "Go beyond Bootstrap with this simple starter theme that gives you the best of Bootstrap and Respond.",
+	"customizations": [
+      {
+          "name": "",
+          "type": "title"
+      },
+      {
+          "id": "font-family",
+          "name": "Font Family",
+          "value": "system",
+          "type": "font"
+      },
+      {
+          "id": "text-size",
+          "name": "Text Size",
+          "value": "15px",
+          "type": "text-size"
+      },
+      {
+          "name": "Site",
+          "type": "title"
+      },
+      {
+          "id": "background",
+          "name": "Background",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "id": "headline-color",
+          "name": "Headline",
+          "value": "#111",
+          "type": "color"
+      },
+      {
+          "id": "text-color",
+          "name": "Text",
+          "value": "#333",
+          "type": "color"
+      },
+      {
+          "id": "link-color",
+          "name": "Link",
+          "value": "#78909c",
+          "type": "color"
+      },
+      {
+          "name": "Header",
+          "type": "title"
+      },
+      {
+          "id": "header-background",
+          "name": "Background",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "id": "header-text",
+          "name": "Text",
+          "value": "#111",
+          "type": "color"
+      },
+      {
+          "name": "Footer",
+          "type": "title"
+      },
+      {
+          "id": "footer-background",
+          "name": "Background",
+          "value": "#888",
+          "type": "color"
+      },
+      {
+          "id": "footer-text",
+          "name": "Text",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "name": "Hero",
+          "type": "title"
+      },
+      {
+          "id": "hero-background",
+          "name": "Background",
+          "value": "#f8f8f8",
+          "type": "color"
+      },
+      {
+          "id": "hero-text",
+          "name": "Text",
+          "value": "#111",
+          "type": "color"
+      }
+  ]
 }

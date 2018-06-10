@@ -3,15 +3,17 @@
 Respond 7 is a multi-site, flat-file CMS powered by Angular Latest and Lumen.  Sites built using Respond are static, front-end framework agnostic and optimized for exceptional performance.
 
 ### Status
-Version: 7.2.0
+Version: 7.3.0
 
 ### Latest updates
-- Angular 6 update, see release notes: https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4
-- Download a ZIP of your site from the Advanced menu
-- Add custom API through app/Custom
+- Set colors and fonts using the new "Customize Theme" UI
+- Disable payments menu from .env
+- Enable top-menu space from .env
+- Support for tax in subscriptions
 
-### Updating from 7.1.0
+### Updating from 7.2.0
 - Follow update instructions at https://respondcms.com/documentation/updating-respond
+- Sync .env file with most recent version (add TOP_MENU_FEATURE, PRODUCT_FEATURE)
 
 ### Design Goals
 - Modern application stack: Angular Latest + Laravel

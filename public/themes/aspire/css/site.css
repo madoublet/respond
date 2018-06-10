@@ -1,52 +1,110 @@
-/* support hashedit menu bar */
-[hashedit-active] {
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #428bca;
+
+  --navigation-background: #334663;
+  --navigation-text: #fff;
+
+  --attention-background: #334663;
+  --attention-text: #fff;
+
+  --footer-background: #161E2F;
+  --footer-text: #fff;
+
+  --hero-text: #fff;
+}
+
+
+/* support editor menu bar */
+[editor-active] {
   padding-top: 50px;
 }
 
 /* h1,h2,h3 colors */
-body { }
-
-body h1, body h2, body h3, body h4, body h5 {
-	font-family: 'Raleway', sans-serif;
+body {
+	background: #fff;
+	background-color: var(--background);
+	margin: 0;
 	padding: 0;
-	margin: 0 0 25px 0;
-	font-weight: 700;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
+
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
-	margin-bottom: 25px;
+/* global */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
 }
 
-body p, body blockquote, body label, body td, body th, body li {
-	font-size: 14px;
-	color: 555;
-	line-height: 30px;
-  	font-size: 16px;
-  	font-weight: 300;
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
+  color: #333;
+  color: var(--text-color);
 }
-
-body p.lead {
-    font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	font-size: 24px;
-	line-height: 40px;
-}
-
 
 body a, body a:visited {
-  font-family: 'Raleway', sans-serif;
-	color: #428bca;
-	text-decoration: none;
+  color: #428bca;
+  color: var(--link-color);
 }
 
 body a:hover {
 	color: #428bca;
+  color: var(--link-color);
 	text-decoration: underline;
+}
+
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
+  margin-bottom: 25px;
+}
+
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
+}
+
+body h2 {
+  font-size: 2.0em;
+}
+
+body h3 {
+  font-size: 1.5em;
+}
+
+body h4 {
+  font-size: 1.25em;
+}
+
+body h5 {
+  font-size: 1.15em;
+}
+
+body p {
+  line-height: 25px;
+}
+
+
+/* relative font sizes for lead */
+body p.lead {
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 40px;
 }
 
 body input.form-control[type=text],
@@ -55,7 +113,6 @@ body input.form-control[type=password],
 body input.form-control[type=email],
 body select.form-control,
 body textarea.form-control {
-	font-size: 15px;
 	box-shadow: none !important;
 	background: none;
 	outline: none !important;
@@ -77,19 +134,19 @@ body button {
 
 body button i {
 	color: #ccc;
-  	margin-left: 5px;
+	margin-left: 5px;
 }
-
 
 /* footer */
 body footer {
-  	border-bottom: 0;
-	background-color: #161E2F;
-	padding-top: 175px;
-	padding-bottom: 175px;
-  	margin-top: 0;
-  	text-align: center;
-  	margin-bottom: 0;
+  border-bottom: 0;
+  background-color: #161E2F;
+  background-color: var(--footer-background);
+  padding-top: 175px;
+  padding-bottom: 175px;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 0;
 }
 
     body footer * {
@@ -185,7 +242,8 @@ body nav.primary-nav {
   width: 100vw;
   height: 100vh;
   z-index: 12;
-  background-color: rgba(51,70,99,0.90);
+  background-color: #334663;
+  background-color: var(--navigation-background);
   padding: 50px;
   transition: .3s ease transform;
   visibility: hidden;
@@ -219,6 +277,7 @@ body nav.primary-nav {
     padding: 25px 0;
     font-size: 40px;
     color: #fff;
+    color: var(--navigation-text);
     text-align: center;
   }
 
@@ -357,6 +416,7 @@ body.home .content .jumbotron {
     	font-size: 50px;
     	line-height: 50px;
     	color: #fff;
+      color: var(--hero-text);
     	width: 100%;
     	text-shadow: 1px 1px 5px rgba(0,0,0,.5);
   }
@@ -368,6 +428,7 @@ body.home .content .jumbotron {
     	font-size: 22px;
     	line-height: 35px;
     	color: #fff;
+      color: var(--hero-text);
     	width: 100%;
     	text-shadow: 1px 1px 5px rgba(0,0,0,.5);
   }
@@ -387,16 +448,18 @@ body.home .content .jumbotron {
     padding: 35px 0;
   }
 
-/* feature-block */
-body.home .content .feature-block {
+/* attention-block */
+body.home .content .attention-block {
     color: #fff;
     background-color: #334663;
+    background-color: var(--attention-background);
     border: none;
     padding: 175px 50px 150px 50px !important;
 }
 
-    body.home .content .feature-block * {
+    body.home .content .attention-block * {
         color: #fff;
+        color: var(--attention-text);
     }
 
 /* map-block */

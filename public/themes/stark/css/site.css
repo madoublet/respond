@@ -1,45 +1,109 @@
-/* support hashedit menu bar */
-[hashedit-active] {
-  padding-top: 50px;
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #428bca;
+
+  --header-background: #111;
+  --header-text: #fff;
+
+  --footer-background: #111;
+  --footer-text: #fff;
+
+  --attention-background: #111;
+  --attention-text: #fff;
+
+  --hero-text: #fff;
 }
+
+/* support hashedit menu bar */
+[editor-active] {}
 
 /* h1,h2,h3 colors */
-body { }
-
-body h1, body h2, body h3, body h4, body h5 {
-	font-family: 'Raleway', sans-serif;
+body {
+	background: #fff;
+	background-color: var(--background);
+	margin: 0;
 	padding: 0;
-	margin: 0 0 25px 0;
-	font-weight: 700;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
+
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
-	margin-bottom: 25px;
+/* global */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
 }
 
-body p, body blockquote, body label, body td, body th, body li {
-	font-size: 14px;
-	color: 555;
-	line-height: 30px;
-  	font-size: 16px;
-  	font-weight: 300;
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
+  color: #333;
+  color: var(--text-color);
 }
 
+body a, body a:visited {
+  color: #5091C7;
+  color: var(--link-color);
+}
+
+body a:hover {
+	color: #78909c;
+  color: var(--link-color);
+	text-decoration: underline;
+}
+
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
+  margin-bottom: 25px;
+}
+
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
+}
+
+body h2 {
+  font-size: 2.0em;
+}
+
+body h3 {
+  font-size: 1.5em;
+}
+
+body h4 {
+  font-size: 1.25em;
+}
+
+body h5 {
+  font-size: 1.15em;
+}
+
+body p {
+  line-height: 25px;
+}
+
+/* relative font sizes for lead */
 body p.lead {
-    font-family: 'Raleway', sans-serif;
 	font-weight: 300;
-	font-size: 24px;
+	font-size: 1.5em;
 	line-height: 40px;
 }
 
-
 body a, body a:visited {
-  font-family: 'Raleway', sans-serif;
 	color: #428bca;
 	text-decoration: none;
 }
@@ -77,75 +141,65 @@ body button {
 
 body button i {
 	color: #ccc;
-  	margin-left: 5px;
+  margin-left: 5px;
 }
 
 
 /* footer */
 body footer {
   border-bottom: 0;
-  background-color: #111;
-  padding-top: 175px;
-  padding-bottom: 175px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   margin-top: 0;
-  text-align: center;
+  text-align: left;
   margin-bottom: 0;
+  background-color: #111;
+  background-color: var(--footer-background);
 }
 
-body footer * {
-  color: #fff;
-}
+	body footer .container{
+		text-align: left;
+		border-bottom: 0 !important;
+	}
 
-body footer .container {
-  border-bottom: 0 !important;
-}
+	body footer h3, body footer p, body footer a, body footer li a {
+    color: #fff !important;
+    color: var(--footer-text) !important;
+	}
 
-body footer h3, body footer p, body footer a {
-  color: #fff !important;
-}
 
-body footer ul {
-  margin: 0 0 0 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-  display: inline-block;
-}
+	body footer ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+	}
 
-body footer li {
-  margin: 0;
-  padding: 0 10px;
-  display: inline-block;
-  color: #aaa;
-  font-size: 14px;
-}
+	body footer li {
+    margin: 0;
+    padding: 0 10px;
+    display: inline-block;
+	}
 
-body footer li a {
-  color: #FFF;
-  font-size: 14px;
-  text-decoration: none;
-}
+	body footer li a {
+    font-size: 0.9em;
+	}
 
-body footer li:hover a {
-  color: #48CCDF !important;
-  text-decoration: none;
-}
+	body footer h3, body footer p {
+		text-align: center;
+	}
 
-body footer li.active {
-  background-color: transparent;
-}
-
-body footer li.active a {
-  background-color: transparent !important;
-  font-weight: bold;
-}
+	body footer li a.dropdown-item {
+		color: #555 !important;
+	}
 
 /* header */
 body header {
   position: relative;
   z-index: 1000;
-  min-height: 60px;
-  background-color: #000;
+  min-height: 50px;
+  background-color: #111;
+	background-color: var(--header-background);
 }
 
   body header .navbar-brand {
@@ -163,7 +217,7 @@ body header {
   body header .navbar-brand img {
     margin: 0;
     padding: 0;
-  	height: 40px;
+  	height: 25px;
   }
 
   body header .header-actions {
@@ -180,7 +234,7 @@ body header {
     min-width: 40px;
     height: 40px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 20px;
     vertical-align: middle;
     cursor: pointer;
@@ -204,6 +258,15 @@ body header {
     padding: 0;
     color: #fff;
     font-size: 12px;
+  }
+
+  body header .navbar a {
+    color: #fff !important;
+    color: var(--header-text) !important;
+  }
+
+  body header .navbar a.dropdown-item {
+    color: #111 !important;
   }
 
 /* Medium devices (desktops, 992px and up) */
@@ -309,12 +372,14 @@ body.home .content .jumbotron {
 body.home .content .feature-block {
     color: #fff;
     background-color: #111;
+    background-color: var(--attention-background);
     border: none;
     padding: 175px 50px 150px 50px !important;
 }
 
     body.home .content .feature-block * {
         color: #fff;
+        color: var(--attention-text);
     }
 
 /* Small devices (tablets, 768px and up) */

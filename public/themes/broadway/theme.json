@@ -1,4 +1,113 @@
 {
 	"name": "Broadway",
-	"desc": "Our newest theme that features a beautiful design and subtle reveal animations."
+	"desc": "Our newest theme that features a beautiful design and subtle reveal animations.",
+	"customizations": [
+      {
+          "name": "",
+          "type": "title"
+      },
+      {
+          "id": "font-family",
+          "name": "Font Family",
+          "value": "system",
+          "type": "font"
+      },
+      {
+          "id": "text-size",
+          "name": "Text Size",
+          "value": "15px",
+          "type": "text-size"
+      },
+      {
+          "name": "Site",
+          "type": "title"
+      },
+      {
+          "id": "background",
+          "name": "Background",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "id": "headline-color",
+          "name": "Headline",
+          "value": "#111",
+          "type": "color"
+      },
+      {
+          "id": "text-color",
+          "name": "Text",
+          "value": "#333",
+          "type": "color"
+      },
+      {
+          "id": "link-color",
+          "name": "Link",
+          "value": "#5091C7",
+          "type": "color"
+      },{
+          "id": "link-color",
+          "name": "Link",
+          "value": "#5091C7",
+          "type": "color"
+      },
+      {
+          "name": "Header",
+          "type": "title"
+      },
+      {
+          "id": "header-background",
+          "name": "Background",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "id": "header-text",
+          "name": "Text",
+          "value": "#111",
+          "type": "color"
+      },
+      {
+          "name": "Footer",
+          "type": "title"
+      },
+      {
+          "id": "footer-background",
+          "name": "Background",
+          "value": "#5091C7",
+          "type": "color"
+      },
+      {
+          "id": "footer-text",
+          "name": "Text",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "name": "Attention",
+          "type": "title"
+      },
+      {
+          "id": "attention-background",
+          "name": "Background",
+          "value": "#5091C7",
+          "type": "color"
+      },
+      {
+          "id": "attention-text",
+          "name": "Text",
+          "value": "#fff",
+          "type": "color"
+      },
+      {
+          "name": "Hero",
+          "type": "title"
+      },
+      {
+          "id": "hero-text",
+          "name": "Text",
+          "value": "#fff",
+          "type": "color"
+      }
+  ]
 }

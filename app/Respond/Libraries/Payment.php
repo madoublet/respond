@@ -153,10 +153,18 @@ class Payment
             'source'  => $token
           ));
 
+          $tax = 0;
+
+          // convert decimal to %
+          if($this->tax_rate > 0) {
+            $tax = $this->tax_rate * 100;
+          }
+
           // subscribe customer to plan
           $subscription = \Stripe\Subscription::create([
             'customer' => $customer->id,
             'items' => [['plan' => $product['plan']]],
+            'tax_percent' => $tax
           ]);
 
           $tax = 0;

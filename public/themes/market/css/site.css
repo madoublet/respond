@@ -1,56 +1,106 @@
-/* support hashedit menu bar */
-[hashedit-active] {
-  padding-top: 50px;
+:root {
+
+  --font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --text-size: 15px;
+
+  --background: #fff;
+  --headline-color: #111;
+  --text-color: #333;
+  --link-color: #428bca;
+
+  --header-background: #fff;
+  --header-text: #111;
+
+  --footer-background: #555;
+  --footer-text: #fff;
+
+  --hero-text: #fff;
 }
 
-body {}
-
-body h1, body h2, body h3, body h4, body h5 {
-	font-family: 'Ubuntu', sans-serif;
+/* h1,h2,h3 colors */
+body {
+	background: #fff;
+	background-color: var(--background);
+	margin: 0;
 	padding: 0;
-	margin: 0 0 25px 0;
-	font-weight: 700;
+	font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-size: var(--text-size);
+
 }
 
-body h1, body h2, body h3, body h4, body h5, body p, body blockquote {
-	margin-bottom: 25px;
+/* global */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body li, body a, body input, body select, body label{
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-family);
+  font-size: 1.0em;
 }
 
-body p, body td, body th, body small, body li, body label, body input {
-	font-family: 'Ubuntu', sans-serif;
-	font-weight: 300;
+/* headline */
+body h1, body h2, body h3, body h4, body h5 {
+  color: #111;
+  color: var(--headline-color);
 }
 
-body p, body blockquote, body label, body td, body th, body li {
-	font-size: 14px;
-	color: 555;
-	line-height: 30px;
-  	font-size: 17px;
-  	font-weight: 300;
+/* text */
+body p, body blockquote, body li, body label, body input, body select {
+  color: #333;
+  color: var(--text-color);
 }
-
-body p.lead {
-    font-family: 'Ubuntu', sans-serif;
-	font-weight: 300;
-	font-size: 24px;
-	line-height: 40px;
-}
-
 
 body a, body a:visited {
-  font-family: 'Ubuntu', sans-serif;
-	color: #428bca;
-	text-decoration: none;
+  color: #5091C7;
+  color: var(--link-color);
 }
 
 body a:hover {
-	color: #428bca;
+	color: #78909c;
+  color: var(--link-color);
 	text-decoration: underline;
 }
 
-body .btn-secondary {
+/* block margins */
+body h1, body h2, body h3, body h4, body h5, body p, body blockquote, body ul, body ol {
+  margin-bottom: 25px;
+}
+
+/* relative font sizes for headlines */
+body h1 {
+  font-size: 2.5em;
+}
+
+body h2 {
+  font-size: 2.0em;
+}
+
+body h3 {
+  font-size: 1.5em;
+}
+
+body h4 {
+  font-size: 1.25em;
+}
+
+body h5 {
+  font-size: 1.15em;
+}
+
+body p {
+  line-height: 25px;
+}
+
+/* relative font sizes for lead */
+body p.lead {
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 40px;
+}
+
+body .btn-secondary, body .btn-secondary:hover {
   background-color: #428bca;
   border: #428bca;
+  color: #fff !important;
 }
 
 body input.form-control[type=text],
@@ -59,7 +109,7 @@ body input.form-control[type=password],
 body input.form-control[type=email],
 body select.form-control,
 body textarea.form-control {
-	font-size: 15px;
+	font-size: 1.0em;
 	box-shadow: none !important;
 	background: none;
 	outline: none !important;
@@ -68,8 +118,8 @@ body textarea.form-control {
 	border-radius: 0 !important;
 	padding: 5px 10px !important;
 	height: 45px !important;
-  background-color: transparent;
-  -webkit-appearance: none;
+    background-color: transparent;
+    -webkit-appearance: none;
 	-webkit-border-radius: 0px;
 }
 
@@ -81,18 +131,19 @@ body button {
 
 body button i {
 	color: #ccc;
-  margin-left: 5px;
+  	margin-left: 5px;
 }
 
 /* footer */
 body footer {
   border-bottom: 0;
-  background-color: #888;
   padding-top: 50px;
   padding-bottom: 50px;
   margin-top: 0;
   text-align: left;
   margin-bottom: 0;
+  background-color: #555;
+  background-color: var(--footer-background);
 }
 
 	body footer .container{
@@ -100,17 +151,11 @@ body footer {
 		border-bottom: 0 !important;
 	}
 
-	body footer h3, body footer p, body footer a {
-		color: #fff !important;
+	body footer h3, body footer p, body footer a, body footer li a {
+    color: #fff !important;
+    color: var(--footer-text) !important;
 	}
 
-	body footer h3 {
-  	font-size: 22px;
-	}
-
-	body footer p {
-  	font-size: 15px;
-	}
 
 	body footer ul {
     margin: 20px 0 0 0;
@@ -123,12 +168,10 @@ body footer {
     margin: 0;
     padding: 0 10px;
     display: inline-block;
-    color: #aaa;
 	}
 
 	body footer li a {
-		color: #00A0B0;
-    font-size: 14px;
+    font-size: 0.9em;
 	}
 
 	body footer h3, body footer p {
@@ -137,7 +180,6 @@ body footer {
 
 	body footer li a.dropdown-item {
 		color: #555 !important;
-    font-size: 14px;
 	}
 
 
@@ -148,6 +190,7 @@ body header {
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.2);
   min-height: 60px;
   background-color: #fff;
+  background-color: var(--header-background);
 }
 
   body header .navbar-brand {
@@ -165,7 +208,7 @@ body header {
   body header .navbar-brand img {
     margin: 0;
     padding: 0;
-  	height: 35px;
+  	height: 30px;
   }
 
   body header .header-actions {
@@ -196,7 +239,8 @@ body header {
     position: absolute;
     top: 10px;
     left: 10px;
-    color: #aaa;
+    color: #111;
+    color: var(--header-text);
     font-size: 18px;
   }
 
@@ -204,8 +248,14 @@ body header {
     display: inline-block;
     margin: 0 0 0 25px;
     padding: 0;
-    color: #aaa;
+    color: #111;
+    color: var(--header-text);
     font-size: 12px;
+  }
+
+  body header .navbar a {
+    color: #111 !important;
+    color: var(--header-text) !important;
   }
 
 /* Medium devices (desktops, 992px and up) */
@@ -247,46 +297,86 @@ body header {
   }
 
   body .jumbotron h1 {
-  	text-align: center;
-  	margin: 0;
-  	padding: 25px 25px 0 25px;
-  	font-size: 40px;
-  	line-height: 50px;
-  	color: #fff;
-  	width: 100%;
-  	text-shadow: 2px 3px 5px rgba(0,0,0,.9)
+    	text-align: center;
+    	margin: 0;
+    	padding: 25px 25px 0 25px;
+    	font-size: 4em;
+    	line-height: 50px;
+    	color: #fff;
+      color: var(--hero-text);
+    	width: 100%;
+      text-shadow: 2px 3px 5px rgba(0,0,0,.9);
   }
 
   body .jumbotron p {
-    	text-align: left;
+    	text-align: center;
     	margin: 0;
     	padding: 10px 25px 25px 25px;
-    	font-size: 15px;
+    	font-size: 1.25em;
     	line-height: 35px;
-    	color: #888;
+    	color: #fff;
+      color: var(--hero-text);
     	width: 100%;
+    text-shadow: 2px 3px 5px rgba(0,0,0,.9);
   }
 
   body .jumbotron a, body .jumbotron a:hover {
-  	  color: #888;
-    	border: 1px solid #888;
-    	padding: 5px 30px;
+  	  border: 1px solid #fff;
+  	  border: 1px solid var(--hero-text);
+    	padding: 10px 30px;
     	border-radius: 0;
     	text-decoration: none;
-    	margin-left: 10px;
+    	border-radius: 25px;
+    	color: #fff;
+      color: var(--hero-text);
+      text-shadow: 2px 3px 5px rgba(0,0,0,.9);
   }
 
 
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+	body.home aside.call-to-action a {
+  		display: inline-block;
+	}
+
+	body.home .row {
+		width: 100%;
+	}
+
+	body header .navbar-collapse {
+      background-color: transparent;
+    }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+	body.home .row{
+		width: 100%;
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+	body.home .row{
+		width: 100%;
+	}
+
+}
 
 /* content */
 body.content header {
-    background-color: #fff;
+    background-color: #111;
 }
 
 body.content [role=main] {
-  padding-top: 50px;
-  min-height: 700px;
-  padding-bottom: 50px;
+	padding-top: 50px;
+  	min-height: 700px;
+  	padding-bottom: 50px;
 }
 
 body.content h1 {

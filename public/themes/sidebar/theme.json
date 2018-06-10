@@ -1,4 +1,114 @@
 {
-	"name": "Sidebar",
-	"desc": "Featuring mobile friendly side navigation, sidebar provides a simple, modern design for your business or organization."
+    "name": "Sidebar",
+    "desc": "Featuring mobile friendly side navigation, sidebar provides a simple, modern design for your business or organization.",
+    "customizations": [
+        {
+            "name": "",
+            "type": "title"
+        },
+        {
+            "id": "font-family",
+            "name": "Font Family",
+            "value": "system",
+            "type": "font"
+        },
+        {
+            "id": "text-size",
+            "name": "Text Size",
+            "value": "15px",
+            "type": "text-size"
+        },
+        {
+            "name": "Site",
+            "type": "title"
+        },
+        {
+            "id": "background",
+            "name": "Background",
+            "value": "#fff",
+            "type": "color"
+        },
+        {
+            "id": "headline-color",
+            "name": "Headline",
+            "value": "#111",
+            "type": "color"
+        },
+        {
+            "id": "text-color",
+            "name": "Text",
+            "value": "#333",
+            "type": "color"
+        },
+        {
+            "id": "link-color",
+            "name": "Link",
+            "value": "#005493",
+            "type": "color"
+        },
+        {
+            "name": "Sidebar",
+            "type": "title"
+        },
+        {
+            "id": "sidebar-background",
+            "name": "Background",
+            "value": "#fff",
+            "type": "color"
+        },
+        {
+            "id": "sidebar-text",
+            "name": "Text",
+            "value": "#005493",
+            "type": "color"
+        },
+        {
+            "name": "Attention",
+            "type": "title"
+        },
+        {
+            "id": "attention-background",
+            "name": "Background",
+            "value": "#59934d",
+            "type": "color"
+        },
+        {
+            "id": "attention-text",
+            "name": "Text",
+            "value": "#fff",
+            "type": "color"
+        },
+        {
+            "name": "Footer",
+            "type": "title"
+        },
+        {
+            "id": "footer-background",
+            "name": "Background",
+            "value": "#59934d",
+            "type": "color"
+        },
+        {
+            "id": "footer-text",
+            "name": "Text",
+            "value": "#fff",
+            "type": "color"
+        },
+        {
+            "name": "Hero",
+            "type": "title"
+        },
+        {
+            "id": "hero-background",
+            "name": "Background",
+            "value": "#59934d",
+            "type": "color"
+        },
+        {
+            "id": "hero-text",
+            "name": "Text",
+            "value": "#fff",
+            "type": "color"
+        }
+    ]
 }

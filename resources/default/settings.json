@@ -136,7 +136,8 @@
         "id": "cart-tax-rate",
         "label": "Tax Rate",
         "type": "number",
-        "value": "0.00"
+        "value": "0.00",
+        "description": "Decimal format, e.g. 0.07 = 7%",
     },
     {
         "id": "cart-currency",

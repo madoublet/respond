@@ -92,6 +92,8 @@ class AppController extends Controller
       'stripePublishableKey' => env('STRIPE_PUBLISHABLE_KEY', ''),
       'recaptchaSiteKey' => env('RECAPTCHA_SITE_KEY', ''),
       'acknowledgement' => env('ACKNOWLEDGEMENT', ''),
+      'productFeature' => env('PRODUCT_FEATURE', 'enable'),
+      'topMenuFeature' => env('TOP_MENU_FEATURE', 'enable'),
       'defaultLanguage' => $language
     );
 
