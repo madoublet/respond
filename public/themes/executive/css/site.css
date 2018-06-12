@@ -209,7 +209,11 @@ body header {
     color: #828D96;
     font-size: 12px;
   }
-  
+
+  body header .navbar {
+    padding-top: 10px !important;
+  }
+
   body header .navbar a {
     color: #111 !important;
     color: var(--header-text) !important;
@@ -304,7 +308,7 @@ body.home .content .jumbotron{
     	font-size: 1.2em;
     	line-height: 25px;
     	width: 100%;
-    	max-width: 520px;    	
+    	max-width: 520px;
     	color: #111;
     	color: var(--hero-text);
   }
@@ -352,7 +356,7 @@ body.home .callout {
   body.home .callout p {
     padding: 0 50px;
   }
-  
+
   body.home .callout h3, body.home .callout p {
     color: #111 !important;
   }

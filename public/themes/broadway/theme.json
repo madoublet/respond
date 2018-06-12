@@ -46,8 +46,8 @@
           "value": "#5091C7",
           "type": "color"
       },{
-          "id": "link-color",
-          "name": "Link",
+          "id": "icon-color",
+          "name": "Icon",
           "value": "#5091C7",
           "type": "color"
       },

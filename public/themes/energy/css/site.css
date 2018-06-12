@@ -121,7 +121,7 @@ body .hero {
     font-size: 3em;
     padding-right: 20px;
   }
-  
+
   body .hero p {
     font-size: 1.2em;
     padding-right: 20px;
@@ -227,6 +227,10 @@ body header {
     font-size: 12px;
   }
 
+  body header .navbar {
+    padding-top: 10px !important;
+  }
+
   body header .navbar .nav-item a {
     color: #111 !important;
     color: var(--header-text) !important;
@@ -271,7 +275,7 @@ body footer {
     padding: 0 10px;
     display: inline-block;
   }
-  
+
   body footer li .dropdown-item {
     color: #111 !important;
   }
