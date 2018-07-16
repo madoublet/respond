@@ -471,7 +471,6 @@ class Page {
       $template_html = str_replace('{{page.location}}', $this->location, $template_html);
 
       // replace font_script
-      $template_html = str_replace('{{theme.font}}', $font_script, $template_html);
       $template_html = str_replace('{{version}}', uniqid(), $template_html);
 
       // set parser

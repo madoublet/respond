@@ -1,0 +1,1011 @@
+.editor-container {
+  z-index: 5000px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.editor-container h2, .editor-container label,  .editor-container input,  .editor-container select,  .editor-container button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+[editor-sortable] {
+  min-height: 50px;
+}
+
+[editor-empty] {
+  min-height: 100px;
+  background-color: #EBF2F7;
+  box-shadow: inset 0 0 0 1px #ddd;
+}
+
+.editor-sortable {
+  border-bottom: 0;
+}
+
+[editor-active] header, [editor-active] footer {
+  display: none;
+}
+
+[editor-element] {
+  position: relative;
+  display: block;
+  clear: both;
+  min-height: 35px !important;
+}
+
+  [editor-element]:hover {
+    box-shadow: inset 1px 1px 1px #ddd, inset 0 0 0 1px #ccc;
+  }
+
+[editor-element][current-editor-element] {}
+
+[editor-element]:hover { }
+
+[editor-element][contentEditable=true] {
+  min-height: 25px;
+}
+
+[editor] a, [editor] img {
+  cursor: pointer;
+}
+
+/* sortable */
+[editor-sortable] {
+  min-height: 50px;
+}
+
+/* block */
+[editor-block] {
+  box-sizing: border-box;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+  /* editor-block-menu */
+  body [role=main] .editor-block-menu {
+      font-family: 'Open Sans', sans-serif !important;
+      position: absolute;
+      top: 0;
+      left: 10px;
+      background-color: #09203f;
+      margin: 0 !important;
+      padding: 0 0 0 15px !important;
+      color: #888;
+      z-index: 10000;
+      visibility: hidden;
+      opacity: 0;
+      margin: 0 !important;
+      font-size: 12px !important;
+      line-height: normal !important;
+      border-radius: 20px;
+      transition: all .1s ease;
+      display: none;
+  }
+
+    body [role=main] [editor-block]:hover .editor-block-menu {
+      visibility: visible;
+      opacity: 0.75;
+    }
+
+    body [role=main] .editor-block-menu:hover {
+      z-index: 20000;
+      opacity: 1 !important;
+    }
+
+
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
+      font-family: 'Open Sans', sans-serif !important;
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      font-size: 12px !important;
+      margin: 0 15px 0 0 !important;
+      padding: 10px 0 10px 20px !important;
+      cursor: pointer;
+      font-weight: normal;
+      line-height: normal !important;
+    }
+
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item x-respond-menu-icon {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 14px !important;
+      line-height: normal !important;
+    }
+
+    body [role=main] [editor-block] .editor-block-menu .editor-block-menu-item {
+      display: inline-block;
+    }
+
+/* edit icon */
+.editor-edit {
+  cursor: move;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 35px;
+  height: 35px;
+  line-height: 0;
+  z-index: 10000;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: none;
+}
+
+[editor-element]:hover .editor-edit {
+  color: #555;
+  opacity: 1;
+}
+
+.editor-edit span {
+  position: absolute;
+  top: 7px;
+  right: -1px;
+  width: 35px;
+  height: 35px;
+  line-height: 0 !important;
+  text-align: center;
+  line-height: 15px;
+  transition: all .15s ease;
+}
+
+.editor-edit span svg {
+  fill: currentColor;
+  width: 50%;
+  margin: 2px auto 0 auto;
+  padding: 0;
+  opacity: 1;
+  transition: all .25s ease;
+}
+
+/* editor-element-menu */
+body [role=main] .editor-element-menu {
+    font-family: 'Open Sans', sans-serif !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #09203f;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #888;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    margin: 0 !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+    border-radius: 20px;
+    transition: all .1s ease;
+    width: auto;
+    height: auto;
+    z-index: 20000;
+}
+
+  body [role=main] [editor-element] .editor-element-menu x-respond-menu-label {
+    position: relative;
+    font-family: 'Open Sans', sans-serif !important;
+    display: inline-block;
+    font-size: 10px !important;
+    color: #fff;
+    margin: 0 15px 0 0 !important;
+    padding: 12px 0 12px 25px !important;
+    text-transform: uppercase;
+    line-height: normal !important;
+    font-weight: normal !important;
+  }
+
+
+  body [role=main] [editor-element]:hover .editor-element-menu {
+    visibility: visible;
+    opacity: 0.75;
+  }
+
+  body [role=main] [editor-element]:hover .editor-element-menu:hover {
+    opacity: 1;
+  }
+
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
+    font-family: 'Open Sans', sans-serif !important;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 12px !important;
+    margin: 0 15px 0 0 !important;
+    padding: 10px 0 10px 30px !important;
+    cursor: pointer;
+    font-weight: normal;
+    line-height: normal !important;
+  }
+
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item.editor-move {
+    cursor: move;
+  }
+
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item x-respond-menu-icon {
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: normal !important;
+  }
+
+  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
+    display: inline-block;
+    text-transform: none !important;
+  }
+
+/* highlight */
+.editor-highlight {
+  background-color: rgba(255,153,0,1);
+  min-height: 50px;
+  display: block;
+}
+
+  .editor-highlight .icon {
+    display: none !important;
+  }
+
+  .editor-highlight .title {
+    display: block;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+a.editor-highlight {
+  color: #fff;
+  display: block;
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+a.editor-highlight svg {
+  fill: currentColor;
+  display: block;
+  margin: auto;
+  height: 30px;
+}
+
+body [contentEditable=true]:focus {
+  outline: none;
+}
+
+body [contentEditable=true] a {
+  cursor: pointer;
+}
+
+/* config */
+
+
+body #editor-link-settings {
+  z-index: 10004;
+}
+
+body #editor-image-settings {
+  z-index: 10005;
+}
+
+body .editor-config[visible] {
+  top: 0;
+}
+
+body .editor-config label {
+  height: 50px;
+  line-height: 50px;
+  color: #555;
+  font-size: 11px;
+  border-right: 1px solid #ddd;
+  padding: 0 10px;
+  font-weight: 400;
+  background-color: #DBE6EC;
+}
+
+body .editor-config a,body .editor-config label,body .editor-config input,body .editor-config select {
+  float: left;
+}
+
+body .editor-config a {
+  position: relative;
+  float: left;
+  cursor: pointer;
+  width: 39px;
+  height: 39px;
+  color: #537895 !important;
+  text-align: center;
+  line-height: 50px;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+body .editor-config a svg {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  fill: currentColor;
+}
+
+body .editor-config h4 {
+  display: block;
+  text-transform: uppercase;
+  margin: 0px;
+  padding: 10px 5px 5px 5px;
+  color: #537895;
+  font-size: 11px;
+}
+
+body .editor-config input[type=text] {
+  vertical-align: top;
+  height: 50px;
+  outline: none;
+  line-height: 50px;
+  border: 0;
+  margin: 0;
+  padding: 0 0 0 15px !important;
+  background-color: transparent;
+  max-width: 125px;
+  color: #111;
+}
+
+body .editor-config input[type=color] {
+  vertical-align: top;
+  height: 50px;
+  outline: none;
+  line-height: 50px;
+  border: 0;
+  margin: 0 !important;
+  padding: 10px !important;
+  background-color: transparent;
+  width: 50px;
+}
+
+body .editor-config a:hover,body .editor-config a:hover {
+  background-color: rgba(255,255,255,0.9);
+}
+
+/* containers */
+.editor-menu,.editor-menu-alternate,.editor-toast,.editor-config,.editor-modal,.editor-menu *,.editor-menu-alternate *,.editor-toast *,.editor-config *,.editor-modal * {
+  font-family: 'Open Sans','Arial','Helvetica',sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  .editor-menu .material-icons {
+    font-family: 'Material Icons' !important;
+    font-size: 24px !important;
+  }
+
+/* editor-toast */
+.editor-toast {
+  font-family: 'Helvetica','Arial','sans-serif';
+  position: fixed;
+  z-index: 1002;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #fff;
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  color: #FFF;
+  background-color: #345A6F;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.1);
+  z-index: 100005;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .25s ease;
+}
+
+  .editor-toast svg {
+    fill: currentColor;
+    margin-top: 10px;
+  }
+
+.editor-toast[success] {
+  background-color: #88C425;
+}
+
+.editor-toast[failure] {
+  background-color: #ED4747;
+}
+
+.editor-toast[active] {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* editor-help */
+.editor-help {
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  height: 30px;
+  padding: 6px 5px 0 10px;
+  width: 100%;
+  background-color: #2F3243;
+  color: #fff;
+  font-family: 'Helvetica','Arial','sans-serif';
+  font-size: 13px;
+  z-index: 10001;
+  text-align: left;
+  margin-bottom: -35px;
+  transition: all .1s ease;
+  transition-delay: .1s;
+}
+
+  .editor-help svg {
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+  .editor-help b {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 10px;
+  }
+
+  .editor-help[active] {
+    margin-bottom: 0;
+  }
+
+/* editor-top-menu */
+.editor-top-menu {
+  font-family: 'Helvetica','Arial','sans-serif';
+  position: fixed;
+  z-index: 10002;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255,255,255,1);
+  margin: 0;
+  padding: 0 0 0 50px;
+  color: #2F3243;
+  border-bottom: 1px solid #DDD;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+}
+
+  .editor-top-menu .editor-back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 49px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #2F3243;
+    z-index: 2;
+    background-color: transparent;
+    line-height: 0;
+  }
+
+  .editor-top-menu .editor-back svg {
+    fill: currentColor;
+    margin: 0 auto 0 auto;
+  }
+
+  .editor-top-menu .editor-add {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 49px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #00ADE3;
+    z-index: 2;
+    background-color: transparent;
+    line-height: 0;
+  }
+
+ .editor-top-menu .editor-add i {
+    color: #00ADE3;
+    margin: 0 auto 0 auto;
+  }
+
+  .editor-top-menu .editor-view {
+    position: fixed;
+    top: 0;
+    right: 50px;
+    width: 50px;
+    height: 49px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #00ADE3;
+    z-index: 2;
+    background-color: transparent;
+    line-height: 0;
+  }
+
+ .editor-top-menu .editor-view i {
+    color: #00ADE3;
+    margin: 0 auto 0 auto;
+  }
+
+  .editor-top-menu .editor-focused {
+    position: fixed;
+    top: 0;
+    right: 100px;
+    width: 50px;
+    height: 49px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #00ADE3;
+    z-index: 2;
+    background-color: transparent;
+    line-height: 0;
+  }
+
+ .editor-top-menu .editor-focused i {
+    color: #00ADE3;
+    margin: 0 auto 0 auto;
+  }
+
+  .editor-top-menu h2 {
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin: 15px 0;
+    padding: 0;
+    color: #555;
+  }
+
+/* editor-menu */
+.editor-menu {
+  font-family: 'Helvetica','Arial','sans-serif';
+  position: fixed;
+  z-index: 10002;
+  top: 0;
+  right: -205px;
+  height: 100%;
+  width: 200px;
+  background-color: #EBF2F7;
+  margin: 0;
+  padding: 0 0 0 4px;
+  color: #2F3243;
+  border-left: 1px solid #DDD;
+  overflow: hidden;
+  transition: all .1s ease;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+
+  .editor-menu[active] {
+    right: 0;
+  }
+
+.editor-menu h4 {
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0px;
+  padding: 10px 5px 5px 5px;
+  color: #537895;
+  font-size: 11px;
+}
+
+.editor-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-menu .editor-menu-body {
+  width: 100%;
+  z-index: 1;
+}
+
+.editor-menu .editor-menu-logo {
+  width: 30px;
+  margin: 10px;
+}
+
+.editor-menu div {
+  clear: both;
+}
+
+.editor-menu a {
+  position: relative;
+  float: left;
+  cursor: pointer;
+  width: 90px;
+  height: 90px;
+  color: #2F3243;
+  text-align: center;
+  font-size: 13px;
+  vertical-align: top;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+  background-color: #fff;
+  margin: 2.5px;
+  box-shadow: 1px 1px 1px #ddd;
+}
+
+  .editor-menu a .icon {
+    display: block;
+    margin: 20px 0 2px 0;
+    padding: 0;
+    height: 25px;
+    line-height: 25px;
+  }
+
+  .editor-menu a .title {
+    display: block;
+    font-size: 10px;
+    margin: 0 2.5px;
+    padding: 0;
+    color: #aaa;
+  }
+
+  .editor-menu a:hover {
+    background-color: #537895 !important;
+    color: #fff !important;
+    text-decoration: none;
+  }
+
+    .editor-menu a:hover .title {
+      color: #fff;
+    }
+
+/* editor-bottom-menu */
+.editor-bottom-menu {
+  font-family: 'Helvetica','Arial','sans-serif';
+  position: fixed;
+  z-index: 10002;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255,255,255,1);
+  margin: 0;
+  padding: 0;
+  color: #2F3243;
+  border-top: 1px solid #DDD;
+  text-align: right;
+}
+
+  .editor-bottom-menu button {
+    font-family: 'Helvetica','Arial','sans-serif';
+    display: inline-block;
+    color: #00ADE3;
+    border: none;
+    background: none;
+    height: 40px;
+    margin: 5px 10px 5px 10px;
+    line-height: 40px;
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+
+    .editor-bottom-menu button[disabled] {
+      color: #ccc;
+    }
+
+  .editor-bottom-menu button.alternate {
+    float: left;
+  }
+
+  .editor-bottom-menu button.primary {
+    font-weight: bold;
+  }
+
+/* modal */
+body .editor-modal {
+  font-family: 'Helvetica','Arial','sans-serif';
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 100001;
+  width: 400px;
+  background-color: #fff;
+  margin: 5px;
+  padding: 25px 25px 60px 25px;
+  color: #888;
+  border-bottom: 1px solid #DDD;
+  overflow-x: auto;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%,-50%) scale(0.85,0.85);
+  transition: all .1s ease;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+  box-sizing: border-box;
+}
+
+  body .editor-modal-body {
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+  }
+
+body .editor-modal a,body .editor-modal a:visited {
+  color: #00ADE3;
+}
+
+body .editor-modal[visible] {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%,-50%) scale(1,1);
+}
+
+body .editor-modal label {
+  font-weight: 400;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+
+body .editor-modal label a {
+  float: right;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+body .editor-modal input, body .editor-modal select {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  color: #555;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+body .editor-modal textarea {
+  margin: 0 0 10px 0;
+  padding: 10px;
+  color: #555;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 150px;
+  border: 1px solid #ccc;
+}
+
+body .editor-modal input[type=submit] {
+  background-color: #f0f0f0;
+  font-size: 13px;
+  padding: 15px 10px;
+  text-transform: uppercase;
+  border: 1px solid #ddd;
+  height: 35px;
+}
+
+body .editor-modal select {
+  font-size: 13px;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  border: none;
+  border-radius: 0;
+  padding: 5px 5px 5px 15px;
+  margin: 0 0 10px 0;
+  height: 35px;
+  min-width: 50px;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+body .editor-modal h2 {
+  font-size: 20px;
+  color: #345A6F;
+  margin: 0 0 25px;
+  padding: 0;
+}
+
+body .editor-modal .actions {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+body .editor-modal .actions a {
+  margin-left: 15px;
+  text-transform: uppercase;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+body .editor-modal .actions a.primary {
+  font-weight: 700;
+}
+
+/* editor-card */
+.editor-card {
+  height: 500px;
+}
+
+#editor-link-settings-modal.editor-card {
+  height: 600px;
+}
+
+.editor-card-front,.editor-card-back {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  margin: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform .3s;
+  transition: transform .3s;
+}
+
+.editor-card-front {
+  background-color: #fff;
+}
+
+.editor-card-back {
+  background-color: #fff;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.editor-card[editor-card-flipped] .editor-card-front {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.editor-card[editor-card-flipped] .editor-card-back {
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+/* fix a flip bug */
+.editor-card .editor-card-back .editor-list {
+  display: none;
+}
+
+.editor-card[editor-card-flipped] .editor-card-back .editor-list {
+  display: block;
+}
+
+/* dropzone */
+body .dropzone {
+  min-height: inherit;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+body .dropzone .dz-message {
+  text-transform: uppercase;
+  font-size: 13px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* .editor-list */
+.editor-list {
+  margin: 25px 0;
+  padding: 0;
+  border: 1px solid #ddd;
+}
+
+body .editor-modal .editor-list {
+  max-height: 220px;
+  overflow: auto;
+}
+
+.editor-card .editor-list {
+  max-height: 355px;
+}
+
+.editor-list-item {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+body .editor-modal .editor-list-item h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 2px;
+  padding: 0;
+}
+
+body .editor-modal .editor-list-item small {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+body .editor-modal .editor-list-item h2 span {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  text-transform: uppercase;
+  float: right;
+}
+
+body .editor-modal .editor-list-item p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  margin: 0 0 2px;
+  padding: 0;
+}
+
+.editor-list-item label {
+  display: block;
+  margin: 0;
+  padding: 0 0 5px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaa;
+  min-width: 25%;
+  text-transform: uppercase;
+}
+
+.editor-list-item:last-child {
+  border-bottom: none;
+}
+
+.respond-plugin {
+  position: relative;
+  padding: 10px 0;
+  margin: 5px 5px 20px 5px;
+  background-color: #EBF2F7;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+  color: #2F3243;
+  cursor: pointer;
+}
+
+.respond-plugin span {
+  display: block;
+  margin: 0; padding: 0;
+  color: #2F3243;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.respond-plugin svg {
+  fill: currentColor;
+  width: 35px;
+  height: 35px;
+}
+
+@media screen and (min-width: 1200px) {
+
+  body {
+    margin-right: 200px;
+  }
+
+
+  .editor-menu {
+    right: 0 !important;
+  }
+}

@@ -53,13 +53,13 @@
       {
           "id": "header-background",
           "name": "Background",
-          "value": "#fff",
+          "value": "#111",
           "type": "color"
       },
       {
           "id": "header-text",
           "name": "Text",
-          "value": "#111",
+          "value": "#fff",
           "type": "color"
       },
       {

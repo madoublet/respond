@@ -106,7 +106,7 @@
       {
           "id": "hero-text",
           "name": "Text",
-          "value": "#fff",
+          "value": "#333",
           "type": "color"
       }
   ]

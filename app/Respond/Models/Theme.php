@@ -58,11 +58,17 @@ class Theme {
    */
   public static function listAll($siteId) {
 
-    $file = app()->basePath().'/public/sites/'.$siteId.'/theme.json';
+    if(file_exists(app()->basePath().'/public/sites/'.$siteId.'/theme.json')) {
 
-    $settings = json_decode(file_get_contents($file), true);
+      $file = app()->basePath().'/public/sites/'.$siteId.'/theme.json';
 
-    return $settings;
+      $settings = json_decode(file_get_contents($file), true);
+
+      return $settings;
+    }
+    else {
+      return array();
+    }
 
   }
 

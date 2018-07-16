@@ -186,7 +186,7 @@ class Publish
      * Returns the proper font family code
      *
      * @param {String} $siteId
-     * @param {String} $type Type of code (CSS or HTML)
+     * @param {String} $type Type of code (CSS or IMPORT)
      */
     public static function getFontFamilyCode($siteId, $font, $type = 'CSS') {
 
@@ -197,87 +197,87 @@ class Publish
 
       // default code
       $css_code = '"Source Sans Pro", "Helvetica Neue", Arial, sans-serif';
-      $html_code = '';
+      $import_code = '';
 
       // get code per font
       if($font == 'System') {
         $css_code = '"Source Sans Pro", "Helvetica Neue", Arial, sans-serif';
-        $html_code = '';
+        $import_code = '';
       }
       else if($font == 'Arimo') {
         $css_code = '"Arimo", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Arimo');";
       }
       else if($font == 'Dosis') {
         $css_code = '"Dosis", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Dosis');";
       }
       else if($font == 'Lato') {
         $css_code = '"Lato", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Lato');";
       }
       else if($font == 'Lora') {
         $css_code = '"Lora", serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Lora');";
       }
       else if($font == 'Merriweather') {
         $css_code = '"Merriweather", serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Merriweather');";
       }
       else if($font == 'Montserrat') {
         $css_code = '"Montserrat", serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Montserrat');";
       }
       else if($font == 'Noto Sans') {
         $css_code = '"Noto Sans", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Open+Sans');";
       }
       else if($font == 'Open Sans') {
         $css_code = '"Open Sans", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Montserrat');";
       }
       else if($font == 'Oswald') {
         $css_code = '"Oswald", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Oswald');";
       }
       else if($font == 'Playfair Display') {
         $css_code = '"Playfair Display", serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Playfair+Display');";
       }
       else if($font == 'Poppins') {
         $css_code = '"Poppins", snas-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Poppins');";
       }
       else if($font == 'PT Sans') {
         $css_code = '"PT Sans", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=PT+Sans');";
       }
       else if($font == 'Raleway') {
         $css_code = '"Raleway", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Raleway');";
       }
       else if($font == 'Roboto') {
         $css_code = '"Roboto", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Roboto');";
       }
       else if($font == 'Slabo') {
         $css_code = '"Slabo", serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Slabo+27px');";
       }
       else if($font == 'Source Sans Pro') {
         $css_code = '"Source Sans Pro", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');";
       }
       else if($font == 'Ubuntu') {
         $css_code = '"Ubuntu", sans-serif';
-        $html_code = '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">';
+        $import_code = "@import url('https://fonts.googleapis.com/css?family=Ubuntu');";
       }
 
       if($type == 'CSS') {
         return $css_code;
       }
       else {
-        return $html_code;
+        return $import_code;
       }
 
     }
@@ -292,21 +292,25 @@ class Publish
 
       $settings = Theme::listAll($siteId);
 
-      // inject customizations into css
-      foreach($settings['customizations'] as $customization) {
-      
-        if(isset($customization['value'])) {
-      
-          $value = $customization['value'];
-        
-          // look up font co
-          if($customization['type'] == 'font') {
-            $value = Publish::getFontFamilyCode($siteId, $value, 'CSS');
+      if(isset($settings['customizations'])) {
+
+        // inject customizations into css
+        foreach($settings['customizations'] as $customization) {
+
+          if(isset($customization['value'])) {
+
+            $value = $customization['value'];
+
+            // look up font co
+            if($customization['type'] == 'font') {
+              $value = Publish::getFontFamilyCode($siteId, $value, 'CSS');
+            }
+
+            $search = 'var(--' . $customization['id'] . ')';
+            $css = str_replace($search, $value, $css, $count);
+
           }
-  
-          $search = 'var(--' . $customization['id'] . ')';
-          $css = str_replace($search, $value, $css, $count);
-        
+
         }
 
       }
@@ -314,32 +318,36 @@ class Publish
       return $css;
 
     }
-    
+
     /**
      * Get fonts scripts for a given site
      *
      * @param {String} $siteId
      */
-    public static function getFontScripts($siteId) {
+    public static function getFontImport($siteId) {
 
       $settings = Theme::listAll($siteId);
-      $font_scripts = '';
+      $font_import = '';
 
-      // inject customizations into css
-      foreach($settings['customizations'] as $customization) {
-      
-        if(isset($customization['value'])) {
-          $value = $customization['value'];
-        
-          // look up font co
-          if($customization['type'] == 'font') {
-            $font_scripts .= Publish::getFontFamilyCode($siteId, $value, 'HTML');
+      if(isset($settings['customizations'])) {
+
+        // inject customizations into css
+        foreach($settings['customizations'] as $customization) {
+
+          if(isset($customization['value'])) {
+            $value = $customization['value'];
+
+            // look up font co
+            if($customization['type'] == 'font') {
+              $font_import .= Publish::getFontFamilyCode($siteId, $value, 'IMPORT');
+            }
           }
+
         }
 
       }
 
-      return $font_scripts;
+      return $font_import;
 
     }
 
@@ -361,7 +369,9 @@ class Publish
               array('css'),
               array());
 
-      $all_css = "";
+      $import = Publish::getFontImport($site->id);
+
+      $all_css = $import;
 
       // walk through files
       foreach($files as $file) {
