@@ -449,9 +449,6 @@ class Page {
 
       }
 
-      // get font
-      $font_script = Publish::getFontScripts($site->id);
-
       // replace name and description
       $template_html = str_replace('{{page.title}}', $this->title, $template_html);
       $template_html = str_replace('{{page.description}}', $this->description, $template_html);
