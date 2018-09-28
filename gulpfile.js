@@ -29,7 +29,7 @@ gulp.task('create-zip', function() {
       'public/favicon.ico',
       'public/0.959ad71af5481f6e55a8.js',
       'public/1.9ab5b33e070fd6ab3012.js',
-      'public/main.4ba12f0e9902ff3e20e2.js',
+      'public/main.b66875d97d919887892f.js',
       'public/polyfills.6fe99e701656a00f4585.js',
       'public/runtime.66f28b3f957a74dd3373.js',
       'public/scripts.87a01ae09c864179e2ec.js',
