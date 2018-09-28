@@ -395,6 +395,9 @@ class CodeController extends Controller
            // re-publish the templates to update date/time stamp
           Publish::publishTemplates($user, $site);
 
+          // re-publish plugins
+          Publish::publishPlugins($user, $site);
+
           // return 200
           return response('Ok', 200);
         }
@@ -416,6 +419,9 @@ class CodeController extends Controller
 
           // re-publish the templates to update date/time stamp
           Publish::publishTemplates($user, $site);
+
+          // re-publish plugins
+          Publish::publishPlugins($user, $site);
 
           // return 200
           return response('Ok', 200);

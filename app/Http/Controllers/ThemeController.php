@@ -63,6 +63,9 @@ class ThemeController extends Controller
       // re-publish the templates
       Publish::publishTemplates($user, $site);
 
+      // re-publish plugins
+      Publish::publishPlugins($user, $site);
+
       return response('Ok', 200);
 
     }
