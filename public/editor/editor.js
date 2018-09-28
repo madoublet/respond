@@ -378,7 +378,7 @@ editor = (function() {
         editor.showLinkDialog();
       }
       else if(command.toUpperCase() == 'ELEMENT.REMOVE') {
-      
+
         if(element != null) {
           element.remove();
         }
@@ -924,24 +924,24 @@ editor = (function() {
 
             var x, y, rows, curr_rows, columns, curr_columns, toBeAdded,
               toBeRemoved, table, trs, th, tr, td, tbody;
-              
+
             table = editor.current.node;
-            
+
             // get new
             columns = table.getAttribute('columns');
             rows = table.getAttribute('rows');
-            
+
             // get curr
             curr_columns = table.querySelectorAll('thead tr:first-child th').length;
             curr_rows = table.querySelectorAll('tbody tr').length;
-            
+
             // handle adding/remove columns
             if (columns > curr_columns) { // add columns
 
               toBeAdded = columns - curr_columns;
-              
+
               var trs = table.getElementsByTagName('tr');
-              
+
               // walk through table
               for (x = 0; x < trs.length; x += 1) {
 
@@ -984,42 +984,42 @@ editor = (function() {
               }
 
             }
-            
+
             // handle adding/removing rows
             if (rows > curr_rows) { // add rows
 
               toBeAdded = rows - curr_rows;
-  
+
               // add rows
               for (y = 0; y < toBeAdded; y += 1) {
                 tr = document.createElement('tr');
-  
+
                 for (x = 0; x < columns; x += 1) {
                   td = document.createElement('td');
                   td.setAttribute('contentEditable', 'true');
                   td.innerHTML = 'New Row';
                   tr.appendChild(td);
                 }
-  
+
                 tbody = table.getElementsByTagName('tbody')[0];
                 tbody.appendChild(tr);
               }
-  
+
             } else if (rows < curr_rows) { // remove columns
-  
+
               toBeRemoved = curr_rows - rows;
-  
+
               // remove rows
               for (y = 0; y < toBeRemoved; y += 1) {
                 tr = table.querySelector('tbody tr:last-child');
-  
+
                 if (tr !== null) {
                   tr.remove();
                 }
               }
-  
+
             }
-            
+
           }
         },
         {
@@ -1086,7 +1086,7 @@ editor = (function() {
     /**
      * Shows the sidebar
      */
-    showSidebar: function(element) {
+    showSidebar: function() {
 
       var menu = document.querySelector('.editor-menu');
 
@@ -1103,6 +1103,8 @@ editor = (function() {
 
       // set current node
       var element = editor.current.node, x, title, selector, attributes = [];
+
+      console.log(element);
 
       if(element == null) { return };
 
@@ -1320,7 +1322,7 @@ editor = (function() {
                 editor.current.node = parentNode;
 
                 // shows the text options
-                editor.showSidebar(parentNode);
+                editor.showSidebar();
             }
             else if (e.target.hasAttribute('contentEditable')) {
 
@@ -1349,7 +1351,7 @@ editor = (function() {
               }
 
               // shows the text options
-              editor.showSidebar(e.target);
+              editor.showSidebar();
 
             }
             else if (e.target.className == 'dz-hidden-input') {
@@ -1444,11 +1446,13 @@ editor = (function() {
         ['keydown'].forEach(function(e) {
           arr[x].addEventListener(e, function(e) {
 
-            editor.setChanged('content keyed');
+            editor.setChanged('content key down');
 
             if (e.target.hasAttribute('contentEditable')) {
 
               el = e.target;
+
+              editor.showSidebar();
 
               // ENTER key
               if (e.keyCode === 13) {
@@ -1728,6 +1732,7 @@ editor = (function() {
           properties: {
             id: element.id || '',
             cssClass: element.className,
+            html: element.innerHTML,
             href: element.getAttribute('href'),
             target: element.getAttribute('target'),
             title: element.getAttribute('title')
@@ -2002,7 +2007,6 @@ editor = (function() {
         };
 
         if(editor.debug === true) {
-          console.log('update array');
           console.log(el);
         }
 

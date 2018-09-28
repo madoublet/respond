@@ -293,7 +293,7 @@ class SiteController extends Controller
     // publish plugins
     Publish::publishPlugins($user, $site);
 
-    return response('Ok', 200);
+    return response()->json(array());
 
   }
 
@@ -327,7 +327,7 @@ class SiteController extends Controller
     // re-publish the settings
     Publish::publishSettings($user, $site);
 
-    return response('Ok', 200);
+    return response()->json(array());
 
   }
 
@@ -354,7 +354,7 @@ class SiteController extends Controller
     // re-publish plugins
     Publish::publishPlugins($user, $site);
 
-    return response('Ok', 200);
+    return response()->json(array());
 
   }
 
@@ -379,7 +379,7 @@ class SiteController extends Controller
     // publish site map
     Publish::publishSiteMap($user, $site);
 
-    return response('Ok', 200);
+    return response()->json(array());
 
   }
 
@@ -407,7 +407,7 @@ class SiteController extends Controller
     // publish site map
     Publish::publishSiteMap($user, $site);
 
-    return response('Ok', 200);
+    return response()->json(array());
 
   }
 
