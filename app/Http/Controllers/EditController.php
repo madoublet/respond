@@ -188,7 +188,7 @@ class EditController extends Controller
 
               // set block elements
               if($blocks === NULL) {
-                $blocks = '.row';
+                $blocks = '.block';
               }
 
               // find body element
