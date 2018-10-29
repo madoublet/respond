@@ -925,7 +925,7 @@ class Publish
       );
 
       // get plugins for the site
-      $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins/';
+      $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
       $exts = array('html', 'php');
 
       if(!$files) {
