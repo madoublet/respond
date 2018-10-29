@@ -389,7 +389,7 @@ class Page {
       $json_arr = array_values($pages);
 
       // re-encode json
-      $json_text = json_encode($json_arr);
+      $json_text = json_encode($json_arr, JSON_PRETTY_PRINT);
 
       file_put_contents($json_file, $json_text);
 
