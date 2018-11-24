@@ -964,7 +964,7 @@ class Publish
           if(file_exists($path)) {
 
             // $html = file_get_contents($path);
-            $id = basename($path);not
+            $id = basename($path);
             $id = str_replace('.html', '', $id);
             $id = str_replace('.php', '', $id);
 
