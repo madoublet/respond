@@ -6,7 +6,7 @@ let cleanCSS = require('gulp-clean-css');
 let concat = require('gulp-concat');
 let rename = require('gulp-rename');
 
-var themes = ['aspire', 'base', 'broadway', 'energy', 'executive', 'highrise', 'market', 'serene', 'sidebar', 'simple', 'stark'];
+var themes = ['aspire', 'broadway', 'sidebar'];
 
 // create a zip for the release
 gulp.task('create-zip', function() {
@@ -38,16 +38,8 @@ gulp.task('create-zip', function() {
       'public/resources/**/*',
       'public/editor/**/*',
       'public/themes/aspire/**/*',
-      'public/themes/base/**/*',
       'public/themes/broadway/**/*',
-      'public/themes/energy/**/*',
-      'public/themes/executive/**/*',
-      'public/themes/highrise/**/*',
-      'public/themes/market/**/*',
-      'public/themes/serene/**/*',
       'public/themes/sidebar/**/*',
-      'public/themes/simple/**/*',
-      'public/themes/stark/**/*',
       'public/.htaccess',
       'public/index.html',
       'public/index.php',
