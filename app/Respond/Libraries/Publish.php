@@ -16,7 +16,7 @@ use App\Respond\Models\Setting;
 use App\Respond\Models\Theme;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 // Twig Extensions
 use App\Respond\Extensions\BetterSortTwigExtension;

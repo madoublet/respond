@@ -12,7 +12,7 @@ use App\Respond\Models\Gallery;
 use App\Respond\Models\Setting;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 class EditController extends Controller
 {

@@ -13,7 +13,7 @@ use App\Respond\Models\User;
 use App\Respond\Models\Page;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 class CodeController extends Controller
 {

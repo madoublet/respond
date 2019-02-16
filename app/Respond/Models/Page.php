@@ -14,7 +14,7 @@ use Lullabot\AMP\AMP;
 use Lullabot\AMP\Validate\Scope;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 /**
  * Models a page

@@ -9,7 +9,7 @@ use App\Respond\Models\Site;
 use App\Respond\Models\User;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 /**
  * Models a component
