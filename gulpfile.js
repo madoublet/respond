@@ -112,3 +112,6 @@ gulp.task('themes', gulp.series(['resources', 'combine']));
 
 // create a zip file for the project in dist/release.zip
 gulp.task('zip', gulp.series(['create-zip']));
+
+// Default tasks - executed if user types simply "gulp"
+gulp.task('default', gulp.series('resources', 'combine'));
