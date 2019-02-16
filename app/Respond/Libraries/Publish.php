@@ -839,7 +839,7 @@ class Publish
 
         $html = file_get_contents($location);
 
-        // setup current page
+        // setup meta info
         $meta = array(
           'url' => $page->url,
           'firstName' => $page->firstName,
@@ -849,7 +849,7 @@ class Publish
         );
 
         // inject plugin HTML to the page
-        $dom = Publish::injectPluginHTML($html, $user, $site, $meta, $pages);
+        $dom = Publish::injectPluginHTML($html, $user, $site, $meta, $pages, $page);
 
         // put html back
         file_put_contents($location, $dom);
@@ -870,7 +870,7 @@ class Publish
      * @param {User} $user
      * @param {Site} $site
      */
-    public static function injectPluginHTML($html, $user, $site, $meta, $pages = null) {
+    public static function injectPluginHTML($html, $user, $site, $meta, $pages = null, $page = null) {
 
       // caches the values of these variables across the request to improve performance
       static $forms = array();
@@ -923,6 +923,30 @@ class Publish
         'useFriendlyURLs' => $site->supportsFriendlyUrls,
         'timeZone' => $site->timeZone,
       );
+
+      // If page data is provided
+      if($page) {
+
+        // setup current page
+        $current_page = array(
+          'title' => $page->title,
+          'description' => $page->description,
+          'keywords' => $page->keywords,
+          'callout' => $page->callout,
+          'url' => $page->url,
+          'photo' => $page->photo,
+          'thumb' => $page->thumb,
+          'language' => $page->language,
+          'direction' => $page->direction,
+          'firstName' => $page->firstName,
+          'lastName' => $page->lastName,
+          'lastModifiedBy' => $page->lastModifiedBy,
+          'lastModifiedDate' => $page->lastModifiedDate
+        );
+
+      } else {
+        $current_page = array();
+      }
 
       // get plugins for the site
       $dir = app()->basePath().'/public/sites/'.$site->id.'/plugins';
@@ -985,7 +1009,7 @@ class Publish
             if(array_search($el->type, $plugins) !== FALSE) {
 
               // render array
-              $render_arr = array('page' => $meta,
+              $render_arr = array('page' => $current_page,
                                   'meta' => $meta,
                                   'site' => $current_site,
                                   'pages' => $pages,
