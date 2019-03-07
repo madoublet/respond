@@ -162,81 +162,96 @@
 }
 
 /* editor-element-menu */
-body [role=main] .editor-element-menu {
+body .editor-element-menu {
     font-family: 'Open Sans', sans-serif !important;
     position: absolute;
     top: 0;
-    right: 0;
-    background-color: #09203f;
+    left: 0;
     margin: 0 !important;
-    padding: 0 !important;
-    color: #888;
+    padding: 5px !important;
+    color: #24344C;
     z-index: 10000;
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
     margin: 0 !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
     line-height: normal !important;
-    border-radius: 20px;
-    transition: all .1s ease;
-    width: auto;
     height: auto;
     z-index: 20000;
+    text-align: right;
+    background-color: #24344C !important;
+    display: inline-block;
+    transform: translateY(5px);
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255,0.25);
 }
 
-  body [role=main] [editor-element] .editor-element-menu x-respond-menu-label {
-    position: relative;
-    font-family: 'Open Sans', sans-serif !important;
-    display: inline-block;
-    font-size: 10px !important;
-    color: #fff;
-    margin: 0 15px 0 0 !important;
-    padding: 12px 0 12px 25px !important;
-    text-transform: uppercase;
-    line-height: normal !important;
-    font-weight: normal !important;
-  }
-
-
-  body [role=main] [editor-element]:hover .editor-element-menu {
-    visibility: visible;
-    opacity: 0.75;
-  }
-
-  body [role=main] [editor-element]:hover .editor-element-menu:hover {
+  body .editor-element-menu[active] {
+    display: inline-block !important;
     opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: all .1s ease;
   }
 
-  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
+  body .editor-element-menu .editor-element-menu-item {
     font-family: 'Open Sans', sans-serif !important;
     position: relative;
     display: inline-block;
     color: #fff;
-    font-size: 12px !important;
-    margin: 0 15px 0 0 !important;
-    padding: 10px 0 10px 30px !important;
-    cursor: pointer;
-    font-weight: normal;
-    line-height: normal !important;
-  }
-
-  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item.editor-move {
-    cursor: move;
-  }
-
-  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item x-respond-menu-icon {
-    position: absolute;
-    top: 11px;
-    left: 10px;
+    font-size: 14px !important;
     margin: 0 !important;
     padding: 0 !important;
-    font-size: 14px !important;
-    line-height: normal !important;
+    cursor: pointer;
+    font-weight: normal;
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 37px !important;
+    text-align: center !important;
+    text-shadow: none !important;
+    border-radius: 2px;
   }
 
-  body [role=main] [editor-element] .editor-element-menu .editor-element-menu-item {
-    display: inline-block;
-    text-transform: none !important;
+  body .editor-element-menu .editor-element-menu-item:hover {
+    background-color: rgba(255,255,255,0.25);
+  }
+
+  body .editor-element-menu .editor-element-menu-item.editor-add {
+    background-color: #AECA20 !important;
+    border-radius: 2px;
+  }
+
+  body .editor-element-menu .editor-element-menu-item.editor-remove:hover {
+    background-color: #CF4647 !important;
+  }
+
+  body .editor-element-menu .editor-element-menu-item x-respond-menu-icon {
+    font-size: 14px !important;
+  }
+
+/* drag */
+[editor-element] .editor-move {
+  position: absolute !important;
+  display: block !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  margin: 0 !important;
+  background: #AECA20 !important;
+  color: #fff !important;
+  cursor: move !important;
+  text-align: center !important !important;
+  border-radius: 50% !important;
+}
+
+  [editor-element] .editor-move i {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    user-select: none !important; /* Standard */
+    pointer-events: none !important;
   }
 
 /* highlight */

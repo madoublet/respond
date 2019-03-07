@@ -185,15 +185,62 @@ editor = (function() {
     },
 
     /**
+     * Sets up the element
+     * @param {DOMElement} el
+     */
+    setupElement: function(el) {
+
+      // set element
+      el.setAttribute('editor-element', '');
+
+    },
+
+
+    /**
+     * Hides the element menu
+     * @param {DOMElement} el
+     */
+    hideElementMenu: function() {
+      editor.current.menu.removeAttribute('active');
+    },
+
+    /**
+     * Positions the element menu
+     * @param {DOMElement} el
+     */
+    positionElementMenu: function(el) {
+
+      var rect = el.getBoundingClientRect();
+
+      var top = Math.round(rect.top + window.scrollY) - 50;
+      var left = Math.round(rect.left);
+
+
+      editor.current.menu.removeAttribute('active');
+      editor.current.menu.style.top = top + 'px';
+      editor.current.menu.style.left = left + 'px';
+
+      setTimeout(function() {
+        editor.current.menu.setAttribute('active', '')
+      }, 100);
+
+
+      // dispose of handle
+      el = document.querySelector('[editor-element] .editor-move');
+
+      if(el) {
+        el.remove();
+      }
+
+    },
+
+    /**
      * Adds an element menu to a given element
      * @param {DOMElement} el
      */
     setupElementMenu: function(el) {
 
       var menu, span;
-
-      // set element
-      el.setAttribute('editor-element', '');
 
       // create element menu
       menu = document.createElement('x-respond-menu');
@@ -202,17 +249,129 @@ editor = (function() {
 
       // create a handle
       span = document.createElement('x-respond-menu-item');
-      span.setAttribute('class', 'editor-element-menu-item editor-move');
-      span.innerHTML = '<x-respond-menu-icon class="material-icons">apps</x-respond-menu-icon> ' + editor.i18n('Move');
+      span.setAttribute('class', 'editor-element-menu-item editor-remove');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">remove_circle_outline</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+
+        editor.current.node.remove();
+
+      });
 
       // append the handle to the wrapper
       menu.appendChild(span);
+
+      // append to menu
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-move');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">open_with</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+
+        var span = document.createElement('span');
+        span.innerHTML = '<i class="material-icons">apps</i>'
+        span.className = 'editor-move';
+        editor.current.node.appendChild(span);
+
+      });
+
+      // append the handle to the wrapper
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-up');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">arrow_upward</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+
+        let el = editor.current.node;
+
+        if(el.previousElementSibling) {
+          el.parentNode.insertBefore(el, el.previousElementSibling);
+        }
+
+      });
+
+      // append to menu
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-up');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">arrow_downward</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+
+        let el = editor.current.node;
+
+        if(el.nextElementSibling) {
+          el.nextElementSibling.parentNode.insertBefore(el.nextElementSibling, el);
+        }
+
+
+      });
+
+      // append to menu
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-bold');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">format_bold</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+        editor.execCommand('BOLD');
+      });
+
+      // append to menu
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-italic');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">format_italic</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+        editor.execCommand('ITALIC');
+      });
+
+      // append the handle to the wrapper
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-underline');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">format_underline</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+        editor.execCommand('UNDERLINE');
+      });
+
+      // append the handle to the wrapper
+      menu.appendChild(span);
+
+      // create a handle
+      span = document.createElement('x-respond-menu-item');
+      span.setAttribute('class', 'editor-element-menu-item editor-link');
+      span.innerHTML = '<x-respond-menu-icon class="material-icons">link</x-respond-menu-icon>';
+
+      span.addEventListener('mousedown', function(e) {
+        editor.execCommand('LINK');
+      });
 
       // append the handle to the wrapper
       menu.appendChild(span);
 
       // append the handle to the wrapper
       el.appendChild(menu);
+
+      // set menu
+      editor.current.menu = menu;
+
 
     },
 
@@ -248,7 +407,7 @@ editor = (function() {
       // wrap editable items
       for (y = 0; y < els.length; y += 1) {
 
-        editor.setupElementMenu(els[y]);
+        editor.setupElement(els[y]);
 
       }
 
@@ -639,7 +798,7 @@ editor = (function() {
       }
 
       if(obj.type == 'element') {
-        editor.setupElementMenu(el);
+        editor.setupElement(el);
       }
 
     },
@@ -772,7 +931,7 @@ editor = (function() {
               }
 
               // setup contextual menu
-              editor.setupElementMenu(node);
+              editor.setupElement(node);
 
               // set current node
               editor.current.node = node;
@@ -1271,6 +1430,7 @@ editor = (function() {
             if (element) {
               editor.current.node = element;
               element.setAttribute('current-editor-element', 'true');
+              editor.positionElementMenu(element);
             }
 
             // handle links
@@ -1415,7 +1575,7 @@ editor = (function() {
                   if(editor.current.linkSelection != '') {
                     el.innerHTML = editor.current.linkSelection;
                     editor.current.linkSelection = '';
-                    editor.setupElementMenu(el);
+                    editor.setupElement(el);
                   }
                   else {
                     text = document.createTextNode(editor.i18n('Tap to update'));
@@ -1478,7 +1638,7 @@ editor = (function() {
 
                   editor.current.node = node;
 
-                  editor.setupElementMenu(node);
+                  editor.setupElement(node);
 
                   e.preventDefault();
                   e.stopPropagation();
@@ -2271,6 +2431,7 @@ editor = (function() {
             editor.createMenu(config.path);
             editor.setupSidebar();
             editor.translate();
+            editor.setupElementMenu(document.body);
 
             // setup loaded event
             var event = new Event('editor.loaded');
