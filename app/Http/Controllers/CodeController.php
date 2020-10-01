@@ -13,7 +13,7 @@ use App\Respond\Models\User;
 use App\Respond\Models\Page;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 class CodeController extends Controller
 {
@@ -389,7 +389,14 @@ class CodeController extends Controller
           // save to file
           file_put_contents($path, $value);
 
+          // combine css
           Publish::combineCSS($site);
+
+           // re-publish the templates to update date/time stamp
+          Publish::publishTemplates($user, $site);
+
+          // re-publish plugins
+          Publish::publishPlugins($user, $site);
 
           // return 200
           return response('Ok', 200);
@@ -409,6 +416,12 @@ class CodeController extends Controller
 
           // combine JS to site.all.js
           Publish::combineJS($site);
+
+          // re-publish the templates to update date/time stamp
+          Publish::publishTemplates($user, $site);
+
+          // re-publish plugins
+          Publish::publishPlugins($user, $site);
 
           // return 200
           return response('Ok', 200);

@@ -5,6 +5,8 @@ namespace App\Respond\Libraries;
 use \Firebase\JWT\JWT;
 
 use App\Respond\Models\Setting;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class Utilities
 {
@@ -364,7 +366,9 @@ class Utilities
     public static function sendEmail($to, $from, $fromName, $subject, $content, $site = NULL)
     {
 
-        $mail = new \PHPMailer\PHPMailer\PHPMailer;
+        set_time_limit(30);
+
+        $mail = new PHPMailer(true);
 
         // if null, grab settings from env()
         if($site == NULL) {
@@ -470,12 +474,14 @@ class Utilities
 
         $mail->Subject = $subject;
         $mail->Body = html_entity_decode($content, ENT_COMPAT, 'UTF-8');
+        $mail->Timeout = 10;
 
-        if (!$mail->send()) {
-            return true;
+        try {
+          $mail->send();
+          return true;
+        } catch (Exception $e) {
+          return false;
         }
-
-        return false;
 
     }
 

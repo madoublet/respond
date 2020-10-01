@@ -1,6 +1,6 @@
 {
   "name": "respondcms",
-  "version": "6.7.0",
+  "version": "7.3.0",
   "repository": "https://github.com/madoublet/respond",
   "scripts": {
     "tsc": "tsc"
@@ -8,7 +8,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0",
     "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.0",
     "gulp-minify": "0.0.12",

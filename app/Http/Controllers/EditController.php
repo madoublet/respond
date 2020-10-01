@@ -12,7 +12,7 @@ use App\Respond\Models\Gallery;
 use App\Respond\Models\Setting;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 class EditController extends Controller
 {
@@ -188,7 +188,7 @@ class EditController extends Controller
 
               // set block elements
               if($blocks === NULL) {
-                $blocks = '.row';
+                $blocks = '.block';
               }
 
               // find body element

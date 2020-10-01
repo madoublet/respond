@@ -14,7 +14,7 @@ use Lullabot\AMP\AMP;
 use Lullabot\AMP\Validate\Scope;
 
 // DOM parser
-use Sunra\PhpSimple\HtmlDomParser;
+use KubAT\PhpSimple\HtmlDomParser;
 
 /**
  * Models a page
@@ -235,13 +235,10 @@ class Page {
    */
   public static function edit($url, $changes, $site, $user){
 
-    // get a reference to the page object
-    $page = Page::GetByUrl($url, $site->id);
-
     // get page
     $location = app()->basePath().'/public/sites/'.$site->id.'/'.$url.'.html';
 
-    if($page != NULL && file_exists($location)) {
+    if(file_exists($location)) {
 
       // get html
       $html = file_get_contents($location);
@@ -254,6 +251,9 @@ class Page {
 
       // determine if it is a component
       if(isset($el)) {
+
+        // get a reference to the page object
+        $page = Page::GetByUrl($url, $site->id);
 
         // content placeholder
         $main_content = '';
@@ -289,6 +289,9 @@ class Page {
         // set text to main_content
         $page->text = $text;
 
+        // saves the page
+        $page->save($site, $user);
+
       }
       else {
 
@@ -303,8 +306,6 @@ class Page {
 
       }
 
-      // saves the page
-      $page->save($site, $user);
 
       return TRUE;
 
@@ -388,7 +389,7 @@ class Page {
       $json_arr = array_values($pages);
 
       // re-encode json
-      $json_text = json_encode($json_arr);
+      $json_text = json_encode($json_arr, JSON_PRETTY_PRINT);
 
       file_put_contents($json_file, $json_text);
 
@@ -448,9 +449,6 @@ class Page {
         $full_thumb_url = $site_url.'/'.$this->photo;
 
       }
-
-      // get font
-      $font_script = Publish::getFontScripts($site->id);
 
       // replace name and description
       $template_html = str_replace('{{page.title}}', $this->title, $template_html);

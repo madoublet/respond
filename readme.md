@@ -11,6 +11,11 @@ Version: 7.3.0
 - Enable top-menu space from .env
 - Support for tax in subscriptions
 
+### Installation
+- Instructions for installing from ZIP are at https://respondcms.com/documentation/installation
+- Instructions for installing from Github are at https://respondcms.com/documentation/installation-from-github
+- Find additional documentation on installation and setup at https://respondcms.com/learn
+
 ### Updating from 7.2.0
 - Follow update instructions at https://respondcms.com/documentation/updating-respond
 - Sync .env file with most recent version (add TOP_MENU_FEATURE, PRODUCT_FEATURE)
